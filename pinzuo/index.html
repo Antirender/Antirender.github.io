@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>品作设计 | 主页</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="品作设计" width="120" height="40">
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active" data-lang="zh">首页</a><a href="index.html" data-lang="en">Home</a></li>
+                <li><a href="about.html" data-lang="zh">关于我们</a><a href="about.html" data-lang="en">About</a></li>
+                <li><a href="portfolio.html" data-lang="zh">作品集</a><a href="portfolio.html" data-lang="en">Portfolio</a></li>
+                <li><a href="contact.html" data-lang="zh">联系我们</a><a href="contact.html" data-lang="en">Contact</a></li>
+                <li><a href="login.html" class="login-btn" data-lang="zh">登录</a><a href="login.html" class="login-btn" data-lang="en">Login</a></li>
+                <li class="language-switch">
+                    <div class="lang-container">
+                        <button class="lang-btn active" data-lang="zh">中文</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
+                </li>
+            </ul>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-content container">
+            <div class="hero-text">
+                <h1 data-lang="zh">创造非凡空间体验</h1>
+                <h1 data-lang="en">Creating Extraordinary Spatial Experiences</h1>
+                <p class="subtitle" data-lang="zh">环境艺术设计整体解决方案专家</p>
+                <p class="subtitle" data-lang="en">Integrated Solutions for Environmental Art Design</p>
+                <div class="cta-container">
+                    <a href="portfolio.html" class="cta-btn" data-lang="zh">查看案例</a>
+                    <a href="portfolio.html" class="cta-btn" data-lang="en">View Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心服务 -->
+    <section class="services section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-lang="zh">核心服务</h2>
+                <h2 data-lang="en">Our Services</h2>
+            </div>
+            
+            <div class="service-grid">
+                <article class="service-card">
+                    <i class="fas fa-city service-icon"></i>
+                    <h3 data-lang="zh">商业空间设计</h3>
+                    <h3 data-lang="en">Commercial Space Design</h3>
+                </article>
+
+                <article class="service-card">
+                    <i class="fas fa-paint-roller service-icon"></i>
+                    <h3 data-lang="zh">艺术装置设计</h3>
+                    <h3 data-lang="en">Art Installation Design</h3>
+                </article>
+
+                <article class="service-card">
+                    <i class="fas fa-vr-cardboard service-icon"></i>
+                    <h3 data-lang="zh">景观设计</h3>
+                    <h3 data-lang="en">Landscape design</h3>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="品作设计" width="100" height="34">
+                    <p data-lang="zh">创新设计 · 品质之作</p>
+                    <p data-lang="en">Innovative Design · Quality Craftsmanship</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 品作设计. <span data-lang="zh">保留所有权利</span><span data-lang="en">All Rights Reserved</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

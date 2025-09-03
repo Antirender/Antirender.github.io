@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 | 品作设计</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="品作设计" width="120" height="40">
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="portfolio.html">作品集</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="login.html" class="login-btn active">登录</a></li>
+                <li class="language-switch">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </li>
+            </ul>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <!-- 登录主内容 -->
+    <main class="login-page section-padding">
+        <div class="container">
+            <div class="login-wrapper">
+                <!-- 登录表单 -->
+                <div class="login-box">
+                    <div class="login-header">
+                        <h2 data-lang="zh">用户登录</h2>
+                        <h2 data-lang="en" style="display:none">User Login</h2>
+                        <p data-lang="zh">访问您的专属工作空间</p>
+                        <p data-lang="en" style="display:none">Access your workspace</p>
+                    </div>
+
+                    <form id="loginForm" novalidate>
+                        <!-- 用户名/邮箱 -->
+                        <div class="form-group">
+                            <label for="loginId">
+                                <span data-lang="zh">用户名 / 邮箱</span>
+                                <span data-lang="en" style="display:none">Username / Email</span>
+                            </label>
+                            <input type="text" 
+                                   id="loginId" 
+                                   name="loginId" 
+                                   required 
+                                   class="form-control"
+                                   autocomplete="username">
+                            <div class="error-msg" id="loginIdError"></div>
+                        </div>
+
+                        <!-- 密码 -->
+                        <div class="form-group">
+                            <label for="password">
+                                <span data-lang="zh">密码</span>
+                                <span data-lang="en" style="display:none">Password</span>
+                            </label>
+                            <div class="password-input">
+                                <input type="password" 
+                                       id="password" 
+                                       name="password" 
+                                       required 
+                                       class="form-control"
+                                       autocomplete="current-password">
+                                <button type="button" class="toggle-password">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="error-msg" id="passwordError"></div>
+                        </div>
+
+                        <!-- 记住我 & 忘记密码 -->
+                        <div class="form-options">
+                            <label class="remember-me">
+                                <input type="checkbox" name="remember">
+                                <span data-lang="zh">记住登录状态</span>
+                                <span data-lang="en" style="display:none">Remember me</span>
+                            </label>
+                            <a href="forgot-password.html" class="forgot-password">
+                                <span data-lang="zh">忘记密码？</span>
+                                <span data-lang="en" style="display:none">Forgot password?</span>
+                            </a>
+                        </div>
+
+                        <!-- 提交按钮 -->
+                        <button type="submit" class="cta-btn full-width">
+                            <span data-lang="zh">立即登录</span>
+                            <span data-lang="en" style="display:none">Sign In</span>
+                        </button>
+
+                        <!-- 第三方登录 -->
+                        <div class="social-login">
+                            <p class="divider" data-lang="zh">其他登录方式</p>
+                            <p class="divider" data-lang="en" style="display:none">Or continue with</p>
+                            <div class="social-buttons">
+                                <a href="#" class="social-btn wechat">
+                                    <i class="fab fa-weixin"></i>
+                                </a>
+                                <a href="#" class="social-btn google">
+                                    <i class="fab fa-google"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 功能说明 -->
+                <div class="login-features">
+                    <div class="feature-card">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3 data-lang="zh">安全网盘</h3>
+                        <h3 data-lang="en" style="display:none">Secure Web Disk</h3>
+                        <p data-lang="zh">企业级加密文件存储与共享</p>
+                        <p data-lang="en" style="display:none">Enterprise-grade encrypted file storage</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fas fa-robot"></i>
+                        <h3 data-lang="zh">AI设计助手</h3>
+                        <h3 data-lang="en" style="display:none">AI Assistant</h3>
+                        <p data-lang="zh">智能生成设计原型与方案</p>
+                        <p data-lang="en" style="display:none">Smart design prototyping</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fas fa-desktop"></i>
+                        <h3 data-lang="zh">远程控制</h3>
+                        <h3 data-lang="en" style="display:none">Remote Control</h3>
+                        <p data-lang="zh">安全访问远程工作站</p>
+                        <p data-lang="en" style="display:none">Secure remote access</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 统一页脚 -->
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="品作设计" width="100" height="34">
+                    <p data-lang="zh">创新设计 · 品质之作</p>
+                    <p data-lang="en" style="display:none">Innovative Design · Quality Craftsmanship</p>
+                </div>
+                <div class="footer-contact">
+                    <h4 data-lang="zh">联系我们</h4>
+                    <h4 data-lang="en" style="display:none">Contact Us</h4>
+                    <p>Email: contact@pinzuodesign.com</p>
+                    <p data-lang="zh">电话: +86 15951711152</p>
+                    <p data-lang="en" style="display:none">Tel: +86 15951711152</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 品作设计. <span data-lang="zh">保留所有权利</span><span data-lang="en" style="display:none">All Rights Reserved</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <!-- 登录页面专用脚本 -->
+    <script>
+        // 密码可见切换
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', () => {
+                const input = button.previousElementSibling;
+                const isPassword = input.type === 'password';
+                input.type = isPassword ? 'text' : 'password';
+                button.querySelector('i').classList.toggle('fa-eye-slash', isPassword);
+                button.querySelector('i').classList.toggle('fa-eye', !isPassword);
+            });
+        });
+
+        // 表单验证
+        const form = document.getElementById('loginForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            // 清除旧错误信息
+            document.querySelectorAll('.error-msg').forEach(el => el.textContent = '');
+
+            // 用户名验证
+            const loginId = document.getElementById('loginId');
+            if (!loginId.value.trim()) {
+                document.getElementById('loginIdError').textContent = 
+                    document.querySelector('[data-lang="zh"]').style.display === 'none' 
+                    ? 'Please enter username/email' 
+                    : '请输入用户名或邮箱';
+                isValid = false;
+            }
+
+            // 密码验证
+            const password = document.getElementById('password');
+            if (!password.value.trim()) {
+                document.getElementById('passwordError').textContent = 
+                    document.querySelector('[data-lang="zh"]').style.display === 'none' 
+                    ? 'Please enter password' 
+                    : '请输入密码';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // 模拟登录成功
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

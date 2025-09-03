@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集 | 品作设计</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="品作设计" width="120" height="40">
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="portfolio.html" class="active">作品集</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="login.html" class="login-btn">登录</a></li>
+                <li class="language-switch">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </li>
+            </ul>
+            <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <!-- 作品集主内容 -->
+    <main class="portfolio-page section-padding">
+        <div class="container">
+            <!-- 分类筛选 -->
+            <div class="portfolio-filter">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <span data-lang="zh">全部</span>
+                        <span data-lang="en" style="display:none">All</span>
+                    </button>
+                    <button class="filter-btn" data-filter="commercial">
+                        <span data-lang="zh">商业空间</span>
+                        <span data-lang="en" style="display:none">Commercial</span>
+                    </button>
+                    <button class="filter-btn" data-filter="cultural">
+                        <span data-lang="zh">文化场馆</span>
+                        <span data-lang="en" style="display:none">Cultural</span>
+                    </button>
+                    <button class="filter-btn" data-filter="exhibition">
+                        <span data-lang="zh">主题展览</span>
+                        <span data-lang="en" style="display:none">Exhibition</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 作品网格 -->
+            <div class="portfolio-grid">
+                <!-- 商业空间项目 -->
+                <article class="portfolio-item" data-category="commercial">
+                    <img src="images/works/commercial-1.jpeg" alt="商业综合体设计" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <div class="overlay-content">
+                            <h3 data-lang="zh">城市商业综合体</h3>
+                            <h3 data-lang="en" style="display:none">Urban Commercial Complex</h3>
+                            <p class="category-tag">商业空间</p>
+                            <a href="project-detail.html" class="view-btn">
+                                <span data-lang="zh">查看详情</span>
+                                <span data-lang="en" style="display:none">View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 文化场馆项目 -->
+                <article class="portfolio-item" data-category="cultural">
+                    <img src="images/works/cultural-1.jpeg" alt="文化艺术中心" loading="lazy">
+                    <div class="portfolio-overlay">
+                        <div class="overlay-content">
+                            <h3 data-lang="zh">现代艺术博物馆</h3>
+                            <h3 data-lang="en" style="display:none">Modern Art Museum</h3>
+                            <p class="category-tag">文化场馆</p>
+                            <a href="project-detail.html" class="view-btn">
+                                <span data-lang="zh">查看详情</span>
+                                <span data-lang="en" style="display:none">View Details</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 更多项目... -->
+            </div>
+        </div>
+    </main>
+
+    <!-- 统一页脚 -->
+    <footer class="footer section-padding">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="images/logo.png" alt="品作设计" width="100" height="34">
+                    <p data-lang="zh">创新设计 · 品质之作</p>
+                    <p data-lang="en" style="display:none">Innovative Design · Quality Craftsmanship</p>
+                </div>
+                <div class="footer-contact">
+                    <h4 data-lang="zh">联系我们</h4>
+                    <h4 data-lang="en" style="display:none">Contact Us</h4>
+                    <p>Email: contact@pinzuodesign.com</p>
+                    <p data-lang="zh">电话: +86 15951711152</p>
+                    <p data-lang="en" style="display:none">Tel: +86 15951711152</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 品作设计. <span data-lang="zh">保留所有权利</span><span data-lang="en" style="display:none">All Rights Reserved</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

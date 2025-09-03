@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>你 被 骗 了 播 放 器</title>
+  <link rel="icon" href="img/favicon.ico">
+  <style>
+    body.light { --bg: #f9f9f9; --fg: #333; }
+    body.dark  { --bg: #333;   --fg: #f9f9f9; }
+/* var */
+    body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--fg);
+      font-family: sans-serif;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      height: 100vh; overflow: hidden;
+    }
+/* top */
+    #topbar {
+      position: absolute; top: 10px; left: 10px;
+      display: flex; align-items: center;
+    }
+    #topbar img {
+      width: 32px; height: 32px; margin-right: 6px;
+      cursor: pointer;
+    }
+    #infoBtn {
+      background: transparent;
+      border: 1px solid var(--fg);
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--fg);
+    }
+    #infoBtn:hover {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    #player { display: none; flex-direction: column; align-items: center; }
+    #player.active { display: flex; }
+    #info   { display: none; max-width: 480px; padding: 20px; text-align: left; }
+    #info.active { display: block; }
+
+    #controls {
+      margin-top: 20px;
+    }
+    button.control {
+      margin: 0 8px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background: var(--fg);
+      color: var(--bg);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+/* cycle */
+    #lyric {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+      max-width: 90%;
+    }
+    .word {
+      display: inline-block;
+      margin: 0 4px;
+      padding: 4px 8px;
+      border: 1px solid var(--fg);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .word.active {
+      background: var(--fg);
+      color: var(--bg);
+    }
+    .arrow {
+      margin: 0 4px;
+      font-size: 1.2rem;
+    }
+
+    #bgImage {
+      display: block; 
+      max-width: 80%;
+      margin: 10px auto 5px;  
+      border: 1px solid var(--fg);
+      border-radius: 4px;
+    }
+
+    @media (orientation: landscape) {
+      body { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body class="light">
+<!-- 免责 -->
+    <div id="topbar">
+    <img src="img/favicon.ico" alt="logo" onclick="showInfo()">
+    <button id="infoBtn" onclick="showInfo()">ABOUT/INFO</button>
+  </div>
+
+  <div id="player" class="active">
+    <h1>你 被 骗 了 播 放 器</h1>
+    <!-- lyric visualizer -->
+    <div id="lyric"></div>
+
+    <!-- play / pause and mode switch -->
+    <div id="controls">
+      <button id="playBtn" class="control" onclick="togglePlay()">开始播放</button>
+      <button id="modeBtn" class="control" onclick="toggleMode()">dark mode</button>
+<!-- bgImage -->
+    </div>
+  <div>
+    <img id="bgImage" src="img/NEVERGONNABG.png" alt="state diagram">
+  </div>
+  </div>
+
+  <div id="info">
+    <h1>关于 / INFO</h1>
+    <p>致谢：本播放器的灵感与素材来自：</p>
+    <ul>
+      <li>哔哩哔哩视频：
+        <a href="https://www.bilibili.com/video/BV1hsGYzbEpg/"
+           target="_blank">你 被 骗 了 播 放 器</a>
+      </li>
+      <li>GitHub：
+        <a href="https://github.com/Guowenxuan1031/NeverGonnaUnity"
+           target="_blank">Guowenxuan1031/NeverGonnaUnity</a>
+      </li>
+    </ul>
+    <p>声明：本站仅为该播放器的 Web 端优化版本，旨在方便用户在线使用。
+        代码编写Antirender
+    </p>
+    <button class="control" onclick="showPlayer()">返回播放器</button>
+  </div>
+
+  <script>
+//api
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    let bufferMap = {};      // filename -> AudioBuffer
+    let currentSource = null; // current BufferSource
+    let playing = false;
+    let state = 'never';
+    let currentPhrase = [];
+    let phraseIndex = 0;
+
+    // mapping 
+    const fileMap = {
+      never: 'never.wav',
+      gonna: 'gonna.wav',
+      give: 'give.wav',
+      let: 'let.wav',
+      run: 'run.wav',
+      around: 'around.wav',
+      and: ['and.wav','and2.wav'],
+      desert: 'desert.wav',
+      make: 'make.wav',
+      cry: 'cry.wav',
+      say: 'say.wav',
+      goodbye: 'goodbye.wav',
+      tell: 'tell.wav',
+      alie: 'alie.wav',
+      hurt: 'hurt.wav',
+      you: ['you1.wav','you2.wav','you3.wav'],
+      up: 'up.wav',
+      down: 'down.wav'
+    };
+
+    // list 可改
+    const phrases = [
+      ['give','you','up'],
+      ['let','you','down'],
+      ['run','around','and','desert','you'],
+      ['make','you','cry'],
+      ['say','goodbye'],
+      ['tell','alie','and','hurt','you']
+    ];
+
+    // preload 
+    async function preloadBuffers() {
+      for (const val of Object.values(fileMap)) {
+        const files = Array.isArray(val) ? val : [val];
+        for (const fn of files) {
+          if (!bufferMap[fn]) {
+            const resp = await fetch('music/' + fn);
+            const abuf = await resp.arrayBuffer();
+            bufferMap[fn] = await audioContext.decodeAudioData(abuf);
+          }
+        }
+      }
+    }
+
+    // play 
+    function playBuffer(fn) {
+      if (currentSource) currentSource.disconnect();
+      const src = audioContext.createBufferSource();
+      src.buffer = bufferMap[fn];
+      src.connect(audioContext.destination);
+      src.onended = playNext;  // schedule the next on end
+      src.start(0);
+      currentSource = src;
+    }
+
+    // advance the finite-state machine and play
+    function playNext() {
+      if (!playing) return;
+
+      // state transitions
+      if (state === 'never') {
+        state = 'gonna';
+      }
+      else if (state === 'gonna') {
+        currentPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+        phraseIndex = 0;
+        state = currentPhrase[phraseIndex++];
+      }
+      else if (phraseIndex < currentPhrase.length) {
+        state = currentPhrase[phraseIndex++];
+      }
+      else {
+        state = 'never';
+      }
+
+      // pick a random filename if multiple variants
+      let fn = fileMap[state];
+      if (Array.isArray(fn)) {
+        fn = fn[Math.floor(Math.random() * fn.length)];
+      }
+
+      // update visualizer
+      updateLyrics();
+
+      // play the buffer
+      playBuffer(fn);
+    }
+
+    // update the #lyric div 
+    function updateLyrics() {
+      const div = document.getElementById('lyric');
+      div.innerHTML = '';
+      let words, idx;
+
+      if (state === 'never') {
+        words = ['NEVER'];
+        idx = 0;
+      }
+      else if (state === 'gonna') {
+        words = ['GONNA'];
+        idx = 0;
+      }
+      else {
+        words = currentPhrase.map(w => w === 'alie' ? 'A LIE' : w.toUpperCase());
+        idx = phraseIndex - 1; // because phraseIndex was incremented post-selection
+      }
+
+      // build spans + arrows(☝️)
+      words.forEach((w,i) => {
+        const span = document.createElement('span');
+        span.className = 'word' + (i === idx ? ' active' : '');
+        span.textContent = w;
+        div.appendChild(span);
+        if (i < words.length - 1) {
+          const arrow = document.createElement('span');
+          arrow.className = 'arrow';
+          arrow.textContent = '→';
+          div.appendChild(arrow);
+        }
+      });
+    }
+
+    // toggle play / pause
+    async function togglePlay() {
+      const btn = document.getElementById('playBtn');
+      if (!playing) {
+        // resume AudioContext on first user gesture
+        if (audioContext.state === 'suspended') {
+          await audioContext.resume();
+        }
+        playing = true;
+        btn.textContent = '暂停播放';
+        playNext();
+      } else {
+        playing = false;
+        if (currentSource) currentSource.stop();
+        btn.textContent = '开始播放';
+      }
+    }
+
+    // switch light / dark mode(传统)
+    function toggleMode() {
+      const b = document.body;
+      const btn = document.getElementById('modeBtn');
+      if (b.classList.contains('light')) {
+        b.classList.replace('light','dark');
+        btn.textContent = 'light mode';
+      } else {
+        b.classList.replace('dark','light');
+        btn.textContent = 'dark mode';
+      }
+    }
+
+    // show About/Info page
+    function showInfo() {
+      document.getElementById('player').classList.remove('active');
+      document.getElementById('info').classList.add('active');
+    }
+    // return to player(bfq)
+    function showPlayer() {
+      document.getElementById('info').classList.remove('active');
+      document.getElementById('player').classList.add('active');
+    }
+
+    // begin preloading on load
+    preloadBuffers();
+  </script>
+</body>
+</html>
+<!-- (嘿嘿 谢谢🙏关注 Antirender 谢谢喵) -->
+(嘿嘿 谢谢🙏关注 Antirender 谢谢喵)
