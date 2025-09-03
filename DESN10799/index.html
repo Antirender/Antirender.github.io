@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=50.0, user-scalable=yes">
+    <link rel="icon" type="image/x-icon" href="Antirender.ico">
+    <title>Unsplash Image Download</title>
+    <style>
+        /* basic unsplash-style layout */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .image-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+        }
+        .image-card { 
+            position: relative; 
+            border-radius: 4px; 
+            overflow: hidden;
+            cursor: pointer;
+        }
+        img { 
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        img:hover {
+            transform: scale(1.01);
+        }
+        .download-btn { 
+            position: absolute; 
+            bottom: 10px; 
+            right: 10px; 
+            background: #fff; 
+            padding: 8px 16px; 
+            border-radius: 4px; 
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .premium-badge { 
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+            background: #42b345; 
+            color: white; 
+            padding: 4px 8px; 
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            z-index: 10001;
+            max-width: 90%;
+        }
+        
+        .modal-option { 
+            margin: 10px 0; 
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .premium-modal {
+            text-align: center;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            background: white;
+            padding: 20px;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .lightbox img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
+
+        .image-details {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .image-details a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .attribution {
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .download-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #4abf4e;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: #00a033;
+        }
+
+        .data-consent {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10003;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #42b345;
+            animation: loadProgress 3s forwards;
+        }
+        #terms {
+            transform: scale(1); 
+          
+        }
+        #premiumSpeedBtn {
+            display: block;
+            width: 100%;
+            background: #42b345;
+            color: white;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 15px; 
+        }
+
+        #premiumSpeedBtn:hover {
+            background: #388E3C;
+        }
+
+        #confirmShameSpeed p {
+            color: red;
+            font-weight: bold;
+        }
+
+        #confirmShameSpeed button:hover {
+            background: #f44336;
+            color: white;
+        }
+
+        #consentModal p a {
+            color: gray;
+            text-decoration: none;
+        }
+
+        #consentModal p a:hover {
+            color: red;
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+    </style>
+</head>
+
+<!-- Premium Speed Modal -->
+<div class="data-consent" id="consentModal">
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+    <h3>Want faster downloads? <span style="color:#42b345">(Recommended)</span></h3>
+    <p>Free users experience slower speeds and watermarks</p>
+
+    <!-- Big Button that Immediately Redirects -->
+    <button id="premiumSpeedBtn" onclick="redirectToPlus()">
+        🔓 Unlock Premium Speed
+    </button>
+
+    <!-- Small Text Triggering Confirmshaming -->
+    <p style="text-align: center; font-size: 0.8em; margin-top: 5px;">
+        <a href="#" onclick="showConfirmShameSpeed()" style="color: gray; text-decoration: none;">
+            Or continue with slow downloads
+        </a>
+    </p>
+
+    <!-- Confirmshaming Section (Initially Hidden) -->
+    <div id="confirmShameSpeed" style="display: none; text-align: center; margin-top: 15px;">
+        <p style="color: red; font-size: 1.1em;">Are you sure? Slow downloads can be frustrating!</p>
+        <button onclick="redirectToPlus()" style="background: #369a39; color: white;font-size: 1.1em ;padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer;">
+            Yes, I want the best experience! 🚀
+        </button>
+        <button onclick="closeConsentModal()" style="background: #ccc; padding: 10px 20px; border-radius: 5px; border: none; cursor: pointer;">
+            No thanks, I enjoy slow downloads. 
+        </button>
+    </div>
+
+    <div style="margin-top: 15px; text-align: center;">
+        <input type="checkbox" id="terms" checked>
+        <label for="terms" style="font-size: 0.8em;">Share usage data to improve experience.<br/>
+            By Unlock Premium Speed, you agree to our<br/> <a href="https://unsplash.com/terms" target="_blank">Terms of Service</a> 
+            and <a href="https://unsplash.com/privacy" target="_blank">Privacy Policy</a>.
+        </label>
+    </div>
+</div>
+<body>
+    <h1>Unsplash Image Download</h1>
+    <div class="counter" id="searchCounter">
+      🔥 <span id="fakeCount">99999</span> people are searching right now
+    </div>  
+    <input type="search" class="search-bar" placeholder="Search images..." id="searchInput">
+    <div class="image-grid" id="imageContainer"></div>
+
+<!-- dark patterns modals -->
+    <div class="modal" id="downloadModal">
+      <h3>Download Options</h3>
+      <div class="modal-option" style="font-size: 1.5em;background: #42b345; color: white;" 
+           onclick="handlePremiumDownload()">
+          🔥 HD Download (Recommended) - Best Quality
+      </div>
+      <p style="font-size: 0.7em; color: #666; margin-top: 10px;">
+          <input type="checkbox" id="newsletter" checked>
+          <label for="newsletter">Uncheck to avoid missing exclusive offers</label>
+      </p>
+      <div style="text-align: center; margin-top: 15px;">
+          <a href="#" onclick="handleFreeDownload()" style="color: gray; font-size: 0.7em;">
+              No Thanks, Continue with Free Download
+          </a>
+      </div>
+  </div>
+  
+    <div class="modal premium-modal" id="premiumModal">
+      <h2>🔒 Premium HD Access</h2>
+      <p><strong>You're missing out on stunning HD images!</strong></p>
+      <p>Why settle for low quality?</p>
+      <input type="email" placeholder="Enter your email" style="width: 100%; padding: 10px; margin: 10px 0;">
+      <button class="modal-option" style="background: #42b345; color: white; width: 100%;" onclick="redirectToUnsplashPlus()">
+        Subscribe Now
+    </button>    
+      <p style="text-align: center; font-size: 0.7em; margin-top: 10px;">
+          <a href="#" onclick="hidePremiumModal()" style="color: gray;">
+              I don’t mind blurry images
+          </a>
+      </p>
+        
+        <p style="font-size: 0.8em; color: #666; margin-top: 15px;">
+          By subscribing, you agree to our <a href="https://unsplash.com/terms" target="_blank">Terms of Service</a> 
+          and <a href="https://unsplash.com/privacy" target="_blank">Privacy Policy</a>.
+      </p>
+      
+    </div>
+
+<!-- lightbox for image preview -->
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+          <span class="close-btn" onclick="closeLightbox()">&times;</span>
+          <img id="expandedImg" src="" alt="Expanded view" onclick="showDownloadModal()">
+          <div class="image-details">
+              <p>Photo by <a id="photographerLink" href="#" target="_blank"></a> on <a id="unsplashLink" href="#" target="_blank">Unsplash</a></p>
+          </div>
+          <div class="download-container">
+              <a id="downloadButton" class="download-btn" href="#" onclick="showDownloadModal(); return false;">Download Free</a>
+          </div>
+      </div>
+  </div>
+  
+  
+  
+    <script>
+      function updateFakeCounter() {
+          const randomCount = Math.floor(Math.random() * (100000 - 10000) + 10000);
+          document.getElementById('fakeCount').textContent = randomCount;
+      }
+
+      // update per 5 s
+      setInterval(updateFakeCounter, 5000);
+      updateFakeCounter();
+      function showConsentModal() {
+          document.getElementById('consentModal').style.display = 'block';
+      }
+
+// after 7 s to simulate engagement delay
+      setTimeout(showConsentModal, 7000);
+
+      function redirectToPlus() {
+          window.location.href = "https://unsplash.com/plus";
+      }
+       // Start of Unsplash API integration code from Unsplash Documentation
+        const API_KEY = 'tBu1oUa1VCm3RTCRgzqE3Zu-msPE1rQQiGMbXyXXNT4';
+       // End of Unsplash API integration code from Unsplash Documentation
+        let currentPhotoData = null;
+//ConfirmShameSpeed
+        function showConfirmShameSpeed() {
+            document.getElementById('confirmShameSpeed').style.display = 'block';
+        }
+
+        function closeConsentModal() {
+            document.getElementById('consentModal').style.display = 'none';
+        }
+
+        function redirectToPlus() {
+            window.location.href = "https://unsplash.com/plus";
+        }
+
+        // load images from unsplash
+        // Start of Unsplash API integration code from Unsplash Documentation
+        async function loadImages(query = '') {
+            const endpoint = query ? 
+                `https://api.unsplash.com/search/photos?query=${query}&per_page=9` :
+                `https://api.unsplash.com/photos/random?count=9`;
+            
+            try {
+                const response = await fetch(`${endpoint}&client_id=${API_KEY}`);
+                const data = query ? (await response.json()).results : await response.json();
+        // End of Unsplash API integration code from Unsplash Documentation
+                document.getElementById('imageContainer').innerHTML = '';
+                data.forEach(img => {
+                    const card = document.createElement('div');
+                    card.className = 'image-card';
+                    card.innerHTML = `
+                        <img src="${img.urls.regular}" alt="${img.alt_description}" 
+                             onclick="showLightbox('${img.urls.regular}', ${JSON.stringify(img).replace(/"/g, '&quot;')})">
+                        <div class="premium-badge">HD Available</div>
+                        <button class="download-btn" onclick="showDownloadModal('${img.id}')">Download Free</button>
+                    `;
+                    document.getElementById('imageContainer').appendChild(card);
+                });
+            } catch (error) {
+                console.log('error loading images:', error);
+            }
+        }
+// Start of Unsplash API integration code from Unsplash Documentation
+        // handle image preview
+        function showLightbox(imgUrl, photoData) {
+            currentPhotoData = photoData;
+            document.getElementById('expandedImg').src = imgUrl;
+            document.getElementById('photographerLink').textContent = photoData.user.name;
+            document.getElementById('photographerLink').href = photoData.user.links.html + "?utm_source=dark_ux&utm_medium=referral";
+            document.getElementById('unsplashLink').href = photoData.links.html + "?utm_source=dark_ux&utm_medium=referral";
+
+// Clicking the image triggers the deceptive download modal
+            document.getElementById('expandedImg').onclick = function () {
+                showDownloadModal();
+            };
+
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+// End of Unsplash API integration code from Unsplash Documentation
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // handle downloads
+        function showDownloadModal(photoId) {
+            document.getElementById('downloadModal').style.display = 'block';
+        }
+
+        function handlePremiumDownload() {
+            document.getElementById('downloadModal').style.display = 'none';
+            document.getElementById('premiumModal').style.display = 'block';
+        }
+
+        function hidePremiumModal() {
+            document.getElementById('premiumModal').style.display = 'none';
+            handleFreeDownload(); 
+        }
+
+        // redirect
+        function redirectToUnsplashPlus() {
+            window.location.href = "https://unsplash.com/plus";
+        }
+
+        async function revealFreeDownload() {
+    alert("You are choosing the slower, lower-quality version. Are you sure?");
+        }
+//not used, toomany bugs
+        function handleFreeDownload() {
+            if(document.getElementById('newsletter').checked) {
+                console.log('user added to newsletter without consent');
+            }//not used, toomany bugs
+
+// artificial delay to frustrate users
+//3s(5s too long)
+            setTimeout(() => {
+                const link = document.createElement('a');
+                link.href = currentPhotoData.urls.raw + '&dl=';
+                link.download = 'unsplash-image.jpg';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                document.getElementById('downloadModal').style.display = 'none';
+            }, 3000); 
+        }
+
+
+        // search functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            loadImages(e.target.value);
+        });
+
+        // initialize
+        loadImages();
+    </script>
+</body>
+</html>

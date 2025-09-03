@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unsplash Download Demo (Dark UX)</title>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Dark UX Pattern 1: Disguised Ad */
+        .upsell-banner {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Dark UX Pattern 2: Confirm Shaming */
+        .shaming-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        /* Dark UX Pattern 3: Privacy Zuckering */
+        .privacy-terms {
+            font-size: 12px;
+            color: #666;
+            margin-top: 1rem;
+        }
+        
+        /* Other UI elements */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Free Stock Photos</h1>
+    
+    <!-- Search bar -->
+    <input type="text" id="searchInput" placeholder="Search free photos..." class="search-bar">
+
+    <!-- Dark UX 1: Disguised Ad (masquerading as system alert) -->
+    <div class="upsell-banner" onclick="redirectToUpsell()">
+        <div>
+            <h3 style="margin:0">🔥 Pro Membership Special Offer!</h3>
+            <p style="margin:0">Get HD downloads (Only $9.99/month)</p>
+        </div>
+        <button class="upsell-btn">Upgrade Now</button>
+    </div>
+
+    <!-- Photo gallery -->
+    <div class="gallery" id="gallery"></div>
+
+    <!-- Download section -->
+    <div class="download-section">
+        <!-- Dark UX 3: Pre-checked privacy agreement -->
+        <div class="privacy-terms">
+            <input type="checkbox" id="privacyCheck" checked hidden>
+            <label>By downloading you agree to share usage data</label>
+        </div>
+        <button class="download-btn" onclick="initiateDownload()">Download Free</button>
+    </div>
+
+    <!-- Dark UX 2: Confirm Shaming Dialog -->
+    <div class="shaming-dialog" id="shamingDialog" style="display:none">
+        <h2>⚠️ Continue with Free Download?</h2>
+        <p>You'll receive low-res version with watermark</p>
+        <button onclick="proceedDownload(true)">Yes, I want mediocre quality</button>
+        <button onclick="proceedDownload(false)" style="color:#666">No, I deserve better</button>
+    </div>
+
+    <script>
+        // Unsplash API config
+        const ACCESS_KEY = 'tBu1oUa1VCm3RTCRgzqE3Zu-msPE1rQQiGMbXyXXNT4';
+        let selectedPhoto = null;
+
+        // Normal flow: Search -> Select -> Download
+        document.getElementById('searchInput').addEventListener('input', async (e) => {
+            const response = await fetch(`https://api.unsplash.com/search/photos?query=${e.target.value}&client_id=${ACCESS_KEY}`);
+            const data = await response.json();
+            renderGallery(data.results);
+        });
+
+        // Dark UX flow:
+        // 1. Upsell interception
+        function redirectToUpsell() {
+            window.location.hash = "#upsell";
+            document.body.innerHTML = `<h2>Pro Upgrade Required</h2>`;
+        }
+
+        // 2. Shaming dialog
+        function initiateDownload() {
+            document.getElementById('shamingDialog').style.display = 'block';
+        }
+
+        // 3. Hidden privacy pre-check
+        // Implemented via HTML checked attribute
+    </script>
+</body>
+</html>
