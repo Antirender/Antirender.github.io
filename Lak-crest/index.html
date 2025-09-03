@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Premium Kitchen Appliances</title>
+  <style>
+    /* Global styling for body and main container */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* Basic styling for each product block */
+    .product {
+      background: white;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+
+    .product img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .product-content {
+      padding: 20px;
+      flex: 1;
+    }
+
+    /* Heading styles */
+    h1, h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    /* Paragraph styles */
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Product specifications table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* "Buy Now" button styling */
+    .buy-now {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #e74c3c;
+      color: #fff;
+      border: none;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .buy-now:hover {
+      background-color: #c0392b;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      .product {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Premium Kitchen Appliances</h1>
+    <p>Power up your kitchen with our latest multifunctional tools.</p>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Product #1: Heating and Cooking Blender -->
+    <div class="product">
+      <!-- Product Image -->
+      <img src="001.jpg" alt="Heating and Cooking Blender">
+
+      <!-- Product Content Section -->
+      <div class="product-content">
+        <h2>Introducing the Ultimate Kitchen Game-Changer: Heating and Cooking Blender</h2>
+        <p>
+          Take your cooking to the next level with our revolutionary heating and cooking blender! 
+          This innovative kitchen appliance combines the power of blending with the convenience of heating, 
+          allowing you to cook and prepare a wide range of delicious dishes with ease. From soups and sauces 
+          to dips and desserts, our heating and cooking blender is the perfect tool for any home cook or 
+          professional chef. Explore our selection today and discover a world of culinary possibilities!
+        </p>
+
+        <!-- Specifications Table (Example Data) -->
+        <table>
+          <tr>
+            <th>Specification</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Power</td>
+            <td>800W</td>
+          </tr>
+          <tr>
+            <td>Capacity</td>
+            <td>1.5 L</td>
+          </tr>
+          <tr>
+            <td>Dimensions</td>
+            <td>15 x 24 x 25 cm</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td>2.0 kg</td>
+          </tr>
+        </table>
+
+        <!-- "Buy Now" Button -->
+        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
+      </div>
+    </div>
+
+    <!-- Product #2: Third Generation Mini Soymilk Maker -->
+    <div class="product">
+      <!-- Product Image -->
+      <img src="003.jpg" alt="Third Generation Mini Soymilk Maker">
+
+      <!-- Product Content Section -->
+      <div class="product-content">
+        <h2>The Third Generation Mini Soymilk Maker</h2>
+        <p>
+          Experience the future of healthy living with our third generation mini soymilk maker. 
+          Compact yet powerful, it's perfect for preparing fresh, nutritious soymilk, rice paste, and more 
+          with just the press of a button. Say goodbye to store-bought products and hello to homemade goodness. 
+          Easy to use and even easier to clean!
+        </p>
+
+        <!-- Specifications Table (Example Data) -->
+        <table>
+          <tr>
+            <th>Specification</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Power</td>
+            <td>700W</td>
+          </tr>
+          <tr>
+            <td>Capacity</td>
+            <td>0.8 L</td>
+          </tr>
+          <tr>
+            <td>Dimensions</td>
+            <td>12 x 20 x 22 cm</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td>1.5 kg</td>
+          </tr>
+        </table>
+
+        <!-- "Buy Now" Button -->
+        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
+      </div>
+    </div>
+
+    <!-- Product #3: Meat Grinder and Vegetable Chopper -->
+    <div class="product">
+      <!-- Product Image -->
+      <img src="006.jpg" alt="Meat Grinder and Vegetable Chopper">
+
+      <!-- Product Content Section -->
+      <div class="product-content">
+        <h2>Unlock Your Kitchen's Potential</h2>
+        <p>
+          Take your cooking to the next level with our powerful meat grinder and versatile vegetable chopper! 
+          Whether you're a professional chef or a home cook, our kitchen essentials will help you prepare 
+          delicious meals with ease. Grind your own meats, chop fresh vegetables, and unlock a world of 
+          culinary possibilities. Browse our selection today and discover the perfect tools for your kitchen!
+        </p>
+
+        <!-- Specifications Table (Example Data) -->
+        <table>
+          <tr>
+            <th>Specification</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Power</td>
+            <td>600W</td>
+          </tr>
+          <tr>
+            <td>Capacity</td>
+            <td>2.0 L (bowl)</td>
+          </tr>
+          <tr>
+            <td>Blade Material</td>
+            <td>Stainless Steel</td>
+          </tr>
+          <tr>
+            <td>Usage</td>
+            <td>Meat, Vegetables, Nuts</td>
+          </tr>
+        </table>
+
+        <!-- "Buy Now" Button -->
+        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
+      </div>
+    </div>
+
+    <!-- Product #4: LAK Japan Chopper -->
+    <div class="product">
+      <!-- Product Image -->
+      <img src="009.jpg" alt="LAK Japan Chopper">
+
+      <!-- Product Content Section -->
+      <div class="product-content">
+        <h2>LAK Japan® – Precision Meets Power</h2>
+        <p>
+          Introducing the LAK Japan® Excellent Meat Grinder & Veggie Chopper. Designed with a high-speed 
+          motor and professional stainless steel blade system, it’s built to handle even the toughest ingredients. 
+          Perfect for chopping meat, garlic, vegetables, and more. Trusted by chefs, loved by home cooks. 
+          Upgrade your kitchen today!
+        </p>
+
+        <!-- Specifications Table (Example Data) -->
+        <table>
+          <tr>
+            <th>Specification</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>Power</td>
+            <td>550W</td>
+          </tr>
+          <tr>
+            <td>Blade System</td>
+            <td>4-Blade Stainless Steel</td>
+          </tr>
+          <tr>
+            <td>Capacity</td>
+            <td>1.8 L (bowl)</td>
+          </tr>
+          <tr>
+            <td>Special Feature</td>
+            <td>Pulse Control</td>
+          </tr>
+        </table>
+
+        <!-- "Buy Now" Button -->
+        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
+      </div>
+    </div>
+
+  </div> <!-- End of .container -->
+
+  <!-- Inline JavaScript for Buy Now button -->
+  <script>
+    /**
+     * buyNowAlert()
+     * Display an alert or redirect users when they click the "Buy Now" button.
+     * Modify this function to integrate real payment or shopping cart logic.
+     */
+    function buyNowAlert() {
+      alert("Thank you for your interest! Please contact our sales team or proceed to checkout to complete the purchase.");
+    }
+  </script>
+
+</body>
+</html>

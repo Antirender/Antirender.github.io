@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Milk Empire</title>
+
+  <!-- Favicon (also used as logo in top-left) -->
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+  <!-- Responsive & Mobile Landscape Orientation -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      background: #f0f0f0;
+      overflow-x: hidden;
+      width: 100%;
+      height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background: #ddd;
+      padding: 0.5em;
+    }
+
+    header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5em;
+    }
+
+    header h1 {
+      font-size: 1.2em;
+    }
+
+    /* Container for the menu + game area */
+    .container {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+      background: #fff;
+    }
+
+    /* Side menu */
+    .menu {
+      flex: 0 0 200px;
+      background: #eee;
+      padding: 1em;
+      border-right: 2px solid #ccc;
+    }
+
+    .menu h2 {
+      margin-bottom: 1em;
+    }
+
+    .menu button {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5em;
+      padding: 0.5em;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    /* Main game area */
+    .game-area {
+      flex: 1;
+      padding: 1em;
+      overflow-y: auto;
+    }
+
+    /* Progress bar */
+    .progress-bar-wrapper {
+      margin: 1em 0;
+      background: #ccc;
+      width: 100%;
+      height: 20px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
+      transition: width 0.3s;
+    }
+
+    /* Achievements box */
+    .achievements {
+      margin-top: 1em;
+      padding: 0.5em;
+      background: #fafafa;
+      border: 1px solid #ddd;
+    }
+
+    .achievement-item {
+      margin-bottom: 0.5em;
+      padding: 0.3em;
+      border-bottom: 1px solid #eee;
+    }
+
+    .achievement-item.unlocked {
+      color: green;
+      font-weight: bold;
+    }
+
+    /* Responsive: Switch to single-column if narrow or certain orientation */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .menu {
+        flex: none;
+        border-right: none;
+        border-bottom: 2px solid #ccc;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .menu button {
+        width: 40%;
+        margin: 0.5em;
+      }
+    }
+
+    /* Force mobile devices into landscape if wanted (visual hint) */
+    @media screen and (orientation: portrait) {
+      body::before {
+        content: "Please rotate your device to landscape for the best experience.";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 1em;
+        border: 2px solid #000;
+        z-index: 9999;
+      }
+      .container {
+        display: none; /* Hide game area in portrait */
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <!-- Logo / Favicon -->
+    <img src="img/favicon.ico" alt="Milk Empire Logo" />
+    <h1>Milk Empire</h1>
+  </header>
+
+  <div class="container">
+    <!-- MENU SECTION -->
+    <aside class="menu">
+      <h2>Game Menu</h2>
+      <button id="startBtn">Start New Game</button>
+      <button id="resumeBtn">Resume</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="saveBtn">Save</button>
+      <button id="achievementsBtn">Achievements</button>
+    </aside>
+
+    <!-- GAME AREA -->
+    <main class="game-area">
+      <!-- Example storyline / instructions -->
+      <p>Welcome to the Milk Empire! Produce and process milk into new products, earn money, unlock achievements, and expand your dairy empire.</p>
+
+      <!-- Progress Bar Example (overall progress) -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <!-- Display Game Stats -->
+      <div>
+        <p><strong>Milk Available:</strong> <span id="milkCount">0</span></p>
+        <p><strong>Money:</strong> $<span id="moneyCount">0</span></p>
+        <p><strong>Current Level:</strong> <span id="currentLevel">Milk</span></p>
+      </div>
+
+      <!-- Action buttons for gameplay -->
+      <div style="margin-top: 1em;">
+        <button id="produceMilkBtn">Produce Milk</button>
+        <button id="upgradeProductBtn">Upgrade to Next Product</button>
+      </div>
+
+      <!-- Achievements Section (hidden by default) -->
+      <div class="achievements" id="achievementsSection" style="display:none;">
+        <h3>Achievements</h3>
+        <div id="achievementList"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    /*
+      Basic “Milk Empire” Game Data & Mechanics
+    */
+
+    // Global game state
+    let gameData = {
+      milk: 0,
+      money: 0,
+      currentLevelIndex: 0,   // index to track which dairy product level we are on
+      achievementsUnlocked: []
+    };
+
+    // List of dairy product levels in ascending complexity
+    // Each level has a name, produceRate (how much milk or product we get), costToUpgrade, etc.
+    const levels = [
+      { name: "Milk", produceRate: 1,  costToUpgrade: 10 },
+      { name: "Cheese", produceRate: 2,  costToUpgrade: 50 },
+      { name: "Yogurt", produceRate: 3,  costToUpgrade: 100 },
+      { name: "Butter", produceRate: 5,  costToUpgrade: 300 },
+      { name: "Powdered Milk", produceRate: 10, costToUpgrade: 1000 }
+      // ... feel free to add more
+    ];
+
+    // Simple achievements definition
+    const allAchievements = [
+      { id: 1, name: "First Milk", criteria: {milk: 10}, description: "Produce 10 milk in total" },
+      { id: 2, name: "Little Cheese", criteria: {milk: 50}, description: "Produce 50 milk in total" },
+      { id: 3, name: "Cheese Tycoon", criteria: {money: 100}, description: "Have $100 in your wallet" }
+      // Add more achievements as needed
+    ];
+
+    let gameLoopInterval = null;
+    let gamePaused = false;
+
+    // Initialize UI elements
+    const milkCountEl     = document.getElementById("milkCount");
+    const moneyCountEl    = document.getElementById("moneyCount");
+    const currentLevelEl  = document.getElementById("currentLevel");
+    const progressBarEl   = document.getElementById("progressBar");
+    const achievementsSection = document.getElementById("achievementsSection");
+    const achievementListEl   = document.getElementById("achievementList");
+
+    // Buttons
+    const startBtn       = document.getElementById("startBtn");
+    const resumeBtn      = document.getElementById("resumeBtn");
+    const pauseBtn       = document.getElementById("pauseBtn");
+    const saveBtn        = document.getElementById("saveBtn");
+    const produceMilkBtn = document.getElementById("produceMilkBtn");
+    const upgradeBtn     = document.getElementById("upgradeProductBtn");
+    const achievementsBtn= document.getElementById("achievementsBtn");
+
+    /*
+      Menu / Button Event Listeners
+    */
+    startBtn.addEventListener("click",  startNewGame);
+    resumeBtn.addEventListener("click", resumeGame);
+    pauseBtn.addEventListener("click",  pauseGame);
+    saveBtn.addEventListener("click",   saveGame);
+
+    produceMilkBtn.addEventListener("click", produceMilk);
+    upgradeBtn.addEventListener("click", upgradeProduct);
+    achievementsBtn.addEventListener("click", toggleAchievements);
+
+    // Start a fresh game
+    function startNewGame() {
+      if (confirm("Are you sure you want to start a new game? This will overwrite any saved progress.")) {
+        gameData = {
+          milk: 0,
+          money: 0,
+          currentLevelIndex: 0,
+          achievementsUnlocked: []
+        };
+        updateUI();
+        runGameLoop();
+      }
+    }
+
+    // Resume from current state (unpause if needed)
+    function resumeGame() {
+      if (!gameLoopInterval) {
+        runGameLoop();
+        gamePaused = false;
+      }
+    }
+
+    // Pause the game loop
+    function pauseGame() {
+      if (gameLoopInterval) {
+        clearInterval(gameLoopInterval);
+        gameLoopInterval = null;
+        gamePaused = true;
+      }
+    }
+
+    // Save to localStorage
+    function saveGame() {
+      localStorage.setItem("milkEmpireSave", JSON.stringify(gameData));
+      alert("Game saved!");
+    }
+
+    // Load from localStorage (auto-run once on page load)
+    function loadGame() {
+      const savedData = localStorage.getItem("milkEmpireSave");
+      if (savedData) {
+        gameData = JSON.parse(savedData);
+      }
+    }
+
+    // The main game loop (could be used for any incremental updates)
+    function runGameLoop() {
+      if (gameLoopInterval) clearInterval(gameLoopInterval);
+      gameLoopInterval = setInterval(() => {
+        // e.g., automatic passive production, if desired
+        // (not used here, but you can add incremental production over time)
+        // ...
+        checkAchievements();
+        updateUI();
+      }, 1000);
+    }
+
+    // Produce milk (or the current product)
+    function produceMilk() {
+      let currentLevel = levels[gameData.currentLevelIndex];
+      // Increase product count
+      gameData.milk += currentLevel.produceRate;
+      // Also earn some money for each production action
+      gameData.money += currentLevel.produceRate;
+      checkAchievements();
+      updateUI();
+    }
+
+    // Upgrade to next product (cheese, butter, etc.)
+    function upgradeProduct() {
+      let currentLevel = levels[gameData.currentLevelIndex];
+      let nextIndex = gameData.currentLevelIndex + 1;
+      if (nextIndex < levels.length) {
+        let nextLevel = levels[nextIndex];
+        if (gameData.money >= nextLevel.costToUpgrade) {
+          // Deduct cost
+          gameData.money -= nextLevel.costToUpgrade;
+          gameData.currentLevelIndex = nextIndex;
+          alert(`Upgraded to ${nextLevel.name}!`);
+        } else {
+          alert("Not enough money to upgrade.");
+        }
+      } else {
+        alert("You have reached the highest product level!");
+      }
+      updateUI();
+    }
+
+    // Update the UI (numbers, progress bar, etc.)
+    function updateUI() {
+      milkCountEl.textContent    = gameData.milk;
+      moneyCountEl.textContent   = gameData.money;
+      currentLevelEl.textContent = levels[gameData.currentLevelIndex].name;
+
+      // Example: progress bar based on how many milk units produced out of some target
+      let progressPercentage = Math.min((gameData.milk / 1000) * 100, 100);
+      progressBarEl.style.width = progressPercentage + "%";
+    }
+
+    // Check achievements & unlock them if criteria met
+    function checkAchievements() {
+      allAchievements.forEach((achv) => {
+        if (!gameData.achievementsUnlocked.includes(achv.id)) {
+          // Check each criterion
+          let unlock = true;
+          if (achv.criteria.milk && gameData.milk < achv.criteria.milk) {
+            unlock = false;
+          }
+          if (achv.criteria.money && gameData.money < achv.criteria.money) {
+            unlock = false;
+          }
+          // If meets all criteria, unlock
+          if (unlock) {
+            gameData.achievementsUnlocked.push(achv.id);
+            alert(`Achievement Unlocked: ${achv.name}`);
+          }
+        }
+      });
+    }
+
+    // Show or hide the achievements panel
+    function toggleAchievements() {
+      achievementsSection.style.display = 
+        (achievementsSection.style.display === "none") ? "block" : "none";
+      renderAchievements();
+    }
+
+    // Render achievement list with locked/unlocked
+    function renderAchievements() {
+      achievementListEl.innerHTML = "";
+      allAchievements.forEach((achv) => {
+        let unlocked = gameData.achievementsUnlocked.includes(achv.id);
+        let itemDiv = document.createElement("div");
+        itemDiv.className = "achievement-item " + (unlocked ? "unlocked" : "");
+        itemDiv.innerHTML = `<strong>${achv.name}</strong> - ${achv.description}`;
+        achievementListEl.appendChild(itemDiv);
+      });
+    }
+
+    // On page load, try to load the game, then updateUI
+    window.addEventListener("load", () => {
+      loadGame();
+      updateUI();
+    });
+
+
+  </script>
+
+</body>
+</html>
