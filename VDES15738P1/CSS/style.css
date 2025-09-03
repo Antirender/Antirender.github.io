@@ -1,0 +1,279 @@
+@charset "UTF-8";
+
+
+@font-face {
+    font-family: "Futura";
+    src: url("font/FuturaStd-Book.WOFF") format("woff");
+}
+
+@font-face {
+    font-family: "Futura";
+    src: url("font/FuturaStd-Bold.WOFF") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Futura";
+    src: url("font/FuturaStd-Oblique.WOFF") format("woff");
+    font-style: italic, oblique;
+}
+
+div {
+    color: #333;
+    font-family: "Futura", sans-serif;
+    font-size: 15px;
+    letter-spacing: .5px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.wrapper .description {
+    width: 150px;
+}
+
+.description .callout {
+    width: 100%;
+    height: 150px;
+    box-sizing: border-box;
+    border: 4px solid #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+    letter-spacing: -1px;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+nav {
+    width: 100%;
+    height: 12rem;
+    padding-bottom: 2.5rem;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+nav .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+    background-color: inherit;
+}
+
+nav .wrapper #projectName {
+    width: 300px;
+    height: 100px;
+}
+
+#projectName .box {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 4px solid #333;
+    padding: 1rem;
+}
+
+nav .wrapper #projectName h1 {
+    font-family: "Futura", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2.75rem;
+    letter-spacing: -1px;
+}
+
+nav .wrapper #projectName h2 {
+    font-family: "Futura", sans-serif;
+    font-style: italic;
+    font-size: 15px;
+    padding-left: 4px;
+}
+
+nav .nav-items {
+    display: flex;
+}
+
+nav .nav-item {
+    padding: 0 10px;
+}
+
+nav .nav-item a {
+    font-family: "Futura", sans-serif;
+    font-size: 14px;
+    padding: 0 2px;
+    color: #333;
+    text-decoration: none;
+}
+
+nav .nav-item a:hover {
+    border-bottom: 4px solid #333;
+}
+
+section {
+    width: 100%;
+}
+
+section .wrapper {
+    display: flex;
+    padding: 10rem 0;
+}
+
+/* **********************************
+LETTERFORMS
+********************************** */
+
+#letterforms,
+#classification,
+footer {
+    background-color: #efefef;
+}
+
+#letterforms .wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#letterforms .wrapper > a {
+    width: 725px;
+    height: 305px;
+    background-color: white;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-sizing: border-box;
+    border: 4px solid #333;
+}
+
+#letterforms .wrapper > a :hover #lowercase-letter .label {
+    background-color: #ff0;
+    background-repeat: no-repeat;
+}
+
+/* **********************************
+PARAGRAPH
+********************************** */
+
+#paragraph .wrapper {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+#paragraph .description p {
+    line-height: 20px;
+    font-size: 11px;
+}
+
+#paragraph .description span {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#theparagraph {
+    width: 70%;
+}
+
+
+
+/* **********************************
+CLASSIFICATION
+********************************** */
+
+
+#classification .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.parent-box {
+    width: 215px;
+    height: 215px;
+    background-color: white;
+    box-sizing: border-box;
+    border: 4px solid #333;
+}
+
+.parent-box #classification1,
+.parent-box #classification2,
+.parent-box #classification3,
+.parent-box #classification4 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.parent-box:hover #classification1,
+.parent-box:hover #classification2,
+.parent-box:hover #classification3,
+.parent-box:hover #classification4 {
+    display: none;
+}
+
+.parent-box .info-hover {
+    display: none;
+}
+
+.parent-box:hover .info-hover {
+    display: flex;
+    padding: 1rem;
+    line-height: 20px;
+}
+
+
+/* **********************************
+EXPRESSIVE TYPE
+********************************** */
+#expressive .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#expressive-type {
+    height: 600px;
+    width: 800px;
+    box-sizing: border-box;
+    border: 4px solid #333;
+}
+
+
+.label {
+    background-color: #333;
+    padding: 7px 4px 4px 7px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+/* **********************************
+FOOTER
+********************************** */
+
+footer {
+    display: flex;
+    height: 10rem;
+    text-align: center;
+    align-items: center;
+}
+
+footer p {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}

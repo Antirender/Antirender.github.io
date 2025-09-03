@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reese - Layout 2</title>
+    <style>
+        /* General Styling */
+        body {
+            background-color: #ffffff;
+            font-family: Helvetica, sans-serif;
+            font-size: 12px;
+            line-height: 15px;
+            color: black;
+            margin: 0;
+            margin-top: 50px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Reese Container */
+        #container {
+            border: 2px solid black; 
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto auto auto auto auto auto 1fr 1fr 1fr;
+            gap: 35px; 
+            column-gap: 40px; 
+            padding: 80px;
+            width: 800px;
+            background-color: white;
+            box-sizing: border-box;
+        }
+
+        /* Grid Layout */
+        .a { 
+            grid-column: 1 / 2; grid-row: 1; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-style: italic; 
+            font-size: 14px;
+            letter-spacing: 2px;
+        } 
+        .b { 
+            grid-column: 2 / 3; grid-row: 1; 
+            text-align: right; 
+            font-weight: medium; 
+            font-style: italic;
+            text-decoration: underline;
+        } 
+        .c { 
+            grid-column: 2 / 3; grid-row: 4; 
+            font-weight: semi-bold; 
+            text-transform: capitalize; 
+            letter-spacing: 1px;
+        } 
+        .d { 
+            grid-column: 1 / 2; grid-row: 4; 
+            font-weight: regular; 
+            font-style: italic;
+        } 
+        .e { 
+            grid-column: 1 / 2; grid-row: 5; 
+            font-weight: light; 
+            text-transform: uppercase; 
+            font-size: 10px;
+        } 
+        .f { 
+            grid-column: 1 / 2; grid-row: 6; 
+            font-weight: medium; 
+            font-style: italic; 
+            text-decoration: overline;
+        } 
+        .g { 
+            grid-column: 2 / 3; grid-row: 5; 
+            text-align: right; 
+            font-weight: bold; 
+            font-size: 11px;
+        } 
+        .h { 
+            grid-column: 2 / 3; grid-row: 6; 
+            text-align: right; 
+            font-weight: light; 
+            font-style: italic; 
+            text-decoration: underline;
+        }
+
+        .nutrition-grid {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            margin-top: 10px;
+            gap: 10px; 
+            font-weight: regular;
+        }
+
+        .nutrition-grid div:nth-child(3) {
+            text-align: right;
+            font-style: italic;
+            font-weight: medium;
+        }
+
+        /* Footer Info */
+        #info {
+            line-height: 18px;
+            color: #333;
+            width: 800px;
+            margin: 30px auto 100px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reese Content Container -->
+    <div id="container">
+        <!-- Title -->
+        <div class="a">REESE</div>
+        <div class="b">
+            <strong>46g</strong> <br />
+            <span style="font-weight: light;">230 cals</span>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="d">
+            <span style="font-weight: bold;">Ingredients:</span> Milk chocolate [sugars (sugar, lactose), cocoa butter, milk ingredients, unsweetened chocolate, lecithin (soy), polyglycerol polyricinoleate], Peanuts, Sugars (sugar, dextrose), Salt, TBHQ, Citric acid. <br /><br />
+            <span style="font-weight: medium;">Contains:</span> Peanuts, Soy, Milk. <br /><br />
+            <span style="font-weight: bold; font-style: italic;">Ingrédients:</span> Chocolat au lait [sucres (sucre, lactose), beurre de cacao, substances laitières, chocolat non sucré, lécithine (soja), polyricinoléate de polyglycérol], Arachides, Sucres (sucre, dextrose), Sel, TBHQ, Acide citrique. <br /><br />
+            <span style="font-weight: medium;">Contient:</span> Arachides, Soja, Lait.
+        </div>
+
+        <!-- Nutrition Facts -->
+        <div class="c">
+            <div style="font-weight: bold;">Nutrition Facts / Valeur Nutritive</div>
+            <div style="font-style: italic;">Per 1 package (46 g) / Pour 1 emballage (46 g)</div>
+            <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                <span style="font-weight: bold;">Calories 230</span>
+                <span style="font-weight: light;">% Daily Value* / % Valeur quotidienne*</span>
+            </div>            
+
+            <div class="nutrition-grid">
+                <div>
+                    <span style="font-weight: bold;">Fat / Lipides</span> <br />
+                    Saturated / Saturés <br />
+                    + Trans / trans <br />
+                    <span style="font-style: italic;">Carbohydrate / Glucides</span> <br />
+                    Fibre / Fibres <br />
+                    Sugars / Sucres <br />
+                    Protein / Protéines <br />
+                    Cholesterol / Cholestérol <br />
+                    Sodium <br />
+                    Potassium <br />
+                    Calcium <br />
+                    Iron / Fer <br />
+                </div>
+                <div>
+                    <span style="font-weight: bold;">13 g</span> <br />
+                    5 g <br />
+                    0.1 g <br />
+                    26 g <br />
+                    2 g <br />
+                    <span style="font-style: italic;">24 g</span> <br />
+                    5 g <br />
+                    5 mg <br />
+                    150 mg <br />
+                    175 mg <br />
+                    40 mg <br />
+                    1.2 mg <br />
+                </div>
+                <div>
+                    <span style="font-weight: bold;">18%</span> <br />
+                    26% <br />
+                    - <br />
+                    - <br />
+                    <span style="font-weight: medium;">6%</span> <br />
+                    24% <br />
+                    - <br />
+                    - <br />
+                    6% <br />
+                    4% <br />
+                    4% <br />
+                    8% <br />
+                </div>
+            </div>
+        </div>
+
+        <!-- Imported By -->
+        <div class="e">
+            Imported by / Importé par <br />
+            Hershey Canada Inc. <br />
+            Mississauga, Ontario, Canada L4W 0B1
+        </div>
+
+        <!-- Questions or Comments -->
+        <div class="f">
+            Questions or comments? <br />
+            Questions ou commentaires? <br />
+            <span style="font-style: italic; font-weight: bold;">www.askhershey.com</span> or/ou 800-468-1714
+        </div>
+
+        <!-- Additional Info -->
+        <div class="g">
+            * 5% or less is a little, 15% or more is a lot <br />
+            * 5 % ou moins c'est peu, 15 % ou plus c'est beaucoup <br /><br />
+        </div>
+        <div class="h">
+            Visit / Visitez: <span style="font-weight: bold;">www.Reese.ca</span>
+        </div>
+    </div>
+
+    <!-- Footer Info -->
+    <div id="info">
+        Yiyang Zhang <br />
+        Instructor: Ed Naus<br />
+        Part 1.2 Layout 2, Reese <br />
+        VDES15738 <br />
+        Winter 2025 <br />
+    </div>
+
+</body>
+</html>

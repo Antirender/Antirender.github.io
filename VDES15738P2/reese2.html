@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reese - Layout 1</title>
+    <style>
+        /* General Styling */
+        body {
+            background-color: #efefef;
+            font-family: Helvetica, sans-serif;
+            font-size: 12px;
+            line-height: 15px;
+            color: black;
+            margin: 0;
+            margin-top: 50px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Reese Container */
+        #container {
+            /* border: 2px solid black;  */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* grid-template-columns: auto auto; */
+            grid-template-rows: auto auto auto auto auto auto;
+            gap: 35px; 
+            column-gap: 40px; 
+            padding: 80px;
+            width: 800px;
+            background-color: white;
+            box-sizing: border-box;
+        }
+
+        /* Grid Layout */
+        .a { grid-column: 1 / 2; grid-row: 1; } /* Reese */
+        .b { grid-column: 2 / 3; grid-row: 1; text-align: right; } /* Weight and Calories */
+        .c { grid-column: 2 / 3; grid-row: 4; } /* Nutrition Facts */
+        .d { grid-column: 1 / 2; grid-row: 4; } /* Ingredients */
+        .e { grid-column: 1 / 2; grid-row: 5; } /* Imported by */
+        .f { grid-column: 1 / 2; grid-row: 6; } /* Questions or Comments */
+        .g { grid-column: 2 / 3; grid-row: 5; text-align: right; } /* Additional Info */
+        .h { grid-column: 2 / 3; grid-row: 6; text-align: right; } /* Additional Info */
+
+        .nutrition-grid {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        margin-top: 10px;
+        gap: 8px; 
+        }
+
+        /* .nutrition-grid div:nth-child(2), */
+        .nutrition-grid div:nth-child(3) {
+            text-align: right;
+        }
+
+
+
+        /* Footer Info */
+        #info {
+            line-height: 18px;
+            color: #333;
+            width: 800px;
+            margin: 30px auto 100px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Reese Content Container -->
+    <div id="container">
+        <!-- Title -->
+        <div class="a">Reese</div>
+        <div class="b">
+            46g <br />
+            230 cals
+        </div>
+
+        <!-- Ingredients -->
+        <div class="d">
+            Ingredients: Milk chocolate [sugars (sugar, lactose), cocoa butter, milk ingredients, unsweetened chocolate, lecithin (soy), polyglycerol polyricinoleate], Peanuts, Sugars (sugar, dextrose), Salt, TBHQ, Citric acid. <br /><br />
+            Contains: Peanuts, Soy, Milk. <br /><br />
+            Ingrédients: Chocolat au lait [sucres (sucre, lactose), beurre de cacao, substances laitières, chocolat non sucré, lécithine (soja), polyricinoléate de polyglycérol], Arachides, Sucres (sucre, dextrose), Sel, TBHQ, Acide citrique. <br /><br />
+            Contient : Arachides, Soja, Lait.
+        </div>
+
+        <!-- Nutrition Facts -->
+        <div class="c">
+            <div>Nutrition Facts / Valeur Nutritive</div>
+            <div>Per 1 package (46 g) / Pour 1 emballage (46 g)</div>
+            <div style="display: flex; justify-content: space-between;">
+                <span>Calories 230</span>
+                <span>% Daily Value* / % Valeur quotidienne*</span>
+            </div>            
+            <!-- <div>Calories 230</div>
+            <div style="text-align: right;">% Daily Value* / % Valeur quotidienne*</div> -->
+            
+            <div class="nutrition-grid">
+
+                <div>
+                    Fat / Lipides <br />
+                    Saturated / Saturés <br />
+                    + Trans / trans <br />
+                    Carbohydrate / Glucides <br />
+                    Fibre / Fibres <br />
+                    Sugars / Sucres <br />
+                    Protein / Protéines <br />
+                    Cholesterol / Cholestérol <br />
+                    Sodium <br />
+                    Potassium <br />
+                    Calcium <br />
+                    Iron / Fer <br />
+                </div>
+                <div>
+                    13 g <br />
+                    5 g <br />
+                    0.1 g <br />
+                    26 g <br />
+                    2 g <br />
+                    24 g <br />
+                    5 g <br />
+                    5 mg <br />
+                    150 mg <br />
+                    175 mg <br />
+                    40 mg <br />
+                    1.2 mg <br />
+                </div>
+                <div>
+                    18% <br />
+                    26% <br />
+                    - <br />
+                    - <br />
+                    6% <br />
+                    24% <br />
+                    - <br />
+                    - <br />
+                    6% <br />
+                    4% <br />
+                    4% <br />
+                    8% <br />
+                </div>
+            </div>
+        </div>
+
+        <!-- Imported By -->
+        <div class="e">
+            Imported by / Importé par <br />
+            Hershey Canada Inc. <br />
+            Mississauga, Ontario, Canada L4W 0B1
+        </div>
+
+        <!-- Questions or Comments -->
+        <div class="f">
+            Questions or comments? <br />
+            Questions ou commentaires? <br />
+            www.askhershey.com or/ou 800-468-1714
+        </div>
+
+        <!-- Additional Info -->
+        <div class="g">
+            * 5% or less is a little, 15% or more is a lot <br />
+            * 5 % ou moins c'est peu, 15 % ou plus c'est beaucoup <br /><br />
+        </div>
+        <div class="h">
+            Visit / Visitez: www.Reese.ca
+        </div>
+    </div>
+
+    <!-- Footer Info -->
+    <div id="info">
+        Yiyang Zhang <br />
+        Instructor: Ed Naus<br />
+        Part 1.3 Layout 1, Reese <br />
+        VDES15738 <br />
+        Winter 2025 <br />
+    </div>
+
+</body>
+</html>

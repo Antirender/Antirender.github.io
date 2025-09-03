@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reese Projects Hub</title>
+    <style>
+        /* color */
+        :root {
+            --Color1: #215a5d;
+            --color2: #ff27ff;
+            --Bgcolor: #a6e8f1;
+        }
+ 
+        body {
+            background: var(--Bgcolor);
+            margin: 0;
+            font-family: Helvetica,Arial, sans-serif;
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+/* head */
+        .header {
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--Color1);
+            font-size: 3.5em;
+            text-shadow: 0 0 15px var(--Color1);
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+    /* card */
+        .card {
+            background: rgba(150, 230, 237, 0.9);
+            border: 2px solid var(--Color1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 25%, 
+                var(--color2) 50%, 
+                transparent 75%);
+            animation: hologram 4s infinite linear;
+            opacity: 0.3;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(15deg);
+        }
+
+
+        .preview {
+            position: relative;
+            z-index: 1;
+            color: white;
+        }
+
+        .preview h2 {
+            color: var(--color2);
+            margin-bottom: 1rem;
+        }
+
+        .preview p {
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+
+        .link-terminal {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #a6e8f1;
+            border: 1px solid var(--Color1);
+            color: var(--Color1);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .link-terminal:hover {
+            background: var(--Color1);
+            color: #00eaff;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; } 
+            100% { transform: scale(5); opacity: 0; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+/* glow */
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--Color1); }
+            to { text-shadow: 0 0 20px var(--Color1), 0 0 30px var(--Color1); }
+        }
+
+        @keyframes hologram {
+            0% { transform: rotate(0deg) translate(-25%, -25%); }
+            100% { transform: rotate(360deg) translate(-25%, -25%); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>VDES15738_PROJECT_2</h1>
+    </div>
+
+    <div class="grid">
+<!-- card -->
+        <div class="card" onclick="window.location='reese0.html'">
+            <div class="preview">
+                <h2>Part 1.0 </h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file. </p>
+                <a href="reese0.html" class="link-terminal">Part 1.0 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese1.html'">
+            <div class="preview">
+                <h2>Part 1.1 </h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file. </p>
+                <a href="reese1.html" class="link-terminal">Part 1.1 →</a>
+            </div>
+        </div>
+
+        <div class="card" onclick="window.location='reese2.html'">
+            <div class="preview">
+                <h2>Layout 1.1 Ver1</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese2.html" class="link-terminal">Layout 1.1 Ver1 →</a>
+            </div>
+        </div>
+
+        <div class="card" onclick="window.location='reese3.html'">
+            <div class="preview">
+                <h2>Layout 1.2 Ver1</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese3.html" class="link-terminal">Layout 1.2 Ver1 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese12.html'">
+            <div class="preview">
+                <h2>Layout 1.1 Ver2</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese12.html" class="link-terminal">Layout 1.1 Ver2 →</a>
+            </div>
+        </div>
+
+        <div class="card" onclick="window.location='reese13.html'">
+            <div class="preview">
+                <h2>Layout 1.2 Ver2</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese13.html" class="link-terminal">Layout 1.2 Ver2 →</a>
+            </div>
+        </div>
+
+        <div class="card" onclick="window.location='reese4.html'">
+            <div class="preview">
+                <h2>Layout 2.1 Ver1</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese4.html" class="link-terminal">Layout 2.1 Ver1 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese5.html'">
+            <div class="preview">
+                <h2>Layout 2.2 Ver1</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese5.html" class="link-terminal">Layout 2.2 Ver1 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese8.html'">
+            <div class="preview">
+                <h2>Layout 2.1 Ver2</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese8.html" class="link-terminal">Layout 2.1 Ver2 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese9.html'">
+            <div class="preview">
+                <h2>Layout 2.2 Ver2</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese9.html" class="link-terminal">Layout 2.2 Ver2 →</a>
+            </div>
+        </div>
+        
+        <div class="card" onclick="window.location='reese6.html'">
+            <div class="preview">
+                <h2>Layout 3.1 Ver1</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese6.html" class="link-terminal">Layout 3.1 Ver1 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese7.html'">
+            <div class="preview">
+                <h2>Layout 3.2 Ver1</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese7.html" class="link-terminal">Layout 3.2 Ver1 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese10.html'">
+            <div class="preview">
+                <h2>Layout 3.1 Ver2</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese10.html" class="link-terminal">Layout 3.1 Ver2 →</a>
+            </div>
+        </div>
+        <div class="card" onclick="window.location='reese11.html'">
+            <div class="preview">
+                <h2>Layout 3.2 Ver2</h2>
+                <p>Typeset all wrapper text ( both in English and French) into an HTML file.</p>
+                <a href="reese11.html" class="link-terminal">Layout 3.2 Ver2 →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+// particle effect on click
+        document.addEventListener('click', (e) => {
+            const particles = document.createElement('div');
+            particles.style.position = 'fixed';
+            particles.style.left = `${e.clientX}px`;
+            particles.style.top = `${e.clientY}px`;
+            particles.style.width = '10px';
+            particles.style.height = '10px';
+            particles.style.background = `radial-gradient(${Math.random() > 0.5 ? 'var(--Color1)' : 'var(--color2)'}, transparent)`;
+            particles.style.borderRadius = '50%';
+            particles.style.animation = 'explode 0.8s forwards';
+            
+            document.body.appendChild(particles);
+            setTimeout(() => particles.remove(), 800);
+        });
+
+        const createStar = () => {
+            const star = document.createElement('div');
+            star.style.position = 'fixed';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${Math.random() * 3}px`;
+            star.style.height = star.style.width;
+            star.style.background = 'white';
+            star.style.opacity = Math.random();
+            star.style.animation = `twinkle ${2 + Math.random() * 3}s infinite`;
+            document.body.appendChild(star);
+        }
+
+        Array.from({length: 50}).forEach(() => createStar());
+    </script>
+</body>
+</html>
