@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rocket & Spacecraft Simulator</title>
+  <style>
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      text-align: center;
+    }
+    section {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      display: inline-block;
+      padding: 10px 15px;
+      margin-top: 15px;
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 15px;
+      background: #e7f3fe;
+      border: 1px solid #2196F3;
+      border-radius: 4px;
+    }
+    /* Header and toggles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    header .toggles {
+      display: flex;
+      gap: 10px;
+    }
+    /* Dark mode styles */
+    body.dark {
+      background: #222;
+      color: #ddd;
+    }
+    body.dark .container {
+      background: #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    body.dark input, body.dark select {
+      background: #555;
+      border: 1px solid #777;
+      color: #eee;
+    }
+    body.dark .result {
+      background: #444;
+      border: 1px solid #888;
+    }
+    /* Responsive table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="pageTitle">Rocket & Spacecraft Simulator</h1>
+    <div class="toggles">
+      <button id="toggleDark">Toggle Dark Mode</button>
+      <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </header>
+  
+  <div class="container">
+    <!-- Stage Calculator Section -->
+    <section id="stageCalc">
+      <h2 data-lang-en="Rocket Stage Calculator" data-lang-zh="火箭级计算">Rocket Stage Calculator</h2>
+      <h3 data-lang-en="Stage 1 (Booster)" data-lang-zh="一级（助推段）">Stage 1 (Booster)</h3>
+      <label data-lang-en="Isp (s, sea-level)" data-lang-zh="比冲 (秒, 海平面)">Isp (s, sea-level):</label>
+      <input type="number" id="isp1" value="275" step="0.1">
+      
+      <label data-lang-en="Mass Ratio (m₀/m_f)" data-lang-zh="质量比 (m₀/m_f)">Mass Ratio (m₀/m_f):</label>
+      <input type="number" id="massRatio1" value="10" step="0.1">
+      
+      <label data-lang-en="Delta-V Loss (m/s)" data-lang-zh="损耗 Δv (m/s)">Delta-V Loss (m/s):</label>
+      <input type="number" id="loss1" value="3000" step="1">
+      
+      <label data-lang-en="Thrust (kN)" data-lang-zh="推力 (kN)">Thrust (kN):</label>
+      <input type="number" id="thrust1" value="7607" step="1">
+      
+      <label data-lang-en="Mass (tons)" data-lang-zh="质量 (吨)">Mass (tons):</label>
+      <input type="number" id="mass1" value="250" step="0.1">
+      
+      <h3 data-lang-en="Stage 2 (Orbital)" data-lang-zh="二级（轨道段）">Stage 2 (Orbital)</h3>
+      <label data-lang-en="Isp (s, vacuum optimized)" data-lang-zh="比冲 (秒, 真空优化)">Isp (s, vacuum):</label>
+      <input type="number" id="isp2" value="340" step="0.1">
+      
+      <label data-lang-en="Mass Ratio (m₀/m_f)" data-lang-zh="质量比 (m₀/m_f)">Mass Ratio (m₀/m_f):</label>
+      <input type="number" id="massRatio2" value="15" step="0.1">
+      
+      <label data-lang-en="Delta-V Loss (m/s)" data-lang-zh="损耗 Δv (m/s)">Delta-V Loss (m/s):</label>
+      <input type="number" id="loss2" value="6500" step="1">
+      
+      <label data-lang-en="Thrust (kN)" data-lang-zh="推力 (kN)">Thrust (kN):</label>
+      <input type="number" id="thrust2" value="934" step="1">
+      
+      <label data-lang-en="Mass (tons)" data-lang-zh="质量 (吨)">Mass (tons):</label>
+      <input type="number" id="mass2" value="50" step="0.1">
+      
+      <button onclick="calculateStages()" data-lang-en="Calculate Stage Results" data-lang-zh="计算级结果">Calculate Stage Results</button>
+      <div class="result" id="stageResult"></div>
+    </section>
+    
+    <!-- Performance Metrics Section -->
+    <section id="performanceMetrics">
+      <h2 data-lang-en="Performance Metrics" data-lang-zh="性能指标">Performance Metrics</h2>
+      <label data-lang-en="Enter overall mass (tons) for TWR calculation:" data-lang-zh="请输入用于 TWR 计算的整体质量 (吨)：">Enter overall mass (tons):</label>
+      <input type="number" id="perfMass" value="250" step="0.1">
+      
+      <label data-lang-en="Enter thrust (kN):" data-lang-zh="请输入推力 (kN)：">Enter thrust (kN):</label>
+      <input type="number" id="perfThrust" value="7607" step="1">
+      
+      <button onclick="calculatePerformance()" data-lang-en="Calculate TWR" data-lang-zh="计算 TWR">Calculate TWR</button>
+      <div class="result" id="performanceResult"></div>
+    </section>
+    
+    <!-- Recovery Terminal Velocity Section -->
+    <section id="recoveryCalc">
+      <h2 data-lang-en="Recovery Terminal Velocity" data-lang-zh="回收终端速度">Recovery Terminal Velocity</h2>
+      <label data-lang-en="Mass (tons):" data-lang-zh="质量 (吨)：">Mass (tons):</label>
+      <input type="number" id="recoveryMass" value="20" step="0.1">
+      
+      <label data-lang-en="Drag Coefficient (Cd):" data-lang-zh="阻力系数 (Cd)：">Drag Coefficient (Cd):</label>
+      <input type="number" id="recoveryCd" value="1.5" step="0.1">
+      
+      <label data-lang-en="Reference Area (m²):" data-lang-zh="参考面积 (m²)：">Reference Area (m²):</label>
+      <input type="number" id="recoveryArea" value="10" step="0.1">
+      
+      <label data-lang-en="Atmospheric Density (kg/m³):" data-lang-zh="大气密度 (kg/m³)：">Atmospheric Density (kg/m³):</label>
+      <input type="number" id="recoveryDensity" value="1.225" step="0.01">
+      
+      <button onclick="calculateRecovery()" data-lang-en="Calculate Terminal Velocity" data-lang-zh="计算终端速度">Calculate Terminal Velocity</button>
+      <div class="result" id="recoveryResult"></div>
+    </section>
+    
+    <!-- Atmospheric & Fairing Section -->
+    <section id="atmosCalc">
+      <h2 data-lang-en="Atmospheric & Fairing Calculations" data-lang-zh="大气与整流罩计算">Atmospheric & Fairing Calculations</h2>
+      <label data-lang-en="Atmospheric Density (kg/m³):" data-lang-zh="大气密度 (kg/m³)：">Atmospheric Density (kg/m³):</label>
+      <input type="number" id="atmDensity" value="1.225" step="0.01">
+      
+      <label data-lang-en="Velocity (m/s):" data-lang-zh="速度 (m/s)：">Velocity (m/s):</label>
+      <input type="number" id="velocity" value="100" step="1">
+      
+      <button onclick="calculateAtmos()" data-lang-en="Calculate Dynamic Pressure" data-lang-zh="计算动压">Calculate Dynamic Pressure</button>
+      <div class="result" id="atmResult"></div>
+      
+      <label data-lang-en="Fairing Diameter (m):" data-lang-zh="整流罩直径 (m)：">Fairing Diameter (m):</label>
+      <input type="number" id="fairingDiameter" value="5" step="0.1">
+      
+      <button onclick="calculateFairing()" data-lang-en="Calculate Fairing Load" data-lang-zh="计算整流罩载荷">Calculate Fairing Load</button>
+      <div class="result" id="fairingResult"></div>
+    </section>
+    
+    <!-- Angle Calculations Section -->
+    <section id="angleCalc">
+      <h2 data-lang-en="Angle Calculations" data-lang-zh="角度计算">Angle Calculations</h2>
+      <label data-lang-en="Horizontal Velocity (m/s):" data-lang-zh="水平速度 (m/s)：">Horizontal Velocity (m/s):</label>
+      <input type="number" id="horzVel" value="1000" step="1">
+      
+      <label data-lang-en="Vertical Velocity (m/s):" data-lang-zh="垂直速度 (m/s)：">Vertical Velocity (m/s):</label>
+      <input type="number" id="vertVel" value="100" step="1">
+      
+      <label data-lang-en="Lateral Velocity (m/s):" data-lang-zh="侧向速度 (m/s)：">Lateral Velocity (m/s):</label>
+      <input type="number" id="latVel" value="50" step="1">
+      
+      <button onclick="calculateAngles()" data-lang-en="Calculate Angles" data-lang-zh="计算角度">Calculate Angles</button>
+      <div class="result" id="angleResult"></div>
+    </section>
+    
+    <!-- Mission Delta-V Section -->
+    <section id="missionDeltaV">
+      <h2 data-lang-en="Mission Delta-V Calculations" data-lang-zh="任务 Δv 计算">Mission Delta-V Calculations</h2>
+      <label data-lang-en="LEO Insertion Δv (m/s):" data-lang-zh="低轨插入 Δv (m/s)：">LEO Insertion Δv (m/s):</label>
+      <input type="number" id="leoDV" value="7800" step="1">
+      
+      <label data-lang-en="Trans-Lunar Injection (TLI) Δv (m/s):" data-lang-zh="经月转移 Δv (m/s)：">Trans-Lunar Injection Δv (m/s):</label>
+      <input type="number" id="tliDV" value="3200" step="1">
+      
+      <label data-lang-en="Lunar Surface Takeoff Δv (m/s):" data-lang-zh="月面起飞 Δv (m/s)：">Lunar Surface Takeoff Δv (m/s):</label>
+      <input type="number" id="lunarTakeoffDV" value="1800" step="1">
+      
+      <label data-lang-en="Planetary Escape Δv (m/s):" data-lang-zh="行星逃逸 Δv (m/s)：">Planetary Escape Δv (m/s):</label>
+      <input type="number" id="escapeDV" value="3600" step="1">
+      
+      <label data-lang-en="Fast Transfer Δv (m/s):" data-lang-zh="快速转移 Δv (m/s)：">Fast Transfer Δv (m/s):</label>
+      <input type="number" id="fastTransferDV" value="4000" step="1">
+      
+      <button onclick="calculateMissionDV()" data-lang-en="Calculate Mission Δv" data-lang-zh="计算任务 Δv">Calculate Mission Δv</button>
+      <div class="result" id="missionResult"></div>
+    </section>
+    
+    <!-- Overall Calculation Summary -->
+    <section id="overallCalc">
+      <h2 data-lang-en="Overall Simulation Summary" data-lang-zh="整体仿真总结">Overall Simulation Summary</h2>
+      <button onclick="calculateAll()" data-lang-en="Calculate All" data-lang-zh="全部计算">Calculate All</button>
+      <div class="result" id="overallResult"></div>
+    </section>
+  </div>
+  
+  <script>
+    // --- Default Parameters Object ---
+    const defaultParams = {
+      // Stage 1 defaults
+      isp1: 275,
+      massRatio1: 10,
+      loss1: 3000,
+      thrust1: 7607,
+      mass1: 250,
+      // Stage 2 defaults
+      isp2: 340,
+      massRatio2: 15,
+      loss2: 6500,
+      thrust2: 934,
+      mass2: 50,
+      // Performance metrics
+      perfMass: 250,
+      perfThrust: 7607,
+      // Recovery
+      recoveryMass: 20,
+      recoveryCd: 1.5,
+      recoveryArea: 10,
+      recoveryDensity: 1.225,
+      // Atmospheric
+      atmDensity: 1.225,
+      velocity: 100,
+      fairingDiameter: 5,
+      // Angles
+      horzVel: 1000,
+      vertVel: 100,
+      latVel: 50,
+      // Mission Delta-V
+      leoDV: 7800,
+      tliDV: 3200,
+      lunarTakeoffDV: 1800,
+      escapeDV: 3600,
+      fastTransferDV: 4000
+    };
+    
+    // --- Language Resources ---
+    const langStrings = {
+      en: {
+        pageTitle: "Rocket & Spacecraft Simulator",
+        stageCalc: "Rocket Stage Calculator",
+        stage1: "Stage 1 (Booster)",
+        stage2: "Stage 2 (Orbital)",
+        calculateStage: "Calculate Stage Results",
+        performanceMetrics: "Performance Metrics",
+        calculateTWR: "Calculate TWR",
+        recoveryTitle: "Recovery Terminal Velocity",
+        calculateTerminal: "Calculate Terminal Velocity",
+        atmFairing: "Atmospheric & Fairing Calculations",
+        calculateDynamic: "Calculate Dynamic Pressure",
+        calculateFairing: "Calculate Fairing Load",
+        angleCalc: "Angle Calculations",
+        calculateAngles: "Calculate Angles",
+        missionDV: "Mission Delta-V Calculations",
+        calculateMissionDV: "Calculate Mission Δv",
+        overallCalc: "Overall Simulation Summary",
+        calculateAll: "Calculate All",
+        reset: "Reset"
+      },
+      zh: {
+        pageTitle: "火箭与航天器仿真器",
+        stageCalc: "火箭级计算",
+        stage1: "一级（助推段）",
+        stage2: "二级（轨道段）",
+        calculateStage: "计算级结果",
+        performanceMetrics: "性能指标",
+        calculateTWR: "计算 TWR",
+        recoveryTitle: "回收终端速度",
+        calculateTerminal: "计算终端速度",
+        atmFairing: "大气与整流罩计算",
+        calculateDynamic: "计算动压",
+        calculateFairing: "计算整流罩载荷",
+        angleCalc: "角度计算",
+        calculateAngles: "计算角度",
+        missionDV: "任务 Δv 计算",
+        calculateMissionDV: "计算任务 Δv",
+        overallCalc: "整体仿真总结",
+        calculateAll: "全部计算",
+        reset: "重置"
+      }
+    };
+    
+    // --- Utility Functions ---
+    // Save and load settings from localStorage
+    function saveSettings() {
+      const settings = {
+        darkMode: document.body.classList.contains("dark"),
+        language: document.getElementById("languageSelect").value,
+      };
+      localStorage.setItem("rocketSimSettings", JSON.stringify(settings));
+    }
+    
+    function loadSettings() {
+      const settings = JSON.parse(localStorage.getItem("rocketSimSettings"));
+      if (settings) {
+        if (settings.darkMode) {
+          document.body.classList.add("dark");
+        }
+        document.getElementById("languageSelect").value = settings.language;
+        updateLanguage();
+      }
+    }
+    
+    // Reset input fields to default values
+    function resetFields() {
+      for (const key in defaultParams) {
+        const elem = document.getElementById(key);
+        if (elem) {
+          elem.value = defaultParams[key];
+        }
+      }
+    }
+    
+    // Update text content based on selected language
+    function updateLanguage() {
+      const lang = document.getElementById("languageSelect").value;
+      document.getElementById("pageTitle").innerText = langStrings[lang].pageTitle;
+      // Update all elements with data-lang attributes
+      document.querySelectorAll("[data-lang-en]").forEach(elem => {
+        elem.innerText = lang === "en" ? elem.getAttribute("data-lang-en") : elem.getAttribute("data-lang-zh");
+      });
+      // Update button texts if needed
+      document.getElementById("toggleDark").innerText = "Toggle Dark Mode";
+      document.getElementById("resetBtn").innerText = langStrings[lang].reset;
+      saveSettings();
+    }
+    
+    // --- Calculation Functions ---
+    // Calculate rocket stage results using the rocket equation
+    function calculateStages() {
+      const g = 9.81;
+      // Stage 1
+      let isp1 = parseFloat(document.getElementById("isp1").value);
+      let massRatio1 = parseFloat(document.getElementById("massRatio1").value);
+      let loss1 = parseFloat(document.getElementById("loss1").value);
+      let thrust1 = parseFloat(document.getElementById("thrust1").value) * 1000; // kN to N
+      let mass1 = parseFloat(document.getElementById("mass1").value) * 1000; // tons to kg
+      let deltaV1 = isp1 * g * Math.log(massRatio1);
+      let effectiveDeltaV1 = deltaV1 - loss1;
+      let twr1 = thrust1 / (mass1 * g);
+      
+      // Stage 2
+      let isp2 = parseFloat(document.getElementById("isp2").value);
+      let massRatio2 = parseFloat(document.getElementById("massRatio2").value);
+      let loss2 = parseFloat(document.getElementById("loss2").value);
+      let thrust2 = parseFloat(document.getElementById("thrust2").value) * 1000;
+      let mass2 = parseFloat(document.getElementById("mass2").value) * 1000;
+      let deltaV2 = isp2 * g * Math.log(massRatio2);
+      let effectiveDeltaV2 = deltaV2 - loss2;
+      let twr2 = thrust2 / (mass2 * g);
+      
+      let result = `<h3>Stage 1:</h3>
+        <p>Total Δv: ${deltaV1.toFixed(2)} m/s, Effective Δv: ${effectiveDeltaV1.toFixed(2)} m/s, TWR: ${twr1.toFixed(2)}</p>
+        <h3>Stage 2:</h3>
+        <p>Total Δv: ${deltaV2.toFixed(2)} m/s, Effective Δv: ${effectiveDeltaV2.toFixed(2)} m/s, TWR: ${twr2.toFixed(2)}</p>`;
+      
+      document.getElementById("stageResult").innerHTML = result;
+    }
+    
+    // Calculate TWR from performance metrics
+    function calculatePerformance() {
+      const g = 9.81;
+      let mass = parseFloat(document.getElementById("perfMass").value) * 1000; // tons to kg
+      let thrust = parseFloat(document.getElementById("perfThrust").value) * 1000; // kN to N
+      let twr = thrust / (mass * g);
+      document.getElementById("performanceResult").innerHTML = `<p>TWR: ${twr.toFixed(2)}</p>`;
+    }
+    
+    // Calculate Recovery Terminal Velocity
+    function calculateRecovery() {
+      const g = 9.81;
+      let mass = parseFloat(document.getElementById("recoveryMass").value) * 1000; // tons to kg
+      let Cd = parseFloat(document.getElementById("recoveryCd").value);
+      let area = parseFloat(document.getElementById("recoveryArea").value);
+      let rho = parseFloat(document.getElementById("recoveryDensity").value);
+      let vTerminal = Math.sqrt((2 * mass * g) / (rho * Cd * area));
+      document.getElementById("recoveryResult").innerHTML = `<p>Terminal Velocity: ${vTerminal.toFixed(2)} m/s</p>`;
+    }
+    
+    // Calculate Dynamic Pressure and display atmospheric pressure if needed
+    function calculateAtmos() {
+      let rho = parseFloat(document.getElementById("atmDensity").value);
+      let velocity = parseFloat(document.getElementById("velocity").value);
+      let q = 0.5 * rho * velocity * velocity;
+      document.getElementById("atmResult").innerHTML = `<p>Dynamic Pressure (q): ${q.toFixed(2)} Pa</p>`;
+    }
+    
+    // Calculate Fairing Load based on fairing area and dynamic pressure
+    function calculateFairing() {
+      let diameter = parseFloat(document.getElementById("fairingDiameter").value);
+      let area = Math.PI * Math.pow(diameter/2, 2);
+      let rho = parseFloat(document.getElementById("atmDensity").value);
+      let velocity = parseFloat(document.getElementById("velocity").value);
+      let q = 0.5 * rho * velocity * velocity;
+      let load = q * area;
+      document.getElementById("fairingResult").innerHTML = `<p>Fairing Area: ${area.toFixed(2)} m², Load: ${load.toFixed(2)} N</p>`;
+    }
+    
+    // Calculate Angle-of-Attack and Sideslip Angle
+    function calculateAngles() {
+      let horz = parseFloat(document.getElementById("horzVel").value);
+      let vert = parseFloat(document.getElementById("vertVel").value);
+      let lateral = parseFloat(document.getElementById("latVel").value);
+      let aoa = Math.atan(vert/horz) * (180/Math.PI);
+      let sideslip = Math.atan(lateral/horz) * (180/Math.PI);
+      document.getElementById("angleResult").innerHTML = `<p>Angle of Attack: ${aoa.toFixed(2)}°<br>Sideslip Angle: ${sideslip.toFixed(2)}°</p>`;
+    }
+    
+    // Calculate Mission Delta-V requirements and compare with available effective Δv from stages
+    function calculateMissionDV() {
+      let leo = parseFloat(document.getElementById("leoDV").value);
+      let tli = parseFloat(document.getElementById("tliDV").value);
+      let lunarTakeoff = parseFloat(document.getElementById("lunarTakeoffDV").value);
+      let escape = parseFloat(document.getElementById("escapeDV").value);
+      let fastTransfer = parseFloat(document.getElementById("fastTransferDV").value);
+      
+      let result = `<table>
+        <tr><th>Mission</th><th>Δv Requirement (m/s)</th></tr>
+        <tr><td>LEO Insertion</td><td>${leo}</td></tr>
+        <tr><td>Trans-Lunar Injection</td><td>${tli}</td></tr>
+        <tr><td>Lunar Surface Takeoff</td><td>${lunarTakeoff}</td></tr>
+        <tr><td>Planetary Escape</td><td>${escape}</td></tr>
+        <tr><td>Fast Transfer</td><td>${fastTransfer}</td></tr>
+      </table>`;
+      document.getElementById("missionResult").innerHTML = result;
+    }
+    
+    // Calculate overall simulation summary by aggregating stage effective Δv and listing mission requirements
+    function calculateAll() {
+      calculateStages();
+      calculatePerformance();
+      calculateRecovery();
+      calculateAtmos();
+      calculateFairing();
+      calculateAngles();
+      calculateMissionDV();
+      
+      // For overall summary, sum effective Δv from stages
+      const g = 9.81;
+      let isp1 = parseFloat(document.getElementById("isp1").value);
+      let massRatio1 = parseFloat(document.getElementById("massRatio1").value);
+      let loss1 = parseFloat(document.getElementById("loss1").value);
+      let deltaV1 = isp1 * g * Math.log(massRatio1) - loss1;
+      
+      let isp2 = parseFloat(document.getElementById("isp2").value);
+      let massRatio2 = parseFloat(document.getElementById("massRatio2").value);
+      let loss2 = parseFloat(document.getElementById("loss2").value);
+      let deltaV2 = isp2 * g * Math.log(massRatio2) - loss2;
+      
+      let totalEffectiveDV = deltaV1 + deltaV2;
+      
+      let overall = `<p>Total Effective Δv from Stages: ${totalEffectiveDV.toFixed(2)} m/s</p>`;
+      document.getElementById("overallResult").innerHTML = overall;
+    }
+    
+    // --- Dark Mode Toggle ---
+    document.getElementById("toggleDark").addEventListener("click", function() {
+      document.body.classList.toggle("dark");
+      saveSettings();
+    });
+    
+    // --- Language Select Listener ---
+    document.getElementById("languageSelect").addEventListener("change", updateLanguage);
+    
+    // --- Reset Button ---
+    document.getElementById("resetBtn").addEventListener("click", function() {
+      resetFields();
+      calculateAll();
+    });
+    
+    // --- On Page Load ---
+    window.onload = function() {
+      loadSettings();
+      resetFields();
+      calculateAll();
+    };
+  </script>
+</body>
+</html>
