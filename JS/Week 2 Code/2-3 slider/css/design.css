@@ -1,0 +1,23 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    text-align: center;
+}
+
+div {
+    margin: 10px auto;
+    width: 300px;
+}
+
+#holder {
+    margin: 20px auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#target {
+    width: 100%; 
+    transition: all 0.3s ease-in-out; 
+} */

@@ -1,0 +1,25 @@
+#block {
+    width: 2000px;
+    height: 1000px;
+    background: #f80;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    position: relative;
+    animation-fill-mode: forwards;
+}
+
+@keyframes example {
+    0% {
+        background-color: #f80;
+    }
+    33% {
+        background-color: #ff0;
+    }
+    66% {
+        background-color: #00f;
+    }
+    100% {
+        background-color: #085;
+    }
+}

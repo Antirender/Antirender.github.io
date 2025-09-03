@@ -1,0 +1,246 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+}
+.logo {
+    float: left;
+    width: 150px;
+    transition: opacity 0.5s, transform 0.3s;
+}
+
+.logo:hover {
+    opacity: 0.9;
+    transform: scale(2); 
+}
+
+.menu {
+    padding-top: 20px;
+    float: right;
+    text-align: right;
+}
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu ul li {
+    display: inline;
+}
+.menu ul li a {
+    padding: 10px 20px;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+.menu ul li a:hover {
+    color: #fff; 
+    background-color: #333; 
+    transform: scale(2); 
+    border-radius: 5px; 
+    transition: all 0.3s ease; 
+}
+.current {
+    border: 1px #000 solid;
+}
+
+.cell {
+    background-color: rgb(220, 220, 220);
+    height: 100px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cell:hover {
+    background-color: rgb(180, 180, 180); 
+    transform: scale(1.1); 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lora', serif;
+}
+nav {
+    padding: 10px 20%;
+}
+.hero {
+    clear: both;
+    padding: 10px;
+    height: 400px;
+    display: grid;
+}
+#main {
+    background: url(../img/burger.jpg) no-repeat center center;
+    background-size: cover;
+}
+#secondary {
+    background: url(../img/red_curry.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+.featuredText {
+    width: 40%;
+    margin: auto 20%;
+    color: #fff;
+}
+.featuredText h2 {
+    font-size: 3em;
+    line-height: 1.2em;
+    text-shadow: 0 2px 8px #000;
+}
+.featuredText p {
+    text-transform: uppercase;
+    font-size: 18px;
+    text-shadow: 0 2px 8px #000;
+}
+.bar {
+    background-color: rgb(0, 0, 0);
+    padding: 10px 10%;
+    text-align: right;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.intro {
+    padding: 0 5% 30px;
+    text-align: center;
+}
+.first {
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #333;
+}
+.intro h2 {
+    text-transform: uppercase;
+    font-size: 3.2em;
+    color: #999;
+}
+.sub {
+    font-style: italic;
+    font-size: 1.5em;
+    color: #333;
+}
+.round {
+    padding: 0 30px;
+    text-align: center;
+}
+
+.round h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+}
+.round img {
+    width: 100%;
+    border-radius: 50%;
+}
+.button {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: #333;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px #333 solid;
+    transition: all 0.5s;
+}
+
+.button:hover {
+    background-color: #333;
+    color: #fff;
+    transform: scale(1.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.intro h3::before {
+    content: "";
+    display: block;
+    margin: 0 auto 20px;
+    width: 100px;
+    border-top: 3px solid #000;
+}
+.intro h3 {
+    text-transform: uppercase;
+    font-size: 2em;
+    color: #333;
+}
+
+/* default - small devices */
+
+[class*="col"] {
+    grid-column-end: span 12;
+}
+
+/* below 600px typically tablet*/
+
+@media only screen and (max-width: 600px) {
+    .sm1 {
+        grid-column-end: span 12;
+    }
+    .sm2 {
+        grid-column-end: span 6;
+    }
+    .sm3 {
+        grid-column-end: span 4;
+    }
+    .sm4 {
+        grid-column-end: span 3;
+    }
+    .sm6 {
+        grid-column-end: span 2;
+    }
+    .sm12 {
+        grid-column-end: span 1;
+    }
+}
+
+/* above 601px typically tablet*/
+
+@media only screen and (min-width: 601px) {
+    .md1 {
+        grid-column-end: span 12;
+    }
+    .md2 {
+        grid-column-end: span 6;
+    }
+    .md3 {
+        grid-column-end: span 4;
+    }
+    .md4 {
+        grid-column-end: span 3;
+    }
+    .md6 {
+        grid-column-end: span 2;
+    }
+    .md12 {
+        grid-column-end: span 1;
+    }
+}
+
+/* above 1025px typically desktop*/
+
+@media only screen and (min-width: 1025px) {
+    .grid {
+        padding: 90px 20%;
+    }
+    .col1 {
+        grid-column-end: span 12;
+    }
+    .col2 {
+        grid-column-end: span 6;
+    }
+    .col3 {
+        grid-column-end: span 4;
+    }
+    .col4 {
+        grid-column-end: span 3;
+    }
+    .col6 {
+        grid-column-end: span 2;
+    }
+    .col12 {
+        grid-column-end: span 1;
+    }
+}

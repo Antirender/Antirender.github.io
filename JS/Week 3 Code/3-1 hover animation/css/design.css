@@ -1,0 +1,12 @@
+#block {
+    width: 100px;
+    height: 100px;
+    background: #f80; 
+    transition: all 0.5s ease, transform 0.5s ease;
+}
+
+#block:hover {
+    background: #083; 
+    width: 300px;
+    transform: rotate(180deg); 
+}

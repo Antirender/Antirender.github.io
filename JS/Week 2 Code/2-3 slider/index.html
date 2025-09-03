@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slider</title>
+    <link rel="stylesheet" href="css/design.css">
+</head>
+<body>
+    <div>
+        5%
+        <input 
+            type="range" 
+            min="5" 
+            max="200" 
+            step="5" 
+            value="100" 
+            onchange="updateSlider(this.value)" 
+        />
+        200%
+    </div>
+    <br>
+    <p id="size">100%</p>
+    <div id="holder">
+        <img src="img/js.png" id="target" alt="Image">
+    </div>
+    <!-- Javascript goes after the page -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+
+
