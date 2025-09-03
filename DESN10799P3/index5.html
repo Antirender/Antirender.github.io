@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snapchat Data Transparency</title>
+
+  <!-- Favicon: Using Snapchat icon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Hammer.js for gesture support (swipe to change tabs) -->
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #ffffff; /* White background */
+      color: #000000;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+    header img {
+      height: 32px;
+      margin-right: 1rem;
+    }
+    header h1 {
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    /* Tab navigation */
+    nav {
+      display: flex;
+      background-color: #eaeaea;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+    .tab-btn:hover {
+      background-color: #ddd;
+    }
+    .tab-btn.active {
+      background-color: #ccc;
+    }
+
+    /* Container for pages */
+    .page {
+      display: none; /* hidden by default */
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .page.active {
+      display: block; /* only show active page */
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      font-weight: bold;
+    }
+    p {
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    .info-text {
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    /* Setting blocks & toggles */
+    .setting-block {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      background-color: #f9f9f9;
+    }
+    .toggle-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+    .toggle-description {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+    .toggle-switch {
+      width: 48px;
+      height: 24px;
+      background-color: #ccc;
+      border-radius: 24px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .toggle-switch.active {
+      background-color: #2ecc71; /* "On" state in green */
+    }
+    .toggle-switch.active::after {
+      transform: translateX(24px);
+    }
+
+    /* Buttons */
+    .cta-button,
+    button,
+    .tab-btn {
+      font-family: inherit;
+      font-size: 0.9rem;
+      border: none;
+      outline: none;
+    }
+    .cta-button,
+    button {
+      background-color: #000;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .cta-button:hover,
+    button:hover {
+      background-color: #333;
+    }
+    .reset-button {
+      background-color: #e74c3c;
+      margin-left: 1rem;
+    }
+    .reset-button:hover {
+      background-color: #c0392b;
+    }
+
+    /* Step-by-Step Tutorial Pop-up */
+    #tutorialModal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      overflow: auto;
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 8% auto;
+      max-width: 500px;
+      padding: 1rem;
+      border-radius: 8px;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    .tutorial-step {
+      margin-bottom: 1rem;
+    }
+    .tutorial-step h4 {
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .tutorial-step p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .tutorial-step img {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Form fields */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Misc */
+    .link {
+      color: #0066cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #333;
+      padding: 1rem;
+      border-top: 1px solid #ccc;
+      margin-top: 2rem;
+    }
+    .bold {
+      font-weight: bold;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .page {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="favicon.ico" alt="Snapchat Logo">
+  <h1>Snapchat Data Transparency</h1>
+</header>
+
+<!-- TAB NAVIGATION -->
+<nav>
+  <div class="tab-btn active" data-tab="page1">Sign-Up Flow</div>
+  <div class="tab-btn" data-tab="page2">Tutorials</div>
+  <div class="tab-btn" data-tab="page3">Data Privacy Control</div>
+</nav>
+
+<!-- PAGE 1: SIGN-UP FLOW -->
+<div id="page1" class="page active">
+  <h2><i class="fa-solid fa-user-plus"></i> Create Your Snapchat Account</h2>
+  <p class="info-text">
+    Welcome! Enter your details below. After sign-up, you can manage how Snapchat handles your data.
+    <a class="link" href="#" onclick="openModal('SignUpHelp')">Need help?</a>
+  </p>
+
+  <div class="form-group">
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" placeholder="e.g. John">
+  </div>
+  <div class="form-group">
+    <label for="lastname">Last Name (optional)</label>
+    <input type="text" id="lastname" placeholder="e.g. Doe">
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Pick a username">
+  </div>
+
+  <button class="cta-button" onclick="signUp()">Agree & Continue</button>
+
+  <p class="info-text" style="margin-top:1rem;">
+    By continuing, you accept our <a class="link" href="https://snap.com/en-CA/terms" target="_blank">Terms of Service</a>
+    and acknowledge reading our <a class="link" href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank">Privacy Policy</a>.
+  </p>
+</div>
+
+<!-- PAGE 2: TUTORIALS (Step-by-step explanation about Snapchat data usage) -->
+<div id="page2" class="page">
+  <h2><i class="fa-solid fa-chalkboard-teacher"></i> Tutorials: Understand Your Data</h2>
+  <p class="info-text">
+    Below are brief guides on how Snapchat uses your data, including contact access, camera permissions,
+    microphone usage, and location sharing. 
+  </p>
+  <button class="cta-button" onclick="openModal('TutorialDataUsage')">
+    <i class="fa-solid fa-book-open"></i> Step-by-Step Tutorial
+  </button>
+</div>
+
+<!-- PAGE 3: DATA PRIVACY CONTROL -->
+<div id="page3" class="page">
+  <h2><i class="fa-solid fa-user-shield"></i> Manage Your Data Settings</h2>
+  <p class="info-text">
+    Here you can control how Snapchat handles your location, Snaps storage, ads preferences, and more. 
+    Changes are saved in your browser’s local storage and can be reset at any time.
+  </p>
+
+  <!-- Location Controls -->
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Ghost Mode</span>
+      <div class="toggle-switch" id="ghostToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Hide your real-time location from everyone. You can still use filters but location-based ones may be limited.
+    </div>
+  </div>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Location for Friends Only</span>
+      <div class="toggle-switch" id="friendsToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Only friends you’ve added see your location. This setting is overridden by Ghost Mode if it’s on.
+    </div>
+  </div>
+
+  <!-- Snaps & Ads -->
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Save Snaps to Memories</span>
+      <div class="toggle-switch" id="memoriesToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Allows your viewed Snaps to be stored on Snapchat servers for quick retrieval. If off, Snaps won't be saved.
+    </div>
+  </div>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Personalized Ads & Filters</span>
+      <div class="toggle-switch" id="adsToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Uses your activity to show relevant ads and Lenses. Turn off for less personalized features.
+    </div>
+  </div>
+
+  <!-- Simplified Terms & Privacy -->
+  <h2><i class="fa-solid fa-scroll"></i> Simplified Terms & Privacy</h2>
+  <p class="info-text">
+    <strong>Snaps Retention:</strong> Opened Snaps disappear from your feed, but unopened Snaps 
+    can be stored for up to 30 days. Some metadata may persist for analytics or legal requirements.<br><br>
+    <strong>Location Data:</strong> Shared only with your chosen audience. You can hide it completely 
+    via Ghost Mode. We do not sell your location data to third parties.<br><br>
+    <strong>Contacts & Photos:</strong> Access is required for friend suggestions and easy sharing, 
+    but always optional.<br><br>
+    <strong>Ads & Personalization:</strong> We collect usage data to recommend filters and show 
+    relevant ads. If disabled, you'll still see ads, but they may be less aligned with your interests.
+  </p>
+  <button class="cta-button" onclick="openModal('TutorialPrivacy')">
+    <i class="fa-solid fa-info-circle"></i> Data Transparency Tutorial
+  </button>
+
+  <!-- Reset Settings -->
+  <div style="margin-top:1rem;">
+    <button class="cta-button" onclick="saveSettings()"><i class="fa-solid fa-save"></i> Save Settings</button>
+    <button class="cta-button reset-button" onclick="resetSettings()"><i class="fa-solid fa-undo"></i> Reset to Default</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Snap Inc. All rights reserved. <br>
+  <small>Data controls stored locally in your browser for demonstration purposes.</small>
+</footer>
+
+<!-- TUTORIAL MODALS (multiple IDs or a single dynamic) -->
+<div id="tutorialModal" style="display:none;" class="modal-content"></div>
+
+<!-- Reusable modal container -->
+<div id="modalOverlay" style="
+     display: none;
+     position: fixed; 
+     top: 0; left: 0;
+     width: 100%; height: 100%;
+     background: rgba(0,0,0,0.5);
+     z-index: 9999;">
+  <div id="modalInner" class="modal-content"></div>
+</div>
+
+<script>
+/* -- Tab Switching Logic -- */
+const tabButtons = document.querySelectorAll('.tab-btn');
+const pages = document.querySelectorAll('.page');
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Clear active states
+    tabButtons.forEach(b => b.classList.remove('active'));
+    pages.forEach(p => p.classList.remove('active'));
+    // Set new active
+    btn.classList.add('active');
+    const target = btn.getAttribute('data-tab');
+    document.getElementById(target).classList.add('active');
+  });
+});
+
+/* -- Hammer.js to allow swipe gestures for tab navigation -- */
+let currentTabIndex = 0; // 0->page1, 1->page2, 2->page3
+const mc = new Hammer(document.body);
+mc.on('swipeleft', function() {
+  if (currentTabIndex < 2) {
+    currentTabIndex++;
+    switchTab(currentTabIndex);
+  }
+});
+mc.on('swiperight', function() {
+  if (currentTabIndex > 0) {
+    currentTabIndex--;
+    switchTab(currentTabIndex);
+  }
+});
+function switchTab(index) {
+  tabButtons.forEach((btn, i) => {
+    btn.classList.remove('active');
+    pages[i].classList.remove('active');
+    if (i === index) {
+      btn.classList.add('active');
+      pages[i].classList.add('active');
+    }
+  });
+}
+
+/* -- Step-by-Step Tutorials (pop-up windows) -- */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalInner = document.getElementById('modalInner');
+
+function openModal(type) {
+  modalOverlay.style.display = 'block';
+  modalInner.innerHTML = getTutorialContent(type);
+}
+function closeModal() {
+  modalOverlay.style.display = 'none';
+  modalInner.innerHTML = '';
+}
+modalOverlay.addEventListener('click', function(e) {
+  // close if clicked outside modal
+  if (e.target === modalOverlay) {
+    closeModal();
+  }
+});
+
+/* Return tutorial content based on requested type */
+function getTutorialContent(type) {
+  let content = `<button class="close-btn" style="
+                    position:absolute; top:0.5rem; right:0.5rem;
+                    font-size:1.2rem;" onclick="closeModal()">
+                    <i class="fa-solid fa-times"></i>
+                 </button>`;
+  switch(type) {
+    case 'SignUpHelp':
+      content += `
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-user-plus"></i> Sign-Up Flow Help</h4>
+          <p>
+            Enter your details: First Name, optional Last Name, and a Username. By tapping 
+            <strong>Agree & Continue</strong>, you confirm acceptance of Snapchat’s 
+            <em>Terms of Service</em> and <em>Privacy Policy</em>.
+          </p>
+        </div>
+        <div class="tutorial-step">
+          <p>
+            Once signed up, you’ll be able to manage privacy settings such as location sharing, 
+            ephemeral Snaps, and more in the <strong>Data Privacy Control</strong> tab.
+          </p>
+        </div>
+      `;
+      break;
+    case 'TutorialDataUsage':
+      content += `
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-address-book"></i> Contacts Access</h4>
+          <p>
+            Snapchat requests permission to read your contacts so it can suggest friends who
+            are also on Snapchat. You can always choose to manually add friends instead.
+          </p>
+        </div>
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-images"></i> Photo & Camera Roll</h4>
+          <p>
+            Access to your camera roll is optional but recommended for easy sharing of images
+            and videos. Location tags in photos can be used for relevant filters if location
+            sharing is enabled.
+          </p>
+        </div>
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-microphone"></i> Microphone Usage</h4>
+          <p>
+            Voice filters and video chats require microphone access. You can disable it at any
+            time in your device settings.
+          </p>
+        </div>
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-location-dot"></i> Location Sharing</h4>
+          <p>
+            Snap Map shows your live location to friends if enabled. “Ghost Mode” hides it from everyone. 
+            Or you can share with selected friends only.
+          </p>
+        </div>
+      `;
+      break;
+    case 'TutorialPrivacy':
+      content += `
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-user-shield"></i> Data Transparency Overview</h4>
+          <p>
+            Snapchat aims to make data usage clear: how long unopened Snaps remain on servers,
+            how location is shared, and how personalization uses your activity.
+          </p>
+        </div>
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-scroll"></i> Simplified Terms & Privacy</h4>
+          <p>
+            - Snaps vanish once viewed, but unopened Snaps may remain up to 30 days.<br>
+            - Location is only visible to those you allow. We do not sell location to third parties.<br>
+            - Ads & filters are more relevant with personalization on. 
+          </p>
+        </div>
+        <div class="tutorial-step">
+          <h4><i class="fa-solid fa-toggle-on"></i> Manage Toggles</h4>
+          <p>
+            Enable or disable each feature in <strong>Data Privacy Control</strong>. 
+            Adjust them anytime to customize how your data is used.
+          </p>
+        </div>
+      `;
+      break;
+    default:
+      content += `
+        <div>
+          <p>No tutorial found for this type.</p>
+        </div>
+      `;
+  }
+  return content;
+}
+
+/* -- Sign Up Logic (Placeholder) -- */
+function signUp() {
+  alert("Account created! You can now navigate to 'Data Privacy Control' and customize your settings.");
+}
+
+/* -- LocalStorage for toggles and settings -- */
+const toggleIds = ['ghostToggle','friendsToggle','memoriesToggle','adsToggle'];
+toggleIds.forEach(id => {
+  const el = document.getElementById(id);
+  // load from localStorage
+  const stored = localStorage.getItem(id);
+  if (stored === 'true') {
+    el.classList.add('active');
+  }
+  el.addEventListener('click', () => {
+    // update localStorage on click
+    localStorage.setItem(id, el.classList.contains('active'));
+  });
+});
+
+/* Save Settings explicitly (redundant, but for demonstration) */
+function saveSettings() {
+  toggleIds.forEach(id => {
+    const el = document.getElementById(id);
+    localStorage.setItem(id, el.classList.contains('active'));
+  });
+  alert("Your data privacy settings have been saved locally.");
+}
+
+/* Reset Settings */
+function resetSettings() {
+  toggleIds.forEach(id => {
+    localStorage.removeItem(id);
+    const el = document.getElementById(id);
+    el.classList.remove('active');
+  });
+  alert("Settings reset to default. (All toggles off by default.)");
+}
+
+</script>
+
+</body>
+</html>

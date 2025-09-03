@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snapchat Data Transparency</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Hammer.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #ffffff; 
+      color: #000000;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #f4f4f4;
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+    header img {
+      height: 32px;
+      margin-right: 1rem;
+    }
+    header h1 {
+      font-size: 1.3rem;
+      margin: 0;
+    }
+
+    /* Tab navigation */
+    nav {
+      display: flex;
+      background-color: #eaeaea;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+    .tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+    .tab-btn:hover {
+      background-color: #ddd;
+    }
+    .tab-btn.active {
+      background-color: #ccc;
+    }
+
+    /* Container for pages */
+    .container {
+    display: flex;
+    justify-content: center; 
+  }
+
+    .page {
+      display: none; 
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    .page.active {
+      display: block;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    p {
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    .info-text {
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    /* Setting blocks & toggles */
+    .setting-block {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      background-color: #f9f9f9;
+    }
+    .toggle-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+    .toggle-description {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+    .toggle-switch {
+      width: 48px;
+      height: 24px;
+      background-color: #ccc;
+      border-radius: 24px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .toggle-switch.active {
+      background-color: #2ecc71; /* "On" state in green */
+    }
+    .toggle-switch.active::after {
+      transform: translateX(24px);
+    }
+
+    /* Buttons */
+    .cta-button,
+    button,
+    .tab-btn {
+      font-family: inherit;
+      font-size: 0.9rem;
+      border: none;
+      outline: none;
+    }
+    .cta-button,
+    button {
+      background-color: #000;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0.5rem 0;
+      font-weight: bold;
+      display: inline-block;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .cta-button:hover,
+    button:hover {
+      background-color: #333;
+    }
+
+    .yellow-button {
+      background-color: #FFFC00;
+      font-size: 1.3rem;
+      color: #000;
+      border: 1px solid #ccc;
+      font-weight: bold;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      width: 90%;
+      border-radius: 5rem;
+    }
+    .yellow-button:hover {
+      background-color: #f2e400;
+    }
+
+
+    .modal-overlay {
+      display: none;
+      position: fixed; 
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      overflow-y: auto;
+    }
+    .modal-overlay.active {
+      display: block;
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      max-width: 500px;
+      border-radius: 8px;
+      padding: 1.5rem;
+      position: relative;
+    }
+    .close-btn {
+      background-color: #aaaaaa;
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+    .tutorial-step {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #eee;
+      background-color: #dddddd;
+    }
+    .tutorial-step h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .tutorial-step p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .tutorial-step img {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+
+    .modal-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+    }
+    .modal-nav button {
+      margin: 0;
+    }
+
+    /* Form fields */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+    .link {
+      color: #0066cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #333;
+      padding: 1rem;
+      border-top: 1px solid #ccc;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .page {
+        padding: 0.5rem;
+      }
+      .modal-content {
+        margin: 10% auto;
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="favicon.ico" alt="Snapchat Logo">
+  <h1>Snapchat Data Transparency</h1>
+</header>
+
+<!-- TAB NAVIGATION -->
+<nav>
+  <div class="tab-btn active" data-tab="page1">Sign Up</div>
+  <div class="tab-btn" data-tab="page2">Understand Your Data</div>
+  <div class="tab-btn" data-tab="page3">Data Privacy Control</div>
+</nav>
+
+<!-- PAGE 1: SIGN-UP FLOW -->
+<div id="page1" class="page active">
+  <h2><i class="fa-solid fa-user-plus"></i> Sign Up</h2>
+  <p class="info-text">
+    Welcome! Please enter your details below. After signing up, you’ll be asked for optional 
+    permissions like contacts and camera roll. 
+    <button class="cta-button" onclick="openTutorial('signUpTutorial')">
+      Learn More
+    </button>
+  </p>
+  <!-- Sign-up Form -->
+  <div class="form-group">
+    <label for="firstname">First Name</label>
+    <input type="text" id="firstname" placeholder="e.g. John">
+  </div>
+  <div class="form-group">
+    <label for="lastname">Last Name (optional)</label>
+    <input type="text" id="lastname" placeholder="e.g. Doe">
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Pick a username">
+  </div>
+  <button class="cta-button" onclick="signUp()">Agree & Continue</button>
+  <p class="info-text" style="margin-top:1rem;">
+    By continuing, you accept our <a class="link" href="https://snap.com/en-CA/terms" target="_blank">Terms of Service</a>
+    and have read our <a class="link" href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank">Privacy Policy</a>.
+  </p>
+
+  <!-- Contacts Access Section (based on screenshots from snapchat) -->
+  <div style="border:1px solid #ddd; border-radius:6px; padding:1rem; margin-top:1.5rem;">
+    <h2 style="margin-bottom:0.75rem;">Find All Your Friends</h2>
+    <p class="info-text">
+      <strong>Allow Full Access</strong> for Snapchat to upload your contacts for better friend suggestions, 
+      or choose <strong>Select Contacts</strong> to add individuals one by one.
+    </p>
+    <img src="IMG_6855.PNG" alt="Contacts Access" style="max-width:100%; margin-bottom:1rem;">
+    <div class="container">
+      <button class="yellow-button" onclick="openTutorial('contactContinuePopup')">Continue</button>
+    </div>    
+  </div>
+</div>
+
+<div id="contactContinuePopup" class="modal-overlay">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeTutorial('contactContinuePopup')">
+      <i class="fa-solid fa-times"></i>
+    </button>
+    <div class="tutorial-step">
+      <h4>Contact Access Granted</h4>
+      <p>
+        You’ve chosen to give Snapchat access to your contacts. 
+        This data is used to suggest friends on the platform. 
+        You can disable or limit it later in the Data privacy controls or in your phone settings.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: UNDERSTAND YOUR DATA -->
+<div id="page2" class="page">
+  <h2><i class="fa-solid fa-chalkboard-teacher"></i> Understand Your Data</h2>
+  <p class="info-text">
+    Snapchat collects certain information to power features like friend suggestions, location-based filters, 
+    and ephemeral Snaps. These brief tutorials explain <strong>what data is used</strong>, 
+    <strong>why</strong>, and <strong>how you control it</strong>.
+  </p>
+  <button class="cta-button" onclick="startStepByStepTutorial()">
+    <i class="fa-solid fa-book-open"></i> Start Step-by-Step Tutorial
+  </button>
+
+  <p class="info-text" style="margin-top:1.5rem;">
+    Want to see an example of how Snapchat requests permission to use your data? 
+    <button class="cta-button" onclick="openTutorial('dataAccessExample')">
+      Try It Out
+    </button>
+  </p>
+</div>
+
+<!-- PAGE 3: DATA PRIVACY CONTROL -->
+<div id="page3" class="page">
+  <h2><i class="fa-solid fa-user-shield"></i> Data Privacy Control</h2>
+  <p class="info-text">
+    Below you can manage key settings for your location, Snaps retention, and personalization. 
+    These toggles do not store data permanently in this demo, so feel free to experiment.
+  </p>
+
+  <button class="cta-button" style="margin-bottom:1rem;" 
+    onclick="openTutorial('dataPrivacyControlTutorial')">
+  Step-by-Step Privacy Tutorial
+  </button>
+
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Ghost Mode</span>
+      <div class="toggle-switch" id="templateToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Hide your real-time location from everyone. You’ll still have basic features, 
+      but location-based filters may be limited.
+    </div>
+  </div>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Friends Only Location</span>
+      <div class="toggle-switch" id="templateToggle1"></div>
+    </div>
+    <div class="toggle-description">
+      Only your accepted friends see your location. Overrides if Ghost Mode is active.
+    </div>
+  </div>
+
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Clear Data</span>
+      <div class="toggle-switch" id="templateToggle2"></div>
+    </div>
+    <div class="toggle-description">
+      When you turn on, It deletes cache and search history.
+    </div>
+  </div>
+
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Activity Indicator</span>
+      <div class="toggle-switch" id="templateToggle3"></div>
+    </div>
+    <div class="toggle-description">
+      Shows friends when you were last active on Snapchat.
+    </div>
+  </div>
+
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>See Me in Find Friends</span>
+      <div class="toggle-switch" id="templateToggle4"></div>
+    </div>
+    <div class="toggle-description">
+      Allows your profile to appear in friend suggestions.
+    </div>
+  </div>
+
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Family Center</span>
+      <div class="toggle-switch" id="templateToggle5"></div>
+    </div>
+    <div class="toggle-description">
+      Turn on Family Center Mode
+    </div>
+  </div>
+
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>View My Story</span>
+      <div class="toggle-switch" id="templateToggle6"></div>
+    </div>
+    <div class="toggle-description">
+      Turn on To Let People View Your Story
+    </div>
+  </div>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Save Snaps to Memories</span>
+      <div class="toggle-switch" id="templateToggle7"></div>
+    </div>
+    <div class="toggle-description">
+      Allows your Snaps to be stored for re-viewing. If off, your Snaps won't remain after they’re viewed.
+    </div>
+  </div>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Personalized Ads & Filters</span>
+      <div class="toggle-switch" id="templateToggle8"></div>
+    </div>
+    <div class="toggle-description">
+      Uses activity data to deliver more relevant filters and ads. If off, features may be less personalized.
+    </div>
+  </div>
+
+  <!-- Terms of Service & Privacy Policy (Simplified) -->
+  <!-- using chatgpt to help simplified -->
+  <h2><i class="fa-solid fa-scroll"></i> Terms of Service (Simplified)</h2>
+  <p class="info-text">
+    - You agree that Snapchat can process your content (Snaps, messages) to provide the service.<br>
+    - You must follow the community guidelines (no illegal or harmful content).<br>
+    - Company may update terms, and continuing to use the service is your acceptance.<br>
+    - <a class="link" href="https://snap.com/en-CA/terms" target="_blank">Full TOS here</a>.
+  </p>
+
+  <h2><i class="fa-solid fa-shield-halved"></i> Privacy Policy (Simplified)</h2>
+  <p class="info-text">
+    - Opened Snaps disappear, unopened remain for up to 30 days on servers.<br>
+    - Location is shared only if you grant permission, and can be toggled via Ghost Mode.<br>
+    - Contacts and camera roll are optional for friend suggestions and sharing media.<br>
+    - Ads & personalization rely on usage data; you can disable them here.<br>
+    - <a class="link" href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank">Full Privacy Policy</a>.
+  </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Snap Inc. All rights reserved.（not actural snap inc） <br>
+  <small>code by Yiyang. All rights reserved.</small>
+</footer>
+
+<!-- MODAL OVERLAYS PART 1,2,3,4 (Step-by-Step Tutorials) -->
+
+<!-- 1) Sign Up Tutorial -->
+<div id="signUpTutorial" class="modal-overlay">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeTutorial('signUpTutorial')"><i class="fa-solid fa-times"></i></button>
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-user-plus"></i> Step 1: Enter Basic Info</h4>
+      <p>
+        Provide your first name, an optional last name, and choose a unique username. 
+        This information identifies your account. 
+      </p>
+    </div>
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-file-contract"></i> Step 2: Terms & Privacy</h4>
+      <p>
+        By tapping <strong>“Agree & Continue”</strong>, you accept Snapchat’s Terms of Service 
+        and confirm you’ve read the Privacy Policy.
+      </p>
+    </div>
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-address-book"></i> Step 3: Friends & Contacts</h4>
+      <p>
+        After signing up, choose whether to grant contact access to find friends automatically, 
+        or add them manually. 
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 2) Main Step-by-Step Data Tutorial (Page 2) -->
+<div id="dataTutorialModal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeTutorial('dataTutorialModal')"><i class="fa-solid fa-times"></i></button>
+    <!-- cycle steps with next/previous buttons -->
+    <div id="dataTutorialStepsWrapper">
+      <!-- Step content dynamically inserted by JS -->
+    </div>
+    <div class="modal-nav">
+      <button id="prevStepBtn" onclick="prevStep()">&larr; Previous</button>
+      <button id="nextStepBtn" onclick="nextStep()">Next &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<!-- 3) Data Access Example Modal -->
+<div id="dataAccessExample" class="modal-overlay">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeTutorial('dataAccessExample')"><i class="fa-solid fa-times"></i></button>
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-mobile-screen"></i> Example: Snapchat Requests Data</h4>
+      <p>
+        Snapchat may prompt for access to your device’s contacts or photos. This request states 
+        exactly what is shared, why it’s needed, and how it improves your experience.
+      </p>
+      <img src="IMG_6856.PNG" alt="Data Access Prompt Example screenshot">
+      <p>
+        You can choose “Allow Full Access,” “Select Contacts,” or “Don’t Allow” based on your preference.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- 4) dataPrivacyControlTutorial -->
+<div id="dataPrivacyControlTutorial" class="modal-overlay">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeTutorial('dataPrivacyControlTutorial')">
+      <i class="fa-solid fa-times"></i>
+    </button>
+    <div class="tutorial-step">
+      <h4>Step 1: Location Settings</h4>
+      <p>
+        Choose Ghost Mode or Friends Only to limit who sees your location. 
+      </p>
+    </div>
+    <div class="tutorial-step">
+      <h4>Step 2: See Me in Find Friends</h4>
+      <p>
+        See Me in Find Friends Allows your profile to appear in friend suggestions, 
+        and so on. Adjust these anytime to fit your comfort level.
+      </p>
+    </div>
+    <div class="tutorial-step">
+      <h4>Step 3: Snaps & Memories</h4>
+      <p>
+        Snaps typically vanish after viewing. If you enable Memories, 
+        they remain on Snapchat servers for re-viewing. Disable for stricter privacy.
+
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab Switching Logic
+// hammer.js
+const tabButtons = document.querySelectorAll('.tab-btn');
+const pages = document.querySelectorAll('.page');
+
+tabButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Clear active states
+    tabButtons.forEach(b => b.classList.remove('active'));
+    pages.forEach(p => p.classList.remove('active'));
+    // Set new active
+    btn.classList.add('active');
+    const target = btn.getAttribute('data-tab');
+    document.getElementById(target).classList.add('active');
+  });
+});
+
+// Hammer.js for swipe gesture to switch pages
+let currentTabIndex = 0; // 0->page1, 1->page2, 2->page3
+const mc = new Hammer(document.body);
+mc.on('swipeleft', function() {
+  if (currentTabIndex < 2) {
+    currentTabIndex++;
+    switchTab(currentTabIndex);
+  }
+});
+mc.on('swiperight', function() {
+  if (currentTabIndex > 0) {
+    currentTabIndex--;
+    switchTab(currentTabIndex);
+  }
+});
+function switchTab(index) {
+  tabButtons.forEach((btn, i) => {
+    btn.classList.remove('active');
+    pages[i].classList.remove('active');
+    if (i === index) {
+      btn.classList.add('active');
+      pages[i].classList.add('active');
+    }
+  });
+  currentTabIndex = index;
+}
+
+// Sign Up logic
+function signUp() {
+  alert("Thanks for signing up! Next, consider whether to grant contact access.");
+}
+
+// TUTORIAL MODALS
+function openTutorial(id) {
+  document.getElementById(id).classList.add('active');
+}
+function closeTutorial(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+//  Step-by-Step Data Tutorial (Page 2) Implementation
+let currentTutorialStep = 0;
+const tutorialSteps = [
+  {
+    title: 'Contacts & Friend Suggestions',
+    content: 'Snapchat uses your contact list (with permission) to find which of your friends are on Snapchat. You can skip this to add friends manually if you prefer.'
+  },
+  {
+    title: 'Camera & Photos',
+    content: 'Allowing camera access lets you take Snaps, and letting Snapchat see certain photos enables easy sharing and usage of location data in images.'
+  },
+  {
+    title: 'Microphone Access',
+    content: 'Snapchat may request microphone permission for audio-based Lenses or video chats. You can always disable this in your device settings.'
+  },
+  {
+    title: 'Location Sharing',
+    content: 'Snap Map can broadcast your live location to friends (or hide it with Ghost Mode). This feature is optional and can be toggled anytime.'
+  },
+  {
+    title: 'Ephemeral Snaps & Retention',
+    content: 'Snaps disappear after viewing, but unopened Snaps remain on servers for up to 30 days. Some metadata is retained for troubleshooting.'
+  }
+];
+
+// Initialize the tutorial
+function startStepByStepTutorial() {
+  currentTutorialStep = 0;
+  updateTutorialStep();
+  openTutorial('dataTutorialModal');
+}
+
+function updateTutorialStep() {
+  const wrapper = document.getElementById('dataTutorialStepsWrapper');
+  const step = tutorialSteps[currentTutorialStep];
+  wrapper.innerHTML = `
+    <div class="tutorial-step">
+      <h4>${step.title}</h4>
+      <p>${step.content}</p>
+    </div>
+  `;
+  // Hide/Show next/prev buttons
+  document.getElementById('prevStepBtn').style.display = currentTutorialStep === 0 ? 'none' : 'inline-block';
+  document.getElementById('nextStepBtn').textContent = 
+    (currentTutorialStep < tutorialSteps.length - 1) ? 'Next →' : 'Done';
+}
+
+function nextStep() {
+  if (currentTutorialStep < tutorialSteps.length - 1) {
+    currentTutorialStep++;
+    updateTutorialStep();
+  } else {
+    closeTutorial('dataTutorialModal');
+  }
+}
+
+function prevStep() {
+  if (currentTutorialStep > 0) {
+    currentTutorialStep--;
+    updateTutorialStep();
+  }
+}
+
+// Toggle Switches
+['templateToggle','templateToggle1','templateToggle2','templateToggle3','templateToggle4','templateToggle5','templateToggle6','templateToggle7','templateToggle8','templateToggle9','templateToggle10'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('click', () => {
+    el.classList.toggle('active');
+  });
+});
+</script>
+
+</body>
+</html>

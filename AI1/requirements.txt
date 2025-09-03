@@ -1,0 +1,7 @@
+flask
+flask-cors
+flask-bcrypt
+flask-login
+openai
+requests          # ElevenLabs
+python-dotenv     # 读取 .env

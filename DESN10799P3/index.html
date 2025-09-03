@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cookie Management</title>
+  <style>
+    /* 
+      Abstract: 
+      This inline CSS provides a simple, modern design for a cookie management interface.
+      The layout is divided into sections for mode selection, advanced settings, and a real-time preview.
+      Basic styling is applied to ensure a clear visual hierarchy.
+    */
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #1976D2;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    /* Mode Selection (Basic / Balanced / Full) */
+    .modes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .modes label {
+      cursor: pointer;
+    }
+
+    .modes input[type="radio"] {
+      margin-right: 0.5rem;
+      transform: translateY(0.1rem);
+    }
+
+    /* Advanced Settings */
+    .advanced-settings {
+      margin: 1rem 0;
+      display: none; /* Hidden by default */
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 6px;
+      background-color: #fafafa;
+    }
+
+    .advanced-settings label {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0;
+      cursor: pointer;
+    }
+
+    .advanced-settings input[type="checkbox"] {
+      margin-right: 0.5rem;
+      transform: translateY(0.1rem);
+    }
+
+    /* Real-Time Preview */
+    .preview {
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fdfdfd;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      background-color: #1976D2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1565C0;
+    }
+
+    .toggle-btn {
+      background-color: #455A64;
+    }
+
+    .toggle-btn:hover {
+      background-color: #37474F;
+    }
+
+    .disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.875rem;
+      color: #999;
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cookie Management Interface</h1>
+  </header>
+
+  <div class="container">
+    <!-- 
+      SECTION 1: Mode Selection
+      Purpose: Provide quick preset modes (Basic, Balanced, Full).
+    -->
+    <div class="section">
+      <h2>1. Select Your Cookie Mode</h2>
+      <p>Choose a preset mode to quickly configure your cookie preferences.</p>
+      <div class="modes">
+        <label>
+          <input type="radio" name="mode" value="basic" />
+          Basic Mode (Essential Cookies Only)
+        </label>
+        <label>
+          <input type="radio" name="mode" value="balanced" />
+          Balanced Mode (Essential + Analytics)
+        </label>
+        <label>
+          <input type="radio" name="mode" value="full" />
+          Full Mode (All Cookies Allowed)
+        </label>
+      </div>
+    </div>
+
+    <!-- 
+      SECTION 2: Advanced Settings
+    -->
+    <div class="section">
+      <h2>2. Advanced Settings</h2>
+      <p>Customize your cookie usage in detail.</p>
+      <button class="toggle-btn" onclick="toggleAdvancedSettings()">Show Advanced Settings</button>
+
+      <div class="advanced-settings" id="advancedSettings">
+        <label>
+          <input type="checkbox" id="essentialCookies" disabled />
+          Essential Cookies (Required for basic site functionality)
+        </label>
+        <label>
+          <input type="checkbox" id="analyticsCookies" />
+          Analytics Cookies (Track site usage, traffic stats)
+        </label>
+        <label>
+          <input type="checkbox" id="advertisingCookies" />
+          Advertising Cookies (Personalized ads, user profiling)
+        </label>
+        <label>
+          <input type="checkbox" id="thirdPartyCookies" />
+          Third-Party Cookies (Social media integrations, embedded content)
+        </label>
+      </div>
+    </div>
+
+    <!-- 
+      SECTION 3: Real-Time Preview
+    -->
+    <div class="section">
+      <h2>3. Preview Your Selection</h2>
+      <p>Review the potential effects of your chosen cookie settings.</p>
+      <div class="preview" id="previewBox">
+        <p><strong>Current Mode:</strong> <span id="previewMode">N/A</span></p>
+        <p><strong>Enabled Cookies:</strong> <span id="previewCookies">None</span></p>
+        <p id="previewDescription">
+          Please select a mode or customize your settings to see a description here.
+        </p>
+      </div>
+    </div>
+
+    <!-- 
+      SECTION 4: Actions
+    -->
+    <div class="section actions">
+      <button onclick="saveSettings()">Save Settings</button>
+      <button onclick="resetSettings()">Reset to Default</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Yiyang Zhang&nbsp;&nbsp;/&nbsp;&nbsp;Project 3&nbsp;&nbsp;/&nbsp;&nbsp;DESN 10799&nbsp;&nbsp;/&nbsp;&nbsp;Winter 2025</p>
+  </footer>
+
+  <script>
+    // Grab references to HTML elements
+    const modeRadios = document.querySelectorAll('input[name="mode"]');
+    const advancedSettings = document.getElementById('advancedSettings');
+    const essentialCookies = document.getElementById('essentialCookies');
+    const analyticsCookies = document.getElementById('analyticsCookies');
+    const advertisingCookies = document.getElementById('advertisingCookies');
+    const thirdPartyCookies = document.getElementById('thirdPartyCookies');
+
+    const previewMode = document.getElementById('previewMode');
+    const previewCookies = document.getElementById('previewCookies');
+    const previewDescription = document.getElementById('previewDescription');
+
+    // Initialize default state
+    window.addEventListener('DOMContentLoaded', () => {
+  // default Mode
+  //  full
+    //   document.querySelector('input[value="full"]').checked = true;
+    
+      // Balanced Mode   
+       document.querySelector('input[value="balanced"]').checked = true;
+      applyMode('balanced');
+      updatePreview();
+    });
+
+    // Listen for mode changes
+    modeRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        applyMode(radio.value);
+        updatePreview();
+      });
+    });
+
+    // Listen for checkbox changes
+    [analyticsCookies, advertisingCookies, thirdPartyCookies].forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        // If user manually toggles is custom
+        updatePreview();
+      });
+    });
+
+    // Apply mode settings
+    function applyMode(mode) {
+      switch(mode) {
+        case 'basic':
+          // Basic: Only essential cookies
+          essentialCookies.checked = true;
+          analyticsCookies.checked = false;
+          advertisingCookies.checked = false;
+          thirdPartyCookies.checked = false;
+          break;
+        case 'balanced':
+          // Balanced: essential + analytics
+          essentialCookies.checked = true;
+          analyticsCookies.checked = true;
+          advertisingCookies.checked = false;
+          thirdPartyCookies.checked = false;
+          break;
+        case 'full':
+          // Full: all cookies
+          essentialCookies.checked = true;
+          analyticsCookies.checked = true;
+          advertisingCookies.checked = true;
+          thirdPartyCookies.checked = true;
+          break;
+      }
+    }
+
+    // Show/hide advanced settings
+    function toggleAdvancedSettings() {
+      if (advancedSettings.style.display === 'block') {
+        advancedSettings.style.display = 'none';
+      } else {
+        advancedSettings.style.display = 'block';
+      }
+    }
+
+    // Update the preview box
+    function updatePreview() {
+      let selectedMode = getSelectedMode();
+      previewMode.textContent = selectedMode
+        ? selectedMode.charAt(0).toUpperCase() + selectedMode.slice(1)
+        : 'Custom';
+
+      // Build a list of active cookies
+      let activeCookies = [];
+      if (essentialCookies.checked) activeCookies.push('Essential');
+      if (analyticsCookies.checked) activeCookies.push('Analytics');
+      if (advertisingCookies.checked) activeCookies.push('Advertising');
+      if (thirdPartyCookies.checked) activeCookies.push('Third-Party');
+
+      previewCookies.textContent = activeCookies.length
+        ? activeCookies.join(', ')
+        : 'None';
+
+      // Update description based on the mode
+      let description = '';
+      switch(selectedMode) {
+        case 'basic':
+          description = 'You have selected Basic Mode. Only essential cookies are enabled, which may limit personalized features but maximize privacy.';
+          break;
+        case 'balanced':
+          description = 'You have selected Balanced Mode. Essential and analytics cookies are enabled, providing some personalization while keeping ads minimal.';
+          break;
+        case 'full':
+          description = 'You have selected Full Mode. All cookies are enabled, including advertising and third-party cookies for a highly personalized experience.';
+          break;
+        default:
+          description = 'You have customized your settings manually. Ensure you are comfortable with the selected cookie types.';
+          break;
+      }
+      previewDescription.textContent = description;
+    }
+
+    function getSelectedMode() {
+      let checkedRadio = document.querySelector('input[name="mode"]:checked');
+      return checkedRadio ? checkedRadio.value : null;
+    }
+
+    function saveSettings() {
+      alert('Your cookie settings have been saved!');
+    }
+
+
+
+    function resetSettings() {
+        // Reset to (Balanced Mode)
+      document.querySelector('input[value="balanced"]').checked = true;
+      applyMode('balanced');
+        // Reset to (full Mode)
+    //   document.querySelector('input[value="full"]').checked = true;
+    //   applyMode('full');
+      // Hide advanced settings if open
+      advancedSettings.style.display = 'none';
+      updatePreview();
+    }
+  </script>
+</body>
+</html>

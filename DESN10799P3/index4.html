@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snapchat Data Transparency – Redesign Demo</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* -------------------------------------
+       SNAPCHAT-INSPIRED BRAND STYLES
+    ------------------------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #FFFC00; /* Snapchat Yellow */
+      color: #000000;
+      margin: 0;
+    }
+    header {
+      background-color: #000000; /* black */
+      color: #FFFFFF;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+    }
+    header img {
+      height: 32px;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+    header h1 {
+      display: inline-block;
+      font-size: 1.25rem;
+      vertical-align: middle;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 1rem auto;
+      padding: 1rem;
+      background-color: #FFFFFF;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .section-title {
+      background-color: #FFFC00;
+      margin: 0 -1rem 1rem -1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px 10px 0 0;
+    }
+    .section-title h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* For toggles/settings blocks */
+    .setting-block {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      position: relative;
+      background-color: #fdfdfd;
+    }
+    .toggle-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+    .toggle-description {
+      font-size: 0.9rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .toggle-switch {
+      width: 48px;
+      height: 24px;
+      background-color: #ccc;
+      border-radius: 24px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .toggle-switch.active {
+      background-color: #2ecc71; /* "On" state in green */
+    }
+    .toggle-switch.active::after {
+      transform: translateX(24px);
+    }
+    .info-text {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: #444;
+      line-height: 1.4;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #000000;
+      color: #FFFFFF;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      transition: background-color 0.3s;
+    }
+    .cta-button:hover {
+      background-color: #333333;
+    }
+    .popup-note {
+      background-color: #FFFC00;
+      border-left: 4px solid #000;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .legal-text {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.3;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      margin: 2rem 0 1rem;
+      font-size: 0.8rem;
+      color: #000;
+    }
+
+    /* Sign-up mini section */
+    .signup-section {
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .signup-section input {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .link {
+      color: #0066cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* TUTORIAL MODAL */
+    #tutorialModal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      overflow: auto;
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      max-width: 400px;
+      padding: 1rem;
+      border-radius: 8px;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .tutorial-step {
+      margin-bottom: 1rem;
+    }
+    .tutorial-step h4 {
+      margin-bottom: 0.25rem;
+      font-weight: bold;
+      color: #000;
+    }
+    .tutorial-step img {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .tutorial-step p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    /* Icons demonstration */
+    .icon-list {
+      display: flex;
+      justify-content: space-evenly;
+      margin: 1rem 0;
+    }
+    .icon-list i {
+      font-size: 1.5rem;
+      color: #000;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 520px) {
+      .container {
+        margin: 0.5rem;
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg" alt="Snapchat Logo">
+  <h1>Snapchat Data Transparency</h1>
+</header>
+
+<div class="container">
+  <!-- Sign-Up Demonstration (Based on screenshot of sign-up flow) -->
+  <div class="section-title">
+    <h2><i class="fa-solid fa-user-plus"></i> Create Account</h2>
+  </div>
+  <div class="signup-section">
+    <p class="info-text">
+      Please fill out your basic details to get started. By tapping
+      <strong>“Agree and Continue”</strong> below, you agree to the
+      <a class="link" href="https://snap.com/en-CA/terms" target="_blank">Terms of Service</a>
+      and acknowledge that you have read the 
+      <a class="link" href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank">Privacy Policy</a>.
+    </p>
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" placeholder="Your First Name">
+    <label for="lastName">Last Name (optional)</label>
+    <input type="text" id="lastName" placeholder="Your Last Name (Optional)">
+    <div class="text-center">
+      <button class="cta-button">Agree and Continue</button>
+    </div>
+  </div>
+
+  <!-- Demo of data collection notice: Contacts, Photos, etc. -->
+  <div class="section-title">
+    <h2><i class="fa-solid fa-users"></i> Find All Your Friends</h2>
+  </div>
+  <p class="info-text">
+    Allow <strong>Full Access</strong> for Snapchat to use your contacts to give you the best friend
+    suggestions, or choose <strong>Select Contacts</strong> for individual contacts. We upload your
+    contacts to our servers only when you grant permission.
+  </p>
+  <p class="info-text">
+    If you prefer not to share your full contact list, you can manually add friends.
+    <a class="link" href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank">Learn more about contact usage</a>.
+  </p>
+  <div class="icon-list">
+    <i class="fa-solid fa-address-book"></i>
+    <i class="fa-solid fa-user-check"></i>
+    <i class="fa-solid fa-user-friends"></i>
+  </div>
+
+  <!-- Photo Library Permission -->
+  <div class="section-title">
+    <h2><i class="fa-solid fa-images"></i> Photo Library Access</h2>
+  </div>
+  <p class="info-text">
+    Grant Snapchat permission to access your camera roll so you can share photos or videos with friends,
+    and personalize your experience. You can choose <strong>Limit Access</strong> (e.g., only selected
+    images), <strong>Allow Full Access</strong> (entire photo library), or <strong>Don’t Allow</strong>.
+  </p>
+  <p class="info-text">
+    Photos often contain metadata like <em>location</em>, <em>depth information</em>, <em>captions</em>, 
+    or <em>audio</em> in videos. We only use this data to provide relevant features and do not share it
+    with third-party advertisers without your explicit consent.
+    <a class="link" href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank">Learn more</a>.
+  </p>
+
+  <!-- Microphone Access Prompt -->
+  <div class="section-title">
+    <h2><i class="fa-solid fa-microphone"></i> Microphone Access</h2>
+  </div>
+  <p class="info-text">
+    Snapchat uses your microphone to record audio for Snaps, video chats, and some Lenses that respond
+    to voice input. You can opt out at any time in your device’s app settings.
+  </p>
+
+  <!-- Location Settings (Ghost Mode, etc.) -->
+  <div class="section-title">
+    <h2><i class="fa-solid fa-location-dot"></i> Location Controls</h2>
+  </div>
+  <p class="info-text">
+    <strong>Ghost Mode</strong> hides your live location from everyone. You can also share your location
+    with <strong>Friends Only</strong>, or choose specific friends under <em>Only These Friends...</em>
+    for complete privacy control. The default location sharing can be changed anytime in Settings.
+  </p>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Ghost Mode</span>
+      <div class="toggle-switch" id="ghostToggle"></div>
+    </div>
+    <div class="toggle-description">
+      When enabled, nobody can see your live location. You’ll still get core app features, but location-based filters may be limited.
+    </div>
+  </div>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>My Friends Only</span>
+      <div class="toggle-switch active" id="friendsToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Shares location with friends you’ve added. This helps them know if you’re nearby.
+    </div>
+  </div>
+
+  <!-- Data Dashboard & Ephemeral Explanation -->
+  <div class="section-title">
+    <h2><i class="fa-solid fa-user-shield"></i> Data Dashboard</h2>
+  </div>
+  <p class="info-text">
+    <strong>Snaps &amp; Storage</strong>: Snaps are deleted once viewed, but unopened Snaps remain on our servers for up to <strong>30 days</strong> so they can be delivered if opened late. Some metadata may persist for troubleshooting or legal compliance.  
+    <a class="link" href="https://snap.com/en-CA/terms" target="_blank">Learn more</a>.
+  </p>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Save Snaps to Memories</span>
+      <div class="toggle-switch active" id="memoriesToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Save your Snaps in Memories on our servers, accessible only by you (unless you share them). If turned off, snaps won’t remain after viewing.
+    </div>
+  </div>
+  <div class="setting-block">
+    <div class="toggle-label">
+      <span>Personalized Ads & Filters</span>
+      <div class="toggle-switch active" id="adsToggle"></div>
+    </div>
+    <div class="toggle-description">
+      Helps us show relevant Lenses or ads based on your interactions and location. You can disable this to reduce data usage, but some features may be less personalized.
+    </div>
+  </div>
+  <div class="popup-note">
+    <strong>Note:</strong> Changing these settings may affect your experience. You can return to the
+    <em>Settings</em> at any time to update preferences. For complete details, see our
+    <a class="link" href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank">Privacy Policy</a>.
+  </div>
+
+  <!-- TUTORIAL TRIGGER -->
+  <div style="text-align:center;">
+    <button class="cta-button" onclick="openTutorial()">Open Tutorials <i class="fa-solid fa-question-circle"></i></button>
+  </div>
+
+  <!-- Legal text snippet from real TOS -->
+  <div class="legal-text">
+    <p><strong>Excerpt from Snapchat Terms of Service (Snap Inc.)</strong></p>
+    <p>
+      “We do not display previously sent or received Snaps once they are opened or have expired, but
+      unopened Snaps may be stored for up to 30 days... We collect device and usage data to improve
+      user experience. See full text at:
+      <a class="link" href="https://snap.com/en-CA/terms" target="_blank">snap.com/en-CA/terms</a>
+    </p>
+  </div>
+</div><!-- END container -->
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Snap Inc. — Educational Redesign Demo. All references are from real Snapchat Terms & Policies.
+</footer>
+
+<!-- TUTORIAL MODAL -->
+<div id="tutorialModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeTutorial()"><i class="fa-solid fa-times"></i></button>
+
+    <!-- Step 1: Sign-up -->
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-clipboard-list"></i> Step 1: Creating Your Account</h4>
+      <!-- You can replace the "placeholder" image src with your local screenshot if needed -->
+      <img src="IMG_6854.PNG" alt="Sign-up screenshot" />
+      <p>
+        Enter your details and tap <strong>“Agree and Continue”</strong> to accept the real
+        <em>Snapchat Terms of Service</em> and <em>Privacy Policy</em>.
+      </p>
+    </div>
+
+    <!-- Step 2: Contacts Permission -->
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-address-book"></i> Step 2: Contacts Access</h4>
+      <img src="IMG_6855.PNG" alt="Contacts Access screenshot" />
+      <p>
+        Choose <strong>Allow Full Access</strong> or <strong>Select Contacts</strong> to add your friends. Snapchat
+        uploads this data only if you allow it, to help suggest potential connections.
+      </p>
+    </div>
+
+    <!-- Step 3: Photo Library Access -->
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-images"></i> Step 3: Photo Library</h4>
+      <img src="IMG_6856.PNG" alt="Photo Library Access screenshot" />
+      <p>
+        Decide how you share your photos. <strong>Limit Access</strong> or <strong>Allow Full Access</strong> 
+        if you want your entire camera roll available for snaps or stories.
+      </p>
+    </div>
+
+    <!-- Step 4: Microphone Prompt -->
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-microphone"></i> Step 4: Microphone Usage</h4>
+      <img src="IMG_6858.PNG" alt="Microphone Access screenshot" />
+      <p>
+        Let Snapchat record audio for snaps, video chat, and certain Lenses. You can
+        disable microphone permission at any time in your device settings.
+      </p>
+    </div>
+
+    <!-- Step 5: Location Settings -->
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-map-marked-alt"></i> Step 5: Location & Ghost Mode</h4>
+      <img src="IMG_6857.PNG" alt="Location Settings screenshot" />
+      <p>
+        Manage who can see your live location. Enable <strong>Ghost Mode</strong> to stay hidden, or share with friends or custom lists.
+      </p>
+    </div>
+
+    <!-- Step 6: Data Dashboard & Ephemeral Settings -->
+    <div class="tutorial-step">
+      <h4><i class="fa-solid fa-user-shield"></i> Step 6: Data Dashboard</h4>
+      <img src="IMG_6860.PNG" alt="Data Dashboard screenshot" />
+      <p>
+        Review ephemeral snap rules, toggle <strong>Memories</strong> on or off, and control personalization
+        under the <em>Privacy Controls</em> in Settings.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Basic toggle script
+  const toggles = document.querySelectorAll('.toggle-switch');
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+    });
+  });
+
+  // Tutorial modal controls
+  function openTutorial() {
+    document.getElementById('tutorialModal').style.display = 'block';
+  }
+  function closeTutorial() {
+    document.getElementById('tutorialModal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

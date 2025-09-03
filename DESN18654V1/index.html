@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="img/Antirender.ico"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickPick: Random Chooser</title>
+  <link rel="stylesheet" href="css/design.css">
+</head>
+<body>
+  <div class="app-container">
+    <h1>QuickPick</h1>
+    <p>What should we choose for you?</p>
+    <div class="category-grid">
+      <button onclick="generateRandom('food')">Food</button>
+      <button onclick="generateRandom('drink')">Drink</button>
+      <button onclick="generateRandom('dessert')">Dessert</button>
+      <button onclick="generateRandom('entertainment')">Entertainment</button>
+    </div>
+    <div class="result hidden" id="resultBox">
+      <img id="resultImage" src="" alt="Preview" class="hidden">
+      <p id="resultText">Your random pick will appear here!</p>
+    </div>
+  </div>
+    <!-- Javascript goes after the page -->
+  <script src="js/main.js"></script>
+</body>
+</html>

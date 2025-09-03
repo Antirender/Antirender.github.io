@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Snapchat Data Transparency Redesign</title>
+  <style>
+    /* -------------------------------------
+       SNAPCHAT BRAND-INSPIRED STYLES
+    ------------------------------------- */
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #FFFC00; /* Snapchat Yellow */
+      color: #000000;
+    }
+    header {
+      background-color: #000000; /* Black header */
+      color: #ffffff;
+      padding: 1rem;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 1rem;
+      background-color: #ffffff; /* White content area for contrast */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+    }
+    .logo {
+      display: inline-block;
+      vertical-align: middle;
+      height: 36px;
+      margin-right: 8px;
+    }
+    .section-title {
+      background-color: #FFFC00;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .setting-block {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+    .toggle-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+      font-weight: bold;
+    }
+    .toggle-description {
+      font-size: 0.9rem;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    .toggle-switch {
+      width: 48px;
+      height: 24px;
+      background-color: #ccc;
+      border-radius: 24px;
+      position: relative;
+      cursor: pointer;
+    }
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 2px;
+      left: 2px;
+      background-color: #fff;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    .toggle-switch.active {
+      background-color: #008000; /* “On” state in green to stand out */
+    }
+    .toggle-switch.active::after {
+      transform: translateX(24px);
+    }
+    .info-text {
+      font-size: 0.85rem;
+      color: #444;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+    .cta-button {
+      display: inline-block;
+      background-color: #000000;
+      color: #FFFFFF;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 1rem 0;
+      transition: background-color 0.3s;
+    }
+    .cta-button:hover {
+      background-color: #444444;
+    }
+    footer {
+      text-align: center;
+      margin: 2rem 0 1rem 0;
+      font-size: 0.8rem;
+    }
+    .legal-text {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 1rem;
+      line-height: 1.3;
+    }
+    .dashboard-section {
+      margin-bottom: 1.5rem;
+    }
+    .dashboard-section h3 {
+      margin-top: 0;
+    }
+    .popup-note {
+      padding: 0.75rem;
+      background-color: #FFFC00;
+      border-left: 4px solid #000;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .link {
+      color: #0000EE;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    /* Simple script-driven toggle effect (if we add a little JavaScript) */
+  </style>
+</head>
+
+<body>
+  <header>
+    <img class="logo" src="https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg" alt="Snapchat Logo">
+    <span style="font-size:1.2rem;font-weight:bold;">Snapchat Data Transparency</span>
+  </header>
+
+  <!-- Container for the entire redesign concept -->
+  <div class="container">
+
+    <!-- Onboarding / Explanation -->
+    <div class="section-title">
+      <h2>Welcome to Snapchat – Data Control Redesign</h2>
+    </div>
+    <p class="info-text">
+      Here’s a clearer view of how your snaps, stories, and location are handled. Make informed choices
+      about what you share. This redesign is intended to show you exactly what data we store, and for how long.
+    </p>
+    <a href="#dashboard" class="cta-button">Go to Privacy Dashboard</a>
+
+    <!-- Ephemeral Explanation Section -->
+    <div class="dashboard-section" style="margin-top:2rem;">
+      <h3>Ephemeral Snaps & Storage</h3>
+      <p class="info-text">
+        By design, your Snaps “disappear” after they’re viewed. However, <strong>unopened Snaps</strong>
+        can be stored on our servers for up to <strong>30 days</strong> so they can be delivered if your friend
+        opens them late. This is a real policy from our
+        <a href="https://snap.com/en-CA/terms" target="_blank" class="link">Snapchat Terms of Service</a>.
+      </p>
+      <p class="info-text">
+        While we don’t display these Snaps after their intended viewing, some data (like metadata or logs)
+        may remain for troubleshooting or legal obligations.
+      </p>
+    </div>
+
+    <!-- Location Sharing Section -->
+    <div class="dashboard-section">
+      <h3>Location Settings</h3>
+      <p class="info-text">
+        Snapchat’s location features (Snap Map, Geo-filters) rely on real-time device location. By default,
+        your friends can see your Bitmoji on the map when you open the app. If you’d rather hide your location,
+        simply enable Ghost Mode or use custom location settings.
+      </p>
+      <div class="setting-block">
+        <div class="toggle-label">
+          <span>Ghost Mode</span>
+          <div id="ghostToggle" class="toggle-switch"></div>
+        </div>
+        <div class="toggle-description">
+          Hide your real-time location from all other users. You will still be able to access standard Snap features,
+          but your friends won’t see you on the Snap Map.
+        </div>
+      </div>
+      <div class="setting-block">
+        <div class="toggle-label">
+          <span>Location for Friends</span>
+          <div id="friendsToggle" class="toggle-switch"></div>
+        </div>
+        <div class="toggle-description">
+          Share your location only with friends you select. If Ghost Mode is on, this will be disabled automatically.
+        </div>
+      </div>
+      <div class="setting-block">
+        <div class="toggle-label">
+          <span>Location for Everyone</span>
+          <div id="publicToggle" class="toggle-switch"></div>
+        </div>
+        <div class="toggle-description">
+          Make your location publicly visible to all of your friends by default. This setting can help with
+          location-specific filters but may pose a privacy risk.
+        </div>
+      </div>
+      <p class="info-text">
+        Note: You can switch between these modes at any time. We will never share your location with third parties
+        outside these choices without additional permission, except as otherwise noted in our
+        <a href="https://snap.com/en-CA/privacy/privacy-policy" target="_blank" class="link">Privacy Policy</a>.
+      </p>
+    </div>
+
+    <!-- Data Dashboard Section -->
+    <div class="section-title" id="dashboard">
+      <h2>Snapchat Privacy Dashboard</h2>
+    </div>
+
+    <div class="dashboard-section">
+      <h3>Content & Retention</h3>
+      <div class="setting-block">
+        <div class="toggle-label">
+          <span>Save Snaps to Memories</span>
+          <div id="memoriesToggle" class="toggle-switch active"></div>
+        </div>
+        <div class="toggle-description">
+          When enabled, we store your Snaps in Memories so you can revisit them anytime. 
+          If disabled, Snaps won’t be stored on your account after viewing.
+        </div>
+      </div>
+      <div class="setting-block">
+        <div class="toggle-label">
+          <span>Story Visibility</span>
+          <div id="storyToggle" class="toggle-switch active"></div>
+        </div>
+        <div class="toggle-description">
+          Choose who sees your Stories. By default, friends can see them for 24 hours. You can limit
+          to specific individuals or keep them public for more engagement.
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-section">
+      <h3>Analytics & Ads</h3>
+      <p class="info-text">
+        We gather some usage data to improve filters and show relevant ads. You can manage these preferences below:
+      </p>
+      <div class="setting-block">
+        <div class="toggle-label">
+          <span>Personalized Filters & Lenses</span>
+          <div id="filtersToggle" class="toggle-switch"></div>
+        </div>
+        <div class="toggle-description">
+          Allow us to use your Snaps and location to serve playful filters based on what’s around you.
+        </div>
+      </div>
+      <div class="setting-block">
+        <div class="toggle-label">
+          <span>Personalized Ads</span>
+          <div id="adsToggle" class="toggle-switch active"></div>
+        </div>
+        <div class="toggle-description">
+          Show advertising tailored to your interests and location. If turned off, you’ll still see ads, but they
+          may be less relevant.
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Info or Consequence Explanation -->
+    <div class="popup-note">
+      <strong>Note:</strong> Opting out of certain features may limit access to specific filters, lenses, or
+      location-based functionalities. You’re always free to update these settings in your Profile &gt; Settings &gt; Privacy.
+    </div>
+
+    <!-- References / Legal text snippet -->
+    <div class="legal-text">
+      <p><strong>From Snapchat Terms of Service (Snap Inc.):</strong></p>
+      <p>
+        “...When you open or send a Snap, we automatically collect data to better understand how you use our services.
+        Unopened Snaps are stored for up to 30 days...”
+        <br>
+        Source: <a href="https://snap.com/en-CA/terms" class="link" target="_blank">Snap.com Terms</a>
+      </p>
+    </div>
+
+  </div> <!-- End of container -->
+
+  <footer>
+    &copy; 2025 Snap Inc. - This redesigned interface is for educational demonstration only.
+  </footer>
+
+  <script>
+    // Basic JavaScript to handle toggles for demonstration
+    // Each toggle can be clicked to simulate ON/OFF states
+    const toggles = document.querySelectorAll(".toggle-switch");
+    toggles.forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+</html>

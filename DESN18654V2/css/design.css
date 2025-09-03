@@ -1,0 +1,187 @@
+:root {
+  --primary-color: #7c3aed;
+  --hover-color: #5b21b6;
+  --bg-color: #f8fafc;
+  --text-color: #1e293b;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin: 0;
+  padding: 2rem;
+  background: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  text-align: center;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.category-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.category-btn:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+}
+
+.result-loader {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 104%;
+  background: rgba(255, 255, 255, 0.9);
+  display: none;
+  z-index: 10;
+}
+
+.loader {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.dot-flashing {
+  position: relative;
+  width: 60px;
+  height: 20px;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  animation: dotFlashing 0.95s infinite linear;
+}
+
+.dot-flashing::before {
+  left: 0;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 24px;
+  animation-delay: 0.2s;
+}
+
+.loading-text {
+  color: var(--text-color);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes dotFlashing {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+.result-card {
+  position: relative;
+  background: #f1f5f9;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.result-card.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.result-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  margin: 1rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease 0.2s;
+}
+
+.result-image.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.result-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 1rem 0;
+}
+
+.retry-btn {
+  background: none;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
