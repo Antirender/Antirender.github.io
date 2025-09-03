@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资本做局器</title>
+    <link rel="icon" href="favicon.ico">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f6;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #FF5733;
+            margin: 0;
+        }
+
+        .capitalist-image {
+            margin-top: 20px;
+        }
+
+        .capitalist-image img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+            background-color: #C0392B;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: #7F8C8D;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .capitalist-image img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .action-btn {
+                font-size: 1rem;
+                padding: 15px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="img/favicon.ico" alt="logo">
+        <h1>资本做局器</h1>
+    </header>
+
+    <div class="capitalist-image">
+        <img id="capitalist-avatar" src="https://api.lorem.space/image/face?hash=92310" alt="资本家头像">
+    </div>
+
+    <div class="button-container">
+        <button class="action-btn" onclick="alert('你已经成功做了一个资本局！哈哈哈！')">做个资本局</button>
+    </div>
+
+    <div class="footer">
+        <p>由未来资本主义科技提供</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+$(document).ready(function () {
+
+    const laughSound = new Audio('https://www.soundjay.com/button/beep-07.wav');  
+
+    $(".action-btn").click(function () {
+
+        alert("你已经成功做了一个资本局！哈哈哈！");
+        
+        // 恶搞音效播放
+        laughSound.play();
+        
+        // 按钮缩放效果
+        $(this).animate({
+            transform: 'scale(1.5)'
+        }, 500, function () {
+            $(this).animate({
+                transform: 'scale(1)'
+            }, 500);
+        });
+
+        // 改变头像
+        let randomAvatar = 'https://api.lorem.space/image/face?hash=' + Math.random().toString(36).substring(7);
+        $("#capitalist-avatar").attr("src", randomAvatar);
+
+        // 恶搞背景颜色
+        $("body").animate({ backgroundColor: getRandomColor() }, 500);
+
+        // 恶搞按钮文本
+        $(this).text("资本局正在进行中...");
+
+        // 3秒后恢复按钮文本
+        setTimeout(() => {
+            $(this).text("做个资本局");
+        }, 3000);
+    });
+
+    // 随机生成颜色
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // 定期随机切换头像
+    setInterval(function () {
+        let randomAvatar = 'https://api.lorem.space/image/face?hash=' + Math.random().toString(36).substring(7);
+        $("#capitalist-avatar").attr("src", randomAvatar);
+    }, 5000);  // 每5秒切换一次头像
+});
+
+    </script>
+</body>
+</html>
