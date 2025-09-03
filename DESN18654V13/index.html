@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeOnTheGo - Learn to Code on the Move</title>
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.ico" />
+  <!-- Font Awesome for lock icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Root Variables (Light Mode) */
+    :root {
+      --primary-color: #ff6cbe;
+      --secondary-color: #9b59b7;
+      --bg-color: #fff0f6;
+      --text-color: #4a235b;
+      --accent-color: #ff69b5;
+      --surface-color: #fffafb;
+      --border-color: #e0b4c7;
+      transition: color 0.3s, background-color 0.3s;
+    }
+
+    /* Dark Mode Variables (via media query if user system is dark), 
+       but overridden by .dark-mode class below if toggled manually. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-color: #d7418d;
+        --secondary-color: #4a235b;
+        --bg-color: #2a0f36;
+        --text-color: #f8bbd1;
+        --accent-color: #ba55d4;
+        --surface-color: #5d3a6b;
+        --border-color: #8e6da1;
+      }
+    }
+
+    /* Manual Dark Mode override */
+    .dark-mode {
+      --primary-color: #d7418d;
+      --secondary-color: #4a235b;
+      --bg-color: #2a0f36;
+      --text-color: #f8bbd1;
+      --accent-color: #ba55d4;
+      --surface-color: #5d3a6b;
+      --border-color: #8e6da1;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: color 0.3s, background-color 0.3s;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--secondary-color);
+      color: var(--text-color);
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    /* Left-side container for reset button and small favicon */
+    .reset-container {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .reset-container img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+    .reset-container button {
+      background: var(--primary-color);
+      border: none;
+      color: var(--text-color);
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .reset-container button:hover {
+      background: var(--accent-color);
+    }
+
+    #darkModeToggle {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: var(--primary-color);
+      border: none;
+      color: var(--text-color);
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Tabs Navigation */
+    nav.tabs {
+      background: var(--primary-color);
+      transition: background-color 0.3s;
+    }
+    nav.tabs ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+    nav.tabs ul li {
+      padding: 10px;
+      cursor: pointer;
+      color: var(--text-color);
+      font-weight: bold;
+      flex: 1;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    nav.tabs ul li.active,
+    nav.tabs ul li:hover {
+      background: var(--accent-color);
+    }
+
+    main {
+      padding: 15px;
+    }
+
+    /* Each Section Tab */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Container, e.g. for lessons or quizzes */
+    .container {
+      max-width: 480px;
+      margin: 20px auto;
+      background: var(--surface-color);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    /* Lesson Titles, Quiz Titles => use accent color */
+    .lesson h2,
+    .quiz h2 {
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+
+    /* Buttons */
+    .btn {
+      background: var(--primary-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: var(--accent-color);
+    }
+
+    .quiz-input {
+      display: inline-block;
+      width: 80%;
+      margin: 10px 0;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    .tip {
+      display: none;
+      color: red;
+      margin-top: 5px;
+    }
+
+    /* Voice section */
+    .voice-section {
+      margin-top: 15px;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      background: #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      height: 10px;
+      width: 100%;
+    }
+    .progress-bar {
+      background: var(--accent-color);
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* Preview Lesson Page */
+    .preview-container {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: var(--surface-color);
+      border-top: 2px solid var(--border-color);
+      z-index: 999;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .preview-container h3 {
+      color: var(--accent-color);
+      margin-bottom: 10px;
+    }
+    .lesson-preview-item {
+      margin-bottom: 10px;
+    }
+    .lesson-preview-item.locked {
+      filter: blur(3px);
+    }
+    .lesson-preview-item i {
+      margin-right: 5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+      .quiz-input {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="reset-container">
+      <img src="img/favicon.ico" alt="Favicon" />
+      <button onclick="resetLearning()">Reset</button>
+    </div>
+    <h1>CodeOnTheGo</h1>
+    <button id="darkModeToggle" class="btn">Dark Mode</button>
+  </header>
+
+  <!-- Tabs Navigation -->
+  <nav class="tabs">
+    <ul>
+      <li data-tab="html" class="active">HTML</li>
+      <li data-tab="css">CSS</li>
+      <li data-tab="js">JS</li>
+      <li data-tab="json">JSON</li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HTML SECTION -->
+    <section id="html" class="tab-content active">
+      <!-- Progress Bar -->
+      <div class="container">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-html"></div>
+        </div>
+        <p><strong>HTML Progress:</strong> <span id="progress-html-text">0%</span></p>
+      </div>
+
+      <!-- 5 Lessons for HTML -->
+      <div class="container lesson" id="html-lesson1">
+        <h2>HTML Lesson 1</h2>
+        <p>Welcome, beloved coder, to the blossoming garden of HTML! Every tag is a lovely petal that adorns your precious webpage with sweet fragrance.</p>
+        <button class="btn" onclick="startQuiz('html',1)">Start Quiz</button>
+        <div class="quiz" id="html-lesson1-quiz" style="display: none;">
+          <h2>Quiz: Type the meaning of HTML</h2>
+          <input
+            type="text"
+            class="quiz-input"
+            id="html-lesson1-answer"
+            placeholder="Your answer here"
+          />
+          <button class="btn" onclick="checkAnswerInput('html',1,'HyperText Markup Language','Hint: People often mention it for building structure')">Submit</button>
+          <p class="feedback" id="html-lesson1-feedback"></p>
+          <p class="tip" id="html-lesson1-tip"></p>
+          <!-- Voice Option -->
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html-lesson1')">Start Voice Input</button>
+            <p class="feedback" id="html-lesson1-voice"></p>
+          </div>
+          <button class="btn" id="html-lesson1-next" style="display: none;" onclick="goToNextLesson('html',1,2)">
+            Next Lesson
+          </button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson2" style="display: none;">
+        <h2>HTML Lesson 2</h2>
+        <p>Awww, now you’re learning how to wrap your content in snuggly tags! Let these tags give your page a cozy, affectionate vibe that visitors adore.</p>
+        <button class="btn" onclick="startQuiz('html',2)">Start Quiz</button>
+        <div class="quiz" id="html-lesson2-quiz" style="display: none;">
+          <h2>Quiz: Type the tag for a top-level heading</h2>
+          <input
+            type="text"
+            class="quiz-input"
+            id="html-lesson2-answer"
+            placeholder="Your answer here"
+          />
+          <button class="btn" onclick="checkAnswerInput('html',2,'<h1>','Hint: The biggest heading tag!')">Submit</button>
+          <p class="feedback" id="html-lesson2-feedback"></p>
+          <p class="tip" id="html-lesson2-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html-lesson2')">Start Voice Input</button>
+            <p class="feedback" id="html-lesson2-voice"></p>
+          </div>
+          <button class="btn" id="html-lesson2-next" style="display: none;" onclick="goToNextLesson('html',2,3)">
+            Next Lesson
+          </button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson3" style="display: none;">
+        <h2>HTML Lesson 3</h2>
+        <p>Can you feel the spark of joy in each link, each paragraph, each list? The synergy of tags is a flamboyant festival waiting to shower your page with love!</p>
+        <button class="btn" onclick="startQuiz('html',3)">Start Quiz</button>
+        <div class="quiz" id="html-lesson3-quiz" style="display: none;">
+          <h2>Quiz: Which tag creates a hyperlink?</h2>
+          <input
+            type="text"
+            class="quiz-input"
+            id="html-lesson3-answer"
+            placeholder="Your answer here"
+          />
+          <button class="btn" onclick="checkAnswerInput('html',3,'<a>','Hint: \"Anchor\" is another name for it')">Submit</button>
+          <p class="feedback" id="html-lesson3-feedback"></p>
+          <p class="tip" id="html-lesson3-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html-lesson3')">Start Voice Input</button>
+            <p class="feedback" id="html-lesson3-voice"></p>
+          </div>
+          <button class="btn" id="html-lesson3-next" style="display: none;" onclick="goToNextLesson('html',3,4)">
+            Next Lesson
+          </button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson4" style="display: none;">
+        <h2>HTML Lesson 4</h2>
+        <p>Look at you, so close to hugging the entire spectrum of HTML tags! Keep going and your page will become an irresistible cuddle zone of content!</p>
+        <button class="btn" onclick="startQuiz('html',4)">Start Quiz</button>
+        <div class="quiz" id="html-lesson4-quiz" style="display: none;">
+          <h2>Quiz: Which element contains metadata for your webpage?</h2>
+          <input
+            type="text"
+            class="quiz-input"
+            id="html-lesson4-answer"
+            placeholder="Your answer here"
+          />
+          <button class="btn" onclick="checkAnswerInput('html',4,'<head>','Hint: The part that holds your title & meta tags')">Submit</button>
+          <p class="feedback" id="html-lesson4-feedback"></p>
+          <p class="tip" id="html-lesson4-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html-lesson4')">Start Voice Input</button>
+            <p class="feedback" id="html-lesson4-voice"></p>
+          </div>
+          <button class="btn" id="html-lesson4-next" style="display: none;" onclick="goToNextLesson('html',4,5)">
+            Next Lesson
+          </button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson5" style="display: none;">
+        <h2>HTML Lesson 5</h2>
+        <p>Final lesson of HTML, sweet friend! By mastering these tags, you unlock a cozy fortress of love and content on the big wide web. Shine on!</p>
+        <button class="btn" onclick="startQuiz('html',5)">Start Quiz</button>
+        <div class="quiz" id="html-lesson5-quiz" style="display: none;">
+          <h2>Quiz: Which tag indicates a paragraph?</h2>
+          <input
+            type="text"
+            class="quiz-input"
+            id="html-lesson5-answer"
+            placeholder="Your answer here"
+          />
+          <button class="btn" onclick="checkAnswerInput('html',5,'<p>','Hint: \"p\" for paragraph')">Submit</button>
+          <p class="feedback" id="html-lesson5-feedback"></p>
+          <p class="tip" id="html-lesson5-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html-lesson5')">Start Voice Input</button>
+            <p class="feedback" id="html-lesson5-voice"></p>
+          </div>
+          <button class="btn" id="html-lesson5-next" style="display: none;" onclick="finishSection('html')">
+            Hooray! Section Done
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CSS SECTION -->
+    <section id="css" class="tab-content">
+      <div class="container">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-css"></div>
+        </div>
+        <p><strong>CSS Progress:</strong> <span id="progress-css-text">0%</span></p>
+      </div>
+      <div class="container lesson" id="css-lesson1">
+        <h2>CSS Lesson 1</h2>
+        <p>Time to sprinkle delightful style onto your page, beloved. Think of CSS as a magical lipstick that gives every element a fabulous makeover!</p>
+        <button class="btn" onclick="startQuiz('css',1)">Start Quiz</button>
+        <div class="quiz" id="css-lesson1-quiz" style="display: none;">
+          <h2>Quiz: Type the meaning of CSS</h2>
+          <input type="text" class="quiz-input" id="css-lesson1-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('css',1,'Cascading Style Sheets','Hint: It’s about \"style\" indeed!')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="css-lesson1-feedback"></p>
+          <p class="tip" id="css-lesson1-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css-lesson1')">Start Voice Input</button>
+            <p class="feedback" id="css-lesson1-voice"></p>
+          </div>
+          <button class="btn" id="css-lesson1-next" style="display: none;" onclick="goToNextLesson('css',1,2)">Next Lesson</button>
+        </div>
+      </div>
+      <div class="container lesson" id="css-lesson2" style="display: none;">
+        <h2>CSS Lesson 2</h2>
+        <p>Wrap your page in a warm embrace of color and layout. Let your imagination run wild with fonts, margins, and oh-so-sweet alignments!</p>
+        <button class="btn" onclick="startQuiz('css',2)">Start Quiz</button>
+        <div class="quiz" id="css-lesson2-quiz" style="display: none;">
+          <h2>Quiz: Type the property for text color</h2>
+          <input type="text" class="quiz-input" id="css-lesson2-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('css',2,'color','Hint: Keep it simple, darling!')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="css-lesson2-feedback"></p>
+          <p class="tip" id="css-lesson2-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css-lesson2')">Start Voice Input</button>
+            <p class="feedback" id="css-lesson2-voice"></p>
+          </div>
+          <button class="btn" id="css-lesson2-next" style="display: none;" onclick="goToNextLesson('css',2,3)">Next Lesson</button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="css-lesson3" style="display: none;">
+        <h2>CSS Lesson 3</h2>
+        <p>Position is everything, sweetheart. Floating, flexing, or wrapping—your elements dance gracefully, swaying to your romantic CSS beats!</p>
+        <button class="btn" onclick="startQuiz('css',3)">Start Quiz</button>
+        <div class="quiz" id="css-lesson3-quiz" style="display: none;">
+          <h2>Quiz: Type the property for element positioning mode</h2>
+          <input type="text" class="quiz-input" id="css-lesson3-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('css',3,'position','Hint: It can be relative, absolute, fixed...')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="css-lesson3-feedback"></p>
+          <p class="tip" id="css-lesson3-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css-lesson3')">Start Voice Input</button>
+            <p class="feedback" id="css-lesson3-voice"></p>
+          </div>
+          <button class="btn" id="css-lesson3-next" style="display: none;" onclick="goToNextLesson('css',3,4)">Next Lesson</button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="css-lesson4" style="display: none;">
+        <h2>CSS Lesson 4</h2>
+        <p>Show your flair, sugar! Transform your page with transitions, animations, and shadows that highlight your web’s enchanting personality.</p>
+        <button class="btn" onclick="startQuiz('css',4)">Start Quiz</button>
+        <div class="quiz" id="css-lesson4-quiz" style="display: none;">
+          <h2>Quiz: Type the property that adds a shadow around elements</h2>
+          <input type="text" class="quiz-input" id="css-lesson4-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('css',4,'box-shadow','Hint: A magical shadow that floats around your block!')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="css-lesson4-feedback"></p>
+          <p class="tip" id="css-lesson4-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css-lesson4')">Start Voice Input</button>
+            <p class="feedback" id="css-lesson4-voice"></p>
+          </div>
+          <button class="btn" id="css-lesson4-next" style="display: none;" onclick="goToNextLesson('css',4,5)">Next Lesson</button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="css-lesson5" style="display: none;">
+        <h2>CSS Lesson 5</h2>
+        <p>Finishing touch, honey! Master these styling secrets and your pages will blush with adorably flawless design. You’re unstoppable now!</p>
+        <button class="btn" onclick="startQuiz('css',5)">Start Quiz</button>
+        <div class="quiz" id="css-lesson5-quiz" style="display: none;">
+          <h2>Quiz: Type the property for flexible layouts</h2>
+          <input type="text" class="quiz-input" id="css-lesson5-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('css',5,'display: flex','Hint: This property is a layout game-changer!')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="css-lesson5-feedback"></p>
+          <p class="tip" id="css-lesson5-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css-lesson5')">Start Voice Input</button>
+            <p class="feedback" id="css-lesson5-voice"></p>
+          </div>
+          <button class="btn" id="css-lesson5-next" style="display: none;" onclick="finishSection('css')">
+            Hooray! Section Done
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- JS SECTION -->
+    <section id="js" class="tab-content">
+      <div class="container">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-js"></div>
+        </div>
+        <p><strong>JS Progress:</strong> <span id="progress-js-text">0%</span></p>
+      </div>
+      <!-- 5 lessons for JS ... (similar structure) -->
+      <div class="container lesson" id="js-lesson1">
+        <h2>JS Lesson 1</h2>
+        <p>JavaScript is the bewitching spark that breathes life into your pages. Let the code swirl with unpredictable charm and playful illusions!</p>
+        <button class="btn" onclick="startQuiz('js',1)">Start Quiz</button>
+        <div class="quiz" id="js-lesson1-quiz" style="display: none;">
+          <h2>Quiz: Type the meaning of JS</h2>
+          <input type="text" class="quiz-input" id="js-lesson1-answer" placeholder="Your answer here" />
+          <button class="btn" onclick="checkAnswerInput('js',1,'JavaScript','Hint: So popular you might have heard it a million times')">Submit</button>
+          <p class="feedback" id="js-lesson1-feedback"></p>
+          <p class="tip" id="js-lesson1-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js-lesson1')">Start Voice Input</button>
+            <p class="feedback" id="js-lesson1-voice"></p>
+          </div>
+          <button class="btn" id="js-lesson1-next" style="display: none;" onclick="goToNextLesson('js',1,2)">Next Lesson</button>
+        </div>
+      </div>
+      <!-- ... similarly for js-lesson2 through js-lesson5 -->
+      <div class="container lesson" id="js-lesson2" style="display: none;">
+        <h2>JS Lesson 2</h2>
+        <p>Variables, darling, let them capture your wildest data dreams and hold them close for a sizzling spectacle of logic and passion!</p>
+        <button class="btn" onclick="startQuiz('js',2)">Start Quiz</button>
+        <div class="quiz" id="js-lesson2-quiz" style="display: none;">
+          <h2>Quiz: Type the keyword to declare a variable (ES6 style)</h2>
+          <input type="text" class="quiz-input" id="js-lesson2-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('js',2,'let','Hint: We used var in older days, but now we use ...')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="js-lesson2-feedback"></p>
+          <p class="tip" id="js-lesson2-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js-lesson2')">Start Voice Input</button>
+            <p class="feedback" id="js-lesson2-voice"></p>
+          </div>
+          <button class="btn" id="js-lesson2-next" style="display: none;" onclick="goToNextLesson('js',2,3)">Next Lesson</button>
+        </div>
+      </div>
+      <div class="container lesson" id="js-lesson3" style="display: none;">
+        <h2>JS Lesson 3</h2>
+        <p>Functions! Summon these incantations to command your code’s mystical forces, letting them swirl through your logic with mesmerizing elegance.</p>
+        <button class="btn" onclick="startQuiz('js',3)">Start Quiz</button>
+        <div class="quiz" id="js-lesson3-quiz" style="display: none;">
+          <h2>Quiz: Type the keyword used to define a function</h2>
+          <input type="text" class="quiz-input" id="js-lesson3-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('js',3,'function','Hint: The old-fashioned way, but arrow syntax also works')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="js-lesson3-feedback"></p>
+          <p class="tip" id="js-lesson3-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js-lesson3')">Start Voice Input</button>
+            <p class="feedback" id="js-lesson3-voice"></p>
+          </div>
+          <button class="btn" id="js-lesson3-next" style="display: none;" onclick="goToNextLesson('js',3,4)">Next Lesson</button>
+        </div>
+      </div>
+      <div class="container lesson" id="js-lesson4" style="display: none;">
+        <h2>JS Lesson 4</h2>
+        <p>Arrays and objects? They’re your adorable sidekicks that store data in a cuddle-worthy format, letting you conjure up captivating solutions!</p>
+        <button class="btn" onclick="startQuiz('js',4)">Start Quiz</button>
+        <div class="quiz" id="js-lesson4-quiz" style="display: none;">
+          <h2>Quiz: Type the syntax to create an empty array</h2>
+          <input type="text" class="quiz-input" id="js-lesson4-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('js',4,'[]','Hint: Just two brackets, dear')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="js-lesson4-feedback"></p>
+          <p class="tip" id="js-lesson4-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js-lesson4')">Start Voice Input</button>
+            <p class="feedback" id="js-lesson4-voice"></p>
+          </div>
+          <button class="btn" id="js-lesson4-next" style="display: none;" onclick="goToNextLesson('js',4,5)">Next Lesson</button>
+        </div>
+      </div>
+      <div class="container lesson" id="js-lesson5" style="display: none;">
+        <h2>JS Lesson 5</h2>
+        <p>At last, event handling: your final flourish of JS sorcery. From clicks to key presses, watch your page come alive, eager to serve your every wish!</p>
+        <button class="btn" onclick="startQuiz('js',5)">Start Quiz</button>
+        <div class="quiz" id="js-lesson5-quiz" style="display: none;">
+          <h2>Quiz: Type the event name for a button click</h2>
+          <input type="text" class="quiz-input" id="js-lesson5-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('js',5,'click','Hint: The simplest event name of them all!')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="js-lesson5-feedback"></p>
+          <p class="tip" id="js-lesson5-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js-lesson5')">Start Voice Input</button>
+            <p class="feedback" id="js-lesson5-voice"></p>
+          </div>
+          <button class="btn" id="js-lesson5-next" style="display: none;" onclick="finishSection('js')">
+            Hooray! Section Done
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- JSON SECTION -->
+    <section id="json" class="tab-content">
+      <div class="container">
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-json"></div>
+        </div>
+        <p><strong>JSON Progress:</strong> <span id="progress-json-text">0%</span></p>
+      </div>
+      <!-- 5 lessons for JSON ... (similar structure) -->
+      <div class="container lesson" id="json-lesson1">
+        <h2>JSON Lesson 1</h2>
+        <p>JSON is the neat love letter your data writes. It’s so polite, so organized, so heartbreakingly cute! Let it carry your info around safely.</p>
+        <button class="btn" onclick="startQuiz('json',1)">Start Quiz</button>
+        <div class="quiz" id="json-lesson1-quiz" style="display: none;">
+          <h2>Quiz: Type the meaning of JSON</h2>
+          <input type="text" class="quiz-input" id="json-lesson1-answer" placeholder="Your answer here" />
+          <button class="btn" onclick="checkAnswerInput('json',1,'JavaScript Object Notation','Hint: JavaScript + objects + notation?')">Submit</button>
+          <p class="feedback" id="json-lesson1-feedback"></p>
+          <p class="tip" id="json-lesson1-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json-lesson1')">Start Voice Input</button>
+            <p class="feedback" id="json-lesson1-voice"></p>
+          </div>
+          <button class="btn" id="json-lesson1-next" style="display: none;" onclick="goToNextLesson('json',1,2)">Next Lesson</button>
+        </div>
+      </div>
+      <div class="container lesson" id="json-lesson2" style="display: none;">
+        <h2>JSON Lesson 2</h2>
+        <p>Every key-value pair is like a sweet duo waltzing in parentheses, bringing order and peace to your data’s swirling confessions!</p>
+        <button class="btn" onclick="startQuiz('json',2)">Start Quiz</button>
+        <div class="quiz" id="json-lesson2-quiz" style="display: none;">
+          <h2>Quiz: Which symbol encloses a JSON object?</h2>
+          <input type="text" class="quiz-input" id="json-lesson2-answer" placeholder="Your answer here" />
+          <button class="btn" onclick="checkAnswerInput('json',2,'{}','Hint: They look like curly braces!')">Submit</button>
+          <p class="feedback" id="json-lesson2-feedback"></p>
+          <p class="tip" id="json-lesson2-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json-lesson2')">Start Voice Input</button>
+            <p class="feedback" id="json-lesson2-voice"></p>
+          </div>
+          <button class="btn" id="json-lesson2-next" style="display: none;" onclick="goToNextLesson('json',2,3)">Next Lesson</button>
+        </div>
+      </div>
+      <div class="container lesson" id="json-lesson3" style="display: none;">
+        <h2>JSON Lesson 3</h2>
+        <p>Strings, numbers, booleans—your data expresses itself in charming forms, all wrapped neatly within curly braces for safekeeping!</p>
+        <button class="btn" onclick="startQuiz('json',3)">Start Quiz</button>
+        <div class="quiz" id="json-lesson3-quiz" style="display: none;">
+          <h2>Quiz: Which data type must be in double quotes in JSON?</h2>
+          <input type="text" class="quiz-input" id="json-lesson3-answer" placeholder="Your answer here" />
+          <button class="btn" onclick="checkAnswerInput('json',3,'string','Hint: Like \"Hello\"')">Submit</button>
+          <p class="feedback" id="json-lesson3-feedback"></p>
+          <p class="tip" id="json-lesson3-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json-lesson3')">Start Voice Input</button>
+            <p class="feedback" id="json-lesson3-voice"></p>
+          </div>
+          <button class="btn" id="json-lesson3-next" style="display: none;" onclick="goToNextLesson('json',3,4)">Next Lesson</button>
+        </div>
+      </div>
+      <div class="container lesson" id="json-lesson4" style="display: none;">
+        <h2>JSON Lesson 4</h2>
+        <p>Nested objects—like love letters within love letters. Let your data hold more data, forever embracing in sweet recursive passion!</p>
+        <button class="btn" onclick="startQuiz('json',4)">Start Quiz</button>
+        <div class="quiz" id="json-lesson4-quiz" style="display: none;">
+          <h2>Quiz: Write the JSON format for a key named \"info\" that holds an object</h2>
+          <input type="text" class="quiz-input" id="json-lesson4-answer" placeholder="{??}" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('json',4,'{\"info\": {}}','Hint: Must be valid JSON, dear')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="json-lesson4-feedback"></p>
+          <p class="tip" id="json-lesson4-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json-lesson4')">Start Voice Input</button>
+            <p class="feedback" id="json-lesson4-voice"></p>
+          </div>
+          <button class="btn" id="json-lesson4-next" style="display: none;" onclick="goToNextLesson('json',4,5)">
+            Next Lesson
+          </button>
+        </div>
+      </div>
+      <div class="container lesson" id="json-lesson5" style="display: none;">
+        <h2>JSON Lesson 5</h2>
+        <p>Alas, you’ve become a JSON darling! Bundle up your data with a final flourish and skip happily into the horizon of perfect integration!</p>
+        <button class="btn" onclick="startQuiz('json',5)">Start Quiz</button>
+        <div class="quiz" id="json-lesson5-quiz" style="display: none;">
+          <h2>Quiz: Type the function often used to convert an object to JSON</h2>
+          <input type="text" class="quiz-input" id="json-lesson5-answer" placeholder="Your answer here" />
+          <button
+            class="btn"
+            onclick="checkAnswerInput('json',5,'JSON.stringify','Hint: So many strings, so many hearts!')"
+          >
+            Submit
+          </button>
+          <p class="feedback" id="json-lesson5-feedback"></p>
+          <p class="tip" id="json-lesson5-tip"></p>
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json-lesson5')">Start Voice Input</button>
+            <p class="feedback" id="json-lesson5-voice"></p>
+          </div>
+          <button class="btn" id="json-lesson5-next" style="display: none;" onclick="finishSection('json')">
+            Hooray! Section Done
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Preview Container (hidden, swipedown to show) -->
+  <div class="preview-container" id="previewContainer">
+    <h3>Lessons Preview</h3>
+    <div id="previewContent"></div>
+  </div>
+
+  <!-- Hammer.js for swipe gestures -->
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+  <script>
+    // -------------------------------------
+    // Dark Mode
+    // -------------------------------------
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const currentMode = localStorage.getItem('darkMode') || 'light';
+    if (currentMode === 'dark') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.textContent = 'Light Mode';
+    }
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      darkModeToggle.textContent = mode === 'dark' ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('darkMode', mode);
+    });
+
+    // -------------------------------------
+    // Reset Learning
+    // -------------------------------------
+    function resetLearning() {
+      if (confirm("Are you sure you want to reset all progress?")) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+
+    // -------------------------------------
+    // Navigation Tabs
+    // -------------------------------------
+    const tabs = document.querySelectorAll('nav.tabs ul li');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        setActiveTab(target);
+        localStorage.setItem('activeTab', target);
+      });
+    });
+
+    function setActiveTab(tabName) {
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-tab') === tabName);
+      });
+      tabContents.forEach(content => {
+        content.classList.toggle('active', content.id === tabName);
+      });
+      updatePreviewContent(tabName);
+      updateAllProgressBars();
+    }
+
+    // Load active tab from localStorage
+    const savedTab = localStorage.getItem('activeTab') || 'html';
+    setActiveTab(savedTab);
+
+    // -------------------------------------
+    // Swipe Gestures
+    // -------------------------------------
+    const mainContent = document.querySelector('main');
+    const hammer = new Hammer(mainContent);
+
+    // Swipe left => next tab, swipe right => previous tab
+    hammer.on('swipeleft', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex < tabsArray.length - 1) {
+        currentIndex++;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+    hammer.on('swiperight', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex > 0) {
+        currentIndex--;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+
+    // Swipe down => show preview, swipe up => hide preview
+    hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+    hammer.on('swipedown', () => {
+      document.getElementById('previewContainer').style.display = 'block';
+    });
+    hammer.on('swipeup', () => {
+      document.getElementById('previewContainer').style.display = 'none';
+    });
+
+    // -------------------------------------
+    // Quizzes & Progress
+    // -------------------------------------
+    // Each lesson is localStorage with key: `${section}_lessonN` = "passed" or null
+
+    function startQuiz(section, lessonNum) {
+      document.getElementById(`${section}-lesson${lessonNum}-quiz`).style.display = 'block';
+    }
+
+    function checkAnswerInput(section, lessonNum, correctAnswer, tip) {
+      const userAnswer = document.getElementById(`${section}-lesson${lessonNum}-answer`).value.trim();
+      const feedbackEl = document.getElementById(`${section}-lesson${lessonNum}-feedback`);
+      const tipEl = document.getElementById(`${section}-lesson${lessonNum}-tip`);
+
+      if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        feedbackEl.textContent = '✅ Correct! You did it!';
+        feedbackEl.style.color = 'green';
+        tipEl.style.display = 'none';
+        localStorage.setItem(`${section}_lesson${lessonNum}`, 'passed');
+        // Show next lesson button
+        document.getElementById(`${section}-lesson${lessonNum}-next`).style.display = 'inline-block';
+        updateAllProgressBars();
+      } else {
+        feedbackEl.textContent = '❌ Incorrect, try again!';
+        feedbackEl.style.color = 'red';
+        tipEl.textContent = 'Tip: ' + tip;
+        tipEl.style.display = 'block';
+      }
+    }
+
+    function goToNextLesson(section, currentLesson, nextLesson) {
+      // hide current lesson container
+      document.getElementById(`${section}-lesson${currentLesson}`).style.display = 'none';
+      // show next lesson container
+      document.getElementById(`${section}-lesson${nextLesson}`).style.display = 'block';
+      updatePreviewContent(section);
+    }
+
+    function finishSection(section) {
+      alert(`You have completed the ${section.toUpperCase()} section! Great job!`);
+      updatePreviewContent(section);
+    }
+
+    // -------------------------------------
+    // Updating Progress Bars
+    // -------------------------------------
+    function updateAllProgressBars() {
+      updateProgressBar('html');
+      updateProgressBar('css');
+      updateProgressBar('js');
+      updateProgressBar('json');
+    }
+
+    function updateProgressBar(section) {
+      let passedCount = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (localStorage.getItem(`${section}_lesson${i}`) === 'passed') {
+          passedCount++;
+        }
+      }
+      const percent = (passedCount / 5) * 100;
+      document.getElementById(`progress-${section}`).style.width = `${percent}%`;
+      document.getElementById(`progress-${section}-text`).textContent = `${percent}%`;
+    }
+
+    // -------------------------------------
+    // Preview Container (Locked/Unlocked)
+    // -------------------------------------
+    function updatePreviewContent(section) {
+      const preview = document.getElementById('previewContent');
+      preview.innerHTML = ''; // clear old
+      const titles = [
+        'Lesson 1',
+        'Lesson 2',
+        'Lesson 3',
+        'Lesson 4',
+        'Lesson 5'
+      ];
+      titles.forEach((title, idx) => {
+        const lessonNum = idx + 1;
+        const status = localStorage.getItem(`${section}_lesson${lessonNum}`) === 'passed' ? 'unlocked' : 'locked';
+        const lockedClass = status === 'locked' ? 'locked' : '';
+        const icon = status === 'locked' ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-lock-open"></i>';
+        const blurred = status === 'locked' ? 'locked' : '';
+        preview.innerHTML += `
+          <div class="lesson-preview-item ${blurred}">
+            ${icon} <strong>${section.toUpperCase()} ${title}</strong> 
+            - ${status === 'locked' ? '???' : 'Completed or unlocked!'}
+          </div>
+        `;
+      });
+    }
+
+    // -------------------------------------
+    // Voice Recognition (Using the same code but we store the 'section-lessonN')
+    // -------------------------------------
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.onerror = function(event) {
+        const id = recognition.quizId;
+        document.getElementById(id + '-voice').textContent = "Error: " + event.error;
+        document.getElementById(id + '-voice').style.color = 'red';
+      };
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        const id = recognition.quizId; 
+        const feedbackEl = document.getElementById(id + '-voice');
+        // We look up the stored correct answer from a data attribute or do a simpler approach:
+        // We'll just check the main check for the known correct answers from code:
+        // But we need to figure out which section and lesson it is from id => e.g. 'html-lesson3'
+        const [sec, less] = parseQuizId(id); 
+        // We'll do a quick approach: we know the correct answer from local code:
+        const correct = getCorrectAnswer(sec, less);
+        if (correct && transcript.includes(correct.toLowerCase())) {
+          feedbackEl.textContent = "✅ Correct! You said: " + transcript;
+          feedbackEl.style.color = "green";
+          localStorage.setItem(`${sec}_lesson${less}`, 'passed');
+          document.getElementById(`${sec}-lesson${less}-next`).style.display = 'inline-block';
+          updateAllProgressBars();
+        } else {
+          feedbackEl.textContent = "❌ Incorrect. You said: " + transcript + ". Try again!";
+          feedbackEl.style.color = "red";
+        }
+      };
+    }
+
+    function startVoiceRecognition(quizId) {
+      if (!recognition) return;
+      recognition.quizId = quizId;
+      document.getElementById(quizId + '-voice').textContent = "Listening...";
+      document.getElementById(quizId + '-voice').style.color = '';
+      recognition.start();
+    }
+
+    // Helper to parse the ID, e.g. 'html-lesson3' => section='html', lesson='3'
+    function parseQuizId(quizId) {
+      // quizId looks like 'html-lesson3'
+      const parts = quizId.split('-lesson');
+      const sec = parts[0];
+      const less = parts[1];
+      return [sec, less];
+    }
+
+    // Returns the known correct answer for a given section & lesson
+    // (Based on the quizzes above. This is simplified for voice.)
+    function getCorrectAnswer(sec, lesson) {
+      // We match exactly the strings used in checkAnswerInput calls
+      // (An advanced approach might store them in an object/dictionary.)
+      const map = {
+        'html': {
+          1: 'HyperText Markup Language',
+          2: '<h1>',
+          3: '<a>',
+          4: '<head>',
+          5: '<p>'
+        },
+        'css': {
+          1: 'Cascading Style Sheets',
+          2: 'color',
+          3: 'position',
+          4: 'box-shadow',
+          5: 'display: flex'
+        },
+        'js': {
+          1: 'JavaScript',
+          2: 'let',
+          3: 'function',
+          4: '[]',
+          5: 'click'
+        },
+        'json': {
+          1: 'JavaScript Object Notation',
+          2: '{}',
+          3: 'string',
+          4: '{"info": {}}',
+          5: 'JSON.stringify'
+        }
+      };
+      if (map[sec] && map[sec][lesson]) {
+        return map[sec][lesson];
+      }
+      return null;
+    }
+
+
+    updatePreviewContent(savedTab);
+    updateAllProgressBars();
+  </script>
+</body>
+</html>

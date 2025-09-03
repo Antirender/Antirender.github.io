@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="img/Antirender.ico">
+  <title>Smart Sleep Calculator</title>
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Start of Font Awesome CDN link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- End of Font Awesome CDN link -->
+</head>
+<body>
+  <button onclick="toggleTheme()">Toggle Theme</button>
+
+  <!-- Start of Unsplash background image container -->
+  <div id="bg-image"></div>
+  <!-- End of Unsplash background image container -->
+
+  <div class="app-container">
+    
+    <!-- header -->
+    <header>
+      <h1><i class="fas fa-moon"></i> Smart Sleep Tracker</h1>
+    </header>
+    
+    <section class="site-description">
+      <h2>About This Website</h2>
+      <p>
+        The Smart Sleep Tracker helps you optimize your sleep cycle by calculating the best times to sleep and wake up.
+        You can track your sleep debt, schedule your bedtime according to work hours, and relax with guided breathing exercises.
+        Our calculator considers average human 90-minute sleep cycles and provides several options for optimal sleep times.
+        This tool is designed to help you maintain a healthy sleep pattern and improve your overall well-being.
+      </p>
+    </section>
+    <!-- flexbox -->
+    <div class="main-content">
+      
+    <!-- Left -->
+      <div class="left-column">
+        
+        <!-- Sleep Calculator Section -->
+        <section class="calculator-section">
+          <div class="calculator-box">
+            <h2><i class="fas fa-clock"></i> Bed/Wake-up Time Calculator</h2>
+            <p class="instruction">
+              Please select your mode and enter your base time below. When you click "Calculate", the recommended times will appear.
+            </p>
+            <div class="time-picker-container">
+              <div class="time-picker">
+                <label class="time-picker__label"><i class="fas fa-clock"></i> Select Mode:</label>
+                <select id="calcType">
+                  <option value="wakeup">input Wake-up Time</option>
+                  <option value="bedtime">input Bedtime</option>
+                </select>
+              </div>
+              <div class="time-input-container">
+                <label class="time-input__label"><i class="fas fa-hourglass-half"></i> Enter Time:</label>
+                <input type="time" id="baseTime" class="aligned-input" required>
+              </div>
+            </div>
+            <button class="calculate-btn" onclick="calculateCycles()">Calculate</button>
+            <p>
+              The calculator uses your input to determine an optimal sleep or wake schedule. You’ll see a list of 4 possible times,
+              with the best option marked as "BEST:".
+            </p>
+          </div>
+          <!-- Results Area -->
+          <div class="time-view hidden" id="timeView">
+            <p class="time-view__title" id="titleElem" data-title-bed="Calculated Bedtime" data-title-wakeup="Calculated Wake-up time" style="color: inherit;">
+              Wake-up time
+            </p>
+            <p class="time-view__text">
+              The average human takes 15&nbsp;minutes to&nbsp;fall&nbsp;asleep.
+            </p>
+            <p class="time-view__text time-view__text_mb time-view__text_hidden" id="bedTextElem">
+              To&nbsp;wake up refreshed at&nbsp;<span id="timeSpan">--:--&nbsp;</span>, you need to go to sleep at one of the following times:
+            </p>
+            <p class="time-view__text time-view__text_mb" id="wakeTextElem">
+              If&nbsp;you go to sleep right now, you should try to wake up at one of the following times:
+            </p>
+            <ul class="time-list time-view__list" id="timeList">
+              <!-- gen 4 time here -->
+            </ul>
+            <p class="time-view__text time-view__text_mb">
+              If you wake up at one of these times, you'll rise in between 90-minute sleep cycles. A good night's sleep consists of 5-6 complete cycles.
+            </p>
+            <button class="button content__button" id="backButton">
+              <span class="button__text"><i class="fas fa-arrow-left"></i> Go back</span>
+            </button>
+          </div>
+        </section>
+
+        <section>
+          <!-- SD-->
+          <div class="sleep-debt-meter">
+            <h2><i class="fas fa-bed"></i> Sleep Debt</h2>
+            <p class="instruction">
+              Enter the number of hours you've lost this week. The tracker will help you manage and recover your sleep debt.
+            </p>
+            <label>Hours of Sleep Lost:</label>
+            <!--Start of code from weekly Tutorials -->
+            <input type="number" id="sleepInput" class="time-input aligned-input" min="0" step="0.5" placeholder="Enter hours">
+            <button class="calculate-btn" onclick="updateDebt()">Add to Debt</button>
+            <button class="calculate-btn" onclick="resetDebt()">Reset</button>
+            <!--End of code from weekly Tutorials -->
+            <div class="debt-bar"></div>
+            <span id="debtText">Weekly Sleep Debt: 0h</span>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Right -->
+      <div class="right-column">
+
+        <!-- Work Hour -->
+        <section class="work-hour-section">
+          <div class="productivity-input">
+            <h2><i class="fas fa-briefcase"></i> Work Hour-Based Sleep Planner</h2>
+            <p class="instruction">
+              Input your work hours below. The system calculates your ideal bedtime based on your schedule.
+            </p>
+            <label>Work Hours:</label>
+            <!--Start of code from week2 Tutorial -->
+            <input type="time" id="workStart" class="time-input aligned-input">
+            <!--End of code from week2 Tutorial -->
+            <span>to</span>
+            <input type="time" id="workEnd" class="time-input aligned-input">
+            <button class="calculate-btn" onclick="planSleep()">Calculate Best Bedtime</button>
+            <p id="workResult"></p>
+          </div>
+        </section>
+
+        <!-- SP -->
+        <section class="chronotype-section">
+          <div class="chronotype-result">
+            <h2><i class="fas fa-user-clock"></i> Your Sleep Profile</h2>
+            <p class="instruction">
+              Press "Check Chronotype" to view an analysis of your sleep pattern.
+            </p>
+            <p id="chronotypeText">Analyzing patterns...</p>
+            <!--Start of code from week1/2 Tutorial -->
+            <button class="calculate-btn" onclick="updateChronotype()">Check Chronotype</button>
+            <!--End of code from week1/2 Tutorial -->
+          </div>
+        </section>
+
+        <!-- Relax -->
+        <section class="relaxation-section">
+          <div class="relaxation-panel" id="relaxBox">
+            <h2><i class="fas fa-spa"></i> Relax & Sleep Assistant</h2>
+            <p class="instruction">
+              Follow the breathing animation and click "Start Relaxation" to begin your guided breathing session.
+            </p>
+            <p>Follow the breathing animation to relax before sleep.</p>
+            <div class="breathing-animation"></div>
+            <div class="sleep-timer">
+              <span id="timerDisplay">15:00</span>
+              <button class="timer-btn" onclick="startTimer(900)">Start Relaxation</button>
+              <button class="stop-btn" onclick="stopTimer()">Stop</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div> 
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exhibition auto-navigator</title>
+    <link rel="icon" href="img/favico.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <!-- a: head -->
+    <header>exhibition auto-navigator</header>
+
+    <!-- b: event list -->
+    <div class="section" id="eventSection">
+        <h2>ongoing exhibitions</h2>
+        <ul id="eventList">loading...</ul>
+    </div>
+
+    <!-- c: map -->
+    <div class="section">
+        <h2>event location</h2>
+        <div id="map"></div>
+        <button onclick="findUser()">find my location</button>
+    </div>
+
+    <!-- d: ai -->
+    <div class="section">
+        <h2>recommended for you</h2>
+        <p id="aiRecommendation">loading...</p>
+        <button onclick="getRecommendation()">get recommendation</button>
+    </div>
+
+    <!-- e: voice -->
+    <div class="section">
+        <h2>voice navigation</h2>
+        <button onclick="startVoiceGuidance()">start navigation</button>
+    </div>
+
+    <!-- js -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

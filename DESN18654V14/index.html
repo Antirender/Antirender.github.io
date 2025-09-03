@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.ico" />
+  <!-- Font Awesome for lock icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/kMVd1s3C2Khz4RZWV1Cof4LQbDNGd2r7M8ZcyX6/fJsyVZKdTdey1R19u9HfTT6M4KtsJZa2YIoWw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <title>CodeOnTheGo - Learn to Code on the Move</title>
+  <style>
+    /* CSS In html (only single page why not) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Root Variables for Light Mode */
+    :root {
+      --primary-color: #ff6cbe;
+      --secondary-color: #9b59b7;
+      --bg-color: #fff0f6;
+      --text-color: #4a235b;
+      --accent-color: #e44192;
+      --surface-color: #fffafb;
+      --border-color: #e0b4c7;
+
+      /* Smooth color transitions */
+      transition: color 0.3s, background-color 0.3s;
+    }
+
+    /* Dark Mode Variables via Media Query (if no manual toggle) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-color: #d7418d;
+        --secondary-color: #4a235b;
+        --bg-color: #2a0f36;
+        --text-color: #f8bbd1;
+        --accent-color: #ba55d4;
+        --surface-color: #5d3a6b;
+        --border-color: #8e6da1;
+      }
+    }
+
+    /* Dark Mode Override using class .dark-mode */
+    .dark-mode {
+      --primary-color: #d7418d;
+      --secondary-color: #4a235b;
+      --bg-color: #2a0f36;
+      --text-color: #f8bbd1;
+      --accent-color: #ba55d4;
+      --surface-color: #5d3a6b;
+      --border-color: #8e6da1;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: color 0.3s, background-color 0.3s;
+    }
+
+    header {
+      background: var(--secondary-color);
+      color: var(--text-color);
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    /* Reset & DarkMode Buttons in Header */
+    /* learn this code from Weekly Tutorials */
+    #resetBtn {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      background: var(--primary-color);
+      border: none;
+      color: var(--text-color);
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 0.9rem;
+    }
+
+    #resetBtn img {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+/* learn this code from Weekly Tutorials */
+    #darkModeToggle {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: var(--primary-color);
+      border: none;
+      color: var(--text-color);
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Navigation Tabs */
+    nav.tabs {
+      background: var(--primary-color);
+      transition: background-color 0.3s;
+    }
+
+    nav.tabs ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    nav.tabs ul li {
+      padding: 10px;
+      cursor: pointer;
+      color: var(--text-color);
+      font-weight: bold;
+      flex: 1;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+
+    nav.tabs ul li.active,
+    nav.tabs ul li:hover {
+      background: var(--accent-color);
+    }
+
+    main {
+      padding: 15px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      background: var(--border-color);
+      border-radius: 10px;
+      margin: 0 auto 15px auto;
+      width: 90%;
+      height: 15px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background: var(--accent-color);
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 20px auto;
+      background: var(--surface-color);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    /* For headings in lessons/quizzes */
+    /* learn this code from Weekly Tutorials */
+    .lesson h2,
+    .quiz h2 {
+      margin-bottom: 10px;
+      color: var(--accent-color);
+      transition: color 0.3s;
+    }
+
+    .btn {
+      background: var(--primary-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: var(--accent-color);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .quiz-options button {
+      background: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .quiz-options button:hover {
+      background: var(--primary-color);
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+/* learn this code from Weekly Tutorials */
+    .voice-section {
+      margin-top: 20px;
+    }
+
+/* learn this code from Weekly Tutorials */
+    /* Text input for typed answers */
+    .text-answer {
+      margin-top: 10px;
+    }
+
+    .text-answer input {
+      width: 90%;
+      padding: 8px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      margin-right: 5px;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    .next-lesson-btn {
+      margin-top: 15px;
+      display: none; /* becomes visible on correct quiz answer */
+    }
+
+    /* Lesson Previews */
+    .preview-lessons {
+      margin-top: 20px;
+      border-top: 1px dashed var(--border-color);
+      padding-top: 15px;
+    }
+
+    .preview-lessons h3 {
+      margin-bottom: 10px;
+      color: var(--text-color);
+    }
+
+    .preview-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      opacity: 0.7;
+    }
+
+    .preview-item.locked {
+      filter: blur(2px);
+    }
+
+    .preview-item.locked i {
+      margin-right: 6px;
+    }
+
+    .preview-item.locked:hover {
+      filter: blur(2px);
+    }
+
+    .preview-item.unlocked {
+      opacity: 1;
+    }
+
+    /* Responsive adjustments for iphone se and older*/
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <button id="resetBtn" class="btn">
+      <img src="img/favicon.ico" alt="Reset" />
+      Reset
+    </button>
+    <h1>CodeOnTheGo</h1>
+    <button id="darkModeToggle" class="btn">Dark Mode</button>
+  </header>
+
+  <nav class="tabs">
+    <ul>
+      <li data-tab="html" class="active">HTML</li>
+      <li data-tab="css">CSS</li>
+      <li data-tab="js">JS</li>
+      <li data-tab="json">JSON</li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- HTML Section -->
+    <section id="html" class="tab-content active">
+      <p>Progress:</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-html"></div>
+      </div>
+      
+      <!-- For 5 Lessons All the code is the same for 4 sections
+       i wrote a template for all 5 lesson and dupe it 3 times(For CSS/JS/JSON)-->
+      <!-- HTML Lessons -->
+      <div class="container lesson" id="html-lesson1">
+        <h2>HTML Lesson 1: Basic HTML Structure</h2>
+        <p>
+          Welcome to our first step into the magical realm of HTML! Let your heart flutter as we weave these delicate tags into a romantic tapestry of code. So sweet!
+        </p>
+        <p><strong>Example:</strong> <code>&lt;h1&gt;Hello, dreamy web!&lt;/h1&gt;</code></p>
+        <button class="btn" onclick="startQuiz('html', 1)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-html-lesson1" style="display: none;">
+          <h2>Quiz: What does HTML stand for?</h2>
+          <!-- Multiple choice -->
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('html', 1, this, 'wrong')">HyperText Marking Language</button>
+            <button onclick="checkAnswerMC('html', 1, this, 'correct')">HyperText Markup Language</button>
+            <button onclick="checkAnswerMC('html', 1, this, 'wrong')">Hyper Transfer Markup Language</button>
+          </div>
+          <!-- Typed answer -->
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-html-lesson1" placeholder="Type the full name of HTML" />
+            <button class="btn" onclick="checkAnswerTyped('html', 1)">Check</button>
+          </div>
+          <p id="feedback-html-lesson1" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html', 1)">Start Voice Input</button>
+            <p id="voiceFeedback-html-lesson1" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-html-lesson1" onclick="showNextLesson('html', 1)">Next Lesson</button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson2" style="display: none;">
+        <h2>HTML Lesson 2: Head &amp; Body Tags</h2>
+        <p>
+          Feeling adventurous? Let’s dance deeper into the swirl of head and body tags. It's like a gentle waltz where the mind and body of your webpage spin in harmony.
+        </p>
+        <button class="btn" onclick="startQuiz('html', 2)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-html-lesson2" style="display: none;">
+          <h2>Quiz: What's inside the &lt;head&gt; tag?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('html', 2, this, 'wrong')">All visible text</button>
+            <button onclick="checkAnswerMC('html', 2, this, 'correct')">Metadata and title</button>
+            <button onclick="checkAnswerMC('html', 2, this, 'wrong')">Page scripts only</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-html-lesson2" placeholder="What info do we usually put in head?" />
+            <button class="btn" onclick="checkAnswerTyped('html', 2)">Check</button>
+          </div>
+          <p id="feedback-html-lesson2" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html', 2)">Start Voice Input</button>
+            <p id="voiceFeedback-html-lesson2" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-html-lesson2" onclick="showNextLesson('html', 2)">Next Lesson</button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson3" style="display: none;">
+        <h2>HTML Lesson 3: Common Elements</h2>
+        <p>
+          Brace yourself for an explosion of cuteness as you discover paragraphs, links, and images. They’re like adorable confessions sprinkled across your pages!
+        </p>
+        <button class="btn" onclick="startQuiz('html', 3)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-html-lesson3" style="display: none;">
+          <h2>Quiz: Which tag defines a hyperlink?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('html', 3, this, 'wrong')">&lt;p&gt;</button>
+            <button onclick="checkAnswerMC('html', 3, this, 'correct')">&lt;a&gt;</button>
+            <button onclick="checkAnswerMC('html', 3, this, 'wrong')">&lt;img&gt;</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-html-lesson3" placeholder='Which tag is for links?' />
+            <button class="btn" onclick="checkAnswerTyped('html', 3)">Check</button>
+          </div>
+          <p id="feedback-html-lesson3" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html', 3)">Start Voice Input</button>
+            <p id="voiceFeedback-html-lesson3" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-html-lesson3" onclick="showNextLesson('html', 3)">Next Lesson</button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson4" style="display: none;">
+        <h2>HTML Lesson 4: Tables &amp; Lists</h2>
+        <p>
+          Let’s create sweet lists and precise tables! They line up your cutest items in perfect little rows or bullet points, so your user won't trip over data.
+        </p>
+        <button class="btn" onclick="startQuiz('html', 4)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-html-lesson4" style="display: none;">
+          <h2>Quiz: Which tag starts a table row?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('html', 4, this, 'wrong')">&lt;td&gt;</button>
+            <button onclick="checkAnswerMC('html', 4, this, 'wrong')">&lt;th&gt;</button>
+            <button onclick="checkAnswerMC('html', 4, this, 'correct')">&lt;tr&gt;</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-html-lesson4" placeholder='Which tag is used for table rows?' />
+            <button class="btn" onclick="checkAnswerTyped('html', 4)">Check</button>
+          </div>
+          <p id="feedback-html-lesson4" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html', 4)">Start Voice Input</button>
+            <p id="voiceFeedback-html-lesson4" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-html-lesson4" onclick="showNextLesson('html', 4)">Next Lesson</button>
+        </div>
+      </div>
+
+      <div class="container lesson" id="html-lesson5" style="display: none;">
+        <h2>HTML Lesson 5: Forms</h2>
+        <p>
+          Finally, let’s capture user input with forms! It's like sending a secret love letter from your user to your server. </p>
+        <button class="btn" onclick="startQuiz('html', 5)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-html-lesson5" style="display: none;">
+          <h2>Quiz: Which attribute defines the action for a form?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('html', 5, this, 'correct')">action</button>
+            <button onclick="checkAnswerMC('html', 5, this, 'wrong')">method</button>
+            <button onclick="checkAnswerMC('html', 5, this, 'wrong')">input</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-html-lesson5" placeholder='Type the correct attribute' />
+            <button class="btn" onclick="checkAnswerTyped('html', 5)">Check</button>
+          </div>
+          <p id="feedback-html-lesson5" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('html', 5)">Start Voice Input</button>
+            <p id="voiceFeedback-html-lesson5" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-html-lesson5" style="display:none;">All HTML lessons complete!</button>
+        </div>
+      </div>
+
+      <!-- Preview for HTML lessons (swipe down to see) -->
+                <!-- learn this code from Weekly Tutorials -->
+      <div class="container preview-lessons">
+        <h3>Preview Lessons</h3>
+        <div class="preview-item locked" id="preview-html-l2"><i class="fas fa-lock"></i>HTML Lesson 2</div>
+        <div class="preview-item locked" id="preview-html-l3"><i class="fas fa-lock"></i>HTML Lesson 3</div>
+        <div class="preview-item locked" id="preview-html-l4"><i class="fas fa-lock"></i>HTML Lesson 4</div>
+        <div class="preview-item locked" id="preview-html-l5"><i class="fas fa-lock"></i>HTML Lesson 5</div>
+      </div>
+    </section>
+
+    <!-- CSS Section -->
+    <section id="css" class="tab-content">
+      <p>Progress:</p>
+      <div class="progress-bar-container">
+
+        <div class="progress-bar" id="progress-css"></div>
+      </div>
+      <!-- 5 Lessons for CSS (Replicate pattern) -->
+      <!-- Lesson 1 -->
+      <div class="container lesson" id="css-lesson1">
+        <h2>CSS Lesson 1: Intro to CSS</h2>
+        <p>
+          Oh, sweet sunshine! Let’s color our world with CSS, sprinkling adorable fonts and dreamy hues across the screen.
+        </p>
+        <button class="btn" onclick="startQuiz('css', 1)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-css-lesson1" style="display: none;">
+          <h2>Quiz: What does CSS stand for?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('css', 1, this, 'wrong')">Cute Styling Studio</button>
+            <button onclick="checkAnswerMC('css', 1, this, 'correct')">Cascading Style Sheets</button>
+            <button onclick="checkAnswerMC('css', 1, this, 'wrong')">Creative Style System</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-css-lesson1" placeholder="Full form of CSS?" />
+            <button class="btn" onclick="checkAnswerTyped('css', 1)">Check</button>
+          </div>
+          <p id="feedback-css-lesson1" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css', 1)">Start Voice Input</button>
+            <p id="voiceFeedback-css-lesson1" class="feedback"></p>
+          </div>
+          <button class="btn next-lesson-btn" id="nextBtn-css-lesson1" onclick="showNextLesson('css', 1)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 2 -->
+      <div class="container lesson" id="css-lesson2" style="display: none;">
+        <h2>CSS Lesson 2: Selectors</h2>
+        <p>Our code’s precious secrets revolve around choosing the right elements—like picking the sweetest candy from a jar!</p>
+        <button class="btn" onclick="startQuiz('css', 2)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-css-lesson2" style="display: none;">
+          <h2>Quiz: Which symbol indicates an ID selector in CSS?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('css', 2, this, 'correct')">#</button>
+            <button onclick="checkAnswerMC('css', 2, this, 'wrong')">.</button>
+            <button onclick="checkAnswerMC('css', 2, this, 'wrong')">@</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-css-lesson2" placeholder="Which symbol for ID?" />
+            <button class="btn" onclick="checkAnswerTyped('css', 2)">Check</button>
+          </div>
+          <p id="feedback-css-lesson2" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css', 2)">Start Voice Input</button>
+            <p id="voiceFeedback-css-lesson2" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-css-lesson2" onclick="showNextLesson('css', 2)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 3 -->
+      <div class="container lesson" id="css-lesson3" style="display: none;">
+        <h2>CSS Lesson 3: The Box Model</h2>
+        <p>Every element is a precious gift box. Let’s wrap them in margin and padding so they don’t bump each other!</p>
+        <button class="btn" onclick="startQuiz('css', 3)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-css-lesson3" style="display: none;">
+          <h2>Quiz: Which property defines the space inside a box, between the content and the border?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('css', 3, this, 'correct')">padding</button>
+            <button onclick="checkAnswerMC('css', 3, this, 'wrong')">margin</button>
+            <button onclick="checkAnswerMC('css', 3, this, 'wrong')">border</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-css-lesson3" placeholder="Which property is for inside spacing?" />
+            <button class="btn" onclick="checkAnswerTyped('css', 3)">Check</button>
+          </div>
+          <p id="feedback-css-lesson3" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css', 3)">Start Voice Input</button>
+            <p id="voiceFeedback-css-lesson3" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-css-lesson3" onclick="showNextLesson('css', 3)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 4 -->
+      <div class="container lesson" id="css-lesson4" style="display: none;">
+        <h2>CSS Lesson 4: Display &amp; Position</h2>
+        <p>Ready for a sweet fashion show? Elements love to strut in block, inline, or absolutely positioned styles. Fierce!</p>
+        <button class="btn" onclick="startQuiz('css', 4)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-css-lesson4" style="display: none;">
+          <h2>Quiz: Which CSS property changes how an element is displayed (e.g., block/inline)?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('css', 4, this, 'wrong')">float</button>
+            <button onclick="checkAnswerMC('css', 4, this, 'correct')">display</button>
+            <button onclick="checkAnswerMC('css', 4, this, 'wrong')">visibility</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-css-lesson4" placeholder="Which property sets display type?" />
+            <button class="btn" onclick="checkAnswerTyped('css', 4)">Check</button>
+          </div>
+          <p id="feedback-css-lesson4" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css', 4)">Start Voice Input</button>
+            <p id="voiceFeedback-css-lesson4" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-css-lesson4" onclick="showNextLesson('css', 4)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 5 -->
+      <div class="container lesson" id="css-lesson5" style="display: none;">
+        <h2>CSS Lesson 5: Flex &amp; Grid</h2>
+        <p>Here come the coolest kids on the block: flexbox and grid. They’ll line up your layout like a perfect jigsaw puzzle. Kyaa~!</p>
+        <button class="btn" onclick="startQuiz('css', 5)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-css-lesson5" style="display: none;">
+          <h2>Quiz: Which layout is best for 2D designs and complicated arrangements?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('css', 5, this, 'wrong')">Flexbox</button>
+            <button onclick="checkAnswerMC('css', 5, this, 'correct')">Grid</button>
+            <button onclick="checkAnswerMC('css', 5, this, 'wrong')">Inline-block</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-css-lesson5" placeholder='Which is best for 2D layout?' />
+            <button class="btn" onclick="checkAnswerTyped('css', 5)">Check</button>
+          </div>
+          <p id="feedback-css-lesson5" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('css', 5)">Start Voice Input</button>
+            <p id="voiceFeedback-css-lesson5" class="feedback"></p>
+          </div>
+          <button class="btn next-lesson-btn" id="nextBtn-css-lesson5" style="display:none;">All CSS lessons complete!</button>
+        </div>
+      </div>
+
+      <!-- Preview for CSS lessons (swipe down to see) -->
+         <!-- learn this code from Weekly Tutorials -->
+      <div class="container preview-lessons">
+        <h3>Preview Lessons</h3>
+        <div class="preview-item locked" id="preview-css-l2"><i class="fas fa-lock"></i>CSS Lesson 2</div>
+        <div class="preview-item locked" id="preview-css-l3"><i class="fas fa-lock"></i>CSS Lesson 3</div>
+        <div class="preview-item locked" id="preview-css-l4"><i class="fas fa-lock"></i>CSS Lesson 4</div>
+        <div class="preview-item locked" id="preview-css-l5"><i class="fas fa-lock"></i>CSS Lesson 5</div>
+      </div>
+    </section>
+
+    <!-- JS Section -->
+    <section id="js" class="tab-content">
+      <p>Progress:</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-js"></div>
+      </div>
+
+      <!-- 5 Lessons for JS (Replicate pattern) -->
+      <div class="container lesson" id="js-lesson1">
+        <h2>JS Lesson 1: Intro to JavaScript</h2>
+        <p>
+          Prepare your heart for thrilling drama—JavaScript can be a whirlwind of logic and enchantment. Let’s harness that power, oh dear coder!
+        </p>
+        <button class="btn" onclick="startQuiz('js', 1)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-js-lesson1" style="display: none;">
+          <h2>Quiz: What does JS stand for?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('js', 1, this, 'wrong')">Just Script</button>
+            <button onclick="checkAnswerMC('js', 1, this, 'correct')">JavaScript</button>
+            <button onclick="checkAnswerMC('js', 1, this, 'wrong')">JollyScript</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-js-lesson1" placeholder='Full name of JS?' />
+            <button class="btn" onclick="checkAnswerTyped('js', 1)">Check</button>
+          </div>
+          <p id="feedback-js-lesson1" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js', 1)">Start Voice Input</button>
+            <p id="voiceFeedback-js-lesson1" class="feedback"></p>
+          </div>
+          <button class="btn next-lesson-btn" id="nextBtn-js-lesson1" onclick="showNextLesson('js', 1)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 2 -->
+      <div class="container lesson" id="js-lesson2" style="display: none;">
+        <h2>JS Lesson 2: Variables &amp; Data Types</h2>
+        <p>Like precious secrets, variables hold data inside. But be careful—some are numbers, others are strings, or even booleans!</p>
+        <button class="btn" onclick="startQuiz('js', 2)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-js-lesson2" style="display: none;">
+          <h2>Quiz: Which keyword declares a variable in modern JS?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('js', 2, this, 'wrong')">var only</button>
+            <button onclick="checkAnswerMC('js', 2, this, 'correct')">let or const</button>
+            <button onclick="checkAnswerMC('js', 2, this, 'wrong')">int, float</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-js-lesson2" placeholder='Preferred keywords for variables?' />
+            <button class="btn" onclick="checkAnswerTyped('js', 2)">Check</button>
+          </div>
+          <p id="feedback-js-lesson2" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js', 2)">Start Voice Input</button>
+            <p id="voiceFeedback-js-lesson2" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-js-lesson2" onclick="showNextLesson('js', 2)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 3 -->
+      <div class="container lesson" id="js-lesson3" style="display: none;">
+        <h2>JS Lesson 3: Functions</h2>
+        <p>Sweep off your feet with these enchanting spells called functions! Summon them anytime to do your bidding.</p>
+        <button class="btn" onclick="startQuiz('js', 3)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-js-lesson3" style="display: none;">
+          <h2>Quiz: Which syntax defines a function in JS?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('js', 3, this, 'correct')">function myFunc() { }</button>
+            <button onclick="checkAnswerMC('js', 3, this, 'wrong')">func myFunc { }</button>
+            <button onclick="checkAnswerMC('js', 3, this, 'wrong')">def myFunc() { }</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-js-lesson3" placeholder='Write a basic function form' />
+            <button class="btn" onclick="checkAnswerTyped('js', 3)">Check</button>
+          </div>
+          <p id="feedback-js-lesson3" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js', 3)">Start Voice Input</button>
+            <p id="voiceFeedback-js-lesson3" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-js-lesson3" onclick="showNextLesson('js', 3)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 4 -->
+      <div class="container lesson" id="js-lesson4" style="display: none;">
+        <h2>JS Lesson 4: Loops &amp; Conditions</h2>
+        <p>Round and round we go with loops, checking conditions like a lovestruck heart. Let’s repeat the magic!</p>
+        <button class="btn" onclick="startQuiz('js', 4)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-js-lesson4" style="display: none;">
+          <h2>Quiz: Which keyword starts a loop in JS?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('js', 4, this, 'correct')">for</button>
+            <button onclick="checkAnswerMC('js', 4, this, 'wrong')">where</button>
+            <button onclick="checkAnswerMC('js', 4, this, 'wrong')">with</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-js-lesson4" placeholder='Which statement for looping?' />
+            <button class="btn" onclick="checkAnswerTyped('js', 4)">Check</button>
+          </div>
+          <p id="feedback-js-lesson4" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js', 4)">Start Voice Input</button>
+            <p id="voiceFeedback-js-lesson4" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-js-lesson4" onclick="showNextLesson('js', 4)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 5 -->
+      <div class="container lesson" id="js-lesson5" style="display: none;">
+        <h2>JS Lesson 5: DOM &amp; Events</h2>
+        <p>Oh sweet heavens, the DOM is your stage! Add event listeners to twirl and swirl your webpage’s elements with flair.</p>
+        <button class="btn" onclick="startQuiz('js', 5)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-js-lesson5" style="display: none;">
+          <h2>Quiz: Which method selects an element by ID?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('js', 5, this, 'wrong')">document.getElementByClass()</button>
+            <button onclick="checkAnswerMC('js', 5, this, 'correct')">document.getElementById()</button>
+            <button onclick="checkAnswerMC('js', 5, this, 'wrong')">document.queryElement()</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-js-lesson5" placeholder='Method for selecting by ID?' />
+            <button class="btn" onclick="checkAnswerTyped('js', 5)">Check</button>
+          </div>
+          <p id="feedback-js-lesson5" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('js', 5)">Start Voice Input</button>
+            <p id="voiceFeedback-js-lesson5" class="feedback"></p>
+          </div>
+          <button class="btn next-lesson-btn" id="nextBtn-js-lesson5" style="display:none;">All JS lessons complete!</button>
+        </div>
+      </div>
+
+      <!-- Preview for JS lessons (swipe down to see) -->
+         <!-- learn this code from Weekly Tutorials -->
+      <div class="container preview-lessons">
+        <h3>Preview Lessons</h3>
+        <div class="preview-item locked" id="preview-js-l2"><i class="fas fa-lock"></i>JS Lesson 2</div>
+        <div class="preview-item locked" id="preview-js-l3"><i class="fas fa-lock"></i>JS Lesson 3</div>
+        <div class="preview-item locked" id="preview-js-l4"><i class="fas fa-lock"></i>JS Lesson 4</div>
+        <div class="preview-item locked" id="preview-js-l5"><i class="fas fa-lock"></i>JS Lesson 5</div>
+      </div>
+    </section>
+
+    <!-- JSON Section -->
+    <section id="json" class="tab-content">
+      <p>Progress:</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-json"></div>
+      </div>
+
+      <!-- 5 Lessons for JSON (Replicate pattern) -->
+      <div class="container lesson" id="json-lesson1">
+        <h2>JSON Lesson 1: Intro to JSON</h2>
+        <p>Ever want to pass adorable data around the web? JSON is a snug little container for your cutest info!</p>
+        <button class="btn" onclick="startQuiz('json', 1)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-json-lesson1" style="display: none;">
+          <h2>Quiz: What does JSON stand for?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('json', 1, this, 'wrong')">JavaScript Organized Notation</button>
+            <button onclick="checkAnswerMC('json', 1, this, 'correct')">JavaScript Object Notation</button>
+            <button onclick="checkAnswerMC('json', 1, this, 'wrong')">Java Structured Object Notation</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-json-lesson1" placeholder='Full form of JSON?' />
+            <button class="btn" onclick="checkAnswerTyped('json', 1)">Check</button>
+          </div>
+          <p id="feedback-json-lesson1" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json', 1)">Start Voice Input</button>
+            <p id="voiceFeedback-json-lesson1" class="feedback"></p>
+          </div>
+          <button class="btn next-lesson-btn" id="nextBtn-json-lesson1" onclick="showNextLesson('json', 1)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 2 -->
+      <div class="container lesson" id="json-lesson2" style="display: none;">
+        <h2>JSON Lesson 2: Objects &amp; Arrays</h2>
+        <p>So many adorable pairs of keys and values! It's like matching sweet couples in the data realm.</p>
+        <button class="btn" onclick="startQuiz('json', 2)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-json-lesson2" style="display: none;">
+          <h2>Quiz: Which symbols enclose JSON objects?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('json', 2, this, 'wrong')">[ ]</button>
+            <button onclick="checkAnswerMC('json', 2, this, 'correct')">{ }</button>
+            <button onclick="checkAnswerMC('json', 2, this, 'wrong')">\" \"</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-json-lesson2" placeholder='Which braces for objects?' />
+            <button class="btn" onclick="checkAnswerTyped('json', 2)">Check</button>
+          </div>
+          <p id="feedback-json-lesson2" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json', 2)">Start Voice Input</button>
+            <p id="voiceFeedback-json-lesson2" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-json-lesson2" onclick="showNextLesson('json', 2)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 3 -->
+      <div class="container lesson" id="json-lesson3" style="display: none;">
+        <h2>JSON Lesson 3: Strings &amp; Numbers</h2>
+        <p>Everything’s so straightforward—no extra quotes for numbers, but strings love them for sweet protection!</p>
+        <button class="btn" onclick="startQuiz('json', 3)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-json-lesson3" style="display: none;">
+          <h2>Quiz: True or False: JSON numbers must be in double quotes.</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('json', 3, this, 'wrong')">True</button>
+            <button onclick="checkAnswerMC('json', 3, this, 'correct')">False</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-json-lesson3" placeholder='Numbers in quotes?' />
+            <button class="btn" onclick="checkAnswerTyped('json', 3)">Check</button>
+          </div>
+          <p id="feedback-json-lesson3" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json', 3)">Start Voice Input</button>
+            <p id="voiceFeedback-json-lesson3" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-json-lesson3" onclick="showNextLesson('json', 3)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 4 -->
+      <div class="container lesson" id="json-lesson4" style="display: none;">
+        <h2>JSON Lesson 4: Nested Data</h2>
+        <p>Nest those objects in arrays like a set of cute little Matryoshka dolls—endless surprises inside!</p>
+        <button class="btn" onclick="startQuiz('json', 4)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-json-lesson4" style="display: none;">
+          <h2>Quiz: Which bracket pair encloses arrays in JSON?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('json', 4, this, 'correct')">[ ]</button>
+            <button onclick="checkAnswerMC('json', 4, this, 'wrong')">{ }</button>
+            <button onclick="checkAnswerMC('json', 4, this, 'wrong')">\" \"</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-json-lesson4" placeholder='Bracket type for arrays?' />
+            <button class="btn" onclick="checkAnswerTyped('json', 4)">Check</button>
+          </div>
+          <p id="feedback-json-lesson4" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json', 4)">Start Voice Input</button>
+            <p id="voiceFeedback-json-lesson4" class="feedback"></p>
+          </div>
+
+          <button class="btn next-lesson-btn" id="nextBtn-json-lesson4" onclick="showNextLesson('json', 4)">Next Lesson</button>
+        </div>
+      </div>
+
+      <!-- Lesson 5 -->
+      <div class="container lesson" id="json-lesson5" style="display: none;">
+        <h2>JSON Lesson 5: Parsing &amp; Stringifying</h2>
+        <p>Send your sweet JSON data to the server, then parse or stringify it. So official, yet so adorable!</p>
+        <button class="btn" onclick="startQuiz('json', 5)">Start Quiz</button>
+
+        <div class="container quiz" id="quiz-json-lesson5" style="display: none;">
+          <h2>Quiz: Which method converts a JSON string to an object?</h2>
+          <div class="quiz-options">
+            <button onclick="checkAnswerMC('json', 5, this, 'wrong')">JSON.stringify()</button>
+            <button onclick="checkAnswerMC('json', 5, this, 'correct')">JSON.parse()</button>
+            <button onclick="checkAnswerMC('json', 5, this, 'wrong')">JSON.convert()</button>
+          </div>
+          <div class="text-answer">
+            <input type="text" id="typedAnswer-json-lesson5" placeholder='Method to parse a JSON string?' />
+            <button class="btn" onclick="checkAnswerTyped('json', 5)">Check</button>
+          </div>
+          <p id="feedback-json-lesson5" class="feedback"></p>
+
+          <div class="voice-section">
+            <p>Or answer by voice:</p>
+            <button class="btn" onclick="startVoiceRecognition('json', 5)">Start Voice Input</button>
+            <p id="voiceFeedback-json-lesson5" class="feedback"></p>
+          </div>
+          <button class="btn next-lesson-btn" id="nextBtn-json-lesson5" style="display:none;">All JSON lessons complete!</button>
+        </div>
+      </div>
+
+      <!-- Preview for JSON lessons (swipe down to see) -->
+         <!-- learn this code from Weekly Tutorials -->
+      <div class="container preview-lessons">
+        <h3>Preview Lessons</h3>
+        <div class="preview-item locked" id="preview-json-l2"><i class="fas fa-lock"></i>JSON Lesson 2</div>
+        <div class="preview-item locked" id="preview-json-l3"><i class="fas fa-lock"></i>JSON Lesson 3</div>
+        <div class="preview-item locked" id="preview-json-l4"><i class="fas fa-lock"></i>JSON Lesson 4</div>
+        <div class="preview-item locked" id="preview-json-l5"><i class="fas fa-lock"></i>JSON Lesson 5</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Hammer.js for swipe gestures -->
+  <!-- learn this code from Weekly Tutorials -->
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+  <script>
+    // ---------------------------
+    // Dark Mode Functionality
+    // learn this code from Weekly Tutorials
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const currentMode = localStorage.getItem('darkMode') || 'light';
+    if (currentMode === 'dark') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.textContent = 'Light Mode';
+    }
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      darkModeToggle.textContent = mode === 'dark' ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('darkMode', mode);
+    });
+
+    // ---------------------------
+    // Reset Learning Progress
+    // learn this code from Weekly Tutorials
+    const resetBtn = document.getElementById('resetBtn');
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to reset your progress?')) {
+        localStorage.clear();
+        window.location.reload();
+      }
+    });
+
+    // Tab Navigation with Local Storage
+    // learn this code from Weekly Tutorials
+    const tabs = document.querySelectorAll('nav.tabs ul li');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        setActiveTab(target);
+        localStorage.setItem('activeTab', target);
+      });
+    });
+    function setActiveTab(tabName) {
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-tab') === tabName);
+      });
+      tabContents.forEach(content => {
+        content.classList.toggle('active', content.id === tabName);
+      });
+      updateProgressBar(tabName);
+      unlockPreviews(tabName);
+    }
+    // Load active tab from localStorage
+    // learn this code from Weekly Tutorials
+    const savedTab = localStorage.getItem('activeTab') || 'html';
+    setActiveTab(savedTab);
+
+    // learn this code from Hammer.js
+    // Swipe Gestures with Hammer.js (Left/Right)
+    // Did not copy code from document
+    const mainContent = document.querySelector('main');
+    const hammer = new Hammer(mainContent);
+    hammer.on('swipeleft', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex < tabsArray.length - 1) {
+        currentIndex++;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+    hammer.on('swiperight', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex > 0) {
+        currentIndex--;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+
+    // ---------------------------
+    // Checking Answers, Next Lesson, & Local Storage
+    // ---------------------------
+    function startQuiz(subject, lessonNumber) {
+      document.getElementById(`quiz-${subject}-lesson${lessonNumber}`).style.display = 'block';
+    }
+
+    // Multiple Choice check
+    function checkAnswerMC(subject, lessonNumber, button, answer) {
+      const feedback = document.getElementById(`feedback-${subject}-lesson${lessonNumber}`);
+      if (answer === 'correct') {
+        feedback.textContent = '✅ Correct!';
+        feedback.style.color = 'green';
+        markLessonComplete(subject, lessonNumber);
+      } else {
+        feedback.textContent = '❌ Incorrect, try again or type your answer below!';
+        feedback.style.color = 'red';
+      }
+    }
+
+    // Typed Answer check
+        // learn this code from Weekly Tutorials
+    function checkAnswerTyped(subject, lessonNumber) {
+      const typedVal = document.getElementById(`typedAnswer-${subject}-lesson${lessonNumber}`).value.trim().toLowerCase();
+      const feedback = document.getElementById(`feedback-${subject}-lesson${lessonNumber}`);
+      let correctPhrase = '';
+      // We'll do simple checks based on the lesson's main quiz
+          // learn this code from Weekly Tutorials
+      if (subject === 'html' && lessonNumber === 1) {
+        correctPhrase = 'hypertext markup language';
+      } else if (subject === 'css' && lessonNumber === 1) {
+        correctPhrase = 'cascading style sheets';
+      } else if (subject === 'js' && lessonNumber === 1) {
+        correctPhrase = 'javascript';
+      } else if (subject === 'json' && lessonNumber === 1) {
+        correctPhrase = 'javascript object notation';
+      }
+
+      // We'll do naive matching for demonstration.
+    // learn this code from Weekly Tutorials
+      if (typedVal.includes(correctPhrase)) {
+        feedback.textContent = '✅ Correct typed answer!';
+        feedback.style.color = 'green';
+        markLessonComplete(subject, lessonNumber);
+      } else {
+        feedback.textContent = '❌ Hmm, not quite right. Hint: check spelling and spacing!';
+        feedback.style.color = 'red';
+      }
+    }
+
+    // Mark a lesson as complete, unlock next lesson, show next lesson button
+        // learn this code from Weekly Tutorials
+    function markLessonComplete(subject, lessonNumber) {
+      localStorage.setItem(`${subject}-lesson${lessonNumber}`, 'completed');
+      document.getElementById(`nextBtn-${subject}-lesson${lessonNumber}`).style.display = 'block';
+      unlockPreview(subject, lessonNumber + 1);
+      updateProgressBar(subject);
+
+      // If the user just completed lesson 5, show a pop-up message:
+      if (lessonNumber === 5) {
+        alert(`You have completed the ${subject.toUpperCase()} section! Great job!`);
+      }
+    }
+
+    // Show next lesson container
+    function showNextLesson(subject, lessonNumber) {
+      const currentLesson = document.getElementById(`${subject}-lesson${lessonNumber}`);
+      const nextLesson = document.getElementById(`${subject}-lesson${lessonNumber + 1}`);
+      if (nextLesson) {
+        // Hide current lesson & quiz, show next
+            // learn this code from Weekly Tutorials
+        currentLesson.style.display = 'none';
+        nextLesson.style.display = 'block';
+      }
+    }
+
+    // ---------------------------
+    // Voice Recognition for Quiz Answers
+    // learn this code from Weekly Tutorials
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        const currentSubject = recognition.subject;
+        const lessonNumber = recognition.lessonNumber;
+        const voiceFeedback = document.getElementById(`voiceFeedback-${currentSubject}-lesson${lessonNumber}`);
+
+        // Basic checks
+        if (
+          (currentSubject === 'html' && lessonNumber === 1 && transcript.includes('hypertext markup language')) ||
+          (currentSubject === 'css' && lessonNumber === 1 && transcript.includes('cascading style sheets')) ||
+          (currentSubject === 'js' && lessonNumber === 1 && transcript.includes('javascript')) ||
+          (currentSubject === 'json' && lessonNumber === 1 && transcript.includes('javascript object notation'))
+        ) {
+          voiceFeedback.textContent = `✅ Correct! You said: ${transcript}`;
+          voiceFeedback.style.color = 'green';
+          markLessonComplete(currentSubject, lessonNumber);
+        } else {
+          voiceFeedback.textContent = `❌ Incorrect. You said: ${transcript}. Please try again.`;
+          voiceFeedback.style.color = 'red';
+        }
+      };
+
+      recognition.onerror = function(event) {
+        const currentSubject = recognition.subject;
+        const lessonNumber = recognition.lessonNumber;
+        document.getElementById(`voiceFeedback-${currentSubject}-lesson${lessonNumber}`).textContent =
+          'Error: ' + event.error;
+        document.getElementById(`voiceFeedback-${currentSubject}-lesson${lessonNumber}`).style.color = 'red';
+      };
+    } else {
+      document.querySelectorAll('.voice-section p').forEach(p => {
+        p.textContent = 'Voice recognition not supported in this browser.';
+      });
+    }
+
+    function startVoiceRecognition(subject, lessonNumber) {
+      if (recognition) {
+        recognition.subject = subject;
+        recognition.lessonNumber = lessonNumber;
+        document.getElementById(`voiceFeedback-${subject}-lesson${lessonNumber}`).textContent = 'Listening...';
+        recognition.start();
+      }
+    }
+
+    // ---------------------------
+    // Progress Bar & Preview Unlock
+    // learn this code from W3school
+    //modified alot and did not copy this code from w3school so no Cite
+    function updateProgressBar(subject) {
+      let completedCount = 0;
+      for (let i = 1; i <= 5; i++) {
+        if (localStorage.getItem(`${subject}-lesson${i}`) === 'completed') {
+          completedCount++;
+        }
+        
+      }
+      const progress = (completedCount / 5) * 100;
+      const progressBar = document.getElementById(`progress-${subject}`);
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+      }
+    }
+
+    function unlockPreviews(subject) {
+      for (let i = 2; i <= 5; i++) {
+        const previewItem = document.getElementById(`preview-${subject}-l${i}`);
+        if (previewItem) {
+          if (localStorage.getItem(`${subject}-lesson${i - 1}`) === 'completed') {
+            previewItem.classList.remove('locked');
+            previewItem.classList.add('unlocked');
+            previewItem.innerHTML = `<i class="fas fa-lock-open"></i>${subject.toUpperCase()} Lesson ${i}`;
+          } else {
+            previewItem.classList.remove('unlocked');
+            previewItem.classList.add('locked');
+            previewItem.innerHTML = `<i class="fas fa-lock"></i>${subject.toUpperCase()} Lesson ${i}`;
+          }
+        }
+      }
+    }
+
+    function unlockPreview(subject, lessonNumber) {
+      // learn this code from Weekly Tutorials
+      // Example: if user completes lesson 1, unlock preview for lesson 2
+      const previewItem = document.getElementById(`preview-${subject}-l${lessonNumber}`);
+      if (!previewItem) return;
+      previewItem.classList.remove('locked');
+      previewItem.classList.add('unlocked');
+      previewItem.innerHTML = `<i class="fas fa-lock-open"></i>${subject.toUpperCase()} Lesson ${lessonNumber}`;
+    }
+
+    // We also show/hide lessons based on what's unlocked
+    // So if lesson 1 is completed, lesson 2 becomes visible, etc.
+    function initLessonsVisibility() {
+      ['html','css','js','json'].forEach(subject => {
+        for (let i = 1; i <= 5; i++) {
+          const lessonElem = document.getElementById(`${subject}-lesson${i}`);
+          // Lesson 1 always starts visible
+          if (i === 1) {
+            // if there's a completion, user might want to see the next
+            lessonElem.style.display = 'block';
+          } else {
+            lessonElem.style.display = 'none';
+          }
+        }
+        updateProgressBar(subject);
+        unlockPreviews(subject);
+      });
+    }
+    initLessonsVisibility();
+  </script>
+</body>
+</html>
+<!-- end,finally!!!!!!!!!!! -->
+ <!-- time cost to finish: around 550h -->

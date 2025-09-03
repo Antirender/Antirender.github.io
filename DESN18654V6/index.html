@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=50.0, user-scalable=yes">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="img/Antirender.ico">
+  <title>Smart Sleep Calculator</title>
+  <link rel="stylesheet" href="css/main.css">
+<!-- Start of Font Awesome CDN link -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+<!-- End of Font Awesome CDN link -->
+</head>
+<body>
+  <button onclick="toggleTheme()">Toggle Theme</button>
+<!-- Start of Unsplash background image container -->
+<div id="bg-image"></div>
+<!-- End of Unsplash background image container -->
+  <div class="app-container">
+    <h1><i class="fas fa-moon"></i> Smart Sleep Tracker</h1>
+    
+    <!-- Sleep Calculator -->
+    <div class="calculator-box">
+      <label><i class="fas fa-clock"></i> Select Mode:</label>
+      <select id="calcType">
+        <option value="wakeup">Wake-up Time</option>
+        <option value="bedtime">Bedtime</option>
+      </select>
+
+      <label><i class="fas fa-hourglass-half"></i> Enter Time:</label>
+      <input type="time" id="baseTime" required>
+
+      <button onclick="calculateCycles()">Calculate</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultBox" class="hidden">
+      <h2>Best Sleep/Wake-up Times</h2>
+      <div id="cycleResults"></div>
+    </div>
+
+    <!-- Sleep Debt Tracker -->
+    <div class="sleep-debt-meter">
+      <label><i class="fas fa-bed"></i> Hours of Sleep Lost:</label>
+      <input type="number" id="sleepInput" class="time-input" min="0" step="0.5" placeholder="Enter hours">
+      <button class="calculate-btn" onclick="updateDebt()">Add to Debt</button>
+      <button class="calculate-btn" onclick="resetDebt()">Reset</button>
+      <div class="debt-bar"></div>
+      <span id="debtText">Weekly Sleep Debt: 0h</span>
+    </div>
+    
+<!-- Productivity Sleep Planner -->
+<div class="input-group productivity-input">
+  <label><i class="fas fa-briefcase"></i> Work Hours:</label>
+  <input type="time" id="workStart" class="time-input">
+  <span>to</span>
+  <input type="time" id="workEnd" class="time-input">
+  <button class="calculate-btn" onclick="planSleep()">Calculate Best Bedtime</button>
+  <p id="workResult"></p>
+</div>
+
+
+<!-- Chronotype Analysis -->
+<div class="chronotype-result">
+  <h3><i class="fas fa-user-clock"></i> Your Sleep Profile:</h3>
+  <p id="chronotypeText">Analyzing patterns...</p>
+  <button class="calculate-btn" onclick="updateChronotype()">Check Chronotype</button>
+</div>
+
+<!-- Relaxation Panel -->
+<div class="relaxation-panel hidden" id="relaxBox">
+  <h3><i class="fas fa-spa"></i> Relax & Sleep Assistant</h3>
+  <p>Follow the breathing animation to relax before sleep.</p>
+  <div class="breathing-animation"></div>
+  <div class="sleep-timer">
+    <span id="timerDisplay">15:00</span>
+    <button class="timer-btn" onclick="startTimer(900)">Start Relaxation</button>
+    <button class="stop-btn" onclick="stopTimer()">Stop</button>
+  </div>
+</div>
+
+<!-- Website Description Section -->
+<div class="site-description">
+  <h3>About This Website</h3>
+  <p>
+    The Smart Sleep Tracker helps you optimize your sleep cycle by calculating the best times to sleep and wake up. 
+    Track your sleep debt, schedule your bedtime according to work hours, and relax with guided breathing exercises.
+  </p>
+</div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

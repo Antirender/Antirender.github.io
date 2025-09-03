@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeOnTheGo - Learn to Code on the Move</title>
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary-color: #00ff08;
+      --secondary-color: #11365c;
+      --bg-color: #ffffff;
+      --text-color: #171414;
+      --accent-color: #008cff;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--secondary-color);
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+    main {
+      padding: 20px;
+    }
+    .container {
+      max-width: 480px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .lesson, .quiz {
+      margin-bottom: 20px;
+    }
+    .lesson h2, .quiz h2 {
+      margin-bottom: 10px;
+      color: var(--secondary-color);
+    }
+    .btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+    }
+    .btn:hover {
+      background: #3e8e41;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .quiz-options button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .quiz-options button:hover {
+      background: #1976d2;
+    }
+    #feedback {
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+    .voice-section {
+      margin-top: 20px;
+    }
+    .voice-section button {
+      margin-top: 10px;
+    }
+    /* Responsive adjustments */
+    @media(max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CodeOnTheGo</h1>
+    <p>Learn HTML, CSS &amp; JS Anywhere</p>
+  </header>
+  <main>
+    <!-- Lesson Section -->
+    <div class="container lesson">
+      <h2>Lesson 1: Basic HTML Structure</h2>
+      <p>In this lesson, you'll learn the structure of an HTML document.</p>
+      <p><strong>Example:</strong> <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></p>
+      <button class="btn" onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Section -->
+    <div class="container quiz" id="quizContainer" style="display: none;">
+      <h2>Quiz: What does HTML stand for?</h2>
+      <div class="quiz-options">
+        <button onclick="checkAnswer(this, 'wrong')">HyperText Marking Language</button>
+        <button onclick="checkAnswer(this, 'correct')">HyperText Markup Language</button>
+        <button onclick="checkAnswer(this, 'wrong')">Hyper Transfer Markup Language</button>
+      </div>
+      <p id="feedback"></p>
+
+      <!-- Voice Input Section -->
+      <div class="voice-section">
+        <p>Prefer to answer by voice? Press the button and speak your answer.</p>
+        <button class="btn" onclick="startVoiceRecognition()">Start Voice Input</button>
+        <p id="voiceFeedback"></p>
+      </div>
+    </div>
+  </main>
+  <script>
+    // Show the quiz section when starting the quiz
+    function startQuiz() {
+      document.getElementById('quizContainer').style.display = 'block';
+    }
+    
+    // Check the answer from a button click
+    function checkAnswer(button, answer) {
+      const feedback = document.getElementById("feedback");
+      if(answer === 'correct') {
+        feedback.textContent = "✅ Correct! HTML stands for HyperText Markup Language.";
+        feedback.style.color = "green";
+      } else {
+        feedback.textContent = "❌ Incorrect, try again!";
+        feedback.style.color = "red";
+      }
+    }
+    
+    // Setup for voice recognition using the Web Speech API
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        const voiceFeedback = document.getElementById("voiceFeedback");
+        if (transcript.includes("hypertext markup language")) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+        } else {
+          voiceFeedback.textContent = "❌ Incorrect. You said: " + transcript + ". Please try again.";
+          voiceFeedback.style.color = "red";
+        }
+      };
+
+      recognition.onerror = function(event) {
+        document.getElementById("voiceFeedback").textContent = "Error occurred in recognition: " + event.error;
+        document.getElementById("voiceFeedback").style.color = "red";
+      };
+    } else {
+      document.getElementById("voiceFeedback").textContent = "Voice recognition not supported in this browser.";
+    }
+
+    // Start voice recognition
+    function startVoiceRecognition() {
+      if (recognition) {
+        document.getElementById("voiceFeedback").textContent = "Listening...";
+        recognition.start();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+/* theme */
+:root {
+  --bgcolor: rgb(13, 17, 23);
+  --card-bg: #161b22;
+  --textcolor: rgb(240, 246, 252);
+  --accent: #8b5cf6;
+  --border: 1px solid #30363d;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --bg-brightness: 0.65;
+}
+
+/* learn this from method week 2 Tutorials */
+body {
+  font-family: 'Inter', sans-serif, Arial, Helvetica;
+  background: var(--bgcolor);
+  color: var(--textcolor);
+  margin: 0;
+  padding: 2rem;
+  font-size: 1.05rem;
+}
+
+/* header */
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: var(--textcolor);
+}
+
+/* intro */
+.site-description {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  border: var(--border);
+}
+
+.site-description h2 {
+  font-size: 1.8rem;
+}
+
+.site-description p {
+  font-size: 1.2rem;
+}
+
+/* container */
+.app-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* main content flex */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/*columns */
+.left-column, .right-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* sections */
+.calculator-section,
+.work-hour-section,
+.chronotype-section,
+.relaxation-section {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  background: var(--card-bg);
+  margin-bottom: 1.5rem;
+}
+
+/* S info */
+.instruction {
+  font-size: 0.95em;
+  color: var(--textcolor);
+  margin-bottom: 1rem;
+}
+
+
+/* result Times */
+.time-view {
+  line-height: 1.4;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  box-shadow: var(--box-shadow);
+}
+.time-view__title {
+  color: var(--textcolor);
+  font-size: 1.375em;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+.time-view__text {
+  color: var(--textcolor);
+  font-size: 0.875em;
+}
+.time-view__text_mb {
+  margin-bottom: 1.75em;
+}
+.time-view__text_hidden {
+  display: none;
+}
+.time-view__list {
+  margin-bottom: 0.5em;
+  list-style: none;
+  padding: 0;
+}
+.time-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+  max-width: 31em;
+}
+.time-list__text {
+  white-space: nowrap;
+  font-weight: 600;
+  line-height: 0.8;
+}
+.time-list__item {
+  border-radius: 6px;
+  background-color: #202646;
+  width: calc(50% - 0.285em);
+  font-size: 1em;
+  box-shadow: 0px 2px 8px -4px rgba(5, 12, 45, 0.2);
+  height: 2.42em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.57em;
+}
+.time-list__item_suggested {
+  justify-content: center;
+  background-color: #3a3a70;
+  font-size: 1.125em;
+}
+
+.aligned-input {
+  margin: 0.5rem -0.5rem;
+}
+
+
+input, select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 2px solid #cbd5e1;
+  background: var(--card-bg);
+  color: var(--textcolor);
+  margin-top: 0.5rem;
+}
+input:focus, select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* button */
+button, .calculate-btn {
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover, .calculate-btn:hover {
+  background: #6a41f3;
+}
+
+/* hidden*/
+.hidden {
+  display: none;
+}
+
+/* Sleep D */
+.sleep-debt-meter {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  background: var(--card-bg);
+  margin-bottom: 1.5rem;
+}
+
+/* debt bar*/
+.debt-bar {
+  height: 15px;
+  background: var(--accent);
+  transition: width 0.5s ease;
+  border-radius: 8px;
+  margin-top: 0.7rem;
+}
+
+/* bgimg */
+#bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.65;
+  filter: brightness(var(--bg-brightness)) contrast(130%) grayscale(20%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* ani relaxation */
+.breathing-animation {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 1rem auto;
+  animation: breathe 4s infinite;
+}
+/* Start of code from MDN */
+@keyframes breathe {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+}
+/* End of code from MDN */
+
+/* white */
+.light-mode {
+  --bgcolor: #f8fafc;
+  --card-bg: #ffffff;
+  --textcolor: #1e293b;
+  --accent: #6d28d9;
+  --border: 1px solid #e2e8f0;
+  --bg-brightness: 0.9;
+}
+.light-mode body {
+  color: var(--textcolor);
+}
+.light-mode .cycle-item {
+  background: var(--card-bg);
+  border-color: #cbd5e1;
+}
+.light-mode .time-list__item {
+  background-color: #e2e8f0;
+  color: var(--textcolor);
+}
+
+/* Responsive */
+@media (max-width: 811px) {
+  .main-content {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,41 @@
+body { 
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    margin: 0; 
+    padding: 0;
+}
+
+header { 
+    background: #333; 
+    color: white; 
+    padding: 15px; 
+    font-size: 20px; 
+}
+
+#map { 
+    height: 300px; 
+    width: 90%; 
+    margin: 10px auto; 
+    border-radius: 10px; 
+}
+
+.section { 
+    margin: 15px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+}
+
+button { 
+    padding: 10px 15px; 
+    margin: 5px; 
+    border: none; 
+    background: #007bfA; 
+    color: white; 
+    border-radius: 5px; 
+    cursor: pointer;
+}
+
+button:hover { 
+    background: #0056bB; 
+}

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.ico">
+  <title>CodeOnTheGo - Learn to Code on the Move</title>
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    /* Root Variables for Light Mode */
+    :root {
+      --primary-color: #FF6CBE;
+      --secondary-color: #9B59B7;
+      --bg-color: #FFF0F6;
+      --text-color: #4A235B;
+      --accent-color: #FF69B5;
+      --surface-color: #FFFAFB;
+      --border-color: #E0B4C7;
+      transition: color 0.3s, background-color 0.3s;
+    }
+    /* Dark Mode Variables via Media Query (if no manual toggle) */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-color: #D7418D;
+        --secondary-color: rgb(169, 74, 210);
+        --bg-color: #2A0F36;
+        --text-color: #F8BBD1;
+        --accent-color: #BA55D4;
+        --surface-color: #5D3A6B;
+        --border-color: #8E6DA1;
+      }
+    }
+    /* Dark Mode Override using class .dark-mode */
+    .dark-mode {
+      --primary-color: #D7418D;
+      --secondary-color: #4A235B;
+      --bg-color: #2A0F36;
+      --text-color: #F8BBD1;
+      --accent-color: #BA55D4;
+      --surface-color: #5D3A6B;
+      --border-color: #8E6DA1;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: color 0.3s, background-color 0.3s;
+    }
+    header {
+      background: var(--secondary-color);
+      color: var(--text-color);
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+    #darkModeToggle {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: var(--primary-color);
+      border: none;
+      color: var(--text-color);
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    /* Navigation Tabs */
+    nav.tabs {
+      background: var(--primary-color);
+      transition: background-color 0.3s;
+    }
+    nav.tabs ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+    nav.tabs ul li {
+      padding: 10px;
+      cursor: pointer;
+      color: var(--text-color);
+      font-weight: bold;
+      flex: 1;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    nav.tabs ul li.active,
+    nav.tabs ul li:hover {
+      background: var(--accent-color);
+    }
+    main {
+      padding: 15px;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .container {
+      max-width: 480px;
+      margin: 20px auto;
+      background: var(--surface-color);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    .lesson h2, .quiz h2 {
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+
+    .btn {
+      background: var(--primary-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 1rem;
+    }
+    .btn:hover {
+      background: var(--accent-color);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .quiz-options button {
+      background: var(--accent-color);
+      color: var(--text-color);
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .quiz-options button:hover {
+      background: var(--primary-color);
+    }
+    .feedback {
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+    .voice-section {
+      margin-top: 20px;
+    }
+    /* Responsive adjustments */
+    @media(max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CodeOnTheGo</h1>
+    <button id="darkModeToggle" class="btn">Dark Mode</button>
+  </header>
+  <nav class="tabs">
+    <ul>
+      <li data-tab="html" class="active">HTML</li>
+      <li data-tab="css">CSS</li>
+      <li data-tab="js">JS</li>
+      <li data-tab="json">JSON</li>
+    </ul>
+  </nav>
+  <main>
+    <!-- HTML Section -->
+    <section id="html" class="tab-content active">
+      <div class="container lesson">
+        <h2>HTML Lesson 1: Basic HTML Structure</h2>
+        <p>Tutorial Text: Oh my darling, welcome to the enchanting labyrinth of HTML. Every tag holds a secret message of love and mystery. Let your heart flutter with every element you code!</p>
+        <p><strong>Example:</strong> <code>&lt;h1&gt;Hello, world of passion!&lt;/h1&gt;</code></p>
+        <button class="btn" onclick="startQuiz('html')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-html" style="display: none;">
+        <h2>Quiz: What does HTML stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('html', this, 'wrong')">HyperText Marking Language</button>
+          <button onclick="checkAnswer('html', this, 'correct')">HyperText Markup Language</button>
+          <button onclick="checkAnswer('html', this, 'wrong')">Hyper Transfer Markup Language</button>
+        </div>
+        <p id="feedback-html" class="feedback"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('html')">Start Voice Input</button>
+          <p id="voiceFeedback-html" class="feedback"></p>
+        </div>
+      </div>
+    </section>
+    <!-- CSS Section -->
+    <section id="css" class="tab-content">
+      <div class="container lesson">
+        <h2>CSS Lesson 1: Basic CSS Styling</h2>
+        <p>Tutorial Text: Welcome to the whimsical world of CSS, where styles are as playful and mysterious as a secret diary. Paint your dreams with colors that whisper sweet nothings to your soul!</p>
+        <p><strong>Example:</strong> <code>body { background-color: #fff; }</code></p>
+        <button class="btn" onclick="startQuiz('css')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-css" style="display: none;">
+        <h2>Quiz: What does CSS stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('css', this, 'wrong')">Cascading Style Script</button>
+          <button onclick="checkAnswer('css', this, 'correct')">Cascading Style Sheets</button>
+          <button onclick="checkAnswer('css', this, 'wrong')">Creative Style System</button>
+        </div>
+        <p id="feedback-css" class="feedback"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('css')">Start Voice Input</button>
+          <p id="voiceFeedback-css" class="feedback"></p>
+        </div>
+      </div>
+    </section>
+    <!-- JS Section -->
+    <section id="js" class="tab-content">
+      <div class="container lesson">
+        <h2>JS Lesson 1: Basic JavaScript</h2>
+        <p>Tutorial Text: Step into the stormy world of JavaScript, where logic collides with passion in a whirlwind of delightful chaos. Embrace the madness and let your code sing with fervor!</p>
+        <p><strong>Example:</strong> <code>console.log('Hello, wild code!');</code></p>
+        <button class="btn" onclick="startQuiz('js')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-js" style="display: none;">
+        <h2>Quiz: What does JS stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('js', this, 'wrong')">Just Script</button>
+          <button onclick="checkAnswer('js', this, 'correct')">JavaScript</button>
+          <button onclick="checkAnswer('js', this, 'wrong')">JollyScript</button>
+        </div>
+        <p id="feedback-js" class="feedback"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('js')">Start Voice Input</button>
+          <p id="voiceFeedback-js" class="feedback"></p>
+        </div>
+      </div>
+    </section>
+    <!-- JSON Section -->
+    <section id="json" class="tab-content">
+      <div class="container lesson">
+        <h2>JSON Lesson 1: Basic JSON Structure</h2>
+        <p>Tutorial Text: Dive into the neat yet mysterious realm of JSON. This enchanting language binds data with an irresistible charm, where every key and value tells a captivating story of allure and wonder!</p>
+        <p><strong>Example:</strong> <code>{ "key": "value" }</code></p>
+        <button class="btn" onclick="startQuiz('json')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-json" style="display: none;">
+        <h2>Quiz: What does JSON stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('json', this, 'wrong')">JavaScript Oriented Notation</button>
+          <button onclick="checkAnswer('json', this, 'correct')">JavaScript Object Notation</button>
+          <button onclick="checkAnswer('json', this, 'wrong')">JavaScript Organized Notation</button>
+        </div>
+        <p id="feedback-json" class="feedback"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('json')">Start Voice Input</button>
+          <p id="voiceFeedback-json" class="feedback"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Hammer.js for swipe gestures -->
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+  <script>
+    // ---------------------------
+    // Dark Mode Functionality
+    // ---------------------------
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const currentMode = localStorage.getItem('darkMode') || 'light';
+    if (currentMode === 'dark') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.textContent = 'Light Mode';
+    }
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      darkModeToggle.textContent = mode === 'dark' ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('darkMode', mode);
+    });
+
+    // ---------------------------
+    // Tab Navigation with Local Storage
+    // ---------------------------
+    const tabs = document.querySelectorAll('nav.tabs ul li');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        setActiveTab(target);
+        localStorage.setItem('activeTab', target);
+      });
+    });
+    function setActiveTab(tabName) {
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-tab') === tabName);
+      });
+      tabContents.forEach(content => {
+        content.classList.toggle('active', content.id === tabName);
+      });
+    }
+    // Load active tab from localStorage
+    const savedTab = localStorage.getItem('activeTab') || 'html';
+    setActiveTab(savedTab);
+
+    // ---------------------------
+    // Swipe Gestures with Hammer.js
+    // ---------------------------
+    const mainContent = document.querySelector('main');
+    const hammer = new Hammer(mainContent);
+    hammer.on('swipeleft', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex < tabsArray.length - 1) {
+        currentIndex++;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+    hammer.on('swiperight', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex > 0) {
+        currentIndex--;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+
+    // ---------------------------
+    // Quiz and Local Storage for Progress
+    // ---------------------------
+    function startQuiz(subject) {
+      document.getElementById('quiz-' + subject).style.display = 'block';
+    }
+    function checkAnswer(subject, button, answer) {
+      const feedback = document.getElementById('feedback-' + subject);
+      if(answer === 'correct') {
+        feedback.textContent = "✅ Correct!";
+        feedback.style.color = "green";
+        localStorage.setItem(subject + '_quiz', 'completed');
+      } else {
+        feedback.textContent = "❌ Incorrect, try again!";
+        feedback.style.color = "red";
+      }
+    }
+
+    // ---------------------------
+    // Voice Recognition for Quiz Answers
+    // ---------------------------
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        const currentSubject = recognition.subject;
+        const voiceFeedback = document.getElementById('voiceFeedback-' + currentSubject);
+        if (currentSubject === 'html' && transcript.includes('hypertext markup language')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else if (currentSubject === 'css' && transcript.includes('cascading style sheets')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else if (currentSubject === 'js' && transcript.includes('javascript')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else if (currentSubject === 'json' && transcript.includes('javascript object notation')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else {
+          voiceFeedback.textContent = "❌ Incorrect. You said: " + transcript + ". Please try again.";
+          voiceFeedback.style.color = "red";
+        }
+      };
+      recognition.onerror = function(event) {
+        const currentSubject = recognition.subject;
+        document.getElementById('voiceFeedback-' + currentSubject).textContent = "Error: " + event.error;
+        document.getElementById('voiceFeedback-' + currentSubject).style.color = "red";
+      };
+    } else {
+      document.querySelectorAll('.voice-section p').forEach(p => {
+        p.textContent = "Voice recognition not supported in this browser.";
+      });
+    }
+    function startVoiceRecognition(subject) {
+      if (recognition) {
+        recognition.subject = subject;
+        document.getElementById('voiceFeedback-' + subject).textContent = "Listening...";
+        recognition.start();
+      }
+    }
+  </script>
+</body>
+</html>

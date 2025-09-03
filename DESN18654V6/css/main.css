@@ -1,0 +1,213 @@
+:root {
+  --bg-color: #f4f4f4;  
+  --card-bg: #e0e0e0;   
+  --text-color: #333; 
+  --accent: #666;   
+  --border: 1px solid #999;  
+  --border-radius: 5px;  
+  --box-shadow: none;   
+  --bg-brightness: 1;   
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  font-size: 1.05rem;
+
+}
+/* Start of grid layout pattern from Grid by method Example */
+.app-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem;
+  /* End of grid layout pattern from Grid by method Example */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.calculator-box { grid-column: 1; grid-row: 1; }
+.sleep-debt-meter { grid-column: 1; grid-row: 2; }
+#resultBox { grid-column: 2 / 4; grid-row: 1; }
+.productivity-input { grid-column: 2; grid-row: 2; }
+.chronotype-result { grid-column: 3; grid-row: 2; }
+.relaxation-panel { grid-column: 2; grid-row: 3; }
+.site-description { grid-column: 3; grid-row: 3;}
+
+.calculator-box,
+.sleep-debt-meter,
+.productivity-input,
+.chronotype-result,
+.relaxation-panel,
+.site-description {
+  padding:1.3rem;
+  box-shadow: none;
+  background: #e0e0e0;
+  border: 1px solid #999;
+  /* border-radius: 6px */
+}
+
+
+.site-description h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.site-description p {
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+#bg-image {
+  display: none; 
+  background: none !important; 
+}
+
+
+
+.light-mode #bg-image {
+  filter: 
+    brightness(0.85)
+    contrast(120%)
+    grayscale(70%);
+}
+
+.light-mode {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;    
+  --accent: #909090;       
+  --border: 1px solid #e2e8f0;
+  --bg-brightness: 0.9;      
+}
+
+.light-mode body {
+  color: var(--text-color);
+}
+
+.light-mode .cycle-item {
+  background: var(--card-bg);
+  border-color: #cbd5e1;
+}
+
+#cycleResults {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cycle-item {
+  background: #808080;
+  padding: 1rem;
+  flex: 1;
+  min-width: 120px;
+}
+
+.debt-bar {
+  height: 15px;
+  background: var(--accent);
+  transition: width 0.5s ease;
+  border-radius: 8px;
+  margin: 0.7rem;
+}
+
+.light-mode {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;
+  --border: 1px solid #e2e8f0;
+}
+
+input, select {
+  background: #ddd !important;
+  color: #222 !important;
+  border: 1px solid #999;
+}
+
+h1, h2, h3 {
+  color: #222;
+  font-weight: normal; 
+}
+
+
+
+
+button, input {
+  color: var(--text-color);
+}
+
+button {
+  background: #bbb;  
+  color: #222;      
+  border: 2px solid #777;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: none; 
+}
+
+button:hover {
+  background: #888; 
+  color: white;
+}
+
+
+.light-mode button {
+  border-color: rgba(0,0,0,0.1); 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.breathing-animation {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 1rem auto;
+  animation: breathe 4s infinite;
+}
+
+@keyframes fadeInBackground {
+  from {
+    opacity: 0;
+    transform: scale(1.1); 
+  }
+  to {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+.light-mode #bg-image {
+  filter: brightness(0.85) contrast(120%) grayscale(70%);
+}
+
+/* Start of breathing animation code from CSS Tricks */
+@keyframes breathe {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+}
+/* End of breathing animation code from CSS Tricks */
+
+
+@media (max-width: 820px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .app-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+
+

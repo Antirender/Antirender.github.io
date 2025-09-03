@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.ico">
+  <title>CodeOnTheGo - Learn to Code on the Move</title>
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2C3E50;
+      --bg-color: #f4f4f4;
+      --text-color: #333;
+      --accent-color: #2196F3;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    header {
+      background: var(--secondary-color);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+    #darkModeToggle {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      background: var(--primary-color);
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    /* Navigation Tabs */
+    nav.tabs {
+      background: var(--primary-color);
+    }
+    nav.tabs ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+    }
+    nav.tabs ul li {
+      padding: 10px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      flex: 1;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    nav.tabs ul li.active,
+    nav.tabs ul li:hover {
+      background: var(--accent-color);
+    }
+    main {
+      padding: 15px;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .container {
+      max-width: 480px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .lesson h2, .quiz h2 {
+      margin-bottom: 10px;
+      color: var(--secondary-color);
+    }
+    .btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+    }
+    .btn:hover {
+      background: #3e8e41;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .quiz-options button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .quiz-options button:hover {
+      background: #1976d2;
+    }
+    #feedback-html, #feedback-css, #feedback-js, #feedback-json,
+    #voiceFeedback-html, #voiceFeedback-css, #voiceFeedback-js, #voiceFeedback-json {
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+    .voice-section {
+      margin-top: 20px;
+    }
+    /* Dark mode styles */
+    .dark-mode {
+      background-color: #333;
+      color: #f4f4f4;
+    }
+    .dark-mode header {
+      background: #222;
+    }
+    .dark-mode .container {
+      background: #444;
+      color: #f4f4f4;
+    }
+    .dark-mode .btn {
+      background: #555;
+    }
+    .dark-mode .btn:hover {
+      background: #666;
+    }
+    .dark-mode nav.tabs ul li {
+      background: #555;
+    }
+    .dark-mode nav.tabs ul li.active,
+    .dark-mode nav.tabs ul li:hover {
+      background: #777;
+    }
+    /* Responsive adjustments */
+    @media(max-width: 600px) {
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CodeOnTheGo</h1>
+    <button id="darkModeToggle" class="btn">Dark Mode</button>
+  </header>
+  <nav class="tabs">
+    <ul>
+      <li data-tab="html" class="active">HTML</li>
+      <li data-tab="css">CSS</li>
+      <li data-tab="js">JS</li>
+      <li data-tab="json">JSON</li>
+    </ul>
+  </nav>
+  <main>
+    <!-- HTML Section -->
+    <section id="html" class="tab-content active">
+      <div class="container lesson">
+        <h2>Lesson 1: Basic HTML Structure</h2>
+        <p>Learn the basics of HTML.</p>
+        <p><strong>Example:</strong> <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code></p>
+        <button class="btn" onclick="startQuiz('html')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-html" style="display: none;">
+        <h2>Quiz: What does HTML stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('html', this, 'wrong')">HyperText Marking Language</button>
+          <button onclick="checkAnswer('html', this, 'correct')">HyperText Markup Language</button>
+          <button onclick="checkAnswer('html', this, 'wrong')">Hyper Transfer Markup Language</button>
+        </div>
+        <p id="feedback-html"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('html')">Start Voice Input</button>
+          <p id="voiceFeedback-html"></p>
+        </div>
+      </div>
+    </section>
+    <!-- CSS Section -->
+    <section id="css" class="tab-content">
+      <div class="container lesson">
+        <h2>Lesson 2: Basic CSS Styling</h2>
+        <p>Learn the basics of CSS.</p>
+        <p><strong>Example:</strong> <code>body { background-color: #fff; }</code></p>
+        <button class="btn" onclick="startQuiz('css')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-css" style="display: none;">
+        <h2>Quiz: What does CSS stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('css', this, 'wrong')">Cascading Style Script</button>
+          <button onclick="checkAnswer('css', this, 'correct')">Cascading Style Sheets</button>
+          <button onclick="checkAnswer('css', this, 'wrong')">Creative Style System</button>
+        </div>
+        <p id="feedback-css"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('css')">Start Voice Input</button>
+          <p id="voiceFeedback-css"></p>
+        </div>
+      </div>
+    </section>
+    <!-- JS Section -->
+    <section id="js" class="tab-content">
+      <div class="container lesson">
+        <h2>Lesson 3: Basic JavaScript</h2>
+        <p>Learn the basics of JavaScript.</p>
+        <p><strong>Example:</strong> <code>console.log('Hello World');</code></p>
+        <button class="btn" onclick="startQuiz('js')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-js" style="display: none;">
+        <h2>Quiz: What does JS stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('js', this, 'wrong')">Just Script</button>
+          <button onclick="checkAnswer('js', this, 'correct')">JavaScript</button>
+          <button onclick="checkAnswer('js', this, 'wrong')">JollyScript</button>
+        </div>
+        <p id="feedback-js"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('js')">Start Voice Input</button>
+          <p id="voiceFeedback-js"></p>
+        </div>
+      </div>
+    </section>
+    <!-- JSON Section -->
+    <section id="json" class="tab-content">
+      <div class="container lesson">
+        <h2>Lesson 4: Basic JSON Structure</h2>
+        <p>Learn the basics of JSON.</p>
+        <p><strong>Example:</strong> <code>{ \"key\": \"value\" }</code></p>
+        <button class="btn" onclick="startQuiz('json')">Start Quiz</button>
+      </div>
+      <div class="container quiz" id="quiz-json" style="display: none;">
+        <h2>Quiz: What does JSON stand for?</h2>
+        <div class="quiz-options">
+          <button onclick="checkAnswer('json', this, 'wrong')">JavaScript Oriented Notation</button>
+          <button onclick="checkAnswer('json', this, 'correct')">JavaScript Object Notation</button>
+          <button onclick="checkAnswer('json', this, 'wrong')">JavaScript Organized Notation</button>
+        </div>
+        <p id="feedback-json"></p>
+        <div class="voice-section">
+          <p>Or answer by voice:</p>
+          <button class="btn" onclick="startVoiceRecognition('json')">Start Voice Input</button>
+          <p id="voiceFeedback-json"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Hammer.js for swipe gestures -->
+  <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+  <script>
+    // ---------------------------
+    // Dark Mode Functionality
+    // ---------------------------
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const currentMode = localStorage.getItem('darkMode') || 'light';
+    if (currentMode === 'dark') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.textContent = 'Light Mode';
+    }
+    darkModeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const mode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      darkModeToggle.textContent = mode === 'dark' ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('darkMode', mode);
+    });
+
+    // ---------------------------
+    // Tab Navigation with Local Storage
+    // ---------------------------
+    const tabs = document.querySelectorAll('nav.tabs ul li');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        setActiveTab(target);
+        localStorage.setItem('activeTab', target);
+      });
+    });
+    function setActiveTab(tabName) {
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('data-tab') === tabName);
+      });
+      tabContents.forEach(content => {
+        content.classList.toggle('active', content.id === tabName);
+      });
+    }
+    // Load active tab from localStorage
+    const savedTab = localStorage.getItem('activeTab') || 'html';
+    setActiveTab(savedTab);
+
+    // ---------------------------
+    // Swipe Gestures with Hammer.js
+    // ---------------------------
+    const mainContent = document.querySelector('main');
+    const hammer = new Hammer(mainContent);
+    hammer.on('swipeleft', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex < tabsArray.length - 1) {
+        currentIndex++;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+    hammer.on('swiperight', () => {
+      const currentTab = document.querySelector('nav.tabs ul li.active').getAttribute('data-tab');
+      const tabsArray = Array.from(tabs).map(tab => tab.getAttribute('data-tab'));
+      let currentIndex = tabsArray.indexOf(currentTab);
+      if (currentIndex > 0) {
+        currentIndex--;
+        setActiveTab(tabsArray[currentIndex]);
+        localStorage.setItem('activeTab', tabsArray[currentIndex]);
+      }
+    });
+
+    // ---------------------------
+    // Quiz and Local Storage for Progress
+    // ---------------------------
+    function startQuiz(subject) {
+      document.getElementById('quiz-' + subject).style.display = 'block';
+    }
+    function checkAnswer(subject, button, answer) {
+      const feedback = document.getElementById('feedback-' + subject);
+      if(answer === 'correct') {
+        feedback.textContent = "✅ Correct!";
+        feedback.style.color = "green";
+        localStorage.setItem(subject + '_quiz', 'completed');
+      } else {
+        feedback.textContent = "❌ Incorrect, try again!";
+        feedback.style.color = "red";
+      }
+    }
+
+    // ---------------------------
+    // Voice Recognition for Quiz Answers
+    // ---------------------------
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition;
+    if (SpeechRecognition) {
+      recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        const currentSubject = recognition.subject;
+        const voiceFeedback = document.getElementById('voiceFeedback-' + currentSubject);
+        if (currentSubject === 'html' && transcript.includes('hypertext markup language')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else if (currentSubject === 'css' && transcript.includes('cascading style sheets')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else if (currentSubject === 'js' && transcript.includes('javascript')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else if (currentSubject === 'json' && transcript.includes('javascript object notation')) {
+          voiceFeedback.textContent = "✅ Correct! You said: " + transcript;
+          voiceFeedback.style.color = "green";
+          localStorage.setItem(currentSubject + '_quiz', 'completed');
+        } else {
+          voiceFeedback.textContent = "❌ Incorrect. You said: " + transcript + ". Please try again.";
+          voiceFeedback.style.color = "red";
+        }
+      };
+      recognition.onerror = function(event) {
+        const currentSubject = recognition.subject;
+        document.getElementById('voiceFeedback-' + currentSubject).textContent = "Error: " + event.error;
+        document.getElementById('voiceFeedback-' + currentSubject).style.color = "red";
+      };
+    } else {
+      document.querySelectorAll('.voice-section p').forEach(p => {
+        p.textContent = "Voice recognition not supported in this browser.";
+      });
+    }
+    function startVoiceRecognition(subject) {
+      if (recognition) {
+        recognition.subject = subject;
+        document.getElementById('voiceFeedback-' + subject).textContent = "Listening...";
+        recognition.start();
+      }
+    }
+  </script>
+</body>
+</html>

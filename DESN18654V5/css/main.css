@@ -1,0 +1,223 @@
+:root {
+  --bgcolor: rgb(13, 17, 23);
+  --card-bg: #161b22;
+  --textcolor: rgb(240, 246, 252);
+  --accent: #8b5cf6;
+  --border: 1px solid #30363d;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --bg-brightness: 0.65;
+}
+/* learn this from method week 2 Tutorials */
+body {
+  font-family: 'Inter', sans-serif, Arial, Helvetica;
+  background: var(--bgcolor);
+  color: var(--textcolor);
+  margin: 0;
+  padding: 2rem;
+  font-size: 1.05rem;
+}
+/* Start of grid layout pattern from Grid by method Example */
+.app-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem;
+  /* End of grid layout pattern from Grid by method Example */
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+/* learn this from method Tutorials */
+.calculator-box { grid-column: 1; grid-row: 1; }
+.sleep-debt-meter { grid-column: 1; grid-row: 2; }
+#resultBox { grid-column: 2 / 4; grid-row: 1; }
+.productivity-input { grid-column: 2; grid-row: 2; }
+.chronotype-result { grid-column: 3; grid-row: 2; }
+.relaxation-panel { grid-column: 2; grid-row: 3; }
+.site-description { grid-column: 3; grid-row: 3;}
+
+.calculator-box,
+.sleep-debt-meter,
+.productivity-input,
+.chronotype-result,ss
+.relaxation-panel
+#resultBox {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  background: var(--card-bg);
+  margin-bottom: 0; 
+}
+
+.site-description {
+
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  background: var(--card-bg);
+}
+
+.site-description h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.site-description p {
+  font-size: 1rem;
+  color: var(--textcolor);
+  line-height: 1.5;
+}
+
+#bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.65; 
+  filter: brightness(var(--bg-brightness)) contrast(130%) grayscale(20%);
+  background-size: cover;
+  background-position: center;
+}
+
+
+.light-mode #bg-image {
+  filter: 
+    brightness(0.85)
+    contrast(120%)
+    grayscale(70%);
+}
+
+.light-mode {
+  --bgcolor: #f8fafc;
+  --card-bg: #ffffff;
+  --textcolor: #1e293b;    
+  --accent: #6d28d9;       
+  --border: 1px solid #e2e8f0;
+  --bg-brightness: 0.9;      
+}
+
+.light-mode body {
+  color: var(--textcolor);
+}
+
+.light-mode .cycle-item {
+  background: var(--card-bg);
+  border-color: #cbd5e1;
+}
+
+#cycleResults {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cycle-item {
+  background: #2d3748;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.debt-bar {
+  height: 15px;
+  background: var(--accent);
+  transition: width 0.5s ease;
+  border-radius: 8px;
+  margin: 0.7rem;
+}
+
+.light-mode {
+  --bgcolor: #f8fafc;
+  --card-bg: #ffffff;
+  --textcolor: #1e293b;
+  --border: 1px solid #e2e8f0;
+}
+
+input, select {
+  /* learn this from method week 4 Tutorials */
+  background: var(--card-bg) !important;
+  color: var(--textcolor) !important;
+  border: 2px solid #cbd5e1
+}
+
+
+
+button, input {
+  color: var(--textcolor);
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: 2px solid transparent;
+  padding: 0.8rem 1.2rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  /* learn this from method Tutorials */
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #6a41f3;
+}
+
+.light-mode button {
+  border-color: rgba(0,0,0,0.1); 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.breathing-animation {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 1rem auto;
+  animation: breathe 4s infinite;
+}
+/* learn this from weekly Tutorials */
+@keyframes fadeInBackground {
+  from {
+    opacity: 0;
+    transform: scale(1.1); 
+  }
+  to {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+}
+
+.light-mode #bg-image {
+  filter: brightness(0.85) contrast(120%) grayscale(70%);
+}
+
+/* Start of breathing animation code from CSS Tricks */
+@keyframes breathe {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+}
+/* End of breathing animation code from CSS Tricks */
+
+/* learn this from method week 8 Tutorials */
+@media (max-width: 820px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
+/* learn this from method weekly Tutorials */
+@media (max-width: 1200px) {
+  .app-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+
+

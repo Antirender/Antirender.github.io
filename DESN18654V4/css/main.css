@@ -1,0 +1,170 @@
+:root {
+  --bg-color: #0d1117;
+  --card-bg: #161b22;
+  --text-color: #f0f6fc;
+  --accent: #8b5cf6;
+  --border: 1px solid #30363d;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  --bg-brightness: 0.5;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 2rem;
+  font-size: 1.05rem;
+
+}
+/* Start of grid layout pattern from Grid by method Example */
+.app-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5rem;
+  /* End of grid layout pattern from Grid by method Example */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.calculator-box { grid-column: 1; grid-row: 1; }
+.sleep-debt-meter { grid-column: 1; grid-row: 2; }
+#resultBox { grid-column: 2 / 4; grid-row: 1; }
+.productivity-input { grid-column: 2; grid-row: 2; }
+.chronotype-result { grid-column: 3; grid-row: 2; }
+.relaxation-panel { grid-column: 2; grid-row: 3; }
+
+.calculator-box,
+.sleep-debt-meter,
+.productivity-input,
+.chronotype-result,
+.relaxation-panel
+#resultBox {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  background: var(--card-bg);
+  margin-bottom: 0; 
+}
+
+
+#bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  
+  opacity: 0.15;
+  filter: 
+    brightness(var(--bg-brightness))
+    contrast(140%)
+    grayscale(30%);
+}
+
+.light-mode #bg-image {
+  filter: 
+    brightness(0.85)
+    contrast(120%)
+    grayscale(70%);
+}
+
+.light-mode {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;    
+  --accent: #6d28d9;       
+  --border: 1px solid #e2e8f0;
+  --bg-brightness: 0.9;      
+}
+
+.light-mode body {
+  color: var(--text-color);
+}
+
+.light-mode .cycle-item {
+  background: var(--card-bg);
+  border-color: #cbd5e1;
+}
+
+#cycleResults {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cycle-item {
+  background: #2d3748;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.debt-bar {
+  height: 15px;
+  background: var(--accent);
+  transition: width 0.5s ease;
+  border-radius: 8px;
+  margin: 0.7rem;
+}
+
+.light-mode {
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-color: #1e293b;
+  --border: 1px solid #e2e8f0;
+}
+
+input, select {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 2px solid #cbd5e1
+}
+
+
+button, input {
+  color: var(--text-color);
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: 2px solid transparent;
+  margin: 0.5rem;
+  border-radius: 8px;
+}
+
+.light-mode button {
+  border-color: rgba(0,0,0,0.1); 
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.breathing-animation {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 1rem auto;
+  animation: breathe 4s infinite;
+}
+
+/* Start of breathing animation code from CSS Tricks */
+@keyframes breathe {
+  0%, 100% { transform: scale(0.9); }
+  50% { transform: scale(1.1); }
+}
+/* End of breathing animation code from CSS Tricks */
+
+
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+  }
+}
