@@ -1,388 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Yiyang's creative project hub"/>
-  <link rel="icon" type="image/x-icon" href="Antirender.ico"/>
-  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
-
-  <title>Yiyang Main Profile Page | Project Portal</title>
-
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Yiyang Zhang — Interaction Design Portfolio</title>
+  <meta name="description" content="Responsive portfolio with two featured works, one process outline, and a design philosophy."/>
+  <link rel="icon" href="favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <style>
-        @font-face {
-      font-family: 'Ubuntu';
-      font-style: normal;
-      font-weight: 400;
-      src: url(https://fonts.gstatic.com/s/ubuntu/v20/4iCs6KVjbNBYlgoKfw72nU6AFw.woff2) format('woff2');
-      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    :root{
+      --bg:#ffffff; --card:#f8fafc; --ink:#0f172a; --sub:#334155;
+      --muted:#64748b; --border:#e2e8f0; --accent:#2563eb; --accent-ink:#0b2a6f;
+      --max:1120px; --radius:14px; --measure: 74ch;
+      --step--1: clamp(0.875rem, 0.82rem + 0.25vw, 0.975rem);
+      --step-0:  clamp(1rem,     0.96rem + 0.45vw, 1.125rem);
+      --step-1:  clamp(1.25rem,  1.12rem + 0.8vw,  1.5rem);
+      --step-2:  clamp(1.6rem,   1.3rem + 1.2vw,   1.95rem);
+      --step-3:  clamp(2.1rem,   1.6rem + 2vw,     2.6rem);
     }
-    :root {
-      --primary: #ff4646;
-      --secondary: #28e4d7;
-      --accent: #ffe046;
-      --glow: radial-gradient(circle at var(--x) var(--y), 
-                rgba(255,107,107,0.2) 0%, 
-                rgba(78,205,196,0.1) 50%, 
-                transparent 100%);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink); background:var(--bg);
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,Apple Color Emoji,Segoe UI Emoji;
+      font-size: var(--step-0); line-height: 1.65; letter-spacing: .005em; 
+      -webkit-font-smoothing:antialiased; font-optical-sizing:auto;
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Ubuntu',Impact, Haettenschweiler, 'Arial Narrow Bold';
-    }
-    body {
-      font-family: 'Ubuntu',Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif,'Comic Neue', cursive,;
-      min-height: 100vh;
-      background: linear-gradient(45deg, 
-        #f70419, 
-        #ff7a0d, 
-        #09f2e2, 
-        #e2f911
-      );
-      background-size: 340% 380%;
-      animation: gradientFlow 9s ease infinite;
-    }
-    .p{font-family: 'Ubuntu',Impact, Haettenschweiler, 'Arial Narrow Bold';}
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 5vh 20px;
-      position: relative;
-    }
-    .container::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: var(--glow);
-      pointer-events: none;
-      transition: background 0.3s;
-    }
-    .header {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-      z-index: 2;
-    }
-    .title {
-      font-size: 3.5rem;
-      color: white;
-      text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
-      margin-bottom: 1rem;
-      transform: rotate(-3deg);
-      display: inline-block;
-      background: linear-gradient(45deg, #ffe66d, #ff6b6b);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .subtitle {
-      color: white;
-      font-size: 1.5rem;
-      text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
-      transform: rotate(2deg);
-      display: inline-block;
-      background: rgba(255,255,255,0.1);
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-    }
-    /* --- Grid Classes --- */
-    .main-projects {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 1.8rem;
-      text-align: center;
-      list-style: none;
-      margin-bottom: 2rem;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      text-align: center;
-      gap: 1.8rem;
-      list-style: none;
-    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%; height:auto; display:block}
+    .wrap{max-width:var(--max); margin:0 auto; padding:clamp(16px,2.5vw,32px)}
+    .wrap p, .wrap li { max-width: var(--measure); }
+    header.site{border-bottom:1px solid var(--border); position:sticky; top:0; background:#fff; z-index:20; padding-block: clamp(12px,3.5vw,28px)}
+    .top{display:flex; gap:24px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap}
+    h1{font-size: var(--step-3); line-height: 1.15; margin: 0 0 .25rem; font-variation-settings:"wght" 750; text-wrap: balance}
+    h1,h2{text-wrap:balance}
+    p{ text-wrap:pretty; hyphens:auto }
+    .tagline{margin:0; color:var(--sub); font-size:clamp(16px,2.1vw,18px)}
 
-    .main-projects, .card-grid {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-auto-flow: dense;
+    nav.primary{display:flex; align-items:center}
+    nav.primary ul{display:flex; gap:14px; list-style:none; padding:0; margin:0}
+    nav.primary a{display:inline-block; padding:.55rem .7rem; border-radius:10px; color:var(--accent-ink); font-weight:600}
+    nav.primary a:hover{background:var(--card); text-decoration:none}
+    .contact-list{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:center;list-style:none;margin:.35rem 0 0;padding:0}
+    .contact-list li{display:flex;align-items:center;white-space:nowrap}
+    .contact-list li+li::before{content:"•";color:var(--muted,#64748b);margin:0 .5rem}
+    .contact-list a{color:var(--sub,#334155);font-weight:600;text-decoration:none}
+    .contact-list a:hover{text-decoration:underline}
+    .hamburger{display:none; border:1px solid var(--border); background:#fff; border-radius:10px; padding:.55rem .7rem; font-weight:700; cursor:pointer}
+    /* Sidebar (mobile) */
+    .sidebar{
+      position:fixed; inset:0 0 0 -300px; width:300px; background:#fff; border-right:1px solid var(--border);
+      transform:translateX(-100%); transition:transform .25s ease; z-index:30; padding:20px;
     }
-
-
-    .selector {
-      position: relative;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      border: 3px solid white;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .sidebar.open{transform:translateX(0)}
+    .sidebar h3{margin:4px 0 12px; font-size:1.05rem}
+    .side-links, .side-projects{list-style:none; padding:0; margin:0 0 16px}
+    .side-links li, .side-projects li{margin:.25rem 0}
+    .scrim{position:fixed; inset:0; background:rgba(15,23,42,.38); backdrop-filter:blur(2px); display:none; z-index:25}
+    .scrim.show{display:block}
+    /* Sections */
+    section{padding-block: clamp(18px,4vw,40px); border-bottom:1px solid var(--border)}
+    #philosophy{scroll-margin-top: 80px}
+    #philosophy p{ max-width: 78ch }
+    .site + section{margin-top:0}
+    h2{font-size: var(--step-2); line-height: 1.22; margin: 0 0 .6rem; font-variation-settings:"wght" 700; text-wrap: balance}
+    h3{font-size: var(--step-1); line-height: 1.28; margin: .5rem 0 .25rem}
+    p, li{font-size: var(--step-0); margin:0 0 12px; text-wrap: pretty; hyphens: auto}
+    p + p { margin-top: .4rem; }
+    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap: clamp(12px,1.6vw,18px)}
+    .grid > .card{
+      grid-column:span 6; background:var(--card); border:1px solid var(--border);
+      border-radius:var(--radius); padding: clamp(12px,1.8vw,18px)
     }
-    .selector:hover {
-      transform: translateY(-5px) rotate(1deg);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    .meta{color:var(--muted); font-size:.95rem}
+    .btn{display:inline-block; margin-top:.4rem; padding:.55rem .8rem; border-radius:10px; background:var(--accent); color:#fff; font-weight:700}
+    .btn:hover{text-decoration:none; filter:brightness(.95)}
+    .two-col{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(12px,2vw,24px)}
+    .resume-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,2vw,24px)}
+    ul.clean{padding-left:1.1rem; margin:0}
+    ul.clean li{margin:.25rem 0}
+    /* Your dropdowns + cards (kept) */
+    .main-projects{display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; list-style:none; padding:0; margin:0 0 1.2rem}
+    .selector{position:relative; background:#fff; border:1px solid var(--border); border-radius:12px}
+    .selector select{width:100%; padding:1.2rem; font-weight:700; border:0; appearance:none; background:transparent; cursor:pointer}
+    .selector::after{content:"▼"; position:absolute; right:1rem; top:50%; transform:translateY(-50%); color:var(--accent)}
+    .card-grid{display: grid; grid-template-columns: repeat(4, minmax(210px,1fr)); gap: 1rem; list-style: none; padding: 0; margin: 0}
+    .card-grid .card{background: var(--card, #f8fafc); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 0.9rem 1rem}
+    .card-grid .card a{display: block; color: var(--ink, #0f172a); font-weight: 700; text-decoration: none}
+    .card-grid .card a:hover{color: var(--accent, #2563eb); text-decoration: underline}
+    /* Responsive */
+    @media (max-width:980px){
+      nav.primary{display:none}
+      .hamburger{display:inline-block}
+      .main-projects{grid-template-columns:1fr}
+      .card-grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .two-col,.resume-grid{grid-template-columns:1fr}
+      .grid > .card{grid-column:span 12}
     }
-    .selector select {
-      width: 100%;
-      padding: 1.5rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      background: transparent;
-      border: none;
-      appearance: none;
-      color: #2d3436;
-      cursor: pointer;
+    @media (max-width:640px){ .contact-list{gap:.35rem .75rem} .contact-list li{white-space:normal} }
+    @media (max-width:560px){
+      .card-grid{grid-template-columns: 1fr}
     }
-    .selector::after {
-      content: "▼";
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--primary);
-      pointer-events: none;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      border: 3px solid white;
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, 
-        transparent 0%, 
-        rgba(255,255,255,0.3) 50%, 
-        transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .card:hover {
-      transform: 
-        translateY(-10px) 
-        rotate(3deg) 
-        scale(1.05);
-      box-shadow: 
-        0 15px 30px rgba(0,0,0,0.2),
-        0 0 50px rgba(255,230,109,0.3);
-    }
-    .card:hover::before {
-      opacity: 1;
-    }
-    
-    .cv-card{
-      line-height: 1.5rem;
-    background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      text-align: left;
-      border: 3px solid white;
-    }
-
-    .card a {
-      
-      color: #2d3436;
-      text-decoration: none;
-      font-weight: 700;
-      display: block;
-      position: relative;
-      z-index: 1;
-      transition: color 0.3s;
-    }
-    .card:hover a {
-      color: var(--primary);
-    }
-
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50% }
-      50% { background-position: 100% 50% }
-      100% { background-position: 0% 50% }
-    }
-    @media (max-width: 768px) {
-      .title {
-        font-size: 2.5rem;
-      }
-      .subtitle {
-        font-size: 1.2rem;
-      }
-      .selector select {
-        font-size: 1rem;
-        padding: 1.2rem;
-      }
-      .card {
-        padding: 1.5rem;
-      }
-      /* 
-         .main-projects { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-         .card-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } */
-    }
+    /* Focus styles */
+    :focus-visible{outline:3px solid #94a3b8; outline-offset:2px}
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <h1 class="title">Yiyang Main Profile Page</h1>
-      <p class="subtitle">I will try my best to make good work. ✨</p>
-    </header>
-
-    <ul class="main-projects">
-      <li class="selector">
-        <select onchange="window.location.href=this.value">
-          <option value="" selected disabled>DESN18654 V1-V14</option>
-          <option value="DESN18654V1/index.html">DESN18654 V1</option>
-          <option value="DESN18654V2/index.html">DESN18654 V2</option>
-          <option value="DESN18654V3/index.html">DESN18654 V3</option>
-          <option value="DESN18654V4/index.html">DESN18654 V4</option>
-          <option value="DESN18654V5/index.html">DESN18654 V5</option>
-          <option value="DESN18654V6/index.html">DESN18654 V6</option>
-          <option value="DESN18654V7/index.html">DESN18654 V7</option>
-          <option value="DESN18654V8/index.html">DESN18654 V8</option>
-          <option value="DESN18654V9/index.html">DESN18654 V9</option>
-          <option value="DESN18654V10/index.html">DESN18654 V10</option>
-          <option value="DESN18654V11/index.html">DESN18654 V11</option>
-          <option value="DESN18654V12/index.html">DESN18654 V12</option>
-          <option value="DESN18654V13/index.html">DESN18654 V13</option>
-          <option value="DESN18654V14/index.html">DESN18654 V14</option>
-          <option value="DESN18654V15/index.html">DESN18654 V15</option>
-          <option value="DESN18654V16/index.html">DESN18654 V16</option>
-          <option value="DESN18654V17/index.html">DESN18654 V17</option>
-          <option value="DESN18654V18/App-Store.html">DESN18654 V18</option>
-        </select>
-      </li>
-      <li class="selector">
-        <select onchange="window.location.href=this.value">
-          <option value="" selected disabled>DESN19428 GSGC V1-V6</option>
-          <option value="v1/index.html">DESN19428 V1</option>
-          <option value="v2/index.html">DESN19428 V2</option>
-          <option value="v3/index.html">DESN19428 V3</option>
-          <option value="v4/index.html">DESN19428 V4</option>
-          <option value="v5/index.html">DESN19428 V5</option>
-          <option value="v6/index.html">DESN19428 V6</option>
-        </select>
-      </li>
-      <li class="selector">
-        <select onchange="window.location.href=this.value">
-          <option value="" selected disabled>DESN22848 Projects</option>
-          <option value="DESN22848/index.html">DESN22848</option>
-          <option value="DESN22848P2/index.html">DESN22848 P2</option>
-          <option value="DESN22848P3/index.html">DESN22848 P3</option>
-          <option value="DESN22848V1/index.html">DESN22848 V1</option>
-          <option value="DESN22848V2/index.html">DESN22848 V2</option>
-          <option value="DESN22848V3/index.html">DESN22848 V3</option>
-          <option value="DESN22848V4/index.html">DESN22848 V4</option>
-
-        </select>
-      </li>
-      <li class="selector">
-        <select onchange="window.location.href=this.value">
-          <option value="" selected disabled>VDES15738 Projects</option>
-          <option value="VDES15738P1/index.html">VDES15738 P1</option>
-          <option value="VDES15738P2/index.html">VDES15738 P2</option>
-          <option value="VDES15738P3/index.html">VDES15738 P3</option>
-          <option value="VDES15738P3V1/index.html">VDES15738 P3V1</option>
-          <option value="VDES15738P3V2/index.html">VDES15738 P3V2</option>
-          <option value="VDES15738P3V3/index.html">VDES15738 P3V3</option>
-          <option value="VDES15738P3V4/index.html">VDES15738 P3V4</option>
-          <option value="VDES15738P3V5/index.html">VDES15738 P3V5</option>
-        </select>
-      </li>
-      <li class="selector">
-        <select onchange="window.location.href=this.value">
-          <option value="" selected disabled>Game Projects</option>
-          <option value="g1/index.html">Game 1</option>
-          <option value="g2/index.html">Game 2</option>
-          <option value="g3/index.html">Game 3</option>
-          <option value="g4v1/index.html">Game 4V1</option>
-          <option value="power-calculator/index.html">power-calculator</option>
-        </select>
-      </li>
-      <li class="selector">
-        <select onchange="window.location.href=this.value">
-          <option value="" selected disabled>DESN10799 Projects</option>
-          <option value="DESN10799/index.html">DESN10799</option>
-          <option value="DESN10799P3/index.html">DESN10799P3V1</option>
-          <option value="DESN10799P3/index2.html">DESN10799P3V2</option>
-          <option value="DESN10799P3/index3.html">DESN10799P3V3</option>
-          <option value="DESN10799P3/index4.html">DESN10799P3V4</option>
-          <option value="DESN10799P3/index5.html">DESN10799P3V5</option>
-          <option value="DESN10799P3/index6.html">DESN10799P3V6</option>
-          <option value="DESN10799P3/index7.html">DESN10799P3V7</option>
-        </select>
-       </li>
-  </ul>
-
-    <ul class="card-grid">
-      <li class="card">
-        <a href="l1/index.html">VDES19798Logo</a>
-      </li>
-      <li class="card">
-        <a href="pinzuo/index.html">Pinzuo</a>
-      </li>
-      <li class="card">
-        <a href="pinzuoV2/index.html">PinzuoV2</a>
-      </li>
-      <li class="card">
-        <a href="Rocket-Calculator/index.html">Rocket Calculator</a>
-      </li>
-      <li class="card">
-        <a href="Milk/index.html">Milk Calculator</a>
-      </li>
-      <li class="card">
-        <a href="nevergonna/index.html">Never Gonna Give You Up</a>
-      </li>
-
-      <li class="cv-card" style="grid-column: 1 / -1; padding: 2rem;">
-        <h3>About Yiyang</h3>
-        <p><strong>Main Research Directions:</strong><br>
-          Landscape design, environmental design, experimental space design
-        </p>
-        <p><strong>Major Courses:</strong><br>
-          Introduction to Landscape Design, History of Landscape Architecture and Design, 
-          Landscape System Design, Thesis, Experimental Space Design
-        </p>
-        <p><strong>Professional Appointments:</strong><br>
-          Judge for "National University Landscape Design Graduation Exhibition" (Peking University)<br>
-          Judge for "Asian Design Academic Year Award" (Asian Urban Design Alliance)<br>
-          Member of China Architectural Association
-        </p>
-        <p><strong>Major Honors:</strong><br>
-          Jiangsu Province "333 Project" Training Target<br>
-          Jiangsu Province Young Backbone Teacher<br>
-          Landscape Peach & Plum Award - National University Landscape Design Graduation Exhibition Outstanding Instructor<br>
-          China Human Settlement Design Academic Year Award Best Instructor
-        </p>
-        <p><strong>Research Output:</strong><br>
-          13 published papers including "Architectural Landscape Consciousness and Landscape Architectural Awareness"<br>
-          2 monographs: "Landscape Form Thinking and Design Methodology", "Urban Landscape Design"<br>
-          5 edited/co-authored books including "Landscape Design Methods and Expression"
-        </p>
-        <p><strong>Notable Projects:</strong><br>
-          Nanjing Youth Olympic Games Landscape Design<br>
-          Zhengzhou International Airport Terminal Plaza<br>
-          Shijiazhuang Hutuo River Waterfront Design<br>
-          Xuancheng New City Lacoste Lake Landscape Design<br>
-          Nanjing Jiaotong University New Campus Planning
-        </p>
-      </li>
+  <!-- Mobile sidebar -->
+  <aside class="sidebar" id="sidebar" aria-label="Mobile menu" tabindex="-1">
+    <button class="hamburger" id="closeSide" aria-label="Close menu">✕ Close</button>
+    <h3>Navigate</h3>
+    <ul class="side-links">
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#featured">Featured Work</a></li>
+      <li><a href="#process">Process Case Study</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#more">More Work</a></li>
     </ul>
-  </div>
+    <h3>Project Links</h3>
+    <ul class="side-projects">
+      <li><a href="DESN18654V18/App-Store.html">DESN18654 V18 — Learn Code App</a></li>
+      <li><a href="DESN10799P3/index7.html">DESN10799P3 V7 — Data Transparency</a></li>
+      <li><a href="DESN30146P1/index.html">DESN30146P1</a></li>
+      <li><a href="DESN31927V1/index.html">DESN31927V1</a></li>
+      <li><a href="pinzuo/index.html">Pinzuo</a></li>
+      <li><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
+      <li><a href="Milk/index.html">Milk Calculator</a></li>
+      <li><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
+    </ul>
+  </aside>
+  <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site">
+    <div class="wrap top" role="banner">
+      <div>
+        <h1>Yiyang Zhang</h1>
+        <p class="tagline">Interaction Design student — prototyping, usability testing, and clear documentation.</p>
+        <ul class="contact-list">
+          <li><span>Oakville, ON</span></li>
+          <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
+          <li><a href="tel:+17783187386">+1 (778) 318-7386</a></li>
+          <li><a href="https://ixd1239.phoenix.sheridanc.on.ca" target="_blank" rel="noopener">School Host</a></li>
+          <li><a href="https://antirender.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
+          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#featured">Featured Work</a></li>
+          <li><a href="#process">Process Case Study</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#more">More Work</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="openSide" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
+    </div>
+  </header>
+
+  <!-- ===== Design Philosophy ===== -->
+  <section id="philosophy">
+    <div class="wrap">
+      <h2>Design Philosophy</h2>
+      <p>
+        I design for clarity and evidence. My process begins by defining the user task in measurable terms, then translating
+        concepts into testable prototypes—Arduino when interaction needs real-world I/O, and web demos for interface flows.
+        I document assumptions, constraints, and decisions so that each iteration is explainable and repeatable. Accessibility,
+        contrast, and typographic hierarchy are non-negotiable. Usability tests are lightweight and frequent; insights feed
+        directly into changes rather than long reports. I value small, inspectable modules and share in-progress work consistently
+        to invite critique. The goal is a solution reliable to use, easy to learn, and simple to maintain.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Featured Work (2 items) ===== -->
+  <section id="featured">
+    <div class="wrap">
+      <h2>Featured Work</h2>
+      <div class="grid">
+        <article class="card" aria-labelledby="w1-title">
+          <img src="image/learn-code-app.png" alt="Learn Code App interface preview">
+          <h3 id="w1-title">DESN18654 — Learn Code App</h3>
+          <p class="meta"><a href="DESN18654V18/App-Store.html">Open the live prototype</a></p>
+          <p>
+            A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation (home →
+            category → lesson) with consistent cards improves scanability. The layout is fully responsive and avoids custom
+            scroll areas for accessibility.
+          </p>
+          <a class="btn" href="DESN18654V18/App-Store.html">View Prototype</a>
+        </article>
+
+        <article class="card" aria-labelledby="w2-title">
+          <img src="image/snapchat-data.png" alt="Data transparency prototype preview">
+          <h3 id="w2-title">DESN10799 — Snapchat Data Transparency</h3>
+          <p class="meta"><a href="DESN10799P3/index7.html">Open the live prototype</a></p>
+          <p>
+            An interactive explanation of how personal data moves through the app. Steps are broken into short, visual chunks
+            with clear verbs and buttons users can control. Testing focused on whether users could describe “what happens next”.
+          </p>
+          <a class="btn" href="DESN10799P3/index7.html">View Prototype</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Process Case Study (one longer outline) ===== -->
+  <section id="process">
+    <div class="wrap">
+      <h2>Process Case Study — Snapchat Data Transparency</h2>
+      <div class="two-col">
+        <div>
+          <h3>Problem & Role</h3>
+          <p>Users struggle to understand how their data is collected and used inside a social app. I was the sole interaction designer and prototyper.</p>
+          <h3>Constraints</h3>
+          <ul class="clean">
+            <li>Mobile-first; single-page; readable on small screens.</li>
+            <li>No heavy libraries; keep performance and accessibility reliable.</li>
+          </ul>
+          <h3>Research & Framing</h3>
+          <ul class="clean">
+            <li>Reviewed platform privacy docs; rewrote steps in plain language.</li>
+            <li>Mapped a simple data-flow “Collect → Process → Control”.</li>
+          </ul>
+          <h3>Prototyping</h3>
+          <ul class="clean">
+            <li>Progressive disclosure to avoid overload; high-contrast type; clear buttons.</li>
+            <li>Avoided hidden/sticky UI that harms screen readers.</li>
+          </ul>
+          <h3>Testing → Iteration</h3>
+          <ul class="clean">
+            <li>Task: “Explain what happens to your story after you post.”</li>
+            <li>Replaced ambiguous icons with verbs; adjusted labels to sentence-case.</li>
+          </ul>
+          <h3>Outcome & Next</h3>
+          <ul class="clean">
+            <li>Users describe the flow more accurately; fewer back-and-forth taps.</li>
+            <li>Next: add a glossary + “download my data” walkthrough.</li>
+          </ul>
+        </div>
+        <aside>
+          <img src="image/process-wireframe.png" alt="Process diagram or wireframe (replace with your image)">
+          <p><a class="btn" href="image/Snapchat.pdf">Open Case Study Prototype</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Resume (summary) ===== -->
+  <section id="resume">
+    <div class="wrap">
+      <h2>Resume (Summary)</h2>
+      <div class="resume-grid">
+        <div>
+          <h3>Summary</h3>
+          <p>Interaction Design student at Sheridan College specializing in prototyping and user testing. I build Arduino/web
+             prototypes and document decisions to drive iteration.</p>
+          <h3>Skills</h3>
+          <ul class="clean">
+            <li><strong>Design:</strong> user research, usability testing, wireframing, prototyping</li>
+            <li><strong>Technical:</strong> Arduino (sensors/I-O), HTML/CSS, basic JavaScript</li>
+            <li><strong>Workflow:</strong> scoping, versioning, build docs, test planning</li>
+            <li><strong>Tools:</strong> Adobe XD, Arduino IDE, code editors</li>
+          </ul>
+          <h3>Education</h3>
+          <p>Sheridan College — Interaction Design (IXD), Trafalgar Campus</p>
+        </div>
+        <div>
+          <h3>Selected Projects</h3>
+          <ul class="clean">
+            <li><a href="DESN18654V18/App-Store.html">DESN18654 — Learn Code App</a> — responsive card layout & hierarchy.</li>
+            <li><a href="DESN10799P3/index7.html">DESN10799 — Data Transparency</a> — interactive flow explanation.</li>
+            <li><a href="VDES15738P2/reese11.html">VDES15738 — Typographic system</a> — iterative exploration.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- <p class="meta">Full PDF resume available on request.</p> -->
+    </div>
+  </section>
+
+  <!-- ===== Your original dropdown menus (kept exactly) ===== -->
+  <section id="more">
+    <div class="wrap">
+      <h2>More Work (dropdowns & quick links)</h2>
+
+      <ul class="main-projects">
+        <li class="selector">
+          <select onchange="window.location.href=this.value">
+            <option value="" selected disabled>DESN18654 V1-V14</option>
+            <option value="DESN18654V1/index.html">DESN18654 V1</option>
+            <option value="DESN18654V2/index.html">DESN18654 V2</option>
+            <option value="DESN18654V3/index.html">DESN18654 V3</option>
+            <option value="DESN18654V4/index.html">DESN18654 V4</option>
+            <option value="DESN18654V5/index.html">DESN18654 V5</option>
+            <option value="DESN18654V6/index.html">DESN18654 V6</option>
+            <option value="DESN18654V7/index.html">DESN18654 V7</option>
+            <option value="DESN18654V8/index.html">DESN18654 V8</option>
+            <option value="DESN18654V9/index.html">DESN18654 V9</option>
+            <option value="DESN18654V10/index.html">DESN18654 V10</option>
+            <option value="DESN18654V11/index.html">DESN18654 V11</option>
+            <option value="DESN18654V12/index.html">DESN18654 V12</option>
+            <option value="DESN18654V13/index.html">DESN18654 V13</option>
+            <option value="DESN18654V14/index.html">DESN18654 V14</option>
+            <option value="DESN18654V15/index.html">DESN18654 V15</option>
+            <option value="DESN18654V16/index.html">DESN18654 V16</option>
+            <option value="DESN18654V17/index.html">DESN18654 V17</option>
+            <option value="DESN18654V18/App-Store.html">DESN18654 V18</option>
+          </select>
+        </li>
+        <li class="selector">
+          <select onchange="window.location.href=this.value">
+            <option value="" selected disabled>DESN19428 GSGC V1-V6</option>
+            <option value="v1/index.html">DESN19428 V1</option>
+            <option value="v2/index.html">DESN19428 V2</option>
+            <option value="v3/index.html">DESN19428 V3</option>
+            <option value="v4/index.html">DESN19428 V4</option>
+            <option value="v5/index.html">DESN19428 V5</option>
+            <option value="v6/index.html">DESN19428 V6</option>
+          </select>
+        </li>
+        <li class="selector">
+          <select onchange="window.location.href=this.value">
+            <option value="" selected disabled>DESN22848 Projects</option>
+            <option value="DESN22848/index.html">DESN22848</option>
+            <option value="DESN22848P2/index.html">DESN22848 P2</option>
+            <option value="DESN22848P3/index.html">DESN22848 P3</option>
+            <option value="DESN22848V1/index.html">DESN22848 V1</option>
+            <option value="DESN22848V2/index.html">DESN22848 V2</option>
+            <option value="DESN22848V3/index.html">DESN22848 V3</option>
+            <option value="DESN22848V4/index.html">DESN22848 V4</option>
+          </select>
+        </li>
+        <li class="selector">
+          <select onchange="window.location.href=this.value">
+            <option value="" selected disabled>VDES15738 Projects</option>
+            <option value="VDES15738P1/index.html">VDES15738 P1</option>
+            <option value="VDES15738P2/index.html">VDES15738 P2</option>
+            <option value="VDES15738P3/index.html">VDES15738 P3</option>
+            <option value="VDES15738P3V1/index.html">VDES15738 P3V1</option>
+            <option value="VDES15738P3V2/index.html">VDES15738 P3V2</option>
+            <option value="VDES15738P3V3/index.html">VDES15738 P3V3</option>
+            <option value="VDES15738P3V4/index.html">VDES15738 P3V4</option>
+            <option value="VDES15738P3V5/index.html">VDES15738 P3V5</option>
+          </select>
+        </li>
+        <li class="selector">
+          <select onchange="window.location.href=this.value">
+            <option value="" selected disabled>Game Projects</option>
+            <option value="g1/index.html">Game 1</option>
+            <option value="g2/index.html">Game 2</option>
+            <option value="g3/index.html">Game 3</option>
+            <option value="g4v1/index.html">Game 4V1</option>
+            <option value="power-calculator/index.html">power-calculator</option>
+          </select>
+        </li>
+        <li class="selector">
+          <select onchange="window.location.href=this.value">
+            <option value="" selected disabled>DESN10799 Projects</option>
+            <option value="DESN10799/index.html">DESN10799</option>
+            <option value="DESN10799P3/index.html">DESN10799P3V1</option>
+            <option value="DESN10799P3/index2.html">DESN10799P3V2</option>
+            <option value="DESN10799P3/index3.html">DESN10799P3V3</option>
+            <option value="DESN10799P3/index4.html">DESN10799P3V4</option>
+            <option value="DESN10799P3/index5.html">DESN10799P3V5</option>
+            <option value="DESN10799P3/index6.html">DESN10799P3V6</option>
+            <option value="DESN10799P3/index7.html">DESN10799P3V7</option>
+          </select>
+        </li>
+      </ul>
+
+      <ul class="card-grid">
+        <li class="card"><a href="DESN30146P1/index.html">DESN30146P1</a></li>
+        <li class="card"><a href="DESN31927V1/index.html">DESN31927V1</a></li>
+        <li class="card"><a href="l1/index.html">VDES19798Logo</a></li>
+        <li class="card"><a href="pinzuo/index.html">Pinzuo</a></li>
+        <li class="card"><a href="pinzuoV2/index.html">PinzuoV2</a></li>
+        <li class="card"><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
+        <li class="card"><a href="Milk/index.html">Milk Calculator</a></li>
+        <li class="card"><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="wrap" style="color:var(--muted)">
+    © <span id="year"></span> Yiyang Zhang 
 
   <script>
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      document.documentElement.style.setProperty('--x', `${x}px`);
-      document.documentElement.style.setProperty('--y', `${y}px`);
-    });
+    // Sidebar toggling
+    const sidebar = document.getElementById('sidebar');
+    const scrim = document.getElementById('scrim');
+    const openBtn = document.getElementById('openSide');
+    const closeBtn = document.getElementById('closeSide');
+
+    function openSide(){
+      sidebar.classList.add('open');
+      scrim.classList.add('show');
+      openBtn.setAttribute('aria-expanded','true');
+      sidebar.focus();
+      document.body.style.overflow='hidden';
+    }
+    function closeSide(){
+      sidebar.classList.remove('open');
+      scrim.classList.remove('show');
+      openBtn.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+    }
+    openBtn.addEventListener('click', openSide);
+    closeBtn.addEventListener('click', closeSide);
+    scrim.addEventListener('click', closeSide);
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeSide(); } });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
