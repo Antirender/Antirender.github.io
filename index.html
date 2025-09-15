@@ -104,6 +104,28 @@
     }
     /* Focus styles */
     :focus-visible{outline:3px solid #94a3b8; outline-offset:2px}
+    /* Resume controls and full resume */
+    #resume-controls{ display:flex; justify-content:flex-end; margin-bottom: .75rem; }
+    #resume-full{ background: var(--card,#f8fafc); border:1px solid var(--border,#e2e8f0); border-radius:12px; padding:clamp(14px,2vw,20px); }
+    #resume-full h2{ margin:0 0 .4rem }
+    #resume-full h3{ margin:.75rem 0 .35rem }
+    #resume-full .contact-list{ margin:.25rem 0 .5rem }
+    #resume-full ul{ padding-left:1.15rem; margin:.25rem 0 }
+    #resume-full li{ margin:.15rem 0 }
+    #resume-summary{ margin-top: clamp(12px,2vw,18px); }
+    /* Print stylesheet */
+    @page { size: A4; margin: 16mm; }
+    @media print{
+      header.site, #philosophy, #featured, #process, #more, footer, nav.primary, .sidebar, .scrim, .hamburger, .no-print { display:none !important; }
+      #resume{ border:0 }
+      #resume .wrap{ max-width: 750px !important; padding: 0 !important; margin: 0 auto !important; }
+      #resume-full{ display:block !important; background:#fff !important; border:0 !important; }
+      #resume-summary{ display:none !important; }
+      body{ color:#000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      h2,h3{ page-break-after: avoid; }
+      ul, p{ orphans:3; widows:3; }
+      a[href^="http"]::after{ content:" (" attr(href) ")"; font-weight:400; font-size:.9em; }
+    }
   </style>
 </head>
 <body>
@@ -248,35 +270,75 @@
     </div>
   </section>
 
-  <!-- ===== Resume (summary) ===== -->
+  <!-- ===== Resume ===== -->
   <section id="resume">
     <div class="wrap">
-      <h2>Resume (Summary)</h2>
-      <div class="resume-grid">
-        <div>
-          <h3>Summary</h3>
-          <p>Interaction Design student at Sheridan College specializing in prototyping and user testing. I build Arduino/web
-             prototypes and document decisions to drive iteration.</p>
-          <h3>Skills</h3>
-          <ul class="clean">
-            <li><strong>Design:</strong> user research, usability testing, wireframing, prototyping</li>
-            <li><strong>Technical:</strong> Arduino (sensors/I-O), HTML/CSS, basic JavaScript</li>
-            <li><strong>Workflow:</strong> scoping, versioning, build docs, test planning</li>
-            <li><strong>Tools:</strong> Adobe XD, Arduino IDE, code editors</li>
-          </ul>
-          <h3>Education</h3>
-          <p>Sheridan College — Interaction Design (IXD), Trafalgar Campus</p>
-        </div>
-        <div>
-          <h3>Selected Projects</h3>
-          <ul class="clean">
-            <li><a href="DESN18654V18/App-Store.html">DESN18654 — Learn Code App</a> — responsive card layout & hierarchy.</li>
-            <li><a href="DESN10799P3/index7.html">DESN10799 — Data Transparency</a> — interactive flow explanation.</li>
-            <li><a href="VDES15738P2/reese11.html">VDES15738 — Typographic system</a> — iterative exploration.</li>
-          </ul>
+      <h2>Resume</h2>
+      
+      <div id="resume-controls" class="no-print">
+        <button class="btn" id="printResume" aria-label="Download resume as PDF">Download PDF</button>
+      </div>
+
+      <article id="resume-full" class="resume-full printable">
+        <h2>Yiyang Zhang</h2>
+        <ul class="contact-list">
+          <li><span>Oakville, ON</span></li>
+          <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
+          <li><a href="tel:+17783187386">+1 (778) 318-7386</a></li>
+          <li><a href="https://ixd1239.phoenix.sheridanc.on.ca" target="_blank" rel="noopener">School Host</a></li>
+          <li><a href="https://antirender.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
+          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+
+        <h3>Summary</h3>
+        <p>Interaction Design student at Sheridan College specializing in prototyping and user testing. I build Arduino/web prototypes and document decisions to drive iteration.</p>
+
+        <h3>Skills</h3>
+        <ul>
+          <li><strong>Design:</strong> user research, usability testing, wireframing, prototyping</li>
+          <li><strong>Technical:</strong> Arduino (sensors/I-O), HTML/CSS, basic JavaScript</li>
+          <li><strong>Workflow:</strong> scoping, versioning, build docs, test planning</li>
+          <li><strong>Tools:</strong> Adobe XD, Arduino IDE, code editors</li>
+        </ul>
+
+        <h3>Education</h3>
+        <p>Sheridan College — Interaction Design (IXD), Trafalgar Campus</p>
+
+        <h3>Projects</h3>
+        <ul>
+          <li><a href="DESN18654V18/App-Store.html">DESN18654 — Learn Code App</a> — responsive card layout & hierarchy.</li>
+          <li><a href="DESN10799P3/index7.html">DESN10799 — Data Transparency</a> — interactive flow explanation.</li>
+          <li><a href="VDES15738P2/reese11.html">VDES15738 — Typographic system</a> — iterative exploration.</li>
+        </ul>
+      </article>
+
+      <div id="resume-summary">
+        <h3>Resume Summary</h3>
+        <div class="resume-grid">
+          <div>
+            <h3>Summary</h3>
+            <p>Interaction Design student at Sheridan College specializing in prototyping and user testing. I build Arduino/web
+               prototypes and document decisions to drive iteration.</p>
+            <h3>Skills</h3>
+            <ul class="clean">
+              <li><strong>Design:</strong> user research, usability testing, wireframing, prototyping</li>
+              <li><strong>Technical:</strong> Arduino (sensors/I-O), HTML/CSS, basic JavaScript</li>
+              <li><strong>Workflow:</strong> scoping, versioning, build docs, test planning</li>
+              <li><strong>Tools:</strong> Adobe XD, Arduino IDE, code editors</li>
+            </ul>
+            <h3>Education</h3>
+            <p>Sheridan College — Interaction Design (IXD), Trafalgar Campus</p>
+          </div>
+          <div>
+            <h3>Selected Projects</h3>
+            <ul class="clean">
+              <li><a href="DESN18654V18/App-Store.html">DESN18654 — Learn Code App</a> — responsive card layout & hierarchy.</li>
+              <li><a href="DESN10799P3/index7.html">DESN10799 — Data Transparency</a> — interactive flow explanation.</li>
+              <li><a href="VDES15738P2/reese11.html">VDES15738 — Typographic system</a> — iterative exploration.</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <!-- <p class="meta">Full PDF resume available on request.</p> -->
     </div>
   </section>
 
@@ -413,6 +475,10 @@
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Print resume functionality
+    const btn = document.getElementById('printResume');
+    if (btn) btn.addEventListener('click', () => window.print());
   </script>
 </body>
 </html>
