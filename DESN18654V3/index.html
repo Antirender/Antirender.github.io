@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickPick: Random Chooser</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="app-container">
+    <h1>QuickPick 🎲</h1>
+    <p class="subtitle">What should we choose for you?</p>
+
+    <div class="category-grid">
+      <button class="category-btn" data-category="food">🍔 Food(Main dish)</button>
+      <button class="category-btn" data-category="drink">🥤 Drink</button>
+      <button class="category-btn" data-category="dessert">🍰 Cakes(Dessert)</button>
+      <button class="category-btn" data-category="entertainment">🎮 Entertainment</button>
+    </div>
+
+    <div class="result-card hidden" id="resultBox">
+      <div class="result-loader">
+        <div class="loader">
+          <div class="dot-flashing"></div>
+          <span class="loading-text">LOADING</span>
+        </div>
+      </div>
+      <img id="resultImage" src="" alt="Result preview" class="result-image">
+      <p id="resultText" class="result-text">Your random pick will appear here!</p>
+      <button class="retry-btn" onclick="retrySelection()">⟳ Try Again</button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

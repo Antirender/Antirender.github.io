@@ -1,0 +1,242 @@
+:root {
+  --primary-color: #7c3aed;       
+  --hover-color: #5b21b6;        
+  --bg-color: #f8fafc;            
+  --surface-color: #cccdec;       
+  --text-primary: #1e293b;        
+  --text-secondary: #64748b;      
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: var(--bg-color);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  line-height: 1.5;
+  background: linear-gradient(45deg, 
+  #ff6b6b, 
+  #ff8e8e, 
+  #4ecdc4, 
+  #ffe66d);
+background-size: 400% 400%;
+animation: gradientFlow 10s ease infinite;
+}
+
+.app-container {
+  text-align: center;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.category-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.875rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.category-btn:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+  /* Start of code from MDN Web Docs */
+  box-shadow: 0 4px 12px rgba(92, 33, 182, 0.2);
+  /* End of code from MDN Web Docs */
+}
+
+.result-card {
+  position: relative;
+  background: var(--surface-color);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  opacity: 0;
+  transform: scale(0.95);
+  /* Start of code from MDN Web Docs */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* End of code from MDN Web Docs */
+}
+
+.result-card.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.result-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  margin: 1rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease 0.2s;
+}
+
+.result-image.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.result-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: none;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.dot-flashing {
+  position: relative;
+  width: 60px;
+  height: 20px;
+}
+
+.dot-flashing::before,
+.dot-flashing::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  animation: dotFlashing 1s infinite linear;
+}
+
+@keyframes dotFlashing {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+  40% { transform: translateY(-10px); opacity: 1; }
+}
+
+.loading-text {
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+.retry-btn {
+  background: none;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+.retry-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+@media (max-width: 1050px) {
+  .app-container {
+    max-width: 90%;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-btn {
+    padding: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .result-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  .app-container {
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .category-btn {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+  }
+
+  .result-text {
+    font-size: 1.1rem;
+  }
+
+  .retry-btn {
+    padding: 0.5rem 1rem;
+  }
+}
+
+
+.hidden {
+  display: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
