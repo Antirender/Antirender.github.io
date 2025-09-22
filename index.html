@@ -182,20 +182,20 @@
     </div>
   </header>
 
-  <!-- ===== Design Philosophy ===== -->
-  <section id="philosophy">
-    <div class="wrap">
-      <h2>Design Philosophy</h2>
-      <p>
-        I design for clarity and evidence. My process begins by defining the user task in measurable terms, then translating
-        concepts into testable prototypes—Arduino when interaction needs real-world I/O, and web demos for interface flows.
-        I document assumptions, constraints, and decisions so that each iteration is explainable and repeatable. Accessibility,
-        contrast, and typographic hierarchy are non-negotiable. Usability tests are lightweight and frequent; insights feed
-        directly into changes rather than long reports. I value small, inspectable modules and share in-progress work consistently
-        to invite critique. The goal is a solution reliable to use, easy to learn, and simple to maintain.
-      </p>
-    </div>
-  </section>
+<!-- ===== Design Philosophy ===== -->
+<section id="philosophy">
+  <div class="wrap">
+    <h2>Design Philosophy</h2>
+    <p>
+      I believe design should be clear and simple. I begin by asking what the user needs to do, and I make small tests to
+      check ideas. Sometimes I use hardware like Arduino, sometimes I use a quick web demo. Each step is written down so it
+      can be explained later. I think about access for everyone, using clear text, enough contrast, and easy navigation.
+      I test often in small ways and improve as I go. I prefer to build in small parts, show progress early, and make changes
+      easy when feedback comes in.
+    </p>
+  </div>
+</section>
+
 
   <!-- ===== Featured Work (2 items) ===== -->
   <section id="featured">
@@ -204,8 +204,8 @@
       <div class="grid">
         <article class="card" aria-labelledby="w1-title">
           <img src="image/learn-code-app.png" alt="Learn Code App interface preview">
-          <h3 id="w1-title">DESN18654 — Learn Code App</h3>
-          <p class="meta"><a href="DESN18654V18/App-Store.html">Open the live prototype</a></p>
+          <h3 id="w1-title">Learn Code — Building Pathways to Programming</h3>
+          <!-- <p class="meta"><a href="DESN18654V18/App-Store.html">Open the live prototype</a></p> -->
           <p>
             A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation (home →
             category → lesson) with consistent cards improves scanability. The layout is fully responsive and avoids custom
@@ -216,8 +216,8 @@
 
         <article class="card" aria-labelledby="w2-title">
           <img src="image/snapchat-data.png" alt="Data transparency prototype preview">
-          <h3 id="w2-title">DESN10799 — Snapchat Data Transparency</h3>
-          <p class="meta"><a href="DESN10799P3/index7.html">Open the live prototype</a></p>
+          <h3 id="w2-title">Snapchat Data Transparency — Designing for Clarity</h3>
+          <!-- <p class="meta"><a href="DESN10799P3/index7.html">Open the live prototype</a></p> -->
           <p>
             An interactive explanation of how personal data moves through the app. Steps are broken into short, visual chunks
             with clear verbs and buttons users can control. Testing focused on whether users could describe “what happens next”.
@@ -228,47 +228,49 @@
     </div>
   </section>
 
-  <!-- ===== Process Case Study (one longer outline) ===== -->
+  <!-- ===== Process Case Study  ===== -->
   <section id="process">
     <div class="wrap">
-      <h2>Process Case Study — Snapchat Data Transparency</h2>
+      <h2>Case Study — Making Data Use Visible</h2>
       <div class="two-col">
         <div>
-          <h3>Problem & Role</h3>
-          <p>Users struggle to understand how their data is collected and used inside a social app. I was the sole interaction designer and prototyper.</p>
-          <h3>Constraints</h3>
+          <h3>Context</h3>
+          <p>People rarely know what happens to their content once it’s shared. My role was to translate privacy language into an interface that feels direct, visual, and easy to act on.</p>
+          
+          <h3>Approach</h3>
           <ul class="clean">
-            <li>Mobile-first; single-page; readable on small screens.</li>
-            <li>No heavy libraries; keep performance and accessibility reliable.</li>
+            <li>Designed mobile-first screens that stay readable on small devices.</li>
+            <li>Kept interactions lightweight, fast, and accessible without extra libraries.</li>
+            <li>Mapped a simple story: <em>Collect → Process → Control</em>.</li>
           </ul>
-          <h3>Research & Framing</h3>
+
+          <h3>Design Moves</h3>
           <ul class="clean">
-            <li>Reviewed platform privacy docs; rewrote steps in plain language.</li>
-            <li>Mapped a simple data-flow “Collect → Process → Control”.</li>
+            <li>Used progressive disclosure to reduce overload.</li>
+            <li>High-contrast typography and direct labels instead of abstract icons.</li>
+            <li>No hidden or sticky UI that blocks screen readers.</li>
           </ul>
-          <h3>Prototyping</h3>
+
+          <h3>Validation</h3>
           <ul class="clean">
-            <li>Progressive disclosure to avoid overload; high-contrast type; clear buttons.</li>
-            <li>Avoided hidden/sticky UI that harms screen readers.</li>
+            <li>Test prompt: “Show me what happens to your story after you post.”</li>
+            <li>Clearer answers from users, fewer wrong taps, more confidence in flow.</li>
           </ul>
-          <h3>Testing → Iteration</h3>
+
+          <h3>Impact & Next Steps</h3>
           <ul class="clean">
-            <li>Task: “Explain what happens to your story after you post.”</li>
-            <li>Replaced ambiguous icons with verbs; adjusted labels to sentence-case.</li>
-          </ul>
-          <h3>Outcome & Next</h3>
-          <ul class="clean">
-            <li>Users describe the flow more accurately; fewer back-and-forth taps.</li>
-            <li>Next: add a glossary + “download my data” walkthrough.</li>
+            <li>Improved comprehension of data movement inside the app.</li>
+            <li>Future additions: a plain-language glossary and a “download my data” path.</li>
           </ul>
         </div>
         <aside>
-          <img src="image/process-wireframe.png" alt="Process diagram or wireframe (replace with your image)">
+          <img src="image/process-wireframe.png" alt="Wireframe diagram of data flow interface">
           <p><a class="btn" href="image/Snapchat.pdf">Open Case Study Prototype</a></p>
         </aside>
       </div>
     </div>
   </section>
+
 
   <!-- ===== Resume ===== -->
   <section id="resume">
@@ -304,13 +306,14 @@
         <h3>Education</h3>
         <p>Sheridan College — Interaction Design (IXD), Trafalgar Campus</p>
 
-        <h3>Projects</h3>
-        <ul>
-          <li><a href="DESN18654V18/App-Store.html">DESN18654 — Learn Code App</a> — responsive card layout & hierarchy.</li>
-          <li><a href="DESN10799P3/index7.html">DESN10799 — Data Transparency</a> — interactive flow explanation.</li>
-          <li><a href="VDES15738P2/reese11.html">VDES15738 — Typographic system</a> — iterative exploration.</li>
-        </ul>
+      <h3>Projects</h3>
+      <ul>
+        <li><a href="DESN18654V18/App-Store.html">Learn Code — Interactive Learning App</a> — responsive card layout & hierarchy.</li>
+        <li><a href="DESN10799P3/index7.html">Making Data Use Visible</a> — interactive flow explanation.</li>
+        <li><a href="VDES15738P2/reese11.html">Typographic Systems Exploration</a> — iterative exploration.</li>
+      </ul>
       </article>
+
 
       <div id="resume-summary">
         <h3>Resume Summary</h3>
@@ -331,119 +334,130 @@
           </div>
           <div>
             <h3>Selected Projects</h3>
-            <ul class="clean">
-              <li><a href="DESN18654V18/App-Store.html">DESN18654 — Learn Code App</a> — responsive card layout & hierarchy.</li>
-              <li><a href="DESN10799P3/index7.html">DESN10799 — Data Transparency</a> — interactive flow explanation.</li>
-              <li><a href="VDES15738P2/reese11.html">VDES15738 — Typographic system</a> — iterative exploration.</li>
-            </ul>
+          <ul class="clean">
+            <li><a href="DESN18654V18/App-Store.html">Learn Code — Interactive Learning App</a> — exploring clarity through interface structure.</li>
+            <li><a href="DESN10799P3/index7.html">Making Data Use Visible</a> — designing flows that explain themselves.</li>
+            <li><a href="VDES15738P2/reese11.html">Typographic Systems Exploration</a> — studying rhythm and hierarchy in type.</li>
+          </ul>
+
           </div>
         </div>
       </div>
     </div>
   </section>
+<!-- =====  dropdown menus===== -->
+<section id="more">
+  <div class="wrap">
+    <h2>More Work — quick jumps</h2>
 
-  <!-- ===== Your original dropdown menus (kept exactly) ===== -->
-  <section id="more">
-    <div class="wrap">
-      <h2>More Work (dropdowns & quick links)</h2>
+    <ul class="main-projects">
+      <!-- Learn Code (V1–V18) -->
+      <li class="selector">
+        <select aria-label="Jump to Learn Code versions" onchange="window.location.href=this.value">
+          <option value="" selected disabled>Learn Code — Versions</option>
+          <option value="DESN18654V1/index.html">Version 1</option>
+          <option value="DESN18654V2/index.html">Version 2</option>
+          <option value="DESN18654V3/index.html">Version 3</option>
+          <option value="DESN18654V4/index.html">Version 4</option>
+          <option value="DESN18654V5/index.html">Version 5</option>
+          <option value="DESN18654V6/index.html">Version 6</option>
+          <option value="DESN18654V7/index.html">Version 7</option>
+          <option value="DESN18654V8/index.html">Version 8</option>
+          <option value="DESN18654V9/index.html">Version 9</option>
+          <option value="DESN18654V10/index.html">Version 10</option>
+          <option value="DESN18654V11/index.html">Version 11</option>
+          <option value="DESN18654V12/index.html">Version 12</option>
+          <option value="DESN18654V13/index.html">Version 13</option>
+          <option value="DESN18654V14/index.html">Version 14</option>
+          <option value="DESN18654V15/index.html">Version 15</option>
+          <option value="DESN18654V16/index.html">Version 16</option>
+          <option value="DESN18654V17/index.html">Version 17</option>
+          <option value="DESN18654V18/App-Store.html">Version 18 — App Store demo</option>
+        </select>
+      </li>
 
-      <ul class="main-projects">
-        <li class="selector">
-          <select onchange="window.location.href=this.value">
-            <option value="" selected disabled>DESN18654 V1-V14</option>
-            <option value="DESN18654V1/index.html">DESN18654 V1</option>
-            <option value="DESN18654V2/index.html">DESN18654 V2</option>
-            <option value="DESN18654V3/index.html">DESN18654 V3</option>
-            <option value="DESN18654V4/index.html">DESN18654 V4</option>
-            <option value="DESN18654V5/index.html">DESN18654 V5</option>
-            <option value="DESN18654V6/index.html">DESN18654 V6</option>
-            <option value="DESN18654V7/index.html">DESN18654 V7</option>
-            <option value="DESN18654V8/index.html">DESN18654 V8</option>
-            <option value="DESN18654V9/index.html">DESN18654 V9</option>
-            <option value="DESN18654V10/index.html">DESN18654 V10</option>
-            <option value="DESN18654V11/index.html">DESN18654 V11</option>
-            <option value="DESN18654V12/index.html">DESN18654 V12</option>
-            <option value="DESN18654V13/index.html">DESN18654 V13</option>
-            <option value="DESN18654V14/index.html">DESN18654 V14</option>
-            <option value="DESN18654V15/index.html">DESN18654 V15</option>
-            <option value="DESN18654V16/index.html">DESN18654 V16</option>
-            <option value="DESN18654V17/index.html">DESN18654 V17</option>
-            <option value="DESN18654V18/App-Store.html">DESN18654 V18</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select onchange="window.location.href=this.value">
-            <option value="" selected disabled>DESN19428 GSGC V1-V6</option>
-            <option value="v1/index.html">DESN19428 V1</option>
-            <option value="v2/index.html">DESN19428 V2</option>
-            <option value="v3/index.html">DESN19428 V3</option>
-            <option value="v4/index.html">DESN19428 V4</option>
-            <option value="v5/index.html">DESN19428 V5</option>
-            <option value="v6/index.html">DESN19428 V6</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select onchange="window.location.href=this.value">
-            <option value="" selected disabled>DESN22848 Projects</option>
-            <option value="DESN22848/index.html">DESN22848</option>
-            <option value="DESN22848P2/index.html">DESN22848 P2</option>
-            <option value="DESN22848P3/index.html">DESN22848 P3</option>
-            <option value="DESN22848V1/index.html">DESN22848 V1</option>
-            <option value="DESN22848V2/index.html">DESN22848 V2</option>
-            <option value="DESN22848V3/index.html">DESN22848 V3</option>
-            <option value="DESN22848V4/index.html">DESN22848 V4</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select onchange="window.location.href=this.value">
-            <option value="" selected disabled>VDES15738 Projects</option>
-            <option value="VDES15738P1/index.html">VDES15738 P1</option>
-            <option value="VDES15738P2/index.html">VDES15738 P2</option>
-            <option value="VDES15738P3/index.html">VDES15738 P3</option>
-            <option value="VDES15738P3V1/index.html">VDES15738 P3V1</option>
-            <option value="VDES15738P3V2/index.html">VDES15738 P3V2</option>
-            <option value="VDES15738P3V3/index.html">VDES15738 P3V3</option>
-            <option value="VDES15738P3V4/index.html">VDES15738 P3V4</option>
-            <option value="VDES15738P3V5/index.html">VDES15738 P3V5</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select onchange="window.location.href=this.value">
-            <option value="" selected disabled>Game Projects</option>
-            <option value="g1/index.html">Game 1</option>
-            <option value="g2/index.html">Game 2</option>
-            <option value="g3/index.html">Game 3</option>
-            <option value="g4v1/index.html">Game 4V1</option>
-            <option value="power-calculator/index.html">power-calculator</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select onchange="window.location.href=this.value">
-            <option value="" selected disabled>DESN10799 Projects</option>
-            <option value="DESN10799/index.html">DESN10799</option>
-            <option value="DESN10799P3/index.html">DESN10799P3V1</option>
-            <option value="DESN10799P3/index2.html">DESN10799P3V2</option>
-            <option value="DESN10799P3/index3.html">DESN10799P3V3</option>
-            <option value="DESN10799P3/index4.html">DESN10799P3V4</option>
-            <option value="DESN10799P3/index5.html">DESN10799P3V5</option>
-            <option value="DESN10799P3/index6.html">DESN10799P3V6</option>
-            <option value="DESN10799P3/index7.html">DESN10799P3V7</option>
-          </select>
-        </li>
-      </ul>
+      <!-- GSGC (V1–V6) -->
+      <li class="selector">
+        <select aria-label="Jump to GSGC versions" onchange="window.location.href=this.value">
+          <option value="" selected disabled>GSGC — Versions</option>
+          <option value="v1/index.html">Version 1</option>
+          <option value="v2/index.html">Version 2</option>
+          <option value="v3/index.html">Version 3</option>
+          <option value="v4/index.html">Version 4</option>
+          <option value="v5/index.html">Version 5</option>
+          <option value="v6/index.html">Version 6</option>
+        </select>
+      </li>
 
-      <ul class="card-grid">
-        <li class="card"><a href="DESN30146P1/index.html">DESN30146P1</a></li>
-        <li class="card"><a href="DESN31927V1/index.html">DESN31927V1</a></li>
-        <li class="card"><a href="l1/index.html">VDES19798Logo</a></li>
-        <li class="card"><a href="pinzuo/index.html">Pinzuo</a></li>
-        <li class="card"><a href="pinzuoV2/index.html">PinzuoV2</a></li>
-        <li class="card"><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
-        <li class="card"><a href="Milk/index.html">Milk Calculator</a></li>
-        <li class="card"><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
-      </ul>
-    </div>
-  </section>
+      <!-- Interactive Prototype (DESN22848) -->
+      <li class="selector">
+        <select aria-label="Jump to Interactive Prototype versions" onchange="window.location.href=this.value">
+          <option value="" selected disabled>Interactive Prototype — Versions</option>
+          <option value="DESN22848/index.html">Overview</option>
+          <option value="DESN22848P2/index.html">Project 2</option>
+          <option value="DESN22848P3/index.html">Project 3</option>
+          <option value="DESN22848V1/index.html">Version 1</option>
+          <option value="DESN22848V2/index.html">Version 2</option>
+          <option value="DESN22848V3/index.html">Version 3</option>
+          <option value="DESN22848V4/index.html">Version 4</option>
+        </select>
+      </li>
+
+      <!-- Typographic Systems (VDES15738) -->
+      <li class="selector">
+        <select aria-label="Jump to Typographic Systems variants" onchange="window.location.href=this.value">
+          <option value="" selected disabled>Typographic Systems — Variants</option>
+          <option value="VDES15738P1/index.html">Project 1</option>
+          <option value="VDES15738P2/index.html">Project 2</option>
+          <option value="VDES15738P3/index.html">Project 3</option>
+          <option value="VDES15738P3V1/index.html">Variant V1</option>
+          <option value="VDES15738P3V2/index.html">Variant V2</option>
+          <option value="VDES15738P3V3/index.html">Variant V3</option>
+          <option value="VDES15738P3V4/index.html">Variant V4</option>
+          <option value="VDES15738P3V5/index.html">Variant V5</option>
+        </select>
+      </li>
+
+      <!-- Game Prototypes -->
+      <li class="selector">
+        <select aria-label="Jump to Game prototypes" onchange="window.location.href=this.value">
+          <option value="" selected disabled>Game Prototypes</option>
+          <option value="g1/index.html">Prototype 1</option>
+          <option value="g2/index.html">Prototype 2</option>
+          <option value="g3/index.html">Prototype 3</option>
+          <option value="g4v1/index.html">Prototype 4 (V1)</option>
+          <option value="power-calculator/index.html">Power Calculator</option>
+        </select>
+      </li>
+
+      <!-- Data Transparency (DESN10799) -->
+      <li class="selector">
+        <select aria-label="Jump to Data Transparency versions" onchange="window.location.href=this.value">
+          <option value="" selected disabled>Data Transparency — Versions</option>
+          <option value="DESN10799/index.html">Overview</option>
+          <option value="DESN10799P3/index.html">V1</option>
+          <option value="DESN10799P3/index2.html">V2</option>
+          <option value="DESN10799P3/index3.html">V3</option>
+          <option value="DESN10799P3/index4.html">V4</option>
+          <option value="DESN10799P3/index5.html">V5</option>
+          <option value="DESN10799P3/index6.html">V6</option>
+          <option value="DESN10799P3/index7.html">V7</option>
+        </select>
+      </li>
+    </ul>
+
+    <ul class="card-grid">
+      <li class="card"><a href="DESN30146P1/index.html">Interactive Circuits — P1</a></li>
+      <li class="card"><a href="DESN31927V1/index.html">System Design — V1</a></li>
+      <li class="card"><a href="l1/index.html">Logo Study</a></li>
+      <li class="card"><a href="pinzuo/index.html">Pinzuo</a></li>
+      <li class="card"><a href="pinzuoV2/index.html">Pinzuo — V2</a></li>
+      <li class="card"><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
+      <li class="card"><a href="Milk/index.html">Milk Calculator</a></li>
+      <li class="card"><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
+    </ul>
+  </div>
+</section>
 
   <footer class="wrap" style="color:var(--muted)">
     © <span id="year"></span> Yiyang Zhang 
