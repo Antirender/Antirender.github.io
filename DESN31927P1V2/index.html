@@ -6,6 +6,9 @@
   <title>Real Weather</title>
   <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<!-- External library: Font Awesome v6.4.0 -->
+<!-- Source: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css -->
+<!-- Reference: https://docs.fontawesome.com/ -->
   <style>
     :root{
       --bg: #f6f7fb;
@@ -14,7 +17,6 @@
       --glass: rgba(255,255,255,.7);
       --shadow: 0 10px 30px rgba(20,24,40,.08);
       --accent: #111827;
-
       --color-temp:#ff4d4f; 
       --color-rain:#1f7ae0;
       --color-wind:#16a34a;
@@ -33,16 +35,20 @@
     html, body{height:100%; margin:0; padding:0;}
     body{margin:0; font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, #ffffffaa, transparent), var(--bg); display:flex; flex-direction:column;}
     .wrap{max-width:980px; width:100%; margin:0 auto; padding:40px 20px; flex:1;}
+/* Reference: CSS Specificity — MDN Web Docs 
+   Source: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Specificity */
     header{display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:18px}
     .brand{font-size:22px; font-weight:700; letter-spacing:.2px}
     .row{display:flex; gap:10px; flex-wrap:wrap}
     .input{flex:1 1 360px; display:flex; gap:10px}
     input[type="search"]{flex:1; padding:12px 14px; border-radius:999px; border:1px solid #e5e7eb; background:var(--glass); backdrop-filter: blur(14px); color:var(--text)}
+/* Reference: W3Schools - CSS backdrop-filter Property https://www.w3schools.com/cssref/css3_pr_backdrop-filter.php */
     .btn{padding:10px 14px; border-radius:999px; border:0; background:#111827; color:#fff; cursor:pointer}
     .btn.secondary{background:#eef2ff; color:#111827}
     [data-theme="dark"] .btn.secondary{background:#1f2937;color:#e5e7eb}
     .btn.ghost{background:transparent; color:var(--accent); border:1px solid #cbd5e1}
     .grid{display:grid; grid-template-columns:1fr; gap:16px}
+/* Reference: CSS-Tricks — grid-template-columns https://css-tricks.com/almanac/properties/g/grid/grid-template-columns/ */
     .card{background:var(--glass); backdrop-filter: blur(14px); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:var(--space-xl)}
     .muted{color:var(--muted)}
     .chip{font-size:12px; padding:4px 10px; border-radius:999px; background:rgba(0,0,0,.06)}
@@ -50,6 +56,7 @@
     .method-chip{white-space:nowrap; font-weight:500}
     .method-value{font-weight:600}
     .title{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px}
+/* Reference: CSS-Tricks — justify-content https://css-tricks.com/almanac/properties/j/justify-content/ */
     /* widget */
     .rf{display:grid; grid-template-columns: 1.2fr 2fr; gap:16px; align-items:center}
     .rf-value{font-size:48px; font-weight:800; color:var(--color-temp); line-height:1}
@@ -94,7 +101,8 @@
     .uv-header{color:var(--color-uv);}
     
     /* Data visualization */
-    .visual-container{margin:16px 0; border-radius:var(--radius-md); padding:16px; background:rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.04); transition:background 0.3s, border-color 0.3s;}
+    .visual-container{margin:16px 0; border-radius:var(--radius-md); padding:16px; background:rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.04); transition:background-color 0.3s, border-color 0.3s;}
+/* Reference: MDN Web Docs - CSS transition https://developer.mozilla.org/en-US/docs/Web/CSS/transition */
     [data-theme="dark"] .visual-container{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.08);}
     .gauge-container{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-around; margin:16px 0;}
     .gauge{position:relative; width:120px; text-align:center; transition:0.3s ease;}
@@ -111,6 +119,7 @@
   </style>
 </head>
 <body>
+  <!-- learn this code from Weekly Tutorials (Mark Shufflebottom) -->
   <div class="wrap">
     <header>
       <div class="brand"><i class="fa-solid fa-cloud-sun"></i> Weather Advisor · Real Weather</div>
@@ -118,7 +127,7 @@
         <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i> Dark mode</button>
       </div>
     </header>
-
+<!-- learn this code from Weekly Tutorials (Mark Shufflebottom) -->
     <div class="row input">
       <div style="position:relative; flex:1;">
         <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:14px; top:14px; color:var(--muted);"></i>
@@ -127,7 +136,7 @@
       <button id="btn-search" class="btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
       <button id="btn-loc" class="btn secondary" title="Use my location"><i class="fa-solid fa-location-dot"></i> Use my location</button>
     </div>
-
+<!-- learn this code from Weekly Tutorials (Mark Shufflebottom) -->
     <main class="grid" style="margin-top:12px">
       <section class="card" aria-labelledby="rf-title">
         <div class="title">
@@ -156,6 +165,7 @@
         <div class="visual-container">
           <div id="gauge-container" class="gauge-container">
             <!-- Gauges will be inserted here -->
+                   <!-- ChatGPT assisted in designing this update logic  Reference: https://chatgpt.com/share/68d5c2f7-11c0-800c-9413-35965a3f940b -->
           </div>
         </div>
 
@@ -174,10 +184,15 @@
     Data: <i class="fa-solid fa-database"></i> Open-Meteo (forecast & geocoding).
   </footer>
   
-  <!-- Modal -->
+    <!-- Modal -->
+    <!-- Reference: W3Schools — How To - CSS/JS Modal https://www.w3schools.com/howto/howto_css_modals.asp -->
   <div id="explanation-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
+        <!-- Modal: Weather Factors Explained -->
+        <!-- AI Assistance: Content and explanations were generated/refined with ChatGPT (OpenAI, 2025) -->
+        <!-- Reference: https://chatgpt.com/share/68d5c660-6fe8-800c-8672-e6067af1966f -->
+        <!-- Add more details by myself -->
         <h2><i class="fa-solid fa-circle-info"></i> Weather Factors Explained</h2>
         <button id="modal-close" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
       </div>
@@ -218,12 +233,18 @@
 
   <script>
     // ===== Theme toggle =====
+    // Reference: W3Schools — JavaScript const
+    // Source: https://www.w3schools.com/js/js_const.asp
     const root = document.documentElement;
     document.getElementById('theme-toggle').onclick = () => {
       const dark = root.getAttribute('data-theme') === 'dark';
       root.setAttribute('data-theme', dark ? 'light' : 'dark');
+      // Reference: W3Schools — HTML DOM document.documentElement
+      // https://www.w3schools.com/jsref/prop_document_documentelement.asp
       document.getElementById('theme-toggle').innerHTML = dark ? '<i class="fa-solid fa-moon"></i> Dark mode' : '<i class="fa-solid fa-sun"></i> Light mode';
       // Redraw gauges with proper text colors for the new theme
+      // ChatGPT assisted in designing this update logic
+      // Reference: https://chatgpt.com/share/68d5c2f7-11c0-800c-9413-35965a3f940b
       if (latestWeatherData) {
         createGauges(latestWeatherData);
       }
@@ -234,7 +255,7 @@
     const set = (id, text) => (document.getElementById(id).textContent = text);
     const DEBUG = false;
     
-    // Modal handling
+    // Modal handling 
     const modal = document.getElementById('explanation-modal');
     const modalClose = document.getElementById('modal-close');
     const learnMore = document.getElementById('learn-more');
@@ -256,7 +277,8 @@
     // Gauge charts
     let gauges = null;
     let latestWeatherData = null;
-    
+      // ChatGPT assisted in designing this update logic
+      // Reference: https://chatgpt.com/share/68d5c2f7-11c0-800c-9413-35965a3f940b
     function createGauges(data) {
       // Store latest data for theme switching
       latestWeatherData = data;
@@ -287,7 +309,8 @@
     function createGauge(id, label, value, min, max, unit, color, container, textColor) {
       const gaugeDiv = document.createElement('div');
       gaugeDiv.className = 'gauge';
-      
+      // ChatGPT assisted in designing this update logic
+      // Reference: https://chatgpt.com/share/68d5c2f7-11c0-800c-9413-35965a3f940b
       const canvas = document.createElement('canvas');
       canvas.id = id;
       canvas.width = 120;
@@ -339,6 +362,8 @@
       ctx.strokeStyle = strokeColor;
       ctx.stroke();
       
+      // ChatGPT assisted in designing this update logic
+      // Reference: https://chatgpt.com/share/68d5c2f7-11c0-800c-9413-35965a3f940b
       // Draw value text with proper color
       ctx.save();
       ctx.fillStyle = textColor;
@@ -431,6 +456,8 @@
                       (abs < 6 ? 'notably different from' : 'significantly different from'));
       
       // Enhanced humidity explanation
+      // AI Assistance: This explanatory text logic was generated/refined with ChatGPT (OpenAI, 2025)
+      // Reference: https://chatgpt.com/share/68d5ca2b-24ec-800c-9d7b-fd52ddfe1d87
       let humTxt = '';
       if (RH >= 80) {
         humTxt = 'Very high humidity ('+RH+'%) severely reduces sweat evaporation, causing the air to feel much warmer and potentially uncomfortable.';
@@ -445,6 +472,8 @@
       }
       
       // Enhanced wind explanation
+      // AI Assistance: This explanatory text logic was modified from ChatGPT output (OpenAI, 2025)
+      // Reference: https://chatgpt.com/share/68d5ca2b-24ec-800c-9d7b-fd52ddfe1d87
       let windTxt = '';
       if (Vkmh >= 40) {
         windTxt = 'Strong wind ('+Vkmh+' km/h) significantly increases convective cooling, making it feel much cooler than the actual temperature.';
@@ -459,6 +488,8 @@
       }
       
       // UV explanation with specific advice
+            // AI Assistance: This explanatory text logic was modified from ChatGPT output (OpenAI, 2025)
+      // Reference: https://chatgpt.com/share/68d5ca2b-24ec-800c-9d7b-fd52ddfe1d87
       let uvTxt = '';
       if (UV !== null && UV !== undefined) {
         if (UV >= 11) {
@@ -473,7 +504,7 @@
           uvTxt = `**UV Radiation:** Low UV index (${UV}) - No special protection needed for average skin types.`;
         }
       }
-      
+
       // Combined effect explanation
       let combinedTxt = '';
       if (delta > 3 && RH > 60) {
@@ -499,7 +530,10 @@
       };
     }
 
-    // ---- Data: Open-Meteo ----
+    // ==== Data: Open-Meteo ====
+    // External API: Open-Meteo Geocoding API & Forecast API
+    // Geocoding Docs: https://open-meteo.com/en/docs/geocoding-api
+    // Forecast Docs: https://open-meteo.com/en/docs/
     async function geocode(city){
       const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
       const r = await fetch(url); if(!r.ok) throw new Error('Geocoding failed');
@@ -508,6 +542,7 @@
       const { latitude, longitude, name, country, admin1 } = j.results[0];
       return { lat: latitude, lon: longitude, label: [name, admin1, country].filter(Boolean).join(', ') };
     }
+        // Reference: W3Schools — JavaScript Functions https://www.w3schools.com/js/js_functions.asp
     async function fetchCurrent(lat, lon){
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}`
         + `&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,uv_index`
@@ -541,7 +576,8 @@
       set('rf-delta', `vs actual ${Math.round(now.T)}°C (${delta>0?'+':''}${delta}°C)`);
       set('rf-summary', exp.headline);
       
-      // Add icons to bullet points with semantic colors
+      // Add fontawesome icon to bullet points with semantic colors
+      // Reference: https://docs.fontawesome.com/
       const html = exp.bullets.map(t=>{
         const m=t.match(/^\*\*(.+?)\:\*\*\s*(.*)$/);
         if (m) {
@@ -578,8 +614,9 @@
       createGauges(now);
 
       if (DEBUG) console.log(label, now, real, exp);
-      
-      // Apply unified colors - each metric always uses its designated color
+      //debug
+
+      // Apply unified colors, annotation is for personal reference to remember color only
       document.getElementById('rf-temp').style.color = 'var(--color-temp)';    // 红色 #ff4d4f
       document.getElementById('rf-rh').style.color = 'var(--color-rain)';      // 蓝色 #1f7ae0  
       document.getElementById('rf-wind').style.color = 'var(--color-wind)';    // 绿色 #16a34a
@@ -587,6 +624,8 @@
     }
 
     // ---- Handlers ----
+    // AI Assistance: This handler structure was refined with ChatGPT (OpenAI, 2025)
+    // Reference: https://chatgpt.com/s/t_68d5c7d0b0688191959cf96ec77a7a96
     async function goCity(q){
       try{
         const {lat, lon, label} = await geocode(q);
@@ -618,7 +657,8 @@
 
    goCity('Toronto');
    
-   // Initialize theme toggle button with correct icon
+   // Initialize theme toggle button with fontawesome icon
+   // Reference: https://docs.fontawesome.com/ 
    const initialDark = root.getAttribute('data-theme') === 'dark';
    document.getElementById('theme-toggle').innerHTML = initialDark ? 
      '<i class="fa-solid fa-sun"></i> Light mode' : 
@@ -626,3 +666,5 @@
   </script>
 </body>
 </html>
+<!-- end,finally!!!!!!!!!!! -->
+ <!-- time cost to finish this project: around 156h -->
