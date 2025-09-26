@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>你 被 骗 了 播 放 器</title>
+  <link rel="icon" href="img/favicon.ico">
+  <style>
+/* =================== 主题与基础变量 =================== */
+    :root{
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.18);
+      --blur: 14px;
+      --accent: #7c5cff;
+    }
+    body.light {
+      --bg: #f7f8fb;
+      --fg: #1f2430;
+      --muted: #5b6275;
+      --card: rgba(255,255,255,.6);
+      --stroke: rgba(0,0,0,.08);
+      --accent: #6b8cff;
+      color-scheme: light;
+    }
+    body.dark  {
+      --bg: #0b0f1a;
+      --fg: #e9ecf2;
+      --muted: #a7b0c3;
+      --card: rgba(20,24,38,.45);
+      --stroke: rgba(255,255,255,.08);
+      --accent: #8a7cff;
+      color-scheme: dark;
+    }
+
+/* =================== 布局与背景 =================== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; padding:24px;
+      background:
+        radial-gradient(60vmax 60vmax at 15% 10%, rgba(124,92,255,.20), transparent 60%),
+        radial-gradient(60vmax 60vmax at 85% 90%, rgba(0,200,255,.20), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg));
+      color:var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    /* 漂浮的柔光粒子 */
+    .glow{
+      position:fixed; inset:-20vmax;
+      background:
+        radial-gradient(120px 120px at 10% 20%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(140px 140px at 90% 80%, rgba(255,255,255,.05), transparent 60%),
+        radial-gradient(90px 90px at 70% 10%, rgba(255,255,255,.05), transparent 60%);
+      filter: blur(8px);
+      animation: drift 22s linear infinite alternate;
+      pointer-events:none;
+      z-index:0;
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0) scale(1.0); }
+      100%{ transform: translate3d(-3vmax,2vmax,0) scale(1.02); }
+    }
+
+/* =================== 顶部栏 =================== */
+    #topbar{
+      position:fixed; top:14px; left:16px; z-index:5;
+      display:flex; align-items:center; gap:8px;
+      user-select:none;
+    }
+    #topbar img{
+      width:28px; height:28px; cursor:pointer; filter: drop-shadow(0 2px 6px rgba(0,0,0,.2));
+      transition: transform .18s ease;
+    }
+    #topbar img:hover{ transform: scale(1.05) rotate(-5deg); }
+
+    .btn{
+      appearance:none; border:none; outline: none;
+      padding:10px 14px; border-radius:10px;
+      background: var(--card);
+      border:1px solid var(--stroke);
+      color:var(--fg); font-weight:600; letter-spacing:.2px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      transition: transform .12s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+
+/* =================== 卡片容器 =================== */
+    .card{
+      position:relative;
+      width:min(900px, 92vw);
+      border-radius: var(--radius);
+      padding: clamp(18px, 3.6vw, 28px);
+      background: var(--card);
+      border:1px solid var(--stroke);
+      backdrop-filter: blur(calc(var(--blur) + 2px));
+      -webkit-backdrop-filter: blur(calc(var(--blur) + 2px));
+      box-shadow: var(--shadow);
+      z-index:1;
+    }
+    .title{
+      margin: 0 0 8px; text-align:center; font-size: clamp(20px, 3.5vw, 32px);
+      letter-spacing:.2em; font-weight:800;
+      text-shadow: 0 2px 18px rgba(138,124,255,.35);
+    }
+
+/* =================== 播放区与控件 =================== */
+    #player{ display:none; flex-direction:column; gap:16px; align-items:center; }
+    #player.active{ display:flex; }
+
+    #controls{
+      display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center;
+      margin-top: 6px;
+    }
+    .control{
+      position:relative;
+      padding:12px 18px; border-radius:12px;
+      background: linear-gradient(180deg, rgba(138,124,255,.20), rgba(138,124,255,.12));
+      border:1px solid rgba(138,124,255,.35);
+      color:var(--fg); font-weight:700;
+      letter-spacing:.3px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 10px 30px rgba(138,124,255,.20);
+    }
+    .control::after{ /* 轻微高光 */
+      content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), transparent 40%);
+      mix-blend-mode: screen;
+    }
+
+    /* 加载状态条 */
+    #status{
+      font-size:.95rem; color:var(--muted);
+      text-align:center; margin-top:2px;
+    }
+
+/* =================== 歌词可视化 =================== */
+    #lyric{
+      display:flex; align-items:center; justify-content:center; flex-wrap:wrap;
+      gap:10px 8px; margin: 10px 0 6px; width:100%;
+      min-height: 56px;
+    }
+    .word{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+      font-weight:700; letter-spacing:.06em;
+      transform: translateZ(0);
+      transition: transform .25s ease, box-shadow .25s ease, color .25s ease, background .25s ease, border-color .25s ease;
+      will-change: transform;
+    }
+    .word.active{
+      transform: translateY(-2px) scale(1.04);
+      color: #fff;
+      background: radial-gradient(120% 120% at 50% 30%, var(--accent), rgba(124,92,255,.45));
+      border-color: rgba(124,92,255,.6);
+      text-shadow: 0 0 26px rgba(124,92,255,.8), 0 0 12px rgba(0,200,255,.6);
+      box-shadow: 0 10px 30px rgba(124,92,255,.35);
+      animation: throb .7s ease;
+    }
+    @keyframes throb{
+      0%{ transform: translateY(0) scale(1); }
+      50%{ transform: translateY(-2px) scale(1.07); }
+      100%{ transform: translateY(-2px) scale(1.04); }
+    }
+    .arrow{ opacity:.45; font-size:1.2rem; user-select:none; }
+
+/* =================== 频谱可视化 =================== */
+    #vizWrap{ width:100%; }
+    #viz{
+      width:100%; height: 120px; display:block;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+      border-radius: 12px; border:1px solid var(--stroke);
+      box-shadow: inset 0 -10px 30px rgba(0,0,0,.08);
+    }
+
+/* =================== 背景图（轻微视差） =================== */
+    #bgImage{
+      display:block; width:min(720px, 86%); max-width: 86%;
+      margin: 8px auto 0;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      box-shadow: 0 16px 48px rgba(0,0,0,.20);
+      transition: transform .2s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+/* =================== INFO 页 =================== */
+    #info{ display:none; }
+    #info.active{ display:block; }
+    .muted{ color:var(--muted); }
+    ul{ margin:.4rem 0 0 1.2rem; }
+    li{ margin:.2rem 0; }
+
+    @media (max-width: 520px){
+      .control{ padding:10px 14px; }
+      #viz{ height:92px; }
+      #bgImage{ width:92%; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body class="light">
+  <div class="glow" aria-hidden="true"></div>
+
+  <!-- 顶部栏 -->
+  <div id="topbar">
+    <img src="img/favicon.ico" alt="logo" onclick="showInfo()" title="关于 / INFO">
+    <button id="infoBtn" class="btn" onclick="showInfo()">ABOUT / INFO</button>
+  </div>
+
+  <!-- 播放器卡片 -->
+  <div class="card" id="player" class="active" aria-live="polite">
+    <h1 class="title">你 被 骗 了 播 放 器</h1>
+
+    <!-- 歌词可视化 -->
+    <div id="lyric" aria-label="歌词可视化"></div>
+
+    <!-- 频谱可视化 -->
+    <div id="vizWrap">
+      <canvas id="viz"></canvas>
+    </div>
+
+    <!-- 控件 -->
+    <div id="controls">
+      <button id="playBtn" class="btn control" onclick="togglePlay()" aria-pressed="false">开始播放</button>
+      <button id="modeBtn" class="btn control" onclick="toggleMode()">dark mode</button>
+    </div>
+    <div id="status" class="muted">正在预加载音频… 0%</div>
+
+    <!-- 背景状态图（保持原路径） -->
+    <img id="bgImage" src="img/NEVERGONNABG.png" alt="state diagram">
+  </div>
+
+  <!-- INFO 页面 -->
+  <div class="card" id="info">
+    <h1 class="title">关于 / INFO</h1>
+    <p>这是一个基于 Web Audio API 的简易音乐玩家，内部用 <b>有限状态机 (Finite State Machine)</b> 控制播放顺序；通过预加载音频与动态歌词高亮，配合频谱可视化，提供轻交互体验。</p>
+    <p>技术栈：HTML · CSS · JavaScript · Web Audio API</p>
+    <p><b>功能亮点：</b></p>
+    <ul>
+      <li>有限状态机驱动的“never → gonna → phrase…”循环</li>
+      <li>音频预加载与可选变体（如 <code>and2.wav</code>、<code>you1/2/3.wav</code>）随机播放</li>
+      <li>歌词霓虹高亮 + 频谱柱条动画</li>
+      <li>暗/亮主题切换，记忆上次选择</li>
+      <li>键盘快捷键：<b>Space</b> 播放/暂停，<b>M</b> 主题切换</li>
+    </ul>
+    <p class="muted">声明：仅作业演示用途。代码：Antirender</p>
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:8px;">
+      <button class="btn control" onclick="showPlayer()">返回播放器</button>
+    </div>
+  </div>
+
+  <script>
+/* =================== Web Audio 基础 =================== */
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 256; // 频谱分辨率（越高柱越多）
+    analyser.smoothingTimeConstant = 0.78;
+
+    let masterGain = audioContext.createGain();
+    masterGain.gain.value = 1;
+
+    analyser.connect(masterGain);
+    masterGain.connect(audioContext.destination);
+
+    let bufferMap = {};       // filename -> AudioBuffer
+    let currentSource = null; // 当前 BufferSource
+    let playing = false;
+    let state = 'never';
+    let currentPhrase = [];
+    let phraseIndex = 0;
+
+    // DOM
+    const $player = document.getElementById('player');
+    const $info = document.getElementById('info');
+    const $playBtn = document.getElementById('playBtn');
+    const $modeBtn = document.getElementById('modeBtn');
+    const $status = document.getElementById('status');
+    const $bgImage = document.getElementById('bgImage');
+
+    // 频谱画布
+    const canvas = document.getElementById('viz');
+    const ctx = canvas.getContext('2d', { alpha: true });
+    let rafId = 0;
+    function resizeCanvas(){
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const { width } = canvas.getBoundingClientRect();
+      const height = parseInt(getComputedStyle(canvas).height, 10);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // 文件映射（保持路径不变）
+    const fileMap = {
+      never: 'never.wav',
+      gonna: 'gonna.wav',
+      give: 'give.wav',
+      let: 'let.wav',
+      run: 'run.wav',
+      around: 'around.wav',
+      and: ['and.wav','and2.wav'],
+      desert: 'desert.wav',
+      make: 'make.wav',
+      cry: 'cry.wav',
+      say: 'say.wav',
+      goodbye: 'goodbye.wav',
+      tell: 'tell.wav',
+      alie: 'alie.wav',
+      hurt: 'hurt.wav',
+      you: ['you1.wav','you2.wav','you3.wav'],
+      up: 'up.wav',
+      down: 'down.wav'
+    };
+
+    // 句子集合（可改）
+    const phrases = [
+      ['give','you','up'],
+      ['let','you','down'],
+      ['run','around','and','desert','you'],
+      ['make','you','cry'],
+      ['say','goodbye'],
+      ['tell','alie','and','hurt','you']
+    ];
+
+    // 预加载
+    async function preloadBuffers() {
+      const values = Object.values(fileMap).flatMap(v => Array.isArray(v) ? v : [v]);
+      let loaded = 0;
+      for (const fn of values) {
+        if (bufferMap[fn]) { loaded++; updateLoading(loaded, values.length); continue; }
+        try{
+          const resp = await fetch('music/' + fn);
+          const abuf = await resp.arrayBuffer();
+          bufferMap[fn] = await audioContext.decodeAudioData(abuf);
+          loaded++; updateLoading(loaded, values.length);
+        }catch(err){
+          console.error('预加载失败：', fn, err);
+        }
+      }
+      $status.textContent = '预加载完成 ✓';
+      setTimeout(()=>{ $status.textContent = ''; }, 800);
+    }
+    function updateLoading(now, total){
+      const pct = Math.round(now/total*100);
+      $status.textContent = `正在预加载音频… ${pct}%`;
+    }
+
+    // 创建并播放一个 buffer
+    function playBuffer(fn) {
+      if (!bufferMap[fn]) return;
+      if (currentSource) { try{ currentSource.stop(0); }catch(e){} currentSource.disconnect(); }
+
+      const src = audioContext.createBufferSource();
+      src.buffer = bufferMap[fn];
+      src.connect(analyser); // 连接到频谱分析
+      src.onended = playNext;  // 结束后切换
+      src.start(0);
+      currentSource = src;
+
+      // 持续绘制频谱
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(drawSpectrum);
+    }
+
+    // FSM 推进并播放下一个
+    function playNext() {
+      if (!playing) return;
+
+      if (state === 'never') {
+        state = 'gonna';
+      } else if (state === 'gonna') {
+        currentPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+        phraseIndex = 0;
+        state = currentPhrase[phraseIndex++];
+      } else if (phraseIndex < currentPhrase.length) {
+        state = currentPhrase[phraseIndex++];
+      } else {
+        state = 'never';
+      }
+
+      // 多变体随机
+      let fn = fileMap[state];
+      if (Array.isArray(fn)) fn = fn[Math.floor(Math.random() * fn.length)];
+
+      updateLyrics();
+      playBuffer(fn);
+    }
+
+    // 歌词更新
+    function updateLyrics() {
+      const div = document.getElementById('lyric');
+      div.innerHTML = '';
+      let words, idx;
+
+      if (state === 'never') { words = ['NEVER']; idx = 0; }
+      else if (state === 'gonna') { words = ['GONNA']; idx = 0; }
+      else {
+        words = currentPhrase.map(w => w === 'alie' ? 'A LIE' : w.toUpperCase());
+        idx = Math.max(0, phraseIndex - 1);
+      }
+
+      words.forEach((w,i) => {
+        const span = document.createElement('span');
+        span.className = 'word' + (i === idx ? ' active' : '');
+        span.textContent = w;
+        div.appendChild(span);
+        if (i < words.length - 1) {
+          const arrow = document.createElement('span');
+          arrow.className = 'arrow';
+          arrow.textContent = '→';
+          div.appendChild(arrow);
+        }
+      });
+    }
+
+    // 频谱绘制
+    function drawSpectrum(){
+      const { width, height } = canvas.getBoundingClientRect();
+      ctx.clearRect(0,0,width,height);
+
+      const bufferLength = analyser.frequencyBinCount; // 128
+      const dataArray = new Uint8Array(bufferLength);
+      analyser.getByteFrequencyData(dataArray);
+
+      const bars = 60; // 柱条数量（抽样）
+      const step = Math.floor(bufferLength / bars);
+      const barWidth = (width - 20) / bars; // 留一点内边距
+
+      // 渐变填充
+      const grad = ctx.createLinearGradient(0, 0, 0, height);
+      grad.addColorStop(0, 'rgba(138,124,255,.95)');
+      grad.addColorStop(1, 'rgba(0,200,255,.65)');
+      ctx.fillStyle = grad;
+
+      for (let i=0; i<bars; i++){
+        const v = dataArray[i*step] / 255; // 0~1
+        const barH = Math.max(4, v * (height - 8));
+        const x = 10 + i * barWidth;
+        const y = height - barH - 4;
+        const r = 6; // 圆角
+        roundRect(ctx, x, y, barWidth*0.8, barH, r);
+        ctx.fill();
+      }
+
+      // 柔光顶边
+      ctx.fillStyle = 'rgba(255,255,255,.08)';
+      ctx.fillRect(0, 0, width, 6);
+
+      rafId = requestAnimationFrame(drawSpectrum);
+    }
+    function roundRect(ctx, x, y, w, h, r){
+      r = Math.min(r, w/2, h/2);
+      ctx.beginPath();
+      ctx.moveTo(x+r, y);
+      ctx.arcTo(x+w, y, x+w, y+h, r);
+      ctx.arcTo(x+w, y+h, x, y+h, r);
+      ctx.arcTo(x, y+h, x, y, r);
+      ctx.arcTo(x, y, x+w, y, r);
+      ctx.closePath();
+    }
+
+    // 播放/暂停
+    async function togglePlay() {
+      if (!playing) {
+        if (audioContext.state === 'suspended') await audioContext.resume();
+        playing = true;
+        $playBtn.textContent = '暂停播放';
+        $playBtn.setAttribute('aria-pressed', 'true');
+        playNext();
+      } else {
+        playing = false;
+        $playBtn.textContent = '开始播放';
+        $playBtn.setAttribute('aria-pressed', 'false');
+        if (currentSource) { try{ currentSource.stop(0); }catch(e){} }
+        cancelAnimationFrame(rafId);
+      }
+    }
+
+    // 明暗主题切换（带记忆）
+    function toggleMode() {
+      const b = document.body;
+      const darking = b.classList.contains('light');
+      b.classList.toggle('light', !darking);
+      b.classList.toggle('dark', darking);
+      $modeBtn.textContent = darking ? 'light mode' : 'dark mode';
+      try{ localStorage.setItem('theme', darking ? 'dark' : 'light'); }catch(e){}
+    }
+    (function initTheme(){
+      try{
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark'){
+          document.body.classList.remove('light');
+          document.body.classList.add('dark');
+          $modeBtn.textContent = 'light mode';
+        }
+      }catch(e){}
+    })();
+
+    // INFO 与 Player 切换
+    function showInfo() {
+      $player.classList.remove('active');
+      $info.classList.add('active');
+    }
+    function showPlayer() {
+      $info.classList.remove('active');
+      $player.classList.add('active');
+    }
+    window.showInfo = showInfo;
+    window.showPlayer = showPlayer;
+    window.togglePlay = togglePlay;
+    window.toggleMode = toggleMode;
+
+    // 键盘快捷键
+    document.addEventListener('keydown', (e)=>{
+      if (e.code === 'Space'){ e.preventDefault(); togglePlay(); }
+      if (e.key && e.key.toLowerCase() === 'm'){ toggleMode(); }
+    });
+
+    // 背景图轻微视差（移动端自动忽略）
+    const supportPointer = matchMedia('(pointer:fine)').matches;
+    if (supportPointer){
+      const maxDeg = 6;
+      const relax = ()=>{ $bgImage.style.transform = 'perspective(900px) rotateX(0) rotateY(0)'; };
+      $bgImage.addEventListener('mouseleave', relax);
+      $bgImage.addEventListener('mousemove', (e)=>{
+        const rect = $bgImage.getBoundingClientRect();
+        const dx = (e.clientX - rect.left)/rect.width - .5;
+        const dy = (e.clientY - rect.top)/rect.height - .5;
+        $bgImage.style.transform = `perspective(900px) rotateY(${dx*maxDeg}deg) rotateX(${-dy*maxDeg}deg)`;
+      });
+      // 初始轻微浮动
+      setTimeout(relax, 50);
+    }
+
+    // 初始化
+    updateLyrics(); // 初始展示 NEVER/GONNA 节点
+    preloadBuffers();
+  </script>
+</body>
+</html>
