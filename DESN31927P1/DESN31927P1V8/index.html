@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Real Weather</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --text: #0b0f14;
+      --muted:#667085;
+      --glass: rgba(255,255,255,.7);
+      --shadow: 0 10px 30px rgba(20,24,40,.08);
+      --accent: #111827;
+
+      --color-temp:#ff4d4f; 
+      --color-rain:#1f7ae0;
+      --color-wind:#16a34a;
+      --color-uv:#f59e0b;
+
+      --radius-lg:22px; --radius-md:14px; --radius-sm:10px;
+      --space-xl:24px; --space-lg:16px; --space-md:12px; --space-sm:8px;
+    }
+    [data-theme="dark"]{
+      --bg:#0b0f14; --text:#e6e7e9; --muted:#9aa1ab;
+      --glass: rgba(18,22,28,.6);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --accent:#e6e7e9;
+    }
+    *{box-sizing:border-box}
+    html, body{height:100%; margin:0; padding:0;}
+    body{margin:0; font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, #ffffffaa, transparent), var(--bg); display:flex; flex-direction:column;}
+    .wrap{max-width:980px; width:100%; margin:0 auto; padding:40px 20px; flex:1;}
+    header{display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:18px}
+    .brand{font-size:22px; font-weight:700; letter-spacing:.2px}
+    .row{display:flex; gap:10px; flex-wrap:wrap}
+    .input{flex:1 1 360px; display:flex; gap:10px}
+    input[type="search"]{flex:1; padding:12px 14px; border-radius:999px; border:1px solid #e5e7eb; background:var(--glass); backdrop-filter: blur(14px); color:var(--text)}
+    .btn{padding:10px 14px; border-radius:999px; border:0; background:#111827; color:#fff; cursor:pointer}
+    .btn.secondary{background:#eef2ff; color:#111827}
+    [data-theme="dark"] .btn.secondary{background:#1f2937;color:#e5e7eb}
+    .btn.ghost{background:transparent; color:var(--accent); border:1px solid #cbd5e1}
+    .grid{display:grid; grid-template-columns:1fr; gap:16px}
+    .card{background:var(--glass); backdrop-filter: blur(14px); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:var(--space-xl)}
+    .muted{color:var(--muted)}
+    .chip{font-size:12px; padding:4px 10px; border-radius:999px; background:rgba(0,0,0,.06)}
+    [data-theme="dark"] .chip{background:rgba(255,255,255,.12)}
+    .method-chip{white-space:nowrap; font-weight:500}
+    .method-value{font-weight:600}
+    .title{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px}
+    /* widget */
+    .rf{display:grid; grid-template-columns: 1.2fr 2fr; gap:16px; align-items:center}
+    .rf-value{font-size:48px; font-weight:800; color:var(--color-temp); line-height:1}
+    .rf-delta{margin-top:6px; font-size:13px}
+    .rf-metrics{display:grid; grid-template-columns: repeat(4,1fr); gap:10px}
+    .rf-stat{padding:10px 12px; border-radius:12px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .rf-stat{background:rgba(255,255,255,.08)}
+    .rf-k{font-size:12px; color:var(--muted)}
+    .rf-v{font-weight:700}
+    
+    /* Semantic color labels for metrics */
+    .temp-label{color:var(--color-temp)}
+    .humidity-label{color:var(--color-rain)}
+    .wind-label{color:var(--color-wind)}
+    .uv-label{color:var(--color-uv)}
+    .callout{padding:12px 14px; border-radius:12px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .callout{background:rgba(255,255,255,.08)}
+    .bullets p{margin:8px 0 10px; line-height:1.55}
+    .bullets p strong{font-weight:700}
+    .bullets .temp-bullet strong{color:var(--color-temp)}
+    .bullets .humidity-bullet strong{color:var(--color-rain)}
+    .bullets .wind-bullet strong{color:var(--color-wind)}
+    .bullets .uv-bullet strong{color:var(--color-uv)}
+    .bullets .combined-bullet strong{color:var(--accent)}
+    footer{margin-top:22px; text-align:center; font-size:13px; padding:15px 0; background:var(--glass); backdrop-filter:blur(14px); width:100%;}
+    
+    /* Modal styles */
+    .modal-overlay{display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); backdrop-filter:blur(5px); z-index:100; align-items:center; justify-content:center;}
+    .modal-content{background:var(--glass); backdrop-filter:blur(14px); padding:24px; border-radius:var(--radius-lg); max-width:600px; width:90%; max-height:85vh; overflow-y:auto; box-shadow:var(--shadow);}
+    .modal-header{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;}
+    .modal-close{background:transparent; border:none; color:var(--text); font-size:24px; cursor:pointer;}
+    .modal-body{margin-bottom:16px;}
+    .modal-body h3{margin-top:22px; margin-bottom:10px;}
+    .modal-body h3:first-child{margin-top:0;}
+    .info-btn{background:transparent; border:none; color:var(--accent); cursor:pointer; font-size:14px; display:inline-flex; align-items:center; text-decoration:underline;}
+    .info-btn i{margin-right:4px;}
+    
+    /* Semantic color headers for modal sections */
+    .temp-header{color:var(--color-temp);}
+    .humidity-header{color:var(--color-rain);}
+    .wind-header{color:var(--color-wind);}
+    .uv-header{color:var(--color-uv);}
+    
+    /* Data visualization */
+    .visual-container{margin:16px 0; border-radius:var(--radius-md); padding:16px; background:rgba(0,0,0,.03); border:1px solid rgba(0,0,0,.04); transition:background 0.3s, border-color 0.3s;}
+    [data-theme="dark"] .visual-container{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.08);}
+    .gauge-container{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-around; margin:16px 0;}
+    .gauge{position:relative; width:120px; text-align:center; transition:0.3s ease;}
+    .gauge-label{font-size:12px; font-weight:600; color:var(--muted); margin-top:8px; transition:color 0.3s;}
+    .gauge canvas{display:block; margin:0 auto; transition:filter 0.3s; border-radius:12px;}
+    [data-theme="dark"] .gauge canvas{filter:brightness(1.05);}
+    [data-theme="dark"] .gauge-value-text{text-shadow:0 0 4px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.6); font-weight:600;}
+    @media (max-width:640px){
+      .rf{grid-template-columns:1fr}
+      .rf-value{font-size:38px}
+      .rf-metrics{grid-template-columns:repeat(2,1fr)}
+      .method-label{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><i class="fa-solid fa-cloud-sun"></i> Weather Advisor · Real Weather</div>
+      <div class="row">
+        <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i> Dark mode</button>
+      </div>
+    </header>
+
+    <div class="row input">
+      <div style="position:relative; flex:1;">
+        <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:14px; top:14px; color:var(--muted);"></i>
+        <input id="q" type="search" placeholder="Search city (e.g., Toronto)" aria-label="City search" style="padding-left:36px;"/>
+      </div>
+      <button id="btn-search" class="btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+      <button id="btn-loc" class="btn secondary" title="Use my location"><i class="fa-solid fa-location-dot"></i> Use my location</button>
+    </div>
+
+    <main class="grid" style="margin-top:12px">
+      <section class="card" aria-labelledby="rf-title">
+        <div class="title">
+          <h2 id="rf-title" style="margin:0">Real Feel</h2>
+e          <span id="rf-method" class="chip method-chip" aria-label="Real feel temperature calculation method" title="The method used to calculate the 'feels like' temperature">
+            <span class="method-label">Real Feel Method: </span><span class="method-value">—</span>
+          </span>
+        </div>
+
+        <div class="rf">
+          <div>
+            <div class="muted" style="font-size:12px;letter-spacing:.02em">Feels like</div>
+            <div id="rf-value" class="rf-value">--°C</div>
+            <div id="rf-delta" class="rf-delta muted">vs actual --°C</div>
+            <button id="learn-more" class="info-btn"><i class="fa-solid fa-circle-info"></i> Click here to learn more</button>
+          </div>
+
+          <div class="rf-metrics">
+            <div class="rf-stat"><div class="rf-k temp-label"><i class="fa-solid fa-temperature-half"></i> Temp</div><div id="rf-temp" class="rf-v">--°C</div></div>
+            <div class="rf-stat"><div class="rf-k humidity-label"><i class="fa-solid fa-droplet"></i> Humidity</div><div id="rf-rh" class="rf-v">--%</div></div>
+            <div class="rf-stat"><div class="rf-k wind-label"><i class="fa-solid fa-wind"></i> Wind</div><div id="rf-wind" class="rf-v">-- km/h</div></div>
+            <div class="rf-stat"><div class="rf-k uv-label"><i class="fa-solid fa-sun"></i> UV</div><div id="rf-uv" class="rf-v">--</div></div>
+          </div>
+        </div>
+        
+        <div class="visual-container">
+          <div id="gauge-container" class="gauge-container">
+            <!-- Gauges will be inserted here -->
+          </div>
+        </div>
+
+        <div style="margin-top:16px">
+          <p id="rf-summary" class="callout" aria-live="polite">
+            Type a city or use your location. I’ll explain why it feels the way it does.
+          </p>
+          <div id="rf-bullets" class="bullets"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  
+  <footer class="muted">
+    Data: <i class="fa-solid fa-database"></i> Open-Meteo (forecast & geocoding).
+  </footer>
+  
+  <!-- Modal -->
+  <div id="explanation-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-circle-info"></i> Weather Factors Explained</h2>
+        <button id="modal-close" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <h3 class="temp-header"><i class="fa-solid fa-temperature-half"></i> Temperature and Real Feel</h3>
+        <p>The "feels like" temperature (also known as apparent temperature) takes into account wind speed, humidity, and other factors that affect how temperature actually feels to your body.</p>
+        
+        <h3 class="humidity-header"><i class="fa-solid fa-droplet"></i> Humidity Impact</h3>
+        <p>High humidity (above 60%) reduces your body's ability to cool itself through sweat evaporation, making hot temperatures feel even hotter. This is why a 30°C day with high humidity can feel more uncomfortable than a 35°C day with low humidity.</p>
+        <p>The heat index formula accounts for this by combining temperature and humidity to calculate how hot it actually feels to the human body.</p>
+        
+        <h3 class="wind-header"><i class="fa-solid fa-wind"></i> Wind Chill Factor</h3>
+        <p>In cold weather, wind removes the thin insulating layer of warm air that surrounds your body. This increases the rate of heat loss, making it feel colder than the actual temperature.</p>
+        <p>The wind chill formula calculates how cold the air feels based on the actual temperature and wind speed. Wind chill only has a significant effect at temperatures below 10°C and wind speeds above 10 km/h.</p>
+        
+        <h3 class="uv-header"><i class="fa-solid fa-sun"></i> UV Index</h3>
+        <p>UV index measures the strength of ultraviolet radiation from the sun:</p>
+        <ul>
+          <li>0-2: Low risk</li>
+          <li>3-5: Moderate risk - wear sunscreen</li>
+          <li>6-7: High risk - wear sunscreen and protective clothing</li>
+          <li>8-10: Very high risk - minimize sun exposure</li>
+          <li>11+: Extreme risk - avoid sun exposure</li>
+        </ul>
+        <p>While UV doesn't affect the "feels like" temperature directly, it's an important factor for outdoor comfort and safety.</p>
+        
+        <h3 class="temp-header"><i class="fa-solid fa-temperature-half"></i> Temperature Perception Range</h3>
+        <p>A 1°C difference in temperature is generally noticeable to humans. When the "feels like" temperature differs from the actual temperature by:</p>
+        <ul>
+          <li>0-1°C: Barely noticeable</li>
+          <li>1-3°C: Slightly different from thermometer</li>
+          <li>3-6°C: Noticeably different from thermometer</li>
+          <li>6°C+: Significantly different from thermometer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== Theme toggle =====
+    const root = document.documentElement;
+    document.getElementById('theme-toggle').onclick = () => {
+      const dark = root.getAttribute('data-theme') === 'dark';
+      root.setAttribute('data-theme', dark ? 'light' : 'dark');
+      document.getElementById('theme-toggle').innerHTML = dark ? '<i class="fa-solid fa-moon"></i> Dark mode' : '<i class="fa-solid fa-sun"></i> Light mode';
+      // Redraw gauges with proper text colors for the new theme
+      if (latestWeatherData) {
+        createGauges(latestWeatherData);
+      }
+    };
+
+    // ===== Utilities =====
+    const $ = sel => document.querySelector(sel);
+    const set = (id, text) => (document.getElementById(id).textContent = text);
+    const DEBUG = false;
+    
+    // Modal handling
+    const modal = document.getElementById('explanation-modal');
+    const modalClose = document.getElementById('modal-close');
+    const learnMore = document.getElementById('learn-more');
+    
+    learnMore.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+    
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Gauge charts
+    let gauges = null;
+    let latestWeatherData = null;
+    
+    function createGauges(data) {
+      // Store latest data for theme switching
+      latestWeatherData = data;
+      
+      const container = document.getElementById('gauge-container');
+      container.innerHTML = ''; // Clear existing gauges
+      
+      // Determine colors based on theme
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      const textColor = isDark ? '#e6e7e9' : '#0b0f14';
+      const mutedColor = isDark ? '#9aa1ab' : '#667085';
+      
+
+     
+      
+      // Create gauges for each metric
+      gauges = {
+        temp: createGauge('temp-gauge', 'Temperature', data.T, -10, 50, '°C', 'var(--color-temp)', container, textColor),
+        humidity: createGauge('humidity-gauge', 'Humidity', data.RH, 0, 100, '%', 'var(--color-rain)', container, textColor),
+        wind: createGauge('wind-gauge', 'Wind Speed', data.Vkmh, 0, 100, 'km/h', 'var(--color-wind)', container, textColor),
+      };
+      
+      if (data.UV !== null && data.UV !== undefined) {
+        gauges.uv = createGauge('uv-gauge', 'UV Index', data.UV, 0, 13, '', 'var(--color-uv)', container, textColor);
+      }
+    }
+    
+    function createGauge(id, label, value, min, max, unit, color, container, textColor) {
+      const gaugeDiv = document.createElement('div');
+      gaugeDiv.className = 'gauge';
+      
+      const canvas = document.createElement('canvas');
+      canvas.id = id;
+      canvas.width = 120;
+      canvas.height = 120;
+      gaugeDiv.appendChild(canvas);
+      
+      const labelDiv = document.createElement('div');
+      labelDiv.className = 'gauge-label';
+      labelDiv.textContent = label;
+      gaugeDiv.appendChild(labelDiv);
+      
+      container.appendChild(gaugeDiv);
+      
+      // Create gauge
+      const ctx = canvas.getContext('2d');
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const radius = Math.min(centerX, centerY) - 12;
+      
+      // Clear and set background
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw semi-circular background
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, Math.PI, 2 * Math.PI, false);
+      ctx.lineWidth = 12;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+      if (root.getAttribute('data-theme') === 'dark') {
+        ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      }
+      ctx.stroke();
+      
+      // Calculate position on the gauge
+      const percentage = Math.max(0, Math.min(1, (value - min) / (max - min)));
+      const endAngle = Math.PI + percentage * Math.PI;
+      
+      // If arc color uses CSS variable, resolve it to actual color
+      const styles = getComputedStyle(document.documentElement);
+      const strokeColor = color.startsWith('var(') 
+        ? styles.getPropertyValue(color.slice(4, -1)).trim()
+        : color;
+      
+      // Draw value arc
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, Math.PI, endAngle, false);
+      ctx.lineWidth = 12;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = strokeColor;
+      ctx.stroke();
+      
+      // Draw value text with proper color
+      ctx.save();
+      ctx.fillStyle = textColor;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = '600 20px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillText(`${Math.round(value * 10) / 10}${unit}`, centerX, centerY);
+      ctx.restore();
+      
+      return { canvas, ctx, value, min, max, color };
+    }
+    
+    function updateGaugeColors() {
+      if (!gauges) return;
+      
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      const bgColor = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.1)';
+      const textColor = isDark ? '#ffffff' : '#0b0f14';
+      
+      Object.values(gauges).forEach(gauge => {
+        const { canvas, ctx, value, min, max, color } = gauge;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = Math.min(centerX, centerY) - 12;
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Redraw background
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, Math.PI, 2 * Math.PI, false);
+        ctx.lineWidth = 12;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = bgColor;
+        ctx.stroke();
+        
+        // Redraw value arc
+        const percentage = Math.max(0, Math.min(1, (value - min) / (max - min)));
+        const endAngle = Math.PI + percentage * Math.PI;
+        
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, Math.PI, endAngle, false);
+        ctx.lineWidth = 12;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = color;
+        ctx.stroke();
+        
+        // Add background for text in dark mode
+        if (isDark) {
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, 24, 0, 2 * Math.PI);
+          ctx.fillStyle = 'rgba(0,0,0,0.4)';
+          ctx.fill();
+        }
+        
+        // Redraw value with improved visibility
+        ctx.font = 'bold 20px sans-serif';
+        ctx.fillStyle = textColor;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(`${Math.round(value * 10) / 10}${gauge.unit || ''}`, centerX, centerY);
+      });
+    }
+
+    // ---- Real Feel helpers (Celsius / km/h) ----
+    function heatIndexC(T, RH){
+      return -8.784695 + 1.61139411*T + 2.338549*RH - 0.14611605*T*RH
+           - 0.012308094*T*T - 0.016424828*RH*RH + 0.002211732*T*T*RH
+           + 0.00072546*T*RH*RH - 0.000003582*T*T*RH*RH;
+    }
+    function windChillC(T, Vkmh){
+      const v = Math.max(0.1, Vkmh);
+      return 13.12 + 0.6215*T - 11.37*Math.pow(v,0.16) + 0.3965*T*Math.pow(v,0.16);
+    }
+    function computeRealFeel({T, RH, Vkmh, apiApparent}){
+      let value = Number.isFinite(apiApparent) ? apiApparent : null;
+      let method = 'API';
+      if (value == null){
+        if (T >= 27 && RH >= 40){ value = heatIndexC(T, RH); method = 'Heat Index'; }
+        else if (T <= 10 && Vkmh >= 17){ value = windChillC(T, Vkmh); method = 'Wind Chill'; }
+        else { value = T; method = 'Temp'; }
+      }
+      return { value: Math.round(value*10)/10, method };
+    }
+    function explainRealFeel({T,RH,Vkmh,UV,feel}){
+      const delta = Math.round((feel - T)*10)/10;
+      const abs = Math.abs(delta);
+      const closeness = abs < 1 ? 'very close to' : 
+                      (abs < 3 ? 'slightly different from' : 
+                      (abs < 6 ? 'notably different from' : 'significantly different from'));
+      
+      // Enhanced humidity explanation
+      let humTxt = '';
+      if (RH >= 80) {
+        humTxt = 'Very high humidity ('+RH+'%) severely reduces sweat evaporation, causing the air to feel much warmer and potentially uncomfortable.';
+      } else if (RH >= 60) {
+        humTxt = 'High humidity ('+RH+'%) reduces sweat evaporation, making it feel warmer than the thermometer shows.';
+      } else if (RH <= 20) {
+        humTxt = 'Very low humidity ('+RH+'%) allows rapid sweat evaporation, which can feel cooler but may cause dry skin and throat.';
+      } else if (RH <= 35) {
+        humTxt = 'Low humidity ('+RH+'%) allows sweat to evaporate efficiently, helping your body cool.';
+      } else {
+        humTxt = 'Moderate humidity ('+RH+'%) has a mild impact on comfort.';
+      }
+      
+      // Enhanced wind explanation
+      let windTxt = '';
+      if (Vkmh >= 40) {
+        windTxt = 'Strong wind ('+Vkmh+' km/h) significantly increases convective cooling, making it feel much cooler than the actual temperature.';
+      } else if (Vkmh >= 25) {
+        windTxt = 'Moderate wind ('+Vkmh+' km/h) increases convective cooling and can make it feel noticeably cooler.';
+      } else if (Vkmh >= 15) {
+        windTxt = 'Breezy conditions ('+Vkmh+' km/h) add a mild cooling effect to the temperature.';
+      } else if (Vkmh >= 5) {
+        windTxt = 'Light breeze ('+Vkmh+' km/h) has a subtle effect on how the temperature feels.';
+      } else {
+        windTxt = 'Calm conditions ('+Vkmh+' km/h) have little to no effect on how the temperature feels.';
+      }
+      
+      // UV explanation with specific advice
+      let uvTxt = '';
+      if (UV !== null && UV !== undefined) {
+        if (UV >= 11) {
+          uvTxt = `**UV Radiation:** Extreme UV index (${UV}) - Avoid sun exposure. Seek shade, wear protective clothing, and use SPF 50+ sunscreen.`;
+        } else if (UV >= 8) {
+          uvTxt = `**UV Radiation:** Very high UV index (${UV}) - Minimize sun exposure between 10am-4pm. Wear protective clothing and apply SPF 30+ sunscreen.`;
+        } else if (UV >= 6) {
+          uvTxt = `**UV Radiation:** High UV index (${UV}) - Reduce sun exposure during midday hours. Use sun protection including SPF 30+ sunscreen.`;
+        } else if (UV >= 3) {
+          uvTxt = `**UV Radiation:** Moderate UV index (${UV}) - Sun protection recommended. Use SPF 15+ sunscreen when outdoors.`;
+        } else {
+          uvTxt = `**UV Radiation:** Low UV index (${UV}) - No special protection needed for average skin types.`;
+        }
+      }
+      
+      // Combined effect explanation
+      let combinedTxt = '';
+      if (delta > 3 && RH > 60) {
+        combinedTxt = `**Combined Effect:** High humidity is the main factor making it feel ${abs}°C warmer than the actual temperature.`;
+      } else if (delta < -3 && Vkmh > 20 && T < 15) {
+        combinedTxt = `**Combined Effect:** Wind chill is the main factor making it feel ${abs}°C colder than the actual temperature.`;
+      } else if (Math.abs(delta) > 2) {
+        combinedTxt = `**Combined Effect:** The combination of temperature (${T}°C), humidity (${RH}%), and wind (${Vkmh} km/h) creates a noticeable difference between actual and perceived temperature.`;
+      }
+      
+      const bullets = [
+        `**Temperature vs. Real Feel:** It feels ${abs}°C ${delta>0?'warmer':'cooler'} than actual due to combined humidity and wind (T ${T}°C, RH ${RH}%, wind ${Vkmh} km/h).`,
+        `**Humidity Effect:** ${humTxt}`,
+        `**Wind Effect:** ${windTxt}`
+      ];
+      
+      if (combinedTxt) bullets.push(combinedTxt);
+      if (uvTxt) bullets.push(uvTxt);
+      
+      return {
+        headline: `The real feel temperature is ${feel}°C compared to the actual temperature of ${T}°C. The conditions are ${closeness} the thermometer reading.`,
+        bullets
+      };
+    }
+
+    // ---- Data: Open-Meteo ----
+    async function geocode(city){
+      const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+      const r = await fetch(url); if(!r.ok) throw new Error('Geocoding failed');
+      const j = await r.json();
+      if(!j.results || !j.results.length) throw new Error('City not found');
+      const { latitude, longitude, name, country, admin1 } = j.results[0];
+      return { lat: latitude, lon: longitude, label: [name, admin1, country].filter(Boolean).join(', ') };
+    }
+    async function fetchCurrent(lat, lon){
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}`
+        + `&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,uv_index`
+        + `&windspeed_unit=kmh&timezone=auto`;
+      const r = await fetch(url); if(!r.ok) throw new Error('Forecast failed');
+      const j = await r.json();
+      const c = j.current || {};
+      return {
+        T: c.temperature_2m,
+        RH: c.relative_humidity_2m,
+        Vkmh: c.wind_speed_10m,
+        UV: c.uv_index,
+        apiApparent: c.apparent_temperature
+      };
+    }
+
+    // ---- Render ----
+    function renderRF(label, now){
+      const real = computeRealFeel(now);
+      const exp  = explainRealFeel({ ...now, feel: real.value });
+
+      document.querySelector('#rf-method .method-value').textContent = real.method;
+      document.getElementById('rf-method').setAttribute('title', `Temperature calculated using the ${real.method} method`);
+      set('rf-value', `${real.value}°C`);
+      set('rf-temp', `${Math.round(now.T)}°C`);
+      set('rf-rh', `${Math.round(now.RH)}%`);
+      set('rf-wind', `${Math.round(now.Vkmh)} km/h`);
+      set('rf-uv', `${Math.round(now.UV ?? 0)}`);
+
+      const delta = Math.round((real.value - now.T)*10)/10;
+      set('rf-delta', `vs actual ${Math.round(now.T)}°C (${delta>0?'+':''}${delta}°C)`);
+      set('rf-summary', exp.headline);
+      
+      // Add icons to bullet points with semantic colors
+      const html = exp.bullets.map(t=>{
+        const m=t.match(/^\*\*(.+?)\:\*\*\s*(.*)$/);
+        if (m) {
+          let icon = 'fa-info-circle';
+          let bulletClass = '';
+          
+          if (m[1].includes('Temperature')) {
+            icon = 'fa-temperature-half';
+            bulletClass = 'temp-bullet';
+          }
+          else if (m[1].includes('Humidity')) {
+            icon = 'fa-droplet';
+            bulletClass = 'humidity-bullet';
+          }
+          else if (m[1].includes('Wind')) {
+            icon = 'fa-wind';
+            bulletClass = 'wind-bullet';
+          }
+          else if (m[1].includes('UV')) {
+            icon = 'fa-sun';
+            bulletClass = 'uv-bullet';
+          }
+          else if (m[1].includes('Combined Effect')) {
+            bulletClass = 'combined-bullet';
+          }
+          
+          return `<p class="${bulletClass}"><strong><i class="fa-solid ${icon}"></i> ${m[1]}:</strong> ${m[2]}</p>`;
+        }
+        return `<p>${t}</p>`;
+      }).join('');
+      document.getElementById('rf-bullets').innerHTML = html;
+      
+      // Create gauge charts
+      createGauges(now);
+
+      if (DEBUG) console.log(label, now, real, exp);
+      
+      // Apply unified colors - each metric always uses its designated color
+      document.getElementById('rf-temp').style.color = 'var(--color-temp)';    // 红色 #ff4d4f
+      document.getElementById('rf-rh').style.color = 'var(--color-rain)';      // 蓝色 #1f7ae0  
+      document.getElementById('rf-wind').style.color = 'var(--color-wind)';    // 绿色 #16a34a
+      document.getElementById('rf-uv').style.color = 'var(--color-uv)';        // 橙色 #f59e0b
+    }
+
+    // ---- Handlers ----
+    async function goCity(q){
+      try{
+        const {lat, lon, label} = await geocode(q);
+        const now = await fetchCurrent(lat, lon);
+        renderRF(label, now);
+      }catch(err){ set('rf-summary', `Error: ${err.message}. Try another city or use your location.`); }
+    }
+    async function goLocation(){
+      if(!navigator.geolocation){ set('rf-summary','Geolocation not supported.'); return; }
+      navigator.geolocation.getCurrentPosition(async pos=>{
+        try{
+          const {latitude:lat, longitude:lon} = pos.coords;
+          const now = await fetchCurrent(lat, lon);
+          renderRF('My location', now);
+        }catch(err){ set('rf-summary', `Error: ${err.message}.`); }
+      }, ()=> set('rf-summary','Location permission denied.'));
+    }
+
+    // ---- Wire up ----
+    document.getElementById('btn-search').onclick = ()=> {
+      const q = document.getElementById('q').value.trim();
+      if(q) goCity(q);
+    };
+    document.getElementById('q').addEventListener('keydown', e=>{
+      if(e.key==='Enter'){ const q=e.target.value.trim(); if(q) goCity(q); }
+    });
+    document.getElementById('btn-loc').onclick = goLocation;
+
+
+   goCity('Toronto');
+   
+   // Initialize theme toggle button with correct icon
+   const initialDark = root.getAttribute('data-theme') === 'dark';
+   document.getElementById('theme-toggle').innerHTML = initialDark ? 
+     '<i class="fa-solid fa-sun"></i> Light mode' : 
+     '<i class="fa-solid fa-moon"></i> Dark mode';
+  </script>
+</body>
+</html>

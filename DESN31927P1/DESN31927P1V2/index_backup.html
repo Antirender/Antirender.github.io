@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Advisor — Dynamic Data Demo</title>
+  <link rel="icon" href="img/favicon.ico" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js for a simple responsive line+bar combo chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-row">
+      <button id="nav-toggle" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="brand">
+        <img src="img/favicon.ico" alt="" class="logo">
+        <strong class="brand-title">Weather Advisor</strong>
+      </div>
+
+      <form id="search-form" class="search">
+        <input id="q" type="search" placeholder="Search city (e.g., Toronto, ON)">
+        <button id="btn-search" class="btn" type="submit">Search</button>
+        <button id="btn-locate" class="btn btn-secondary" type="button">Use my location</button>
+        <button id="theme-toggle" class="btn btn-secondary" type="button">Dark</button>
+      </form>
+    </div>
+
+    <nav id="drawer" class="drawer">
+      <ul>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#chart">48-Hour Forecast</a></li>
+        <li><a href="#advice">Outfit & Safety</a></li>
+        <li><a href="#hourly">Hourly details</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<main class="container">
+  <!-- 左列：Summary -->
+  <section id="summary" class="card">
+    <h2 class="card-title">Current & 6-Hour Outlook</h2>
+    <div class="grid-2">
+      <div>
+        <p class="k">City</p><p id="city-name" class="v">—</p>
+        <p class="k">UV</p><p id="uv-now" class="v">—</p>
+      </div>
+      <div>
+        <p class="k">Now (apparent)</p><p id="app-now" class="v v-orange">—</p>
+        <p class="k">Wind</p><p id="wind-now" class="v v-green">—</p>
+      </div>
+      <div>
+        <p class="k">Rain chance</p><p id="pop-now" class="v v-blue">—</p>
+      </div>
+      <div>
+        <p class="k">Next 6h (min–max)</p><p id="next6-range" class="v">—</p>
+      </div>
+    </div>
+    <div id="summary-badges" class="badges"></div>
+    <p id="summary-text" class="muted">—</p>
+    <div id="debug-info" style="font-size:12px; color:var(--muted); margin-top:8px; font-family:monospace;"></div>
+  </section>
+
+        <!-- Chart -->
+  <!-- 右列：Favorites + About -->
+  <aside class="right-col">
+    <section class="card favorites">
+      <h3 class="card-title">Favorites</h3>
+      <form id="fav-form" class="fav-form">
+        <input id="fav-alias" type="text" placeholder="Alias (optional)">
+        <button id="fav-add" type="button" class="btn btn-secondary">Add current</button>
+      </form>
+      <ul id="fav-list" class="fav-list" aria-label="Saved cities"></ul>
+    </section>
+
+    <article class="card">
+      <h3 class="card-title">About this App</h3>
+      <p>This student project retrieves live weather and location data from open third-party APIs. It performs lightweight data transformations and uses a rule-based expert system to generate clear outfit & safety advice. No LLMs; all logic runs locally.</p>
+
+      <h4 class="card-subtitle">How to Use</h4>
+      <ul class="bullets">
+        <li>Search a city or tap <strong>Use my location</strong>.</li>
+        <li>Read the 6-hour summary and alert badges.</li>
+        <li>Switch <strong>24h / 48h</strong> to explore the forecast.</li>
+        <li>Check the <strong>Outfit & Safety</strong> panel for tips.</li>
+        <li>Save cities to <strong>Favorites</strong> for quick access.</li>
+      </ul>
+    </article>
+  </aside>
+
+  <!-- 图表 -->
+  <section id="chart" class="card">
+    <div class="card-header">
+      <h2 class="card-title">48-Hour Forecast</h2>
+      <div class="controls">
+        <label>Horizon
+          <select id="horizon-select">
+            <option value="48h" selected>48h</option>
+            <option value="24h">24h</option>
+          </select>
+        </label>
+        <label class="ctrl"><input id="toggle-pop" type="checkbox" checked> Show rain chance</label>
+      </div>
+    </div>
+    <div class="chart-wrap"><canvas id="forecast-chart" height="320"></canvas></div>
+    <p class="muted">Red line: <b>Apparent (°C)</b>. Blue bars: <b>Rain chance (%)</b>.</p>
+  </section>
+
+  <!-- 新分区：Advice（规则/专家系统输出） -->
+  <section id="advice" class="card">
+    <h2 class="card-title">Outfit & Safety Advice</h2>
+    <p class="muted">Based on the next 6 hours of weather conditions</p>
+
+    <div id="advice-tags" class="badges badges-row"></div>
+    <div id="advice-text" class="callout"></div>
+
+    <div class="two-cols suggest">
+      <article class="mini-card">
+        <h3 class="mini-title">WHAT TO WEAR</h3>
+        <div class="chip chip-amber">RECOMMENDED</div>
+        <p id="wear-text">—</p>
+      </article>
+      <article class="mini-card">
+        <h3 class="mini-title">COMFORT TIPS</h3>
+        <div class="chip chip-green">TIP</div>
+        <p id="comfort-text">—</p>
+      </article>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><span>🌡️</span><b id="stat-range">—</b></div>
+      <div class="stat"><span>🌧️</span><b id="stat-pop">—</b></div>
+      <div class="stat"><span>☀️</span><b id="stat-uv">—</b></div>
+      <div class="stat"><span>💨</span><b id="stat-wind">—</b></div>
+    </div>
+  </section>
+
+  <!-- Hourly 详情 -->
+  <section id="hourly" class="card">
+    <h2 class="card-title">Detailed Hourly Information</h2>
+    <div id="hourly-grid" class="hourly-grid"></div>
+  </section>
+</main>        <!-- Collapsible hourly details -->
+        <article class="card col-12">
+          <details id="hourly-details" class="details">
+            <summary>Hourly details</summary>
+            <div id="hourly-table" class="table"></div>
+          </details>
+        </article>
+
+        <!-- States -->
+        <div id="state-loading" class="state" hidden>Loading…</div>
+        <div id="state-error" class="state error" hidden></div>
+        <div id="state-empty" class="state" hidden>No data yet. Try searching a city.</div>
+      </div>
+    </section>
+
+    <!-- Right column (aside) / 右列：收藏城市（localStorage） -->
+    <aside class="col aside-col">
+      <article class="card">
+        <h2 class="card-title">Favorites</h2>
+        <form id="fav-form" class="fav-form">
+          <input id="fav-alias" type="text" placeholder="Alias (optional)" />
+          <button id="fav-add" type="button" class="btn btn-secondary">
+            <span class="btn-text-full">Add current</span>
+            <span class="btn-text-short">+</span>
+          </button>
+        </form>
+        <ul id="fav-list" class="fav-list" aria-label="Saved cities"></ul>
+      </article>
+
+     <article class="card">
+    <h2 class="card-title">About this App</h2>
+    <p>
+      This project retrieves live weather and location data from open third-party APIs. 
+      It performs lightweight data transformations and uses a simple rule-based expert system to 
+      generate clear “outfit & safety” suggestions. All logic 
+      runs locally in the browser for transparency and reliability.
+    </p>
+    </article>
+         <article class="card">
+    <h3 class="card-subtitle">How to Use</h3>
+  <ul>
+    <li>Enter a city name in the search bar, or click <strong>Use my location</strong> to detect automatically.</li>
+    <li>View the current conditions and 6-hour summary, including temperature, wind, UV, and rain chance.</li>
+    <li>Check the 48-hour forecast chart for detailed hourly trends.</li>
+    <li>Read the <strong>Outfit & Safety Advice</strong> panel for rule-based recommendations.</li>
+    <li>Add a city to your <strong>Favorites</strong> list for quick access in the future.</li>
+  </ul>
+  </article>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <small>Data: Open-Meteo, OpenStreetMap Nominatim, Environment and Climate Change Canada (GeoMet).</small>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Real Weather</title>
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --text: #0b0f14;
+      --muted:#667085;
+      --glass: rgba(255,255,255,.7);
+      --shadow: 0 10px 30px rgba(20,24,40,.08);
+      --accent: #111827;
+
+      --color-temp:#ff4d4f; 
+      --color-rain:#1f7ae0;
+      --color-wind:#16a34a;
+      --color-uv:#f59e0b;
+
+      --radius-lg:22px; --radius-md:14px; --radius-sm:10px;
+      --space-xl:24px; --space-lg:16px; --space-md:12px; --space-sm:8px;
+    }
+    [data-theme="dark"]{
+      --bg:#0b0f14; --text:#e6e7e9; --muted:#9aa1ab;
+      --glass: rgba(18,22,28,.6);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --accent:#e6e7e9;
+    }
+    *{box-sizing:border-box}
+    html, body{height:100%; margin:0; padding:0;}
+    body{margin:0; font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, #ffffffaa, transparent), var(--bg); display:flex; flex-direction:column;}
+    .wrap{max-width:980px; width:100%; margin:0 auto; padding:40px 20px; flex:1;}
+    header{display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:18px}
+    .brand{font-size:22px; font-weight:700; letter-spacing:.2px}
+    .row{display:flex; gap:10px; flex-wrap:wrap}
+    .input{flex:1 1 360px; display:flex; gap:10px}
+    input[type="search"]{flex:1; padding:12px 14px; border-radius:999px; border:1px solid #e5e7eb; background:var(--glass); backdrop-filter: blur(14px); color:var(--text)}
+    .btn{padding:10px 14px; border-radius:999px; border:0; background:#111827; color:#fff; cursor:pointer}
+    .btn.secondary{background:#eef2ff; color:#111827}
+    [data-theme="dark"] .btn.secondary{background:#1f2937;color:#e5e7eb}
+    .btn.ghost{background:transparent; color:var(--accent); border:1px solid #cbd5e1}
+    .grid{display:grid; grid-template-columns:1fr; gap:16px}
+    .card{background:var(--glass); backdrop-filter: blur(14px); border-radius:var(--radius-lg); box-shadow:var(--shadow); padding:var(--space-xl)}
+    .muted{color:var(--muted)}
+    .chip{font-size:12px; padding:4px 10px; border-radius:999px; background:rgba(0,0,0,.06)}
+    [data-theme="dark"] .chip{background:rgba(255,255,255,.12)}
+    .title{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px}
+    /* widget */
+    .rf{display:grid; grid-template-columns: 1.2fr 2fr; gap:16px; align-items:center}
+    .rf-value{font-size:48px; font-weight:800; color:var(--color-temp); line-height:1}
+    .rf-delta{margin-top:6px; font-size:13px}
+    .rf-metrics{display:grid; grid-template-columns: repeat(4,1fr); gap:10px}
+    .rf-stat{padding:10px 12px; border-radius:12px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .rf-stat{background:rgba(255,255,255,.08)}
+    .rf-k{font-size:12px; color:var(--muted)}
+    .rf-v{font-weight:700}
+    .callout{padding:12px 14px; border-radius:12px; background:rgba(0,0,0,.05)}
+    [data-theme="dark"] .callout{background:rgba(255,255,255,.08)}
+    .bullets p{margin:8px 0 10px; line-height:1.55}
+    .bullets p strong{font-weight:700}
+    footer{margin-top:22px; text-align:center; font-size:13px; padding:15px 0; background:var(--glass); backdrop-filter:blur(14px); width:100%;}
+    @media (max-width:640px){
+      .rf{grid-template-columns:1fr}
+      .rf-value{font-size:38px}
+      .rf-metrics{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Weather Advisor · Real Weather</div>
+      <div class="row">
+        <button id="theme-toggle" class="btn ghost" aria-label="Toggle theme">Dark mode</button>
+      </div>
+    </header>
+
+    <div class="row input">
+      <input id="q" type="search" placeholder="Search city (e.g., Toronto)" aria-label="City search"/>
+      <button id="btn-search" class="btn">Search</button>
+      <button id="btn-loc" class="btn secondary" title="Use my location">Use my location</button>
+    </div>
+
+    <main class="grid" style="margin-top:12px">
+      <section class="card" aria-labelledby="rf-title">
+        <div class="title">
+          <h2 id="rf-title" style="margin:0">Real Feel</h2>
+          <span id="rf-method" class="chip" title="Source/Method">—</span>
+        </div>
+
+        <div class="rf">
+          <div>
+            <div class="muted" style="font-size:12px;letter-spacing:.02em">Feels like</div>
+            <div id="rf-value" class="rf-value">--°C</div>
+            <div id="rf-delta" class="rf-delta muted">vs actual --°C</div>
+          </div>
+
+          <div class="rf-metrics">
+            <div class="rf-stat"><div class="rf-k">Temp</div><div id="rf-temp" class="rf-v">--°C</div></div>
+            <div class="rf-stat"><div class="rf-k">Humidity</div><div id="rf-rh" class="rf-v">--%</div></div>
+            <div class="rf-stat"><div class="rf-k">Wind</div><div id="rf-wind" class="rf-v">-- km/h</div></div>
+            <div class="rf-stat"><div class="rf-k">UV</div><div id="rf-uv" class="rf-v">--</div></div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px">
+          <p id="rf-summary" class="callout" aria-live="polite">
+            Type a city or use your location. I’ll explain why it feels the way it does.
+          </p>
+          <div id="rf-bullets" class="bullets"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  
+  <footer class="muted">
+    Data: Open-Meteo (forecast & geocoding).
+  </footer>
+
+  <script>
+    // ===== Theme toggle =====
+    const root = document.documentElement;
+    document.getElementById('theme-toggle').onclick = () => {
+      const dark = root.getAttribute('data-theme') === 'dark';
+      root.setAttribute('data-theme', dark ? 'light' : 'dark');
+      document.getElementById('theme-toggle').textContent = dark ? 'Dark mode' : 'Light mode';
+    };
+
+    // ===== Utilities =====
+    const $ = sel => document.querySelector(sel);
+    const set = (id, text) => (document.getElementById(id).textContent = text);
+    const DEBUG = false;
+
+    // ---- Real Feel helpers (Celsius / km/h) ----
+    function heatIndexC(T, RH){
+      return -8.784695 + 1.61139411*T + 2.338549*RH - 0.14611605*T*RH
+           - 0.012308094*T*T - 0.016424828*RH*RH + 0.002211732*T*T*RH
+           + 0.00072546*T*RH*RH - 0.000003582*T*T*RH*RH;
+    }
+    function windChillC(T, Vkmh){
+      const v = Math.max(0.1, Vkmh);
+      return 13.12 + 0.6215*T - 11.37*Math.pow(v,0.16) + 0.3965*T*Math.pow(v,0.16);
+    }
+    function computeRealFeel({T, RH, Vkmh, apiApparent}){
+      let value = Number.isFinite(apiApparent) ? apiApparent : null;
+      let method = 'API';
+      if (value == null){
+        if (T >= 27 && RH >= 40){ value = heatIndexC(T, RH); method = 'Heat Index'; }
+        else if (T <= 10 && Vkmh >= 17){ value = windChillC(T, Vkmh); method = 'Wind Chill'; }
+        else { value = T; method = 'Temp'; }
+      }
+      return { value: Math.round(value*10)/10, method };
+    }
+    function explainRealFeel({T,RH,Vkmh,UV,feel}){
+      const delta = Math.round((feel - T)*10)/10;
+      const abs = Math.abs(delta);
+      const closeness = abs < 1 ? 'very close' : (abs < 3 ? 'slightly different' : 'notably different');
+      let humTxt = RH>=60 ? 'High humidity reduces sweat evaporation, making it feel warmer.'
+                : RH<=35 ? 'Low humidity allows sweat to evaporate, helping your body cool.'
+                : 'Moderate humidity has a mild impact on comfort.';
+      let windTxt = Vkmh>=25 ? 'Strong breeze increases convective cooling and can feel chilly.'
+                  : Vkmh>=17 ? 'Breezy conditions add a mild cooling effect.'
+                  : 'Light wind has little effect on how it feels.';
+      const bullets = [
+        `**Temperature vs. Real Feel:** It feels ${abs}°C ${delta>0?'warmer':'cooler'} than actual due to combined humidity and wind (T ${T}°C, RH ${RH}%, wind ${Vkmh} km/h).`,
+        `**Humidity Effect:** ${humTxt}`,
+        `**Wind Effect:** ${windTxt}`
+      ];
+      if (Number.isFinite(UV) && UV >= 6) bullets.push(`**UV Radiation:** UV ${UV} — use sun protection.`);
+      return {
+        headline: `The real feel temperature is ${feel}°C compared to the actual temperature of ${T}°C. The conditions are ${closeness} from the thermometer reading.`,
+        bullets
+      };
+    }
+
+    // ---- Data: Open-Meteo ----
+    async function geocode(city){
+      const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+      const r = await fetch(url); if(!r.ok) throw new Error('Geocoding failed');
+      const j = await r.json();
+      if(!j.results || !j.results.length) throw new Error('City not found');
+      const { latitude, longitude, name, country, admin1 } = j.results[0];
+      return { lat: latitude, lon: longitude, label: [name, admin1, country].filter(Boolean).join(', ') };
+    }
+    async function fetchCurrent(lat, lon){
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}`
+        + `&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,uv_index`
+        + `&windspeed_unit=kmh&timezone=auto`;
+      const r = await fetch(url); if(!r.ok) throw new Error('Forecast failed');
+      const j = await r.json();
+      const c = j.current || {};
+      return {
+        T: c.temperature_2m,
+        RH: c.relative_humidity_2m,
+        Vkmh: c.wind_speed_10m,
+        UV: c.uv_index,
+        apiApparent: c.apparent_temperature
+      };
+    }
+
+    // ---- Render ----
+    function renderRF(label, now){
+      const real = computeRealFeel(now);
+      const exp  = explainRealFeel({ ...now, feel: real.value });
+
+      set('rf-method', real.method);
+      set('rf-value', `${real.value}°C`);
+      set('rf-temp', `${Math.round(now.T)}°C`);
+      set('rf-rh', `${Math.round(now.RH)}%`);
+      set('rf-wind', `${Math.round(now.Vkmh)} km/h`);
+      set('rf-uv', `${Math.round(now.UV ?? 0)}`);
+
+      const delta = Math.round((real.value - now.T)*10)/10;
+      set('rf-delta', `vs actual ${Math.round(now.T)}°C (${delta>0?'+':''}${delta}°C)`);
+      set('rf-summary', exp.headline);
+      const html = exp.bullets.map(t=>{
+        const m=t.match(/^\*\*(.+?)\:\*\*\s*(.*)$/);
+        return m ? `<p><strong>${m[1]}:</strong> ${m[2]}</p>` : `<p>${t}</p>`;
+      }).join('');
+      document.getElementById('rf-bullets').innerHTML = html;
+
+      if (DEBUG) console.log(label, now, real, exp);
+    }
+
+    // ---- Handlers ----
+    async function goCity(q){
+      try{
+        const {lat, lon, label} = await geocode(q);
+        const now = await fetchCurrent(lat, lon);
+        renderRF(label, now);
+      }catch(err){ set('rf-summary', `Error: ${err.message}. Try another city or use your location.`); }
+    }
+    async function goLocation(){
+      if(!navigator.geolocation){ set('rf-summary','Geolocation not supported.'); return; }
+      navigator.geolocation.getCurrentPosition(async pos=>{
+        try{
+          const {latitude:lat, longitude:lon} = pos.coords;
+          const now = await fetchCurrent(lat, lon);
+          renderRF('My location', now);
+        }catch(err){ set('rf-summary', `Error: ${err.message}.`); }
+      }, ()=> set('rf-summary','Location permission denied.'));
+    }
+
+    // ---- Wire up ----
+    document.getElementById('btn-search').onclick = ()=> {
+      const q = document.getElementById('q').value.trim();
+      if(q) goCity(q);
+    };
+    document.getElementById('q').addEventListener('keydown', e=>{
+      if(e.key==='Enter'){ const q=e.target.value.trim(); if(q) goCity(q); }
+    });
+    document.getElementById('btn-loc').onclick = goLocation;
+
+
+   goCity('Toronto');
+  </script>
+</body>
+</html>

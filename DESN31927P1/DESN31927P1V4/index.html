@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Advisor — Dynamic Data Demo</title>
+  <link rel="icon" href="img/favicon.ico" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js for a simple responsive line+bar combo chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-row">
+      <button id="nav-toggle" class="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="brand">
+        <img src="img/favicon.ico" alt="" class="logo">
+        <strong class="brand-title">Weather Advisor</strong>
+      </div>
+
+      <form id="search-form" class="search desktop-only">
+        <input id="q" type="search" placeholder="Search city (e.g., Toronto, ON)">
+        <button id="btn-search" class="btn" type="submit">Search</button>
+        <button id="btn-locate" class="btn btn-secondary" type="button">Use my location</button>
+        <button id="theme-toggle" class="btn btn-secondary" type="button">Dark</button>
+      </form>
+    </div>
+
+    <nav id="drawer" class="drawer">
+      <div class="mobile-actions">
+        <div class="mobile-action-buttons">
+          <button id="mobile-search-btn" class="btn btn-secondary">Search</button>
+          <button id="mobile-btn-locate" class="btn btn-secondary">Use my location</button>
+          <button id="mobile-theme-toggle" class="btn btn-secondary">Dark</button>
+        </div>
+        
+        <div id="mobile-search-container" class="mobile-search-container" style="display: none;">
+          <form id="mobile-search-form" class="search">
+            <input id="mobile-q" type="search" placeholder="Search city (e.g., Toronto, ON)">
+            <button id="mobile-btn-search" class="btn" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+      
+      <ul class="mobile-nav-links">
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#chart">24-Hour Forecast</a></li>
+        <li><a href="#advice">Outfit & Safety</a></li>
+        <li><a href="#hourly">Hourly Details</a></li>
+      </ul>
+      
+      <!-- Close button for drawer -->
+      <button id="drawer-close" class="drawer-close" aria-label="Close menu">✕</button>
+    </nav>
+  </header>
+
+<main class="container">
+  <!-- 左列：Summary -->
+  <section id="summary" class="card">
+    <h2 class="card-title">Current Conditions</h2>
+    <div class="grid-2">
+      <div>
+        <p class="k">City</p><p id="city-name" class="v">—</p>
+        <p class="k">UV</p><p id="uv-now" class="v v-orange">—</p>
+      </div>
+      <div>
+        <p class="k">Now (feels like)</p><p id="app-now" class="v v-red">—</p>
+        <p class="k">Wind</p><p id="wind-now" class="v v-green">—</p>
+      </div>
+      <div>
+        <p class="k">Rain chance</p><p id="pop-now" class="v v-blue">—</p>
+        <p class="k">Pressure</p><p id="pressure-now" class="v v-purple">—</p>
+      </div>
+      <div>
+        <p class="k">Next 6h (min–max)</p><p id="next6-range" class="v">—</p>
+      </div>
+    </div>
+    <div id="summary-badges" class="badges"></div>
+    <p id="summary-text" class="muted">—</p>
+  </section>
+
+  <!-- 右列：Favorites + About -->
+  <aside class="right-col">
+    <section class="card favorites">
+      <h3 class="card-title">Favorites</h3>
+      <form id="fav-form" class="fav-form">
+        <input id="fav-alias" type="text" placeholder="Alias (optional)">
+        <button id="fav-add" type="button" class="btn btn-secondary">Add current</button>
+      </form>
+      <ul id="fav-list" class="fav-list" aria-label="Saved cities"></ul>
+    </section>
+    
+    <section id="weather-alerts" class="card alerts-card">
+      <h3 class="card-title">Weather Alerts</h3>
+      <div id="alerts-container">
+        <p class="no-alerts-message">No active weather alerts for this location.</p>
+        <!-- Alert items will be inserted here dynamically -->
+      </div>
+    </section>
+
+    <article class="card">
+      <h3 class="card-title">About this App</h3>
+      <p>This project retrieves live weather and location data from open third-party APIs. It performs lightweight data transformations and uses a rule-based expert system to generate clear outfit & safety advice. No LLMs; all logic runs locally.</p>
+
+      <h4 class="card-subtitle">How to Use</h4>
+      <ul class="bullets">
+        <li>Search a city or tap <strong>Use my location</strong>.</li>
+        <li>Read the current conditions and alert badges.</li>
+        <li>Switch <strong>24h / 12h / 6h</strong> to explore the forecast.</li>
+        <li>Check the <strong>Outfit & Safety</strong> panel for tips.</li>
+        <li>Save cities to <strong>Favorites</strong> for quick access.</li>
+      </ul>
+      
+      <h4 class="card-subtitle">Why Does It Feel This Way?</h4>
+      <div class="feel-explainer">
+        <p id="feel-explanation" class="muted">The real feel temperature is calculated based on multiple factors beyond just the thermometer reading.</p>
+        
+        <div class="feel-factors">
+          <div class="feel-factor">
+            <span class="factor-label">Temperature vs. Real Feel:</span>
+            <span id="temp-vs-feel">The difference between actual and perceived temperature is influenced by humidity, wind, and other atmospheric conditions.</span>
+          </div>
+          
+          <div class="feel-factor">
+            <span class="factor-label">Humidity Effect:</span>
+            <span id="humidity-effect">High humidity reduces your body's ability to cool through sweating, while low humidity allows for better heat dissipation.</span>
+          </div>
+          
+          <div class="feel-factor">
+            <span class="factor-label">Wind Chill:</span>
+            <span id="wind-effect">Moving air increases heat transfer from your body, making you feel cooler in windy conditions.</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </aside>
+
+  <!-- 图表 -->
+  <section id="chart" class="card">
+    <div class="card-header">
+      <h2 class="card-title">24-Hour Forecast</h2>
+      <div class="controls">
+        <label>Horizon
+          <select id="horizon-select">
+            <option value="24h" selected>24h</option>
+            <option value="48h">48h</option>
+            <option value="12h">12h</option>
+            <option value="6h">6h</option>
+          </select>
+        </label>
+        <label class="ctrl"><input id="toggle-pop" type="checkbox" checked> Show rain chance</label>
+      </div>
+    </div>
+    <div class="chart-wrap"><canvas id="forecast-chart" height="320"></canvas></div>
+    <p class="muted">Red line: <b>Feels like (°C)</b>. Blue bars: <b>Rain chance (%)</b>.</p>
+  </section>
+
+  <!-- 新分区：Advice（规则/专家系统输出） -->
+  <section id="advice" class="card">
+    <div class="advice-header">
+      <h2 class="card-title">Outfit & Safety Advice</h2>
+      <p class="advice-subtitle">Based on the next 6 hours of weather conditions</p>
+    </div>
+    
+    <div class="advice-content">
+      <div class="advice-left-column">
+        <div id="advice-tags" class="badges badges-row"></div>
+        
+        <div class="advice-main-text">
+          <h3>Weather conditions for the next 6 hours:</h3>
+          <div id="advice-text" class="advice-text">Loading recommendations...</div>
+        </div>
+      </div>
+
+      <div class="advice-cards">
+        <article class="mini-card wear-card">
+          <div class="chip chip-amber">RECOMMENDED</div>
+          <h3 class="mini-title">WHAT TO WEAR</h3>
+          <p id="wear-text">—</p>
+        </article>
+        
+        <article class="mini-card tips-card">
+          <div class="chip chip-green">TIP</div>
+          <h3 class="mini-title">COMFORT TIPS</h3>
+          <p id="comfort-text">—</p>
+        </article>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat"><span>🌡️</span><b id="stat-range">—</b></div>
+        <div class="stat"><span>🌧️</span><b id="stat-pop">—</b></div>
+        <div class="stat"><span>☀️</span><b id="stat-uv">—</b></div>
+        <div class="stat"><span>💨</span><b id="stat-wind">—</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hourly 详情 - 改为表格形式 -->
+  <section id="hourly" class="card">
+    <details class="hourly-dropdown">
+      <summary class="hourly-summary">
+        <h2 class="card-title">Hourly Details</h2>
+        <span class="dropdown-arrow">▼</span>
+      </summary>
+      <div class="hourly-table-container">
+        <table id="hourly-table" class="hourly-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Temp</th>
+              <th>Feels</th>
+              <th>Wind</th>
+              <th>Rain</th>
+              <th>UV</th>
+            </tr>
+          </thead>
+          <tbody id="hourly-data">
+            <!-- Table rows will be inserted here dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <small>© 2025 Weather Advisor | Data sources: <a href="https://open-meteo.com/en/docs" target="_blank" class="footer-link">Open-Meteo API</a>, <a href="https://nominatim.org/release-docs/latest/" target="_blank" class="footer-link">OpenStreetMap Nominatim</a>, <a href="https://openweathermap.org/api/one-call-3" target="_blank" class="footer-link">OpenWeatherMap</a> | <a href="/terms" class="footer-link">Terms</a> | <a href="/privacy" class="footer-link">Privacy</a></small>
+</footer>
+</body>
+</html>

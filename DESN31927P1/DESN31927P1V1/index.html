@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Advisor — Dynamic Data Demo</title>
+  <link rel="icon" href="img/favicon.ico" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Chart.js for a simple responsive line+bar combo chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- Header with brand + search form / 头部：品牌 + 搜索表单 -->
+  <header class="site-header">
+    <div class="header-row">
+      <div class="brand">
+        <img src="img/favicon.ico" alt="Site logo" class="logo">
+        <span class="brand-title">Weather Advisor</span>
+      </div>
+      
+      <form id="search-form" class="search" autocomplete="off" aria-label="Search city">
+        <input id="search-input" name="q" type="text" inputmode="search"
+               placeholder="Search city (e.g., Toronto, ON)" aria-label="City name" />
+        <button type="submit" class="btn">Search</button>
+      </form>
+      
+      <div class="actions">
+        <button id="btn-locate" type="button" class="btn btn-secondary" aria-label="Use current location">
+          <span class="btn-text-full">Use my location</span>
+          <span class="btn-text-short">📍</span>
+        </button>
+        <button id="theme-toggle" class="btn" aria-pressed="false" title="Toggle dark mode">
+          <span class="btn-text-full">Dark mode</span>
+          <span class="btn-text-short">🌙</span>
+        </button>
+        <button id="i18n-toggle" class="btn" title="Language / 语言">
+          <span class="btn-text-full">EN</span>
+          <span class="btn-text-short">🌐</span>
+        </button>
+        <button id="burger-menu" class="btn burger-btn" aria-label="Menu" aria-expanded="false">
+          <span class="burger-icon">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main 12-column grid / 主体 12 栅格 -->
+  <main class="container">
+    <!-- Left column (main) / 左列主内容：跨 12→md 8→lg 9 -->
+    <section class="col main-col">
+      <!-- Summary + Alerts + Advice -->
+      <div class="grid-12 gap">
+        <article class="card col-12" id="alert-card" hidden>
+          <h2 class="card-title">Alerts</h2>
+          <div id="alert-badges" class="badges"></div>
+          <details id="alert-details" class="details" hidden>
+            <summary>View details</summary>
+            <div id="alert-list"></div>
+          </details>
+        </article>
+
+        <article class="card col-12" id="summary-card">
+          <h2 class="card-title">Current & 6-Hour Outlook</h2>
+          <div class="summary-grid">
+            <div><span class="k">City</span><span id="city-name" class="v">—</span></div>
+            <div><span class="k">Now (apparent)</span><span id="now-app" class="v">—</span></div>
+            <div><span class="k">Precip. chance</span><span id="now-pop" class="v">—</span></div>
+            <div><span class="k">UV</span><span id="now-uv" class="v">—</span></div>
+            <div><span class="k">Wind</span><span id="now-wind" class="v">—</span></div>
+            <div><span class="k">Next 6h (min–max)</span><span id="next-range" class="v">—</span></div>
+          </div>
+          <div id="advice-panel" class="advice" hidden>
+            <p id="advice-text"></p>
+            <div id="advice-badges" class="badges"></div>
+          </div>
+        </article>
+
+        <!-- Chart -->
+        <article class="card col-12">
+          <div class="card-row">
+            <h2 class="card-title">48-Hour Forecast</h2>
+            <div class="controls">
+              <label class="ctrl">
+                Horizon
+                <select id="horizon">
+                  <option value="48" selected>48h</option>
+                  <option value="24">24h</option>
+                </select>
+              </label>
+              <label class="ctrl" title="Click on 'Rain chance' label to toggle visibility">
+                <span id="toggle-pop-label" class="clickable">Rain chance</span>
+                <input id="toggle-pop" type="checkbox" checked class="hidden-checkbox" />
+              </label>
+            </div>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="forecast-chart" height="240" aria-label="48-hour forecast chart"></canvas>
+          </div>
+          <p class="muted" style="margin-top:8px">
+            Red line: <strong>Feels like temperature (°C)</strong>. Blue bars: <strong>Rain chance (%)</strong>.
+          </p>
+        </article>
+
+        <!-- Collapsible hourly details -->
+        <article class="card col-12">
+          <details id="hourly-details" class="details">
+            <summary>Hourly details</summary>
+            <div id="hourly-table" class="table"></div>
+          </details>
+        </article>
+
+        <!-- States -->
+        <div id="state-loading" class="state" hidden>Loading…</div>
+        <div id="state-error" class="state error" hidden></div>
+        <div id="state-empty" class="state" hidden>No data yet. Try searching a city.</div>
+      </div>
+    </section>
+
+    <!-- Right column (aside) / 右列：收藏城市（localStorage） -->
+    <aside class="col aside-col">
+      <article class="card">
+        <h2 class="card-title">Favorites</h2>
+        <form id="fav-form" class="fav-form">
+          <input id="fav-alias" type="text" placeholder="Alias (optional)" />
+          <button id="fav-add" type="button" class="btn btn-secondary">
+            <span class="btn-text-full">Add current</span>
+            <span class="btn-text-short">+</span>
+          </button>
+        </form>
+        <ul id="fav-list" class="fav-list" aria-label="Saved cities"></ul>
+      </article>
+
+     <article class="card">
+    <h2 class="card-title">About this App</h2>
+    <p>
+      This project retrieves live weather and location data from open third-party APIs. 
+      It performs lightweight data transformations and uses a simple rule-based expert system to 
+      generate clear “outfit & safety” suggestions. All logic 
+      runs locally in the browser for transparency and reliability.
+    </p>
+    </article>
+         <article class="card">
+    <h3 class="card-subtitle">How to Use</h3>
+  <ul>
+    <li>Enter a city name in the search bar, or click <strong>Use my location</strong> to detect automatically.</li>
+    <li>View the current conditions and 6-hour summary, including temperature, wind, UV, and rain chance.</li>
+    <li>Check the 48-hour forecast chart for detailed hourly trends.</li>
+    <li>Read the <strong>Outfit & Safety Advice</strong> panel for rule-based recommendations.</li>
+    <li>Add a city to your <strong>Favorites</strong> list for quick access in the future.</li>
+  </ul>
+  </article>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <small>Data: Open-Meteo, OpenStreetMap Nominatim, Environment and Climate Change Canada (GeoMet).</small>
+  </footer>
+</body>
+</html>
