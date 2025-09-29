@@ -8,15 +8,30 @@
   <link rel="icon" href="favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#ffffff; --card:#f8fafc; --ink:#0f172a; --sub:#334155;
-      --muted:#64748b; --border:#e2e8f0; --accent:#2563eb; --accent-ink:#0b2a6f;
-      --max:1120px; --radius:14px; --measure: 74ch;
-      --step--1: clamp(0.875rem, 0.82rem + 0.25vw, 0.975rem);
-      --step-0:  clamp(1rem,     0.96rem + 0.45vw, 1.125rem);
-      --step-1:  clamp(1.25rem,  1.12rem + 0.8vw,  1.5rem);
-      --step-2:  clamp(1.6rem,   1.3rem + 1.2vw,   1.95rem);
-      --step-3:  clamp(2.1rem,   1.6rem + 2vw,     2.6rem);
+    :root {
+      /* Color palette */
+      --bg: #ffffff;
+      --card: #f8fafc;
+      --ink: #0f172a;
+      --sub: #334155;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-ink: #0b2a6f;
+      
+      /* Layout variables */
+      --max: 1120px;
+      --radius: 14px;
+      --measure: 74ch;
+      
+      /* Fluid typography scale - scales with viewport width */
+      --step--2: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);  /* Small text */
+      --step--1: clamp(0.875rem, 0.82rem + 0.27vw, 1rem);     /* Smaller body text */
+      --step-0: clamp(1rem, 0.92rem + 0.4vw, 1.125rem);       /* Base body text */
+      --step-1: clamp(1.25rem, 1.15rem + 0.7vw, 1.5rem);      /* Large text / small headings */
+      --step-2: clamp(1.5rem, 1.38rem + 1vw, 1.95rem);        /* Medium headings */
+      --step-3: clamp(2rem, 1.8rem + 1.5vw, 2.5rem);          /* Large headings */
+      --step-4: clamp(2.5rem, 2.2rem + 2.5vw, 3.25rem);       /* Extra large headings */
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -25,27 +40,38 @@
       font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,Apple Color Emoji,Segoe UI Emoji;
       font-size: var(--step-0); line-height: 1.65; letter-spacing: .005em; 
       -webkit-font-smoothing:antialiased; font-optical-sizing:auto;
+      text-rendering: optimizeLegibility;
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
     img{max-width:100%; height:auto; display:block}
-    .wrap{max-width:var(--max); margin:0 auto; padding:clamp(16px,2.5vw,32px)}
+    .wrap{max-width:var(--max); margin:0 auto; padding:clamp(16px,3.5vw,32px)}
     .wrap p, .wrap li { max-width: var(--measure); }
-    header.site{border-bottom:1px solid var(--border); position:sticky; top:0; background:#fff; z-index:20; padding-block: clamp(12px,3.5vw,28px)}
+    /* Header styling - static position at the top */
+    header.site{
+      border-bottom: 1px solid var(--border);
+      position: static;
+      background: #fff;
+      z-index: 20;
+      padding-block: clamp(6px, 1.5vw, 12px);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    }
+    /* No longer need shrink class since header is static */
+    /* Body already has margin:0 defined above, no need for duplicate properties */
     .top{display:flex; gap:24px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap}
-    h1{font-size: var(--step-3); line-height: 1.15; margin: 0 0 .25rem; font-variation-settings:"wght" 750; text-wrap: balance}
-    h1,h2{text-wrap:balance}
-    p{ text-wrap:pretty; hyphens:auto }
-    .tagline{margin:0; color:var(--sub); font-size:clamp(16px,2.1vw,18px)}
+    h1{font-size: var(--step-4); line-height: 1.1; margin: 0 0 .25rem; font-variation-settings:"wght" 750; text-wrap: balance}
+    h1,h2,h3{text-wrap:balance}
+    p{ text-wrap:pretty; hyphens:auto; margin-bottom: 1rem }
+    .tagline{margin:0 0 0.5rem; color:var(--sub); font-size: var(--step-1); line-height: 1.4}
 
     nav.primary{display:flex; align-items:center}
     nav.primary ul{display:flex; gap:14px; list-style:none; padding:0; margin:0}
     nav.primary a{display:inline-block; padding:.55rem .7rem; border-radius:10px; color:var(--accent-ink); font-weight:600}
     nav.primary a:hover{background:var(--card); text-decoration:none}
-    .contact-list{display:flex;flex-wrap:wrap;gap:.4rem 1rem;align-items:center;list-style:none;margin:.35rem 0 0;padding:0}
+    .contact-list{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;list-style:none;margin:.5rem 0 0;padding:0}
     .contact-list li{display:flex;align-items:center;white-space:nowrap}
-    .contact-list li+li::before{content:"•";color:var(--muted,#64748b);margin:0 .5rem}
-    .contact-list a{color:var(--sub,#334155);font-weight:600;text-decoration:none}
+    .contact-list li+li::before{content:"•";color:var(--muted,#64748b);margin:0 .6rem}
+    .contact-list a{color:var(--sub,#334155);font-weight:600;text-decoration:none;font-size:var(--step--1)}
     .contact-list a:hover{text-decoration:underline}
     .hamburger{display:none; border:1px solid var(--border); background:#fff; border-radius:10px; padding:.55rem .7rem; font-weight:700; cursor:pointer}
     /* Sidebar (mobile) */
@@ -60,22 +86,65 @@
     .scrim{position:fixed; inset:0; background:rgba(15,23,42,.38); backdrop-filter:blur(2px); display:none; z-index:25}
     .scrim.show{display:block}
     /* Sections */
-    section{padding-block: clamp(18px,4vw,40px); border-bottom:1px solid var(--border)}
-    #philosophy{scroll-margin-top: 80px}
-    #philosophy p{ max-width: 78ch }
+    section {
+      padding-block: clamp(18px, 4vw, 40px);
+      border-bottom: 1px solid var(--border);
+    }
+    /* Philosophy section special styling */
+    #philosophy p {
+      max-width: 78ch; /* More comfortable reading width for philosophy text */
+    }
     .site + section{margin-top:0}
-    h2{font-size: var(--step-2); line-height: 1.22; margin: 0 0 .6rem; font-variation-settings:"wght" 700; text-wrap: balance}
-    h3{font-size: var(--step-1); line-height: 1.28; margin: .5rem 0 .25rem}
+    h2{font-size: var(--step-3); line-height: 1.2; margin: 0 0 .8rem; font-variation-settings:"wght" 700; text-wrap: balance}
+    h3{font-size: var(--step-2); line-height: 1.25; margin: .7rem 0 .4rem; font-variation-settings:"wght" 650}
     p, li{font-size: var(--step-0); margin:0 0 12px; text-wrap: pretty; hyphens: auto}
     p + p { margin-top: .4rem; }
-    .grid{display:grid; grid-template-columns:repeat(12,1fr); gap: clamp(12px,1.6vw,18px)}
-    .grid > .card{
-      grid-column:span 6; background:var(--card); border:1px solid var(--border);
-      border-radius:var(--radius); padding: clamp(12px,1.8vw,18px)
+    /* Grid layout system for featured work */
+    .grid {
+      display: grid; 
+      grid-template-columns: repeat(12, 1fr); 
+      gap: clamp(8px, 1.2vw, 14px);
+    }
+    
+    /* Card styling for featured work items */
+    .grid > .card {
+      grid-column: span 6; 
+      background: var(--card); 
+      border: 1px solid var(--border);
+      border-radius: var(--radius); 
+      padding: clamp(8px, 1.2vw, 14px);
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    
+    .grid > .card img {
+      max-width: 60%;
+      height: auto;
+      margin: 0 auto 0.7rem;
+      display: block;
+      border-radius: 6px;
+    }
+    
+    .grid > .card h3 { 
+      font-size: var(--step--1); 
+      margin: .4rem 0 .25rem;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+    
+    .grid > .card p { 
+      font-size: var(--step--2); 
+      line-height: 1.4; 
+      margin-bottom: 0.6rem;
     }
     .meta{color:var(--muted); font-size:.95rem}
-    .btn{display:inline-block; margin-top:.4rem; padding:.55rem .8rem; border-radius:10px; background:var(--accent); color:#fff; font-weight:700}
+    .btn{display:inline-block; margin-top:.3rem; padding:.4rem .7rem; border-radius:8px; background:var(--accent); color:#fff; font-weight:700; font-size: var(--step--2);}
     .btn:hover{text-decoration:none; filter:brightness(.95)}
+    .grid > .card .btn {
+      padding: .35rem .6rem;
+      margin-top: .2rem;
+      font-size: var(--step--2);
+    }
     .two-col{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(12px,2vw,24px)}
     .resume-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,2vw,24px)}
     ul.clean{padding-left:1.1rem; margin:0}
@@ -85,25 +154,138 @@
     .selector{position:relative; background:#fff; border:1px solid var(--border); border-radius:12px}
     .selector select{width:100%; padding:1.2rem; font-weight:700; border:0; appearance:none; background:transparent; cursor:pointer}
     .selector::after{content:"▼"; position:absolute; right:1rem; top:50%; transform:translateY(-50%); color:var(--accent)}
-    .card-grid{display: grid; grid-template-columns: repeat(4, minmax(210px,1fr)); gap: 1rem; list-style: none; padding: 0; margin: 0}
-    .card-grid .card{background: var(--card, #f8fafc); border: 1px solid var(--border, #e2e8f0); border-radius: 12px; padding: 0.9rem 1rem}
-    .card-grid .card a{display: block; color: var(--ink, #0f172a); font-weight: 700; text-decoration: none}
-    .card-grid .card a:hover{color: var(--accent, #2563eb); text-decoration: underline}
-    /* Responsive */
-    @media (max-width:980px){
-      nav.primary{display:none}
-      .hamburger{display:inline-block}
-      .main-projects{grid-template-columns:1fr}
-      .card-grid{grid-template-columns: repeat(2, minmax(0,1fr))}
-      .two-col,.resume-grid{grid-template-columns:1fr}
-      .grid > .card{grid-column:span 12}
+    .card-grid{display: grid; grid-template-columns: repeat(4, minmax(210px,1fr)); gap: 1.25rem; list-style: none; padding: 0; margin: 1.5rem 0}
+    .card-grid .card{
+      background: var(--card, #f8fafc); 
+      border: 1px solid var(--border, #e2e8f0); 
+      border-radius: 12px; 
+      padding: 1rem 1.2rem;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    @media (max-width:640px){ .contact-list{gap:.35rem .75rem} .contact-list li{white-space:normal} }
-    @media (max-width:560px){
-      .card-grid{grid-template-columns: 1fr}
+    .card-grid .card:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
+    }
+    .card-grid .card a{
+      display: block; 
+      color: var(--ink, #0f172a); 
+      font-weight: 700;
+      font-size: var(--step-0);
+      text-decoration: none;
+      padding: 0.4rem 0;
+      line-height: 1.4;
+    }
+    .card-grid .card a:hover{color: var(--accent, #2563eb); text-decoration: none}
+    /* Responsive Breakpoints
+     * -----------------------------
+     * 980px: Tablet and smaller devices
+     * 640px: Small tablets and large phones
+     * 560px: Phone-sized devices
+     */
+    
+    /* Tablet and smaller devices */
+    @media (max-width: 980px) {
+      /* Navigation changes */
+      nav.primary { display: none; }
+      .hamburger { display: inline-block; }
+      
+      /* Layout adjustments */
+      .main-projects { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+      .two-col, .resume-grid { grid-template-columns: 1fr; }
+      
+      /* Featured work cards adjustments */
+      .grid > .card {
+        grid-column: span 12;
+        max-width: 85%;
+      }
+      .grid > .card img { max-width: 50%; margin-bottom: 0.6rem; }
+      .grid > .card h3 { font-size: var(--step--1); }
+    }
+    
+    /* Small tablets and large phones */
+    @media (max-width: 640px) {
+      /* Typography adjustments */
+      h1 { font-size: var(--step-3); }
+      h2 { font-size: var(--step-2); }
+      h3 { font-size: var(--step-1); }
+      
+      /* Layout adjustments */
+      .wrap { padding: clamp(14px, 4vw, 24px); }
+      .contact-list { gap: .5rem .75rem; margin-top: 0.7rem; }
+      .contact-list li { white-space: normal; }
+    }
+    
+    /* Phone-sized devices */
+    @media (max-width: 560px) {
+      /* Layout adjustments */
+      .card-grid { grid-template-columns: 1fr; gap: 0.875rem; }
+      .card-grid .card { padding: 0.8rem 1rem; }
+      
+      /* Typography and spacing */
+      .tagline { font-size: var(--step-0); }
+      section { margin-bottom: 2rem; }
+      #featured, #resume, #more, #process { margin-top: 2rem; }
+      
+      /* Featured work cards adjustments for smallest screens */
+      .grid > .card { max-width: 95%; }
+      .grid > .card img { max-width: 55%; } /* Smaller on mobile screens */
+      .grid > .card h3 { margin-top: 0.3rem; }
     }
     /* Focus styles */
     :focus-visible{outline:3px solid #94a3b8; outline-offset:2px}
+    /* Modal styles */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15,23,42,0.75); backdrop-filter: blur(4px);
+      z-index: 100; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    }
+    .modal-overlay.active {opacity: 1; visibility: visible;}
+    .modal {
+      background: #fff; width: clamp(300px, 90%, 900px); max-height: 90vh;
+      border-radius: var(--radius); overflow: hidden; position: relative;
+      transform: translateY(-20px); transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal {transform: translateY(0);}
+    .modal-close {
+      position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,0.9);
+      border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 18px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(15,23,42,0.1); z-index: 5;
+    }
+    .modal-content {padding: clamp(16px,4vw,24px); overflow-y: auto; max-height: 80vh;}
+    .modal-image {width: 100%; height: auto; display: block; border-radius: var(--radius) var(--radius) 0 0;}
+    .modal-links {display: flex; gap: 12px; margin-top: 16px;}
+    /* Featured projects grid */
+    .featured-grid {
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+      gap: clamp(16px, 3vw, 24px);
+    }
+    .featured-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; background: var(--card); transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .featured-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(15,23,42,0.1);
+    }
+    .featured-image {
+      width: 100%; height: 180px; 
+      object-fit: cover; display: block;
+    }
+    .featured-content {
+      padding: clamp(12px, 2vw, 16px);
+    }
+    .featured-content h3 {
+      margin: 0 0 .4rem; font-size: var(--step-1);
+    }
+    .featured-desc {
+      margin: 0 0 1rem; color: var(--sub);
+    }
+    body.modal-open {overflow: hidden;}
     /* Resume controls and full resume */
     #resume-controls{ display:flex; justify-content:flex-end; margin-bottom: .75rem; }
     #resume-full{ background: var(--card,#f8fafc); border:1px solid var(--border,#e2e8f0); border-radius:12px; padding:clamp(14px,2vw,20px); }
@@ -136,9 +318,9 @@
     <ul class="side-links">
       <li><a href="#philosophy">Philosophy</a></li>
       <li><a href="#featured">Featured Work</a></li>
-      <li><a href="#process">Process Case Study</a></li>
       <li><a href="#resume">Resume</a></li>
       <li><a href="#more">More Work</a></li>
+      <li><a href="#process">Process Case Study</a></li>
     </ul>
     <h3>Project Links</h3>
     <ul class="side-projects">
@@ -173,9 +355,9 @@
         <ul>
           <li><a href="#philosophy">Philosophy</a></li>
           <li><a href="#featured">Featured Work</a></li>
-          <li><a href="#process">Process Case Study</a></li>
           <li><a href="#resume">Resume</a></li>
           <li><a href="#more">More Work</a></li>
+          <li><a href="#process">Process Case Study</a></li>
         </ul>
       </nav>
       <button class="hamburger" id="openSide" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
@@ -187,11 +369,14 @@
   <div class="wrap">
     <h2>Design Philosophy</h2>
     <p>
-      I believe design should be clear and simple. I begin by asking what the user needs to do, and I make small tests to
-      check ideas. Sometimes I use hardware like Arduino, sometimes I use a quick web demo. Each step is written down so it
-      can be explained later. I think about access for everyone, using clear text, enough contrast, and easy navigation.
-      I test often in small ways and improve as I go. I prefer to build in small parts, show progress early, and make changes
-      easy when feedback comes in.
+      I Believe in Anti Render.
+      I don’t trust any system, nor do I rely on any filters.
+      I once tried to make myself look “better,” more “standard,”
+      but all I gained was emptiness.
+      So I chose to refuse "rendering."
+      No more beautifying, no more catering.
+      I am not perfect. I am sharp. I burn. But I am real.
+      No rendering. Only truth.
     </p>
   </div>
 </section>
@@ -228,48 +413,7 @@
     </div>
   </section>
 
-  <!-- ===== Process Case Study  ===== -->
-  <section id="process">
-    <div class="wrap">
-      <h2>Case Study — Making Data Use Visible</h2>
-      <div class="two-col">
-        <div>
-          <h3>Context</h3>
-          <p>People rarely know what happens to their content once it’s shared. My role was to translate privacy language into an interface that feels direct, visual, and easy to act on.</p>
-          
-          <h3>Approach</h3>
-          <ul class="clean">
-            <li>Designed mobile-first screens that stay readable on small devices.</li>
-            <li>Kept interactions lightweight, fast, and accessible without extra libraries.</li>
-            <li>Mapped a simple story: <em>Collect → Process → Control</em>.</li>
-          </ul>
-
-          <h3>Design Moves</h3>
-          <ul class="clean">
-            <li>Used progressive disclosure to reduce overload.</li>
-            <li>High-contrast typography and direct labels instead of abstract icons.</li>
-            <li>No hidden or sticky UI that blocks screen readers.</li>
-          </ul>
-
-          <h3>Validation</h3>
-          <ul class="clean">
-            <li>Test prompt: “Show me what happens to your story after you post.”</li>
-            <li>Clearer answers from users, fewer wrong taps, more confidence in flow.</li>
-          </ul>
-
-          <h3>Impact & Next Steps</h3>
-          <ul class="clean">
-            <li>Improved comprehension of data movement inside the app.</li>
-            <li>Future additions: a plain-language glossary and a “download my data” path.</li>
-          </ul>
-        </div>
-        <aside>
-          <img src="image/process-wireframe.png" alt="Wireframe diagram of data flow interface">
-          <p><a class="btn" href="image/Snapchat.pdf">Open Case Study Prototype</a></p>
-        </aside>
-      </div>
-    </div>
-  </section>
+  
 
 
   <!-- ===== Resume ===== -->
@@ -459,40 +603,104 @@
   </div>
 </section>
 
+  <!-- ===== Process Case Study  ===== -->
+  <section id="process">
+    <div class="wrap">
+      <h2>Case Study — Making Data Use Visible</h2>
+      <div class="two-col">
+        <div>
+          <h3>Context</h3>
+          <p>People rarely know what happens to their content once it's shared. My role was to translate privacy language into an interface that feels direct, visual, and easy to act on.</p>
+          
+          <h3>Approach</h3>
+          <ul class="clean">
+            <li>Designed mobile-first screens that stay readable on small devices.</li>
+            <li>Kept interactions lightweight, fast, and accessible without extra libraries.</li>
+            <li>Mapped a simple story: <em>Collect → Process → Control</em>.</li>
+          </ul>
+
+          <h3>Design Moves</h3>
+          <ul class="clean">
+            <li>Used progressive disclosure to reduce overload.</li>
+            <li>High-contrast typography and direct labels instead of abstract icons.</li>
+            <li>No hidden or sticky UI that blocks screen readers.</li>
+          </ul>
+
+          <h3>Validation</h3>
+          <ul class="clean">
+            <li>Test prompt: "Show me what happens to your story after you post."</li>
+            <li>Clearer answers from users, fewer wrong taps, more confidence in flow.</li>
+          </ul>
+
+          <h3>Impact & Next Steps</h3>
+          <ul class="clean">
+            <li>Improved comprehension of data movement inside the app.</li>
+            <li>Future additions: a plain-language glossary and a "download my data" path.</li>
+          </ul>
+        </div>
+        <aside>
+          <img src="image/process-wireframe.png" alt="Wireframe diagram of data flow interface">
+          <p><a class="btn" href="image/Snapchat.pdf">Open Case Study Prototype</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
   <footer class="wrap" style="color:var(--muted)">
-    © <span id="year"></span> Yiyang Zhang 
+    © <span id="year"></span> Yiyang Zhang
 
   <script>
-    // Sidebar toggling
+    /**
+     * Portfolio website interaction functionality
+     * Features:
+     * - Mobile sidebar navigation
+     * - Header shrink behavior
+     * - Current year display
+     * - Resume printing
+     */
+    
+    // DOM elements
     const sidebar = document.getElementById('sidebar');
     const scrim = document.getElementById('scrim');
     const openBtn = document.getElementById('openSide');
     const closeBtn = document.getElementById('closeSide');
-
-    function openSide(){
+    const header = document.querySelector('header.site');
+    const printResumeBtn = document.getElementById('printResume');
+    
+    // Sidebar functionality
+    function openSide() {
       sidebar.classList.add('open');
       scrim.classList.add('show');
-      openBtn.setAttribute('aria-expanded','true');
+      openBtn.setAttribute('aria-expanded', 'true');
       sidebar.focus();
-      document.body.style.overflow='hidden';
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
-    function closeSide(){
+    
+    function closeSide() {
       sidebar.classList.remove('open');
       scrim.classList.remove('show');
-      openBtn.setAttribute('aria-expanded','false');
-      document.body.style.overflow='';
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = ''; // Restore scrolling
     }
+    
+    // Set current year in footer copyright
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Event listeners
     openBtn.addEventListener('click', openSide);
     closeBtn.addEventListener('click', closeSide);
     scrim.addEventListener('click', closeSide);
-    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeSide(); } });
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Print resume functionality
-    const btn = document.getElementById('printResume');
-    if (btn) btn.addEventListener('click', () => window.print());
+    window.addEventListener('keydown', (e) => { 
+      if (e.key === 'Escape') { 
+        closeSide(); 
+      } 
+    });
+    
+    // Resume print functionality
+    if (printResumeBtn) {
+      printResumeBtn.addEventListener('click', () => window.print());
+    }
   </script>
 </body>
 </html>
