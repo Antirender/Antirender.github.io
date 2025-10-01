@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Physical Computing Fall 2025</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Poppins", sans-serif
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .grid {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto auto;
+  }
+
+  .w3-half img {
+    margin-bottom: -6px;
+    margin-top: 16px;
+    opacity: 0.8;
+    cursor: pointer
+  }
+
+  */ .w3-half img:hover {
+    opacity: 1
+  }
+
+  .container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  }
+
+  .responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<body>
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-light-grey w3-collapse w3-top w3-large w3-padding"
+    style="z-index:3;width:200px;font-weight:bold;" id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topleft"
+      style="display:none;font-size:22px"></a>
+    <div class="w3-container">
+      <h3 class="w3-padding-64"><b>IXD<br>DESN 30146<br>Fall 2025</b></h3>
+    </div>
+    <div class="w3-bar-block">
+      <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a>
+      <a href="#Module1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Module 1</a>
+      <a href="#Activity1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 1</a>
+      <a href="#Activity2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 2</a>
+      <a href="#Activity3" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 3</a>
+      <a href="#ResearchActivity" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Research
+        Activity</a>
+      <a href="#ProjectConcept" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Project Concept</a>
+    </div>
+  </nav>
+
+  <!-- Top menu on small screens
+<header class="w3-container w3-top w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Menu</span>
+</header> -->
+
+  <!-- 
+  if you want to link your image to a video use one of the following alt links as an example:
+
+  alt="test1Lorem ipsum dolor sit amet, consectetur adipiscing elit test1Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+
+-->
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:220px;margin-right:20px">
+
+    <!-- Header -->
+    <div class="w3-container" style="margin-top:80px" id="default">
+      <h1 class="w3-jumbo" id="Home"><b>Module 1 Activity Research</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Weekly Activity Template</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Yiyang Zhang
+        </b></h1>
+      <hr style="width:50px;border:5px solid grey" class="w3-round">
+    </div>
+    <!-- Boilerplate -->
+    <div id="Module1" class="w3-container" style="margin-top:75px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>Project 1</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <h2>Module 1</h2>
+      <h3>
+        In Module 1 we set up the Arduino for the first time. （in class）
+        We connected it to the computer, uploaded the Blink sketch,
+        and tested LEDs and a button to see how basic circuits work.
+      </h3>
+
+    </div>
+
+    <!-- Project 1 Photo grid (modal) -->
+    <div id="Activity1">
+      <h2>Activity 1</h2>
+      <div class="grid">
+        <img src="images/Activity1/001.gif" style="width:100%" onclick="onClick(this)"
+          alt="Connecting the Arduino to the computer and installing/opening the Arduino IDE. The Uno is plugged in with a USB cable.">
+        <img src="images/Activity1/002.gif" style="width:100%" onclick="onClick(this)"
+          alt="Connecting an external LED to pin 13 and GND. The green LED on the Uno board starts blinking.">
+        <img src="images/Activity1/003.gif" style="width:100%" onclick="onClick(this)"
+          alt="Connecting an external LED to pin 13 and GND. The blue LED on the breadboard is blinking according to the program.">
+        <img src="images/Activity1/004.gif" style="width:100%" onclick="onClick(this)"
+          alt="Expanding the circuit with multiple LEDs on the breadboard. The green and blue LEDs are blinking together.">
+        <img src="images/Activity1/005.gif" style="width:100%" onclick="onClick(this)"
+          alt="Testing button interaction. When the button is pressed, the LED on the breadboard lights up.">
+      </div>
+    </div>
+
+
+    <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+    </hr>
+
+
+    <div id="Activity2" class="w3-row-padding">
+      <h2>Activity 2</h2>
+      <div class="grid">
+        <img src="images/Activity2/001.jpeg" style="width:100%" onclick="onClick(this)"
+          alt="Connecting the development board to the laptop for setup">
+        <img src="images/Activity2/002.jpeg" style="width:100%" onclick="onClick(this)"
+          alt="Arduino IDE open on the screen, code ready to upload">
+        <img src="images/Activity2/003.jpeg" style="width:100%" onclick="onClick(this)"
+          alt="Testing the program on another laptop interface">
+        <img src="images/Activity2/004.jpeg" style="width:100%" onclick="onClick(this)"
+          alt="Running the uploaded program and checking live outputs">
+        <img src="images/Activity2/005.gif" style="width:100%" onclick="onClick(this)"
+          alt="The board running in real time, project demo in action">
+      </div>
+    </div>
+
+
+    <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+
+    <div id="Activity3" class="w3-row-padding">
+      <h2>Activity 3</h2>
+      <div class="grid">
+        <img src="images/Activity3/001.png" style="width:100%" onclick="onClick(this)"
+          alt="Arduino IDE showing potentiometer serial data from 0–100, verifying sensor output.">
+
+        <img src="images/Activity3/002.png" style="width:100%" onclick="onClick(this)"
+          alt="TouchDesigner blank project, ready to connect Arduino serial data.">
+
+        <img src="images/Activity3/003.png" style="width:100%" onclick="onClick(this)"
+          alt="TouchDesigner error reading serial port due to Arduino Serial Monitor still open.">
+
+        <img src="images/Activity3/004.gif" style="width:100%" onclick="onClick(this)"
+          alt="Instructor’s example network mapping Arduino data to a circle’s radius and color.">
+
+        <img src="images/Activity3/005.gif" style="width:100%" onclick="onClick(this)"
+          alt="My recreated TouchDesigner network where potentiometer controls circle size and hue.">
+      </div>
+    </div>
+
+    <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+    </hr>
+
+    <div id="ResearchActivity" class="w3-row-padding">
+      <h2>Research Activity</h2>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+
+      <h2>WGSN Consumer Trend Research</h2>
+
+      <h3>
+        <b>Category 1 — Solarpunk Futures</b><br><br>
+        <b>Summarize</b><br>
+        Sustainable, low-energy, community-driven tech for everyday life.
+        Focus: renewable micro-grids, repairable products, calm/energy-aware interfaces.<br><br>
+
+        <b>What makes this category unique? Example product</b><br>
+        It is unique because it makes “green tech” simple and local. Example: Solar Protocol — a solar-powered server
+        network that shifts hosting to the sunniest node.<br><br>
+
+        <b>Most important statistic & effect on my choice</b><br>
+        The renewable energy market is growing by 4.22% each year. This shows a clear need for energy-aware design,
+        which is why I chose this category.
+      </h3>
+      <div class="grid">
+        <img src="images/Research/solarpunk_001.png" style="width:100%" onclick="onClick(this)"
+          alt="WGSN Solarpunk proof points and market data (e.g., annual growth)">
+        <img src="images/Research/solarpunk_002.png" style="width:100%" onclick="onClick(this)"
+          alt="Solarpunk in action: urban farming, permacomputing inspirations">
+        <img src="images/Research/solarpunk_003.png" style="width:100%" onclick="onClick(this)"
+          alt="Off-grid systems examples: portable solar, micro-grid and trailer use">
+      </div>
+
+      <h3>
+        <b>Category 2 — Nomadic Tech</b><br><br>
+        <b>Summarize</b><br>
+        Tools for people on the move—by choice or by force—covering communication, safety, identity and belonging.
+        Focus: offline-first messaging, satellite links, portable ID, helpful onboarding for newcomers.<br><br>
+
+        <b>What makes this category unique? Example product</b><br>
+        It is unique because it combines mobility with digital identity. Example: ZOLEO satellite messenger for global
+        SOS and QuarkID for decentralised ID.<br><br>
+
+        <b>Most important statistic & effect on my choice</b><br>
+        In 2024, 123.2 million people were forcibly displaced, 77% due to climate disasters. This convinced me that
+        nomadic tools are essential for future projects.
+      </h3>
+      <div class="grid">
+        <img src="images/Research/nomadic_004.png" style="width:100%" onclick="onClick(this)"
+          alt="WGSN Nomadic Tech proof points and migration statistics">
+        <img src="images/Research/nomadic_005.png" style="width:100%" onclick="onClick(this)"
+          alt="Voluntary relocation examples: digital services and nomad tools">
+        <img src="images/Research/nomadic_006.png" style="width:100%" onclick="onClick(this)"
+          alt="Involuntary relocation examples: satellite SOS device and digital ID apps">
+      </div>
+
+      <h2>WGSN Personas Research</h2>
+
+      <h3>
+        <b>Category 1 — The Privacy Keepers</b><br><br>
+
+        <b>Summarize the Persona</b><br>
+        Trust-seeking users who want simplicity, safety and control beyond algorithms.  
+        They prefer calm, transparent tech that protects identity and reduces anxiety.<br><br>
+
+        <b>Describe the Generational Impacts</b><br>
+        Shaped by older Gen Z, Millennials, Gen X and Boomers amid rising data breaches and AI scepticism.  
+        They reward brands that are authentic, open and privacy-first.<br><br>
+
+        <b>Key Data (Behaviours • Buying Priorities • Actions)</b><br>
+        • <i>Behaviours:</i> cautious online, sceptical of AI-generated content, want control over data.<br>
+        • <i>Buying Priorities:</i> trust and authenticity are decisive factors.<br>
+        • <i>Actions:</i> choose products that are transparent, private-by-design and allow user agency.
+      </h3>
+      <div class="grid">
+        <img src="images/Research/007.png" style="width:100%" onclick="onClick(this)"
+            alt="The Privacy Keepers persona summary page">
+        <img src="images/Research/008.png" style="width:100%" onclick="onClick(this)"
+            alt="The Privacy Keepers in action: product and service examples">
+      </div>
+
+      <h3>
+        <b>Category 2 — The New Independents</b><br><br>
+
+        <b>Summarize the Persona</b><br>
+        Purpose-driven consumers who believe individual action can improve community wellbeing.  
+        They value resilience, honesty and repairable, transparent products.<br><br>
+
+        <b>Describe the Generational Impacts</b><br>
+        Led by Gen Z and Millennials, with influence from Gen X.  
+        They are shaped by civic optimism, DIY attitudes and distrust of traditional business practices.<br><br>
+
+        <b>Key Data (Behaviours • Buying Priorities • Actions)</b><br>
+        • <i>Behaviours:</i> self-educate, choose sustainable and repair-friendly options.<br>
+        • <i>Buying Priorities:</i> durability, traceability and material truth over coatings.<br>
+        • <i>Actions:</i> demand radical transparency, invest in eco-positive systems and support open-source tools.
+      </h3>
+      <div class="grid">
+        <img src="images/Research/009.png" style="width:100%" onclick="onClick(this)"
+            alt="The New Independents persona summary page">
+        <img src="images/Research/010.png" style="width:100%" onclick="onClick(this)"
+            alt="The New Independents in action: product and service examples">
+      </div>
+      <h2>HMI Research</h2>
+      <h3>
+        <b>Category 1 — Solarpunk Futures</b><br><br>
+        <b>Problem Spaces</b><br>
+        1. Renewable tech often feels too complex or inaccessible for everyday users.<br>
+        2. Communities lack easy-to-repair, low-energy devices that align with sustainable living.<br><br>
+
+        <b>HMI/HMW Statements</b><br>
+        • How might we design everyday tech that is both sustainable and simple for non-experts to adopt?<br>
+        • How might we encourage repairable and energy-aware design that helps communities reduce waste?<br>
+      </h3>
+      <div class="grid">
+        <img src="images/Research/011.png" style="width:100%" onclick="onClick(this)"
+          alt="Solarpunk Futures HMI in action: sustainable spaces examples such as solar-powered lighting, modular energy devices and water-efficient designs">
+      </div>
+
+      <h3>
+        <b>Category 2 — Nomadic Tech</b><br><br>
+        <b>Problem Spaces</b><br>
+        1. Displaced or mobile populations often lose access to secure identity and communication tools.<br>
+        2. Nomadic lifestyles face challenges in preserving cultural belonging and continuity.<br><br>
+
+        <b>HMI/HMW Statements</b><br>
+        • How might we create portable digital identity solutions that work offline and remain secure?<br>
+        • How might we support cultural preservation and belonging for nomadic or displaced people using technology?<br>
+      </h3>
+      <div class="grid">
+        <img src="images/Research/012.png" style="width:100%" onclick="onClick(this)"
+          alt="Nomadic Tech HMI in action: preserving cultural identity through digital archives, AR/VR and decentralized ID solutions">
+      </div>
+
+    <h2>Project Path</h2>
+    <h3>
+      <b>ART Path</b><br><br>
+      <b>Are you more interested in following an ART or DESIGN Path? Why?</b><br>
+      I chose the ART path because I want to explore creative expression through interactive visuals. 
+      Using TouchDesigner, I can transform input signals (like sound, motion) 
+      into artistic output visuals, which feels more open-ended and expressive than purely functional design.<br><br>
+
+      <b>Are you more interested in working INDIVIDUALLY or COLLABORATIVELY? Why?</b><br>
+      I prefer working individually in this context, because art allows me to experiment freely and follow 
+      my own vision. It’s important to have personal control over the aesthetics and mood I want to create.<br><br>
+
+      <b>Possible project directions</b><br>
+      Develop a personal “data portrait” project, where personal signals (heartbeat, gestures, or movement) 
+      are visualized in artistic forms, showing identity and emotion through live visuals.<br>
+    </h3>
+
+    <h3>
+      <b>DESIGN Path</b><br><br>
+      <b>Are you more interested in following an ART or DESIGN Path? Why?</b><br>
+      The DESIGN path would focus more on practical outcomes, such as usability and structured experiences. 
+      I am less drawn to this path because my current focus is artistic exploration, but design thinking 
+      is still useful when structuring how audiences will interact with my visuals.<br><br>
+
+      <b>Are you more interested in working INDIVIDUALLY or COLLABORATIVELY? Why?</b><br>
+      Design projects often benefit from collaboration, since input from different people helps 
+      create more inclusive and user-friendly outcomes. In this case, working collaboratively 
+      would be stronger, because design is about solving real problems for users.<br><br>
+
+      <b>Possible project directions</b><br>
+      Build a collaborative installation that translates group activity (like multiple people moving together) 
+      into a shared visual output, emphasizing connection and interaction.
+    </h3>
+    </div>
+    <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+    </hr>
+
+    <!-- Project 1 Concept -->
+    <div id="ProjectConcept" class="w3-container" style="margin-top:75px">
+      <h1 class="w3-xxxlarge w3-text-red"><b>Project 1 Concept</b></h1>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+
+      <h2>ART Path — Signal → Visual (TouchDesigner)</h2>
+      <p>
+        This project transforms real-world signals into generative visuals using TouchDesigner.
+        It draws from my WGSN research: <i>Solarpunk Futures</i> (making energy visible) and
+        <i>Nomadic Tech</i> (supporting belonging without exposing identity).
+        The work is developed <b>individually</b> to keep a strong artistic voice and iterate quickly.
+      </p>
+
+      <h3>Problem spaces → HMI fit</h3>
+      <ul>
+        <li>Energy is invisible at home; people can’t tell when to save or spend it.</li>
+        <li>Mobile/nomadic users struggle to keep a sense of identity and community privately.</li>
+      </ul>
+
+      <h3>Input signals</h3>
+      <ul>
+        <li>Energy channel (Solarpunk): solar irradiance, battery state-of-charge, priority loads.</li>
+        <li>Nomadic channel: offline check-ins/NFC tokens, coarse GPS proximity, optional mood tag.</li>
+      </ul>
+
+      <h3>Output visuals (TD)</h3>
+      <ul>
+        <li>Calm color/particle fields that map to energy budget (green → amber → red) and load badges.</li>
+        <li>Evolving pattern tiles seeded by check-ins to preserve belonging without revealing PII.</li>
+      </ul>
+
+      <h3>Tech & format</h3>
+      <ul>
+        <li>TouchDesigner + Serial/MQTT; ESP32 + sensors; LED strip or short-throw projection.</li>
+      </ul>
+
+      <h3>Success criteria</h3>
+      <ul>
+        <li>Viewers grasp “energy abundant vs scarce” in &lt; 3 seconds.</li>
+        <li>All personal data stays local/offline-first; no raw PII leaves the device.</li>
+      </ul>
+
+      <img src="images/Concept/001.png" style="width:100%" onclick="onClick(this)"
+          alt="TouchDesigner prototype: mapping solar/battery and offline check-in signals to generative color rings and particle fields for an energy-aware, privacy-preserving visual installation.">
+    </div>
+
+    <!-- Modal for full size images on click-->
+    <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+      <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+      <div class="w3-modal-content w3-center w3-transparent" style="padding:20px">
+        <img id="img01" class="w3-image">
+        <h2 id="caption"></h2>
+
+        <!-- <div id="urLink"></div> -->
+        <!-- <a id="urLink" class="container"><iframe class="responsive-iframe"></iframe></a> -->
+        <!-- </div> -->
+      </div>
+      <!-- End page content -->
+    </div>
+
+    <!-- W3.CSS Container -->
+    <div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px">
+      <p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS"
+          target="_blank" class="w3-hover-opacity">w3.css</a></p>
+    </div>
+
+    <script>
+
+      // Modal Image Gallery
+      function onClick(element) {
+        document.getElementById("img01").src = element.src;
+
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+
+        // var captionUrl = document.getElementById("urLink");
+        // captionUrl.innerHTML = element.url;
+
+        //document.getElementById("urLink").src = element.url;
+      }
+    </script>
+
+</body>
+
+</html>
