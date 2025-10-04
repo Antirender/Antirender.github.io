@@ -9,30 +9,45 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Color palette */
-      --bg: #ffffff;
-      --card: #f8fafc;
-      --ink: #0f172a;
-      --sub: #334155;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --accent: #2563eb;
-      --accent-ink: #0b2a6f;
+      /*==============================
+       * COLOR PALETTE
+       *==============================*/
+      /* Base colors */
+      --bg: #ffffff;          /* Page background */
+      --card: #f8fafc;        /* Card backgrounds */
       
-      /* Layout variables */
-      --max: 1120px;
-      --radius: 14px;
-      --measure: 74ch;
+      /* Text colors */
+      --ink: #0f172a;         /* Primary text color */
+      --sub: #334155;         /* Secondary text color */
+      --muted: #64748b;       /* Tertiary/muted text */
       
-      /* Fluid typography scale - scales with viewport width */
-      --step--2: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);  /* Small text */
-      --step--1: clamp(0.875rem, 0.82rem + 0.27vw, 1rem);     /* Smaller body text */
-      --step-0: clamp(1rem, 0.92rem + 0.4vw, 1.125rem);       /* Base body text */
-      --step-1: clamp(1.25rem, 1.15rem + 0.7vw, 1.5rem);      /* Large text / small headings */
-      --step-2: clamp(1.5rem, 1.38rem + 1vw, 1.95rem);        /* Medium headings */
-      --step-3: clamp(2rem, 1.8rem + 1.5vw, 2.5rem);          /* Large headings */
-      --step-4: clamp(2.5rem, 2.2rem + 2.5vw, 3.25rem);       /* Extra large headings */
+      /* UI elements */
+      --border: #e2e8f0;      /* Borders, dividers */
+      --accent: #2563eb;      /* Primary accent color */
+      --accent-ink: #0b2a6f;  /* Text on accent elements */
+      
+      /*==============================
+       * LAYOUT VARIABLES
+       *==============================*/
+      --max: 1120px;          /* Maximum content width */
+      --radius: 14px;         /* Border radius for UI elements */
+      --measure: 74ch;        /* Optimal line length for readability */
+      
+      /*==============================
+       * FLUID TYPOGRAPHY SCALE
+       * Scales with viewport width for responsive text
+       *==============================*/
+      --step--2: clamp(0.75rem, 0.72rem + 0.15vw, 0.875rem);  /* Small text: captions, labels */
+      --step--1: clamp(0.875rem, 0.82rem + 0.27vw, 1rem);     /* Smaller body text: footnotes */
+      --step-0: clamp(1rem, 0.92rem + 0.4vw, 1.125rem);       /* Base body text: paragraphs */
+      --step-1: clamp(1.25rem, 1.15rem + 0.7vw, 1.5rem);      /* Large text / small headings: h4, h5 */
+      --step-2: clamp(1.5rem, 1.38rem + 1vw, 1.95rem);        /* Medium headings: h3 */
+      --step-3: clamp(2rem, 1.8rem + 1.5vw, 2.5rem);          /* Large headings: h2 */
+      --step-4: clamp(2.5rem, 2.2rem + 2.5vw, 3.25rem);       /* Extra large headings: h1 */
     }
+    /*==============================
+     * GLOBAL RESET & BASE STYLES
+     *==============================*/
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -42,12 +57,23 @@
       -webkit-font-smoothing:antialiased; font-optical-sizing:auto;
       text-rendering: optimizeLegibility;
     }
+
+    /*==============================
+     * TYPOGRAPHY & BASIC ELEMENTS
+     *==============================*/
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
     img{max-width:100%; height:auto; display:block}
+
+    /*==============================
+     * LAYOUT & CONTAINERS
+     *==============================*/
     .wrap{max-width:var(--max); margin:0 auto; padding:clamp(16px,3.5vw,32px)}
     .wrap p, .wrap li { max-width: var(--measure); }
-    /* Header styling - static position at the top */
+
+    /*==============================
+     * HEADER STYLING
+     *==============================*/
     header.site{
       border-bottom: 1px solid var(--border);
       position: static;
@@ -56,49 +82,217 @@
       padding-block: clamp(6px, 1.5vw, 12px);
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
     }
-    /* No longer need shrink class since header is static */
-    /* Body already has margin:0 defined above, no need for duplicate properties */
-    .top{display:flex; gap:24px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap}
-    h1{font-size: var(--step-4); line-height: 1.1; margin: 0 0 .25rem; font-variation-settings:"wght" 750; text-wrap: balance}
-    h1,h2,h3{text-wrap:balance}
-    p{ text-wrap:pretty; hyphens:auto; margin-bottom: 1rem }
-    .tagline{margin:0 0 0.5rem; color:var(--sub); font-size: var(--step-1); line-height: 1.4}
-
-    nav.primary{display:flex; align-items:center}
-    nav.primary ul{display:flex; gap:14px; list-style:none; padding:0; margin:0}
-    nav.primary a{display:inline-block; padding:.55rem .7rem; border-radius:10px; color:var(--accent-ink); font-weight:600}
-    nav.primary a:hover{background:var(--card); text-decoration:none}
-    .contact-list{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;list-style:none;margin:.5rem 0 0;padding:0}
-    .contact-list li{display:flex;align-items:center;white-space:nowrap}
-    .contact-list li+li::before{content:"•";color:var(--muted,#64748b);margin:0 .6rem}
-    .contact-list a{color:var(--sub,#334155);font-weight:600;text-decoration:none;font-size:var(--step--1)}
-    .contact-list a:hover{text-decoration:underline}
-    .hamburger{display:none; border:1px solid var(--border); background:#fff; border-radius:10px; padding:.55rem .7rem; font-weight:700; cursor:pointer}
-    /* Sidebar (mobile) */
-    .sidebar{
-      position:fixed; inset:0 0 0 -300px; width:300px; background:#fff; border-right:1px solid var(--border);
-      transform:translateX(-100%); transition:transform .25s ease; z-index:30; padding:20px;
+    /*==============================
+     * HEADER LAYOUT & CONTENT
+     *==============================*/
+    .top{
+      display:flex; 
+      gap:24px; 
+      align-items:flex-start; 
+      justify-content:space-between; 
+      flex-wrap:wrap
     }
-    .sidebar.open{transform:translateX(0)}
-    .sidebar h3{margin:4px 0 12px; font-size:1.05rem}
-    .side-links, .side-projects{list-style:none; padding:0; margin:0 0 16px}
-    .side-links li, .side-projects li{margin:.25rem 0}
-    .scrim{position:fixed; inset:0; background:rgba(15,23,42,.38); backdrop-filter:blur(2px); display:none; z-index:25}
-    .scrim.show{display:block}
-    /* Sections */
+    
+    /*==============================
+     * TYPOGRAPHY & TEXT ELEMENTS
+     *==============================*/
+    h1{
+      font-size: var(--step-4); 
+      line-height: 1.1; 
+      margin: 0 0 .25rem; 
+      font-variation-settings:"wght" 750; 
+      text-wrap: balance
+    }
+    h1,h2,h3{text-wrap:balance}
+    p{ 
+      text-wrap:pretty; 
+      hyphens:auto; 
+      margin-bottom: 1rem 
+    }
+    .tagline{
+      margin:0 0 0.5rem; 
+      color:var(--sub); 
+      font-size: var(--step-1); 
+      line-height: 1.4
+    }
+
+    /*==============================
+     * NAVIGATION & MENU STYLES
+     *==============================*/
+    /* Primary desktop navigation */
+    nav.primary{
+      display:flex; 
+      align-items:center
+    }
+    nav.primary ul{
+      display:flex; 
+      gap:14px; 
+      list-style:none; 
+      padding:0; 
+      margin:0
+    }
+    nav.primary a{
+      display:inline-block; 
+      padding:.55rem .7rem; 
+      border-radius:10px; 
+      color:var(--accent-ink); 
+      font-weight:600
+    }
+    nav.primary a:hover{
+      background:var(--card); 
+      text-decoration:none
+    }
+    
+    /* Contact list styling */
+    .contact-list{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.5rem 1.2rem;
+      align-items:center;
+      list-style:none;
+      margin:.5rem 0 0;
+      padding:0
+    }
+    .contact-list li{
+      display:flex;
+      align-items:center;
+      white-space:nowrap
+    }
+    .contact-list li+li::before{
+      content:"•";
+      color:var(--muted);
+      margin:0 .6rem
+    }
+    .contact-list a{
+      color:var(--sub);
+      font-weight:600;
+      text-decoration:none;
+      font-size:var(--step--1)
+    }
+    .contact-list a:hover{text-decoration:underline}
+    
+    /*==============================
+     * MOBILE NAVIGATION
+     *==============================*/
+    /* Hamburger menu button */
+    .hamburger{
+      display:none; 
+      border:1px solid var(--border); 
+      background:#fff; 
+      border-radius:10px; 
+      padding:.55rem .7rem; 
+      font-weight:700; 
+      cursor:pointer;
+      transition: all 0.2s ease;
+    }
+    .hamburger:hover {
+      background: var(--card);
+      border-color: var(--muted);
+    }
+    
+    /* Mobile sidebar navigation */
+    .sidebar{
+      position:fixed; 
+      inset:0 0 0 0; 
+      width:300px; 
+      background:#fff; 
+      border-right:1px solid var(--border);
+      transform:translateX(-100%); 
+      transition:transform .25s ease; 
+      z-index:40; 
+      padding:20px;
+      overflow-y: auto; /* Allow scrolling for taller menus */
+      box-shadow: 2px 0 10px rgba(15, 23, 42, 0.1);
+    }
+    .sidebar.open{
+      transform:translateX(0)
+    }
+    .sidebar h3{
+      margin:4px 0 12px; 
+      font-size:1.05rem; 
+      color: var(--ink)
+    }
+    
+    /* Sidebar links styling */
+    .side-links, .side-projects{
+      list-style:none; 
+      padding:0; 
+      margin:0 0 16px
+    }
+    .side-links li, .side-projects li{
+      margin:.25rem 0
+    }
+    .side-links a, .side-projects a{
+      display: block; 
+      padding: 8px 0; 
+      color: var(--sub)
+    }
+    .side-links a:hover, .side-projects a:hover{
+      color: var(--accent); 
+      text-decoration: none
+    }
+    
+    /* Overlay background when sidebar is open */
+    .scrim{
+      position:fixed; 
+      inset:0; 
+      background:rgba(15,23,42,.38); 
+      backdrop-filter:blur(2px); 
+      display:none; 
+      z-index:35
+    }
+    .scrim.show{
+      display:block
+    }
+    /*==============================
+     * SECTION STYLING
+     *==============================*/
     section {
       padding-block: clamp(18px, 4vw, 40px);
       border-bottom: 1px solid var(--border);
     }
+    
+    /* Section spacing */
+    .site + section{
+      margin-top:0
+    }
+    
     /* Philosophy section special styling */
     #philosophy p {
       max-width: 78ch; /* More comfortable reading width for philosophy text */
     }
-    .site + section{margin-top:0}
-    h2{font-size: var(--step-3); line-height: 1.2; margin: 0 0 .8rem; font-variation-settings:"wght" 700; text-wrap: balance}
-    h3{font-size: var(--step-2); line-height: 1.25; margin: .7rem 0 .4rem; font-variation-settings:"wght" 650}
-    p, li{font-size: var(--step-0); margin:0 0 12px; text-wrap: pretty; hyphens: auto}
-    p + p { margin-top: .4rem; }
+    
+    /*==============================
+     * TYPOGRAPHY & CONTENT
+     *==============================*/
+    /* Heading styles */
+    h2{
+      font-size: var(--step-3); 
+      line-height: 1.2; 
+      margin: 0 0 .8rem; 
+      font-variation-settings:"wght" 700; 
+      text-wrap: balance
+    }
+    h3{
+      font-size: var(--step-2); 
+      line-height: 1.25; 
+      margin: .7rem 0 .4rem; 
+      font-variation-settings:"wght" 650
+    }
+    
+    /* Paragraph and list styles */
+    p, li{
+      font-size: var(--step-0); 
+      margin:0 0 12px; 
+      text-wrap: pretty; 
+      hyphens: auto
+    }
+    p + p { 
+      margin-top: .4rem; 
+    }
+    /*==============================
+     * GRID LAYOUT & CARDS
+     *==============================*/
     /* Grid layout system for featured work */
     .grid {
       display: grid; 
@@ -117,14 +311,15 @@
       margin: 0 auto;
     }
     
+    /* Card image styling */
     .grid > .card img {
       max-width: 60%;
-      height: auto;
       margin: 0 auto 0.7rem;
       display: block;
       border-radius: 6px;
     }
     
+    /* Card typography */
     .grid > .card h3 { 
       font-size: var(--step--1); 
       margin: .4rem 0 .25rem;
@@ -137,19 +332,40 @@
       line-height: 1.4; 
       margin-bottom: 0.6rem;
     }
-    .meta{color:var(--muted); font-size:.95rem}
-    .btn{display:inline-block; margin-top:.3rem; padding:.4rem .7rem; border-radius:8px; background:var(--accent); color:#fff; font-weight:700; font-size: var(--step--2);}
-    .btn:hover{text-decoration:none; filter:brightness(.95)}
+    /*==============================
+     * UTILITY CLASSES
+     *==============================*/
+    /* Meta text */
+    .meta {
+      color: var(--muted); 
+      font-size: .95rem;
+    }
+    
+    /* Button styles */
+    .btn {
+      display: inline-block; 
+      margin-top: .3rem; 
+      padding: .4rem .7rem; 
+      border-radius: 8px; 
+      background: var(--accent); 
+      color: #fff; 
+      font-weight: 700; 
+      font-size: var(--step--2);
+    }
+    .btn:hover {
+      text-decoration: none; 
+      filter: brightness(.95);
+    }
+    
+    /* Card-specific button adjustments */
     .grid > .card .btn {
       padding: .35rem .6rem;
       margin-top: .2rem;
-      font-size: var(--step--2);
     }
     .two-col{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(12px,2vw,24px)}
     .resume-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,2vw,24px)}
     ul.clean{padding-left:1.1rem; margin:0}
     ul.clean li{margin:.25rem 0}
-    /* Your dropdowns + cards (kept) */
     .main-projects{display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; list-style:none; padding:0; margin:0 0 1.2rem}
     .selector{position:relative; background:#fff; border:1px solid var(--border); border-radius:12px}
     .selector select{width:100%; padding:1.2rem; font-weight:700; border:0; appearance:none; background:transparent; cursor:pointer}
@@ -190,6 +406,11 @@
       nav.primary { display: none; }
       .hamburger { display: inline-block; }
       
+      /* Header adjustments */
+      header.site { 
+        padding-block: clamp(5px, 1.2vw, 10px);
+      }
+      
       /* Layout adjustments */
       .main-projects { grid-template-columns: 1fr; }
       .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
@@ -202,6 +423,11 @@
       }
       .grid > .card img { max-width: 50%; margin-bottom: 0.6rem; }
       .grid > .card h3 { font-size: var(--step--1); }
+      
+      /* Ensure proper spacing for section contents */
+      section {
+        padding-top: clamp(16px, 3vw, 24px);
+      }
     }
     
     /* Small tablets and large phones */
@@ -215,6 +441,11 @@
       .wrap { padding: clamp(14px, 4vw, 24px); }
       .contact-list { gap: .5rem .75rem; margin-top: 0.7rem; }
       .contact-list li { white-space: normal; }
+      
+      /* Improved sidebar for smaller screens */
+      .sidebar {
+        width: 280px;
+      }
     }
     
     /* Phone-sized devices */
@@ -226,12 +457,23 @@
       /* Typography and spacing */
       .tagline { font-size: var(--step-0); }
       section { margin-bottom: 2rem; }
-      #featured, #resume, #more, #process { margin-top: 2rem; }
+      
+      /* Better spacing for sections */
+      #philosophy, #featured, #resume, #more, #process { 
+        margin-top: 1rem;
+        padding-top: 1.5rem;
+      }
       
       /* Featured work cards adjustments for smallest screens */
       .grid > .card { max-width: 95%; }
       .grid > .card img { max-width: 55%; } /* Smaller on mobile screens */
       .grid > .card h3 { margin-top: 0.3rem; }
+      
+      /* Full-width sidebar on smallest screens */
+      .sidebar {
+        width: 85%;
+        max-width: 300px;
+      }
     }
     /* Focus styles */
     :focus-visible{outline:3px solid #94a3b8; outline-offset:2px}
@@ -311,28 +553,30 @@
   </style>
 </head>
 <body>
-  <!-- Mobile sidebar -->
-  <aside class="sidebar" id="sidebar" aria-label="Mobile menu" tabindex="-1">
+  <!-- Mobile sidebar with improved accessibility -->
+  <aside class="sidebar" id="sidebar" aria-label="Mobile menu" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true">
     <button class="hamburger" id="closeSide" aria-label="Close menu">✕ Close</button>
-    <h3>Navigate</h3>
-    <ul class="side-links">
-      <li><a href="#philosophy">Philosophy</a></li>
-      <li><a href="#featured">Featured Work</a></li>
-      <li><a href="#resume">Resume</a></li>
-      <li><a href="#more">More Work</a></li>
-      <li><a href="#process">Process Case Study</a></li>
-    </ul>
-    <h3>Project Links</h3>
-    <ul class="side-projects">
-      <li><a href="DESN18654V18/App-Store.html">DESN18654 V18 — Learn Code App</a></li>
-      <li><a href="DESN10799P3/index7.html">DESN10799P3 V7 — Data Transparency</a></li>
-      <li><a href="DESN30146P1/index.html">DESN30146P1</a></li>
-      <li><a href="DESN31927V1/index.html">DESN31927V1</a></li>
-      <li><a href="pinzuo/index.html">Pinzuo</a></li>
-      <li><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
-      <li><a href="Milk/index.html">Milk Calculator</a></li>
-      <li><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
-    </ul>
+    <nav aria-label="Mobile navigation">
+      <h3>Navigate</h3>
+      <ul class="side-links">
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#featured">Featured Work</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#more">More Work</a></li>
+        <li><a href="#process">Process Case Study</a></li>
+      </ul>
+      <h3>Project Links</h3>
+      <ul class="side-projects">
+        <li><a href="DESN18654V18/App-Store.html">DESN18654 V18 — Learn Code App</a></li>
+        <li><a href="DESN10799P3/index7.html">DESN10799P3 V7 — Data Transparency</a></li>
+        <li><a href="DESN30146P1/index.html">DESN30146P1</a></li>
+        <li><a href="DESN31927V1/index.html">DESN31927V1</a></li>
+        <li><a href="pinzuo/index.html">Pinzuo</a></li>
+        <li><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
+        <li><a href="Milk/index.html">Milk Calculator</a></li>
+        <li><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
+      </ul>
+    </nav>
   </aside>
   <div class="scrim" id="scrim" aria-hidden="true"></div>
 
@@ -643,7 +887,9 @@
     </div>
   </section>
 
-  <!-- ===== Footer ===== -->
+  <!-- ===== Footer Section =====
+       Contains copyright information and year
+  -->
   <footer class="wrap" style="color:var(--muted)">
     © <span id="year"></span> Yiyang Zhang
 
@@ -651,10 +897,9 @@
     /**
      * Portfolio website interaction functionality
      * Features:
-     * - Mobile sidebar navigation
-     * - Header shrink behavior
+     * - Mobile sidebar navigation with accessibility improvements
      * - Current year display
-     * - Resume printing
+     * - Resume printing functionality
      */
     
     // DOM elements
@@ -664,22 +909,36 @@
     const closeBtn = document.getElementById('closeSide');
     const header = document.querySelector('header.site');
     const printResumeBtn = document.getElementById('printResume');
+    const sidebarLinks = sidebar.querySelectorAll('a');
     
     // Sidebar functionality
     function openSide() {
       sidebar.classList.add('open');
       scrim.classList.add('show');
       openBtn.setAttribute('aria-expanded', 'true');
+      sidebar.setAttribute('aria-hidden', 'false');
       sidebar.focus();
       document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      
+      // Set focus trap for accessibility
+      setTimeout(() => {
+        closeBtn.focus();
+      }, 100);
     }
     
     function closeSide() {
       sidebar.classList.remove('open');
       scrim.classList.remove('show');
       openBtn.setAttribute('aria-expanded', 'false');
+      sidebar.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = ''; // Restore scrolling
+      openBtn.focus(); // Return focus to the open button
     }
+    
+    // Close sidebar when clicking on a navigation link
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', closeSide);
+    });
     
     // Set current year in footer copyright
     document.getElementById('year').textContent = new Date().getFullYear();
