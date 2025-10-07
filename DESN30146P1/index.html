@@ -371,46 +371,41 @@
       <h1 class="w3-xxxlarge w3-text-red"><b>Project 1 Concept</b></h1>
       <hr style="width:50px;border:5px solid red" class="w3-round">
 
-      <h2>ART Path — Signal → Visual (TouchDesigner)</h2>
-      <p>
-        This project transforms real-world signals into generative visuals using TouchDesigner.
-        It draws from my WGSN research: <i>Solarpunk Futures</i> (making energy visible) and
-        <i>Nomadic Tech</i> (supporting belonging without exposing identity).
-        The work is developed <b>individually</b> to keep a strong artistic voice and iterate quickly.
-      </p>
+    <h2>ART Path — Signal → Visual (TouchDesigner)</h2>
+    <p>
+      This project transforms real-world signals into generative visuals with TouchDesigner.
+      It is developed individually to keep a clear artistic voice and iterate quickly.
+      The core idea: make energy states legible at a glance, and let mobile users affirm belonging
+      without exposing identity.
+    </p>
 
-      <h3>Problem spaces → HMI fit</h3>
-      <ul>
-        <li>Energy is invisible at home; people can’t tell when to save or spend it.</li>
-        <li>Mobile/nomadic users struggle to keep a sense of identity and community privately.</li>
-      </ul>
+    <h3>Problem spaces</h3>
+    <ul>
+      <li>Energy is invisible at home; people can’t tell when to save or spend it.</li>
+      <li>Mobile/nomadic users need private, lightweight ways to feel connected.</li>
+    </ul>
 
-      <h3>Input signals</h3>
-      <ul>
-        <li>Energy channel (Solarpunk): solar irradiance, battery state-of-charge, priority loads.</li>
-        <li>Nomadic channel: offline check-ins/NFC tokens, coarse GPS proximity, optional mood tag.</li>
-      </ul>
+    <h3>Input signals</h3>
+    <ul>
+      <li>solar irradiance, battery state-of-charge, priority loads.</li>
+      <li>offline check-ins/NFC tokens, coarse location proximity, optional mood tag.</li>
+    </ul>
 
-      <h3>Output visuals (TD)</h3>
-      <ul>
-        <li>Calm color/particle fields that map to energy budget (green → amber → red) and load badges.</li>
-        <li>Evolving pattern tiles seeded by check-ins to preserve belonging without revealing PII.</li>
-      </ul>
+    <h3>Output visuals (TD)</h3>
+    <ul>
+      <li>Calm color/particle fields mapping the energy budget (green → amber → red) and load badges.</li>
+      <li>Evolving pattern tiles seeded by check-ins to preserve belonging without revealing PII.</li>
+    </ul>
 
-      <h3>Tech & format</h3>
-      <ul>
-        <li>TouchDesigner + Serial/MQTT; ESP32 + sensors; LED strip or short-throw projection.</li>
-      </ul>
-
-      <h3>Success criteria</h3>
-      <ul>
-        <li>Viewers grasp “energy abundant vs scarce” in &lt; 3 seconds.</li>
-        <li>All personal data stays local/offline-first; no raw PII leaves the device.</li>
-      </ul>
+    <h3>Tech &amp; format</h3>
+    <ul>
+      <li>TouchDesigner + Serial/MQTT; ESP32 + sensors; LED strip or short-throw projection.</li>
+    </ul>
 
       <img src="images/Concept/001.png" style="width:100%" onclick="onClick(this)"
-          alt="TouchDesigner prototype: mapping solar/battery and offline check-in signals to generative color rings and particle fields for an energy-aware, privacy-preserving visual installation.">
+          alt="TouchDesigner prototype showing solar energy data mapped to color and particle density.">
     </div>
+
 
     <!-- Modal for full size images on click-->
     <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
