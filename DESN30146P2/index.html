@@ -236,6 +236,183 @@ img {
 <div id="Activity1">
   <h2>Activity 1 — DHT11 Sensor Exploration & Testing</h2>
   <!-- Photo grid (5-up) -->
+   <!-- Activity 1 — DHT11 Sensor Exploration & Testing (Steps 1–5) -->
+<section id="activity1-steps">
+
+  <!-- Step 1 -->
+  <h3 style="margin-top:24px;">Step 1 — Lists help</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Prompt</th><th>Knowns</th><th>Unknowns</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Do you know which software you are using?</td>
+        <td>Arduino IDE 2.x, Serial Monitor, Adafruit DHT library.</td>
+        <td>Exact library version compatibility; preferred logging format for later dashboard use.</td>
+      </tr>
+      <tr>
+        <td>Do you know which sensor technology you need?</td>
+        <td>DHT11 temperature/humidity module chosen for simplicity and availability.</td>
+        <td>Accuracy and response time limits; need for calibration or averaging; enclosure airflow effects.</td>
+      </tr>
+      <tr>
+        <td>Do you know what your UI / UX looks like?</td>
+        <td>Initial UI is text logs in Serial Monitor.</td>
+        <td>Threshold indicators, error messages, update cadence, and possible web/LED feedback later.</td>
+      </tr>
+      <tr>
+        <td>Does your project use materials or will it be housed in a case of some type?</td>
+        <td>Cardboard phone-stand prototype; small printed/plastic shell for the sensor.</td>
+        <td>Cable routing and strain relief; venting so humidity readings are not trapped or delayed.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 2 -->
+  <h3 style="margin-top:24px;">Step 2 — Identifying the Unknowns</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Unknowns</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Identify three UI related unknowns.
+          <ul>
+            <li>Units/precision to display</li>
+            <li>Status for bad reads (<code>nan</code>)</li>
+            <li>Update frequency labels</li>
+          </ul>
+        </td>
+        <td>
+          Decide on °C with 1 decimal and %RH as integers; print explicit error lines; show timestamped updates.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Identify three UX related unknowns.
+          <ul>
+            <li>Readability at a glance</li>
+            <li>Feedback when values go out of range</li>
+            <li>Placement that avoids hand-heat bias</li>
+          </ul>
+        </td>
+        <td>
+          Larger font/concise lines; add threshold notices; mount sensor away from hands/warm components.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Identify three Hardware or Software related unknowns.
+          <ul>
+            <li>Correct pin and pull-up needs</li>
+            <li>Stable power via USB vs external</li>
+            <li>Minimum safe sampling period</li>
+          </ul>
+        </td>
+        <td>
+          Use module’s onboard pull-up; keep USB power; set polling ≥1 s per DHT11 spec to reduce read errors.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Identify three Interaction related unknowns.
+          <ul>
+            <li>Thresholds that trigger feedback</li>
+            <li>Mapping to stand form (light/alert)</li>
+            <li>Noise smoothing vs responsiveness</li>
+          </ul>
+        </td>
+        <td>
+          Prototype LED cue for hot/dry; plan a moving average over 5 samples; keep latency under ~5 s.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 3 -->
+  <h3 style="margin-top:24px;">Step 3 — Strategizing</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Identified Unknowns</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Identify two things you need that are slowing you down or stopping your progress.</td>
+        <td>Unstable reads when polling too fast; mechanical mounting/strain relief. Action: slow to ≥1 s, reseat connectors, add tape/zip-tie relief.</td>
+      </tr>
+      <tr>
+        <td>List the things you are most-curious about, put them in order of interest.</td>
+        <td>1) Humidity lag vs breath test 2) Enclosure vents effect 3) Self-heating near MCU. Action: quick A/B tests with open vs closed vents and board distance.</td>
+      </tr>
+      <tr>
+        <td>Identify two blind spots or obstacles about your project that need to be overcome to move forward.</td>
+        <td>Power noise from USB hubs; cable stress breaking headers. Mitigation: use direct USB port and gentle cable path.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 4 -->
+  <h3 style="margin-top:24px;">Step 4 — Selecting</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Candidate action</th><th>Feasibility now</th><th>Why this matters</th><th>Decision</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Stabilize sampling and verify end-to-end DHT11 read</td>
+        <td>High</td>
+        <td>Confirms the whole pipeline and eliminates polling errors</td>
+        <td>Selected</td>
+      </tr>
+      <tr>
+        <td>Design a clean mount and cable routing in the stand</td>
+        <td>Medium</td>
+        <td>Protects the sensor, improves airflow and repeatability</td>
+        <td>Next</td>
+      </tr>
+      <tr>
+        <td>Add moving-average smoothing and threshold LED</td>
+        <td>Medium</td>
+        <td>Makes readings steadier and user-legible</td>
+        <td>Later</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 4 outcomes tied to the selected action -->
+  <h3 style="margin-top:16px;">Step 4 — Sensor Testing: Outcomes</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Prompt</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>What single action did you test?</td>
+        <td>End-to-end DHT11 read with Serial logging to verify sensor → code → monitor.</td>
+      </tr>
+      <tr>
+        <td>Board, library, and wiring</td>
+        <td>Arduino with Adafruit DHT (<code>DHT.h</code>); module 5V and GND; DATA to D2; module’s pull-up used.</td>
+      </tr>
+      <tr>
+        <td>Sampling and baud</td>
+        <td>115200 baud; polling every 1–2 s to match DHT11’s ~1 Hz capability.</td>
+      </tr>
+      <tr>
+        <td>Validation method</td>
+        <td>Serial Monitor shows stable values; warm breath raises %RH and slightly raises °C; baseline matches room meter.</td>
+      </tr>
+      <tr>
+        <td>Issues and fixes</td>
+        <td>Occasional <code>nan</code> when too fast or with loose jumper; fixed by slower polling and reseating connectors.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>
+
   <div class="grid">
     <img src="images/Activity1/006.jpg"
          style="width:100%;object-fit:cover"
