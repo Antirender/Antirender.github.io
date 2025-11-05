@@ -191,22 +191,6 @@ img {
          alt="Prototype V2. Wider base and a rear wedge improve stability and add viewing options.">
   </div>
 </div>
-  
-<div id="InClassActivity2" class="w3-row-padding">
-  <h2>In-Class Activity 2 — Guerrilla Prototyping II</h2>
-  <div class="grid">
-    <img src="images/Activity2/001.jpg"style="width:100%"onclick="onClick(this)"
-         alt="Step 0 — Reference style :a cartoon lamp icon used to lock rough proportions between shade, post, and base; not a real build photo—only a reference.">
-    <img src="images/Activity2/002.jpeg"style="width:100%"onclick="onClick(this)"
-         alt="Step 1 — V1 skeleton: cardboard base + slim post to quickly test center of mass and load. Issue: wobble at the post–base joint; fix: enlarge base or add triangular bracing. Materials: corrugated cardboard, light hot-glue tacks.">
-    <img src="images/Activity2/003.jpeg"style="width:100%"onclick="onClick(this)"
-         alt="Step 2 — Shade mock-up: trial shade mounted on the post to simulate real torque. Problem: front tilt lifts the base; tipping risk is high. Decision: add a rear wedge brace or a twin-post layout to share the moment.">
-    <img src="images/Activity2/004.jpeg"style="width:100%"onclick="onClick(this)"
-         alt="Step 3 — V2 stability upgrade: larger base and added support on the load side; shade attachment strengthened. Result: lateral sway is reduced and the model stays put during desk use. Next: improve cable routing and fine-angle adjustability.">
-    <img src="images/Activity2/005.jpeg"style="width:100%"onclick="onClick(this)"
-         alt="Step 4 — Joinery & cable planning: top view to inspect glue points and cardboard grain; leave channels and tie points for future light/sensor wiring. Hot-glue tacks + tape bridges keep it mod-friendly for revisions.">
-  </div>
-</div>
   <!-- Sources / video credits -->
   <section class="w3-small" style="margin-top:12px">
     <h3>References (video tutorials that informed each step)</h3>
@@ -229,6 +213,30 @@ img {
     </ol>
     <p>Notes: alt texts describe the action --> problem and benefit --> takeaway.</p>
   </section>
+  
+<div id="InClassActivity2" class="w3-row-padding">
+  <h2>In-Class Activity 2 — Guerrilla Prototyping II</h2>
+  <div class="grid">
+    <img src="images/Activity2/001.jpg"style="width:100%"onclick="onClick(this)"
+         alt="Step 0 — Reference style :a cartoon lamp icon used to lock rough proportions between shade, post, and base; not a real build photo—only a reference.">
+    <img src="images/Activity2/002.jpeg"style="width:100%"onclick="onClick(this)"
+         alt="Step 1 — V1 skeleton: cardboard base + slim post to quickly test center of mass and load. Issue: wobble at the post–base joint; fix: enlarge base or add triangular bracing. Materials: corrugated cardboard, light hot-glue tacks.">
+    <img src="images/Activity2/003.jpeg"style="width:100%"onclick="onClick(this)"
+         alt="Step 2 — Shade mock-up: trial shade mounted on the post to simulate real torque. Problem: front tilt lifts the base; tipping risk is high. Decision: add a rear wedge brace or a twin-post layout to share the moment.">
+    <img src="images/Activity2/004.jpeg"style="width:100%"onclick="onClick(this)"
+         alt="Step 3 — V2 stability upgrade: larger base and added support on the load side; shade attachment strengthened. Result: lateral sway is reduced and the model stays put during desk use. Next: improve cable routing and fine-angle adjustability.">
+    <img src="images/Activity2/005.jpeg"style="width:100%"onclick="onClick(this)"
+         alt="Step 4 — Joinery & cable planning: top view to inspect glue points and cardboard grain; leave channels and tie points for future light/sensor wiring. Hot-glue tacks + tape bridges keep it mod-friendly for revisions.">
+  </div>
+  <div class="grid">
+    <img src="images/Activity2/workshop2_1.jpg" style="width:100%" onclick="onClick(this)" alt="These are the 5 ideas that we came up with as a group for our brainstorming of the concep">
+    <img src="images/Activity2/workshop2_2.png" style="width:100%" onclick="onClick(this)" alt="This is a table summarize the feedbacks we gathered">
+    <img src="images/Activity2/workshop2_3.jpeg" style="width:100%" onclick="onClick(this)" alt="3 sketches for narrowing down our ideas">
+    <img src="images/Activity2/workshop2_4.jpeg" style="width:100%" onclick="onClick(this)" alt="rapid prototype of the lamp - top perspective view">
+    <img src="images/Activity2/workshop2_5.jpeg" style="width:100%" onclick="onClick(this)" alt="rapid prototype of the lamp - side perspective view">
+  </div>
+</div>
+
   
   <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
 
@@ -438,29 +446,327 @@ img {
 </div>
   <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
 
-  <div id="Activity2" class="w3-row-padding">
-    <h2>Activity 2: My Research</h2>
-    <div class="grid">
-      <img src="images/Activity2/happy.png" style="width:100%" onclick="onClick(this)" alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/Activity2/happy.png" style="width:100%" onclick="onClick(this)" alt="test3Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/Activity2/happy.png" style="width:100%" onclick="onClick(this)" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/Activity2/happy.png" style="width:100%" onclick="onClick(this)" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/Activity2/happy.png" style="width:100%" onclick="onClick(this)" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-    </div>
+<!-- Activity 2 — DHT11 Data Acquisition (Steps 1–5) -->
+<div id="Activity2" class="w3-row-padding">
+  <h2>Activity 2: Iterating on DHT11 Data to LED Signals</h2>
+
+  <!-- Step 1 -->
+  <h3 style="margin-top:24px;">Step 1 — Lists help</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Prompt</th><th>Knowns</th><th>Unknowns</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Do you know which software you are using?</td>
+        <td>Arduino IDE 2.x; Serial Monitor; Adafruit <code>DHT.h</code>.</td>
+        <td>Final logging format and time-stamp style for analysis.</td>
+      </tr>
+      <tr>
+        <td>Do you know which sensor technology you need?</td>
+        <td>DHT11 temperature/humidity module.</td>
+        <td>True accuracy and response time in a desk environment; impact of airflow.</td>
+      </tr>
+      <tr>
+        <td>Do you know what your UI / UX looks like?</td>
+        <td>Text-only output in Serial Monitor, one line per sample.</td>
+        <td>Error states (e.g., <code>nan</code>) and tier labels for temperature ranges.</td>
+      </tr>
+      <tr>
+        <td>Does your project use materials or will it be housed in a case?</td>
+        <td>Breadboard prototype; loose sensor placement for quick tests.</td>
+        <td>Future enclosure vents and cable strain relief (moved to Activity 3).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 2 -->
+  <h3 style="margin-top:24px;">Step 2 — Identifying the Unknowns</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Unknowns</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Identify three UI related unknowns.</td>
+        <td>Decide units (°C, %RH), decimal precision (T with 1 dp), and compact tier label (BLUE/GREEN/YELL/RED).</td>
+      </tr>
+      <tr>
+        <td>Identify three UX related unknowns.</td>
+        <td>Readable cadence (~1 s), minimal clutter per line, explicit error message when read fails.</td>
+      </tr>
+      <tr>
+        <td>Identify three Hardware or Software related unknowns.</td>
+        <td>Correct polling interval for DHT11 (~1 Hz), stable wiring to DATA pin, and hysteresis to avoid flicker.</td>
+      </tr>
+      <tr>
+        <td>Identify three Interaction related unknowns.</td>
+        <td>Temperature tiers’ thresholds, hysteresis value, and how tiers will be used later (LED/LCD mapping).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 3 -->
+  <h3 style="margin-top:24px;">Step 3 — Strategizing</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Identified Unknowns</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Identify two things you need that are slowing you down or stopping your progress.</td>
+        <td>Occasional <code>nan</code> from over-polling; unstable jumpers. Set interval ≥1000 ms and reseat connectors.</td>
+      </tr>
+      <tr>
+        <td>List the things you are most-curious about, put them in order of interest.</td>
+        <td>1) Hysteresis effect on tier flicker 2) Breath test humidity spike 3) Sensor self-heating near MCU.</td>
+      </tr>
+      <tr>
+        <td>Identify two blind spots or obstacles that need to be overcome.</td>
+        <td>Pin mis-mapping and ground noise via hub. Mitigation: label DATA pin; plug directly to laptop USB.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 4 -->
+  <h3 style="margin-top:24px;">Step 4 — Selecting</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Candidate action</th><th>Feasibility now</th><th>Why this matters</th><th>Decision</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Read DHT11 reliably and print T/HR to Serial with time-stamps.</td>
+        <td>High</td>
+        <td>Confirms sensor → code → monitor pipeline.</td>
+        <td>Selected</td>
+      </tr>
+      <tr>
+        <td>Apply temperature tiers with hysteresis to avoid rapid toggling.</td>
+        <td>High</td>
+        <td>Creates stable categorical feedback for later UI.</td>
+        <td>Next</td>
+      </tr>
+      <tr>
+        <td>Add smoothing for humidity and output CSV-ready logs.</td>
+        <td>Medium</td>
+        <td>Prepares data for dashboards; not essential today.</td>
+        <td>Later</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 4 — outcomes tied to the selected action (match 009.png code) -->
+  <h3 style="margin-top:16px;">Step 4 — Data Testing: Outcomes</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Prompt</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sampling configuration</td>
+        <td>Serial 115200; polling every 1–2 s to respect DHT11’s ~1 Hz capability.</td>
+      </tr>
+      <tr>
+        <td>Tier thresholds and hysteresis</td>
+        <td>BLUE ≤ 16.0°C; GREEN ≤ 26.0°C; YELL ≤ 34.0°C; otherwise RED; hysteresis HYS ≈ 0.7°C (as in the sketch).</td>
+      </tr>
+      <tr>
+        <td>Validation</td>
+        <td>Stable numbers in Serial Monitor; warm breath raises %RH; hand/desk proximity shifts °C slightly as expected.</td>
+      </tr>
+      <tr>
+        <td>Issues and fixes</td>
+        <td><code>nan</code> when polling too fast or with loose DATA jumper → slower interval + reseat; occasional tier chatter → apply hysteresis.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 5 — Photo grid (006–010) -->
+  <h2>Activity 2: Iterating on DHT11 Data to LED Signals</h2>
+  <div class="grid">
+    <img src="images/Activity2/006.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 1 — Board selection and sensor choice: confirming the DHT11-based plan for data acquisition.
+         DMX is too complex for now; focus on T/H first. using an Arduino Uno to connect to the DHT11 module for leds and serial output.">
+    <img src="images/Activity2/007.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 2 — Breadboard layout: DHT11 wired to the board; bench setup for serial testing.">
+    <img src="images/Activity2/008.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 3 — Wiring refinement: DATA, VCC, GND verified; ready for repeated sampling.">
+    <img src="images/Activity2/009.png"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 4 — Arduino sketch with tiers and hysteresis: BLUE/GREEN/YELL/RED thresholds and 1–2 s polling in the loop.">
+    <img src="images/Activity2/010.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 5 — End-to-end serial test: live T/H readings and stable red tier output; ready for UI integration next.">
   </div>
+</div>
 
   <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
 
-  <div id="ActionResearch" class="w3-row-padding">
-    <h2>Action Research: My Research Continued</h2>
-    <div class="grid">
-      <img src="images/ActionResearch/happy.png" style="width:100%" onclick="onClick(this)" alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/ActionResearch/happy.png" style="width:100%" onclick="onClick(this)" alt="test3Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/ActionResearch/happy.png" style="width:100%" onclick="onClick(this)" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/ActionResearch/happy.png" style="width:100%" onclick="onClick(this)" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-      <img src="images/ActionResearch/happy.png" style="width:100%" onclick="onClick(this)" alt="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
-    </div>
+<!-- Action Research — Activity 3 -->
+<div id="Activity3" class="w3-row-padding">
+  <h2>Action Research — Activity 3: Iterating DHT11 Data → LED Cues → LCD1602 Display</h2>
+
+  <!-- Step 1 -->
+  <h3 style="margin-top:24px;">Step 1 — Lists help</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Prompt</th><th>Knowns</th><th>Unknowns</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Do you know which software you are using?</td>
+        <td>Arduino IDE 2.x; libraries: <code>DHT.h</code>, <code>LiquidCrystal</code>; Serial Monitor for debugging.</td>
+        <td>Exact print layout on a 16×2 LCD; timestamp format; library versions to lock.</td>
+      </tr>
+      <tr>
+        <td>Do you know which sensor/technology you need?</td>
+        <td>DHT11 for temperature/humidity; 4-bit parallel LCD1602; 3–4 LEDs for tier cues.</td>
+        <td>I²C vs parallel trade-off; contrast POT value; stable 5V/grounding with LEDs and LCD together.</td>
+      </tr>
+      <tr>
+        <td>Do you know what your UI / UX looks like?</td>
+        <td>Row 1 shows temperature; Row 2 shows humidity + tier label; LEDs mirror the tier.</td>
+        <td>Abbreviations, error messaging (<code>nan</code>), and update cadence without flicker.</td>
+      </tr>
+      <tr>
+        <td>Does your project use materials or a case?</td>
+        <td>Breadboard for wiring; cardboard stand planned for mounting.</td>
+        <td>Vent holes around DHT11; cable strain relief; LCD viewing angle once embedded.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 2 -->
+  <h3 style="margin-top:24px;">Step 2 — Identifying the Unknowns</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Unknowns</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Identify three UI related unknowns.</td>
+        <td>Decide on “T 00.0°C / H 00%”; reserve 4–6 chars for a tier word; avoid more than 16 chars per row.</td>
+      </tr>
+      <tr>
+        <td>Identify three UX related unknowns.</td>
+        <td>Readable at 50–80 cm; latency ~1–2 s; clear error line when reads fail.</td>
+      </tr>
+      <tr>
+        <td>Identify three Hardware or Software related unknowns.</td>
+        <td>RS/E/D4–D7 pin map; 10 kΩ POT to VO; DHT11 polling ≥1 s; LED current limiting.</td>
+      </tr>
+      <tr>
+        <td>Identify three Interaction related unknowns.</td>
+        <td>Tier thresholds; hysteresis to prevent chatter; mapping tiers to LED colors and LCD text.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 3 -->
+  <h3 style="margin-top:24px;">Step 3 — Strategizing</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Identified Unknowns</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Identify two things you need that are slowing you down or stopping your progress.</td>
+        <td>LCD contrast too low; tier flicker when hovering around thresholds. Actions: tune POT; add ±0.7 °C hysteresis.</td>
+      </tr>
+      <tr>
+        <td>List the things you are most-curious about, put them in order of interest.</td>
+        <td>1) Hysteresis impact on stability 2) Breath test effect on %RH 3) Self-heating near MCU/LCD backlight.</td>
+      </tr>
+      <tr>
+        <td>Identify two blind spots or obstacles.</td>
+        <td>Pin mis-wires (D4–D7 order) and ground noise via USB hub. Mitigation: label jumpers; plug directly to laptop.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 4 -->
+  <h3 style="margin-top:24px;">Step 4 — Selecting</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Candidate action</th><th>Feasibility now</th><th>Why this matters</th><th>Decision</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Drive LEDs by temperature tiers and mirror the same tiers on the LCD.</td>
+        <td>High</td>
+        <td>End-to-end pipeline from sensing → categorizing → two-channel feedback.</td>
+        <td>Selected</td>
+      </tr>
+      <tr>
+        <td>Polish LCD copy and layout (units, spacing, error line).</td>
+        <td>High</td>
+        <td>Improves legibility for demos and photos.</td>
+        <td>Next</td>
+      </tr>
+      <tr>
+        <td>Move to I²C backpack and compact wiring.</td>
+        <td>Medium</td>
+        <td>Reduces wires and frees pins for future features.</td>
+        <td>Later</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 4 — outcomes aligned with your sketch (001.png code view) -->
+  <h3 style="margin-top:16px;">Step 4 — Integration Outcomes</h3>
+  <table class="w3-table w3-bordered w3-small">
+    <thead>
+      <tr><th>Prompt</th><th>Outcome</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tier thresholds and hysteresis</td>
+        <td>BLUE ≤ 16.0 °C; GREEN ≤ 26.0 °C; YELLOW ≤ 34.0 °C; else RED; hysteresis ≈ ±0.7 °C to prevent chatter.</td>
+      </tr>
+      <tr>
+        <td>Sampling & display rate</td>
+        <td>Serial 115200; DHT11 polling every 1–2 s; LCD update on each valid sample.</td>
+      </tr>
+      <tr>
+        <td>LCD layout</td>
+        <td>Row1: <code>T 00.0°C</code>; Row2: <code>H 00%  STATE</code> where STATE ∈ {BLUE, GREEN, YELLOW, RED}.</td>
+      </tr>
+      <tr>
+        <td>Validation</td>
+        <td>Breath raises %RH; hand heat nudges °C; LEDs and LCD state stay in sync with hysteresis applied.</td>
+      </tr>
+      <tr>
+        <td>Issues & fixes</td>
+        <td>Garbled LCD from D4–D7 swap → rewire; dim text → adjust POT; sporadic <code>nan</code> → slow polling, reseat DATA.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Step 5 — Photo grid (001–005) -->
+  <h2>Action Research 1: Iterating DHT11 Data → LED Cues → LCD1602 Display</h2>
+  <div class="grid">
+    <img src="images/ActionResearch/001.png"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 1 — Arduino sketch prepared: DHT read, tier computation, LED control, and LCD print routine.">
+    <img src="images/ActionResearch/002.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 2 — Wiring the full stack: DHT11, LEDs with resistors, LCD1602 in 4-bit mode.">
+    <img src="images/ActionResearch/003.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 3 — Breadboard refinement: jumpers labeled; POT added for LCD contrast; stable 5V rails.">
+    <img src="images/ActionResearch/004.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 4 — LED cues live: tier changes drive blue/green/yellow/red LEDs; readings match expectations.">
+    <img src="images/ActionResearch/005.jpeg"
+         style="width:100%" loading="lazy" decoding="async" onclick="onClick(this)"
+         alt="Step 5 — LCD1602 readout: temperature, humidity, and tier label displayed and synchronized with LEDs.">
   </div>
+</div>
+
 
   <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
   <!-- Boilerplate -->
