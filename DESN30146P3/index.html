@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Physical Computing Fall 2025</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {
+  font-family: "Poppins", sans-serif
+  }
+body {
+  font-size:16px;
+  }
+h1 { 
+  font-size:30px;
+  }
+h2 {
+  font-size:25px;
+  }
+  h3 {
+  font-size:18px;
+  }
+img {
+  width: 100%;
+  height: 100%;
+}
+.grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;;
+}
+.w3-half img{
+  margin-bottom:-6px;
+  margin-top:16px;
+  opacity:0.8;
+  cursor:pointer
+  } */
+.w3-half img:hover{
+  opacity:1
+  }
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:200px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topleft" style="display:none;font-size:22px"></a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>IXD<br>DESN 30146<br>Fall 2025</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#Module3" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Module 3</a> 
+    <a href="#Workshop1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Workshop 1</a> 
+    <a href="#Workshop2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Workshop 2</a>
+    <a href="#Activity1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 1</a> 
+    <a href="#Activity2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 2</a>
+    <a href="#AdditionalResearch" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Additional Research or Workshops</a>
+    <a href="#Project2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Project 2 Prototype</a> 
+  </div>
+</nav>
+
+<!-- Top menu on small screens
+<header class="w3-container w3-top w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Menu</span>
+</header> -->
+
+<!-- 
+  if you want to link your image to a video use one of the following alt links as an example:
+
+  alt="test1Lorem ipsum dolor sit amet, consectetur adipiscing elit test1Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+
+-->
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:220px;margin-right:20px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="default">
+    <h1 class="w3-jumbo" id="Home"><b>Module 3 Activity Research</b></h1>
+    <h1 class="w3-xxxlarge w3-text-blue"><b>Weekly Activity</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Yiyang Zhang</b></h1>
+    <hr style="width:50px;border:5px solid grey" class="w3-round">
+  </div>
+  <!-- Boilerplate -->
+<div id="Module2" class="w3-container" style="margin-top:75px">
+  <h1 class="w3-xxxlarge w3-text-red"><b>Project 3</b></h1>
+  <hr style="width:50px;border:5px solid red" class="w3-round">
+  <h2>Module 3</h2>
+  <h3>
+    For Project 3 I am evolving the comfort lamp into a finished ambient object. 
+    After a group discussion we realized the lamp needs a physical scene instead of exposed electronics, 
+    so this module focuses on researching and prototyping a 3D-printed housing that frames the light, 
+    hides the Arduino hardware, and supports future ProtoPie interactions. 
+    Activity 1 documents my first round of research and the initial enclosure prototype.
+  </h3>
+</div>
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
+  
+<!-- Project 1 Photo grid (modal) -->
+<div id="Workshop1">
+  <h2>Workshop 1</h2>
+  <p>
+  Workshop 1 was a bodystorming exercise where our team role-played a clinic visit to study doctor–patient communication. 
+  By acting as doctors, nurses, and patients, we tested how eye contact, body language, tone of voice, and digital tools 
+  (like using a phone for symptom checklists) affect trust and comfort. The photos document different scenarios from 
+  routine checkups to sudden “emergency” moments, helping us reflect on how interaction design can support clearer, calmer 
+  communication in real healthcare settings.
+</p>
+  <div class="grid">
+    <img src="images/Workshop1/1.jpeg"
+         style="width:100%"
+         onclick="onClick(this)"
+         alt="Our bodystorming challenge was to role-play a clinic visit. Minh and Valerii acted as nurses, Keegan played the doctor, and two of us, including me (Yiyang in the red hoodie), were the patients. This scene shows us setting up the consultation and explaining the exercise.">
+    <img src="images/Workshop1/2.jpeg"
+         style="width:100%"
+         onclick="onClick(this)"
+         alt="Keegan, playing the doctor, reads questions from a symptom checklist on his phone while I sit beside the other patient. We used this moment to test whether a doctor can keep a friendly tone and explain things clearly even when they are focused on a digital tool.">
+    <img src="images/Workshop1/3.jpeg"
+         style="width:100%"
+         onclick="onClick(this)"
+         alt="Here I am patient #2 in the red hoodie while Keegan leans in to talk directly to me about my symptoms. We were paying attention to eye contact, body language, and how comfortable it feels when the doctor gets close in order to listen carefully.">
+    <img src="images/Workshop1/4.jpeg"
+         style="width:100%"
+         onclick="onClick(this)"
+         alt="In this scene another student plays a patient with chest pain, holding his hoodie near his heart while the doctor asks where it hurts. We used this role-play to see how simple questions and gestures can help the patient describe what they are feeling.">
+    <img src="images/Workshop1/5.jpeg"
+         style="width:100%"
+         onclick="onClick(this)"
+         alt="The last photo shows a more dramatic case, where the patient pretends to faint in the chair and the doctor has to react quickly. This helped us think about how communication changes in an emergency and what kind of language still keeps the patient calm.">
+  </div>
+</div>
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
+  
+<div id="Workshop2" class="w3-row-padding">
+  <h2>Workshop 2</h2>
+  <p>
+    Workshop 2 focused on building and testing the electronics for my comfort lamp.
+    I extended the LED wiring, created a reliable connector for the NeoPixel strip,
+    and tested the full circuit on a breadboard with the Arduino, DHT sensor, and LCD.
+    After confirming that the logic and tiered colors worked, I started placing the
+    components into the new staircase-and-arches housing to study how the light behaves
+    inside the scene.
+  </p>
+  <div class="grid">
+    <img src="images/Activity2/002.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Soldering longer wires to the LED with separate RGB leads, but discovering that the strip was not working properly.">
+
+    <img src="images/Activity2/003.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Finished wired connector to the NeoPixel strip, preparing a stable connection for the LED and sensor.">
+
+    <img src="images/Activity2/004.gif" style="width:100%" onclick="onClick(this)"
+         alt="Breadboard test of the comfort lamp logic: Arduino, DHT sensor, RGB LEDs and LCD all running to verify tier mapping and stability.">
+
+    <img src="images/Activity2/005.gif" style="width:100%" onclick="onClick(this)"
+         alt="First in-class test of placing the electronics into the new design scene, checking fit and the colour cycle.">
+
+    <img src="images/Activity2/006.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="The lamp glowing in a warm tier inside the housing, evaluating how the staircase and arches catch and reflect the light.">
+  </div>
+</div>
+  
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
+
+<div id="Activity1">
+  <h2>Activity 1: Enclosure Design & Material Research</h2>
+  <p>
+    In Activity 1 I focused on the physical form of the comfort lamp. 
+    Based on our group discussion that an ambient lamp should live inside a scene, 
+    I researched architectural models, selected a staircase/arch design from Thingiverse, 
+    and modified it to fit the Arduino, DHT sensor, and RGB LEDs. 
+    The images below show the process from reference model to 3D print and first physical prototype.
+  </p>
+
+  <div class="grid">
+    <img src="images/Activity1/001.png" style="width:100%" onclick="onClick(this)"
+         alt="Reference 3D model found on Thingiverse that I chose as the starting point for the ambient lamp scene. <a href='https://www.thingiverse.com/thing:7076687' target='_blank'>Thingiverse source link</a>">
+
+    <img src="images/Activity1/002.png" style="width:100%" onclick="onClick(this)"
+         alt="My first modification of the original model in CAD, adjusting the interior architecture to create a stronger light scene for the comfort lamp.">
+
+    <img src="images/Activity1/003.png" style="width:100%" onclick="onClick(this)"
+         alt="Second CAD iteration where I added clearance and a slot for the Arduino board, plus space for wiring and the DHT sensor at the back of the lamp.">
+
+    <img src="images/Activity1/004.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="3D printing in progress on the Ultimaker; this test checks wall thickness, overhangs, and print time for the modified lamp enclosure.">
+
+    <img src="images/Activity1/005.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Finished first physical prototype of the 3D-printed housing, ready for installing the comfort lamp electronics and testing how the light behaves inside the scene.">
+  </div>
+</div>
+
+<div id="Activity2" class="w3-row-padding">
+  <h2>Activity 2: Electronics & Lighting Integration Tests</h2>
+  <p>
+    In Activity 2 I focused on testing the electronics inside the new 3D-printed housing. 
+    I soldered and extended the RGB LED ring, verified the comfort-lamp logic on the breadboard, 
+    then installed everything into the architectural scene to check brightness, colour tiers, 
+    and how the light behaves in the final enclosure.
+  </p>
+
+  <div class="grid">
+    <img src="images/Activity2/001.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Testing the RGB LED ring on its own, checking if it can adapt (at end it can not adapt my pipeline with arduino).">
+
+
+    <img src="images/Activity2/007.gif" style="width:100%" onclick="onClick(this)"
+         alt="Adjusting the position of the LED ring while the lamp is on to see how different placements change the light gradient in the scene.(plus color cycle)">
+
+    <img src="images/Activity2/008.jpg" style="width:100%" onclick="onClick(this)"
+         alt="Cool/green tier test, checking if the colour still reads clearly once it is diffused by the 3D-printed structure.">
+
+    <img src="images/Activity2/009.jpg" style="width:100%" onclick="onClick(this)"
+         alt="Warm/orange tier test, used to represent a less comfortable environment; verifying contrast against the other tiers.">
+
+    <img src="images/Activity2/010.jpg" style="width:100%" onclick="onClick(this)"
+         alt="Bright magenta tier test, exploring a more intense alert state and how dramatic colours feel in the final ambient object.">
+  </div>
+</div>
+
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
+
+<div id="AdditionalResearch" class="w3-row-padding">
+  <h2>Additional Research 1</h2>
+  <p>
+    For this additional research I explored alternative sensing and interaction options for the comfort lamp. 
+    I removed the LCD module to simplify the circuit, added a light sensor so the lamp can react to ambient 
+    brightness, and tested a latching touch switch after our team discussion that “a lamp should always have 
+    a clear on/off control.” I then cleaned up the wiring, updated the code, and verified that the full system 
+    runs reliably with the new sensors and switch.
+  </p>
+  <div class="grid">
+    <img src="images/AdditionalResearch/001.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Breadboard prototype without the LCD screen, showing the DHT sensor, RGB LED and a new light-dependent resistor to measure ambient brightness.">
+
+    <img src="images/AdditionalResearch/002.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Second breadboard setup adding a latching touch switch, based on teammate feedback that the comfort lamp should have a clear on–off control.">
+
+    <img src="images/AdditionalResearch/003.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Rewired and tidied breadboard circuit with all components connected and the RGB LED successfully lighting up.">
+
+    <img src="images/AdditionalResearch/004.png" style="width:100%" onclick="onClick(this)"
+         alt="Arduino IDE screenshot showing the updated code that reads the sensors and handles the latching touch switch logic.">
+
+    <img src="images/AdditionalResearch/005.gif" style="width:100%" onclick="onClick(this)"
+         alt="Live test of the prototype: the RGB LED responds while the latching touch switch and sensors are being triggered on the breadboard.">
+  </div>
+</div>
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
+<div id="AdditionalResearch2" class="w3-row-padding">
+  <h2>Additional Research 2</h2>
+  <p>
+    In this second round of additional research I focused on how the full comfort-lamp circuit fits and behaves
+    around the 3D-printed enclosure. I first tested the latching touch switch and sensors on the breadboard,
+    then brought the housing into the setup to check cable length, mounting positions and light spill. Finally,
+    I ran a series of colour-tier tests (cool, neutral and hot states) with the enclosure in place to see how the
+    LEDs wash across the stairs and arches and to confirm that the physical scene still makes the state changes
+    easy to read.
+  </p>
+  <div class="grid">
+    <img src="images/AdditionalResearch/006.gif" style="width:100%" onclick="onClick(this)"
+         alt="Animated test of the full breadboard circuit with the latching touch switch and sensors, verifying that the comfort-lamp logic responds correctly when the switch is tapped.">
+
+    <img src="images/AdditionalResearch/007.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Checking the empty staircase-and-arch enclosure by hand to plan how the electronics will sit inside the 3D-printed volume.">
+
+    <img src="images/AdditionalResearch/008.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Breadboard, sensors and wiring arranged beside the 3D-printed enclosure, testing cable reach and layout before final assembly.">
+
+    <img src="images/AdditionalResearch/009.gif" style="width:100%" onclick="onClick(this)"
+         alt="Animated test with the enclosure in place, showing the interior glowing while the external breadboard circuit drives the LEDs.">
+
+    <img src="images/AdditionalResearch/010.jpeg" style="width:100%" onclick="onClick(this)"
+         alt="Close-up of the lamp glowing in a red tier inside the enclosure while the external circuit is still accessible for adjustment.">
+  </div>
+</div>
+
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
+  <!-- Boilerplate -->
+<div id="Project2" class="w3-container" style="margin-top:75px">
+  <h1 class="w3-xxxlarge w3-text-red"><b>Project 3</b></h1>
+  <hr style="width:50px;border:5px solid red" class="w3-round">
+  <h2>Project 3 Final Prototype</h2>
+  <p>
+    The final prototype turns my comfort lamp into a small architectural ambient scene. The 3D-printed staircase
+    and arch are still driven by the tiered comfort-lamp logic, while temperature, humidity, and light level are
+    read by sensors mounted on the side. A latching touch switch gives the lamp a clear physical on/off control,
+    and my teammate’s ProtoPie mobile UI now connects to the Arduino to show the live sensor data and modes
+    that used to be on the LCD, as well as send commands back to the lamp. The finished object works together
+    with the phone interface: the phone handles detailed information and controls, while the lamp itself
+    communicates through colour and glow as a calm atmospheric display.
+  </p>
+
+  <img src="images/final/001.jpeg"
+       style="width:100%"
+       onclick="onClick(this)"
+       alt="Final prototype: a small architectural staircase and archway model lit from inside with a soft green LED glow, with the microcontroller and wiring attached on the side.">
+
+  <img src="images/final/002.gif"
+       style="width:100%; margin-top:16px"
+       onclick="onClick(this)"
+       alt="Animated view of the final prototype cycling through rainbow and tiered colours to show different comfort states.">
+</div>
+
+
+   <!-- Modal for full size images on click-->
+   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
+      <img id="img01" class="w3-image">
+      <h2 id="caption"></h2>
+
+      <!-- <div id="urLink"></div> -->
+      <!-- <a id="urLink" class="container"><iframe class="responsive-iframe"></iframe></a> -->
+    <!-- </div> -->
+  </div>
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+
+<script>
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+
+  // var captionUrl = document.getElementById("urLink");
+  // captionUrl.innerHTML = element.url;
+
+  //document.getElementById("urLink").src = element.url;
+}
+</script>
+
+</body>
+</html>
