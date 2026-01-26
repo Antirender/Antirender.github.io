@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Media Motion and the Body Winter 2025</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {
+  font-family: "Poppins", sans-serif
+  }
+body {
+  font-size:16px;
+  }
+h1 { 
+  font-size:30px;
+  }
+h2 {
+  font-size:25px;
+  }
+  h3 {
+  font-size:18px;
+  }
+img {
+  width: 100%;
+  height: 100%;
+}
+.grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+.w3-half img{
+  margin-bottom:-6px;
+  margin-top:16px;
+  opacity:0.8;
+  cursor:pointer
+  } */
+.w3-half img:hover{
+  opacity:1
+  }
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:200px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topleft" style="display:none;font-size:22px"></a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>IXD<br>DESN 22848 <br> Winter-2025</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#Module1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Module 1</a> 
+    <a href="#Activity1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 1</a> 
+    <a href="#Activity2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 2</a> 
+    <a href="#Project2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Project 2</a>  
+  </div>
+</nav>
+
+<!-- Top menu on small screens
+<header class="w3-container w3-top w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Menu</span>
+</header> -->
+
+<!-- 
+  if you want to link your image to a video use one of the following alt links as an example:
+
+  alt="test1Lorem ipsum dolor sit amet, consectetur adipiscing elit test1Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <audio controls><source src="birds.mp3" type="audio/m</source></audio>
+
+-->
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:220px;margin-right:20px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="default">
+    <h1 class="w3-jumbo" id="Home"><b>Module 2 Formstorming</b></h1>
+    <h1 class="w3-xxxlarge w3-text-blue"><b>Weekly Activity</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Yiyang Zhang</b></h1>
+    <hr style="width:50px;border:5px solid grey" class="w3-round">
+  </div>
+  <!-- Boilerplate -->
+  <div id="Module1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 2</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Module 2</h2>
+    <h3>I collected and improved 25 sound recordings to create a useful sound library.
+      These sounds are clear and easy to use for future projects.
+       The collection includes different types of sounds like ambient, environmental, synthesized, and recorded audio.
+    </h3>
+  </div>
+  
+  <!-- Project 1 Photo grid (modal) -->
+  <div id="Activity1" >
+    <h2>Activity 1</h2>
+    <div class="grid">
+      <img src="images/Activity1/001.jpeg" style="width:100%" onclick="onClick(this)" alt="Sound of a bicycle chain">
+      <img src="images/Activity1/002.jpeg" style="width:100%" onclick="onClick(this)" alt="Sound of the mounting element on the robotic arm">
+      <img src="images/Activity1/003.jpeg" style="width:100%" onclick="onClick(this)" alt="Sound of the computer cooling fan">
+      <img src="images/Activity1/004.jpeg" style="width:100%" onclick="onClick(this)" alt="Motor rotation sound">
+      <img src="images/Activity1/005.jpeg" style="width:100%" onclick="onClick(this)" alt="High-pressure gas jet sound">
+      
+      <audio controls>
+        <source src="audio/001.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/002.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/003.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/004.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/005.mp3" type="audio/mp3">
+      </audio>
+      
+
+      <img src="images/Activity1/006.jpeg" style="width:100%" onclick="onClick(this)" alt="Keypad sound">
+      <img src="images/Activity1/007.jpeg" style="width:100%" onclick="onClick(this)" alt="Collision sound">
+      <img src="images/Activity1/008.jpeg" style="width:100%" onclick="onClick(this)" alt="Sounds of celebration at night">
+      <img src="images/Activity1/009.jpeg" style="width:100%" onclick="onClick(this)" alt="The train bell">
+      <img src="images/Activity1/010.jpeg" style="width:100%" onclick="onClick(this)" alt="Sequence of synthesizers">      
+    
+      <audio controls>
+        <source src="audio/006.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/007.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/008.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/009.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/010.mp3" type="audio/mp3">
+      </audio>
+      
+      
+      <img src="images/Activity1/011.jpeg" style="width:100%" onclick="onClick(this)" alt="Synth arpeggios">
+      <img src="images/Activity1/012.jpeg" style="width:100%" onclick="onClick(this)" alt="The subway pulls in">
+      <img src="images/Activity1/013.jpeg" style="width:100%" onclick="onClick(this)" alt="The goose crows">
+      <img src="images/Activity1/014.jpeg" style="width:100%" onclick="onClick(this)" alt="The largest hail in recent times">
+      <img src="images/Activity1/015.jpeg" style="width:100%" onclick="onClick(this)" alt="The sound of a tree saw">      
+    
+
+      <audio controls>
+        <source src="audio/011.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/012.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/013.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/014.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/015.mp3" type="audio/mp3">
+      </audio>
+      
+      <img src="images/Activity1/016.jpeg" style="width:100%" onclick="onClick(this)" alt="The sound of trees falling">
+      <img src="images/Activity1/017.jpeg" style="width:100%" onclick="onClick(this)" alt="The sound of keys colliding">
+      <img src="images/Activity1/018.jpeg" style="width:100%" onclick="onClick(this)" alt="Close the cabinet door">
+      <img src="images/Activity1/019.jpeg" style="width:100%" onclick="onClick(this)" alt="Spoons fall">
+      <img src="images/Activity1/020.jpeg" style="width:100%" onclick="onClick(this)" alt="Boil water sound">      
+   
+      <audio controls>
+        <source src="audio/016.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/017.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/018.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/019.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/020.mp3" type="audio/mp3">
+      </audio>
+      
+      <img src="images/Activity1/021.jpeg" style="width:100%" onclick="onClick(this)" alt="Walking sound">
+      <img src="images/Activity1/022.jpeg" style="width:100%" onclick="onClick(this)" alt="The sound of water">
+      <img src="images/Activity1/023.jpeg" style="width:100%" onclick="onClick(this)" alt="Sounds in the subway">
+      <img src="images/Activity1/024.jpeg" style="width:100%" onclick="onClick(this)" alt="Interactive device sounds">
+      <img src="images/Activity1/025.jpeg" style="width:100%" onclick="onClick(this)" alt="Sounds of fries">
+
+      <audio controls>
+        <source src="audio/021.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/022.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/023.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/024.mp3" type="audio/mp3">
+      </audio>
+      
+      <audio controls>
+        <source src="audio/025.mp3" type="audio/mp3">
+      </audio>
+      
+     </div>
+  </div>
+  
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="Activity2" class="w3-row-padding">
+    <h2>Activity 2</h2>
+    <h3>
+      <a href="https://ixd1239.phoenix.sheridanc.on.ca/DESN22848V1/index.html" target="_blank" style="color: blue; text-decoration: underline;">
+          Try it here
+      </a>
+  </h3>
+  
+  <div class="grid">
+    <video style="width:100%" controls>
+      <source src="images/Activity2/001.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/002.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/003.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/004.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/005.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/006.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/007.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/008.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/009.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/010.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/011.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/012.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/013.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/014.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/015.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/016.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/017.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/018.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/019.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/020.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/021.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/022.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/023.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/024.mp4" type="video/mp4">
+    </video>
+    <video style="width:100%" controls>
+      <source src="images/Activity2/025.mp4" type="video/mp4">
+    </video>
+  </div>
+  
+  <div class="descriptions">
+
+    <p>from left to right,from top to bottom.top left is 001,bottom right is 025</p>
+    <p>001 - A dynamic waveform visualization that reacts to audio amplitude in real time.</p>
+    <p>002 - Circular sound waves expanding outward, responding to sound frequencies.</p>
+    <p>003 - A purple dot graph that shifts dynamically with the music’s beat.</p>
+    <p>004 - A fluid particle system moving in sync with sound amplitude variations.</p>
+    <p>005 - A geometric pattern changing shape based on frequency analysis.</p>
+    <p>006 - A radial equalizer with pulsing color shifts tied to treble levels.</p>
+    <p>007 - A spectral visualization showing frequency energy distribution.</p>
+    <p>008 - Pixelated waveforms shifting in response to drum beats.</p>
+    <p>009 - A visualizer creating ripple effects based on low-frequency sounds.</p>
+    <p>010 - Abstract sound lines dancing to the rhythm of the song.</p>
+    <p>011 - A grid of particles vibrating according to frequency levels.</p>
+    <p>012 - A pulsating line that expands and contracts with sound intensity.</p>
+    <p>013 - An oscillating sine / triangle / square sound generator.</p>
+    <p>014 - A sphere pattern shifting colors with music energy.</p>
+    <p>015 - Particles colliding and spreading as the sound intensifies.</p>
+    <p>016 - A sound-driven spiral expanding and rotating to the rhythm.</p>
+    <p>017 - A waveform that warps and twists with volume changes.</p>
+    <p>018 - A color gradient morphing in sync with different sound frequencies.</p>
+    <p>019 - A sphere shape shifting in response to voice input.</p>
+    <p>020 - A glitch effect triangle triggered by sudden audio spikes.</p>
+    <p>021 - A dynamic network of hexagons connecting based on frequency.</p>
+    <p>022 - A bouncing line visualizer reacting to sound amplitude.</p>
+    <p>023 - A glitch line visualizer reacting to sound amplitude.</p>
+    <p>024 - A floating wave-like circle moving with audio waves.</p>
+    <p>025 - An interactive sound visualizer controlled by user input.</p>
+  </div>
+  
+  </div>
+  
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  
+  <!-- Boilerplate -->
+  <div id="Project2" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 2</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Final Project 2 Design</h2>
+    <h2>P5 Interactive Audio Web Header Portfolio</h2>
+   
+    <p>Rainbow Bloom--Exploring the harmony between sound and motion.
+      <br>
+      <p>Click <a href="https://ixd1239.phoenix.sheridanc.on.ca/DESN22848V2/index.html" target="_blank">here</a> to see it working on my server
+        <br>
+          <br>
+          <img src="images/final/Final screenshot.jpeg" style="width:100%" onclick="onClick(this)" 
+          alt="This tool changes music into colorful visuals. When sound plays, colors and shapes move instantly.">
+        <br>
+      <br>
+  </p>
+  </div>
+  
+   <!-- Modal for full size images on click-->
+   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
+      <img id="img01" class="w3-image">
+     
+      <h2 id="caption"></h2>
+
+      <!-- <div id="urLink"></div> -->
+      <!-- <a id="urLink" class="container"><iframe class="responsive-iframe"></iframe></a> -->
+    <!-- </div> -->
+  </div>
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+
+<script>
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+
+  // var captionUrl = document.getElementById("urLink");
+  // captionUrl.innerHTML = element.url;
+
+  //document.getElementById("urLink").src = element.url;
+}
+</script>
+
+</body>
+</html>
