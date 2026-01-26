@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hand Surgery Quiz Portal</title>
+  <link rel="icon" href="img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome Icons -->
+   <!-- from Font Awesome https://fontawesome.com -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+       /* 1) DARK/LIGHT MODE */
+    :root {
+      --bg: #ffffff;
+      --fg: #333;
+      --accent: #5078c6;
+      --hl: #f0f4ff;
+      --border: #ccc;
+      --headingFont: "Kelly Slab", cursive;  /* h1–h5 */
+      --bodyFont: "Ubuntu", sans-serif;      /* all else */
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    @font-face {
+      font-family: 'Kelly Slab';
+      font-style: normal;
+      font-weight: 400;
+      src: url(https://fonts.gstatic.com/s/kellyslab/v17/-W_7XJX0Rz3cxUnJC5t6fkQLfr8nfiI.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: 'Ubuntu';
+      font-style: normal;
+      font-weight: 400;
+      src: url(https://fonts.gstatic.com/s/ubuntu/v20/4iCs6KVjbNBYlgoKfw72nU6AFw.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    body.dark {
+      --bg: #1c1c1c;
+      --fg: #ffffff;
+      --accent: #6a9dfc;
+      --hl: #333;
+      --border: #555;
+    }
+
+       /* 2) GLOBAL RESETS */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--bodyFont);
+      transition: background-color 0.3s, color 0.3s;
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: var(--headingFont);
+      margin-bottom: 0.5rem;
+    }
+
+       /* 3) HEADER */
+    header {
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem;
+      background: var(--hl);
+      border-bottom: 1px solid var(--border);
+    }
+    #headerTop {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    #headerTop img {
+      width: 32px; height: 32px;
+    }
+    #langSelect, #darkToggle, #resetBtn {
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #headerBottom {
+      margin-top: 0.3rem;
+    }
+
+       /* 4) NAV TABS */
+    #tabBar {
+      display: flex;
+      background: var(--accent);
+      justify-content: center;
+    }
+    #tabBar li {
+      list-style: none;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      cursor: pointer;
+      border-right: 1px solid var(--hl);
+    }
+    #tabBar li:last-child {
+      border-right: none;
+    }
+    #tabBar li.active {
+      background: var(--hl);
+      color: var(--fg);
+    }
+
+    /* For mobile,hide tabBar (use swipe) */
+    @media (max-width: 600px) {
+      #tabBar { display: none; }
+    }
+
+       /* 5) MAIN CONTENT / TABS */
+    .tabPage {
+      display: none;
+      max-width: 600px;
+      margin: 1rem auto;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--hl);
+    }
+    .tabPage.active {
+      display: block;
+    }
+
+    .instructions {
+      margin-bottom: 1rem;
+      background: var(--bg);
+      padding: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    /* Progress bar container */
+    .progressWrap {
+      background: var(--border);
+      height: 10px;
+      border-radius: 4px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+    }
+    .progressBar {
+      background: var(--accent);
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s;
+    }
+
+       /* 6) QUIZ LAYOUT */
+    .quizItem {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px dashed var(--border);
+      border-radius: 4px;
+      position: relative;
+    }
+    .quizItem h3 { margin-bottom: 0.5rem; }
+    .quizOptions {
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .optionBtn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.3rem;
+      cursor: pointer;
+      text-align: left;
+    }
+    .resultMsg {
+      margin-top: 0.4rem;
+      font-weight: bold;
+    }
+    /* Blur locked questions */
+    .blurred {
+      filter: blur(5px);
+      pointer-events: none;
+    }
+
+       /* 7) ACHIEVEMENT */
+    .achievementBox {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #fff0c1;
+    }
+    .achievementBox.active {
+      display: block;
+    }
+    .achievementBox h4 {
+      color: #d48a00;
+    }
+
+    /* Modal (pop-up) for finishing a module */
+    .modalOverlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modalOverlay.active {
+      display: flex;
+    }
+    .modalContent {
+      background: var(--hl);
+      color: var(--fg);
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+      width: 80%;
+      max-width: 400px;
+      border: 2px solid var(--border);
+    }
+    .modalContent h2 {
+      margin-bottom: 0.5rem;
+    }
+    .closeBtn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+       /* 8) FOOTER */
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      color: var(--fg);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div id="headerTop">
+    <img src="img/favicon.ico" alt="Logo Icon">
+    <h1 id="mainTitle" data-i18n="main_title">Hand Surgery Quiz Portal</h1>
+  </div>
+  <div id="headerBottom">
+    <select id="langSelect"></select>
+    <button id="darkToggle"><i class="fas fa-adjust"></i> Dark</button>
+    <button id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+  </div>
+</header>
+
+<ul id="tabBar">
+  <li data-tab="tab1" class="active" data-i18n-tabName="mod1_title"></li>
+  <li data-tab="tab2" data-i18n-tabName="mod2_title"></li>
+  <li data-tab="tab3" data-i18n-tabName="mod3_title"></li>
+  <li data-tab="tab4" data-i18n-tabName="mod4_title"></li>
+</ul>
+
+<!-- MODULE 1 -->
+<div id="tab1" class="tabPage active">
+  <div class="instructions" data-i18n="instructions"></div>
+  <h2 data-i18n="mod1_header"></h2>
+  <div class="progressWrap"><div class="progressBar" id="progress-tab1"></div></div>
+  <div id="quizContainer-tab1"></div>
+  <div class="achievementBox" id="achievement-tab1">
+    <h4 data-i18n="achievement_header"></h4>
+    <p data-i18n="achievement_mod1"></p>
+  </div>
+</div>
+
+<!-- MODULE 2 -->
+<div id="tab2" class="tabPage">
+  <div class="instructions" data-i18n="instructions"></div>
+  <h2 data-i18n="mod2_header"></h2>
+  <div class="progressWrap"><div class="progressBar" id="progress-tab2"></div></div>
+  <div id="quizContainer-tab2"></div>
+  <div class="achievementBox" id="achievement-tab2">
+    <h4 data-i18n="achievement_header"></h4>
+    <p data-i18n="achievement_mod2"></p>
+  </div>
+</div>
+
+<!-- MODULE 3 -->
+<div id="tab3" class="tabPage">
+  <div class="instructions" data-i18n="instructions"></div>
+  <h2 data-i18n="mod3_header"></h2>
+  <div class="progressWrap"><div class="progressBar" id="progress-tab3"></div></div>
+  <div id="quizContainer-tab3"></div>
+  <div class="achievementBox" id="achievement-tab3">
+    <h4 data-i18n="achievement_header"></h4>
+    <p data-i18n="achievement_mod3"></p>
+  </div>
+</div>
+
+<!-- MODULE 4 -->
+<div id="tab4" class="tabPage">
+  <div class="instructions" data-i18n="instructions"></div>
+  <h2 data-i18n="mod4_header"></h2>
+  <div class="progressWrap"><div class="progressBar" id="progress-tab4"></div></div>
+  <div id="quizContainer-tab4"></div>
+  <div class="achievementBox" id="achievement-tab4">
+    <h4 data-i18n="achievement_header"></h4>
+    <p data-i18n="achievement_mod4"></p>
+  </div>
+</div>
+
+<!-- MODAL for Achievement -->
+<div class="modalOverlay" id="achievementModal">
+  <div class="modalContent">
+    <h2 data-i18n="popup_congrats"></h2>
+    <p id="popupMsg"></p>
+    <button class="closeBtn" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<footer>
+  <p>2025 &copy; <span data-i18n="footer_name"></span></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+<script>
+  //  A) i18n (4 languages) for everything:
+  //     - Main UI text
+  //     - All 4 modules, 10 questions each, plus answers
+const i18nData = {
+  en: {
+    /* Titles / UI text */
+    main_title: "Hand Surgery Quiz Portal",
+    mod1_title: "Local Tendon",
+    mod2_title: "Finger Replant",
+    mod3_title: "Anesthesia Branches",
+    mod4_title: "Advanced Suture",
+    mod1_header: "Module 1: Local-Anesthesia Tendon Repair",
+    mod2_header: "Module 2: Finger Replantation",
+    mod3_header: "Module 3: Anesthesia Branches",
+    mod4_header: "Module 4: Advanced Tendon Suturing",
+    instructions: "Answer each question correctly to unlock the next. Complete all 10 to unlock your achievement!",
+    achievement_header: "Achievement Unlocked!",
+    achievement_mod1: "You completed Module 1 fully!",
+    achievement_mod2: "You completed Module 2 fully!",
+    achievement_mod3: "You completed Module 3 fully!",
+    achievement_mod4: "You completed Module 4 fully!",
+    popup_congrats: "Congratulations!",
+    footer_name: "Yiyang Zhang",
+    /* The questions/answers: 
+   store them as: "tabX_qY_q", "tabX_qY_ops", etc. */
+
+    /* ---------- MODULE 1 ---------- */
+    tab1_q1_q: "Which local anesthetic is commonly used for hand tendon repair?",
+    tab1_q1_ops: ["Bupivacaine","Ropivacaine","Lidocaine","Procaine"],
+    tab1_q2_q: "Ideal volume for digital block in a single finger?",
+    tab1_q2_ops: ["10-15 ml","2-3 ml","5-8 ml","1 ml max"],
+    tab1_q3_q: "Which structure must be protected from infiltration to avoid ischemia?",
+    tab1_q3_ops: ["Digital artery","Flexor tendon","Superficial branch nerve","None"],
+    tab1_q4_q: "Main advantage of local infiltration vs. sedation?",
+    tab1_q4_ops: ["Longer duration","Less sedation needed","Higher analgesia","No infiltration needed"],
+    tab1_q5_q: "Max recommended lidocaine dose (mg/kg) without epinephrine?",
+    tab1_q5_ops: ["10","2","5","7"],
+    tab1_q6_q: "Goal of local anesthesia in tendon repair is to:",
+    tab1_q6_ops: ["Paralyze entire arm","Only numb incision area","Stop blood flow fully","All of above"],
+    tab1_q7_q: "Where do we typically inject for flexor tendon zone II?",
+    tab1_q7_ops: ["At palmar wrist crease","Just distal to DIP joint","Between MP & PIP","No infiltration needed"],
+    tab1_q8_q: "Before injecting local anesthetic, you should always:",
+    tab1_q8_ops: ["Inject quickly","Heat the solution","Aspirate to avoid intravascular","Add epinephrine"],
+    tab1_q9_q: "If infiltration fails to anesthetize, next step is:",
+    tab1_q9_ops: ["Use more volume","Switch to digital nerve block","Abandon surgery","General anesthesia only"],
+    tab1_q10_q:"Possible complication after local infiltration:",
+    tab1_q10_ops:["Local tissue necrosis","Chronic arthritis only","Permanent sedation","None of these"],
+
+    /* ---------- MODULE 2 ---------- */
+    tab2_q1_q: "First step in finger replantation protocol?",
+    tab2_q1_ops:["Bone fixation","Venous anastomosis","Debridement & tagging","Skin closure"],
+    tab2_q2_q: "Golden period for a clean-cut amputated finger replant is within:",
+    tab2_q2_ops:["24 hours","6 hours","12 hours","48 hours"],
+    tab2_q3_q: "Most crucial factor for replant survival?",
+    tab2_q3_ops:["Antibiotic coverage","Bone fixation","Precise vascular repair","Nerve coaptation"],
+    tab2_q4_q: "Digital artery is typically anastomosed with what suture size?",
+    tab2_q4_ops:["2-0","6-0 or 7-0","10-0 or 11-0","4-0"],
+    tab2_q5_q: "In replantation, bone is shortened to:",
+    tab2_q5_ops:["Improve esthetics","Ensure no tension on vessels","Remove contamination","None of these"],
+    tab2_q6_q: "If amputated part is grossly contaminated, recommended approach:",
+    tab2_q6_ops:["Immediate replant with no wash","Irrigate & possibly do delayed replant","Discard the part","Skin closure only"],
+    tab2_q7_q: "For best venous outflow, surgeons often:",
+    tab2_q7_ops:["Ignore veins","Use leech therapy only","Match at least 2 veins","Suture arteries as veins"],
+    tab2_q8_q: "Success measured by what outcome?",
+    tab2_q8_ops:["Minimal blood loss","Active ROM & 2-pt discrimination","Bone union only","Nail bed regrowth"],
+    tab2_q9_q: "Risk factor that reduces replant success the most?",
+    tab2_q9_ops:["Smoking","Left-handedness","Young age","High RBC count"],
+    tab2_q10_q:"Common postoperative management includes:",
+    tab2_q10_ops:["Immediate heavy usage","Anticoagulants, warmth, monitoring","No medication needed","Full immobilization for 1 year"],
+
+    /* ---------- MODULE 3 ---------- */
+    tab3_q1_q: "Which is NOT a main branch of brachial plexus block?",
+    tab3_q1_ops:["Axillary","Interscalene","Epidural","Supraclavicular"],
+    tab3_q2_q: "In an axillary block, which nerve lies most posterior?",
+    tab3_q2_ops:["Radial","Ulnar","Median","Musculocutaneous"],
+    tab3_q3_q: "To block median nerve at the wrist, you palpate:",
+    tab3_q3_ops:["Radial artery","Palmaris longus tendon","Ulnar artery","Cephalic vein"],
+    tab3_q4_q: "IV (Bier) block is correct when it provides:",
+    tab3_q4_ops:["No tourniquet needed","Unlimited anesthetic volume","Short-term extremity anesthesia","Always uses epinephrine"],
+    tab3_q5_q: "Which nerve is for sensation of the little finger?",
+    tab3_q5_ops:["Median","Ulnar","Radial","Musculocutaneous"],
+    tab3_q6_q: "Suitable sedation for brachial plexus block?",
+    tab3_q6_ops:["Ketamine only","Propofol or midazolam sedation","No sedation possible","Full GA every time"],
+    tab3_q7_q: "Interscalene approach commonly spares which nerve?",
+    tab3_q7_ops:["Ulnar","Axillary","Phrenic","Radial"],
+    tab3_q8_q: "Complication of supraclavicular block?",
+    tab3_q8_ops:["Pneumothorax","Seizure contralateral only","Wrist drop","None of these"],
+    tab3_q9_q: "Musculocutaneous nerve provides sensation to:",
+    tab3_q9_ops:["Thumb pulp","Lateral forearm","Thenar eminence","Small finger"],
+    tab3_q10_q:"Numbness in ring & small finger indicates block of:",
+    tab3_q10_ops:["Radial","Median","Ulnar","None is correct"],
+
+    /* ---------- MODULE 4 ---------- */
+    tab4_q1_q: "Which suture technique uses 4-strand core plus peripheral?",
+    tab4_q1_ops:["Kessler","Bunnell","M-Tang","Mattress"],
+    tab4_q2_q: "To minimize cheese-cutter effect, best approach:",
+    tab4_q2_ops:["Tight single strand","Multi-strand distributing tension","1-0 thick suture only","Skip external suture"],
+    tab4_q3_q: "Earliest active motion in zone II flexor tendon repair starts:",
+    tab4_q3_ops:["Day 1","3 wks post-op","5 days post-op","4 months post-op"],
+    tab4_q4_q: "Crucial principle of advanced tendon suture?",
+    tab4_q4_ops:["Max friction","Preserve sheath & blood supply","Suture outside the sheath","Ignore pulley venting"],
+    tab4_q5_q: "Popular material for tendon core sutures?",
+    tab4_q5_ops:["Silk","Prolene","Chromic gut","Polyglactin"],
+    tab4_q6_q: "To avoid dorsal gapping, surgeons often:",
+    tab4_q6_ops:["Tie knots on dorsal side","Overlap edges 2cm","Cross-stitch approximating volar side","No epitenon repair"],
+    tab4_q7_q: "A 6-strand repair recommended when:",
+    tab4_q7_ops:["High-demand for early flexion","Kids under 2 yrs","Extensor zone III only","Never used"],
+    tab4_q8_q: "If gap >3mm on range check, next step:",
+    tab4_q8_ops:["Ignore it","Add fixator","Reinforce or redo repair","Splint in extension forever"],
+    tab4_q9_q: "Peripheral running suture helps:",
+    tab4_q9_ops:["Eliminate core stitch","Reduce friction only","Strengthen coaptation & gliding","No effect"],
+    tab4_q10_q:"Possible complication from poor advanced tendon suture?",
+    tab4_q10_ops:["Rupture or poor healing","Immediate muscle hypertrophy","Systemic allergic reaction only","No complications"],
+  },
+
+    //  FRENCH (fr)
+  fr: {
+    main_title: "Portail de Quiz Chirurgie de la Main",
+    mod1_title: "Tendon Local",
+    mod2_title: "Réimplant Doigt",
+    mod3_title: "Branches Anesthésie",
+    mod4_title: "Suture Avancée",
+    mod1_header: "Module 1: Réparation du Tendon sous Anesthésie Locale",
+    mod2_header: "Module 2: Réimplantation du Doigt",
+    mod3_header: "Module 3: Branches d'Anesthésie",
+    mod4_header: "Module 4: Suture Tendineuse Avancée",
+    instructions: "Répondez correctement pour débloquer la suivante. Terminez les 10 pour obtenir votre récompense!",
+    achievement_header: "Succès Débloqué!",
+    achievement_mod1: "Vous avez complété le Module 1!",
+    achievement_mod2: "Vous avez complété le Module 2!",
+    achievement_mod3: "Vous avez complété le Module 3!",
+    achievement_mod4: "Vous avez complété le Module 4!",
+    popup_congrats: "Félicitations!",
+    footer_name: "Yiyang Zhang",
+
+    /* MODULE 1 */
+    tab1_q1_q: "Quel anesthésique local est le plus couramment utilisé pour la réparation du tendon de la main?",
+    tab1_q1_ops: ["Bupivacaïne","Ropivacaïne","Lidocaïne","Procaïne"],
+    tab1_q2_q: "Volume idéal pour un bloc digital d'un seul doigt?",
+    tab1_q2_ops: ["10-15 ml","2-3 ml","5-8 ml","1 ml max"],
+    tab1_q3_q: "Quelle structure doit être protégée de l'infiltration pour éviter l'ischémie?",
+    tab1_q3_ops: ["Artère digitale","Tendon fléchisseur","Branche nerveuse superficielle","Aucune"],
+    tab1_q4_q: "Principal avantage de l'infiltration locale vs la sédation?",
+    tab1_q4_ops: ["Durée plus longue","Moins de sédation","Analgésie supérieure","Pas nécessaire"],
+    tab1_q5_q: "Dose max recommandée de lidocaïne (mg/kg) sans adrénaline?",
+    tab1_q5_ops: ["10","2","5","7"],
+    tab1_q6_q: "Le but de l'anesthésie locale en réparation tendineuse est:",
+    tab1_q6_ops: ["Paralyser tout le bras","Juste anesthésier la zone d'incision","Couper complètement le flux sanguin","Tout ci-dessus"],
+    tab1_q7_q: "Où injecter typiquement pour la zone II du tendon fléchisseur?",
+    tab1_q7_ops: ["Au pli palmaire du poignet","Juste distal à l'articulation IPD","Entre MP & IPP","Aucune infiltration"],
+    tab1_q8_q: "Avant d'injecter un anesthésique local, il faut:",
+    tab1_q8_ops: ["Injecter vite","Chauffer la solution","Aspirer pour éviter l'intravascular","Ajouter de l'adrénaline"],
+    tab1_q9_q: "Si l'infiltration ne marche pas, prochaine étape:",
+    tab1_q9_ops: ["Utiliser plus de volume","Passer au bloc nerveux digital","Abandonner la chirurgie","Anesthésie générale"],
+    tab1_q10_q:"Complication possible après infiltration:",
+    tab1_q10_ops:["Nécrose tissulaire locale","Arthrite chronique seulement","Sédation permanente","Aucune de celles-ci"],
+
+    /* MODULE 2 */
+    tab2_q1_q: "Première étape du protocole de réimplantation d'un doigt?",
+    tab2_q1_ops:["Fixation osseuse","Anastomose veineuse","Débridement & repérage","Fermeture cutanée"],
+    tab2_q2_q: "La période d'or pour un doigt amputé coupé net est:",
+    tab2_q2_ops:["24 heures","6 heures","12 heures","48 heures"],
+    tab2_q3_q: "Facteur le plus crucial pour la survie du repli?",
+    tab2_q3_ops:["Couverture antibiotique","Fixation osseuse","Réparation vasculaire précise","Coaptation nerveuse"],
+    tab2_q4_q: "Artère digitale anastomosée avec quelle taille de suture?",
+    tab2_q4_ops:["2-0","6-0 ou 7-0","10-0 ou 11-0","4-0"],
+    tab2_q5_q: "Lors de la réimplantation, on raccourcit l'os pour:",
+    tab2_q5_ops:["Améliorer l'esthétique","Éviter la tension sur les vaisseaux","Retirer contamination","Aucune"],
+    tab2_q6_q: "Si la partie amputée est très contaminée, on:",
+    tab2_q6_ops:["Reimplante direct sans lavage","Irrigue & fait une réimplantation différée","Jette la partie","Ferme la peau seulement"],
+    tab2_q7_q: "Pour un meilleur drainage veineux, on:",
+    tab2_q7_ops:["Ignore les veines","Utilise seulement des sangsues","Suture au moins 2 veines","Suture artères en veines"],
+    tab2_q8_q: "Le succès est mesuré par:",
+    tab2_q8_ops:["Perte de sang minimale","AMO et discrimination à 2 points","Consolidation osseuse seule","Repousse de l'ongle"],
+    tab2_q9_q: "Facteur de risque qui réduit le plus le succès?",
+    tab2_q9_ops:["Tabagisme","Être gaucher","Jeune âge","Taux élevé de globules rouges"],
+    tab2_q10_q:"La gestion postopératoire commune inclut:",
+    tab2_q10_ops:["Usage intensif immédiat","Anticoagulants, chaleur, surveillance","Aucun médicament","Immobilisation 1 an"],
+
+    /* MODULE 3 */
+    tab3_q1_q: "Laquelle n'est PAS une branche principale du bloc plexus brachial?",
+    tab3_q1_ops:["Axillaire","Interscalénique","Épidural","Supraclaviculaire"],
+    tab3_q2_q: "Dans un bloc axillaire, quel nerf est le plus postérieur?",
+    tab3_q2_ops:["Radial","Ulnaire","Médian","Musculocutané"],
+    tab3_q3_q: "Pour bloquer le nerf médian au poignet, on palpe:",
+    tab3_q3_ops:["Artère radiale","Tendon du long palmaire","Artère ulnaire","Veine céphalique"],
+    tab3_q4_q: "Le bloc IV (Bier) est correct lorsqu'il fournit:",
+    tab3_q4_ops:["Pas de garrot nécessaire","Volume illimité d'anesthésique","Anesthésie de courte durée du membre","Toujours adrénaline"],
+    tab3_q5_q: "Quel nerf innerve le petit doigt?",
+    tab3_q5_ops:["Médian","Ulnaire","Radial","Musculocutané"],
+    tab3_q6_q: "Sédation adéquate pour bloc plexus brachial?",
+    tab3_q6_ops:["Kétamine seule","Propofol ou Midazolam","Aucune possible","AG totale à chaque fois"],
+    tab3_q7_q: "Le bloc interscalénique néglige souvent le nerf:",
+    tab3_q7_ops:["Ulnaire","Axillaire","Phrenique","Radial"],
+    tab3_q8_q: "Complication du bloc supraclaviculaire?",
+    tab3_q8_ops:["Pneumothorax","Crise épile contralatérale","Chute du poignet","Aucune"],
+    tab3_q9_q: "Le nerf musculocutané donne la sensibilité de:",
+    tab3_q9_ops:["Pulpe du pouce","Avant-bras latéral","Éminence thenar","Petit doigt"],
+    tab3_q10_q:"L'engourdissement de l'annulaire et de l'auriculaire indique un bloc du nerf:",
+    tab3_q10_ops:["Radial","Médian","Ulnaire","Aucun"],
+
+    /* MODULE 4 */
+    tab4_q1_q: "Quelle technique utilise un noyau 4 brins + périphérique?",
+    tab4_q1_ops:["Kessler","Bunnell","M-Tang","Suture en matelas"],
+    tab4_q2_q: "Pour minimiser l'effet 'cheese-cutter':",
+    tab4_q2_ops:["Monobrin très serré","Réparation multi-brins","Utiliser seulement 1-0","Pas de suture externe"],
+    tab4_q3_q: "Le mouvement actif précoce en zone II commence vers:",
+    tab4_q3_ops:["Jour 1","3 semaines","5 jours","4 mois"],
+    tab4_q4_q: "Principe crucial de la suture tendineuse avancée:",
+    tab4_q4_ops:["Maximiser friction","Préserver gaine & vascularisation","Suturer hors de la gaine","Ignorer poulie"],
+    tab4_q5_q: "Matériau populaire pour suture du tendon (cœur)?",
+    tab4_q5_ops:["Soie","Prolène","Catgut chromé","Polyglactine"],
+    tab4_q6_q: "Pour éviter un écart dorsal, on:",
+    tab4_q6_ops:["Noue sur le dos","Chevauchement 2cm","Suture croisée sur la face palmaire","Pas de suture épitendineuse"],
+    tab4_q7_q: "Une réparation en 6 brins est recommandée quand:",
+    tab4_q7_ops:["Besoin élevé de flexion active tôt","Enfants <2 ans","Tendon extenseur zone III","Jamais"],
+    tab4_q8_q: "Si un écart >3mm à la vérification, on:",
+    tab4_q8_ops:["L'ignore","Ajoute un fixateur externe","Renforce ou refait la suture","Gouttière en extension permanente"],
+    tab4_q9_q: "Une suture périphérique en surjet aide à:",
+    tab4_q9_ops:["Éliminer le noyau","Réduire seulement la friction","Renforcer la coaptation & glissement","Aucun effet"],
+    tab4_q10_q:"Complication possible si mauvaise technique:",
+    tab4_q10_ops:["Rupture ou mauvaise cicatrisation","Hypertrophie musculaire instantanée","Allergie systémique uniquement","Aucune complication"],
+  },
+
+    //  SIMPLIFIED CHINESE (zh)
+  zh: {
+    main_title: "手外科测验平台",
+    mod1_title: "局麻肌腱",
+    mod2_title: "断指再植",
+    mod3_title: "麻醉分支",
+    mod4_title: "高级缝合",
+    mod1_header: "模块1：局麻下肌腱修复",
+    mod2_header: "模块2：断指再植",
+    mod3_header: "模块3：麻醉分支",
+    mod4_header: "模块4：高级肌腱缝合",
+    instructions: "回答每题正确后解锁下一题；全部10题完成即可获得成就！",
+    achievement_header: "成就解锁！",
+    achievement_mod1: "你完成了模块1！",
+    achievement_mod2: "你完成了模块2！",
+    achievement_mod3: "你完成了模块3！",
+    achievement_mod4: "你完成了模块4！",
+    popup_congrats: "恭喜！",
+    footer_name: "Yiyang Zhang",
+
+    /* MODULE 1 */
+    tab1_q1_q: "哪种局麻药常用于手部肌腱修复？",
+    tab1_q1_ops: ["布比卡因","罗哌卡因","利多卡因","普鲁卡因"],
+    tab1_q2_q: "单个手指的数字阻滞理想注射量？",
+    tab1_q2_ops: ["10-15毫升","2-3毫升","5-8毫升","1毫升以内"],
+    tab1_q3_q: "为了避免缺血，注射时需保护：",
+    tab1_q3_ops: ["指动脉","屈肌腱","浅支神经","无"],
+    tab1_q4_q: "与镇静相比，局部浸润的主要优势？",
+    tab1_q4_ops: ["持续时间更长","需要更少镇静","更高镇痛","无需浸润"],
+    tab1_q5_q: "不含肾上腺素时，利多卡因最大推荐剂量(mg/kg)？",
+    tab1_q5_ops: ["10","2","5","7"],
+    tab1_q6_q: "肌腱修复的局麻主要目的是：",
+    tab1_q6_ops: ["麻痹整条手臂","仅让切口区无痛","彻底阻断血流","以上全部"],
+    tab1_q7_q: "区分屈肌腱II区时，一般注射部位在：",
+    tab1_q7_ops: ["腕横纹处","远指间关节近端","掌指关节与近指间关节之间","无需注射"],
+    tab1_q8_q: "注射局麻药前，应：",
+    tab1_q8_ops: ["快速注射","先加热溶液","回抽以避免入血管","必须加肾上腺素"],
+    tab1_q9_q: "若浸润麻醉失败，下一步应：",
+    tab1_q9_ops: ["增加注射量","改为指神经阻滞","放弃手术","全麻"],
+    tab1_q10_q:"局麻后可能出现的并发症：",
+    tab1_q10_ops:["局部组织坏死","仅慢性关节炎","永久镇静","无"],
+
+    /* MODULE 2 */
+    tab2_q1_q: "断指再植的首要步骤？",
+    tab2_q1_ops:["骨固定","静脉吻合","清创及标记结构","缝合皮肤"],
+    tab2_q2_q: "锐性切断指的再植黄金时间大约在：",
+    tab2_q2_ops:["24小时","6小时","12小时","48小时"],
+    tab2_q3_q: "影响再植成活的最关键因素？",
+    tab2_q3_ops:["抗生素","骨固定","准确的血管吻合","神经吻合"],
+    tab2_q4_q: "指动脉吻合通常用多粗的线？",
+    tab2_q4_ops:["2-0","6-0或7-0","10-0或11-0","4-0"],
+    tab2_q5_q: "再植时缩短骨骼的目的是：",
+    tab2_q5_ops:["美观","减小血管张力","去除污染部分","无此需求"],
+    tab2_q6_q: "若断指污染严重，推荐做法：",
+    tab2_q6_ops:["直接再植不冲洗","冲洗后可延期再植","弃置断指","仅闭合皮肤"],
+    tab2_q7_q: "为获得最佳静脉回流，通常：",
+    tab2_q7_ops:["不处理静脉","只用水蛭吸血","至少吻合2条静脉","把动脉当静脉缝"],
+    tab2_q8_q: "再植成功评估多依赖：",
+    tab2_q8_ops:["少失血","主动活动范围与两点辨别","是否骨愈合","指甲生长"],
+    tab2_q9_q: "最降低成活率的危险因素？",
+    tab2_q9_ops:["吸烟","左利手","年轻","红细胞偏高"],
+    tab2_q10_q:"再植后常见的围手术期管理：",
+    tab2_q10_ops:["立刻大力用手","抗凝保暖严密观察","无需药物","固定1年"],
+
+    /* MODULE 3 */
+    tab3_q1_q: "下列哪项不属于臂丛阻滞的主要分支？",
+    tab3_q1_ops:["腋路","斜角肌间路","硬膜外","锁骨上路"],
+    tab3_q2_q: "腋路阻滞时，哪个神经在最靠后？",
+    tab3_q2_ops:["桡神经","尺神经","正中神经","肌皮神经"],
+    tab3_q3_q: "在腕部阻滞正中神经时需触摸：",
+    tab3_q3_ops:["桡动脉","掌长肌腱","尺动脉","头静脉"],
+    tab3_q4_q: "关于IV (Bier)阻滞正确的是：",
+    tab3_q4_ops:["无需止血带","麻醉剂量无限","短时肢体麻醉","总是加肾上腺素"],
+    tab3_q5_q: "小指感觉主要由哪个神经支配？",
+    tab3_q5_ops:["正中","尺","桡","肌皮"],
+    tab3_q6_q: "臂丛阻滞时合适的镇静选择？",
+    tab3_q6_ops:["只用氯胺酮","丙泊酚或咪达唑仑","不能镇静","每次都全麻"],
+    tab3_q7_q: "高位斜角肌间阻滞常漏阻哪个神经？",
+    tab3_q7_ops:["尺","腋","膈","桡"],
+    tab3_q8_q: "锁骨上阻滞的并发症可能是：",
+    tab3_q8_ops:["气胸","对侧大脑癫痫","腕下垂","无"],
+    tab3_q9_q: "肌皮神经提供的感觉区域在：",
+    tab3_q9_ops:["拇指指腹","前臂外侧","大鱼际","小指"],
+    tab3_q10_q:"若环指和小指麻木，说明阻滞到：",
+    tab3_q10_ops:["桡","正中","尺","无对应"],
+
+    /* MODULE 4 */
+    tab4_q1_q: "哪种肌腱缝合方法含4股核心加外周缝合？",
+    tab4_q1_ops:["Kessler","Bunnell","M-Tang","褥式缝合"],
+    tab4_q2_q: "为避免“奶酪切割效应”，最佳做法：",
+    tab4_q2_ops:["单股紧缝","多股分散张力","只用1-0粗线","不用外周缝"],
+    tab4_q3_q: "屈肌腱II区修复后最早开始主动活动约在：",
+    tab4_q3_ops:["第1天","术后3周","术后5天","术后4个月"],
+    tab4_q4_q: "高级肌腱缝合的关键原则是：",
+    tab4_q4_ops:["增加摩擦","保护腱鞘及血供","鞘外缝合","不管滑车系统"],
+    tab4_q5_q: "腱核心缝合常用什么缝线？",
+    tab4_q5_ops:["丝线","Prolene","铬制肠线","可吸收Vicryl"],
+    tab4_q6_q: "为防止背侧裂开，常用：",
+    tab4_q6_ops:["背侧打结","骨端重叠2厘米","交叉缝以贴合掌侧","不做表层缝合"],
+    tab4_q7_q: "6股修复常用于：",
+    tab4_q7_ops:["高需求早期屈曲","2岁以下儿童","伸肌腱III区","从不使用"],
+    tab4_q8_q: "若活动检查时裂隙>3毫米，应：",
+    tab4_q8_ops:["忽视","加外固定架","加强或重做","一直伸直位"],
+    tab4_q9_q: "外周连续缝合的作用：",
+    tab4_q9_ops:["替代核心","仅降低摩擦","加强贴合与滑动","无影响"],
+    tab4_q10_q:"若高级缝合技术差，可导致：",
+    tab4_q10_ops:["腱断裂或愈合不良","肌肉瞬时肥大","仅全身过敏","无任何并发症"],
+  },
+
+    //  JAPANESE (jp)
+  jp: {
+    main_title: "手術クイズポータル",
+    mod1_title: "局所腱",
+    mod2_title: "指再接着",
+    mod3_title: "麻酔分岐",
+    mod4_title: "高度縫合",
+    mod1_header: "モジュール1：局所麻酔での腱修復",
+    mod2_header: "モジュール2：指の再接着",
+    mod3_header: "モジュール3：麻酔の枝",
+    mod4_header: "モジュール4：高度な腱縫合",
+    instructions: "各質問に正解して次をアンロックします。10問全部正解でアチーブ獲得！",
+    achievement_header: "実績解除！",
+    achievement_mod1: "モジュール1を完了！",
+    achievement_mod2: "モジュール2を完了！",
+    achievement_mod3: "モジュール3を完了！",
+    achievement_mod4: "モジュール4を完了！",
+    popup_congrats: "おめでとうございます！",
+    footer_name: "Yiyang Zhang",
+
+    /* MODULE 1 */
+    tab1_q1_q: "手の腱修復に最も一般的に使用される局所麻酔薬は？",
+    tab1_q1_ops: ["ブピバカイン","ロピバカイン","リドカイン","プロカイン"],
+    tab1_q2_q: "指1本のデジタルブロックに理想的な量は？",
+    tab1_q2_ops: ["10~15ml","2~3ml","5~8ml","1ml以内"],
+    tab1_q3_q: "虚血を防ぐため浸潤を避けるべき構造は？",
+    tab1_q3_ops: ["指動脈","屈筋腱","浅枝神経","なし"],
+    tab1_q4_q: "局所浸潤の主な利点は？（鎮静と比較）",
+    tab1_q4_ops: ["長時間作用","鎮静が少量で済む","鎮痛効果が高い","不要"],
+    tab1_q5_q: "エピネフリンなしでのリドカイン最大推奨量(mg/kg)は？",
+    tab1_q5_ops: ["10","2","5","7"],
+    tab1_q6_q: "腱修復での局所麻酔の目的：",
+    tab1_q6_ops: ["腕全体を麻痺","切開部のみ無痛","完全に血流止める","すべて正しい"],
+    tab1_q7_q: "屈筋腱ゾーンIIでは一般的にどこに注射？",
+    tab1_q7_ops: ["手関節横ジワ付近","DIP関節の近位","MP~PIP間","注射不要"],
+    tab1_q8_q: "局所麻酔を注入する前に必ず：",
+    tab1_q8_ops: ["素早く注入","液を温める","血管内注入を避けるためアスピレーション","エピネフリン添加"],
+    tab1_q9_q: "浸潤麻酔が効かない場合の次の手順は：",
+    tab1_q9_ops: ["さらに追加注入","指神経ブロックへ切替","手術中止","全身麻酔"],
+    tab1_q10_q:"局所浸潤の術後起こり得る合併症は？",
+    tab1_q10_ops:["局所組織壊死","慢性関節炎のみ","永久鎮静","なし"],
+
+    /* MODULE 2 */
+    tab2_q1_q: "指再接着プロトコルの最初のステップは？",
+    tab2_q1_ops:["骨固定","静脈吻合","デブリとマーキング","皮膚縫合"],
+    tab2_q2_q: "切断指（鋭利に切断）の再接着ゴールデンタイムは？",
+    tab2_q2_ops:["24時間","6時間","12時間","48時間"],
+    tab2_q3_q: "再接着生存に最も重要な要素は？",
+    tab2_q3_ops:["抗生剤","骨固定","正確な血管吻合","神経合わせ"],
+    tab2_q4_q: "指動脈吻合に使われる糸の太さは？",
+    tab2_q4_ops:["2-0","6-0/7-0","10-0/11-0","4-0"],
+    tab2_q5_q: "再接着時に骨を短くする理由：",
+    tab2_q5_ops:["見た目","血管のテンションを減らす","汚染部除去","特になし"],
+    tab2_q6_q: "断片が汚染されている場合、推奨は？",
+    tab2_q6_ops:["すぐ再接着・洗浄なし","洗浄・遅延再接着","断片廃棄","皮膚閉鎖のみ"],
+    tab2_q7_q: "静脈還流を最適にするため、通常：",
+    tab2_q7_ops:["静脈無視","ヒル療法のみ","2本以上の静脈吻合","動脈を静脈にする"],
+    tab2_q8_q: "成功はどの指標で測る？",
+    tab2_q8_ops:["出血量少","能動可動域と2点識別","骨癒合のみ","爪の再生"],
+    tab2_q9_q: "再接着成功率を大幅に下げるリスク因子？",
+    tab2_q9_ops:["喫煙","左利き","若年","赤血球数多い"],
+    tab2_q10_q:"再接着後の一般的管理は？",
+    tab2_q10_ops:["すぐ激しく使用","抗凝固剤・保温・血流モニタ","薬不要","1年固定"],
+
+    /* MODULE 3 */
+    tab3_q1_q: "腕神経叢ブロックにおいて、主要ブロックでないものは？",
+    tab3_q1_ops:["腋窩","斜角筋間","硬膜外","鎖骨上"],
+    tab3_q2_q: "腋窩ブロックで最も後方にある神経は？",
+    tab3_q2_ops:["橈骨","尺骨","正中","筋皮"],
+    tab3_q3_q: "手関節レベルで正中神経をブロックするには何を触れる？",
+    tab3_q3_ops:["橈骨動脈","長掌筋腱","尺骨動脈","頭静脈"],
+    tab3_q4_q: "IV(Bier)ブロックについて正しいのは？",
+    tab3_q4_ops:["止血帯不要","麻酔薬量無制限","短時間の四肢麻酔","常にエピネフリン添加"],
+    tab3_q5_q: "小指感覚を司る神経は？",
+    tab3_q5_ops:["正中","尺","橈","筋皮"],
+    tab3_q6_q: "腕神経叢ブロック時の鎮静に適しているのは？",
+    tab3_q6_ops:["ケタミンのみ","プロポフォール/ミダゾラム","鎮静不可","毎回全麻"],
+    tab3_q7_q: "高位斜角筋間ブロックでカバーされにくい神経？",
+    tab3_q7_ops:["尺","腋窩","横隔","橈"],
+    tab3_q8_q: "鎖骨上ブロックの合併症例は？",
+    tab3_q8_ops:["気胸","反対側てんかん","手首下垂","なし"],
+    tab3_q9_q: "筋皮神経の知覚領域は？",
+    tab3_q9_ops:["母指腹","前腕外側","母指球","小指"],
+    tab3_q10_q:"薬指と小指がしびれるのはどの神経ブロック？",
+    tab3_q10_ops:["橈","正中","尺","不該当"],
+
+    /* MODULE 4 */
+    tab4_q1_q: "4本のコアと外周縫合を用いる技法は？",
+    tab4_q1_ops:["Kessler","Bunnell","M-Tang","マットレス"],
+    tab4_q2_q: "チーズカット現象を最小化するには？",
+    tab4_q2_ops:["単一糸を強く締める","複数糸で張力分散","1-0太糸のみ使用","外周縫合なし"],
+    tab4_q3_q: "屈筋腱ゾーンIIの早期自動屈曲はいつから？",
+    tab4_q3_ops:["1日目","3週後","5日目","4ヶ月後"],
+    tab4_q4_q: "高度な腱縫合の重要原則は？",
+    tab4_q4_ops:["摩擦最大","腱鞘と血流を保護","鞘の外で縫合","滑車は無視"],
+    tab4_q5_q: "腱コア縫合に人気のある材質？",
+    tab4_q5_ops:["絹","Prolene","クロームガット","吸収糸"],
+    tab4_q6_q: "背側の隙間を避けるため、一般的に：",
+    tab4_q6_ops:["背面に結び目","2cmオーバーラップ","交差縫合で掌側密着","表面縫合をしない"],
+    tab4_q7_q: "6本縫合が推奨されるのはどんな時？",
+    tab4_q7_ops:["高度な早期屈曲必要","2歳以下","伸筋腱ゾーンIII","使わない"],
+    tab4_q8_q: "可動チェックで3mm以上のギャップがあれば？",
+    tab4_q8_ops:["無視","外固定","補強または再縫合","ずっと伸展固定"],
+    tab4_q9_q: "外周連続縫合の目的は？",
+    tab4_q9_ops:["コアを省略","摩擦のみ低減","固定と滑動を強化","効果なし"],
+    tab4_q10_q:"高度縫合が下手だと起こり得る合併症：",
+    tab4_q10_ops:["断裂や不良癒合","筋肥大が即発","全身アレルギーのみ","まったくなし"]
+  }
+};
+
+  //  B) QUIZ DATA (Which answer is correct, per question)
+  //  store only correct index, while text is from i18n.
+const quizData = {
+  tab1: [
+    { key: "tab1_q1", correct: 2 },
+    { key: "tab1_q2", correct: 1 },
+    { key: "tab1_q3", correct: 0 },
+    { key: "tab1_q4", correct: 1 },
+    { key: "tab1_q5", correct: 2 },
+    { key: "tab1_q6", correct: 1 },
+    { key: "tab1_q7", correct: 0 },
+    { key: "tab1_q8", correct: 2 },
+    { key: "tab1_q9", correct: 1 },
+    { key: "tab1_q10",correct:0 }
+  ],
+  tab2: [
+    { key: "tab2_q1", correct: 2 },
+    { key: "tab2_q2", correct: 0 },
+    { key: "tab2_q3", correct: 2 },
+    { key: "tab2_q4", correct: 2 },
+    { key: "tab2_q5", correct: 1 },
+    { key: "tab2_q6", correct: 1 },
+    { key: "tab2_q7", correct: 2 },
+    { key: "tab2_q8", correct: 1 },
+    { key: "tab2_q9", correct: 0 },
+    { key: "tab2_q10",correct:1 }
+  ],
+  tab3: [
+    { key: "tab3_q1", correct: 2 },
+    { key: "tab3_q2", correct: 0 },
+    { key: "tab3_q3", correct: 1 },
+    { key: "tab3_q4", correct: 2 },
+    { key: "tab3_q5", correct: 1 },
+    { key: "tab3_q6", correct: 1 },
+    { key: "tab3_q7", correct: 0 },
+    { key: "tab3_q8", correct: 0 },
+    { key: "tab3_q9", correct: 1 },
+    { key: "tab3_q10",correct:2 }
+  ],
+  tab4: [
+    { key: "tab4_q1", correct: 2 },
+    { key: "tab4_q2", correct: 1 },
+    { key: "tab4_q3", correct: 2 },
+    { key: "tab4_q4", correct: 1 },
+    { key: "tab4_q5", correct: 1 },
+    { key: "tab4_q6", correct: 2 },
+    { key: "tab4_q7", correct: 0 },
+    { key: "tab4_q8", correct: 2 },
+    { key: "tab4_q9", correct: 2 },
+    { key: "tab4_q10",correct:0 }
+  ]
+};
+
+/* this part track userAnswers, each module gets an array of length=10. 
+   userAnswers[ tabX ][ i ]= correct/incorrect? local(week11 tutorial) store 'null' if not answered yet, or 'true' if correct. */
+let userAnswers = {
+  tab1: Array(10).fill(null),
+  tab2: Array(10).fill(null),
+  tab3: Array(10).fill(null),
+  tab4: Array(10).fill(null),
+};
+
+
+//BUILD QUIZ UI
+const modules=["tab1","tab2","tab3","tab4"];
+modules.forEach(m => buildModule(m));
+
+function buildModule(modName){
+  const container = document.getElementById(`quizContainer-${modName}`);
+  const qList = quizData[modName];
+  // For each question, create a .quizItem
+  //forgot where i learn this stuff
+  qList.forEach((qObj, idx) => {
+    const qDiv = document.createElement("div");
+    qDiv.className="quizItem";
+    qDiv.id=`${modName}_q${idx}`;
+
+    // question text -> i18nData[lang][ qObj.key+"_q" ]
+    // answer array -> i18nData[lang][ qObj.key+"_ops" ]
+    qDiv.innerHTML=`
+      <h3 id="${modName}_q${idx}_question"></h3>
+      <div class="quizOptions" id="${modName}_q${idx}_options"></div>
+      <div class="resultMsg" id="${modName}_q${idx}_result"></div>
+    `;
+    container.appendChild(qDiv);
+  });
+}
+
+//LOGIC: answer, progress, localStorage, blur, etc.
+function answerQuestion(modName, idx, chosenIndex){
+  // If already correct, ignore further clicks
+  //if no just try to find right answer
+  if(userAnswers[modName][idx]===true) return;
+
+  const correctIndex = quizData[modName][idx].correct;
+  const resultMsg = document.getElementById(`${modName}_q${idx}_result`);
+
+  if(chosenIndex===correctIndex){
+    resultMsg.textContent="✔ Correct!";
+    resultMsg.style.color="green";
+    userAnswers[modName][idx] = true; 
+    // Unblur next question
+    //forgot where learn this code
+    if(idx < 9) {
+      document.getElementById(`${modName}_q${idx+1}`).classList.remove("blurred");
+    }
+  } else {
+    resultMsg.textContent="✘ Wrong! Try again.";
+    resultMsg.style.color="red";
+  }
+  saveAnswers();
+  updateProgress(modName);
+}
+
+function saveAnswers(){
+  localStorage.setItem("handSurgAnswers", JSON.stringify(userAnswers));
+}
+
+//Update progress bar AND check if module complete => show achievement & open modal
+function updateProgress(modName){
+  const arr = userAnswers[modName];
+  const correctCount = arr.filter(v=>v===true).length;
+  const bar = document.getElementById(`progress-${modName}`);
+  if(bar) bar.style.width = (correctCount/10*100)+"%";
+
+  // If all 10 correct => show achievement, show modal once
+  if(correctCount===10){
+    document.getElementById(`achievement-${modName}`).classList.add("active");
+    // If user just completed now, show modal
+    // We'll do a check if previously completed or not 
+    // We'll do a small trick: if it wasn't done before, show pop up
+    const wasComplete = localStorage.getItem(modName+"_completed");
+    if(!wasComplete){
+      localStorage.setItem(modName+"_completed","yes");
+      document.getElementById("popupMsg").textContent = i18nData[currentLang][`achievement_${modName}`] || "Completed!";
+      openModal();
+    }
+  }
+}
+
+//LOAD: restore userAnswers from localStorage
+
+window.addEventListener("load", ()=>{
+  const saved = localStorage.getItem("handSurgAnswers");
+  if(saved){
+    userAnswers= JSON.parse(saved);
+  }
+  // Render UI
+  modules.forEach(m => {
+    const qArr = quizData[m];
+    qArr.forEach((qObj, idx)=>{
+      renderQuestion(m, idx, qObj);
+    });
+    // Apply blur logic
+    applyBlurLogic(m);
+    updateProgress(m);
+  });
+
+  // Initialize language
+  const storedLang = localStorage.getItem("handSurgLang") || "en";
+  loadLanguageList();
+  translateUI(storedLang);
+
+  // Dark mode setting
+  if(!localStorage.getItem("handSurgMode")) localStorage.setItem("handSurgMode","light");
+  if(localStorage.getItem("handSurgMode")==="dark"){
+    document.body.classList.add("dark");
+    darkToggle.textContent = "Light";
+  } else {
+    darkToggle.textContent = "Dark";
+  }
+});
+
+// Apply or remove blur from questions except the first. 
+ //  Each question remains blurred until the previous is answered correct.
+     //forgot where learn this code
+function applyBlurLogic(modName){
+  const arr = userAnswers[modName];
+  arr.forEach((val, idx)=>{
+    const qDiv = document.getElementById(`${modName}_q${idx}`);
+    if(idx===0){
+      // First question never blurred
+      qDiv.classList.remove("blurred");
+    } else {
+      if(arr[idx-1]===true) qDiv.classList.remove("blurred");
+      else qDiv.classList.add("blurred");
+    }
+  });
+}
+
+/* Render the question text, answers, hooking up onClick etc. */
+function renderQuestion(modName, idx, qObj){
+  const qDiv = document.getElementById(`${modName}_q${idx}_question`);
+  const opsDiv= document.getElementById(`${modName}_q${idx}_options`);
+  if(!qDiv||!opsDiv) return;
+
+  // Fill text from i18n
+  qDiv.textContent = ""; // done in translateUI
+  opsDiv.innerHTML="";
+  for(let i=0;i<4;i++){
+    const btn=document.createElement("button");
+    btn.className="optionBtn";
+    btn.onclick=()=>answerQuestion(modName, idx, i);
+    opsDiv.appendChild(btn);
+  }
+}
+
+//LANGUAGE / i18n
+//learn this from w3school i think?
+let currentLang="en"; 
+function loadLanguageList(){
+  const sel=document.getElementById("langSelect");
+  sel.innerHTML="";
+  const languages = ["en","fr","zh","jp"];
+  const labels = {"en":"English","fr":"Français","zh":"简体中文","jp":"日本語"};
+  languages.forEach(l=>{
+    const opt=document.createElement("option");
+    opt.value=l; opt.textContent=labels[l];
+    sel.appendChild(opt);
+  });
+  sel.onchange=()=>{
+    const val=sel.value;
+    localStorage.setItem("handSurgLang", val);
+    translateUI(val);
+  };
+}
+
+/* Translate all dynamic text from i18nData for the current language. */
+function translateUI(lang){
+  currentLang=lang;
+  const dict=i18nData[lang] || i18nData.en;
+
+  // 1) Translate main UI
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key=el.getAttribute("data-i18n");
+    el.textContent = dict[key]||key;
+  });
+  // 2) Translate tab titles
+  document.querySelectorAll("[data-i18n-tabName]").forEach(el=>{
+    const key=el.getAttribute("data-i18n-tabName");
+    el.textContent = dict[key]||key;
+  });
+  // 3) Translate each quiz question/option
+  modules.forEach(m=>{
+    quizData[m].forEach((qObj, idx)=>{
+      const qKey = qObj.key+"_q";
+      const opsKey= qObj.key+"_ops";
+      const questionEl = document.getElementById(`${m}_q${idx}_question`);
+      const opsEl = document.getElementById(`${m}_q${idx}_options`);
+      if(!questionEl||!opsEl) return;
+      questionEl.textContent= dict[qKey] || "";
+      const arr= dict[opsKey] || [];
+      // Update 4 button texts
+      const allBtns = opsEl.querySelectorAll(".optionBtn");
+      allBtns.forEach((b,i)=>{
+        b.textContent= arr[i] || "";
+      });
+      // If the user already answered => update result text
+      const resultMsg = document.getElementById(`${m}_q${idx}_result`);
+      if(userAnswers[m][idx]===true){
+        resultMsg.textContent="✔ Correct!";
+        resultMsg.style.color="green";
+      } else if(userAnswers[m][idx]===false){
+        resultMsg.textContent="✘ Wrong! Try again.";
+        resultMsg.style.color="red";
+      } else {
+        resultMsg.textContent="";
+      }
+    });
+  });
+
+  // Update any existing "achievement" message if the user completed
+  //learn this from w3school I think?
+  modules.forEach(m=>{
+    const arr=userAnswers[m];
+    const correctCount= arr.filter(v=>v===true).length;
+    if(correctCount===10){
+      document.getElementById(`achievement-${m}`).classList.add("active");
+    }
+  });
+  // If any pop-up is open, update text
+}
+
+// HAND GESTURE TABS & SWIPE
+  //learn this from DESN18654 I think?
+const tabEls = document.querySelectorAll("#tabBar li");
+tabEls.forEach(t=>{
+  t.onclick=()=> setActiveTab(t.dataset.tab);
+});
+function setActiveTab(tabId){
+  tabEls.forEach(t=>t.classList.remove("active"));
+  document.querySelector(`[data-tab='${tabId}']`).classList.add("active");
+  document.querySelectorAll(".tabPage").forEach(pg=>pg.classList.remove("active"));
+  document.getElementById(tabId).classList.add("active");
+}
+/* Mobile swipe */
+const hammertime = new Hammer(document.body);
+hammertime.on('swipeleft', ()=>{
+  const activeOne = document.querySelector("#tabBar li.active");
+  if(!activeOne) return;
+  const all = [...tabEls];
+  let idx = all.indexOf(activeOne);
+  if(idx<all.length-1){ idx++; setActiveTab(all[idx].dataset.tab); }
+});
+hammertime.on('swiperight', ()=>{
+  const activeOne = document.querySelector("#tabBar li.active");
+  if(!activeOne) return;
+  const all = [...tabEls];
+  let idx = all.indexOf(activeOne);
+  if(idx>0){ idx--; setActiveTab(all[idx].dataset.tab); }
+});
+
+// DARK MODE
+const darkToggle = document.getElementById("darkToggle");
+darkToggle.onclick=()=>{
+  document.body.classList.toggle("dark");
+  if(document.body.classList.contains("dark")){
+    localStorage.setItem("handSurgMode","dark");
+    darkToggle.textContent="Light";
+  } else {
+    localStorage.setItem("handSurgMode","light");
+    darkToggle.textContent="Dark";
+  }
+};
+
+//RESET
+const resetBtn=document.getElementById("resetBtn");
+resetBtn.onclick=()=>{
+  if(confirm("Reset all progress?")){
+    localStorage.clear();
+    location.reload();
+  }
+};
+
+// ACHIEVEMENT POPUP
+
+const modalOverlay=document.getElementById("achievementModal");
+function openModal(){
+  modalOverlay.classList.add("active");
+}
+function closeModal(){
+  modalOverlay.classList.remove("active");
+}
+</script>
+</body>
+</html>
