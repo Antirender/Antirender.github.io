@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokyo Big Sight Navigator</title>
+    <link rel="icon" href="img/favico.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- header -->
+    <header>Tokyo Big Sight Navigator</header>
+
+    <!-- Tokyo Big Sight  -->
+    <div class="section">
+        <h2>Tokyo Big Sight Exhibition Zones</h2>
+        <ul id="zoneList">loading zones...</ul>
+    </div>
+
+    <!-- map -->
+    <div class="section">
+        <h2>Map & Route</h2>
+        <div id="map"></div>
+        <button onclick="findUser()">Find My Location</button>
+    </div>
+
+    <!-- Ai -->
+    <div class="section">
+        <h2>Navigation & Recommendations</h2>
+        <p id="routeInstructions">No route yet.</p>
+        <button onclick="startAdvancedVoiceGuidance()">Voice Guidance</button>
+        <p id="aiRecommendation">loading...</p>
+        <button onclick="getRecommendation()">Get Recommendation</button>
+    </div>
+
+    <!-- js -->
+    <script src="js/main.js"></script>
+</body>
+</html>
