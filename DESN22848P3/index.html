@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Media Motion and the Body Winter 2025</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {
+  font-family: "Poppins", sans-serif
+  }
+body {
+  font-size:16px;
+  }
+h1 { 
+  font-size:30px;
+  }
+h2 {
+  font-size:25px;
+  }
+  h3 {
+  font-size:18px;
+  }
+img {
+  width: 100%;
+  height: 100%;
+}
+.grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+.w3-half img{
+  margin-bottom:-6px;
+  margin-top:16px;
+  opacity:0.8;
+  cursor:pointer
+  } */
+.w3-half img:hover{
+  opacity:1
+  }
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:200px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topleft" style="display:none;font-size:22px"></a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>IXD<br>DESN 22848 <br> Winter-2025</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#Module1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Module 1</a> 
+    <a href="#Activity1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 1</a> 
+    <a href="#Activity2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 2</a> 
+    <a href="#Project3" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Project 3</a> 
+  </div>
+</nav>
+
+<!-- Top menu on small screens
+<header class="w3-container w3-top w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Menu</span>
+</header> -->
+
+<!-- 
+  if you want to link your image to a video use one of the following alt links as an example:
+
+  alt="test1Lorem ipsum dolor sit amet, consectetur adipiscing elit test1Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+
+-->
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:220px;margin-right:20px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="default">
+    <h1 class="w3-jumbo" id="Home"><b>Module 3 Formstorming</b></h1>
+    <h1 class="w3-xxxlarge w3-text-blue"><b>Weekly Activity</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Yiyang Zhang</b></h1>
+    <hr style="width:50px;border:5px solid grey" class="w3-round">
+  </div>
+  <!-- Boilerplate -->
+  <div id="Module1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 3</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Module 3</h2>
+    <h3>Is the makey makey time!
+    </h3>
+  </div>
+  
+  <!-- Project 1 Photo grid (modal) -->
+  <div id="Activity1" >
+    <h2>Activity 1</h2>
+    <p>
+        <a href="https://ixd1239.phoenix.sheridanc.on.ca/DESN22848V3/index.html" target="_blank">
+            Click here to try
+        </a>
+    </p>   
+     <div class="grid">        
+      <img src="images/Activity1/001.gif" style="width:100%" onclick="onClick(this)" alt="A bouncing shape reacting to keyboard input.">
+      <img src="images/Activity1/002.gif" style="width:100%" onclick="onClick(this)" alt="A soundboard where different conductive materials trigger sounds.">
+      <img src="images/Activity1/003.gif" style="width:100%" onclick="onClick(this)" alt="A simple interactive mini-game with player movement.">
+      <img src="images/Activity1/004.gif" style="width:100%" onclick="onClick(this)" alt="A shape that grows and moves randomly based on user input.">
+      <img src="images/Activity1/005.gif" style="width:100%" onclick="onClick(this)" alt="An interactive game where shapes appear at random times.">
+      
+      <img src="images/Activity1/006.gif" style="width:100%" onclick="onClick(this)" alt="A rhythmic interaction where pressing a button spawns shapes.">
+      <img src="images/Activity1/007.gif" style="width:100%" onclick="onClick(this)" alt="An interactive particle system reacting to user input.">
+      <img src="images/Activity1/008.gif" style="width:100%" onclick="onClick(this)" alt="A 3D rotating cube controlled by the keyboard.">
+      <img src="images/Activity1/009.gif" style="width:100%" onclick="onClick(this)" alt="A mini-game where the player avoids obstacles and collects items.">
+      <img src="images/Activity1/010.gif" style="width:100%" onclick="onClick(this)" alt="A piano-like experiment where different keys play sounds.">
+      
+      <img src="images/Activity1/011.gif" style="width:100%" onclick="onClick(this)" alt="A 3D shape that changes based on user interaction.">
+      <img src="images/Activity1/012.gif" style="width:100%" onclick="onClick(this)" alt="A 3D bouncing ball simulation inside a box.">
+      <img src="images/Activity1/013.gif" style="width:100%" onclick="onClick(this)" alt="A simple 2D interactive experiment with shape transformations.">
+      <img src="images/Activity1/014.gif" style="width:100%" onclick="onClick(this)" alt="A particle effect system where gravity is controlled by arrow keys.">
+      <img src="images/Activity1/015.gif" style="width:100%" onclick="onClick(this)" alt="A Makey Makey experiment where conductive materials trigger sounds.">
+      
+      <img src="images/Activity1/016.gif" style="width:100%" onclick="onClick(this)" alt="A reaction-based game using Makey Makey for input.">
+      <img src="images/Activity1/017.gif" style="width:100%" onclick="onClick(this)" alt="A physical input experiment where sensors control visuals.">
+      <img src="images/Activity1/018.gif" style="width:100%" onclick="onClick(this)" alt="A gesture-controlled drawing experiment using Makey Makey.">
+      <img src="images/Activity1/019.gif" style="width:100%" onclick="onClick(this)" alt="A 3D shape responding to different Makey Makey inputs.">
+      <img src="images/Activity1/020.gif" style="width:100%" onclick="onClick(this)" alt="An interactive experience combining sound and movement.">
+      
+      <img src="images/Activity1/021.gif" style="width:100%" onclick="onClick(this)" alt="Code breakdown of a p5.js interactive experiment.">
+      <img src="images/Activity1/022.gif" style="width:100%" onclick="onClick(this)" alt="Step-by-step explanation of event-driven programming.">
+      <img src="images/Activity1/023.gif" style="width:100%" onclick="onClick(this)" alt="Debugging process of a JavaScript-based interaction.">
+      <img src="images/Activity1/024.gif" style="width:100%" onclick="onClick(this)" alt="Live coding demonstration of a Makey Makey experiment.">
+      <img src="images/Activity1/025.gif" style="width:100%" onclick="onClick(this)" alt="An overview of integrating hardware and software interactions.">
+  </div>
+ </div>
+  
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="Activity2" class="w3-row-padding">
+    <h2>Activity 2</h2>
+    <div class="grid">        
+      <img src="images/Activity2/001.gif" style="width:100%" onclick="onClick(this)" alt="A bouncing shape reacting to keyboard input.">
+      <img src="images/Activity2/002.gif" style="width:100%" onclick="onClick(this)" alt="A soundboard where different conductive materials trigger sounds.">
+      <img src="images/Activity2/003.gif" style="width:100%" onclick="onClick(this)" alt="A simple interactive mini-game with player movement.">
+      <img src="images/Activity2/004.gif" style="width:100%" onclick="onClick(this)" alt="A shape that grows and moves randomly based on user input.">
+      <img src="images/Activity2/005.gif" style="width:100%" onclick="onClick(this)" alt="An interactive game where shapes appear at random times.">
+      
+      <img src="images/Activity2/006.gif" style="width:100%" onclick="onClick(this)" alt="A rhythmic interaction where pressing a button spawns shapes.">
+      <img src="images/Activity2/007.gif" style="width:100%" onclick="onClick(this)" alt="An interactive particle system reacting to user input.">
+      <img src="images/Activity2/008.gif" style="width:100%" onclick="onClick(this)" alt="A 3D rotating cube controlled by the keyboard.">
+      <img src="images/Activity2/009.gif" style="width:100%" onclick="onClick(this)" alt="A mini-game where the player avoids obstacles and collects items.">
+      <img src="images/Activity2/010.gif" style="width:100%" onclick="onClick(this)" alt="A piano-like experiment where different keys play sounds.">
+      
+      <img src="images/Activity2/011.gif" style="width:100%" onclick="onClick(this)" alt="A 3D shape that changes based on user interaction.">
+      <img src="images/Activity2/012.gif" style="width:100%" onclick="onClick(this)" alt="A 3D bouncing ball simulation inside a box.">
+      <img src="images/Activity2/013.gif" style="width:100%" onclick="onClick(this)" alt="A simple 2D interactive experiment with shape transformations.">
+      <img src="images/Activity2/014.gif" style="width:100%" onclick="onClick(this)" alt="A particle effect system where gravity is controlled by arrow keys.">
+      <img src="images/Activity2/015.gif" style="width:100%" onclick="onClick(this)" alt="A Makey Makey experiment where conductive materials trigger sounds.">
+      
+      <img src="images/Activity2/016.gif" style="width:100%" onclick="onClick(this)" alt="A reaction-based game using Makey Makey for input.">
+      <img src="images/Activity2/017.gif" style="width:100%" onclick="onClick(this)" alt="A physical input experiment where sensors control visuals.">
+      <img src="images/Activity2/018.gif" style="width:100%" onclick="onClick(this)" alt="A gesture-controlled drawing experiment using Makey Makey.">
+      <img src="images/Activity2/019.gif" style="width:100%" onclick="onClick(this)" alt="A 3D shape responding to different Makey Makey inputs.">
+      <img src="images/Activity2/020.gif" style="width:100%" onclick="onClick(this)" alt="An interactive experience combining sound and movement.">
+      
+      <img src="images/Activity2/021.gif" style="width:100%" onclick="onClick(this)" alt="A Makey Makey touch-sensitive game testing user reaction speed.">
+      <img src="images/Activity2/022.gif" style="width:100%" onclick="onClick(this)" alt="A Makey Makey pressure-based input triggering animations.">
+      <img src="images/Activity2/023.gif" style="width:100%" onclick="onClick(this)" alt="An experiment where different sensors trigger unique visual responses.">
+      <img src="images/Activity2/024.gif" style="width:100%" onclick="onClick(this)" alt="Code breakdown of a Makey Makey interactive experiment.">
+      <img src="images/Activity2/025.gif" style="width:100%" onclick="onClick(this)" alt="Step-by-step debugging and testing of Makey Makey interactions.">
+  </div>
+  
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <!-- Boilerplate -->
+  <div id="Project3" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 3</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Final Project 3 Design</h2>
+    <p> I learned that touch sensors are very sensitive
+      to grounding. If the ground wasn’t stable, the touch wouldn’t
+      work well. I also found that the shape and size of the copper
+      foil changed how well the sensor responded. I had to test
+      many versions to get it right.
+     
+      Also I used P5.js for the sound, but it had some delay. This made
+      me think about using Web MIDI in the future. Balancing the
+      tech with the creative design was hard but also fun. I enjoyed
+      mixing physical parts with web interaction and learned a lot
+      through trial and error.
+    </p>
+    <img src="images/final/happy.png" style="width:100%" onclick="onClick(this)" alt="My Final Drum kit">
+  </div>
+  
+   <!-- Modal for full size images on click-->
+   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
+      <img id="img01" class="w3-image">
+      <h2 id="caption"></h2>
+
+      <!-- <div id="urLink"></div> -->
+      <!-- <a id="urLink" class="container"><iframe class="responsive-iframe"></iframe></a> -->
+    <!-- </div> -->
+  </div>
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+
+<script>
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+
+  // var captionUrl = document.getElementById("urLink");
+  // captionUrl.innerHTML = element.url;
+
+  //document.getElementById("urLink").src = element.url;
+}
+</script>
+
+</body>
+</html>
