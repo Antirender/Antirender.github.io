@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Media Motion and the Body Winter 2025</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<style>
+body,h1,h2,h3,h4,h5 {
+  font-family: "Poppins", sans-serif
+  }
+body {
+  font-size:16px;
+  }
+h1 { 
+  font-size:30px;
+  }
+h2 {
+  font-size:25px;
+  }
+  h3 {
+  font-size:18px;
+  }
+img {
+  width: 100%;
+  height: 100%;
+}
+.grid {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+}
+.w3-half img{
+  margin-bottom:-6px;
+  margin-top:16px;
+  opacity:0.8;
+  cursor:pointer
+  } */
+.w3-half img:hover{
+  opacity:1
+  }
+
+.container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+.responsive-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+<body>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:200px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-display-topleft" style="display:none;font-size:22px"></a>
+  <div class="w3-container">
+    <h3 class="w3-padding-64"><b>IXD<br>DESN 22848<br> Winter 2025</b></h3>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#Home" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
+    <a href="#Module1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Module 1</a> 
+    <a href="#Activity1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 1</a> 
+    <a href="#Activity2" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Activity 2</a> 
+    <a href="#Project1" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Project 1</a> 
+  </div>
+</nav>
+
+<!-- Top menu on small screens
+<header class="w3-container w3-top w3-xlarge w3-padding">
+  <a href="javascript:void(0)" class="w3-button w3-red w3-margin-right" onclick="w3_open()">☰</a>
+  <span>Menu</span>
+</header> -->
+
+<!-- 
+  if you want to link your image to a video use one of the following alt links as an example:
+
+  alt="test1Lorem ipsum dolor sit amet, consectetur adipiscing elit test1Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='https://www.youtube.com/embed/tgbNymZ7vqY' target='_blank'><p>Project Video Link</p></a>"> 
+  alt="test2Lorem ipsum dolor sit amet, consectetur adipiscing elit <div class='container'><iframe class='responsive-iframe' src='https://www.youtube.com/embed/tgbNymZ7vqY'></iframe></div>">
+
+-->
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:220px;margin-right:20px">
+
+  <!-- Header -->
+  <div class="w3-container" style="margin-top:80px" id="default">
+    <h1 class="w3-jumbo" id="Home"><b>Module 1 Formstorming</b></h1>
+      <h1 class="w3-xxxlarge w3-text-blue"><b>Yiyang Zhang</b></h1>
+    <hr style="width:50px;border:5px solid grey" class="w3-round">
+  </div>
+  <!-- Boilerplate -->
+  <div id="Module1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 1</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Module 1</h2>
+    <h3>I focused mainly on using copper tape for my designs, but I also took the opportunity to try out conductive thread and fabric. There were definitely some challenges in getting everything to connect properly, but overall, it was a good experience filled with learning through trial and error.
+    </h3>
+  </div>
+  
+  <!-- Project 1 Photo grid (modal) -->
+  <div id="Activity1" >
+    <h2>Activity 1</h2>
+    <div class="grid">
+      <img src="images/Activity1/001.jpeg" style="width:100%" onclick="onClick(this)" alt="Close-up of a simple circuit made with copper tape and an LED sticker.">
+      <img src="images/Activity1/002.jpeg" style="width:100%" onclick="onClick(this)" alt="Demonstration of connecting a coin battery to light up an LED sticker.">
+      <img src="images/Activity1/003.jpeg" style="width:100%" onclick="onClick(this)" alt="Example of a completed circuit using copper tape and basic electronics.">
+      <img src="images/Activity1/004.jpeg" style="width:100%" onclick="onClick(this)" alt="Using copper tape to create a conductive path for an LED circuit.">
+      <img src="images/Activity1/005.jpeg" style="width:100%" onclick="onClick(this)" alt="A hands-on project with copper tape+Conductive fabric and LED stickers arranged creatively.">
+      
+      <img src="images/Activity1/006.jpeg" style="width:100%" onclick="onClick(this)" alt="Illustration of a simple electronic circuit made with coin batteries.">
+      <img src="images/Activity1/007.jpeg" style="width:100%" onclick="onClick(this)" alt="LED stickers glowing as part of a heart circuit.">
+      <img src="images/Activity1/008.jpeg" style="width:100%" onclick="onClick(this)" alt="Detailed view of copper tape connections in a led heart circuit.">
+      <img src="images/Activity1/009.jpeg" style="width:100%" onclick="onClick(this)" alt="Step-by-step assembly of a small circuit using copper tape+Conductive thread and fabric and LEDs.">
+      <img src="images/Activity1/010.jpeg" style="width:100%" onclick="onClick(this)" alt="Detailed view of copper tape+Conductive thread and fabric connections in a circuit.">
+      
+      <img src="images/Activity1/011.jpeg" style="width:100%" onclick="onClick(this)" alt="Home have a led back on as a window.">
+      <img src="images/Activity1/012.jpeg" style="width:100%" onclick="onClick(this)" alt="LED stickers in various colors connected with copper tape paths.">
+      <img src="images/Activity1/013.jpeg" style="width:100%" onclick="onClick(this)" alt="Experimenting progress with copper tape and LEDs.">
+      <img src="images/Activity1/014.jpeg" style="width:100%" onclick="onClick(this)" alt="Completed showing a simple light-up circuit.">
+      <img src="images/Activity1/015.jpeg" style="width:100%" onclick="onClick(this)" alt="Using copper tape to create chrismas tree designs.">
+      
+      <img src="images/Activity1/016.jpeg" style="width:100%" onclick="onClick(this)" alt="Close-up of a copper tape+Conductive thread circuit and a coin battery.">
+      <img src="images/Activity1/017.jpeg" style="width:100%" onclick="onClick(this)" alt="Close-up of a copper tape+Conductive thread circuit powered by a coin battery.">
+      <img src="images/Activity1/018.jpeg" style="width:100%" onclick="onClick(this)" alt="Layered touch like design of copper tape paths for a functioning circuit.">
+      <img src="images/Activity1/019.jpeg" style="width:100%" onclick="onClick(this)" alt="Exploring the use of LED stickers and copper tape+Conductive fabric.">
+      <img src="images/Activity1/020.jpeg" style="width:100%" onclick="onClick(this)" alt="Innovative (for me) application of copper tape+Conductive fabric.">
+      
+      <img src="images/Activity1/021.jpeg" style="width:100%" onclick="onClick(this)" alt="blender icon with copper tape and glowing blue LED.">
+      <img src="images/Activity1/022.jpeg" style="width:100%" onclick="onClick(this)" alt="Experiment with moveable LED placement in a copper tape circuit.">
+      <img src="images/Activity1/023.jpeg" style="width:100%" onclick="onClick(this)" alt="Detailed view of a Printing Pod designed with LEDs off">
+      <img src="images/Activity1/024.jpeg" style="width:100%" onclick="onClick(this)" alt="Detailed view of a Printing Pod designed with LEDs on.">
+      <img src="images/Activity1/025.jpeg" style="width:100%" onclick="onClick(this)" alt="Finalized DIY circuit project with glowing LED stickers.">
+    </div>    
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+  <div id="Activity2" class="w3-row-padding">
+    <h2>Activity 2</h2>
+    <div class="grid">
+      <img src="images/Activity2/001.jpeg" style="width:100%" onclick="onClick(this)" alt="press a button to call security.">
+      <img src="images/Activity2/002.jpeg" style="width:100%" onclick="onClick(this)" alt="can be pulling a drawer open to reveal its contents.">
+      <img src="images/Activity2/003.jpeg" style="width:100%" onclick="onClick(this)" alt="door handel can open a door.">
+      <img src="images/Activity2/004.jpeg" style="width:100%" onclick="onClick(this)" alt="Using button to open a door.">
+      <img src="images/Activity2/005.jpeg" style="width:100%" onclick="onClick(this)" alt="pulling a drawer open to reveal its contents.">
+      
+      <img src="images/Activity2/006.jpeg" style="width:100%" onclick="onClick(this)" alt="Illustration of a mail drop off.">
+      <img src="images/Activity2/007.jpeg" style="width:100%" onclick="onClick(this)" alt="a qr code that can scan.">
+      <img src="images/Activity2/008.jpeg" style="width:100%" onclick="onClick(this)" alt="person pulling up a pair of pants by gripping the waistband and adjusting them into position.">
+      <img src="images/Activity2/009.jpeg" style="width:100%" onclick="onClick(this)" alt="a lever to twist the table.">
+      <img src="images/Activity2/010.jpeg" style="width:100%" onclick="onClick(this)" alt="a reel to twist the table">
+      
+      <img src="images/Activity2/011.jpeg" style="width:100%" onclick="onClick(this)" alt="press to get Hand Sanitizer.">
+      <img src="images/Activity2/012.jpeg" style="width:100%" onclick="onClick(this)" alt="a zipper that showing look like in hand draw img 22.">
+      <img src="images/Activity2/013.jpeg" style="width:100%" onclick="onClick(this)" alt="door security define by led that can be open or not.">
+      <img src="images/Activity2/014.jpeg" style="width:100%" onclick="onClick(this)" alt="pull encase of fire.">
+      <img src="images/Activity2/015.jpeg" style="width:100%" onclick="onClick(this)" alt="door handel that can be pull not push.">
+      
+      <img src="images/Activity2/016.jpeg" style="width:100%" onclick="onClick(this)" alt="A hand pulling a lever on a manual device to activate it.">
+      <img src="images/Activity2/017.jpeg" style="width:100%" onclick="onClick(this)" alt="hand flipping a light switch to turn it on or off.">
+      <img src="images/Activity2/018.jpeg" style="width:100%" onclick="onClick(this)" alt="hand flipping a temprature knob to turn it on or off.">
+      <img src="images/Activity2/019.jpeg" style="width:100%" onclick="onClick(this)" alt="Close-up of a hand turning a tap handle.">
+      <img src="images/Activity2/020.jpeg" style="width:100%" onclick="onClick(this)" alt="Where to get hand towel paper.">
+      
+      <img src="images/Activity2/021.jpeg" style="width:100%" onclick="onClick(this)" alt="action to gripping the handle of a red fire extinguisher and pressing the lever to release its contents.">
+      <img src="images/Activity2/022.jpeg" style="width:100%" onclick="onClick(this)" alt="Experiment with moveable LED placement in a copper tape circuit to activate on a clothes.">
+      <img src="images/Activity2/023.jpeg" style="width:100%" onclick="onClick(this)" alt="Detailed view of a clothes designed with LEDs">
+      <img src="images/Activity2/024.jpeg" style="width:100%" onclick="onClick(this)" alt="Detailed view of a pants designed with LEDs tell to tight.">
+      <img src="images/Activity2/025.jpeg" style="width:100%" onclick="onClick(this)" alt="Finalized three design circuit ideas based with glowing LED and circuit.">
+    </div>
+  </div>
+
+  <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+
+
+  <!-- Boilerplate -->
+  <div id="Project1" class="w3-container" style="margin-top:75px">
+    <h1 class="w3-xxxlarge w3-text-red"><b>Project 1</b></h1>
+    <hr style="width:50px;border:5px solid red" class="w3-round">
+    <h2>Final Project 1 Design</h2>
+    <div>
+        <h2>Wearable Interactive Affordance Based Circuit</h2>
+        <p>
+            This smart cycling helmet enhances safety through an integrated lighting system. 
+            Conductive wires embedded in the design ensure clear functional signaling, while the helmet's buckle doubles as a switch. 
+            When fastened, it completes the circuit, automatically activating the built-in headlight for nighttime visibility. 
+            This seamless interaction eliminates manual operations, providing an intuitive safety response. 
+            The steady lighting mode ensures continuous protection, making it an adaptive and effortless solution for cyclists. 
+            By combining real-time activation with a minimalistic design, it transforms traditional gear into a smart, interactive safety device.
+        </p>
+        <img src="images/final/Wear.jpg" style="width:100%" onclick="onClick(this)" 
+             alt="A smart cycling helmet with conductive wires and an automatic lighting system.">
+    </div>
+    
+    <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round">
+    
+    <div>
+      <h2>Non-Wearable Interactive Affordance Based Circuit</h2>
+      <p>
+          This device is designed to modify behavior through environmental cues rather than forceful restriction. 
+          It features a phone holder with an integrated alert system, where placing the phone activates a red light. 
+          This light serves as a subconscious reminder, helping users regulate their screen time without direct intervention. 
+          By linking physical placement with a subtle visual signal, the system encourages effortless habit formation, 
+          reducing reliance on willpower. This approach leverages behavioral psychology to create sustainable self-regulation practices.
+      </p>
+      <img src="images/final/NonWear.jpg" style="width:100%" onclick="onClick(this)" 
+           alt="A self-control toolkit utilizing red light feedback for behavior modification.">
+  </div>
+  
+   <!-- Modal for full size images on click-->
+   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
+      <img id="img01" class="w3-image">
+      <h2 id="caption"></h2>
+
+      <!-- <div id="urLink"></div> -->
+      <!-- <a id="urLink" class="container"><iframe class="responsive-iframe"></iframe></a> -->
+    <!-- </div> -->
+  </div>
+<!-- End page content -->
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></p></div>
+
+<script>
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+
+  // var captionUrl = document.getElementById("urLink");
+  // captionUrl.innerHTML = element.url;
+
+  //document.getElementById("urLink").src = element.url;
+}
+</script>
+
+</body>
+</html>
