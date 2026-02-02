@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Makey Makey Drum Machine - Final Project</title>
+  <!-- p5.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <!-- p5.sound library for loadSound(), sound playback -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+  <style>
+    body {
+      margin: 0; 
+      padding: 0; 
+      overflow: hidden;
+      font-family: sans-serif;
+      background: #000; /* fallback if canvas doesn't fill screen */
+    }
+    #fullscreenBtn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      padding: 10px 15px;
+      font-size: 16px;
+      background: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    #fullscreenBtn:hover {
+      background: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 
+  DESN 22848 Interaction Design: Media, Motion and the Body 
+  Project 3: Design for Living Systems - TOUCH
+  Final Drum Machine Project
+
+  Author: yiyang zhang
+  Date: April 4 2025
+
+  This project demonstrates a physical-digital interaction using Makey Makey 
+  as an analog input (touch) and p5.js (WebGL) for digital visualization and sound output.
+
+    W -> Kick
+    A -> Snare
+    S -> Hi-hat
+    D -> Clap
+    F -> Crash
+
+  Credits / Sourcing:
+  - p5.js (https://p5js.org/) is an open-source JS library under the LGPL or GPL license.
+  - Sound files used here are placeholders. Please replace them with your own 
+    or properly credited open-source sounds for final submission.
+-->
+
+<button id="fullscreenBtn">Fullscreen</button>
+
+<script>
+// Drum sound variables
+let kick, snare, hihat, clap, crash;
+
+// Map keys to colors
+let drumColors = {};
+let currentColor;
+let bgColor;
+
+// Sphere pulse
+let pulseSize = 0;
+let pulseDecay = 0.95;
+
+// Explosion effects array
+let effects = [];
+
+// Starfield
+let stars = [];
+let numStars = 300; // number of stars
+
+function preload() {
+  // Load drum sounds (ensure these files are in the same folder)
+  kick   = loadSound('kick.wav');
+  snare  = loadSound('snare.wav');
+  hihat  = loadSound('hihat.wav');
+  clap   = loadSound('clap.wav');
+  crash  = loadSound('crash.wav');
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+
+  // Assign each key a color
+  drumColors = {
+    'w': color(255, 100, 100),   // Kick -> red
+    'a': color(100, 255, 100),   // Snare -> green
+    's': color(100, 200, 255),   // Hi-hat -> blue
+    'd': color(255, 255, 100),   // Clap -> yellow
+    'f': color(255, 165, 50)    // Crash -> Orange
+  };
+
+  currentColor = color(255);
+  bgColor = color(20); // near-black background
+
+  // Generate random star positions in 3D
+  for (let i = 0; i < numStars; i++) {
+    let x = random(-600, 600);
+    let y = random(-600, 600);
+    let z = random(-600, 600);
+    stars.push(createVector(x, y, z));
+  }
+
+  // Fullscreen toggle
+  let fsBtn = select('#fullscreenBtn');
+  fsBtn.mousePressed(() => {
+    let fs = fullscreen();
+    fullscreen(!fs);
+  });
+}
+
+// Explosion particle class
+class ExplodeObject {
+  constructor(col) {
+    this.col = col;
+    this.size = random(20, 50);
+    this.pos = createVector(0, 0, 0);         // start at center
+    this.vel = p5.Vector.random3D().mult(2);  // random direction
+    this.life = 255;                          // alpha fade
+    this.shapeType = floor(random(4));        // 0->sphere,1->box,2->torus,3->cone
+  }
+
+  update() {
+    this.pos.add(this.vel);
+    this.life -= 4;  // fade speed
+  }
+
+  display() {
+    push();
+    translate(this.pos.x, this.pos.y, this.pos.z);
+    fill(red(this.col), green(this.col), blue(this.col), this.life);
+    noStroke();
+    rotateX(frameCount * 0.01);
+    rotateY(frameCount * 0.01);
+
+    switch (this.shapeType) {
+      case 0:
+        sphere(this.size);
+        break;
+      case 1:
+        box(this.size);
+        break;
+      case 2:
+        torus(this.size, this.size / 4);
+        break;
+      case 3:
+        cone(this.size, this.size * 1.5);
+        break;
+    }
+    pop();
+  }
+
+  isDead() {
+    return this.life < 0;
+  }
+}
+
+function draw() {
+  background(bgColor);
+
+  // Move the camera away from origin so large shapes are visible
+  camera(0, 0, 800, 0, 0, 0, 0, 1, 0);
+  
+  // Optional mouse orbit
+  orbitControl();
+
+  // 1) Starfield
+  push();
+  stroke(255);
+  strokeWeight(2);
+  for (let s of stars) {
+    push();
+    translate(s.x, s.y, s.z);
+    point(0, 0, 0);
+    pop();
+  }
+  pop();
+
+  // 2) Rotating ring (torus) in the background
+  push();
+  rotateX(frameCount * 0.01);
+  rotateY(frameCount * 0.01);
+  strokeWeight(2);
+  stroke((frameCount * 0.5) % 255, 100, 200);
+  noFill();
+  torus(300, 30, 30, 30);
+  pop();
+
+  // 3) Central rotating sphere (pulsing)
+  push();
+    let size = 120 + pulseSize;
+    rotateY(frameCount * 0.01);
+    fill(currentColor);
+    noStroke();
+    sphere(size);
+  pop();
+
+  // 4) Update & display explosion effects
+  for (let i = effects.length - 1; i >= 0; i--) {
+    effects[i].update();
+    effects[i].display();
+    if (effects[i].isDead()) {
+      effects.splice(i, 1);
+    }
+  }
+
+  // 5) Decay the pulse
+  pulseSize *= pulseDecay;
+
+  // 6) Overlay text instructions in 2D
+  resetMatrix(); // exit WEBGL for 2D
+  fill(255);
+  textSize(16);
+  textAlign(LEFT);
+  text(
+    "MAKEY MAKEY DRUM MACHINE (3D Enhanced)\n\n" +
+    "Press or tap keys:\n" +
+    "W = Kick\nA = Snare\nS = Hi-hat\nD = Clap\nF = Crash\n\n" +
+    "Or use your physical Makey Makey pads mapped to these keys.\n" +
+    "Click 'Fullscreen' to toggle full screen.\n",
+    20, 80
+  );
+}
+
+// Key press triggers sound + visuals
+function keyPressed() {
+  let k = key.toLowerCase();
+  switch(k) {
+    case 'w':
+      kick.play();
+      triggerVisual(k);
+      break;
+    case 'a':
+      snare.play();
+      triggerVisual(k);
+      break;
+    case 's':
+      hihat.play();
+      triggerVisual(k);
+      break;
+    case 'd':
+      clap.play();
+      triggerVisual(k);
+      break;
+    case 'f':
+      crash.play();
+      triggerVisual(k);
+      break;
+  }
+}
+
+function triggerVisual(k) {
+  if (drumColors[k]) {
+    currentColor = drumColors[k];
+    pulseSize = 40; // start a new pulse
+    // create a new explosion effect
+    let e = new ExplodeObject(drumColors[k]);
+    effects.push(e);
+  }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</script>
+
+</body>
+</html>
