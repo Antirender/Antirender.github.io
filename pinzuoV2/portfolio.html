@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品作设计 - 作品展示</title>
+  <link rel="icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 头部区域（包含语言切换、Logo、导航等） -->
+  <header>
+    <div class="header-container">
+      <!-- 左侧 Logo -->
+      <div class="logo-container">
+        <!-- 如果需要换另一张 Logo，可自行调整 -->
+        <img src="img/logo.png" alt="品作设计 Logo">
+      </div>
+      <!-- 导航栏 -->
+      <nav>
+        <ul>
+          <li><a href="index.html" data-lang-zh="首页" data-lang-en="Home">首页</a></li>
+          <li><a href="about.html" data-lang-zh="公司介绍" data-lang-en="About Us">公司介绍</a></li>
+          <li><a href="portfolio.html" data-lang-zh="作品展示" data-lang-en="Portfolio">作品展示</a></li>
+          <li><a href="contact.html" data-lang-zh="联系我们" data-lang-en="Contact">联系我们</a></li>
+          <li><a href="webdisk.html" data-lang-zh="网盘 &amp; AI使用 后端" data-lang-en="Web Disk &amp; AI Backend">
+            网盘 &amp; AI使用 后端
+          </a></li>
+        </ul>
+      </nav>
+      <!-- 语言切换按钮 -->
+      <div id="language-switcher">
+        <button id="lang-zh" onclick="switchLanguage('zh')">中文</button>
+        <button id="lang-en" onclick="switchLanguage('en')">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主要内容 -->
+  <main>
+    <section id="portfolio">
+      <h1 data-lang-zh="作品展示" data-lang-en="Portfolio">作品展示</h1>
+      
+      <!-- ============== PDF 作品集分类展示 ============== -->
+      <!--
+        在此示范：针对“景观设计”、“空间设计”、“雕塑艺术装置”、“标识系统”、“城市家具”五大PDF分类。
+        若还有更多PDF，可自行扩展。
+      -->
+      <section id="portfolio-pdf">
+        <h2 data-lang-zh="作品集 PDF 下载" data-lang-en="PDF Collections">作品集 PDF 下载</h2>
+        
+        <!-- 在这里展示 PDF 分类卡片或链接，让用户可点击直接查看 PDF -->
+        <div class="pdf-links">
+          <!-- 景观设计 -->
+          <div class="pdf-item">
+            <h3 data-lang-zh="景观设计" data-lang-en="Landscape Design">景观设计</h3>
+            <!-- 你的 PDF 放在 docs/ 文件夹里，若文件夹名不同，需自行调整 -->
+            <a href="docs/2021.04.30_品作设计_景观设计作品案例.pdf" target="_blank"
+               data-lang-zh="点击查看 PDF" data-lang-en="View PDF">
+              点击查看 PDF
+            </a>
+          </div>
+
+          <!-- 空间设计 -->
+          <div class="pdf-item">
+            <h3 data-lang-zh="空间设计" data-lang-en="Space Design">空间设计</h3>
+            <a href="docs/2021.04.30_品作设计_空间设计作品案例.pdf" target="_blank"
+               data-lang-zh="点击查看 PDF" data-lang-en="View PDF">
+              点击查看 PDF
+            </a>
+          </div>
+
+          <!-- 雕塑艺术装置 -->
+          <div class="pdf-item">
+            <h3 data-lang-zh="雕塑艺术装置" data-lang-en="Sculpture & Art Installations">雕塑艺术装置</h3>
+            <a href="docs/2021.04.30_品作设计_雕塑艺术装置设计作品案例.pdf" target="_blank"
+               data-lang-zh="点击查看 PDF" data-lang-en="View PDF">
+              点击查看 PDF
+            </a>
+          </div>
+
+          <!-- 标识系统 -->
+          <div class="pdf-item">
+            <h3 data-lang-zh="标识系统设计" data-lang-en="Signage System Design">标识系统设计</h3>
+            <a href="docs/2021.04.30_标志系统设计作品案例.pdf" target="_blank"
+               data-lang-zh="点击查看 PDF" data-lang-en="View PDF">
+              点击查看 PDF
+            </a>
+          </div>
+
+          <!-- 城市家具 -->
+          <div class="pdf-item">
+            <h3 data-lang-zh="城市家具设计" data-lang-en="Urban Furniture Design">城市家具设计</h3>
+            <a href="docs/2021.04.30_品作设计_城市家具设计作品案例.pdf" target="_blank"
+               data-lang-zh="点击查看 PDF" data-lang-en="View PDF">
+              点击查看 PDF
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- ============== PDF 作品集分类展示结束 ============== -->
+      
+      <!-- 作品列表（分类筛选 + 缩略图展示） -->
+      <section id="portfolio-list">
+        <h2 data-lang-zh="作品列表" data-lang-en="Portfolio List">作品列表</h2>
+        <div class="filter">
+          <label data-lang-zh="分类筛选：" data-lang-en="Filter:">分类筛选：</label>
+          <select>
+            <option data-lang-zh="全部" data-lang-en="All">全部</option>
+            <option data-lang-zh="景观设计" data-lang-en="Landscape">景观设计</option>
+            <option data-lang-zh="空间设计" data-lang-en="Space">空间设计</option>
+            <option data-lang-zh="雕塑艺术装置" data-lang-en="Sculpture">雕塑艺术装置</option>
+            <option data-lang-zh="标识系统" data-lang-en="Signage">标识系统</option>
+            <option data-lang-zh="城市家具" data-lang-en="Furniture">城市家具</option>
+          </select>
+        </div>
+        <div class="portfolio-thumbnails">
+          <!-- 以下演示几张缩略图，你可按需求增减 -->
+          <div class="portfolio-item" data-category="景观设计">
+            <img src="img/portfolio1.jpg" alt="作品1">
+            <p data-lang-zh="景观设计示例" data-lang-en="Landscape Sample">景观设计示例</p>
+          </div>
+          <div class="portfolio-item" data-category="空间设计">
+            <img src="img/portfolio2.jpg" alt="作品2">
+            <p data-lang-zh="空间设计示例" data-lang-en="Space Sample">空间设计示例</p>
+          </div>
+          <div class="portfolio-item" data-category="雕塑艺术装置">
+            <img src="img/portfolio3.jpg" alt="作品3">
+            <p data-lang-zh="雕塑装置示例" data-lang-en="Sculpture Sample">雕塑装置示例</p>
+          </div>
+          <!-- 可继续添加更多 -->
+        </div>
+      </section>
+
+      <!-- 作品详情页（高清图片 + 短视频演示 + 互动展示） -->
+      <section id="portfolio-detail">
+        <h2 data-lang-zh="作品详情页" data-lang-en="Portfolio Detail">作品详情页</h2>
+        <div class="portfolio-detail-content">
+          <!-- 高清图片示例 -->
+          <img src="img/portfolio-detail.jpg" alt="高清图片示例" 
+               data-lang-zh="高清图片示例" data-lang-en="High-quality Image Placeholder">
+          <!-- 短视频动画演示 -->
+          <video controls width="640" height="360">
+            <source src="img/portfolio-demo.mp4" type="video/mp4">
+            您的浏览器不支持视频播放。
+          </video>
+          <!-- 互动展示 placeholder -->
+          <p data-lang-zh="互动展示" data-lang-en="Interactive display">
+            互动展示
+          </p>
+        </div>
+      </section>
+
+      <!-- 作品背后的故事（创作理念 / 设计理念） -->
+      <section id="portfolio-story">
+        <h2 data-lang-zh="作品背后的故事" data-lang-en="The Story Behind the Work">作品背后的故事</h2>
+        <p data-lang-zh="创作理念和设计理念 " data-lang-en="Creation concept and design philosophy ">
+          创作理念和设计理念 
+        </p>
+      </section>
+
+      <!-- 相关作品推荐 -->
+      <section id="related-works">
+        <h2 data-lang-zh="相关作品推荐" data-lang-en="Related Works">相关作品推荐</h2>
+        <div class="related-works-grid">
+          <div class="related-item">
+            <img src="img/related1.jpg" alt="相关作品1">
+            <p data-lang-zh="相关作品1" data-lang-en="Related Work 1">相关作品1</p>
+          </div>
+          <div class="related-item">
+            <img src="img/related2.jpg" alt="相关作品2">
+            <p data-lang-zh="相关作品2" data-lang-en="Related Work 2">相关作品2</p>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-info">
+      <div class="footer-logo">
+        <img src="img/logo2.png" alt="Footer Logo">
+      </div>
+      <p data-lang-zh="© 2025 品作设计. 保留所有权利." data-lang-en="© 2025 Pinzuo Design. All rights reserved.">
+        © 2025 品作设计. 保留所有权利.
+      </p>
+      <div class="social-media">
+        <a href="#" title="LinkedIn">LinkedIn</a>
+        <a href="#" title="WeChat">微信</a>
+        <a href="#" title="Twitter">Twitter</a>
+      </div>
+      <div class="quick-links">
+        <a href="index.html" data-lang-zh="首页" data-lang-en="Home">首页</a>
+        <a href="about.html" data-lang-zh="公司介绍" data-lang-en="About Us">公司介绍</a>
+        <a href="portfolio.html" data-lang-zh="作品展示" data-lang-en="Portfolio">作品展示</a>
+        <a href="contact.html" data-lang-zh="联系我们" data-lang-en="Contact">联系我们</a>
+        <a href="webdisk.html" data-lang-zh="网盘 &amp; AI使用 后端" data-lang-en="Web Disk &amp; AI Backend">
+          网盘 &amp; AI使用 后端
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 别忘了引入你的 script.js -->
+  <script src="js/script.js"></script>
+</body>
+</html>

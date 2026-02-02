@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品作设计 - 公司介绍</title>
+  <link rel="icon" href="img/favicon.ico">
+  <!-- 引入你的主CSS文件 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 头部（融合语言切换、Logo、导航） -->
+  <header>
+    <div class="header-container">
+      <!-- 左侧 Logo -->
+      <div class="logo-container">
+        <!-- 如果你只有一个logo.png，可以使用同一张 -->
+        <img src="img/logo.png" alt="品作设计 Logo">
+      </div>
+
+      <!-- 导航栏 -->
+      <nav>
+        <ul>
+          <li><a href="index.html" data-lang-zh="首页" data-lang-en="Home">首页</a></li>
+          <li><a href="about.html" data-lang-zh="公司介绍" data-lang-en="About Us">公司介绍</a></li>
+          <li><a href="portfolio.html" data-lang-zh="作品展示" data-lang-en="Portfolio">作品展示</a></li>
+          <li><a href="contact.html" data-lang-zh="联系我们" data-lang-en="Contact">联系我们</a></li>
+          <li><a href="webdisk.html" data-lang-zh="网盘 &amp; AI使用 后端" data-lang-en="Web Disk &amp; AI Backend">
+            网盘 &amp; AI使用 后端
+          </a></li>
+        </ul>
+      </nav>
+
+      <!-- 语言切换按钮 -->
+      <div id="language-switcher">
+        <button id="lang-zh" onclick="switchLanguage('zh')">中文</button>
+        <button id="lang-en" onclick="switchLanguage('en')">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主要内容 -->
+  <main>
+    <section id="about-us">
+      <h1 data-lang-zh="关于我们" data-lang-en="About Us">关于我们</h1>
+      
+      <!-- 公司愿景 & 使命 (可自行修改或保留) -->
+      <section id="vision-mission">
+        <h2 data-lang-zh="公司愿景 &amp; 使命" data-lang-en="Vision &amp; Mission">
+          公司愿景 &amp; 使命
+        </h2>
+        <p data-lang-zh="我们的品牌理念和核心价值观，旨在引领行业发展。" 
+           data-lang-en="Our brand philosophy and core values aim to lead industry innovation.">
+          我们的品牌理念和核心价值观，旨在引领行业发展。
+        </p>
+      </section>
+      
+      <!-- 公司背景 + PDF 附件示例 -->
+      <section id="company-background">
+        <h2 data-lang-zh="公司背景" data-lang-en="Company Background">公司背景</h2>
+
+        <!-- 放入你给的“品作设计”官方介绍大段文字 -->
+        <p data-lang-zh="
+          品作设计（南京）有限公司是一个由设计与艺术专业高校教师领衔的艺术创意团队，专注于艺术设计及其跨界应用，
+          涵盖城市环境、景观设计、空间设计及公共艺术等多个领域。我们以深厚的专业素养和创新精神，探索设计的无限可能，
+          为城市、社区及公共空间创造独特而富有价值的作品。
+        "
+           data-lang-en="
+          Pinzuo Design (Nanjing) Co., Ltd. is an art creative team led by design and art professionals from universities,
+          focusing on art design and cross-border applications in urban environments, landscape design, spatial design,
+          and public art. With deep expertise and innovative spirit, we explore infinite possibilities to create unique
+          and valuable works for cities, communities, and public spaces.
+        ">
+          品作设计（南京）有限公司是一个由设计与艺术专业高校教师领衔的艺术创意团队...
+        </p>
+
+        <p data-lang-zh="
+          “品作”寓意富有价值的作品，值得品味的佳作，代表了我们对待设计的态度和追求。
+          我们认为“作品”不仅仅是一个设计成果，更是承载专业力量与设计热情的艺术表达。
+          每一次设计实践，我们都力求以艺术品质、独特理念，让作品融入环境，与空间对话，
+          为使用者带来美学与功能兼具的体验。
+        "
+           data-lang-en="
+          'Pinzuo' implies valuable and tasteful creations, symbolizing our attitude and pursuit of design excellence.
+          We see 'work' not just as a design outcome but an artistic expression carrying professional power and design passion.
+          In each project, we strive for artistic quality and unique concepts, letting our work integrate into its environment
+          and engage in spatial dialogue, bringing both aesthetic and functional experiences to users.
+        ">
+          “品作”寓意富有价值的作品，值得品味的佳作...
+        </p>
+
+        <!-- PDF 附件示例 (如果你有实际 PDF 文件，可替换链接) -->
+        <p data-lang-zh="详细资料请查看PDF附件：" data-lang-en="For more details, please see the attached PDF:">
+          详细资料请查看PDF附件：
+          <a href="docs/pinzuo-info.pdf" target="_blank" data-lang-zh="下载PDF" data-lang-en="Download PDF">
+            下载PDF
+          </a>
+        </p>
+      </section>
+      
+      <!-- 团队介绍 -->
+      <section id="team">
+        <h2 data-lang-zh="团队介绍" data-lang-en="Team">团队介绍</h2>
+        <div class="team-members">
+
+          <!-- 张艺飏 -->
+          <div class="team-member">
+            <img src="img/team_zhangyiyang.jpg" alt="张艺飏">
+            <h3 data-lang-zh="张艺飏 - CEO" data-lang-en="Zhang Yiyang - CEO">
+              张艺飏 - CEO
+            </h3>
+            <p data-lang-zh="
+              主要研究方向：景观设计、环境设计、实验性空间设计
+              担任主要课程：景观设计概论、园林与景观设计史、景观系统设计、毕业设计毕业论文、实验性空间设计等。
+            "
+               data-lang-en="
+              Research fields: Landscape design, Environmental design, Experimental spatial design
+              Main Courses: Introduction to Landscape Design, History of Gardens & Landscape Design, Landscape Systems Design,
+              Graduation Projects & Thesis, Experimental Spatial Design, etc.
+            ">
+              主要研究方向：景观设计、环境设计、实验性空间设计...
+            </p>
+          </div>
+
+          <!-- 刘谯 -->
+          <div class="team-member">
+            <img src="img/team_liuqiao.jpg" alt="刘谯">
+            <h3 data-lang-zh="刘谯 - COO" data-lang-en="Liu Qiao - COO">
+              刘谯 - COO
+            </h3>
+            <p data-lang-zh="
+              主要社会兼职：北京大学“全国高校景观设计毕业作品展”评委；亚洲城市设计联盟“亚洲设计学年奖”评委；中国建筑协会会员
+              主要个人荣誉：获“江苏省333工程培养对象”、“江苏省青年骨干教师”、“全国高校景观设计毕业作品展景观桃李奖&优秀指导教师”、
+              “中国人居环境设计学年奖最佳指导教师奖”等称号。
+            "
+               data-lang-en="
+              Social Positions: Judge of 'National College Landscape Design Graduation Works Exhibition' at Peking University;
+              Judge of 'Asia Design Annual Awards' of Asian Urban Design Alliance; Member of China Architecture Association
+              Personal Honors: '333 High-level Talent Training Project' in Jiangsu Province, 'Young Backbone Teacher of Jiangsu Province',
+              'Landscape Peach and Plum Award & Excellent Instructor' at the national college landscape exhibition,
+              'Best Instructor Award' at China Human Settlements Environment Design Annual Awards, etc.
+            ">
+              主要社会兼职：北京大学“全国高校景观设计毕业作品展”评委...
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 客户案例 (如果需要保留，可留空或修改) -->
+      <section id="client-cases">
+        <h2 data-lang-zh="客户案例" data-lang-en="Client Cases">客户案例</h2>
+        <div class="client-feedback">
+          <div class="client-case">
+            <img src="img/client1.jpg" alt="客户1">
+            <blockquote data-lang-zh="客户对我们的合作反馈..." data-lang-en="Client feedback on our collaboration...">
+              客户对我们的合作反馈...
+            </blockquote>
+          </div>
+          <div class="client-case">
+            <img src="img/client2.jpg" alt="客户2">
+            <blockquote data-lang-zh="客户对我们的合作反馈..." data-lang-en="Client feedback on our collaboration...">
+              客户对我们的合作反馈...
+            </blockquote>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 联系方式 -->
+      <section id="contact-link">
+        <h2 data-lang-zh="联系方式" data-lang-en="Contact Information">联系方式</h2>
+        
+        <p data-lang-zh="
+          微信公众号：品作设计 南京
+          联系电话：19509953590
+          办公地址：深业·滨江半岛１号楼 (中国江苏省南京市鼓楼区龙江，邮编210011)
+          工作时间：周一至周五 9:00 - 18:00
+        "
+           data-lang-en="
+          WeChat Official Account: Pinzuo Design Nanjing
+          Phone: +86 19509953590
+          Office Address: Shenye Binjiang Peninsula Tower 1, Gulou District, Nanjing, Jiangsu, China (Zip code 210011)
+          Working Hours: Mon-Fri 9:00 - 18:00
+        ">
+          微信公众号：品作设计 南京 <br>
+          联系电话：19509953590 <br>
+          办公地址：深业·滨江半岛１号楼 (中国江苏省南京市鼓楼区龙江，邮编210011) <br>
+          工作时间：周一至周五 9:00 - 18:00
+        </p>
+
+        <p data-lang-zh="想了解更多信息？请点击以下链接联系到我们：" 
+           data-lang-en="For more information, please contact us via:">
+          想了解更多信息？请点击以下链接联系到我们：
+          <a href="contact.html" data-lang-zh="点击这里联系我们" data-lang-en="Click here to contact us">
+            点击这里联系我们
+          </a>
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-info">
+      <!-- 在页脚也可放另一个 Logo -->
+      <div class="footer-logo">
+        <img src="img/logo2.png" alt="Footer Logo">
+      </div>
+
+      <p data-lang-zh="© 2025 品作设计. 保留所有权利." data-lang-en="© 2025 Pinzuo Design. All rights reserved.">
+        © 2025 品作设计. 保留所有权利.
+      </p>
+
+      <div class="social-media">
+        <a href="#" title="LinkedIn">LinkedIn</a>
+        <a href="#" title="WeChat">微信</a>
+        <a href="#" title="Twitter">Twitter</a>
+      </div>
+
+      <div class="quick-links">
+        <a href="index.html" data-lang-zh="首页" data-lang-en="Home">首页</a>
+        <a href="about.html" data-lang-zh="公司介绍" data-lang-en="About Us">公司介绍</a>
+        <a href="portfolio.html" data-lang-zh="作品展示" data-lang-en="Portfolio">作品展示</a>
+        <a href="contact.html" data-lang-zh="联系我们" data-lang-en="Contact">联系我们</a>
+        <a href="webdisk.html" data-lang-zh="网盘 &amp; AI使用 后端" data-lang-en="Web Disk &amp; AI Backend">
+          网盘 &amp; AI使用 后端
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

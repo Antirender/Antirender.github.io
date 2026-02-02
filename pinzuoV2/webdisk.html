@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品作设计 - 网盘 &amp; AI使用 后端</title>
+  <link rel="icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 头部（语言切换，可根据你首页的风格进行统一） -->
+  <header>
+    <div class="header-container">
+      <!-- 左侧 Logo (如需要) -->
+      <div class="logo-container">
+        <img src="img/logo.png" alt="品作设计 Logo">
+      </div>
+
+      <!-- 导航栏 -->
+      <nav>
+        <ul>
+          <li><a href="index.html" data-lang-zh="首页" data-lang-en="Home">首页</a></li>
+          <li><a href="about.html" data-lang-zh="公司介绍" data-lang-en="About Us">公司介绍</a></li>
+          <li><a href="portfolio.html" data-lang-zh="作品展示" data-lang-en="Portfolio">作品展示</a></li>
+          <li><a href="contact.html" data-lang-zh="联系我们" data-lang-en="Contact">联系我们</a></li>
+          <li><a href="webdisk.html" data-lang-zh="网盘 &amp; AI使用 后端" data-lang-en="Web Disk &amp; AI Backend">
+            网盘 &amp; AI使用 后端
+          </a></li>
+        </ul>
+      </nav>
+
+      <!-- 语言切换按钮 -->
+      <div id="language-switcher">
+        <button id="lang-zh" onclick="switchLanguage('zh')">中文</button>
+        <button id="lang-en" onclick="switchLanguage('en')">English</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主要内容 -->
+  <main>
+    <section id="webdisk">
+      <h1 data-lang-zh="网盘 &amp; AI使用 后端" data-lang-en="Web Disk &amp; AI Backend">网盘 &amp; AI使用 后端</h1>
+      
+      <!-- 用户登录页面 -->
+      <section id="login">
+        <h2 data-lang-zh="用户登录" data-lang-en="User Login">用户登录</h2>
+        <form action="#" method="post">
+          <div>
+            <label for="username" data-lang-zh="用户名" data-lang-en="Username">用户名</label>
+            <input type="text" id="username" name="username" 
+                   placeholder="请输入用户名 / Enter your username">
+          </div>
+          <div>
+            <label for="password" data-lang-zh="密码" data-lang-en="Password">密码</label>
+            <input type="password" id="password" name="password" 
+                   placeholder="请输入密码 / Enter your password">
+          </div>
+          <div>
+            <button type="submit" data-lang-zh="登录" data-lang-en="Login">登录</button>
+          </div>
+          <p data-lang-zh="企业用户请点击这里登录" data-lang-en="Enterprise users, click here to login">
+            企业用户请点击这里登录
+          </p>
+        </form>
+      </section>
+      
+      <!-- 远程控制 -->
+      <section id="remote-control">
+        <h2 data-lang-zh="远程控制" data-lang-en="Remote Control">远程控制</h2>
+        <p data-lang-zh="
+          通过 Web 端可进行 AI 生成和项目管理工具的远程控制，
+          例如在云端协同设计、查看进度、分发任务、在线预览设计草稿等。
+        "
+           data-lang-en="
+          Offers remote control via the web for AI generation and project management tools,
+          such as cloud-based collaborative design, progress monitoring, task distribution,
+          and online preview of design drafts.
+        ">
+          通过 Web 端可进行 AI 生成和项目管理工具的远程控制...
+        </p>
+      </section>
+      
+      <!-- 文件管理 -->
+      <section id="file-management">
+        <h2 data-lang-zh="文件管理" data-lang-en="File Management">文件管理</h2>
+        <p data-lang-zh="
+          团队可访问的作品库和资源库，可分项目或部门共享访问，支持多种文档、图片、视频文件的分类管理。
+          提供搜索、预览、版本历史等功能。
+        "
+           data-lang-en="
+          A shared file and asset library accessible by the entire team, organized by project or department.
+          Supports different document, image, and video file types, with search, preview, and version history features.
+        ">
+          团队可访问的作品库和资源库，可分项目或部门共享访问...
+        </p>
+      </section>
+      
+      <!-- 权限分级 -->
+      <section id="access-control">
+        <h2 data-lang-zh="权限分级" data-lang-en="Access Control">权限分级</h2>
+        <p data-lang-zh="
+          通过角色管理（管理员、设计师、客户等），可对不同文件夹或功能模块进行访问限制、
+          只读/可编辑/可上传下载等权限设置，保障数据安全与协作效率。
+        "
+           data-lang-en="
+          Role-based management (Administrator, Designer, Client, etc.) allows for restricted access to certain folders or modules,
+          with read-only/edit/upload permissions to ensure data security and collaboration efficiency.
+        ">
+          通过角色管理（管理员、设计师、客户等），可对不同文件夹或功能模块进行访问限制...
+        </p>
+      </section>
+      
+      <!-- API 接口 -->
+      <section id="api">
+        <h2 data-lang-zh="AI &amp; API 接口" data-lang-en="AI &amp; API Interface">AI &amp; API 接口</h2>
+        <p data-lang-zh="
+          可对接 AI 设计工具（如 ChatGPT 插件、Stable Diffusion API 等免费/付费服务），
+          或外部远程操作系统，提供自动化生成草图、自动渲染等扩展功能。
+        "
+           data-lang-en="
+          Integrates with AI design tools (like ChatGPT plugins, Stable Diffusion APIs, free or paid services),
+          or external remote systems to enable automated concept sketches, rendering, and more.
+        ">
+          可对接 AI 设计工具（如 ChatGPT 插件、Stable Diffusion API 等免费/付费服务）...
+        </p>
+      </section>
+      
+      <!-- 下载 & 上传文件 -->
+      <section id="file-transfer">
+        <h2 data-lang-zh="下载 &amp; 上传文件" data-lang-en="File Transfer">下载 &amp; 上传文件</h2>
+        <p data-lang-zh="
+          支持大文件传输和分段续传功能，可对素材进行批量上传/下载，
+          并提供断点续传、自动备份等特色，保证文件安全与版本可追溯。
+        "
+           data-lang-en="
+          Supports large file transfers and resumable uploads, enabling batch file operations.
+          Includes checkpoint restart, automatic backups, and version tracking for safer file management.
+        ">
+          支持大文件传输和分段续传功能，可对素材进行批量上传/下载...
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer>
+    <div class="footer-info">
+      <div class="footer-logo">
+        <img src="img/logo2.png" alt="Footer Logo">
+      </div>
+      <p data-lang-zh="© 2025 品作设计. 保留所有权利." 
+         data-lang-en="© 2025 Pinzuo Design. All rights reserved.">
+        © 2025 品作设计. 保留所有权利.
+      </p>
+      <div class="social-media">
+        <a href="#" title="LinkedIn">LinkedIn</a>
+        <a href="#" title="WeChat">微信</a>
+        <a href="#" title="Twitter">Twitter</a>
+      </div>
+      <div class="quick-links">
+        <a href="index.html" data-lang-zh="首页" data-lang-en="Home">首页</a>
+        <a href="about.html" data-lang-zh="公司介绍" data-lang-en="About Us">公司介绍</a>
+        <a href="portfolio.html" data-lang-zh="作品展示" data-lang-en="Portfolio">作品展示</a>
+        <a href="contact.html" data-lang-zh="联系我们" data-lang-en="Contact">联系我们</a>
+        <a href="webdisk.html" data-lang-zh="网盘 &amp; AI使用 后端" data-lang-en="Web Disk &amp; AI Backend">
+          网盘 &amp; AI使用 后端
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS 脚本 -->
+  <script src="js/script.js"></script>
+</body>
+</html>
