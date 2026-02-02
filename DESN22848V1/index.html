@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Generative Audio Visualizer</title>
+    
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 800px;
+            width: 90%;
+        }
+
+        .sketch-button {
+            background: linear-gradient(45deg, #ff7eb3, #ff758c);
+            color: white;
+            font-size: 16px;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .sketch-button:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        #sketch-container {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        #back-button {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+
+        #back-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+</head>
+
+<body>
+    <div id="menu"></div>
+    <div id="sketch-container">
+        <button id="back-button">Back to Menu</button>
+    </div>
+
+    <script>
+        const sketches = Array.from({length: 14}, (_, i) => `sketch${i+3}.js`);
+        let currentSketch = null;
+        let p5Instance = null;
+
+        function initMenu() {
+            const menu = document.getElementById('menu');
+            sketches.forEach((sketch, index) => {
+                const button = document.createElement('button');
+                button.className = 'sketch-button';
+                button.textContent = `Experiment ${index+1}`;
+                button.dataset.sketch = sketch;
+                menu.appendChild(button);
+            });
+
+            document.querySelectorAll('.sketch-button').forEach(button => {
+                button.addEventListener('click', () => loadSketch(button.dataset.sketch));
+            });
+
+            document.getElementById('back-button').addEventListener('click', goBack);
+        }
+
+        function loadSketch(url) {
+            cleanup();
+            
+            const container = document.getElementById('sketch-container');
+            const script = document.createElement('script');
+            script.src = url;
+            
+            script.onload = () => {
+                p5Instance = new p5(sketch => {
+                    window.sketchWrapper(sketch);
+                }, container);
+            };
+
+            document.body.appendChild(script);
+            currentSketch = script;
+
+            document.getElementById('menu').style.display = 'none';
+            container.style.display = 'block';
+        }
+
+        function goBack() {
+            cleanup();
+            document.getElementById('menu').style.display = 'grid';
+            document.getElementById('sketch-container').style.display = 'none';
+        }
+
+        function cleanup() {
+            if(p5Instance) {
+                p5Instance.remove();
+                p5Instance = null;
+            }
+            if(currentSketch) {
+                currentSketch.remove();
+                currentSketch = null;
+            }
+        }
+
+        window.sketchWrapper = sketch => {};
+        window.addEventListener('DOMContentLoaded', initMenu);
+        window.addEventListener('resize', () => {
+            if(p5Instance && p5Instance.windowResized) {
+                p5Instance.windowResized();
+            }
+        });
+    </script>
+</body>
+</html>
