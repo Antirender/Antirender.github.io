@@ -379,94 +379,104 @@
     </div>
   </section>
 
-  <!-- More Work -->
-  <section id="more">
-    <div class="wrap">
-      <h2>More Work — quick jumps</h2>
-      <ul class="main-projects">
-        <li class="selector">
-          <select aria-label="Jump to Learn Code versions" onchange="window.location.href=this.value">
-            <option value="" selected disabled>Learn Code — Versions</option>
-            <option value="DESN18654V1/index.html">Version 1</option>
-            <option value="DESN18654V2/index.html">Version 2</option>
-            <option value="DESN18654V3/index.html">Version 3</option>
-            <option value="DESN18654V4/index.html">Version 4</option>
-            <option value="DESN18654V5/index.html">Version 5</option>
-            <option value="DESN18654V6/index.html">Version 6</option>
-            <option value="DESN18654V7/index.html">Version 7</option>
-            <option value="DESN18654V8/index.html">Version 8</option>
-            <option value="DESN18654V9/index.html">Version 9</option>
-            <option value="DESN18654V10/index.html">Version 10</option>
-            <option value="DESN18654V11/index.html">Version 11</option>
-            <option value="DESN18654V12/index.html">Version 12</option>
-            <option value="DESN18654V13/index.html">Version 13</option>
-            <option value="DESN18654V14/index.html">Version 14</option>
-            <option value="DESN18654V15/index.html">Version 15</option>
-            <option value="DESN18654V16/index.html">Version 16</option>
-            <option value="DESN18654V17/index.html">Version 17</option>
-            <option value="DESN18654V18/App-Store.html">Version 18 — App Store demo</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select aria-label="Jump to GSGC versions" onchange="window.location.href=this.value">
-            <option value="" selected disabled>GSGC — Versions</option>
-            <option value="v1/index.html">Version 1</option>
-            <option value="v2/index.html">Version 2</option>
-            <option value="v3/index.html">Version 3</option>
-            <option value="v4/index.html">Version 4</option>
-            <option value="v5/index.html">Version 5</option>
-            <option value="v6/index.html">Version 6</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select aria-label="Jump to Interactive Prototype versions" onchange="window.location.href=this.value">
-            <option value="" selected disabled>Interactive Prototype — Versions</option>
-            <option value="DESN22848/index.html">Overview</option>
-            <option value="DESN22848P2/index.html">Project 2</option>
-            <option value="DESN22848P3/index.html">Project 3</option>
-            <option value="DESN22848V1/index.html">Version 1</option>
-            <option value="DESN22848V2/index.html">Version 2</option>
-            <option value="DESN22848V3/index.html">Version 3</option>
-            <option value="DESN22848V4/index.html">Version 4</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select aria-label="Jump to Typographic Systems variants" onchange="window.location.href=this.value">
-            <option value="" selected disabled>Typographic Systems — Variants</option>
-            <option value="VDES15738P1/index.html">Project 1</option>
-            <option value="VDES15738P2/index.html">Project 2</option>
-            <option value="VDES15738P3/index.html">Project 3</option>
-            <option value="VDES15738P3V1/index.html">Variant V1</option>
-            <option value="VDES15738P3V2/index.html">Variant V2</option>
-            <option value="VDES15738P3V3/index.html">Variant V3</option>
-            <option value="VDES15738P3V4/index.html">Variant V4</option>
-            <option value="VDES15738P3V5/index.html">Variant V5</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select aria-label="Jump to Game prototypes" onchange="window.location.href=this.value">
-            <option value="" selected disabled>Game Prototypes</option>
-            <option value="g1/index.html">Prototype 1</option>
-            <option value="g2/index.html">Prototype 2</option>
-            <option value="g3/index.html">Prototype 3</option>
-            <option value="g4v1/index.html">Prototype 4 (V1)</option>
-            <option value="power-calculator/index.html">Power Calculator</option>
-          </select>
-        </li>
-        <li class="selector">
-          <select aria-label="Jump to Data Transparency versions" onchange="window.location.href=this.value">
-            <option value="" selected disabled>Data Transparency — Versions</option>
-            <option value="DESN10799/index.html">Overview</option>
-            <option value="DESN10799P3/index.html">V1</option>
-            <option value="DESN10799P3/index2.html">V2</option>
-            <option value="DESN10799P3/index3.html">V3</option>
-            <option value="DESN10799P3/index4.html">V4</option>
-            <option value="DESN10799P3/index5.html">V5</option>
-            <option value="DESN10799P3/index6.html">V6</option>
-            <option value="DESN10799P3/index7.html">V7</option>
-          </select>
-        </li>
-      </ul>
+<!-- More Work -->
+<section id="more">
+  <div class="wrap">
+    <h2>More Work — quick jumps</h2>
+
+    <ul class="main-projects">
+      <li class="selector">
+        <select aria-label="Jump to Learn Code versions" onchange="jump(this)">
+          <option value="" selected disabled>Learn Code — Versions</option>
+          <option value="DESN18654V1/index.html">Version 1</option>
+          <option value="DESN18654V2/index.html">Version 2</option>
+          <option value="DESN18654V3/index.html">Version 3</option>
+          <option value="DESN18654V4/index.html">Version 4</option>
+          <option value="DESN18654V5/index.html">Version 5</option>
+          <option value="DESN18654V6/index.html">Version 6</option>
+          <option value="DESN18654V7/index.html">Version 7</option>
+          <option value="DESN18654V8/index.html">Version 8</option>
+          <option value="DESN18654V9/index.html">Version 9</option>
+          <option value="DESN18654V10/index.html">Version 10</option>
+          <option value="DESN18654V11/index.html">Version 11</option>
+          <option value="DESN18654V12/index.html">Version 12</option>
+          <option value="DESN18654V13/index.html">Version 13</option>
+          <option value="DESN18654V14/index.html">Version 14</option>
+          <option value="DESN18654V15/index.html">Version 15</option>
+          <option value="DESN18654V16/index.html">Version 16</option>
+          <option value="DESN18654V17/index.html">Version 17</option>
+          <option value="DESN18654V18/App-Store.html">Version 18 — App Store demo</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Jump to GSGC versions" onchange="jump(this)">
+          <option value="" selected disabled>GSGC — Versions</option>
+          <option value="GSGC/v1/index.html">Version 1</option>
+          <option value="GSGC/v2/index.html">Version 2</option>
+          <option value="GSGC/v3/index.html">Version 3</option>
+          <option value="GSGC/v4/index.html">Version 4</option>
+          <option value="GSGC/v5/index.html">Version 5</option>
+          <option value="GSGC/v6/index.html">Version 6</option>
+          <option value="GSGC/v7/index.html">Version 7</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Jump to Interactive Prototype versions" onchange="jump(this)">
+          <option value="" selected disabled>Interactive Prototype — Versions</option>
+          <option value="DESN22848/index.html">Overview</option>
+          <option value="DESN22848P2/index.html">Project 2</option>
+          <option value="DESN22848P3/index.html">Project 3</option>
+          <option value="DESN22848V1/index.html">Version 1</option>
+          <option value="DESN22848V2/index.html">Version 2</option>
+          <option value="DESN22848V3/index.html">Version 3</option>
+          <option value="DESN22848V4/index.html">Version 4</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Jump to Typographic Systems variants" onchange="jump(this)">
+          <option value="" selected disabled>Typographic Systems — Variants</option>
+          <option value="VDES15738P1/index.html">Project 1</option>
+          <option value="VDES15738P2/index.html">Project 2</option>
+          <option value="VDES15738P3/index.html">Project 3</option>
+          <option value="VDES15738P3V1/index.html">Variant V1</option>
+          <option value="VDES15738P3V2/index.html">Variant V2</option>
+          <option value="VDES15738P3V3/index.html">Variant V3</option>
+          <option value="VDES15738P3V4/index.html">Variant V4</option>
+          <option value="VDES15738P3V5/index.html">Variant V5</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Jump to Game prototypes" onchange="jump(this)">
+          <option value="" selected disabled>Game Prototypes</option>
+          <option value="g1/index.html">Prototype 1</option>
+          <option value="g2/index.html">Prototype 2</option>
+          <option value="g3/index.html">Prototype 3</option>
+          <option value="g4v1/index.html">Prototype 4 (V1)</option>
+          <option value="power-calculator/index.html">Power Calculator</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Jump to Data Transparency versions" onchange="jump(this)">
+          <option value="" selected disabled>Data Transparency — Versions</option>
+          <option value="DESN10799/index.html">Overview</option>
+          <option value="DESN10799P3/index.html">V1</option>
+          <option value="DESN10799P3/index2.html">V2</option>
+          <option value="DESN10799P3/index3.html">V3</option>
+          <option value="DESN10799P3/index4.html">V4</option>
+          <option value="DESN10799P3/index5.html">V5</option>
+          <option value="DESN10799P3/index6.html">V6</option>
+          <option value="DESN10799P3/index7.html">V7</option>
+        </select>
+      </li>
+    </ul>
+  </div>
+</section>
+  <section>
 
       <ul class="card-grid">
         <li class="card"><a href="DESN30146P1/index.html">Interactive Circuits — P1</a></li>
@@ -532,7 +542,6 @@
     const closeBtn=document.getElementById('closeSide');
     const printResumeBtn=document.getElementById('printResume');
     const sidebarLinks=sidebar.querySelectorAll('a');
-
     function openSide(){sidebar.classList.add('open');scrim.classList.add('show');openBtn.setAttribute('aria-expanded','true');sidebar.setAttribute('aria-hidden','false');sidebar.focus();document.body.style.overflow='hidden';setTimeout(()=>{closeBtn.focus()},100)}
     function closeSide(){sidebar.classList.remove('open');scrim.classList.remove('show');openBtn.setAttribute('aria-expanded','false');sidebar.setAttribute('aria-hidden','true');document.body.style.overflow='';openBtn.focus()}
 
@@ -544,6 +553,7 @@
     window.addEventListener('keydown',(e)=>{if(e.key==='Escape'){closeSide()}});
 
     if(printResumeBtn){printResumeBtn.addEventListener('click',()=>window.print())}
+    function jump(sel){const v=sel.value;sel.selectedIndex=0;if(v)location.href=v;}
   </script>
 </body>
 </html>
