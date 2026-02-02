@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Membership - Green Sheridan Garden Club</title>
+    <link rel="stylesheet" href="css/design.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Join the Green Sheridan Garden Club</h1>
+        <p>Become a part of our growing community!</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="community-projects.html">Community Projects</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        
+        <!-- Membership Sign-Up Form Section -->
+        <section id="membership-signup">
+            <h2>Membership Sign-Up Form</h2>
+            <p>Join our virtual community today! Sign up to become a member and enjoy exclusive content, event invitations, and our monthly newsletter.</p>
+            <form action="#" method="post">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone">
+
+                <label for="gardening-experience">Gardening Experience Level:</label>
+                <select id="gardening-experience" name="gardening-experience" required>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="expert">Expert</option>
+                </select>
+
+                <label for="comments">Why do you want to join the club?</label>
+                <textarea id="comments" name="comments" rows="4"></textarea>
+
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+        <!-- Newsletter Subscription Section -->
+        <section id="newsletter-subscription">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with the latest gardening tips, club news, and events.</p>
+            <form action="#" method="post">
+                <label for="newsletter-email">Email:</label>
+                <input type="email" id="newsletter-email" name="newsletter-email" required>
+                
+                <input type="submit" value="Subscribe">
+            </form>
+        </section>
+    </div> 
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Green Sheridan Garden Club. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

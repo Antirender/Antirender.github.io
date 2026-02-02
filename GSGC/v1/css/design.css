@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-top: 1px; 
+    padding-bottom: 70px; /* Add space */
+}
+
+header {
+    background-color: #1D0B60; /* blue */
+    color: white;
+    padding: 1px 0;
+    text-align: center;
+    font-size: 1.2em; 
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: rgb(143, 255, 88);
+    padding: 14px 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #67BC67;
+}
+
+h1, h2, h3 {
+    font-family: 'Georgia', serif; /* Different font for titles */
+    font-size: 1.001em;
+    color: #67BC67;
+}
+
+a {
+    color: #67BC67;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+section {
+    padding: 20px;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Gallery Section */
+.gallery img {
+    width: 30%;
+    height: auto; 
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Styling for Community Projects Page */
+#current-projects ul, #past-projects ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+#current-projects ul li, #past-projects ul li {
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #67BC67; /* Green headings */
+    font-family: 'Georgia', serif;
+    font-size: 1.1em;
+}
+
+/* Styling for Resources Page */
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px; 
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+}
