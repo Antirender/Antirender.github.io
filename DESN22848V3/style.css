@@ -1,0 +1,96 @@
+/* General page styles */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Title styling */
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+/* Section headings */
+h2 {
+    color: #444;
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+/* Description text */
+p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Navigation list */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px auto;
+    width: 320px;
+}
+
+/* Navigation list items */
+li {
+    margin: 10px 0;
+}
+
+/* Navigation links */
+ul li a {
+    font-size: 18px;
+    color: blue;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+/* Hover effect */
+ul li a:hover {
+    background-color: blue;
+    color: white;
+}
+
+/* Canvas container for p5.js */
+#canvas-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Back button */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: darkblue;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 600px) {
+    ul {
+        width: 90%;
+    }
+    
+    ul li a {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+}
