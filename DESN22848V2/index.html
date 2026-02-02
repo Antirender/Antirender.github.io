@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width", initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+    <script language="javascript" type="text/javascript" src="sketch.js"></script>
+   
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            <span id="heading">Rainbow Bloom</span>
+            <br><span id="sub">Sound & Motion Design</span>            
+        </div>
+        <div id="p5-container"></div>
+    </div>
+    <div id="page">
+        <div id="content">
+            <div id="stand"><em>Exploring the harmony between<br>sound and motion.</em></div>
+
+            <div id="text">
+                This tool changes music into colorful visuals. <br>
+                When sound plays, colors and shapes move instantly.<br>
+                High sounds create bright spots, beats make sharp flashes,<br>
+                and rhythms draw glowing lines. Everything shifts with the sound.
+                See melodies as blooming patterns, <br>
+                bass as pulsing waves, and drums as exploding dots.<br>
+                 It works with any sounds: guitars, pianos, synths, voices.<br>
+                Simple idea: What you hear is what you see.<br>
+            </div>
+            
+
+            <div id="stand"  style="margin-top:30px">
+                <em2>Portfolio</em2>
+            </div>
+
+            <div class="grid" style="margin-top:10px">
+                
+                <img src="images/001.gif" style="width:100%" onclick="onClick(this)" alt="A dynamic waveform visualization that reacts to audio amplitude in real time.">
+                <img src="images/002.gif" style="width:100%" onclick="onClick(this)" alt="Circular sound waves expanding outward, responding to bass frequencies.">
+                <img src="images/003.gif" style="width:100%" onclick="onClick(this)" alt="A colorful bar graph that shifts dynamically with the music’s beat.">
+                <img src="images/004.gif" style="width:100%" onclick="onClick(this)" alt="A fluid particle system moving in sync with sound amplitude variations.">
+                <img src="images/005.gif" style="width:100%" onclick="onClick(this)" alt="A geometric pattern changing shape based on frequency analysis.">
+              
+                <img src="images/006.gif" style="width:100%" onclick="onClick(this)" alt="A radial equalizer with pulsing color shifts tied to treble levels.">
+                <img src="images/007.gif" style="width:100%" onclick="onClick(this)" alt="A spectral visualization showing frequency energy distribution.">
+                <img src="images/008.gif" style="width:100%" onclick="onClick(this)" alt="Pixelated waveforms shifting in response to drum beats.">
+                <img src="images/009.gif" style="width:100%" onclick="onClick(this)" alt="A visualizer creating ripple effects based on low-frequency sounds.">
+                <img src="images/010.gif" style="width:100%" onclick="onClick(this)" alt="Abstract sound lines dancing to the rhythm of the song.">
+              
+                <img src="images/011.gif" style="width:100%" onclick="onClick(this)" alt="A grid of particles vibrating according to frequency levels.">
+                <img src="images/012.gif" style="width:100%" onclick="onClick(this)" alt="A pulsating ring that expands and contracts with sound intensity.">
+                <img src="images/013.gif" style="width:100%" onclick="onClick(this)" alt="An oscillating sine wave moving in sync with the melody.">
+                <img src="images/014.gif" style="width:100%" onclick="onClick(this)" alt="A kaleidoscopic pattern shifting colors with music energy.">
+                <img src="images/015.gif" style="width:100%" onclick="onClick(this)" alt="Particles colliding and spreading as the bass intensifies.">
+              
+                <img src="images/016.gif" style="width:100%" onclick="onClick(this)" alt="A sound-driven spiral expanding and rotating to the rhythm.">
+                <img src="images/017.gif" style="width:100%" onclick="onClick(this)" alt="A waveform that warps and twists with volume changes.">
+                <img src="images/018.gif" style="width:100%" onclick="onClick(this)" alt="A color gradient morphing in sync with different instruments.">
+                <img src="images/019.gif" style="width:100%" onclick="onClick(this)" alt="An abstract shape shifting in response to voice input.">
+                <img src="images/020.gif" style="width:100%" onclick="onClick(this)" alt="A glitch effect triggered by sudden audio spikes.">
+              
+                <img src="images/021.gif" style="width:100%" onclick="onClick(this)" alt="A dynamic network of lines connecting based on frequency.">
+                <img src="images/022.gif" style="width:100%" onclick="onClick(this)" alt="A bouncing circle visualizer reacting to sound amplitude.">
+                <img src="images/023.gif" style="width:100%" onclick="onClick(this)" alt="A pulsating grid of colors synchronized with beat detection.">
+                <img src="images/024.gif" style="width:100%" onclick="onClick(this)" alt="A floating wave-like structure moving with audio waves.">
+                <img src="images/025.gif" style="width:100%" onclick="onClick(this)" alt="An interactive sound visualizer controlled by user input.">
+              </div>
+            </div>
+        
+        </div>
+   
+
+     <!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xxlarge w3-display-topright"></span>
+        <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
+        <img id="img01" class="w3-image">
+        <h2 id="caption"></h2>
+  </div>
+</div>
+
+<!-- W3.CSS Container -->
+<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right"><a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity"></div>
+
+    <script>
+        // Modal Image Gallery
+        function onClick(element) {
+          document.getElementById("img01").src = element.src;
+        
+          document.getElementById("modal01").style.display = "block";
+          var captionText = document.getElementById("caption");
+          captionText.innerHTML = element.alt;
+        }
+    </script>
+   
+</body>
+
+</html>
