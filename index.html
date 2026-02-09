@@ -64,8 +64,8 @@
     p,li{font-size:var(--step-0);margin:0 0 12px;text-wrap:pretty;hyphens:auto}
     p + p {margin-top:.4rem}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(8px,1.2vw,14px)}
-    .grid>.card{grid-column:span 6;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(8px,1.2vw,14px);max-width:90%;margin:0 auto}
-    .grid>.card img{max-width:60%;margin:0 auto .7rem;display:block;border-radius:6px}
+    .grid>.card{grid-column:span 6;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(12px,2vw,20px)}
+    .grid>.card img{width:100%;margin:0 0 .7rem;display:block;border-radius:8px}
     .grid>.card h3{font-size:var(--step--1);margin:.4rem 0 .25rem;line-height:1.3;font-weight:700}
     .grid>.card p{font-size:var(--step--2);line-height:1.4;margin-bottom:.6rem}
     .meta{color:var(--muted);font-size:.95rem}
@@ -90,13 +90,10 @@
       .main-projects{grid-template-columns:1fr}
       .card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
       .two-col,.resume-grid{grid-template-columns:1fr}
-      .grid>.card{grid-column:span 12;max-width:85%}
-      .grid>.card img{max-width:50%}
-      .gsgc-card{max-width:100%}
-      .gsgc-card img{max-width:100%}
+      .grid>.card{grid-column:span 12}
+      .grid>.card img{width:100%}
+      .gsgc-card img{width:100%}
       .gsgc-card .btn{width:100%;text-align:center}
-      .music-card{max-width:100%}
-      .music-card iframe{height:220px}
       section{padding-top:clamp(16px,3vw,24px)}
     }
     @media (max-width:640px){
@@ -112,16 +109,15 @@
       .tagline{font-size:var(--step-0)}
       section{margin-bottom:2rem}
       #philosophy,#featured,#resume,#more,#process{margin-top:1rem;padding-top:1.5rem}
-      .grid>.card{max-width:95%}
-      .grid>.card img{max-width:55%}
       .grid>.card h3{margin-top:.3rem}
       .gsgc-card{gap:.6rem;padding:clamp(10px,3.2vw,14px)}
       .gsgc-card .btn{width:100%}
-      .music-card{gap:.5rem;padding:clamp(10px,3.2vw,14px)}
-      .music-card iframe{height:200px}
       .sidebar{width:85%;max-width:300px}
     }
     :focus-visible{outline:3px solid #94a3b8;outline-offset:2px}
+    .skip-link{position:absolute;top:-100%;left:1rem;background:var(--accent);color:#fff;padding:.5rem 1rem;border-radius:8px;font-weight:700;z-index:999;transition:top .2s}
+    .skip-link:focus{top:1rem}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}}
     .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(15,23,42,.75);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.3s}
     .modal-overlay.active{opacity:1;visibility:visible}
     .modal{background:#fff;width:clamp(300px,90%,900px);max-height:90vh;border-radius:var(--radius);overflow:hidden;position:relative;transform:translateY(-20px);transition:.3s}
@@ -138,22 +134,13 @@
     .modal-preview{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;min-height:220px;display:flex;align-items:center;justify-content:center}
     .modal-preview-frame{width:100%;height:320px;border:0}
     .modal-preview-note{color:var(--muted);font-size:var(--step--2);padding:1rem;text-align:center}
-    .featured-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(16px,3vw,24px)}
-    .featured-card{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--card);transition:transform .2s,box-shadow .2s}
-    .featured-card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(15,23,42,.1)}
-    .featured-image{width:100%;height:180px;object-fit:cover;display:block}
-    .featured-content{padding:clamp(12px,2vw,16px)}
-    .featured-content h3{margin:0 0 .4rem;font-size:var(--step-1)}
-    .featured-desc{margin:0 0 1rem;color:var(--sub)}
+
     .gsgc-card{display:flex;flex-direction:column;gap:.75rem;padding:clamp(12px,1.6vw,18px)}
     .gsgc-card img{max-width:100%;margin:0;border-radius:12px;box-shadow:0 10px 24px rgba(15,23,42,.18)}
     .gsgc-card h3{font-size:var(--step-0);margin:.1rem 0 0;line-height:1.25}
     .gsgc-card p{font-size:var(--step--1);margin:0;color:var(--sub)}
     .gsgc-card .btn{margin-top:.2rem;align-self:flex-start}
-    .music-card{display:flex;flex-direction:column;gap:.5rem;padding:clamp(12px,1.6vw,18px)}
-    .music-card h3{font-size:var(--step-0);margin:.1rem 0 0;line-height:1.25}
-    .music-card p{font-size:var(--step--1);margin:0 0 .3rem;color:var(--sub)}
-    .music-card iframe{border:0;border-radius:10px}
+
     body.modal-open{overflow:hidden}
     #resume-controls{display:flex;justify-content:flex-end;margin-bottom:.75rem}
     #resume-full{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:clamp(14px,2vw,20px)}
@@ -170,7 +157,7 @@
     @media print {
 
       /* show ONLY the resume; hide embeds/menus/footers */
-      header.site, #philosophy, #featured, #more, #process, footer, 
+      header.site, #philosophy, #featured, #more, #conclusion, footer, 
       nav.primary, .sidebar, .scrim, .hamburger, .no-print, .media-embed {
         display: none !important;
       }
@@ -233,17 +220,18 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <!-- Mobile sidebar -->
-  <aside class="sidebar" id="sidebar" aria-label="Mobile menu" tabindex="-1" aria-hidden="true" role="dialog" aria-modal="true">
+  <aside class="sidebar" id="sidebar" aria-label="Mobile navigation menu" tabindex="-1" aria-hidden="true">
     <button class="hamburger" id="closeSide" aria-label="Close menu">✕ Close</button>
     <nav aria-label="Mobile navigation">
       <h3>Navigate</h3>
       <ul class="side-links">
         <li><a href="#philosophy">Philosophy</a></li>
         <li><a href="#featured">Featured Work</a></li>
-        <li><a href="#resume">Resume</a></li>
         <li><a href="#more">More Work</a></li>
-        <li><a href="#process">Process Case Study</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
       </ul>
       <h3>Project Links</h3>
       <ul class="side-projects">
@@ -255,6 +243,8 @@
         <li><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
         <li><a href="Milk/index.html">Milk Calculator</a></li>
         <li><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
+        <li><a href="https://moodpeek1.vercel.app/" target="_blank" rel="noopener">MoodPeek v1</a></li>
+        <li><a href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">MoodPeek Pro</a></li>
       </ul>
     </nav>
   </aside>
@@ -270,24 +260,25 @@
           <li><span>Oakville, ON</span></li>
           <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
           <li><a href="tel:+17783187386">+1 (778) 318-7386</a></li>
-          <li><a href="https://rxd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener">School Host</a></li>
-          <li><a href="https://antirender.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
-          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://rxd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener" aria-label="School Host">School Host</a></li>
+          <li><a href="https://antirender.github.io" target="_blank" rel="noopener" aria-label="GitHub Pages">GitHub Pages</a></li>
+          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener" aria-label="LinkedIn profile">LinkedIn</a></li>
         </ul>
       </div>
       <nav class="primary" aria-label="Primary">
         <ul>
           <li><a href="#philosophy">Philosophy</a></li>
           <li><a href="#featured">Featured</a></li>
-          <li><a href="#resume">Resume</a></li>
           <li><a href="#more">More</a></li>
-          <li><a href="#process">Process</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
         </ul>
       </nav>
       <button class="hamburger" id="openSide" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
     </div>
   </header>
 
+  <main id="main-content">
   <!-- Philosophy -->
   <section id="philosophy">
     <div class="wrap">
@@ -318,105 +309,28 @@
           <button class="btn" type="button" data-modal="snapchat" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
 
-        <article class="card gsgc-card" aria-labelledby="w3-title">
+        <article class="card" aria-labelledby="w3-title">
           <img src="image/gsgc-preview.png" alt="Green Sheridan Garden Club prototype preview">
           <h3 id="w3-title">GSGC — Green Sheridan Garden Club</h3>
           <p>A campus community site exploring volunteer programs, garden updates, and membership sign-up. Designed for clarity, fast scanning, and mobile-first use.</p>
           <button class="btn" type="button" data-modal="gsgc" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
 
-        <article class="card music-card" aria-labelledby="w4-title">
-          <h3 id="w4-title">Original Music — Production & Composition</h3>
-          <p>36 original tracks across 7 self-released albums. Electronic, ambient, and experimental compositions published on Spotify and streaming platforms.</p>
-          <iframe data-testid="embed-iframe" style="border-radius:12px;margin-top:.5rem" src="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&theme=0" width="100%" height="240" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <article class="card" aria-labelledby="w4-title">
+          <img src="image/moodpeek-preview.png" alt="MoodPeek Pro calendar mood logging interface">
+          <h3 id="w4-title">MoodPeek Pro — Calendar-First Mood Logging</h3>
+          <p>A structured mood tracker built around Day → Week → Month continuity. Calendar as the main entry, Dashboard for quick logging, and Weekly Insight inline — no extra page jumps.</p>
+          <button class="btn" type="button" data-modal="moodpeek" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
    </div>
-    </div>
-  </section>
-
-  <!-- Resume -->
-  <section id="resume">
-    <div class="wrap">
-      <h2>Resume</h2>
-      <div id="resume-controls" class="no-print">
-        <button class="btn" id="printResume" aria-label="Download resume as PDF">Download PDF</button>
+      <div class="media-embed" style="margin:1.5rem 0 0">
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify artist embed"></iframe>
       </div>
-
-      <article id="resume-full" class="resume-full printable">
-        <h2>Yiyang Zhang</h2>
-        <ul class="contact-list">
-          <li><span>Oakville, ON</span></li>
-          <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
-          <li><a href="tel:+17783187386">+1 (778) 318-7386</a></li>
-          <li><a href="https://rxd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener">School Host</a></li>
-          <li><a href="https://antirender.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
-          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
-        </ul>
-
-        <h3>Summary</h3>
-        <p>Interaction Design student specializing in prototyping and user testing. I build Arduino/web prototypes and document decisions to drive iteration.</p>
-
-        <h3>Skills</h3>
-        <ul>
-          <li><strong>Design:</strong> user research, usability testing, wireframing, prototyping</li>
-          <li><strong>Technical:</strong> Arduino (sensors/I-O), HTML/CSS, basic JavaScript</li>
-          <li><strong>Workflow:</strong> scoping, versioning, build docs, test planning</li>
-          <li><strong>Tools:</strong> Figma; Photoshop/Illustrator/After Effects/Premiere Pro; TouchDesigner; Cinema4D; XD; WordPress; Spark AR; Spline; Arduino IDE; VS Code</li>
-        </ul>
-
-        <h3>Education</h3>
-        <p><strong>Honours Bachelor of Interaction Design</strong> — Sheridan College • Sept 2024 – Expected Apr 2028 • GPA: 3.7</p>
-
-        <h3>Certifications & Training</h3>
-        <ul>
-          <li><a href="https://mycourse.app/7dCD33jcE6I3CbOGL" target="_blank" rel="noopener">ProtoPie 101 — Crash Course Certificate</a> • ProtoPie • Sep 2025</li>
-        </ul>
-
-        <h3>Experience</h3>
-        <p><strong>IXD Designer (2023–Present)</strong></p>
-        <ul>
-          <li>Prototyped interaction concepts and built web/Arduino demos; integrated sensors and UI flows into working installations.</li>
-          <li>Scoped requirements and system integration; maintained versioned build docs, test checklists, and handoff notes.</li>
-          <li>Created music-interaction experiments and environmental coordination pieces for showcases.</li>
-        </ul>
-
-        <p><strong>Drone Photographer (2021–Present)</strong></p>
-        <ul>
-          <li>Captured aerial footage and stills; delivered edited videos and photos for events and promos.</li>
-          <li>Managed on-site logistics and post-production workflows; coordinated with clients and venues.</li>
-        </ul>
-
-        <p><strong>Music Producer &amp; Composer (2019–Present)</strong></p>
-        <ul>
-          <li>Wrote and arranged <strong>36</strong> original tracks across <strong>7</strong> self-released albums; handled end-to-end production from composition to basic mastering.</li>
-          <li>Published on Spotify and other streaming platforms; provided original cues for student projects and interaction demos.</li>
-        </ul>
-
-        <h3>Volunteer Work</h3>
-        <p><strong>Video Creator — Nanjing University High School, China (2018–2021)</strong></p>
-        <ul>
-          <li>Shot news photos, short videos, and drone footage for the school and its affiliated middle schools.</li>
-          <li>Produced and released a Teachers’ Day short film; led editing and post-production.</li>
-          <li>Supported multiple promotional shoots; coordinated schedules and on-site direction.</li>
-        </ul>
-
-        <h3>Projects</h3>
-        <ul>
-          <li><a href="DESN18654V18/App-Store.html">Learn Code — Interactive Learning App</a> — responsive card layout & hierarchy.</li>
-          <li><a href="DESN10799P3/index7.html">Making Data Use Visible</a> — interactive flow explanation.</li>
-          <li><a href="VDES15738P2/reese11.html">Typographic Systems Exploration</a> — iterative exploration.</li>
-        </ul>
-
-        <h3>Languages</h3>
-        <p>English; Chinese (Mandarin)</p>
-      </article>
-
-      
     </div>
   </section>
 
-<!-- More Work -->
-<section id="more">
+  <!-- More Work -->
+  <section id="more">
   <div class="wrap">
     <h2>More Work — quick jumps</h2>
 
@@ -512,16 +426,16 @@
         <li class="selector">
       <select aria-label="Jump to Weather Advisor versions" onchange="jump(this)">
         <option value="" selected disabled>Weather Advisor — Versions</option>
-        <option value="index.html">Overview</option>
-        <option value="DESN31927P1V1/index.html">V1</option>
-        <option value="DESN31927P1V2/index.html">V2</option>
-        <option value="DESN31927P1V3/index.html">V3</option>
-        <option value="DESN31927P1V4/index.html">V4</option>
-        <option value="DESN31927P1V5/index.html">V5</option>
-        <option value="DESN31927P1V6/index.html">V6</option>
-        <option value="DESN31927P1V7/index.html">V7</option>
-        <option value="DESN31927P1V8/index.html">V8</option>
-        <option value="DESN31927P1V9/index.html">V9</option>
+        <option value="DESN31927P1V2/index.html">Final</option>
+        <option value="DESN31927P1/DESN31927P1V1/index.html">V1</option>
+        <option value="DESN31927P1/DESN31927P1V2/index.html">V2</option>
+        <option value="DESN31927P1/DESN31927P1V3/index.html">V3</option>
+        <option value="DESN31927P1/DESN31927P1V4/index.html">V4</option>
+        <option value="DESN31927P1/DESN31927P1V5/index.html">V5</option>
+        <option value="DESN31927P1/DESN31927P1V6/index.html">V6</option>
+        <option value="DESN31927P1/DESN31927P1V7/index.html">V7</option>
+        <option value="DESN31927P1/DESN31927P1V8/index.html">V8</option>
+        <option value="DESN31927P1/DESN31927P1V9/index.html">V9</option>
       </select>
     </li>
     </ul>
@@ -529,22 +443,104 @@
     <div class="wrap">
       <ul class="card-grid">
         <li class="card"><a href="DESN30146P1/index.html">Interactive Circuits — P1</a></li>
-        <li class="card"><a href="DESN31927PV2/index.html">Weather Advisor</a></li>
         <li class="card"><a href="pinzuo/index.html">Pinzuo</a></li>
         <li class="card"><a href="pinzuoV2/index.html">Pinzuo — V2</a></li>
         <li class="card"><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
         <li class="card"><a href="Milk/index.html">Milk Calculator</a></li>
         <li class="card"><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
         <li class="card"><a href="nevergonna/home.html">Never Gonna Give You Up V2</a></li>
+        <li class="card"><a href="Lak-crest/index.html">Lak-crest</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- Case Study (placeholder section for navigation) -->
-  <section id="process">
+
+  <!-- Resume -->
+  <section id="resume">
     <div class="wrap">
-      <h2>Process Case Studies</h2>
-      <p>Explore detailed case studies in the Featured Work section above, including Learn Code, Snapchat Data Transparency, and GSGC. Each features version comparisons, iterative development notes, and research documentation.</p>
+      <h2>Resume</h2>
+      <div id="resume-controls" class="no-print">
+        <button class="btn" id="printResume" aria-label="Print or save resume as PDF">Print / Save as PDF</button>
+      </div>
+
+      <article id="resume-full" class="resume-full printable">
+        <h2>Yiyang Zhang</h2>
+        <ul class="contact-list">
+          <li><span>Oakville, ON</span></li>
+          <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
+          <li><a href="tel:+17783187386">+1(778)318-7386</a></li>
+          <li><a href="https://ixd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener" aria-label="School Host">School Host</a></li>
+          <li><a href="https://antirender.github.io" target="_blank" rel="noopener" aria-label="GitHub Pages">GitHub Pages</a></li>
+          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener" aria-label="LinkedIn profile">LinkedIn</a></li>
+        </ul>
+
+        <h3>Summary</h3>
+        <p>Interaction Design student specializing in prototyping and user testing. I build Arduino/web prototypes and document decisions to drive iteration.</p>
+
+        <h3>Skills</h3>
+        <ul>
+          <li><strong>Design:</strong> user research, usability testing, wireframing, prototyping</li>
+          <li><strong>Technical:</strong> Arduino (sensors/I-O), HTML/CSS, basic JavaScript</li>
+          <li><strong>Workflow:</strong> scoping, versioning, build docs, test planning</li>
+          <li><strong>Tools:</strong> Figma; Photoshop/Illustrator/After Effects/Premiere Pro; TouchDesigner; Cinema4D; XD; WordPress; Spark AR; Spline; Arduino IDE; VS Code</li>
+        </ul>
+
+        <h3>Education</h3>
+        <p><strong>Honours Bachelor of Interaction Design</strong> — Sheridan College • Sept 2024 – Expected Apr 2028 • GPA: 3.7</p>
+
+        <h3>Certifications & Training</h3>
+        <ul>
+          <li><a href="https://mycourse.app/7dCD33jcE6I3CbOGL" target="_blank" rel="noopener" aria-label="ProtoPie 101 certificate">ProtoPie 101 — Crash Course Certificate</a> • ProtoPie • Sep 2025</li>
+        </ul>
+
+        <h3>Experience</h3>
+        <p><strong>IXD Designer (2023–Present)</strong></p>
+        <ul>
+          <li>Prototyped interaction concepts and built web/Arduino demos; integrated sensors and UI flows into working installations.</li>
+          <li>Scoped requirements and system integration; maintained versioned build docs, test checklists, and handoff notes.</li>
+          <li>Created music-interaction experiments and environmental coordination pieces for showcases.</li>
+        </ul>
+
+        <p><strong>Drone Photographer (2021–Present)</strong></p>
+        <ul>
+          <li>Captured aerial footage and stills; delivered edited videos and photos for events and promos.</li>
+          <li>Managed on-site logistics and post-production workflows; coordinated with clients and venues.</li>
+        </ul>
+
+        <p><strong>Music Producer &amp; Composer (2019–Present)</strong></p>
+        <ul>
+          <li>Wrote and arranged <strong>36</strong> original tracks across <strong>7</strong> self-released albums; handled end-to-end production from composition to basic mastering.</li>
+          <li>Published on Spotify and other streaming platforms; provided original cues for student projects and interaction demos.</li>
+        </ul>
+
+        <h3>Volunteer Work</h3>
+        <p><strong>Video Creator — Nanjing University High School, China (2018–2021)</strong></p>
+        <ul>
+          <li>Shot news photos, short videos, and drone footage for the school and its affiliated middle schools.</li>
+          <li>Produced and released a Teachers’ Day short film; led editing and post-production.</li>
+          <li>Supported multiple promotional shoots; coordinated schedules and on-site direction.</li>
+        </ul>
+
+        <h3>Projects</h3>
+        <ul>
+          <li><a href="https://antirender.github.io/DESN18654V18/App-Store.html">Learn Code — Interactive Learning App</a> — responsive card layout & hierarchy.</li>
+          <li><a href="https://antirender.github.io/DESN10799P3/index7.html">Making Data Use Visible</a> — interactive flow explanation.</li>
+          <li><a href="https://antirender.github.io/VDES15738P2/reese11.html">Typographic Systems Exploration</a> — iterative exploration.</li>
+          <li><a href="https://moodpeek1.vercel.app/" target="_blank" rel="noopener">MoodPeek v1</a> — emotion + weather correlation visualization.</li>
+          <li><a href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">MoodPeek Pro</a> — calendar-centered mood tracking with multi-user support.</li>
+        </ul>
+        <h3>Languages</h3>
+        <p>English; Chinese (Mandarin)</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Conclusion -->
+  <section id="conclusion">
+    <div class="wrap">
+      <h2>Conclusion</h2>
+      <p>This portfolio documents my growth as an Interaction Design student — from early prototypes to research-driven case studies. Every project reflects my approach: start with real constraints, prototype quickly, test with users, and iterate based on evidence. I treat software and electronics as craft, and I look forward to continuing that practice in professional work.</p>
     </div>
   </section>
 
@@ -757,6 +753,63 @@
     </div>
   </div>
 
+  <!-- MoodPeek Pro Case Study Modal -->
+  <div class="modal-overlay" id="moodpeek-modal" data-modal="moodpeek" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="moodpeek-modal-title">
+      <button class="modal-close" type="button" data-modal="moodpeek" data-modal-close aria-label="Close case study">✕</button>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="moodpeek-modal-title">MoodPeek Pro — Visualizing Daily Emotion Through Time</h2>
+          <p class="modal-summary">MoodPeek Pro is a structural upgrade from the original MoodPeek: it uses Day → Week → Month continuity to support habit formation instead of one-off logging. The calendar acts as the main entry point, Weekly Insight lives inside the Week Detail view (no separate report page, less jumping around), and the Dashboard gives you a quick-glance home — streak count, 7-day sparkline, and a shortcut to log today — so you see something useful before you go deeper.</p>
+        </div>
+
+        <div class="modal-select">
+          <label for="moodpeek-demo-select">Select demo</label>
+          <select id="moodpeek-demo-select" name="moodpeek-demo">
+            <option value="pro" selected>MoodPeek Pro — Calendar-centered habit system</option>
+            <option value="v1">MoodPeek (guest mode) — Emotion + Weather correlation</option>
+          </select>
+          <a class="btn" id="moodpeek-open-demo" href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">Open MoodPeek Pro</a>
+        </div>
+
+        <div class="modal-preview" id="moodpeek-preview">
+          <div class="modal-preview-note">Preview loads when the case study opens.</div>
+        </div>
+
+        <h3>Key Decisions</h3>
+        <ul class="clean">
+          <li><strong>Calendar is the anchor; weekly insight inline.</strong> Instead of scattering views across tabs, the calendar holds everything. Tap a day to see or edit; tap a week header to get the insight summary right there. Removed the standalone Weekly Report page — it was one screen too many.</li>
+          <li><strong>Dashboard as quick-glance home.</strong> Shows today's entry shortcut, this-week-at-a-glance, a 7-day sparkline, current streak, and quick nav links. The goal: see something useful in under 2 seconds, then decide whether to dig in.</li>
+          <li><strong>Preferences drive personalization.</strong> Default city auto-fills weather on each entry; theme (light / dark / system) syncs globally without a page refresh. Each user's settings are isolated via JWT.</li>
+          <li><strong>Keep it self-reported.</strong> No automatic mood inference or "mind-reading" features. The user decides what they felt and writes it down. Emotional agency matters more than algorithmic guessing.</li>
+        </ul>
+
+        <h3>Key Features</h3>
+        <ul class="clean">
+          <li><strong>Calendar 2.0:</strong> Month-view grid with color-coded emotion cells. Click any day to view or edit. Filter by tag, city, or mood range to find patterns fast.</li>
+          <li><strong>iCal export:</strong> Download your mood entries as .ics events — bring them into Apple Calendar, Google Calendar, or anything that speaks iCal.</li>
+          <li><strong>Login + "Already Signed In" smart routing:</strong> If your session is still valid, the app skips the login screen and drops you straight into the Dashboard.</li>
+          <li><strong>Multi-user isolation (JWT):</strong> Each account's data is separate. No cross-contamination between users, even on shared devices.</li>
+          <li><strong>Dashboard:</strong> Today quick entry · This week at a glance · 7-day mood sparkline · Current streak · Shortcut tiles to Calendar, Preferences, and past weeks.</li>
+          <li><strong>Preferences:</strong> Set your default city (auto-fills weather when logging); choose light / dark / system theme with instant global sync — no page reload needed.</li>
+          <li><strong>Friendly 409:</strong> Try to log a second entry for the same day and you get a clear, human message ("You already have an entry for today — want to edit it?") instead of a cryptic error.</li>
+        </ul>
+
+        <h3>About MoodPeek v1 (the original)</h3>
+        <p>The first version focused on making emotion data visible: it mapped mood entries against environmental context (weather via Open-Meteo, time of day) and rendered them as color-coded cards with dynamic gradients. Guest mode, no login required, purely visual. Think of v1 as "turn emotions into something you can see," while Pro is "build the daily structure so tracking actually sticks across multiple users."</p>
+
+        <h3>Links</h3>
+        <div class="modal-links">
+          <a class="btn" href="https://moodpeek1.vercel.app/" target="_blank" rel="noopener">Open MoodPeek v1</a>
+          <a class="btn" href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">Open MoodPeek Pro</a>
+          <a class="btn" href="https://github.com/Antirender/moodpeek-pro" target="_blank" rel="noopener">GitHub (MoodPeek Pro)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </main>
+
   <!-- Footer -->
   <footer class="wrap" style="color:var(--muted)">
     © <span id="year"></span> Yiyang Zhang
@@ -819,6 +872,7 @@
       if(modalName==='gsgc'){initializeGsgcModal(true);}
       if(modalName==='learn-code'){initializeLearnCodeModal(true);}
       if(modalName==='snapchat'){initializeSnapchatModal(true);}
+      if(modalName==='moodpeek'){initializeMoodpeekModal(true);}
       const closeBtn=overlay.querySelector('.modal-close');
       if(closeBtn){closeBtn.focus();}
       document.addEventListener('keydown',handleKeydown);
@@ -834,6 +888,7 @@
       if(overlay.dataset.modal==='gsgc'){removeGsgcPreview();}
       if(overlay.dataset.modal==='learn-code'){removeLearnCodePreview();}
       if(overlay.dataset.modal==='snapchat'){removeSnapchatPreview();}
+      if(overlay.dataset.modal==='moodpeek'){removeMoodpeekPreview();}
       setHash('');
       if(lastFocusedElement&&typeof lastFocusedElement.focus==='function'){lastFocusedElement.focus();}
       activeModal=null;
@@ -907,7 +962,11 @@
     const learnCodeOpenLink=document.getElementById('learn-code-open-version');
     const learnCodePreview=document.getElementById('learn-code-preview');
 
-    function buildLearnCodeHref(version){return `/DESN18654${version.toUpperCase()}/App-Store.html`;}
+    function buildLearnCodeHref(version){
+      const v=version.toLowerCase();
+      if(v==='v18') return '/DESN18654V18/App-Store.html';
+      return `/DESN18654${version.toUpperCase()}/index.html`;
+    }
 
     function updateLearnCodeVersion(version,createIframe){
       if(learnCodeOpenLink){learnCodeOpenLink.href=buildLearnCodeHref(version);learnCodeOpenLink.textContent=`Open ${version.toUpperCase()}`;}
@@ -993,6 +1052,54 @@
     removeSnapchatPreview();
     initializeSnapchatModal(false);
 
+    const moodpeekDemoSelect=document.getElementById('moodpeek-demo-select');
+    const moodpeekOpenLink=document.getElementById('moodpeek-open-demo');
+    const moodpeekPreview=document.getElementById('moodpeek-preview');
+
+    function buildMoodpeekHref(selected){
+      if(selected==='v1') return 'https://moodpeek1.vercel.app/';
+      return 'https://moodpeek-pro.vercel.app';
+    }
+
+    function updateMoodpeekDemo(selected,createIframe){
+      const href=buildMoodpeekHref(selected);
+      if(moodpeekOpenLink){moodpeekOpenLink.href=href;moodpeekOpenLink.textContent=selected==='v1'?'Open MoodPeek v1':'Open MoodPeek Pro';}
+      if(createIframe&&moodpeekPreview){
+        moodpeekPreview.innerHTML='';
+        const iframe=document.createElement('iframe');
+        iframe.className='modal-preview-frame';
+        iframe.setAttribute('title','MoodPeek demo preview');
+        iframe.setAttribute('loading','lazy');
+        iframe.setAttribute('tabindex','-1');
+        iframe.setAttribute('aria-hidden','true');
+        iframe.setAttribute('sandbox','allow-same-origin allow-scripts');
+        iframe.style.pointerEvents='none';
+        iframe.src=href;
+        iframe.onerror=function(){moodpeekPreview.innerHTML='<div class="modal-preview-note">Preview blocked by the hosting provider. Use the Open Demo button above.</div>';};
+        moodpeekPreview.appendChild(iframe);
+        setTimeout(()=>{try{const f=moodpeekPreview.querySelector('iframe');if(f&&f.contentDocument===null){moodpeekPreview.innerHTML='<div class="modal-preview-note">Preview may be blocked. Use the Open Demo button to view in a new tab.</div>';}}catch(e){}},3000);
+      }
+    }
+
+    function initializeMoodpeekModal(createIframe){
+      if(!moodpeekDemoSelect)return;
+      const selected=moodpeekDemoSelect.value||'pro';
+      updateMoodpeekDemo(selected,createIframe);
+    }
+
+    function removeMoodpeekPreview(){
+      if(moodpeekPreview){moodpeekPreview.innerHTML='<div class="modal-preview-note">Preview loads when the case study opens.</div>';}
+    }
+
+    if(moodpeekDemoSelect){
+      moodpeekDemoSelect.addEventListener('change',e=>{
+        updateMoodpeekDemo(e.target.value,true);
+      });
+    }
+
+    removeMoodpeekPreview();
+    initializeMoodpeekModal(false);
+
     window.addEventListener('load',()=>{
       if(location.hash==='#gsgc'){
         const trigger=document.querySelector('[data-modal-open][data-modal="gsgc"]');
@@ -1005,6 +1112,10 @@
       if(location.hash==='#snapchat'){
         const trigger=document.querySelector('[data-modal-open][data-modal="snapchat"]');
         openModal('snapchat',trigger);
+      }
+      if(location.hash==='#moodpeek'){
+        const trigger=document.querySelector('[data-modal-open][data-modal="moodpeek"]');
+        openModal('moodpeek',trigger);
       }
     });
   </script>
