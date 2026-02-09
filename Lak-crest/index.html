@@ -1,314 +1,904 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Premium Kitchen Appliances</title>
-  <style>
-    /* Global styling for body and main container */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f7f7f7;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>LAK-Crest | Premium Kitchen Appliances</title>
+<meta name="description" content="LAK-Crest premium kitchen appliances — heating blenders, soymilk makers, choppers &amp; grinders built for everyday reliability."/>
+<style>
+/* ===== TOKENS ===== */
+:root{
+  --bg:#faf8f5;--surface:#fff;--text:#1c1917;--muted:#78716c;
+  --line:rgba(28,25,23,.10);--accent:#c2410c;--accent-soft:rgba(194,65,12,.08);
+  --accent-border:rgba(194,65,12,.18);--green:#4d7c0f;--green-soft:rgba(77,124,15,.08);
+  --shadow:0 8px 30px rgba(28,25,23,.07);--shadow-lg:0 20px 50px rgba(28,25,23,.10);
+  --radius:16px;--radius-sm:10px;--max:1100px;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman","Noto Serif",serif;
+  --header-h:64px;
+}
 
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+/* ===== RESET ===== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 16px)}
+body{margin:0;font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid rgba(194,65,12,.40);outline-offset:3px;border-radius:var(--radius-sm)}
+.skip{position:absolute;left:-999px;top:12px;padding:10px 16px;background:var(--surface);border-radius:var(--radius-sm);box-shadow:var(--shadow);font-weight:600;z-index:99999}.skip:focus{left:12px}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
+/* ===== STICKY HEADER ===== */
+.site-header{position:sticky;top:0;z-index:1000;background:rgba(41,37,36,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fafaf9;height:var(--header-h);transition:box-shadow .2s}
+.site-header.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:100%}
+.logo{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.desktop-nav{display:flex;gap:6px}
+.desktop-nav a{padding:8px 14px;border-radius:999px;font-size:14px;font-weight:600;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);transition:background .15s}
+.desktop-nav a:hover{background:rgba(255,255,255,.14)}
+.burger{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:8px;border-radius:var(--radius-sm)}
+.burger svg{display:block}
 
-    /* Basic styling for each product block */
-    .product {
-      background: white;
-      margin-bottom: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-wrap: wrap;
-      overflow: hidden;
-    }
+/* ===== MOBILE DRAWER ===== */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.drawer-overlay.open{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(300px,80vw);background:#292524;color:#fafaf9;z-index:2001;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.drawer-close{background:none;border:none;color:#fff;cursor:pointer;padding:4px}
+.drawer-links{display:flex;flex-direction:column;padding:12px 0}
+.drawer-links a{padding:14px 24px;font-size:16px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.06);transition:background .15s}
+.drawer-links a:hover{background:rgba(255,255,255,.08)}
 
-    .product img {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      object-fit: cover;
-    }
+/* ===== HERO ===== */
+.hero-section{background:linear-gradient(135deg,#292524 0%,#44403c 100%);color:#fafaf9;padding:48px 0 56px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:end}
+.hero-grid h1{margin:0;font-family:var(--serif);font-size:clamp(26px,3.6vw,42px);line-height:1.15;letter-spacing:-.3px;font-weight:700}
+.hero-grid .sub{margin:14px 0 0;font-size:15px;opacity:.82;max-width:50ch;line-height:1.65}
+.hero-card{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:20px}
+.hero-card h2{margin:0 0 12px;font-size:12px;text-transform:uppercase;letter-spacing:.16em;opacity:.7;font-weight:700}
+.tag-row{display:flex;flex-wrap:wrap;gap:10px}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:13px;white-space:nowrap}
+.tag-dot{width:7px;height:7px;border-radius:50%;background:#a3e635;box-shadow:0 0 0 3px rgba(163,230,53,.22)}
 
-    .product-content {
-      padding: 20px;
-      flex: 1;
-    }
+/* ===== SECTION SHARED ===== */
+.section{padding:48px 0}
+.section-title{margin:0 0 8px;font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);letter-spacing:-.2px}
+.section-sub{margin:0 0 28px;font-size:15px;color:var(--muted)}
 
-    /* Heading styles */
-    h1, h2 {
-      margin-top: 0;
-      color: #2c3e50;
-    }
+/* ===== PRODUCT CARDS ===== */
+.product-list{display:flex;flex-direction:column;gap:28px}
+article.product{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:grid;grid-template-columns:380px 1fr;min-height:280px;transition:transform .2s,box-shadow .2s}
+article.product:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+article.product:nth-child(even){direction:rtl}
+article.product:nth-child(even)>*{direction:ltr}
+article.product figure{margin:0;background:#f5f3f0;overflow:hidden;position:relative}
+article.product figure img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+article.product:hover figure img{transform:scale(1.03)}
+.p-content{padding:22px 24px 20px;display:flex;flex-direction:column;gap:12px}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.badge{display:inline-flex;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
+.badge--hot{background:var(--accent-soft);border:1px solid var(--accent-border);color:var(--accent)}
+.badge--new{background:var(--green-soft);border:1px solid rgba(77,124,15,.20);color:var(--green)}
+.badge--pick{background:rgba(109,40,217,.08);border:1px solid rgba(109,40,217,.18);color:#6d28d9}
+.product h3{margin:0;font-family:var(--serif);font-size:20px;line-height:1.25;letter-spacing:-.2px}
+.p-desc{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6;max-width:72ch}
+.pills{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.pills li{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;background:rgba(28,25,23,.035);border:1px solid rgba(28,25,23,.07);font-size:13px;color:rgba(28,25,23,.75)}
+.pills li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2.5px rgba(194,65,12,.14);flex-shrink:0}
+.p-specs{display:flex;flex-wrap:wrap;gap:4px 14px;padding-top:10px;border-top:1px solid rgba(28,25,23,.08);margin:0;font-size:13px}
+.p-spec{display:flex;align-items:baseline;gap:5px}
+.p-spec dt{font-weight:700;color:rgba(28,25,23,.55);text-transform:uppercase;letter-spacing:.04em;font-size:11px}
+.p-spec dd{margin:0;color:var(--text);font-weight:500}
+.p-spec+.p-spec::before{content:"\00b7";color:rgba(28,25,23,.25);font-weight:700;margin-right:2px}
+.p-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
 
-    /* Paragraph styles */
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #333;
-    }
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);font-weight:700;font-size:14px;border:none;cursor:pointer;transition:transform .12s,background .12s,box-shadow .12s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(194,65,12,.25)}
+.btn-primary:hover{background:#9a3412;box-shadow:0 6px 20px rgba(194,65,12,.30)}
+.btn-secondary{background:rgba(28,25,23,.05);color:var(--text);border:1px solid var(--line)}
+.btn-secondary:hover{background:rgba(28,25,23,.08)}
+.btn-full{width:100%}
 
-    /* Product specifications table */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-    }
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-    th, td {
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
+/* ===== WHY SECTION ===== */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.why-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.why-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.why-icon{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
+.why-card h3{margin:0 0 6px;font-family:var(--serif);font-size:17px}
+.why-card p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
 
-    /* "Buy Now" button styling */
-    .buy-now {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #e74c3c;
-      color: #fff;
-      border: none;
-      text-decoration: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .buy-now:hover {
-      background-color: #c0392b;
-    }
+/* ===== SUPPORT / FAQ ===== */
+.faq-list{display:flex;flex-direction:column;gap:0;max-width:760px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-btn{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;color:var(--text);cursor:pointer;text-align:left;gap:12px}
+.faq-btn svg{flex-shrink:0;transition:transform .2s}
+.faq-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-body-inner{padding:0 4px 18px;font-size:14.5px;color:var(--muted);line-height:1.65}
+.warranty-box{margin-top:32px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.warranty-box h3{margin:0 0 8px;font-family:var(--serif);font-size:18px}
+.warranty-box p{margin:0;font-size:14.5px;color:var(--muted);line-height:1.6}
 
-    /* Responsive design for smaller screens */
-    @media (max-width: 768px) {
-      .product {
-        flex-direction: column;
-        align-items: center;
-      }
+/* ===== CONTACT ===== */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.contact-info h3{margin:0 0 12px;font-family:var(--serif);font-size:18px}
+.contact-info p{margin:0 0 8px;font-size:15px;color:var(--muted)}
+.contact-info a{color:var(--accent);font-weight:600}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.form-field{display:flex;flex-direction:column;gap:4px}
+.form-field label{font-size:13px;font-weight:700;color:rgba(28,25,23,.6);text-transform:uppercase;letter-spacing:.04em}
+.form-field input,.form-field textarea{padding:10px 14px;border:1px solid var(--line);border-radius:var(--radius-sm);font:inherit;font-size:15px;background:var(--surface);transition:border-color .15s}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--accent)}
+.form-field textarea{resize:vertical;min-height:100px}
 
-      .product img {
-        max-width: 100%;
-      }
-    }
-  </style>
+/* ===== FOOTER ===== */
+.site-footer{background:#292524;color:#a8a29e;padding:40px 0 24px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:32px}
+.footer-brand{font-family:var(--serif);font-size:20px;font-weight:700;color:#fafaf9;margin-bottom:8px}
+.footer-desc{font-size:14px;line-height:1.6;margin:0 0 16px}
+.footer-social{display:flex;gap:10px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transition:background .15s}
+.footer-social a:hover{background:rgba(255,255,255,.15)}
+.footer-heading{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#d6d3d1;margin:0 0 12px}
+.footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:14px;transition:color .15s}
+.footer-links a:hover{color:#fafaf9}
+.footer-bottom{margin-top:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:13px}
+
+/* ===== OVERLAY / MODALS ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:3000;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-lg);max-height:calc(100vh - 40px);overflow-y:auto;width:100%;position:relative;transform:translateY(12px);transition:transform .3s}.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:12px;right:12px;background:rgba(28,25,23,.06);border:none;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1;transition:background .15s}
+.modal-close:hover{background:rgba(28,25,23,.12)}
+
+/* quote modal */
+.quote-modal .modal{max-width:480px;padding:32px}
+.quote-modal h2{margin:0 0 4px;font-family:var(--serif);font-size:22px}
+.quote-modal .qm-product{font-size:14px;color:var(--muted);margin:0 0 20px}
+.qty-row{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.qty-row span{font-size:14px;font-weight:600}
+.qty-stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
+.qty-stepper button{width:36px;height:36px;border:none;background:rgba(28,25,23,.04);cursor:pointer;font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;justify-content:center}
+.qty-stepper button:hover{background:rgba(28,25,23,.08)}
+.qty-stepper input{width:48px;height:36px;border:none;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font:inherit;font-size:15px;font-weight:600}
+.option-row{margin-bottom:16px}
+.option-row label{display:block;font-size:13px;font-weight:700;color:rgba(28,25,23,.6);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.option-row select{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:var(--radius-sm);font:inherit;font-size:15px;background:var(--surface);cursor:pointer}
+.qm-actions{display:flex;gap:10px;margin-top:8px}
+
+/* detail modal */
+.detail-modal .modal{max-width:900px;padding:0;display:grid;grid-template-columns:1fr 1fr}
+.dm-gallery{background:#f5f3f0;padding:20px;display:flex;flex-direction:column;gap:12px;min-height:400px}
+.dm-main-img{flex:1;border-radius:var(--radius-sm);overflow:hidden;cursor:zoom-in;position:relative}
+.dm-main-img img,.dm-main-img video{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)}
+.dm-thumbs{display:flex;gap:8px;overflow-x:auto}
+.dm-thumb{width:60px;height:60px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;flex-shrink:0;transition:border-color .15s}
+.dm-thumb.active{border-color:var(--accent)}
+.dm-thumb img,.dm-thumb video{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.dm-info{padding:28px 28px 28px 24px;overflow-y:auto;max-height:calc(100vh - 40px)}
+.dm-info h2{margin:0 0 4px;font-family:var(--serif);font-size:24px}
+.dm-info .dm-tagline{font-size:14px;color:var(--muted);margin:0 0 16px}
+.dm-info .dm-price{font-size:15px;font-weight:600;color:var(--accent);margin:0 0 16px}
+.dm-specs{margin:0 0 20px}
+.dm-specs dt{font-weight:700;font-size:13px;color:rgba(28,25,23,.55);text-transform:uppercase;letter-spacing:.04em;padding:8px 0 2px}
+.dm-specs dd{margin:0;font-size:15px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.dm-faq{margin-top:20px}
+.dm-faq h3{font-family:var(--serif);font-size:16px;margin:0 0 8px}
+.dm-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.dm-faq summary{cursor:pointer;font-weight:600;font-size:14px;list-style:none}
+.dm-faq summary::-webkit-details-marker{display:none}
+.dm-faq details p{margin:6px 0 0;font-size:14px;color:var(--muted);line-height:1.6}
+.dm-warranty{margin-top:16px;padding:14px;background:rgba(28,25,23,.03);border-radius:var(--radius-sm);font-size:13px;color:var(--muted);line-height:1.6}
+.dm-warranty strong{color:var(--text)}
+
+/* newsletter modal */
+.nl-modal .modal{max-width:420px;padding:32px;text-align:center}
+.nl-modal h2{margin:0 0 8px;font-family:var(--serif);font-size:22px}
+.nl-modal p{margin:0 0 20px;font-size:14px;color:var(--muted)}
+.nl-modal input[type="email"]{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:var(--radius-sm);font:inherit;font-size:15px;margin-bottom:12px}
+.nl-modal input[type="email"]:focus{outline:none;border-color:var(--accent)}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:4000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;cursor:zoom-out;padding:20px}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img,.lightbox video{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);border:none;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(12px);background:#292524;color:#fafaf9;padding:12px 20px;border-radius:var(--radius-sm);box-shadow:0 12px 40px rgba(0,0,0,.22);font-size:14px;font-weight:500;max-width:min(520px,calc(100% - 40px));text-align:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:9999}
+.toast.visible{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:20px}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .detail-modal .modal{grid-template-columns:1fr;max-width:560px}
+  .dm-gallery{min-height:260px}
+  .dm-info{max-height:none}
+}
+@media(max-width:768px){
+  .desktop-nav{display:none}
+  .burger{display:block}
+  article.product{grid-template-columns:1fr}
+  article.product:nth-child(even){direction:ltr}
+  article.product figure{max-height:240px}
+  .contact-grid{grid-template-columns:1fr}
+  .p-actions{flex-direction:column}
+  .p-actions .btn{width:100%;justify-content:center}
+  .qm-actions{flex-direction:column}
+  .qm-actions .btn{width:100%;justify-content:center}
+}
+@media(max-width:520px){
+  :root{--header-h:56px}
+  .hero-section{padding:32px 0 40px}
+  .section{padding:36px 0}
+  .why-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .p-content{padding:18px 16px 16px}
+  .quote-modal .modal{padding:24px 18px}
+}
+
+/* body scroll lock when modal open */
+body.no-scroll{overflow:hidden}
+</style>
 </head>
 <body>
 
-  <!-- Header Section -->
-  <header>
-    <h1>Premium Kitchen Appliances</h1>
-    <p>Power up your kitchen with our latest multifunctional tools.</p>
-  </header>
+<!-- Skip link -->
+<a class="skip" href="#main">Skip to content</a>
 
-  <!-- Main Container -->
-  <div class="container">
+<!-- ===== STICKY HEADER ===== -->
+<header class="site-header" role="banner">
+  <div class="wrap header-inner">
+    <a href="#" class="logo" aria-label="LAK-Crest home">LAK-Crest</a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#products">Products</a>
+      <a href="#why">Why LAK-Crest</a>
+      <a href="#support">Support</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
 
-    <!-- Product #1: Heating and Cooking Blender -->
-    <div class="product">
-      <!-- Product Image -->
-      <img src="001.jpg" alt="Heating and Cooking Blender">
+<!-- mobile drawer -->
+<div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+<aside class="drawer" id="mobileDrawer" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+  <div class="drawer-head">
+    <span style="font-family:var(--serif);font-weight:700;font-size:18px">LAK-Crest</span>
+    <button class="drawer-close" aria-label="Close menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+    </button>
+  </div>
+  <nav class="drawer-links" aria-label="Mobile navigation links">
+    <a href="#products">Products</a>
+    <a href="#why">Why LAK-Crest</a>
+    <a href="#support">Support</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</aside>
 
-      <!-- Product Content Section -->
-      <div class="product-content">
-        <h2>Introducing the Ultimate Kitchen Game-Changer: Heating and Cooking Blender</h2>
-        <p>
-          Take your cooking to the next level with our revolutionary heating and cooking blender! 
-          This innovative kitchen appliance combines the power of blending with the convenience of heating, 
-          allowing you to cook and prepare a wide range of delicious dishes with ease. From soups and sauces 
-          to dips and desserts, our heating and cooking blender is the perfect tool for any home cook or 
-          professional chef. Explore our selection today and discover a world of culinary possibilities!
-        </p>
-
-        <!-- Specifications Table (Example Data) -->
-        <table>
-          <tr>
-            <th>Specification</th>
-            <th>Details</th>
-          </tr>
-          <tr>
-            <td>Power</td>
-            <td>800W</td>
-          </tr>
-          <tr>
-            <td>Capacity</td>
-            <td>1.5 L</td>
-          </tr>
-          <tr>
-            <td>Dimensions</td>
-            <td>15 x 24 x 25 cm</td>
-          </tr>
-          <tr>
-            <td>Weight</td>
-            <td>2.0 kg</td>
-          </tr>
-        </table>
-
-        <!-- "Buy Now" Button -->
-        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
+<!-- ===== HERO ===== -->
+<section class="hero-section" aria-label="Introduction">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1>Premium appliances designed for fast cooking, easy cleaning, and everyday reliability.</h1>
+        <p class="sub">Explore our curated lineup of kitchen essentials &mdash; each one built for real workflows, not spec sheets. Compact, powerful, and ready for your counter.</p>
+      </div>
+      <div class="hero-card">
+        <h2>Why LAK-Crest</h2>
+        <div class="tag-row" role="list">
+          <span class="tag" role="listitem"><span class="tag-dot" aria-hidden="true"></span>Blend + Heat in one</span>
+          <span class="tag" role="listitem"><span class="tag-dot" aria-hidden="true"></span>One-button operation</span>
+          <span class="tag" role="listitem"><span class="tag-dot" aria-hidden="true"></span>Easy-clean design</span>
+          <span class="tag" role="listitem"><span class="tag-dot" aria-hidden="true"></span>Compact footprint</span>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Product #2: Third Generation Mini Soymilk Maker -->
-    <div class="product">
-      <!-- Product Image -->
-      <img src="003.jpg" alt="Third Generation Mini Soymilk Maker">
+<!-- ===== MAIN ===== -->
+<main id="main">
 
-      <!-- Product Content Section -->
-      <div class="product-content">
-        <h2>The Third Generation Mini Soymilk Maker</h2>
-        <p>
-          Experience the future of healthy living with our third generation mini soymilk maker. 
-          Compact yet powerful, it's perfect for preparing fresh, nutritious soymilk, rice paste, and more 
-          with just the press of a button. Say goodbye to store-bought products and hello to homemade goodness. 
-          Easy to use and even easier to clean!
-        </p>
+<!-- Products -->
+<section class="section" id="products" aria-label="Products">
+  <div class="wrap">
+    <h2 class="section-title">Shop Appliances</h2>
+    <p class="section-sub">Request a quote on any product &mdash; we will get back to you within 24 hours.</p>
+    <div class="product-list" id="productList" role="list">
+      <!-- JS rendered -->
+    </div>
+  </div>
+</section>
 
-        <!-- Specifications Table (Example Data) -->
-        <table>
-          <tr>
-            <th>Specification</th>
-            <th>Details</th>
-          </tr>
-          <tr>
-            <td>Power</td>
-            <td>700W</td>
-          </tr>
-          <tr>
-            <td>Capacity</td>
-            <td>0.8 L</td>
-          </tr>
-          <tr>
-            <td>Dimensions</td>
-            <td>12 x 20 x 22 cm</td>
-          </tr>
-          <tr>
-            <td>Weight</td>
-            <td>1.5 kg</td>
-          </tr>
-        </table>
+<!-- Why LAK-Crest -->
+<section class="section" id="why" aria-label="Why LAK-Crest" style="background:rgba(28,25,23,.02)">
+  <div class="wrap">
+    <h2 class="section-title">Why LAK-Crest</h2>
+    <p class="section-sub">Four principles behind every product we make.</p>
+    <div class="why-grid" id="whyGrid">
+      <!-- JS rendered -->
+    </div>
+  </div>
+</section>
 
-        <!-- "Buy Now" Button -->
-        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
+<!-- Support -->
+<section class="section" id="support" aria-label="Support">
+  <div class="wrap">
+    <h2 class="section-title">Support &amp; FAQ</h2>
+    <p class="section-sub">Common questions and warranty information.</p>
+    <div class="faq-list" id="faqList" role="list">
+      <!-- JS rendered -->
+    </div>
+    <div class="warranty-box reveal">
+      <h3>1-Year Limited Warranty</h3>
+      <p>All LAK-Crest appliances are covered by a 1-year limited warranty from the date of purchase. This covers defects in materials and workmanship under normal household use. Damage from misuse, unauthorized repairs, or commercial operation is not covered. To file a claim, contact us at <a href="mailto:antirender3@gmail.com" style="color:var(--accent);font-weight:600">antirender3@gmail.com</a> with your order number and a brief description of the issue. Replacement parts are shipped within 5&ndash;7 business days.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact" aria-label="Contact" style="background:rgba(28,25,23,.02)">
+  <div class="wrap">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-sub">Have a question or want to place a bulk order? Reach out anytime.</p>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Get in touch</h3>
+        <p><strong>Email:</strong> <a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+16049686638">+1 (604) 968-6638</a></p>
+        <p style="margin-top:16px;font-size:14px;color:var(--muted)">Business hours: Monday&ndash;Friday, 9 AM&ndash;6 PM PST.<br>We respond to most enquiries within one business day.</p>
+      </div>
+      <form class="contact-form reveal" id="contactForm" aria-label="Contact form">
+        <div class="form-field"><label for="cf-name">Name</label><input id="cf-name" type="text" required placeholder="Your name"/></div>
+        <div class="form-field"><label for="cf-email">Email</label><input id="cf-email" type="email" required placeholder="you@example.com"/></div>
+        <div class="form-field"><label for="cf-msg">Message</label><textarea id="cf-msg" required placeholder="How can we help?"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-full">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer" role="contentinfo">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">LAK-Crest</div>
+        <p class="footer-desc">Premium kitchen appliances engineered for fast cooking, easy cleaning, and everyday reliability.</p>
+        <div class="footer-social" aria-label="Social media">
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick links</div>
+        <ul class="footer-links">
+          <li><a href="#products">Products</a></li>
+          <li><a href="#why">Why LAK-Crest</a></li>
+          <li><a href="#support">Support</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a></li>
+          <li><a href="tel:+16049686638">+1 (604) 968-6638</a></li>
+          <li>Mon&ndash;Fri 9 AM&ndash;6 PM PST</li>
+        </ul>
       </div>
     </div>
-
-    <!-- Product #3: Meat Grinder and Vegetable Chopper -->
-    <div class="product">
-      <!-- Product Image -->
-      <img src="006.jpg" alt="Meat Grinder and Vegetable Chopper">
-
-      <!-- Product Content Section -->
-      <div class="product-content">
-        <h2>Unlock Your Kitchen's Potential</h2>
-        <p>
-          Take your cooking to the next level with our powerful meat grinder and versatile vegetable chopper! 
-          Whether you're a professional chef or a home cook, our kitchen essentials will help you prepare 
-          delicious meals with ease. Grind your own meats, chop fresh vegetables, and unlock a world of 
-          culinary possibilities. Browse our selection today and discover the perfect tools for your kitchen!
-        </p>
-
-        <!-- Specifications Table (Example Data) -->
-        <table>
-          <tr>
-            <th>Specification</th>
-            <th>Details</th>
-          </tr>
-          <tr>
-            <td>Power</td>
-            <td>600W</td>
-          </tr>
-          <tr>
-            <td>Capacity</td>
-            <td>2.0 L (bowl)</td>
-          </tr>
-          <tr>
-            <td>Blade Material</td>
-            <td>Stainless Steel</td>
-          </tr>
-          <tr>
-            <td>Usage</td>
-            <td>Meat, Vegetables, Nuts</td>
-          </tr>
-        </table>
-
-        <!-- "Buy Now" Button -->
-        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
-      </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="yr"></span> LAK-Crest Kitchen Essentials. All rights reserved.</span>
+      <span>Designed &amp; built with care.</span>
     </div>
+  </div>
+</footer>
 
-    <!-- Product #4: LAK Japan Chopper -->
-    <div class="product">
-      <!-- Product Image -->
-      <img src="009.jpg" alt="LAK Japan Chopper">
-
-      <!-- Product Content Section -->
-      <div class="product-content">
-        <h2>LAK Japan® – Precision Meets Power</h2>
-        <p>
-          Introducing the LAK Japan® Excellent Meat Grinder & Veggie Chopper. Designed with a high-speed 
-          motor and professional stainless steel blade system, it’s built to handle even the toughest ingredients. 
-          Perfect for chopping meat, garlic, vegetables, and more. Trusted by chefs, loved by home cooks. 
-          Upgrade your kitchen today!
-        </p>
-
-        <!-- Specifications Table (Example Data) -->
-        <table>
-          <tr>
-            <th>Specification</th>
-            <th>Details</th>
-          </tr>
-          <tr>
-            <td>Power</td>
-            <td>550W</td>
-          </tr>
-          <tr>
-            <td>Blade System</td>
-            <td>4-Blade Stainless Steel</td>
-          </tr>
-          <tr>
-            <td>Capacity</td>
-            <td>1.8 L (bowl)</td>
-          </tr>
-          <tr>
-            <td>Special Feature</td>
-            <td>Pulse Control</td>
-          </tr>
-        </table>
-
-        <!-- "Buy Now" Button -->
-        <a href="#" class="buy-now" onclick="buyNowAlert()">Buy Now</a>
-      </div>
+<!-- ===== QUOTE MODAL ===== -->
+<div class="modal-overlay quote-modal" id="quoteOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-labelledby="qm-title" aria-modal="true">
+    <button class="modal-close" aria-label="Close"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="14" y2="14"/><line x1="4" y1="14" x2="14" y2="4"/></svg></button>
+    <h2 id="qm-title">Request a Quote</h2>
+    <p class="qm-product" id="qmProduct"></p>
+    <div class="qty-row"><span>Quantity</span>
+      <div class="qty-stepper"><button type="button" aria-label="Decrease quantity" data-qty="-1">&minus;</button><input type="number" value="1" min="1" max="99" id="qmQty" aria-label="Quantity"/><button type="button" aria-label="Increase quantity" data-qty="+1">+</button></div>
     </div>
+    <div class="option-row"><label for="qmColor">Color / Variant</label><select id="qmColor"><option>Standard</option><option>White</option><option>Black</option></select></div>
+    <form id="quoteForm" class="contact-form" style="gap:12px">
+      <div class="form-field"><label for="qf-name">Name</label><input id="qf-name" required placeholder="Your name"/></div>
+      <div class="form-field"><label for="qf-email">Email</label><input id="qf-email" type="email" required placeholder="you@example.com"/></div>
+      <div class="form-field"><label for="qf-phone">Phone (optional)</label><input id="qf-phone" type="tel" placeholder="+1 (000) 000-0000"/></div>
+      <div class="form-field"><label for="qf-msg">Message</label><textarea id="qf-msg" rows="3" placeholder="Any details about your order"></textarea></div>
+      <div class="qm-actions">
+        <button type="submit" class="btn btn-primary btn-full">Send request</button>
+        <button type="button" class="btn btn-secondary btn-full" data-close-modal>Continue shopping</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-  </div> <!-- End of .container -->
+<!-- ===== DETAIL MODAL ===== -->
+<div class="modal-overlay detail-modal" id="detailOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-labelledby="dm-title" aria-modal="true">
+    <button class="modal-close" aria-label="Close"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="14" y2="14"/><line x1="4" y1="14" x2="14" y2="4"/></svg></button>
+    <div class="dm-gallery" id="dmGallery">
+      <div class="dm-main-img" id="dmMainImg"></div>
+      <div class="dm-thumbs" id="dmThumbs"></div>
+    </div>
+    <div class="dm-info" id="dmInfo">
+      <!-- JS populated -->
+    </div>
+  </div>
+</div>
 
-  <!-- Inline JavaScript for Buy Now button -->
-  <script>
-    /**
-     * buyNowAlert()
-     * Display an alert or redirect users when they click the "Buy Now" button.
-     * Modify this function to integrate real payment or shopping cart logic.
-     */
-    function buyNowAlert() {
-      alert("Thank you for your interest! Please contact our sales team or proceed to checkout to complete the purchase.");
+<!-- ===== NEWSLETTER MODAL ===== -->
+<div class="modal-overlay nl-modal" id="nlOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-labelledby="nl-title" aria-modal="true">
+    <button class="modal-close" aria-label="Close"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="4" x2="14" y2="14"/><line x1="4" y1="14" x2="14" y2="4"/></svg></button>
+    <h2 id="nl-title">Stay in the loop</h2>
+    <p>Get notified about new products, exclusive deals, and kitchen tips. No spam&nbsp;&mdash; unsubscribe anytime.</p>
+    <form id="nlForm">
+      <input type="email" required placeholder="Enter your email" aria-label="Email address"/>
+      <button type="submit" class="btn btn-primary btn-full">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" aria-label="Enlarged image" role="dialog" aria-modal="true">
+  <button class="lightbox-close" aria-label="Close image"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="17" y2="17"/><line x1="5" y1="17" x2="17" y2="5"/></svg></button>
+  <div id="lbContent"></div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+(function(){
+"use strict";
+
+/* ── Product data ──────────────────────────────── */
+var products = [
+  {
+    id:"blender",
+    title:"Heating & Cooking Blender",
+    tag:"Best seller",tagClass:"badge--hot",
+    heroImage:"001.jpg",heroAlt:"Heating and cooking blender with stainless steel jar on kitchen counter",
+    gallery:[
+      {src:"001.jpg",alt:"Heating and cooking blender front view",type:"image"},
+      {src:"002.jpg",alt:"Blender in use with soup ingredients and steam rising",type:"image"}
+    ],
+    desc:"Blend and heat in one workflow \u2014 ideal for soups, sauces, and quick hot drinks.",
+    highlights:["Blend + heat in one","Quick soup & sauce mode","Easy-clean jar"],
+    specs:{Power:"800 W",Capacity:"1.5 L",Dimensions:"15 \u00d7 24 \u00d7 25 cm",Weight:"2.0 kg"},
+    faq:[
+      {q:"Can it make hot soup from raw ingredients?",a:"Yes \u2014 the built-in heating element brings contents to a boil while blending, producing smooth soup in under 25 minutes."},
+      {q:"Is the jar dishwasher-safe?",a:"The glass jar is top-rack dishwasher safe. Wipe the base unit with a damp cloth."},
+      {q:"What voltage does it support?",a:"Ships as 220\u2013240 V / 50 Hz. A 110 V version is available on request."}
+    ]
+  },
+  {
+    id:"soymilk",
+    title:"3rd-Gen Mini Soymilk Maker",
+    tag:"New",tagClass:"badge--new",
+    heroImage:"003.jpg",heroAlt:"Compact mini soymilk maker in modern kitchen setting",
+    gallery:[
+      {src:"003.jpg",alt:"Mini soymilk maker front view with accessories",type:"image"},
+      {src:"004.jpg",alt:"Soymilk maker pouring fresh soymilk into glass",type:"image"},
+      {src:"005.jpg",alt:"Soymilk maker parts disassembled for easy cleaning",type:"image"}
+    ],
+    desc:"Compact daily driver for fresh soymilk, rice paste, and warm blends. One-button operation, small footprint.",
+    highlights:["One-button start","Compact footprint","Easy rinse cleaning"],
+    specs:{Power:"700 W",Capacity:"0.8 L",Dimensions:"12 \u00d7 20 \u00d7 22 cm",Weight:"1.5 kg"},
+    faq:[
+      {q:"Can I make nut milk with this?",a:"Yes \u2014 almond, cashew, and oat milk all work well. Soak hard nuts for 4\u20136 hours first for best results."},
+      {q:"How long does a cycle take?",a:"A standard soymilk cycle takes about 20 minutes from start to finish including heating."},
+      {q:"Is it safe to leave unattended?",a:"The maker has auto-shutoff and boil-over protection, so you can walk away once the cycle starts."}
+    ]
+  },
+  {
+    id:"grinder",
+    title:"Meat Grinder & Vegetable Chopper",
+    tag:"Prep hero",tagClass:"badge--hot",
+    heroImage:"006.jpg",heroAlt:"Stainless steel meat grinder and vegetable chopper with bowl",
+    gallery:[
+      {src:"006.jpg",alt:"Meat grinder and vegetable chopper complete set",type:"image"},
+      {src:"007.jpg",alt:"Chopper in action processing vegetables for dumpling filling",type:"image"},
+      {src:"008.jpg",alt:"Close-up of stainless steel blade and bowl base",type:"image"}
+    ],
+    desc:"Built for meal prep: consistent chops, quick mince, and sturdy stainless components.",
+    highlights:["Stainless blade","Stable bowl base","Works for meat & veg"],
+    specs:{Power:"600 W",Capacity:"2.0 L (bowl)","Blade material":"Stainless steel",Usage:"Meat, vegetables, nuts"},
+    faq:[
+      {q:"Can it crush ice?",a:"We do not recommend crushing ice as it may dull the blades over time. Use it for soft-to-medium-hard foods."},
+      {q:"How fine can it chop?",a:"Pulse mode lets you control texture from coarse chunks to very fine mince, depending on how long you run it."},
+      {q:"Are replacement blades available?",a:"Yes \u2014 replacement blade sets can be ordered through our support page. They typically last 2+ years under normal use."}
+    ]
+  },
+  {
+    id:"chopper",
+    title:"LAK Japan\u00ae Chopper",
+    tag:"Chef pick",tagClass:"badge--pick",
+    heroImage:"009.jpg",heroAlt:"LAK Japan chopper product with original packaging and accessories",
+    gallery:[
+      {src:"009.jpg",alt:"LAK Japan chopper unboxed with packaging and manual",type:"image"},
+      {src:"0010.mp4",alt:"LAK Japan chopper product demonstration video",type:"video"}
+    ],
+    desc:"High-speed motor + 4-blade system for quick garlic, onion, and meat prep with pulse control.",
+    highlights:["4-blade system","Pulse control","Quick texture control"],
+    specs:{Power:"550 W","Blade system":"4-blade stainless steel",Capacity:"1.8 L (bowl)",Feature:"Pulse control"},
+    faq:[
+      {q:"What makes this chopper different from the Meat Grinder?",a:"The LAK Japan Chopper has a 4-blade system with dedicated pulse control for finer texture precision, while the Meat Grinder focuses on larger batches with a bigger bowl."},
+      {q:"Is the motor noisy?",a:"It is comparable to a standard food processor \u2014 around 75 dB during operation. Pulse mode reduces sustained noise."},
+      {q:"Can I buy extra bowls?",a:"Yes \u2014 additional bowls in 1.2 L and 1.8 L are available as accessories."}
+    ]
+  }
+];
+
+/* ── Why data ──────────────────────────────── */
+var whyData = [
+  {icon:"\u26a1",title:"Reliability",desc:"Engineered with durable motors and heat-resistant materials for years of daily use without slowing down."},
+  {icon:"\u2728",title:"Easy-Clean Design",desc:"Removable parts, smooth surfaces, and dishwasher-safe jars mean less time scrubbing and more time cooking."},
+  {icon:"\ud83d\udce6",title:"Compact Footprint",desc:"Space-saving form factors designed for studio kitchens, dorms, and small countertops without sacrificing power."},
+  {icon:"\ud83d\udd18",title:"One-Button Operation",desc:"Simple controls with smart presets \u2014 press once and walk away. No manuals, no guesswork, no fuss."}
+];
+
+/* ── FAQ data ──────────────────────────────── */
+var faqData = [
+  {q:"Do you ship internationally?",a:"Yes \u2014 we ship to most countries worldwide. International orders typically arrive within 10\u201318 business days. Shipping costs are calculated at checkout based on destination and weight."},
+  {q:"What is your return policy?",a:"We offer a 30-day return policy for unused, unopened products in original packaging. To start a return, email us at antirender3@gmail.com with your order number. Refunds are processed within 5\u20137 business days after we receive the item."},
+  {q:"How long is the warranty?",a:"All LAK-Crest products are backed by a 1-year limited warranty covering defects in materials and workmanship under normal household use. See the warranty section below for full details."},
+  {q:"How do I clean the blades safely?",a:"Always unplug the appliance first. Remove the blade assembly and rinse under warm running water. Use a soft brush to clear stuck food. Never submerge the motor base in water."},
+  {q:"What power voltage do your products support?",a:"Most LAK-Crest appliances ship configured for 220\u2013240 V / 50 Hz (standard in most countries). 110 V versions are available on request \u2014 just mention it in your quote."},
+  {q:"Are your products compatible with 110V outlets in North America?",a:"A 110 V variant is available for select products. Please specify your voltage requirement when requesting a quote, and we will confirm compatibility and pricing."}
+];
+
+/* ── Helpers ──────────────────────────────── */
+var $ = function(s,ctx){return (ctx||document).querySelector(s)};
+var $$ = function(s,ctx){return Array.from((ctx||document).querySelectorAll(s))};
+
+function esc(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML}
+
+function showToast(msg){
+  var t=$("#toast");
+  t.textContent=msg;t.classList.add("visible");
+  clearTimeout(showToast._t);
+  showToast._t=setTimeout(function(){t.classList.remove("visible")},2800);
+}
+
+function lockBody(){document.body.classList.add("no-scroll")}
+function unlockBody(){document.body.classList.remove("no-scroll")}
+
+/* ── Open / close modals (generic) ──────── */
+function openModal(overlay){
+  overlay.classList.add("open");
+  overlay.setAttribute("aria-hidden","false");
+  lockBody();
+  var fc=overlay.querySelector(".modal-close");if(fc)fc.focus();
+}
+function closeModal(overlay){
+  overlay.classList.remove("open");
+  overlay.setAttribute("aria-hidden","true");
+  unlockBody();
+}
+
+/* close on overlay click */
+$$(".modal-overlay").forEach(function(o){
+  o.addEventListener("click",function(e){if(e.target===o)closeModal(o)});
+});
+/* close buttons */
+$$(".modal-close, [data-close-modal]").forEach(function(b){
+  b.addEventListener("click",function(){var o=b.closest(".modal-overlay");if(o)closeModal(o)});
+});
+
+/* ESC handler (closes topmost) */
+document.addEventListener("keydown",function(e){
+  if(e.key!=="Escape")return;
+  /* lightbox first */
+  var lb=$("#lightbox");
+  if(lb.classList.contains("open")){closeLightbox();return}
+  /* then modals */
+  var open=$$(".modal-overlay.open");
+  if(open.length)closeModal(open[open.length-1]);
+  /* then drawer */
+  if($("#mobileDrawer").classList.contains("open"))closeDrawer();
+});
+
+/* ── Sticky header shadow ──────────────────── */
+var hdr=document.querySelector(".site-header");
+window.addEventListener("scroll",function(){hdr.classList.toggle("scrolled",window.scrollY>10)},{passive:true});
+
+/* ── Burger / Drawer ──────────────────────── */
+var burgerBtn=$(".burger");
+var drawer=$("#mobileDrawer");
+var overlay=$("#drawerOverlay");
+
+function openDrawer(){
+  drawer.classList.add("open");overlay.classList.add("open");
+  overlay.setAttribute("aria-hidden","false");
+  burgerBtn.setAttribute("aria-expanded","true");
+  lockBody();
+  $(".drawer-close").focus();
+}
+function closeDrawer(){
+  drawer.classList.remove("open");overlay.classList.remove("open");
+  overlay.setAttribute("aria-hidden","true");
+  burgerBtn.setAttribute("aria-expanded","false");
+  unlockBody();
+  burgerBtn.focus();
+}
+burgerBtn.addEventListener("click",openDrawer);
+$(".drawer-close").addEventListener("click",closeDrawer);
+overlay.addEventListener("click",closeDrawer);
+$$(".drawer-links a").forEach(function(a){a.addEventListener("click",closeDrawer)});
+
+/* ── Render products ──────────────────────── */
+var list=$("#productList");
+products.forEach(function(p,i){
+  var specHtml="";
+  Object.keys(p.specs).forEach(function(k,si){
+    specHtml+=(si>0?'<div class="p-spec"><dt>'+esc(k)+'</dt><dd>'+esc(p.specs[k])+'</dd></div>':'<div class="p-spec"><dt>'+esc(k)+'</dt><dd>'+esc(p.specs[k])+'</dd></div>');
+  });
+  var pillsHtml=p.highlights.map(function(h){return "<li>"+esc(h)+"</li>"}).join("");
+  var card=document.createElement("article");
+  card.className="product reveal";
+  card.setAttribute("role","listitem");
+  card.setAttribute("aria-labelledby","pt-"+p.id);
+  card.innerHTML='<figure><img src="'+esc(p.heroImage)+'" alt="'+esc(p.heroAlt)+'" loading="lazy"/></figure>'
+    +'<div class="p-content"><div class="p-top"><div><h3 id="pt-'+p.id+'">'+esc(p.title)+'</h3>'
+    +'<p class="p-desc">'+esc(p.desc)+'</p></div>'
+    +'<span class="badge '+p.tagClass+'">'+esc(p.tag)+'</span></div>'
+    +'<ul class="pills" aria-label="Key highlights">'+pillsHtml+'</ul>'
+    +'<dl class="p-specs" aria-label="Key specs">'+specHtml+'</dl>'
+    +'<div class="p-actions"><button class="btn btn-primary" type="button" data-quote="'+i+'">Get quote</button>'
+    +'<button class="btn btn-secondary" type="button" data-details="'+i+'">View details</button></div></div>';
+  list.appendChild(card);
+});
+
+/* ── Render Why cards ──────────────────────── */
+var wg=$("#whyGrid");
+whyData.forEach(function(w){
+  var d=document.createElement("div");
+  d.className="why-card reveal";
+  d.innerHTML='<div class="why-icon" aria-hidden="true">'+w.icon+'</div><h3>'+esc(w.title)+'</h3><p>'+esc(w.desc)+'</p>';
+  wg.appendChild(d);
+});
+
+/* ── Render FAQ ──────────────────────────── */
+var fl=$("#faqList");
+faqData.forEach(function(f,i){
+  var item=document.createElement("div");
+  item.className="faq-item reveal";
+  item.setAttribute("role","listitem");
+  item.innerHTML='<button class="faq-btn" aria-expanded="false" aria-controls="faq-body-'+i+'">'
+    +'<span>'+esc(f.q)+'</span>'
+    +'<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>'
+    +'</button><div class="faq-body" id="faq-body-'+i+'"><div class="faq-body-inner">'+esc(f.a)+'</div></div>';
+  fl.appendChild(item);
+});
+
+/* FAQ toggle */
+document.addEventListener("click",function(e){
+  var btn=e.target.closest(".faq-btn");
+  if(!btn)return;
+  var expanded=btn.getAttribute("aria-expanded")==="true";
+  btn.setAttribute("aria-expanded",String(!expanded));
+  var body=btn.nextElementSibling;
+  if(!expanded){body.style.maxHeight=body.scrollHeight+"px"}
+  else{body.style.maxHeight="0"}
+});
+
+/* ── Quote modal ──────────────────────────── */
+var quoteOv=$("#quoteOverlay");
+var currentQuoteProduct=null;
+
+document.addEventListener("click",function(e){
+  var btn=e.target.closest("[data-quote]");
+  if(!btn)return;
+  var p=products[+btn.dataset.quote];
+  currentQuoteProduct=p;
+  $("#qmProduct").textContent=p.title;
+  $("#qmQty").value=1;
+  openModal(quoteOv);
+});
+
+/* qty stepper */
+quoteOv.addEventListener("click",function(e){
+  var b=e.target.closest("[data-qty]");
+  if(!b)return;
+  var inp=$("#qmQty");
+  var v=Math.max(1,Math.min(99,+inp.value+(+b.dataset.qty)));
+  inp.value=v;
+});
+
+/* quote form submit */
+$("#quoteForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  closeModal(quoteOv);
+  showToast("Quote request sent for "+currentQuoteProduct.title+" \u2014 we\u2019ll be in touch!");
+  e.target.reset();
+});
+
+/* ── Detail modal ──────────────────────────── */
+var detailOv=$("#detailOverlay");
+var currentDetailProduct=null;
+
+document.addEventListener("click",function(e){
+  var btn=e.target.closest("[data-details]");
+  if(!btn)return;
+  var p=products[+btn.dataset.details];
+  currentDetailProduct=p;
+  buildDetailModal(p);
+  openModal(detailOv);
+});
+
+function buildDetailModal(p){
+  /* gallery */
+  var mainWrap=$("#dmMainImg");
+  var thumbsWrap=$("#dmThumbs");
+  mainWrap.innerHTML="";thumbsWrap.innerHTML="";
+
+  function setMain(item){
+    mainWrap.innerHTML="";
+    if(item.type==="video"){
+      var v=document.createElement("video");
+      v.src=item.src;v.controls=true;v.setAttribute("aria-label",item.alt);
+      v.style.cssText="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-sm)";
+      mainWrap.appendChild(v);mainWrap.style.cursor="default";
+    }else{
+      var img=document.createElement("img");
+      img.src=item.src;img.alt=item.alt;img.loading="lazy";
+      mainWrap.appendChild(img);mainWrap.style.cursor="zoom-in";
     }
-  </script>
+  }
+  setMain(p.gallery[0]);
 
+  p.gallery.forEach(function(g,i){
+    var th=document.createElement("div");
+    th.className="dm-thumb"+(i===0?" active":"");
+    if(g.type==="video"){
+      var v=document.createElement("video");v.src=g.src;v.muted=true;
+      th.appendChild(v);
+    }else{
+      var img=document.createElement("img");img.src=g.src;img.alt=g.alt;img.loading="lazy";
+      th.appendChild(img);
+    }
+    th.addEventListener("click",function(){
+      $$(".dm-thumb").forEach(function(t){t.classList.remove("active")});
+      th.classList.add("active");
+      setMain(g);
+    });
+    thumbsWrap.appendChild(th);
+  });
+
+  /* lightbox on main click */
+  mainWrap.onclick=function(){
+    var cur=mainWrap.querySelector("img");
+    if(cur)openLightbox(cur.src,cur.alt);
+  };
+
+  /* info */
+  var info=$("#dmInfo");
+  var specsHtml="<dl class=\"dm-specs\">";
+  Object.keys(p.specs).forEach(function(k){
+    specsHtml+="<dt>"+esc(k)+"</dt><dd>"+esc(p.specs[k])+"</dd>";
+  });
+  specsHtml+="</dl>";
+
+  var faqHtml="";
+  if(p.faq&&p.faq.length){
+    faqHtml='<div class="dm-faq"><h3>FAQ</h3>';
+    p.faq.forEach(function(f){
+      faqHtml+='<details><summary>'+esc(f.q)+'</summary><p>'+esc(f.a)+'</p></details>';
+    });
+    faqHtml+='</div>';
+  }
+
+  info.innerHTML='<h2 id="dm-title">'+esc(p.title)+'</h2>'
+    +'<p class="dm-tagline">'+esc(p.desc)+'</p>'
+    +'<p class="dm-price">Price available on request &mdash; <button type="button" class="btn btn-primary" style="padding:8px 14px;font-size:13px" data-dm-quote>Get quote</button></p>'
+    +'<ul class="pills" style="margin-bottom:16px">'+p.highlights.map(function(h){return "<li>"+esc(h)+"</li>"}).join("")+'</ul>'
+    +specsHtml+faqHtml
+    +'<div class="dm-warranty"><strong>Warranty:</strong> 1-year limited warranty covering defects in materials and workmanship under normal household use. Contact us at antirender3@gmail.com for claims.</div>';
+
+  /* detail quote btn */
+  var dqb=info.querySelector("[data-dm-quote]");
+  if(dqb)dqb.addEventListener("click",function(){
+    closeModal(detailOv);
+    currentQuoteProduct=p;
+    $("#qmProduct").textContent=p.title;
+    $("#qmQty").value=1;
+    openModal(quoteOv);
+  });
+}
+
+/* ── Lightbox ──────────────────────────── */
+var lb=$("#lightbox");
+function openLightbox(src,alt){
+  var c=$("#lbContent");
+  c.innerHTML='<img src="'+esc(src)+'" alt="'+esc(alt||"Enlarged view")+'"/>';
+  lb.classList.add("open");lb.setAttribute("aria-hidden","false");
+  $(".lightbox-close").focus();
+}
+function closeLightbox(){
+  lb.classList.remove("open");lb.setAttribute("aria-hidden","true");
+  $("#lbContent").innerHTML="";
+}
+lb.addEventListener("click",function(e){if(e.target===lb||e.target===$("#lbContent"))closeLightbox()});
+$(".lightbox-close").addEventListener("click",closeLightbox);
+
+/* ── Newsletter modal ──────────────────── */
+var nlOv=$("#nlOverlay");
+var nlShown=false;
+function tryShowNl(){
+  if(nlShown)return;
+  if(localStorage.getItem("lak_nl_dismissed"))return;
+  nlShown=true;
+  openModal(nlOv);
+}
+/* timer: 10s */
+setTimeout(tryShowNl,10000);
+/* scroll: 60% */
+window.addEventListener("scroll",function(){
+  if((window.scrollY+window.innerHeight)/(document.documentElement.scrollHeight)>.6)tryShowNl();
+},{passive:true});
+/* on close, remember */
+nlOv.querySelector(".modal-close").addEventListener("click",function(){localStorage.setItem("lak_nl_dismissed","1")});
+nlOv.addEventListener("click",function(e){if(e.target===nlOv)localStorage.setItem("lak_nl_dismissed","1")});
+/* form */
+$("#nlForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  closeModal(nlOv);
+  localStorage.setItem("lak_nl_dismissed","1");
+  showToast("You\u2019re subscribed \u2014 welcome to LAK-Crest!");
+});
+
+/* ── Contact form ──────────────────────── */
+$("#contactForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  showToast("Message sent \u2014 we\u2019ll get back to you soon!");
+  e.target.reset();
+});
+
+/* ── Footer year ──────────────────────── */
+$("#yr").textContent=new Date().getFullYear();
+
+/* ── Scroll reveal ──────────────────────── */
+var revealEls=$$(".reveal");
+if("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion:reduce)").matches){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add("in-view");obs.unobserve(en.target)}
+    });
+  },{threshold:.1});
+  revealEls.forEach(function(el){obs.observe(el)});
+}else{
+  revealEls.forEach(function(el){el.classList.add("in-view")});
+}
+
+})();
+</script>
 </body>
 </html>
