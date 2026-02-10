@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yiyang Zhang — Interaction Design Portfolio</title>
-  <meta name="description" content="Responsive portfolio with two featured works, one process outline, and a design philosophy."/>
+  <meta name="description" content="Interaction Design portfolio featuring 4 case studies (Learn Code, Snapchat Data Transparency, GSGC, MoodPeek Pro), skills overview, and full resume."/>
   <link rel="icon" href="favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <style>
@@ -135,6 +135,16 @@
     .modal-preview-frame{width:100%;height:320px;border:0}
     .modal-preview-note{color:var(--muted);font-size:var(--step--2);padding:1rem;text-align:center}
 
+    .card-meta{display:flex;flex-wrap:wrap;gap:.35rem .6rem;margin:.5rem 0 .4rem;font-size:var(--step--2);color:var(--sub)}
+    .card-meta span{display:inline-block;padding:.2rem .45rem;background:var(--card);border:1px solid var(--border);border-radius:6px;font-weight:600;line-height:1.2}
+    .card-meta strong{font-weight:700;color:var(--ink)}
+
+    .modal-tldr{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:clamp(12px,2vw,16px);margin:1rem 0;font-size:var(--step--1)}
+    .modal-tldr h3{font-size:var(--step-0);margin:0 0 .5rem;font-weight:700}
+    .modal-tldr dl{display:grid;grid-template-columns:auto 1fr;gap:.3rem .75rem;margin:0}
+    .modal-tldr dt{font-weight:700;color:var(--ink)}
+    .modal-tldr dd{margin:0;color:var(--sub)}
+
     .gsgc-card{display:flex;flex-direction:column;gap:.75rem;padding:clamp(12px,1.6vw,18px)}
     .gsgc-card img{max-width:100%;margin:0;border-radius:12px;box-shadow:0 10px 24px rgba(15,23,42,.18)}
     .gsgc-card h3{font-size:var(--step-0);margin:.1rem 0 0;line-height:1.25}
@@ -260,7 +270,7 @@
           <li><span>Oakville, ON</span></li>
           <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
           <li><a href="tel:+17783187386">+1 (778) 318-7386</a></li>
-          <li><a href="https://rxd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener" aria-label="School Host">School Host</a></li>
+          <li><a href="https://ixd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener" aria-label="School Host">School Host</a></li>
           <li><a href="https://antirender.github.io" target="_blank" rel="noopener" aria-label="GitHub Pages">GitHub Pages</a></li>
           <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener" aria-label="LinkedIn profile">LinkedIn</a></li>
         </ul>
@@ -298,6 +308,11 @@
           <h3 id="w1-title">Learn Code — Building Pathways to Programming</h3>
           <p>A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation
           with consistent cards improves scanability. Fully responsive, no custom scroll regions.</p>
+          <div class="card-meta">
+            <span><strong>Role:</strong> UX/UI design, prototyping</span>
+            <span><strong>Methods:</strong> User interviews, iterative wireframing</span>
+            <span><strong>Outcome:</strong> 18 versions, improved nav clarity</span>
+          </div>
           <button class="btn" type="button" data-modal="learn-code" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
 
@@ -306,6 +321,11 @@
           <h3 id="w2-title">Snapchat Data Transparency — Designing for Clarity</h3>
           <p>An interactive explanation of how personal data moves through the app. Steps are short and visual with clear verbs.
           Testing asked users to describe “what happens next”.</p>
+          <div class="card-meta">
+            <span><strong>Role:</strong> UX research, interaction design</span>
+            <span><strong>Methods:</strong> User testing, progressive disclosure</span>
+            <span><strong>Outcome:</strong> 7 versions, increased user confidence</span>
+          </div>
           <button class="btn" type="button" data-modal="snapchat" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
 
@@ -313,6 +333,11 @@
           <img src="image/gsgc-preview.png" alt="Green Sheridan Garden Club prototype preview">
           <h3 id="w3-title">GSGC — Green Sheridan Garden Club</h3>
           <p>A campus community site exploring volunteer programs, garden updates, and membership sign-up. Designed for clarity, fast scanning, and mobile-first use.</p>
+          <div class="card-meta">
+            <span><strong>Role:</strong> UI design, responsive layout</span>
+            <span><strong>Methods:</strong> Iterative refinement, mobile-first</span>
+            <span><strong>Outcome:</strong> 7 versions, improved scanability</span>
+          </div>
           <button class="btn" type="button" data-modal="gsgc" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
 
@@ -320,6 +345,11 @@
           <img src="image/moodpeek-preview.png" alt="MoodPeek Pro calendar mood logging interface">
           <h3 id="w4-title">MoodPeek Pro — Calendar-First Mood Logging</h3>
           <p>A structured mood tracker built around Day → Week → Month continuity. Calendar as the main entry, Dashboard for quick logging, and Weekly Insight inline — no extra page jumps.</p>
+          <div class="card-meta">
+            <span><strong>Role:</strong> Full-stack prototype, UX architecture</span>
+            <span><strong>Methods:</strong> Multi-user system, JWT isolation</span>
+            <span><strong>Outcome:</strong> Calendar 2.0 + Dashboard + iCal export</span>
+          </div>
           <button class="btn" type="button" data-modal="moodpeek" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
    </div>
@@ -333,6 +363,7 @@
   <section id="more">
   <div class="wrap">
     <h2>More Work — quick jumps</h2>
+    <p style="color:var(--sub);font-size:var(--step--1);margin-bottom:1rem">Select a version from any dropdown to jump directly to that page. Organized by project and course.</p>
 
     <ul class="main-projects">
       <li class="selector">
@@ -450,6 +481,7 @@
         <li class="card"><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
         <li class="card"><a href="nevergonna/home.html">Never Gonna Give You Up V2</a></li>
         <li class="card"><a href="Lak-crest/index.html">Lak-crest</a></li>
+        <li class="card"><a href="mytw.html">nightmare escape</a></li>
       </ul>
     </div>
   </section>
@@ -546,12 +578,30 @@
 
   <!-- Snapchat Data Transparency Case Study Modal -->
   <div class="modal-overlay" id="snapchat-modal" data-modal="snapchat" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="snapchat-modal-title">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="snapchat-modal-title" aria-describedby="snapchat-modal-summary">
       <button class="modal-close" type="button" data-modal="snapchat" data-modal-close aria-label="Close case study">✕</button>
       <div class="modal-content">
         <div class="modal-header">
           <h2 id="snapchat-modal-title">Snapchat Data Transparency — Making Data Use Visible</h2>
-          <p class="modal-summary">An interactive redesign translating Snapchat's privacy policies into clear, scannable UI flows. This project explored how to communicate data collection, processing, and user control through progressive disclosure and direct language.</p>
+          <p class="modal-summary" id="snapchat-modal-summary">An interactive redesign translating Snapchat's privacy policies into clear, scannable UI flows. This project explored how to communicate data collection, processing, and user control through progressive disclosure and direct language.</p>
+        </div>
+
+        <div class="modal-tldr">
+          <h3>TL;DR</h3>
+          <dl>
+            <dt>Problem:</dt>
+            <dd>Users don't understand how their content is collected, processed, and shared on social platforms.</dd>
+            <dt>Role:</dt>
+            <dd>UX research, interaction design, wireframing</dd>
+            <dt>Tools:</dt>
+            <dd>HTML/CSS prototyping, user interviews, usability testing</dd>
+            <dt>Timeline:</dt>
+            <dd>7 versions over multiple iterations</dd>
+            <dt>Key Decisions:</dt>
+            <dd>Progressive disclosure, high-contrast cards, plain language verbs (Collect / Process / Share / Control)</dd>
+            <dt>Result:</dt>
+            <dd>Users navigated the flow more confidently and gave clearer answers about data movement.</dd>
+          </dl>
         </div>
 
         <div class="modal-select">
@@ -619,12 +669,30 @@
 
   <!-- Learn Code Case Study Modal -->
   <div class="modal-overlay" id="learn-code-modal" data-modal="learn-code" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="learn-code-modal-title">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="learn-code-modal-title" aria-describedby="learn-code-modal-summary">
       <button class="modal-close" type="button" data-modal="learn-code" data-modal-close aria-label="Close case study">✕</button>
       <div class="modal-content">
         <div class="modal-header">
           <h2 id="learn-code-modal-title">Learn Code — Building Pathways to Programming</h2>
-          <p class="modal-summary">A browser-based learning platform designed to help beginners navigate programming lessons through hierarchical navigation, consistent visual patterns, and mobile-first responsive design.</p>
+          <p class="modal-summary" id="learn-code-modal-summary">A browser-based learning platform designed to help beginners navigate programming lessons through hierarchical navigation, consistent visual patterns, and mobile-first responsive design.</p>
+        </div>
+
+        <div class="modal-tldr">
+          <h3>TL;DR</h3>
+          <dl>
+            <dt>Problem:</dt>
+            <dd>Beginners struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</dd>
+            <dt>Role:</dt>
+            <dd>UX/UI design, prototyping, iterative wireframing</dd>
+            <dt>Tools:</dt>
+            <dd>HTML/CSS, user testing, responsive design</dd>
+            <dt>Timeline:</dt>
+            <dd>18 versions with iterative refinement</dd>
+            <dt>Key Decisions:</dt>
+            <dd>Card-based interface, hierarchical navigation (Home → Course → Lesson), single-column mobile layout</dd>
+            <dt>Result:</dt>
+            <dd>Improved confidence in navigation and lesson discovery; clearer pathways through content.</dd>
+          </dl>
         </div>
 
         <div class="modal-select">
@@ -692,12 +760,30 @@
 
   <!-- GSGC Case Study Modal -->
   <div class="modal-overlay" id="gsgc-modal" data-modal="gsgc" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="gsgc-modal-title">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="gsgc-modal-title" aria-describedby="gsgc-modal-summary">
       <button class="modal-close" type="button" data-modal="gsgc" data-modal-close aria-label="Close case study">✕</button>
       <div class="modal-content">
         <div class="modal-header">
           <h2 id="gsgc-modal-title">GSGC — Green Sheridan Garden Club</h2>
-          <p class="modal-summary">A responsive community hub that helps students find garden programs, sign up to volunteer, and track seasonal updates with minimal friction.</p>
+          <p class="modal-summary" id="gsgc-modal-summary">A responsive community hub that helps students find garden programs, sign up to volunteer, and track seasonal updates with minimal friction.</p>
+        </div>
+
+        <div class="modal-tldr">
+          <h3>TL;DR</h3>
+          <dl>
+            <dt>Problem:</dt>
+            <dd>Garden Club needed a clear, lightweight site for announcements, membership info, and volunteer sign-ups.</dd>
+            <dt>Role:</dt>
+            <dd>UI design, responsive layout design</dd>
+            <dt>Tools:</dt>
+            <dd>HTML/CSS, mobile-first design</dd>
+            <dt>Timeline:</dt>
+            <dd>7 versions with progressive refinement</dd>
+            <dt>Key Decisions:</dt>
+            <dd>Navigation tabs (Programs / Events / Join), quick links block, compact content for on-campus browsing</dd>
+            <dt>Result:</dt>
+            <dd>Improved readability and reduced time-to-action for volunteers.</dd>
+          </dl>
         </div>
 
         <div class="modal-select">
@@ -755,12 +841,30 @@
 
   <!-- MoodPeek Pro Case Study Modal -->
   <div class="modal-overlay" id="moodpeek-modal" data-modal="moodpeek" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="moodpeek-modal-title">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="moodpeek-modal-title" aria-describedby="moodpeek-modal-summary">
       <button class="modal-close" type="button" data-modal="moodpeek" data-modal-close aria-label="Close case study">✕</button>
       <div class="modal-content">
         <div class="modal-header">
           <h2 id="moodpeek-modal-title">MoodPeek Pro — Visualizing Daily Emotion Through Time</h2>
-          <p class="modal-summary">MoodPeek Pro is a structural upgrade from the original MoodPeek: it uses Day → Week → Month continuity to support habit formation instead of one-off logging. The calendar acts as the main entry point, Weekly Insight lives inside the Week Detail view (no separate report page, less jumping around), and the Dashboard gives you a quick-glance home — streak count, 7-day sparkline, and a shortcut to log today — so you see something useful before you go deeper.</p>
+          <p class="modal-summary" id="moodpeek-modal-summary">MoodPeek Pro is a structural upgrade from the original MoodPeek: it uses Day → Week → Month continuity to support habit formation instead of one-off logging. The calendar acts as the main entry point, Weekly Insight lives inside the Week Detail view (no separate report page, less jumping around), and the Dashboard gives you a quick-glance home — streak count, 7-day sparkline, and a shortcut to log today — so you see something useful before you go deeper.</p>
+        </div>
+
+        <div class="modal-tldr">
+          <h3>TL;DR</h3>
+          <dl>
+            <dt>Problem:</dt>
+            <dd>Original MoodPeek focused on visualization; needed structure for habit tracking across multiple users.</dd>
+            <dt>Role:</dt>
+            <dd>Full-stack prototype, UX architecture, multi-user system design</dd>
+            <dt>Tools:</dt>
+            <dd>React, JWT authentication, iCal export, Open-Meteo API</dd>
+            <dt>Timeline:</dt>
+            <dd>Structural upgrade from MoodPeek v1</dd>
+            <dt>Key Decisions:</dt>
+            <dd>Calendar as main anchor, Dashboard quick-glance, inline Weekly Insight, self-reported (no AI inference)</dd>
+            <dt>Result:</dt>
+            <dd>Calendar 2.0 with filtering, Dashboard with streak tracking, multi-user isolation, iCal export.</dd>
+          </dl>
         </div>
 
         <div class="modal-select">
@@ -1100,24 +1204,21 @@
     removeMoodpeekPreview();
     initializeMoodpeekModal(false);
 
-    window.addEventListener('load',()=>{
-      if(location.hash==='#gsgc'){
-        const trigger=document.querySelector('[data-modal-open][data-modal="gsgc"]');
-        openModal('gsgc',trigger);
+    function handleHashChange(){
+      const hash=location.hash.substring(1);
+      if(!hash){if(activeModal){closeModal(activeModal.dataset.modal);}return;}
+      const validModals=['gsgc','learn-code','snapchat','moodpeek'];
+      if(validModals.includes(hash)){
+        if(activeModal&&activeModal.dataset.modal!==hash){closeModal(activeModal.dataset.modal);}
+        if(!activeModal||activeModal.dataset.modal!==hash){
+          const trigger=document.querySelector(`[data-modal-open][data-modal="${hash}"]`);
+          openModal(hash,trigger);
+        }
       }
-      if(location.hash==='#learn-code'){
-        const trigger=document.querySelector('[data-modal-open][data-modal="learn-code"]');
-        openModal('learn-code',trigger);
-      }
-      if(location.hash==='#snapchat'){
-        const trigger=document.querySelector('[data-modal-open][data-modal="snapchat"]');
-        openModal('snapchat',trigger);
-      }
-      if(location.hash==='#moodpeek'){
-        const trigger=document.querySelector('[data-modal-open][data-modal="moodpeek"]');
-        openModal('moodpeek',trigger);
-      }
-    });
+    }
+
+    window.addEventListener('load',handleHashChange);
+    window.addEventListener('hashchange',handleHashChange);
   </script>
 </body>
 </html>
