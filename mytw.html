@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梦魇逃亡 - 视觉小说企划书</title>
+    <style>
+        :root {
+            --bg-dark: #050508;
+            --bg-card: #0f0f14;
+            --bg-card-hover: #16161f;
+            --accent-blue: #5d7aa6;
+            --accent-purple: #7a6a9f;
+            --accent-red: #9e3f52;
+            --accent-gold: #c9b072;
+            --text-main: #e0dedb;
+            --text-dim: #757585;
+            --border-subtle: #252530;
+            --shadow-glow: 0 0 20px rgba(93, 122, 166, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Songti SC", "Noto Serif SC", "Source Han Serif CN", "Georgia", serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.8;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 0%, #151520 0%, var(--bg-dark) 80%);
+            overflow-x: hidden;
+        }
+
+        /* 头部设计升级 */
+        .header {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 100%),
+                radial-gradient(1px 1px at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 2rem;
+            margin-bottom: 30px;
+            margin-right: -2rem;
+            background: linear-gradient(180deg, #fff 0%, #8a8a9a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            letter-spacing: 0.8rem;
+            margin-bottom: 80px;
+            margin-right: -0.8rem;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-out 0.5s backwards;
+        }
+
+        .header .tagline {
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            position: relative;
+            line-height: 2.2;
+            border: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+            border-radius: 4px;
+            animation: fadeInUp 1.5s ease-out 1s backwards;
+        }
+
+        .header .tagline::before,
+        .header .tagline::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0.6;
+        }
+
+        .header .tagline::before {
+            top: 0;
+        }
+
+        .header .tagline::after {
+            bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 导航美化 */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(5, 5, 8, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            list-style: none;
+        }
+
+        .nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav a:hover {
+            color: var(--text-main);
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 40px;
+        }
+
+        /* 章节标题 */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 0.8rem;
+            margin-bottom: 70px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            display: flex;
+            align-items: baseline;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: var(--accent-blue);
+            box-shadow: 0 0 15px var(--accent-blue);
+        }
+
+        .section-title span {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            margin-left: 20px;
+            letter-spacing: 0.2rem;
+            font-family: sans-serif;
+            opacity: 0.7;
+        }
+
+        /* 卡片通用 */
+        .overview-card,
+        .character-card,
+        .ending-card,
+        .dialogue-card,
+        .chapter-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview-card:hover,
+        .character-card:hover,
+        .ending-card:hover,
+        .dialogue-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(93, 122, 166, 0.4);
+            box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 概述区 */
+        .overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .overview-card {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .overview-card h3 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .overview-card p {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-family: serif;
+        }
+
+        /* 故事梗概区域 - 将替换原本的内联样式 */
+        .story-box {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #13131a 100%);
+            padding: 60px;
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .story-box::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 10rem;
+            line-height: 1;
+            font-family: serif;
+            color: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+        }
+
+        .story-box h3 {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            letter-spacing: 0.3rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .story-box p {
+            color: #d0d0d5;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* 人设卡片 */
+        .character-section {
+            margin-bottom: 120px;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 50px;
+        }
+
+        .character-header {
+            padding: 40px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.02), transparent);
+        }
+
+        .character-name {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.8rem;
+            margin-bottom: 8px;
+            margin-right: -0.8rem;
+        }
+
+        .character-name.chuling {
+            color: var(--accent-blue);
+            text-shadow: 0 0 20px rgba(74, 111, 165, 0.3);
+        }
+
+        .character-name.xiaoxue {
+            color: var(--accent-purple);
+            text-shadow: 0 0 20px rgba(107, 91, 149, 0.3);
+        }
+
+        .character-role {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2rem;
+        }
+
+        .character-body {
+            padding: 40px;
+        }
+
+        .character-quote {
+            font-style: italic;
+            color: var(--accent-gold);
+            padding: 30px;
+            margin-bottom: 35px;
+            border-left: 3px solid var(--accent-gold);
+            background: linear-gradient(90deg, rgba(184, 161, 98, 0.05) 0%, transparent 100%);
+            font-family: "KaiTi", "楷体", serif;
+            font-size: 1.1rem;
+        }
+
+        .character-info {
+            display: grid;
+            gap: 20px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 20px;
+            align-items: baseline;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        /* 剧情路线图 */
+        .route-map {
+            margin-bottom: 120px;
+        }
+
+        .route-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 60px;
+            overflow-x: auto;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .route-svg {
+            width: 100%;
+            min-width: 900px;
+            height: 700px;
+        }
+
+        /* 结局卡片 */
+        .endings-section {
+            margin-bottom: 120px;
+        }
+
+        .endings-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .ending-card {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+        }
+
+        .ending-badge {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            border-right: 1px solid var(--border-subtle);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .ending-badge.ending-s {
+            background: linear-gradient(135deg, rgba(184, 161, 98, 0.15) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-a {
+            background: linear-gradient(135deg, rgba(107, 91, 149, 0.15) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-b {
+            background: linear-gradient(135deg, rgba(74, 111, 165, 0.15) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-c {
+            background: linear-gradient(135deg, rgba(139, 69, 87, 0.15) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-d {
+            background: linear-gradient(135deg, rgba(100, 100, 100, 0.15) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-e {
+            background: linear-gradient(135deg, rgba(50, 50, 60, 0.15) 0%, transparent 100%);
+        }
+
+        .ending-rank {
+            font-size: 3.5rem;
+            font-weight: 200;
+            margin-bottom: 15px;
+            font-family: sans-serif;
+        }
+
+        .ending-title {
+            font-size: 1.3rem;
+            letter-spacing: 0.4rem;
+            margin-bottom: 8px;
+            margin-right: -0.4rem;
+        }
+
+        .ending-difficulty {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        .ending-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ending-tone {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+        }
+
+        .ending-desc {
+            color: var(--text-main);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .ending-scene {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-left: 2px solid var(--border-subtle);
+            font-size: 1rem;
+            color: var(--text-dim);
+            font-style: italic;
+            font-family: "KaiTi", "楷体", serif;
+        }
+
+        /* 伏笔对照表 */
+        .foreshadow-section {
+            margin-bottom: 120px;
+        }
+
+        .foreshadow-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .foreshadow-table th,
+        .foreshadow-table td {
+            padding: 20px 30px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .foreshadow-table th {
+            background: rgba(74, 111, 165, 0.08);
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.2rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+        }
+
+        .foreshadow-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .foreshadow-table tr:hover td {
+            background: var(--bg-card-hover);
+        }
+
+        .symbol-name {
+            color: var(--accent-gold);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* 台词对照 */
+        .dialogue-section {
+            margin-bottom: 120px;
+        }
+
+        .dialogue-card {
+            margin-bottom: 40px;
+        }
+
+        .dialogue-header {
+            padding: 25px 40px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(184, 161, 98, 0.05);
+        }
+
+        .dialogue-line {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            font-family: "KaiTi", "楷体", serif;
+        }
+
+        .dialogue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        .dialogue-cell {
+            padding: 30px;
+            border-right: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .dialogue-cell:last-child {
+            border-right: none;
+        }
+
+        .dialogue-ending {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .dialogue-meaning {
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        /* 章节大纲 */
+        .chapter-section {
+            margin-bottom: 120px;
+        }
+
+        .chapter-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .chapter-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--accent-blue), transparent);
+        }
+
+        .chapter-item {
+            position: relative;
+            padding: 40px;
+            margin-bottom: 30px;
+            margin-left: 30px;
+        }
+
+        .chapter-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 45px;
+            width: 13px;
+            height: 13px;
+            background: var(--bg-dark);
+            border: 2px solid var(--accent-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-blue);
+            z-index: 10;
+        }
+
+        .chapter-number {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .chapter-name {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            letter-spacing: 0.1rem;
+        }
+
+        .chapter-desc {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .chapter-choices {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            font-size: 0.95rem;
+            border-left: 2px solid var(--accent-red);
+        }
+
+        .chapter-choices strong {
+            color: var(--accent-red);
+            font-weight: normal;
+            margin-right: 10px;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            letter-spacing: 0.1rem;
+            background: var(--bg-card);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+                letter-spacing: 1rem;
+                margin-right: -1rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .character-grid,
+            .endings-grid,
+            .dialogue-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ending-card {
+                grid-template-columns: 1fr;
+            }
+
+            .ending-badge {
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+                width: 100%;
+            }
+
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Serif SC", "Source Han Serif CN", "思源宋体", serif;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* 头部 */
+        .header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #0f0f18 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 1.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #e8e6e3 0%, #8a8a9a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            letter-spacing: 0.5rem;
+            margin-bottom: 30px;
+        }
+
+        .header .tagline {
+            font-size: 1rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 25px;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            line-height: 2;
+        }
+
+        /* 导航 */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 100;
+        }
+
+        .nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        /* 章节标题 */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 0.5rem;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-main);
+        }
+
+        .section-title span {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-left: 15px;
+            letter-spacing: 0.1rem;
+        }
+
+        /* 概述区 */
+        .overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .overview-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border: 1px solid var(--border-subtle);
+            transition: all 0.3s;
+        }
+
+        .overview-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-blue);
+        }
+
+        .overview-card h3 {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2rem;
+            margin-bottom: 10px;
+        }
+
+        .overview-card p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        /* 人设卡片 */
+        .character-section {
+            margin-bottom: 80px;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+
+        .character-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+        }
+
+        .character-header {
+            padding: 30px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .character-name {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5rem;
+            margin-bottom: 5px;
+        }
+
+        .character-name.chuling {
+            color: var(--accent-blue);
+        }
+
+        .character-name.xiaoxue {
+            color: var(--accent-purple);
+        }
+
+        .character-role {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2rem;
+        }
+
+        .character-body {
+            padding: 30px;
+        }
+
+        .character-quote {
+            font-style: italic;
+            color: var(--accent-gold);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 2px solid var(--accent-gold);
+            background: rgba(184, 161, 98, 0.05);
+        }
+
+        .character-info {
+            display: grid;
+            gap: 15px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 15px;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1rem;
+        }
+
+        .info-value {
+            color: var(--text-main);
+        }
+
+        /* 剧情路线图 */
+        .route-map {
+            margin-bottom: 80px;
+        }
+
+        .route-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 50px;
+            overflow-x: auto;
+        }
+
+        .route-svg {
+            width: 100%;
+            min-width: 900px;
+            height: 700px;
+        }
+
+        /* 结局卡片 */
+        .endings-section {
+            margin-bottom: 80px;
+        }
+
+        .endings-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .ending-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .ending-card:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .ending-badge {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+            border-right: 1px solid var(--border-subtle);
+        }
+
+        .ending-badge.ending-s {
+            background: linear-gradient(135deg, rgba(184, 161, 98, 0.2) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-a {
+            background: linear-gradient(135deg, rgba(107, 91, 149, 0.2) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-b {
+            background: linear-gradient(135deg, rgba(74, 111, 165, 0.2) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-c {
+            background: linear-gradient(135deg, rgba(139, 69, 87, 0.2) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-d {
+            background: linear-gradient(135deg, rgba(100, 100, 100, 0.2) 0%, transparent 100%);
+        }
+
+        .ending-badge.ending-e {
+            background: linear-gradient(135deg, rgba(50, 50, 60, 0.2) 0%, transparent 100%);
+        }
+
+        .ending-rank {
+            font-size: 3rem;
+            font-weight: 200;
+            margin-bottom: 10px;
+        }
+
+        .ending-rank.rank-s {
+            color: var(--accent-gold);
+        }
+
+        .ending-rank.rank-a {
+            color: var(--accent-purple);
+        }
+
+        .ending-rank.rank-b {
+            color: var(--accent-blue);
+        }
+
+        .ending-rank.rank-c {
+            color: var(--accent-red);
+        }
+
+        .ending-rank.rank-d {
+            color: #888;
+        }
+
+        .ending-rank.rank-e {
+            color: #555;
+        }
+
+        .ending-title {
+            font-size: 1.2rem;
+            letter-spacing: 0.3rem;
+            margin-bottom: 5px;
+        }
+
+        .ending-difficulty {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .ending-content {
+            padding: 30px;
+        }
+
+        .ending-tone {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .ending-desc {
+            color: var(--text-main);
+            margin-bottom: 20px;
+        }
+
+        .ending-scene {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-left: 2px solid var(--border-subtle);
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        /* 伏笔对照表 */
+        .foreshadow-section {
+            margin-bottom: 80px;
+        }
+
+        .foreshadow-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+        }
+
+        .foreshadow-table th,
+        .foreshadow-table td {
+            padding: 15px 20px;
+            border: 1px solid var(--border-subtle);
+            text-align: left;
+        }
+
+        .foreshadow-table th {
+            background: rgba(74, 111, 165, 0.1);
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 0.1rem;
+            color: var(--text-dim);
+        }
+
+        .foreshadow-table td {
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+
+        .foreshadow-table tr:hover td {
+            background: var(--bg-card-hover);
+        }
+
+        .symbol-name {
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+
+        /* 台词对照 */
+        .dialogue-section {
+            margin-bottom: 80px;
+        }
+
+        .dialogue-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 30px;
+        }
+
+        .dialogue-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(184, 161, 98, 0.05);
+        }
+
+        .dialogue-line {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+
+        .dialogue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .dialogue-cell {
+            padding: 20px;
+            border-right: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .dialogue-cell:last-child {
+            border-right: none;
+        }
+
+        .dialogue-ending {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 0.1rem;
+            margin-bottom: 8px;
+        }
+
+        .dialogue-meaning {
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* 章节大纲 */
+        .chapter-section {
+            margin-bottom: 80px;
+        }
+
+        .chapter-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .chapter-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--border-subtle);
+        }
+
+        .chapter-item {
+            position: relative;
+            padding: 30px;
+            margin-bottom: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            margin-left: 20px;
+        }
+
+        .chapter-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 35px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .chapter-number {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 0.2rem;
+            margin-bottom: 5px;
+        }
+
+        .chapter-name {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .chapter-desc {
+            color: var(--text-dim);
+            margin-bottom: 15px;
+        }
+
+        .chapter-choices {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        .chapter-choices strong {
+            color: var(--accent-gold);
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+                letter-spacing: 1rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ending-card {
+                grid-template-columns: 1fr;
+            }
+
+            .ending-badge {
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+            }
+
+            .dialogue-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>梦魇逃亡</h1>
+        <p class="subtitle">百合向心理惊悚视觉小说</p>
+        <p class="tagline">
+            "我以为失忆是解脱，<br>
+            后来才明白——被人精心安排的遗忘，<br>
+            才是真正的囚笼。"
+        </p>
+    </header>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#overview">概述</a></li>
+            <li><a href="#characters">人设</a></li>
+            <li><a href="#route">路线</a></li>
+            <li><a href="#endings">结局</a></li>
+            <li><a href="#foreshadow">伏笔</a></li>
+            <li><a href="#chapters">章节</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <!-- 概述 -->
+        <section id="overview">
+            <h2 class="section-title">概述 <span>OVERVIEW</span></h2>
+            <div class="overview">
+                <div class="overview-card">
+                    <h3>类型</h3>
+                    <p>百合向 / 心理惊悚 / 多结局</p>
+                </div>
+                <div class="overview-card">
+                    <h3>核心悬念</h3>
+                    <p>那场雷雨夜的"意外"，真相究竟是什么？</p>
+                </div>
+                <div class="overview-card">
+                    <h3>叙事结构</h3>
+                    <p>双线交织——失忆后的现在 × 记忆中的过去</p>
+                </div>
+                <div class="overview-card">
+                    <h3>结局数量</h3>
+                    <p>6个结局（含1个隐藏True End）</p>
+                </div>
+            </div>
+
+            <div class="story-box">
+                <h3>故事梗概</h3>
+                <p>
+                    初苓在一场雷雨夜后失去了部分记忆。
+                </p>
+                <p>
+                    那些记忆关于一个叫小雪的女孩——她的邻居，她的挚友，同年同月同日生的另一个自己。返校后，所有人都对某个话题避而不谈。课桌角落有陌生的划痕，书页被撕去扉页，同学的眼神总是躲闪。
+                </p>
+                <p>
+                    梦境中反复出现雷声、湖水、一个模糊的背影。
+                </p>
+                <p>
+                    小雪患有先天绝症，活不过十八岁。她的父母是瘾君子，把她当作摇钱树压榨到极限。而初苓是她灰暗人生中唯一的光。当光芒即将消失，小雪做出了一个决定——一个关于爱、占有、牺牲与欺骗的决定。
+                </p>
+            </div>
+        </section>
+
+        <!-- 人设 -->
+        <section id="characters" class="character-section">
+            <h2 class="section-title">人物设定 <span>CHARACTERS</span></h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-header">
+                        <h3 class="character-name chuling">初苓</h3>
+                        <p class="character-role">主角 / 可操控角色</p>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-quote">
+                            "我带你走。"<br>
+                            "走不掉的，他们会找到我。"<br>
+                            "那就让他们找不到。"
+                        </div>
+                        <div class="character-info">
+                            <div class="info-row">
+                                <span class="info-label">外在形象</span>
+                                <span class="info-value">普通女高中生，单亲家庭。五官清秀但不扎眼，是那种会被淹没在人群里的长相。</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">性格特质</span>
+                                <span class="info-value">外向、执拗、有点无赖。第一次搭讪被无视后不会生气离开，而是换个方式继续。骨子里是那种"认定了就不松手"的人。</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">致命弱点</span>
+                                <span class="info-value">粗线条，对他人情绪的微妙变化不够敏感。小雪的很多暗示，她都当成了玩笑。</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">角色弧光</span>
+                                <span class="info-value">从"被保护的无知"到"不得不直面真相"。她的善意成了小雪执念的燃料，也成了最后的救赎。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-header">
+                        <h3 class="character-name xiaoxue">小雪</h3>
+                        <p class="character-role">核心角色 / 记忆中的幽灵</p>
+                    </div>
+                    <div class="character-body">
+                        <div class="character-quote">
+                            "我想我看不到十八岁的自己了。但我想看到十八岁的你，二十八岁的你……九十八岁的你。那么久，你也该来见我了吧？"
+                        </div>
+                        <div class="character-info">
+                            <div class="info-row">
+                                <span class="info-label">外在形象</span>
+                                <span class="info-value">洋娃娃般的长相，瓷白皮肤，沉默寡言。幼年时几乎不与人交流，旁人以为是哑巴。</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">家庭背景</span>
+                                <span class="info-value">继父与母亲皆是瘾君子，欠下高利贷，把她当摇钱树。一天只允许睡两个半小时，其余时间必须画画换钱。</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">疾病设定</span>
+                                <span class="info-value">某种先天绝症，患者几乎无法活过十八岁。父母知晓后变本加厉——"反正活不长，不如榨干剩余价值。"</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">心理状态</span>
+                                <span class="info-value">对初苓的依赖演变为病态占有欲。恐惧被遗忘胜过恐惧死亡。"如果我不能永远陪着你，那就让你永远忘不掉我。"</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">画家身份</span>
+                                <span class="info-value">极有天赋但厌恶作画——因为每一笔都是被迫的劳动。唯独画初苓时，笔触是温柔的。</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 路线图 -->
+        <section id="route" class="route-map">
+            <h2 class="section-title">剧情路线图 <span>ROUTE MAP</span></h2>
+            <div class="route-diagram">
+                <svg class="route-svg" viewBox="0 0 900 700">
+                    <!-- 背景网格 -->
+                    <defs>
+                        <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#1a1a25" stroke-width="0.5" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+
+                    <!-- 连接线 -->
+                    <!-- 起点到追查选择 -->
+                    <path d="M 450 60 L 450 120" stroke="#4a6fa5" stroke-width="2" fill="none" />
+
+                    <!-- 追查选择分支 -->
+                    <path d="M 450 160 L 200 220" stroke="#555" stroke-width="2" fill="none" />
+                    <path d="M 450 160 L 450 220" stroke="#4a6fa5" stroke-width="2" fill="none" />
+
+                    <!-- 结局E路线 -->
+                    <path d="M 200 260 L 200 350" stroke="#555" stroke-width="2" fill="none" />
+                    <path d="M 200 390 L 200 480" stroke="#555" stroke-width="2" fill="none" stroke-dasharray="5,5" />
+                    <path d="M 200 520 L 200 610" stroke="#555" stroke-width="2" fill="none" />
+
+                    <!-- 主线继续 -->
+                    <path d="M 450 260 L 450 350" stroke="#4a6fa5" stroke-width="2" fill="none" />
+
+                    <!-- 证据解读分支 -->
+                    <path d="M 450 390 L 300 450" stroke="#888" stroke-width="2" fill="none" />
+                    <path d="M 450 390 L 450 450" stroke="#8b4557" stroke-width="2" fill="none" />
+                    <path d="M 450 390 L 600 450" stroke="#4a6fa5" stroke-width="2" fill="none" />
+
+                    <!-- 结局D -->
+                    <path d="M 300 490 L 300 610" stroke="#888" stroke-width="2" fill="none" />
+
+                    <!-- 结局C -->
+                    <path d="M 450 490 L 450 610" stroke="#8b4557" stroke-width="2" fill="none" />
+
+                    <!-- 深入调查 -->
+                    <path d="M 600 490 L 600 550" stroke="#4a6fa5" stroke-width="2" fill="none" />
+
+                    <!-- 最终分支 -->
+                    <path d="M 600 590 L 520 650" stroke="#6b5b95" stroke-width="2" fill="none" />
+                    <path d="M 600 590 L 680 650" stroke="#4a6fa5" stroke-width="2" fill="none" />
+
+                    <!-- 隐藏路线 -->
+                    <path d="M 750 550 L 820 610" stroke="#b8a162" stroke-width="2" fill="none"
+                        stroke-dasharray="8,4" />
+
+                    <!-- 节点 -->
+                    <!-- 起点 -->
+                    <circle cx="450" cy="50" r="15" fill="#12121a" stroke="#4a6fa5" stroke-width="2" />
+                    <text x="450" y="55" text-anchor="middle" fill="#e8e6e3" font-size="12">始</text>
+
+                    <!-- 第一选择点 -->
+                    <rect x="400" y="120" width="100" height="40" rx="5" fill="#12121a" stroke="#4a6fa5"
+                        stroke-width="2" />
+                    <text x="450" y="145" text-anchor="middle" fill="#e8e6e3" font-size="11">是否追查真相</text>
+
+                    <!-- 不追查分支 -->
+                    <rect x="140" y="220" width="120" height="40" rx="5" fill="#12121a" stroke="#555"
+                        stroke-width="2" />
+                    <text x="200" y="245" text-anchor="middle" fill="#8a8a9a" font-size="11">选择不追查</text>
+
+                    <rect x="130" y="350" width="140" height="40" rx="5" fill="#12121a" stroke="#555"
+                        stroke-width="1" />
+                    <text x="200" y="375" text-anchor="middle" fill="#8a8a9a" font-size="10">压抑 → 恐惧 → 愤怒</text>
+
+                    <rect x="140" y="480" width="120" height="40" rx="5" fill="#12121a" stroke="#555"
+                        stroke-width="1" />
+                    <text x="200" y="505" text-anchor="middle" fill="#8a8a9a" font-size="10">镜像事件×3</text>
+
+                    <!-- 结局E -->
+                    <rect x="130" y="610" width="140" height="50" rx="5" fill="rgba(50,50,60,0.3)" stroke="#555"
+                        stroke-width="2" />
+                    <text x="200" y="632" text-anchor="middle" fill="#888" font-size="14" font-weight="bold">结局E</text>
+                    <text x="200" y="650" text-anchor="middle" fill="#8a8a9a" font-size="10">空白之茧</text>
+
+                    <!-- 追查分支 -->
+                    <rect x="390" y="220" width="120" height="40" rx="5" fill="#12121a" stroke="#4a6fa5"
+                        stroke-width="2" />
+                    <text x="450" y="245" text-anchor="middle" fill="#e8e6e3" font-size="11">继续追查</text>
+
+                    <!-- 发现遗物 -->
+                    <rect x="380" y="350" width="140" height="40" rx="5" fill="#12121a" stroke="#4a6fa5"
+                        stroke-width="2" />
+                    <text x="450" y="375" text-anchor="middle" fill="#e8e6e3" font-size="11">发现小雪遗留物</text>
+
+                    <!-- 证据解读选择 -->
+                    <rect x="240" y="450" width="120" height="40" rx="5" fill="#12121a" stroke="#888"
+                        stroke-width="2" />
+                    <text x="300" y="475" text-anchor="middle" fill="#8a8a9a" font-size="10">相信虚假记忆</text>
+
+                    <rect x="390" y="450" width="120" height="40" rx="5" fill="#12121a" stroke="#8b4557"
+                        stroke-width="2" />
+                    <text x="450" y="475" text-anchor="middle" fill="#8b4557" font-size="10">真假难辨</text>
+
+                    <rect x="540" y="450" width="120" height="40" rx="5" fill="#12121a" stroke="#4a6fa5"
+                        stroke-width="2" />
+                    <text x="600" y="475" text-anchor="middle" fill="#e8e6e3" font-size="10">彻底调查</text>
+
+                    <!-- 结局D -->
+                    <rect x="230" y="610" width="140" height="50" rx="5" fill="rgba(100,100,100,0.2)" stroke="#888"
+                        stroke-width="2" />
+                    <text x="300" y="632" text-anchor="middle" fill="#aaa" font-size="14" font-weight="bold">结局D</text>
+                    <text x="300" y="650" text-anchor="middle" fill="#8a8a9a" font-size="10">溺罪</text>
+
+                    <!-- 结局C -->
+                    <rect x="380" y="610" width="140" height="50" rx="5" fill="rgba(139,69,87,0.2)" stroke="#8b4557"
+                        stroke-width="2" />
+                    <text x="450" y="632" text-anchor="middle" fill="#8b4557" font-size="14"
+                        font-weight="bold">结局C</text>
+                    <text x="450" y="650" text-anchor="middle" fill="#8a8a9a" font-size="10">裂镜</text>
+
+                    <!-- 核心真相 -->
+                    <rect x="530" y="550" width="140" height="40" rx="5" fill="#12121a" stroke="#4a6fa5"
+                        stroke-width="2" />
+                    <text x="600" y="575" text-anchor="middle" fill="#e8e6e3" font-size="10">找到核心真相</text>
+
+                    <!-- 结局A -->
+                    <rect x="460" y="630" width="120" height="50" rx="5" fill="rgba(107,91,149,0.2)" stroke="#6b5b95"
+                        stroke-width="2" />
+                    <text x="520" y="652" text-anchor="middle" fill="#6b5b95" font-size="14"
+                        font-weight="bold">结局A</text>
+                    <text x="520" y="670" text-anchor="middle" fill="#8a8a9a" font-size="10">葬花</text>
+
+                    <!-- 结局B -->
+                    <rect x="620" y="630" width="120" height="50" rx="5" fill="rgba(74,111,165,0.2)" stroke="#4a6fa5"
+                        stroke-width="2" />
+                    <text x="680" y="652" text-anchor="middle" fill="#4a6fa5" font-size="14"
+                        font-weight="bold">结局B</text>
+                    <text x="680" y="670" text-anchor="middle" fill="#8a8a9a" font-size="10">断弦</text>
+
+                    <!-- 隐藏路线入口 -->
+                    <rect x="700" y="510" width="100" height="40" rx="5" fill="#12121a" stroke="#b8a162"
+                        stroke-width="2" stroke-dasharray="5,3" />
+                    <text x="750" y="527" text-anchor="middle" fill="#b8a162" font-size="9">二周目</text>
+                    <text x="750" y="542" text-anchor="middle" fill="#b8a162" font-size="9">发现矛盾点</text>
+
+                    <!-- 结局S -->
+                    <rect x="770" y="600" width="120" height="60" rx="5" fill="rgba(184,161,98,0.15)" stroke="#b8a162"
+                        stroke-width="3" />
+                    <text x="830" y="625" text-anchor="middle" fill="#b8a162" font-size="16"
+                        font-weight="bold">结局S</text>
+                    <text x="830" y="645" text-anchor="middle" fill="#b8a162" font-size="11">同谋</text>
+
+                    <!-- 图例 -->
+                    <rect x="30" y="620" width="80" height="60" rx="3" fill="rgba(0,0,0,0.5)" stroke="#2a2a3a" />
+                    <text x="70" y="640" text-anchor="middle" fill="#8a8a9a" font-size="9">图例</text>
+                    <line x1="40" y1="655" x2="60" y2="655" stroke="#4a6fa5" stroke-width="2" />
+                    <text x="65" y="658" fill="#8a8a9a" font-size="8">主线</text>
+                    <line x1="40" y1="670" x2="60" y2="670" stroke="#b8a162" stroke-width="2" stroke-dasharray="5,3" />
+                    <text x="65" y="673" fill="#8a8a9a" font-size="8">隐藏</text>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 结局 -->
+        <section id="endings" class="endings-section">
+            <h2 class="section-title">结局详解 <span>ENDINGS</span></h2>
+            <div class="endings-grid">
+                <!-- 结局S -->
+                <div class="ending-card">
+                    <div class="ending-badge ending-s">
+                        <span class="ending-rank rank-s">S</span>
+                        <span class="ending-title">同谋</span>
+                        <span class="ending-difficulty">★★★★★ 隐藏</span>
+                    </div>
+                    <div class="ending-content">
+                        <p class="ending-tone">基调：悲伤但温暖的真相</p>
+                        <p class="ending-desc">
+                            真相反转——初苓从未失忆，小雪从未死亡。那场"溺亡"是两人精心策划的逃脱计划，目的是让小雪从地狱般的原生家庭中彻底消失。初苓带着小雪离开小城，用两年时间走遍她想看的风景、吃遍她想吃的美食。最后，小雪在初苓怀中安静离世，嘴角带笑。
+                        </p>
+                        <div class="ending-scene">
+                            几十年后，白发苍苍的初苓被推进墓园。她颤颤巍巍起身，将那座小小的墓碑擦拭干净，放上一束花，一本画册。"等了这么久，该换你等我了。"来年春天，墓碑旁多了一处新的。碑文刻着同年同月同日生的两个名字。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 结局A -->
+                <div class="ending-card">
+                    <div class="ending-badge ending-a">
+                        <span class="ending-rank rank-a">A</span>
+                        <span class="ending-title">葬花</span>
+                        <span class="ending-difficulty">★★★★☆</span>
+                    </div>
+                    <div class="ending-content">
+                        <p class="ending-tone">基调：跨越生死的羁绊</p>
+                        <p class="ending-desc">
+                            初苓找到全部真相，读完小雪的日记，明白了那份扭曲的爱背后的恐惧与绝望。她选择原谅——不是认同，而是理解。她用一生去记住小雪，每年忌日都会去湖边放花。
+                        </p>
+                        <div class="ending-scene">
+                            日记最后一页："我想看到十八岁的你，二十八岁的你……九十八岁的你。那么久，你也该来见我了吧？所以我就不祝你长命百岁了。"
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 结局B -->
+                <div class="ending-card">
+                    <div class="ending-badge ending-b">
+                        <span class="ending-rank rank-b">B</span>
+                        <span class="ending-title">断弦</span>
+                        <span class="ending-difficulty">★★★☆☆</span>
+                    </div>
+                    <div class="ending-content">
+                        <p class="ending-tone">基调：信任崩塌，永远无法再爱</p>
+                        <p class="ending-desc">
+                            初苓找到真相，但无法接受被操控的事实。她烧掉所有遗物，搬离城市。此后余生，她对一切试图接近的人都抱有偏执的戒备。再也没有爱上任何人，也没有人真正走进过她的心。
+                        </p>
+                        <div class="ending-scene">
+                            手机上有几条未读消息，都是关心。她一条条删掉，关掉手机。窗外灯火很热闹，屋内只有她一人。她笑了一下，但眼睛里什么都没有。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 结局C -->
+                <div class="ending-card">
+                    <div class="ending-badge ending-c">
+                        <span class="ending-rank rank-c">C</span>
+                        <span class="ending-title">裂镜</span>
+                        <span class="ending-difficulty">★★★☆☆</span>
+                    </div>
+                    <div class="ending-content">
+                        <p class="ending-tone">基调：病态的圆满</p>
+                        <p class="ending-desc">
+                            初苓在真假记忆的撕扯中精神崩溃，患上解离性身份障碍。她的体内分裂出了"小雪"的人格。从此，两人以另一种方式"永远在一起"。
+                        </p>
+                        <div class="ending-scene">
+                            精神病院的房间。"初苓"拿起画笔，画了两个小女孩手牵手的背影。画完后她歪着头看了一会儿，笑了。"这样我们就永远在一起了。"声音有时像初苓，有时像小雪。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 结局D -->
+                <div class="ending-card">
+                    <div class="ending-badge ending-d">
+                        <span class="ending-rank rank-d">D</span>
+                        <span class="ending-title">溺罪</span>
+                        <span class="ending-difficulty">★★☆☆☆</span>
+                    </div>
+                    <div class="ending-content">
+                        <p class="ending-tone">基调：永恒的自我惩罚</p>
+                        <p class="ending-desc">
+                            初苓相信了那些植入的虚假记忆，认定自己推了小雪落水。她选择自首，入狱。出狱后没有获得救赎，反而故意再次犯罪，重新入狱。周而复始。监狱成了她唯一的避难所——至少那里没有湖，没有雷雨，没有小雪的声音。
+                        </p>
+                        <div class="ending-scene">
+                            狱友问："你为什么老是出去又回来？"她没回答。铁栏杆围起来的地方，反而是最安全的。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 结局E -->
+                <div class="ending-card">
+                    <div class="ending-badge ending-e">
+                        <span class="ending-rank rank-e">E</span>
+                        <span class="ending-title">空白之茧</span>
+                        <span class="ending-difficulty">★★☆☆☆</span>
+                    </div>
+                    <div class="ending-content">
+                        <p class="ending-tone">基调：逃避的代价</p>
+                        <p class="ending-desc">
+                            初苓选择不追查，继续"正常"生活。但压抑的记忆化为恐惧，恐惧化为愤怒，愤怒消散后是更深的恐惧。她开始在镜中看到小雪的脸。最终，她砸碎镜子——砸碎的是镜中的小雪，也是她自己。
+                        </p>
+                        <div class="ending-scene">
+                            浴室地上躺着一个人。镜子碎了满地。碎片里映出无数张脸，分不清是初苓还是小雪。都在笑。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 伏笔对照 -->
+        <section id="foreshadow" class="foreshadow-section">
+            <h2 class="section-title">核心意象伏笔 <span>SYMBOLS</span></h2>
+            <div style="overflow-x: auto;">
+                <table class="foreshadow-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 100px;">意象</th>
+                            <th>E 空白之茧</th>
+                            <th>D 溺罪</th>
+                            <th>C 裂镜</th>
+                            <th>B 断弦</th>
+                            <th>A 葬花</th>
+                            <th>S 同谋</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="symbol-name">镜子</td>
+                            <td>映出小雪的脸，弑己之器</td>
+                            <td>狱中没有镜子，"终于安全了"</td>
+                            <td>镜中两人并存</td>
+                            <td>砸碎所有镜子，拒绝回忆</td>
+                            <td>湖面倒影，两人同框</td>
+                            <td>湖面是约定的信号，重生之镜</td>
+                        </tr>
+                        <tr>
+                            <td class="symbol-name">湖水</td>
+                            <td>恐惧之源，绕路走</td>
+                            <td>溺罪的"证据"</td>
+                            <td>梦中反复出现</td>
+                            <td>象征性地"填平"</td>
+                            <td>安放花束的地方</td>
+                            <td>逃脱的起点，重生之地</td>
+                        </tr>
+                        <tr>
+                            <td class="symbol-name">画册</td>
+                            <td>锁在抽屉里不敢看</td>
+                            <td>作为"证物"上交</td>
+                            <td>分裂后的"小雪"在画</td>
+                            <td>烧掉</td>
+                            <td>陪葬品</td>
+                            <td>记录两年旅途的新画册</td>
+                        </tr>
+                        <tr>
+                            <td class="symbol-name">雷雨</td>
+                            <td>每逢雷雨就发作</td>
+                            <td>在狱中听到雷声会蜷缩</td>
+                            <td>雷雨时两个人格切换</td>
+                            <td>搬去不下雨的城市</td>
+                            <td>忌日那天总是下雨</td>
+                            <td>那夜是"掩护"，雷声遮住脚步</td>
+                        </tr>
+                        <tr>
+                            <td class="symbol-name">手</td>
+                            <td>镜中的手伸出来</td>
+                            <td>"这双手推了她"</td>
+                            <td>两只手在画纸上重叠</td>
+                            <td>再也不让人牵</td>
+                            <td>墓前放下花的枯手</td>
+                            <td>十指相扣直到最后</td>
+                        </tr>
+                        <tr>
+                            <td class="symbol-name">那把伞</td>
+                            <td>不记得有伞</td>
+                            <td>"她把伞扔了跳下去的"</td>
+                            <td>梦中那把伞一直在转</td>
+                            <td>"连伞都是她的计算"</td>
+                            <td>被湖水冲走了</td>
+                            <td><strong>打开=安全撤离的暗号</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 台词呼应 -->
+        <section class="dialogue-section">
+            <h2 class="section-title">台词呼应 <span>DIALOGUE ECHOES</span></h2>
+
+            <div class="dialogue-card">
+                <div class="dialogue-header">
+                    <p class="dialogue-line">"我只是想让你记住我"</p>
+                </div>
+                <div class="dialogue-grid">
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局E</p>
+                        <p class="dialogue-meaning">镜中幻觉低语，来自恐惧的投射</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局D</p>
+                        <p class="dialogue-meaning">狱中闪回，误解为诅咒</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局C</p>
+                        <p class="dialogue-meaning">"小雪人格"对"初苓人格"说</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局B</p>
+                        <p class="dialogue-meaning">烧遗物时想起，愤怒回应</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局A</p>
+                        <p class="dialogue-meaning">日记原文，悲伤的告白</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局S</p>
+                        <p class="dialogue-meaning">临终前说，温柔的真实请求</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialogue-card">
+                <div class="dialogue-header">
+                    <p class="dialogue-line">"没什么"</p>
+                </div>
+                <div class="dialogue-grid">
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局E</p>
+                        <p class="dialogue-meaning">选择不追查时，压抑的起点</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局D</p>
+                        <p class="dialogue-meaning">自首时回答"为什么"</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局C</p>
+                        <p class="dialogue-meaning">医生询问时，已分不清自己</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局B</p>
+                        <p class="dialogue-meaning">拒绝关心的盔甲</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局A</p>
+                        <p class="dialogue-meaning">多年后被问起往事，释然</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局S</p>
+                        <p class="dialogue-meaning">母亲问行李为何这么多，带笑的掩饰</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialogue-card">
+                <div class="dialogue-header">
+                    <p class="dialogue-line">"你还会喜欢我吗"</p>
+                </div>
+                <div class="dialogue-grid">
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局E</p>
+                        <p class="dialogue-meaning">噩梦中变成尖叫质问</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局D</p>
+                        <p class="dialogue-meaning">法庭陈述时想起</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局C</p>
+                        <p class="dialogue-meaning">两人格对话："永远在一起"</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局B</p>
+                        <p class="dialogue-meaning">"原来这是操控的开始"</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局A</p>
+                        <p class="dialogue-meaning">明白小雪的恐惧</p>
+                    </div>
+                    <div class="dialogue-cell">
+                        <p class="dialogue-ending">结局S</p>
+                        <p class="dialogue-meaning">病情恶化后问，初苓吻额头作答</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 章节大纲 -->
+        <section id="chapters" class="chapter-section">
+            <h2 class="section-title">章节大纲 <span>CHAPTERS</span></h2>
+            <div class="chapter-timeline">
+                <div class="chapter-item">
+                    <p class="chapter-number">序章</p>
+                    <h3 class="chapter-name">空白</h3>
+                    <p class="chapter-desc">
+                        初苓醒来，发现自己躺在医院。母亲说她在湖边被人发现，淋着雨发呆，高烧三天不退。她不记得那天发生了什么——不，她好像不记得很多事。回到学校，所有人的眼神都有些奇怪。没人提起某个名字，但初苓总觉得有什么东西丢了。
+                    </p>
+                    <div class="chapter-choices">
+                        <strong>关键选择：</strong>是否去查看那张被贴了便签的课桌？
+                    </div>
+                </div>
+
+                <div class="chapter-item">
+                    <p class="chapter-number">第一章</p>
+                    <h3 class="chapter-name">裂缝</h3>
+                    <p class="chapter-desc">
+                        梦境开始侵入日常。雷声、湖水、一个模糊的背影反复出现。初苓发现自己的课桌角落有陌生的划痕，像是某种图案。美术室的窗台上有一盆快枯死的植物，花盆上写着她的名字，但她不记得自己养过花。
+                    </p>
+                    <div class="chapter-choices">
+                        <strong>关键选择：</strong>是否进入美术室？→ 决定是否发现小雪的遗物
+                    </div>
+                </div>
+
+                <div class="chapter-item">
+                    <p class="chapter-number">第二章</p>
+                    <h3 class="chapter-name">碎片</h3>
+                    <p class="chapter-desc">
+                        如果进入美术室，初苓会发现一个落了灰的画架，上面盖着白布。掀开白布，是一幅未完成的画——画中人是她自己，但眼睛没有画完。画架下面的抽屉里，有一本日记，扉页上写着一个名字：小雪。
+                    </p>
+                    <div class="chapter-choices">
+                        <strong>关键选择：</strong>如何处理这本日记？→ 影响后续信息获取量
+                    </div>
+                </div>
+
+                <div class="chapter-item">
+                    <p class="chapter-number">第三章</p>
+                    <h3 class="chapter-name">回溯</h3>
+                    <p class="chapter-desc">
+                        初苓开始阅读日记，记忆碎片涌入。她想起了童年——那个洋娃娃一样的邻居女孩，画板上的第一句对话，在小公园结下的友谊。也想起了小雪的家庭：飞叶子的父母、永远画不完的画、一天只睡两个半小时的日子。
+                    </p>
+                    <div class="chapter-choices">
+                        <strong>关键选择：</strong>面对涌入的记忆，是接受、怀疑、还是抗拒？
+                    </div>
+                </div>
+
+                <div class="chapter-item">
+                    <p class="chapter-number">第四章</p>
+                    <h3 class="chapter-name">深渊</h3>
+                    <p class="chapter-desc">
+                        日记的后半部分记录了小雪的变化——对初苓的依赖变成执念，恐惧变成疯狂。她写下了那些"暗示"和"催眠"的计划，也写下了对死亡的想象。初苓读到那句玩笑话："如果有一天我变得丑八怪，你还会喜欢我吗？"她想起自己当时的回答。
+                    </p>
+                    <div class="chapter-choices">
+                        <strong>关键选择：</strong>是否翻到日记的最后几页？→ 决定真相揭示程度
+                    </div>
+                </div>
+
+                <div class="chapter-item">
+                    <p class="chapter-number">第五章</p>
+                    <h3 class="chapter-name">抉择</h3>
+                    <p class="chapter-desc">
+                        所有碎片拼凑完成。初苓站在湖边，雷雨欲来。她必须做出选择：如何理解小雪的爱？如何面对那个被植入的"推人落水"的记忆？她的回答将决定故事的走向。
+                    </p>
+                    <div class="chapter-choices">
+                        <strong>最终分歧：</strong>根据此前所有选择的累积 + 最终态度 → 进入对应结局
+                    </div>
+                </div>
+
+                <div class="chapter-item" style="border-color: var(--accent-gold);">
+                    <p class="chapter-number" style="color: var(--accent-gold);">隐藏章节</p>
+                    <h3 class="chapter-name" style="color: var(--accent-gold);">同谋</h3>
+                    <p class="chapter-desc">
+                        二周目解锁。当玩家发现日记夹层里那张纸条——两人字迹交替写成的"我们的秘密"——真相反转。原来初苓从未失忆，小雪从未死亡。那场意外是两人共同导演的逃脱戏码。
+                    </p>
+                    <div class="chapter-choices">
+                        <strong>解锁条件：</strong>通关结局A + 收集全部记忆碎片 + 发现"矛盾点"
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>《梦魇逃亡》视觉小说企划书</p>
+        <p style="margin-top: 10px; font-size: 0.75rem;">百合向 · 心理惊悚 · 多结局</p>
+    </footer>
+</body>
+
+</html>
