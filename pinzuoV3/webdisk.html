@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网盘后端 — 品作设计 Pinzuo Design</title>
+  <meta name="description" content="品作设计网盘管理后端">
+  <link rel="icon" href="assets/static/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav page-nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html#hero" class="nav-logo">
+        <img src="assets/static/logo.jpg" alt="品作设计 Logo">
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">关于我们</a></li>
+        <li><a href="index.html#services">服务范围</a></li>
+        <li><a href="index.html#portfolio">作品集</a></li>
+        <li><a href="index.html#contact">联系我们</a></li>
+        <li><a href="webdisk.html" class="active">网盘后端</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>网盘后端</h1>
+    <p>WEBDISK MANAGEMENT</p>
+  </div>
+
+  <!-- Feature Cards -->
+  <div class="webdisk-grid">
+    <div class="webdisk-card">
+      <h3>用户登录</h3>
+      <div class="card-en">USER LOGIN</div>
+      <p>通过安全身份验证登录系统，管理个人账户与权限，支持多用户协同管理。</p>
+    </div>
+    <div class="webdisk-card">
+      <h3>文件管理</h3>
+      <div class="card-en">FILE MANAGEMENT</div>
+      <p>上传、下载、预览和组织设计文件。支持文件夹分类管理，快捷搜索定位，高效管理项目素材与资料。</p>
+    </div>
+    <div class="webdisk-card">
+      <h3>远程控制</h3>
+      <div class="card-en">REMOTE CONTROL</div>
+      <p>远程访问和管理公司服务器，支持文件同步和远程操作，随时随地掌控项目进度。</p>
+    </div>
+    <div class="webdisk-card">
+      <h3>权限管理</h3>
+      <div class="card-en">ACCESS CONTROL</div>
+      <p>精细化权限设置，按角色分配文件访问与编辑权限，保障项目数据安全与信息保密。</p>
+    </div>
+    <div class="webdisk-card">
+      <h3>文件传输</h3>
+      <div class="card-en">FILE TRANSFER</div>
+      <p>高速文件传输通道，支持大文件上传与下载，断点续传，确保设计文件安全高效传递。</p>
+    </div>
+    <div class="webdisk-card">
+      <h3>AI 与 API 接口</h3>
+      <div class="card-en">AI &amp; API INTERFACE</div>
+      <p>集成智能工具与 API 接口，提供自动化辅助功能，提升设计工作效率与团队协作水平。</p>
+    </div>
+  </div>
+
+  <!-- Login Section -->
+  <div class="webdisk-login">
+    <h2>登录网盘</h2>
+    <form onsubmit="return handleWebdiskLogin(event)">
+      <div class="form-group">
+        <label for="wdUser">用户名</label>
+        <input type="text" id="wdUser" class="form-input" placeholder="请输入用户名" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label for="wdPass">密码</label>
+        <input type="password" id="wdPass" class="form-input" placeholder="请输入密码" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="form-submit" style="width:100%">登录</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <img src="assets/static/logo2.jpg" alt="品作设计" class="footer-logo">
+        <p class="footer-tagline">设计与研究并重<br>艺术品质的人文环境</p>
+      </div>
+      <div class="footer-col">
+        <h4>联系方式</h4>
+        <p>电话：025-86220928</p>
+        <p>邮箱：pinzuodesign@163.com</p>
+        <p>地址：南京市鼓楼区北京西路 72 号 16 楼</p>
+      </div>
+      <div class="footer-col">
+        <h4>链接</h4>
+        <a href="index.html#portfolio">作品集</a>
+        <a href="webdisk.html">网盘</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    // Mobile nav toggle
+    var navToggle = document.getElementById('navToggle');
+    var navLinksEl = document.getElementById('navLinks');
+    if (navToggle && navLinksEl) {
+      navToggle.addEventListener('click', function () {
+        navLinksEl.classList.toggle('open');
+      });
+      navLinksEl.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') navLinksEl.classList.remove('open');
+      });
+    }
+
+    // Login handler (visual placeholder)
+    window.handleWebdiskLogin = function (e) {
+      e.preventDefault();
+      var btn = e.target.querySelector('.form-submit');
+      btn.textContent = '登录中...';
+      btn.disabled = true;
+      setTimeout(function () {
+        btn.textContent = '网盘功能开发中';
+        btn.style.background = '#8a7252';
+        setTimeout(function () {
+          btn.textContent = '登录';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 2000);
+      }, 800);
+      return false;
+    };
+  })();
+  </script>
+</body>
+</html>

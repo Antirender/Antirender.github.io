@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品详情 — 品作设计 Pinzuo Design</title>
+  <meta name="description" content="品作设计作品详情">
+  <link rel="icon" href="assets/static/favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav page-nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html#hero" class="nav-logo">
+        <img src="assets/static/logo.jpg" alt="品作设计 Logo">
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#about">关于我们</a></li>
+        <li><a href="index.html#services">服务范围</a></li>
+        <li><a href="index.html#portfolio">作品集</a></li>
+        <li><a href="index.html#contact">联系我们</a></li>
+        <li><a href="webdisk.html">网盘后端</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero" id="projectHero">
+    <div class="project-hero-bg">
+      <img src="" alt="" id="heroImg">
+    </div>
+    <div class="project-hero-overlay"></div>
+    <div class="project-hero-content">
+      <div class="project-cat" id="projectCat"></div>
+      <h1 id="projectName"></h1>
+      <div class="project-en" id="projectEn"></div>
+      <div class="project-year" id="projectYear"></div>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <a href="index.html#portfolio" class="back-link">&larr; 返回作品集</a>
+
+  <!-- Project Body -->
+  <div class="project-body">
+    <p class="project-desc" id="projectDesc"></p>
+    <div class="project-gallery" id="projectGallery"></div>
+  </div>
+
+  <!-- Project Navigation (prev / next) -->
+  <div class="project-nav" id="projectNav"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <img src="assets/static/logo2.jpg" alt="品作设计" class="footer-logo">
+        <p class="footer-tagline">设计与研究并重<br>艺术品质的人文环境</p>
+      </div>
+      <div class="footer-col">
+        <h4>联系方式</h4>
+        <p>电话：025-86220928</p>
+        <p>邮箱：pinzuodesign@163.com</p>
+        <p>地址：南京市鼓楼区北京西路 72 号 16 楼</p>
+      </div>
+      <div class="footer-col">
+        <h4>链接</h4>
+        <a href="index.html#portfolio">作品集</a>
+        <a href="webdisk.html">网盘</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lbClose" aria-label="关闭">&times;</button>
+    <button class="lb-prev" id="lbPrev" aria-label="上一张">&#10094;</button>
+    <button class="lb-next" id="lbNext" aria-label="下一张">&#10095;</button>
+    <div class="lb-content">
+      <img src="" alt="" id="lbImg">
+      <div class="lb-caption" id="lbCaption"></div>
+      <div class="lb-counter" id="lbCounter"></div>
+    </div>
+  </div>
+
+  <!-- Load main.js first (project data + lightbox) then project page script -->
+  <script src="js/main.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    var projects = window.__PINZUO_PROJECTS;
+    var catLabels = window.__PINZUO_CAT_LABELS;
+    if (!projects) return;
+
+    // Parse slug from URL
+    var params = new URLSearchParams(window.location.search);
+    var slug = params.get('slug');
+    if (!slug) { window.location.href = 'index.html#portfolio'; return; }
+
+    // Find project
+    var projIdx = -1;
+    var proj = null;
+    for (var i = 0; i < projects.length; i++) {
+      if (projects[i].slug === slug) { proj = projects[i]; projIdx = i; break; }
+    }
+    if (!proj) { window.location.href = 'index.html#portfolio'; return; }
+
+    // Update page title
+    document.title = proj.name + ' — 品作设计 Pinzuo Design';
+
+    // Fill hero
+    document.getElementById('heroImg').src = proj.cover;
+    document.getElementById('heroImg').alt = proj.name;
+    document.getElementById('projectCat').textContent = (catLabels[proj.cat] || proj.cat).toUpperCase();
+    document.getElementById('projectName').textContent = proj.name;
+    document.getElementById('projectEn').textContent = proj.en;
+    document.getElementById('projectYear').textContent = proj.year;
+
+    // Description
+    document.getElementById('projectDesc').textContent = proj.desc || '';
+
+    // Gallery
+    var gallery = document.getElementById('projectGallery');
+    var allImages = [proj.cover].concat(proj.images);
+    allImages.forEach(function (src, idx) {
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = proj.name + ' · ' + (idx + 1);
+      img.loading = 'lazy';
+      img.addEventListener('click', function () {
+        if (window.openLightbox) {
+          window.openLightbox(allImages, idx, proj.name + ' — ' + proj.en);
+        }
+      });
+      gallery.appendChild(img);
+    });
+
+    // Prev / Next navigation
+    var navEl = document.getElementById('projectNav');
+    var prevProj = projIdx > 0 ? projects[projIdx - 1] : null;
+    var nextProj = projIdx < projects.length - 1 ? projects[projIdx + 1] : null;
+    var html = '';
+    if (prevProj) {
+      html += '<a href="project.html?slug=' + prevProj.slug + '">&larr; ' + prevProj.name + '</a>';
+    } else {
+      html += '<span></span>';
+    }
+    html += '<a href="index.html#portfolio" style="font-size:.75rem;letter-spacing:.2em;text-transform:uppercase">全部作品</a>';
+    if (nextProj) {
+      html += '<a href="project.html?slug=' + nextProj.slug + '">' + nextProj.name + ' &rarr;</a>';
+    } else {
+      html += '<span></span>';
+    }
+    navEl.innerHTML = html;
+
+    // Mobile nav toggle
+    var navToggle = document.getElementById('navToggle');
+    var navLinksEl = document.getElementById('navLinks');
+    if (navToggle && navLinksEl) {
+      navToggle.addEventListener('click', function () {
+        navLinksEl.classList.toggle('open');
+      });
+      navLinksEl.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') navLinksEl.classList.remove('open');
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
