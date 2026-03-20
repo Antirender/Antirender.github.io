@@ -31,21 +31,29 @@
     img{max-width:100%;height:auto;display:block}
     .wrap{max-width:var(--max);margin:0 auto;padding:clamp(16px,3.5vw,32px)}
     .wrap p,.wrap li{max-width:var(--measure)}
-    header.site{border-bottom:1px solid var(--border);position:static;background:#fff;z-index:20;padding-block:clamp(6px,1.5vw,12px);box-shadow:0 2px 8px rgba(15,23,42,.08)}
-    .top{display:flex;gap:24px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+
     h1{font-size:var(--step-4);line-height:1.1;margin:0 0 .25rem;font-variation-settings:"wght" 750;text-wrap:balance}
     h1,h2,h3{text-wrap:balance}
     p{text-wrap:pretty;hyphens:auto;margin-bottom:1rem}
-    .tagline{margin:0 0 .5rem;color:var(--sub);font-size:var(--step-1);line-height:1.4}
-    nav.primary{display:flex;align-items:center}
-    nav.primary ul{display:flex;gap:14px;list-style:none;padding:0;margin:0}
-    nav.primary a{display:inline-block;padding:.55rem .7rem;border-radius:10px;color:var(--accent-ink);font-weight:600}
-    nav.primary a:hover{background:var(--card);text-decoration:none}
+
     .contact-list{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;align-items:center;list-style:none;margin:.5rem 0 0;padding:0}
     .contact-list li{display:flex;align-items:center;white-space:nowrap}
     .contact-list li+li::before{content:"•";color:var(--muted);margin:0 .6rem}
     .contact-list a{color:var(--sub);font-weight:600;text-decoration:none;font-size:var(--step--1)}
     .contact-list a:hover{text-decoration:underline}
+    header.site{border-bottom:1px solid var(--border);position:static;background:#fff;z-index:20;padding-block:clamp(6px,1.5vw,12px);box-shadow:0 2px 8px rgba(15,23,42,.08)}
+    .top{display:flex;gap:24px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+    .tagline{margin:0 0 .5rem;color:var(--sub);font-size:var(--step-1);line-height:1.4}
+    nav.primary{display:flex;align-items:center}
+    nav.primary ul{display:flex;gap:14px;list-style:none;padding:0;margin:0}
+    nav.primary a{display:inline-block;padding:.55rem .7rem;border-radius:10px;color:var(--accent-ink);font-weight:600}
+    nav.primary a:hover{background:var(--card);text-decoration:none}
+    body.mode-plain header.site{display:block}
+    body.mode-plain .hero{display:none}
+    body.mode-persona header.site{display:none}
+    .mode-switch-btn{display:inline-block;padding:.45rem .9rem;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--sub);font-size:var(--step--2);font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap}
+    .mode-switch-btn:hover{background:#fff;color:var(--ink);border-color:var(--muted)}
+    header.site .mode-switch-btn{margin:0}
     .hamburger{display:none;border:1px solid var(--border);background:#fff;border-radius:10px;padding:.55rem .7rem;font-weight:700;cursor:pointer;transition:.2s}
     .hamburger:hover{background:var(--card);border-color:var(--muted)}
     .sidebar{position:fixed;inset:0 0 0 0;width:300px;background:#fff;border-right:1px solid var(--border);transform:translateX(-100%);transition:transform .25s ease;z-index:40;padding:20px;overflow-y:auto;box-shadow:2px 0 10px rgba(15,23,42,.1)}
@@ -157,7 +165,38 @@
     #resume-full h2{margin:0 0 .4rem} #resume-full h3{margin:.75rem 0 .35rem}
     #resume-full .contact-list{margin:.25rem 0 .5rem}
     #resume-full ul{padding-left:1.15rem;margin:.25rem 0} #resume-full li{margin:.15rem 0}
-    .media-embed{display:block}
+    .media-embed{display:block;margin-top:2rem}
+
+    /* ===== MORE WORK DUAL VIEW ===== */
+    .view-toggle{display:flex;gap:0;margin-bottom:.25rem;border:1px solid var(--border);border-radius:10px;overflow:hidden;width:fit-content}
+    .view-toggle button{padding:.5rem 1.1rem;border:none;background:transparent;font-weight:700;font-size:var(--step--1);cursor:pointer;color:var(--sub);transition:.15s}
+    .view-toggle button.active{background:var(--accent);color:#fff}
+    .view-toggle button:not(.active):hover{background:var(--card)}
+    .view-hint{color:var(--muted);font-size:var(--step--2);margin:.35rem 0 1rem}
+    .mw-view{display:none}
+    .mw-view.active{display:block}
+    .dv-category{margin-bottom:2.5rem}
+    .dv-category-head{margin-bottom:.15rem}
+    .dv-category-head h3{margin:0 0 .1rem}
+    .dv-category-head .dv-cat-sub{font-size:var(--step--1);color:var(--muted);font-weight:600;margin:0 0 .75rem}
+    .dv-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    .dv-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(14px,2vw,22px);display:flex;flex-direction:column;gap:.5rem}
+    .dv-card h4{font-size:var(--step-0);font-weight:700;margin:0;line-height:1.3}
+    .dv-card .dv-desc{font-size:var(--step--1);color:var(--sub);line-height:1.55;margin:0}
+    .dv-card .dv-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:auto;padding-top:.5rem;align-items:center}
+    .dv-card .dv-actions .btn{margin:0}
+    .dv-card details{margin-top:.25rem;font-size:var(--step--2)}
+    .dv-card details summary{cursor:pointer;font-weight:600;color:var(--accent);padding:.25rem 0}
+    .dv-card details summary:hover{text-decoration:underline}
+    .dv-card details ul{list-style:none;padding:0;margin:.4rem 0 0}
+    .dv-card details li{padding:.3rem 0;border-top:1px solid var(--border)}
+    .dv-card details li:first-child{border-top:0}
+    .dv-card details a{color:var(--ink);font-weight:600;text-decoration:none}
+    .dv-card details a:hover{color:var(--accent)}
+    .dv-card details .dv-ver-desc{display:block;color:var(--muted);font-size:var(--step--2);margin-top:.1rem}
+    .dv-card.dv-card-full{grid-column:1/-1}
+    @media(max-width:980px){.dv-cards{grid-template-columns:1fr}}
+    @media(max-width:640px){.dv-card details .dv-ver-desc{font-size:.8rem}}
     @page {
       size: A4;                /* default A4 */
       margin: 10mm 12mm;       /* tight margins; tweak if needed */
@@ -167,8 +206,8 @@
     @media print {
 
       /* show ONLY the resume; hide embeds/menus/footers */
-      header.site, #philosophy, #featured, #more, #conclusion, footer, 
-      nav.primary, .sidebar, .scrim, .hamburger, .no-print, .media-embed {
+      #philosophy, #featured, #more, #conclusion, footer, 
+      .sidebar, .scrim, .hamburger, .no-print, .media-embed {
         display: none !important;
       }
 
@@ -227,9 +266,64 @@
       /* DO NOT append raw URLs after links (avoids extra width/lines) */
       a[href^="http"]::after { content: "" !important; }
     }
+
+    /* ===== HERO SECTION ===== */
+    .hero{position:relative;overflow:hidden;min-height:clamp(440px,60vh,680px)}
+    .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:64px 64px;opacity:.45}
+    .hero-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(6rem,18vw,16rem);font-variation-settings:"wght" 900;letter-spacing:-.04em;line-height:1;color:var(--ink);opacity:.04;white-space:nowrap;user-select:none;transition:opacity .4s}
+
+    .hero-inner{position:relative;z-index:1;max-width:var(--max);margin:0 auto;padding:clamp(32px,5vw,64px) clamp(16px,3.5vw,32px);display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,48px);align-items:end;min-height:inherit}
+    .hero-text{display:flex;flex-direction:column;gap:.75rem;padding-bottom:clamp(24px,4vw,56px);order:2}
+    .hero-text .hero-label{font-size:var(--step--1);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+    .hero-text .hero-title{font-size:var(--step-4);line-height:1.08;margin:0;font-variation-settings:"wght" 800}
+    .hero-text .hero-subtitle{font-size:var(--step-1);color:var(--sub);line-height:1.45;margin:0}
+    .hero-text .hero-cta{display:flex;gap:.75rem;margin-top:.5rem;flex-wrap:wrap;align-items:center}
+    .hero-text .hero-cta .btn{font-size:var(--step--1);padding:.55rem 1rem}
+
+    /* Figures: primary on left, secondary on right */
+    .hero-figures{--pri-left:0%;--pri-h:88%;--sec-left:52%;--sec-h:62%;position:relative;height:clamp(340px,44vw,520px);align-self:end;order:1}
+    .hero-fig{position:absolute;bottom:0;-webkit-tap-highlight-color:transparent;transition:left .42s cubic-bezier(.4,0,.2,1),height .42s cubic-bezier(.4,0,.2,1),opacity .42s ease,filter .42s ease}
+    .hero-fig img{display:block;height:100%;width:auto;object-fit:contain;pointer-events:none}
+    .hero-fig-primary{left:var(--pri-left);height:var(--pri-h);z-index:2;opacity:1;filter:none;cursor:pointer}
+    .hero-fig-secondary{left:var(--sec-left);height:var(--sec-h);z-index:1;opacity:.38;filter:grayscale(.45);cursor:pointer}
+    .hero-fig-secondary:hover{opacity:.55;filter:grayscale(.15)}
+    .hero-fig-secondary::after{content:'';position:absolute;inset:0;border-radius:8px;box-shadow:0 0 0 0 rgba(37,99,235,0);transition:box-shadow .3s}
+    .hero-fig-secondary:hover::after{box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+    .hero-tip{font-size:var(--step--2);color:var(--muted);margin:0;opacity:.55;font-weight:500}
+    .hero-contact{margin-top:.75rem}
+
+    /* ===== NAVBAR (sits inside hero) ===== */
+    .hero-nav{position:relative;z-index:10}
+    .hero-nav-bar{max-width:var(--max);margin:0 auto;padding:clamp(10px,1.5vw,16px) clamp(16px,3.5vw,32px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .hero-nav-brand{font-size:var(--step-2);font-variation-settings:"wght" 800;color:var(--ink);text-decoration:none;white-space:nowrap;letter-spacing:-.01em}
+    .hero-nav-links{display:flex;gap:6px;list-style:none;padding:0;margin:0;align-items:center}
+    .hero-nav-links a{display:inline-block;padding:.45rem .65rem;border-radius:8px;color:var(--ink);font-weight:600;font-size:var(--step--1);text-decoration:none}
+    .hero-nav-links a:hover{background:rgba(15,23,42,.05);text-decoration:none}
+
+    /* Hero + nav mobile */
+    .hero-hamburger{display:none;border:1px solid var(--border);background:#fff;border-radius:10px;padding:.45rem .65rem;font-weight:700;cursor:pointer}
+    .hero-hamburger:hover{background:var(--card)}
+    @media(max-width:980px){
+      .hero-nav-links{display:none}
+      .hero-hamburger{display:inline-block}
+      .hero-inner{grid-template-columns:1fr;text-align:center;justify-items:center}
+      .hero-text .hero-cta{justify-content:center}
+      .hero-figures{--pri-h:78%;--sec-left:48%;--sec-h:52%;height:clamp(220px,40vw,320px);width:100%;max-width:440px;margin:0 auto}
+    }
+    @media(max-width:640px){
+      .hero{min-height:auto}
+      .hero-figures{--pri-h:72%;--sec-left:44%;--sec-h:46%;height:clamp(180px,50vw,260px)}
+      .hero-word{font-size:clamp(4rem,22vw,8rem)}
+    }
+
+    @media print{
+      .hero,.hero-nav,header.site,.mode-switch-btn{display:none!important}
+    }
   </style>
 </head>
 <body>
+  <script>try{document.body.className=(localStorage.getItem('heroMode')==='plain')?'mode-plain':'mode-persona'}catch(e){document.body.className='mode-persona'}</script>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <!-- Mobile sidebar -->
   <aside class="sidebar" id="sidebar" aria-label="Mobile navigation menu" tabindex="-1" aria-hidden="true">
@@ -243,6 +337,8 @@
         <li><a href="#resume">Resume</a></li>
         <li><a href="#conclusion">Conclusion</a></li>
       </ul>
+      <h3>Display Mode</h3>
+      <button type="button" class="mode-switch-btn" id="sideSwitchBtn" style="margin-bottom:12px">Want a boring plain portfolio? → Switch</button>
       <h3>Project Links</h3>
       <ul class="side-projects">
         <li><a href="DESN18654V18/App-Store.html">DESN18654 V18 — Learn Code App</a></li>
@@ -260,21 +356,21 @@
   </aside>
   <div class="scrim" id="scrim" aria-hidden="true"></div>
 
-  <!-- Header -->
-  <header class="site">
+  <!-- Plain mode header (classic layout, like index 3) -->
+  <header class="site" id="plainHeader">
     <div class="wrap top" role="banner">
       <div>
         <h1>Yiyang Zhang</h1>
-        <p class="tagline">Interaction Design student — prototyping, usability testing, and clear documentation.</p>
+        <p class="tagline">Interaction Design student &mdash; prototyping, usability testing, and clear documentation.</p>
         <ul class="contact-list">
           <li><span>Oakville, ON</span></li>
           <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
           <li><a href="tel:+17783187386">+1 (778) 318-7386</a></li>
-          <li><a href="https://ixd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener" aria-label="School Host">School Host</a></li>
-          <li><a href="https://antirender.github.io" target="_blank" rel="noopener" aria-label="GitHub Pages">GitHub Pages</a></li>
-          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener" aria-label="LinkedIn profile">LinkedIn</a></li>
+          <li><a href="https://antirender.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
+          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0">
       <nav class="primary" aria-label="Primary">
         <ul>
           <li><a href="#philosophy">Philosophy</a></li>
@@ -284,11 +380,64 @@
           <li><a href="#conclusion">Conclusion</a></li>
         </ul>
       </nav>
-      <button class="hamburger" id="openSide" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
+      <button type="button" class="mode-switch-btn" id="plainSwitchBtn">Want the real me? → Switch</button>
+      <button class="hamburger" id="openSidePlain" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
+      </div>
     </div>
   </header>
 
   <main id="main-content">
+
+  <!-- Hero (topmost, contains its own nav) -->
+  <section class="hero" id="hero">
+    <!-- Nav inside hero -->
+    <div class="hero-nav" id="heroNav">
+      <div class="hero-nav-bar">
+        <a class="hero-nav-brand" id="heroNavBrand" href="#">Yiyang Zhang</a>
+        <ul class="hero-nav-links">
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#featured">Featured</a></li>
+          <li><a href="#more">More</a></li>
+          <li><a href="#resume">Resume</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+        <button class="hero-hamburger" id="openSide" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
+      </div>
+    </div>
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-word" id="heroWord" aria-hidden="true">YIYANG</div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-label" id="heroLabel">Interaction Design</span>
+        <h2 class="hero-title" id="heroTitle">Yiyang Zhang</h2>
+        <p class="hero-subtitle" id="heroSubtitle">I design from the real &mdash; prototyping, testing, and iterating until the thing works.</p>
+        <div class="hero-cta" id="heroCta">
+          <a class="btn" href="#featured">View Work</a>
+          <a class="btn" href="#resume" style="background:var(--card);color:var(--ink);border:1px solid var(--border)">Resume</a>
+        </div>
+        <button type="button" class="mode-switch-btn" id="heroSwitchBtn">Want a boring plain portfolio? → Switch</button>
+        <p class="hero-tip">Click a figure to switch persona</p>
+        <ul class="contact-list hero-contact">
+          <li><span>Oakville, ON</span></li>
+          <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
+          <li><a href="tel:+17783187386">+1 (778) 318-7386</a></li>
+          <li><a href="https://antirender.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
+          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="hero-figures" id="heroFigures">
+        <div class="hero-fig hero-fig-primary" id="heroFigPrimary" role="button" tabindex="0" aria-label="Switch identity">
+          <img src="image/outer.png" alt="Yiyang Zhang" id="heroImgPrimary">
+        </div>
+        <div class="hero-fig hero-fig-secondary" id="heroFigSecondary" role="button" tabindex="0" aria-label="Switch identity">
+          <img src="image/inner.png" alt="Antirender" id="heroImgSecondary">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Philosophy -->
   <section id="philosophy">
     <div class="wrap">
@@ -353,7 +502,7 @@
           <button class="btn" type="button" data-modal="moodpeek" data-modal-open aria-haspopup="dialog">View Case Study</button>
         </article>
    </div>
-      <div class="media-embed" style="margin:1.5rem 0 0">
+      <div class="media-embed" id="music-embed">
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify artist embed"></iframe>
       </div>
     </div>
@@ -362,44 +511,55 @@
   <!-- More Work -->
   <section id="more">
   <div class="wrap">
-    <h2>More Work — quick jumps</h2>
-    <p style="color:var(--sub);font-size:var(--step--1);margin-bottom:1rem">Select a version from any dropdown to jump directly to that page. Organized by project and course.</p>
+    <h2>More Work</h2>
+    <div class="view-toggle" id="moreViewToggle">
+      <button type="button" class="active" data-view="overview">Overview</button>
+      <button type="button" data-view="detailed">Detailed</button>
+    </div>
+    <p class="view-hint" id="moreViewHint">Quick-jump to a specific version or page.</p>
 
+    <!-- ========== OVERVIEW VIEW ========== -->
+    <div class="mw-view active" id="moreOverview">
     <ul class="main-projects">
       <li class="selector">
-        <select aria-label="Jump to Learn Code versions" onchange="jump(this)">
-          <option value="" selected disabled>Learn Code — Versions</option>
-          <option value="DESN18654V1/index.html">Version 1</option>
-          <option value="DESN18654V2/index.html">Version 2</option>
-          <option value="DESN18654V3/index.html">Version 3</option>
-          <option value="DESN18654V4/index.html">Version 4</option>
-          <option value="DESN18654V5/index.html">Version 5</option>
-          <option value="DESN18654V6/index.html">Version 6</option>
-          <option value="DESN18654V7/index.html">Version 7</option>
-          <option value="DESN18654V8/index.html">Version 8</option>
-          <option value="DESN18654V9/index.html">Version 9</option>
-          <option value="DESN18654V10/index.html">Version 10</option>
-          <option value="DESN18654V11/index.html">Version 11</option>
-          <option value="DESN18654V12/index.html">Version 12</option>
-          <option value="DESN18654V13/index.html">Version 13</option>
-          <option value="DESN18654V14/index.html">Version 14</option>
-          <option value="DESN18654V15/index.html">Version 15</option>
-          <option value="DESN18654V16/index.html">Version 16</option>
-          <option value="DESN18654V17/index.html">Version 17</option>
-          <option value="DESN18654V18/App-Store.html">Version 18 — App Store demo</option>
+        <select aria-label="Jump to QuickPick / Smart Sleep Tracker / Learn Code" onchange="jump(this)">
+          <option value="" selected disabled>QuickPick / Smart Sleep Tracker / Learn Code</option>
+          <optgroup label="QuickPick">
+            <option value="DESN18654V1/index.html">QuickPick — V1</option>
+            <option value="DESN18654V2/index.html">QuickPick — V2</option>
+            <option value="DESN18654V3/index.html">QuickPick — V3</option>
+          </optgroup>
+          <optgroup label="Smart Sleep Tracker">
+            <option value="DESN18654V4/index.html">Smart Sleep Tracker — V4</option>
+            <option value="DESN18654V5/index.html">Smart Sleep Tracker — V5</option>
+            <option value="DESN18654V6/index.html">Smart Sleep Tracker — V6</option>
+            <option value="DESN18654V7/index.html">Smart Sleep Tracker — V7</option>
+          </optgroup>
+          <optgroup label="Learn Code App">
+            <option value="DESN18654V8/index.html">Learn Code App — V8</option>
+            <option value="DESN18654V9/index.html">Learn Code App — V9</option>
+            <option value="DESN18654V10/index.html">Learn Code App — V10</option>
+            <option value="DESN18654V11/index.html">Learn Code App — V11</option>
+            <option value="DESN18654V12/index.html">Learn Code App — V12</option>
+            <option value="DESN18654V13/index.html">Learn Code App — V13</option>
+            <option value="DESN18654V14/index.html">Learn Code App — V14</option>
+            <option value="DESN18654V16/index.html">Learn Code App — V16</option>
+            <option value="DESN18654V17/index.html">Learn Code App — V17</option>
+            <option value="DESN18654V18/App-Store.html">Learn Code App — V18 — App Store demo</option>
+          </optgroup>
         </select>
       </li>
 
       <li class="selector">
-        <select aria-label="Jump to GSGC versions" onchange="jump(this)">
-          <option value="" selected disabled>GSGC — Versions</option>
-          <option value="GSGC/v1/index.html">Version 1</option>
-          <option value="GSGC/v2/index.html">Version 2</option>
-          <option value="GSGC/v3/index.html">Version 3</option>
-          <option value="GSGC/v4/index.html">Version 4</option>
-          <option value="GSGC/v5/index.html">Version 5</option>
-          <option value="GSGC/v6/index.html">Version 6</option>
-          <option value="GSGC/v7/index.html">Version 7</option>
+        <select aria-label="Jump to Green Sheridan Garden Club versions" onchange="jump(this)">
+          <option value="" selected disabled>Green Sheridan Garden Club Website Design</option>
+          <option value="GSGC/v1/index.html">1A — Website Documentation</option>
+          <option value="GSGC/v2/index.html">1B — Wireframe Version 1</option>
+          <option value="GSGC/v3/index.html">1B — Wireframe Version 2</option>
+          <option value="GSGC/v4/index.html">1B — Wireframe Version 3</option>
+          <option value="GSGC/v5/index.html">2 — Finished Website Version 1</option>
+          <option value="GSGC/v6/index.html">2 — Finished Website Version 2</option>
+          <option value="GSGC/v7/index.html">2 — Final Version</option>
         </select>
       </li>
 
@@ -417,16 +577,16 @@
       </li>
 
       <li class="selector">
-        <select aria-label="Jump to Typographic Systems variants" onchange="jump(this)">
-          <option value="" selected disabled>Typographic Systems — Variants</option>
-          <option value="VDES15738P1/index.html">Project 1</option>
-          <option value="VDES15738P2/index.html">Project 2</option>
-          <option value="VDES15738P3/index.html">Project 3</option>
-          <option value="VDES15738P3V1/index.html">Variant V1</option>
-          <option value="VDES15738P3V2/index.html">Variant V2</option>
-          <option value="VDES15738P3V3/index.html">Variant V3</option>
-          <option value="VDES15738P3V4/index.html">Variant V4</option>
-          <option value="VDES15738P3V5/index.html">Variant V5</option>
+        <select aria-label="Jump to Typographic Systems versions" onchange="jump(this)">
+          <option value="" selected disabled>Typographic Systems</option>
+          <option value="VDES15738P1/index.html">P1 — Letterform Construction, Classification and Use</option>
+          <option value="VDES15738P2/index.html">P2 — Grid Layout Exercises</option>
+          <option value="VDES15738P3/index.html">P3 — Typography on the Web Variant 1</option>
+          <option value="VDES15738P3V1/index.html">P3V1 — Typography on the Web Variant 2</option>
+          <option value="VDES15738P3V2/index.html">P3V2 — Typography on the Web Variant 3</option>
+          <option value="VDES15738P3V3/index.html">P3V3 — Typography on the Web Variant 4</option>
+          <option value="VDES15738P3V4/index.html">P3V4 — Typography on the Web Variant 5</option>
+          <option value="VDES15738P3V5/index.html">P3V5 — Typography on the Web Final Version</option>
         </select>
       </li>
 
@@ -437,39 +597,252 @@
           <option value="g2/index.html">Prototype 2</option>
           <option value="g3/index.html">Prototype 3</option>
           <option value="g4v1/index.html">Prototype 4 (V1)</option>
+          <option value="DESN18654V14/index.html">Hand surgery test</option>
           <option value="power-calculator/index.html">Power Calculator</option>
         </select>
       </li>
 
       <li class="selector">
         <select aria-label="Jump to Data Transparency versions" onchange="jump(this)">
-          <option value="" selected disabled>Data Transparency — Versions</option>
+          <option value="" selected disabled>Data Transparency</option>
           <option value="DESN10799/index.html">Overview</option>
-          <option value="DESN10799P3/index.html">V1</option>
-          <option value="DESN10799P3/index2.html">V2</option>
-          <option value="DESN10799P3/index3.html">V3</option>
-          <option value="DESN10799P3/index4.html">V4</option>
-          <option value="DESN10799P3/index5.html">V5</option>
-          <option value="DESN10799P3/index6.html">V6</option>
-          <option value="DESN10799P3/index7.html">V7</option>
+          <option value="DESN10799P3/index.html">Snapchat Data Transparency — V1</option>
+          <option value="DESN10799P3/index2.html">Snapchat Data Transparency — V2</option>
+          <option value="DESN10799P3/index3.html">Snapchat Data Transparency — V3</option>
+          <option value="DESN10799P3/index4.html">Snapchat Data Transparency — V4</option>
+          <option value="DESN10799P3/index5.html">Snapchat Data Transparency — V5</option>
+          <option value="DESN10799P3/index6.html">Snapchat Data Transparency — V6</option>
+          <option value="DESN10799P3/index7.html">Snapchat Data Transparency — V7</option>
         </select>
       </li>
-        <li class="selector">
-      <select aria-label="Jump to Weather Advisor versions" onchange="jump(this)">
-        <option value="" selected disabled>Weather Advisor — Versions</option>
-        <option value="DESN31927P1V2/index.html">Final</option>
-        <option value="DESN31927P1/DESN31927P1V1/index.html">V1</option>
-        <option value="DESN31927P1/DESN31927P1V2/index.html">V2</option>
-        <option value="DESN31927P1/DESN31927P1V3/index.html">V3</option>
-        <option value="DESN31927P1/DESN31927P1V4/index.html">V4</option>
-        <option value="DESN31927P1/DESN31927P1V5/index.html">V5</option>
-        <option value="DESN31927P1/DESN31927P1V6/index.html">V6</option>
-        <option value="DESN31927P1/DESN31927P1V7/index.html">V7</option>
-        <option value="DESN31927P1/DESN31927P1V8/index.html">V8</option>
-        <option value="DESN31927P1/DESN31927P1V9/index.html">V9</option>
-      </select>
-    </li>
+
+      <li class="selector">
+        <select aria-label="Jump to Weather Advisor versions" onchange="jump(this)">
+          <option value="" selected disabled>Weather Advisor</option>
+          <option value="DESN31927P1V2/index.html">Final</option>
+          <option value="DESN31927P1/DESN31927P1V1/index.html">Weather Advisor — V1</option>
+          <option value="DESN31927P1/DESN31927P1V2/index.html">Weather Advisor — V2</option>
+          <option value="DESN31927P1/DESN31927P1V3/index.html">Weather Advisor — V3</option>
+          <option value="DESN31927P1/DESN31927P1V4/index.html">Weather Advisor — V4</option>
+          <option value="DESN31927P1/DESN31927P1V5/index.html">Weather Advisor — V5</option>
+          <option value="DESN31927P1/DESN31927P1V6/index.html">Weather Advisor — V6</option>
+          <option value="DESN31927P1/DESN31927P1V7/index.html">Weather Advisor — V7</option>
+          <option value="DESN31927P1/DESN31927P1V8/index.html">Weather Advisor — V8</option>
+          <option value="DESN31927P1/DESN31927P1V9/index.html">Weather Advisor — V9</option>
+        </select>
+      </li>
     </ul>
+    </div>
+
+    <!-- ========== DETAILED VIEW ========== -->
+    <div class="mw-view" id="moreDetailed">
+
+      <!-- A. Decision Tools / Everyday Products -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Decision Tools / Everyday Products</h3>
+          <p class="dv-cat-sub">Decision Tools / Everyday Products</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card">
+            <h4>QuickPick</h4>
+            <p class="dv-desc">A lightweight random-decision tool that helps you pick between meals, drinks, desserts, and entertainment when you can't decide. Tap a category, get a randomized result with image feedback — turning small, stuck moments into something quicker and more fun.</p>
+            <p class="dv-desc" style="color:var(--muted);font-style:italic">Shows the evolution from early interaction ideas to a more complete, usable interface.</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN18654V3/index.html">Open Latest</a>
+              <details>
+                <summary>All versions (3)</summary>
+                <ul>
+                  <li><a href="DESN18654V1/index.html">QuickPick — V1</a></li>
+                  <li><a href="DESN18654V2/index.html">QuickPick — V2</a></li>
+                  <li><a href="DESN18654V3/index.html">QuickPick — V3</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+
+          <div class="dv-card">
+            <h4>Smart Sleep Tracker</h4>
+            <p class="dv-desc">A daily tool built around sleep management — helping you figure out better sleep/wake times, track sleep debt, analyze your chronotype, and prepare for sleep with a relaxation mode. It turns abstract sleep concepts into an interface you can immediately understand and act on.</p>
+            <p class="dv-desc" style="color:var(--muted);font-style:italic">Shows how a utility product grows from a basic calculator into a more complete sleep management experience.</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN18654V7/index.html">Open Latest</a>
+              <details>
+                <summary>All versions (4)</summary>
+                <ul>
+                  <li><a href="DESN18654V4/index.html">Smart Sleep Tracker — V4</a></li>
+                  <li><a href="DESN18654V5/index.html">Smart Sleep Tracker — V5</a></li>
+                  <li><a href="DESN18654V6/index.html">Smart Sleep Tracker — V6</a></li>
+                  <li><a href="DESN18654V7/index.html">Smart Sleep Tracker — V7</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B. UX Interaction -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>UX Interaction</h3>
+          <p class="dv-cat-sub">UX Interaction</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <h4>Green Sheridan Garden Club Website Design</h4>
+            <p class="dv-desc">A responsive website designed for a virtual gardening community, focused on making content structure, navigation paths, and page hierarchy clear — so users can easily find membership info, gallery, community projects, resources, and contact pages. The project began with site documentation and information architecture, moved through wireframes, and evolved into a fully realized visual design.</p>
+            <p class="dv-desc" style="color:var(--muted);font-style:italic">Shows the complete evolution of a website from early documentation, to initial layout and wireframes, to finished pages.</p>
+            <div class="dv-actions">
+              <a class="btn" href="GSGC/v7/index.html">Open Final Version</a>
+              <details>
+                <summary>All versions (7)</summary>
+                <ul>
+                  <li>
+                    <a href="GSGC/v1/index.html">V1 — 1A / Website Documentation</a>
+                    <span class="dv-ver-desc">Focused on club info, personas, site map, content analysis, and user flow — defining who the site serves, what it contains, and how information is organized.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v2/index.html">V2 — 1B / Wireframe Version 1</a>
+                    <span class="dv-ver-desc">Started translating the site structure into page layouts and wireframes, establishing the initial information hierarchy and navigation paths.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v3/index.html">V3 — 1B / Wireframe Version 2</a>
+                    <span class="dv-ver-desc">Continued refining page organization, navigation relationships, and content distribution from the initial wireframe.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v4/index.html">V4 — 1B / Wireframe Version 3</a>
+                    <span class="dv-ver-desc">A more complete initial layout phase, emphasizing wireframe clarity, page rhythm, and structural precision.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v5/index.html">V5 — 2 / Finished Website Version 1</a>
+                    <span class="dv-ver-desc">Built on the wireframe foundation with fuller content and visual language, approaching a finished webpage.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v6/index.html">V6 — 2 / Finished Website Version 2</a>
+                    <span class="dv-ver-desc">Further refined content, visuals, and interaction details, bringing the site closer to its final presentation.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v7/index.html">V7 — 2 / Finished Website Final Version</a>
+                    <span class="dv-ver-desc">The final version — fully integrated content, layout, and visual presentation as the completed design.</span>
+                  </li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C. Visual System / Typography -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Visual System / Typography</h3>
+          <p class="dv-cat-sub">Visual System / Typography</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card">
+            <h4>P1 — Letterform Construction, Classification and Use</h4>
+            <p class="dv-desc">A web project exploring letterform construction, paragraph typesetting, and type classification logic. It covers letter anatomy annotation, screen-optimized paragraph settings, and the identification of different typeface classification features — turning foundational typography rules into visual, readable, interactive web content.</p>
+            <div class="dv-actions">
+              <a class="btn" href="VDES15738P1/index.html">Open Project</a>
+            </div>
+          </div>
+
+          <div class="dv-card">
+            <h4>P2 — Grid Layout Exercises</h4>
+            <p class="dv-desc">A typography project centered on packaging text and layout hierarchy, built around grid systems, information hierarchy, bilingual content organization, and the process of translating static layouts into HTML/CSS Grid and Flexbox. It focuses on using type, weight, spacing, and layout to give complex content clear priority and scannability.</p>
+            <div class="dv-actions">
+              <a class="btn" href="VDES15738P2/index.html">Open Project</a>
+            </div>
+          </div>
+
+          <div class="dv-card dv-card-full">
+            <h4>P3 — Typography on the Web</h4>
+            <p class="dv-desc">A project that translates typographer and designer research into a web experience. It combines designer research, typeface and work analysis, web hierarchy design, and front-end implementation — turning research content into a browsable, readable website with visual explanatory power.</p>
+            <div class="dv-actions">
+              <a class="btn" href="VDES15738P3V5/index.html">Open Final Version</a>
+              <details>
+                <summary>All variants (6)</summary>
+                <ul>
+                  <li><a href="VDES15738P3/index.html">P3 — Typography on the Web Variant 1</a></li>
+                  <li><a href="VDES15738P3V1/index.html">P3V1 — Typography on the Web Variant 2</a></li>
+                  <li><a href="VDES15738P3V2/index.html">P3V2 — Typography on the Web Variant 3</a></li>
+                  <li><a href="VDES15738P3V3/index.html">P3V3 — Typography on the Web Variant 4</a></li>
+                  <li><a href="VDES15738P3V4/index.html">P3V4 — Typography on the Web Variant 5</a></li>
+                  <li><a href="VDES15738P3V5/index.html">P3V5 — Typography on the Web Final Version</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D. Privacy, Permissions / Data Transparency -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Data Transparency</h3>
+          <p class="dv-cat-sub">Privacy, Permissions / Data Transparency</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <h4>Snapchat Data Transparency</h4>
+            <p class="dv-desc">An interactive explanation page that translates platform data collection, permission scopes, privacy implications, and user control options into something easier to understand. Rather than just listing &ldquo;what the platform collects,&rdquo; it helps users see how their data connects to location, contacts, memories, ad personalization, and other real usage contexts — making abstract privacy issues concrete and readable.</p>
+            <p class="dv-desc" style="color:var(--muted);font-style:italic">Emphasizes breaking down complex information, transparent communication, and explanatory design from the user's perspective.</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN10799P3/index7.html">Open Latest (V7)</a>
+              <details>
+                <summary>All versions (8)</summary>
+                <ul>
+                  <li><a href="DESN10799/index.html">Overview</a></li>
+                  <li><a href="DESN10799P3/index.html">Snapchat Data Transparency — V1</a></li>
+                  <li><a href="DESN10799P3/index2.html">Snapchat Data Transparency — V2</a></li>
+                  <li><a href="DESN10799P3/index3.html">Snapchat Data Transparency — V3</a></li>
+                  <li><a href="DESN10799P3/index4.html">Snapchat Data Transparency — V4</a></li>
+                  <li><a href="DESN10799P3/index5.html">Snapchat Data Transparency — V5</a></li>
+                  <li><a href="DESN10799P3/index6.html">Snapchat Data Transparency — V6</a></li>
+                  <li><a href="DESN10799P3/index7.html">Snapchat Data Transparency — V7</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E. Weather, Real Feel / Human-Centered Data -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Weather Advisor</h3>
+          <p class="dv-cat-sub">Weather, Real Feel / Human-Centered Data</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <h4>Weather Advisor &middot; Real Weather</h4>
+            <p class="dv-desc">A project that re-translates traditional weather data into human-felt experience. Instead of just showing temperature, humidity, wind speed, and UV, it explains &ldquo;how the weather actually makes you feel&rdquo; — helping you decide what to wear, whether outdoor activities are comfortable, and whether you need to watch for health risks.</p>
+            <p class="dv-desc">It combines Open-Meteo API data with heat index, wind chill, and other formulas to calculate real feel, then uses visual gauges, semantic color, and explanatory bullet points to turn abstract weather numbers into intuitive, actionable information.</p>
+            <p class="dv-desc" style="color:var(--muted);font-style:italic">Shows how to close the gap between raw data, calculation logic, and user understanding — turning weather information from &ldquo;readings&rdquo; into &ldquo;feeling + decision support.&rdquo;</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN31927P1V2/index.html">Open Final</a>
+              <details>
+                <summary>All versions (10)</summary>
+                <ul>
+                  <li><a href="DESN31927P1V2/index.html">Final</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V1/index.html">Weather Advisor — V1</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V2/index.html">Weather Advisor — V2</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V3/index.html">Weather Advisor — V3</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V4/index.html">Weather Advisor — V4</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V5/index.html">Weather Advisor — V5</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V6/index.html">Weather Advisor — V6</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V7/index.html">Weather Advisor — V7</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V8/index.html">Weather Advisor — V8</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V9/index.html">Weather Advisor — V9</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /moreDetailed -->
+
   </div>
     <div class="wrap">
       <ul class="card-grid">
@@ -501,7 +874,6 @@
           <li><span>Oakville, ON</span></li>
           <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
           <li><a href="tel:+17783187386">+1(778)318-7386</a></li>
-          <li><a href="https://ixd1239.phoenix.sheridan.on.ca" target="_blank" rel="noopener" aria-label="School Host">School Host</a></li>
           <li><a href="https://antirender.github.io" target="_blank" rel="noopener" aria-label="GitHub Pages">GitHub Pages</a></li>
           <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener" aria-label="LinkedIn profile">LinkedIn</a></li>
         </ul>
@@ -932,12 +1304,32 @@
     sidebarLinks.forEach(link=>{link.addEventListener('click',closeSide)});
     document.getElementById('year').textContent=new Date().getFullYear();
     openBtn.addEventListener('click',openSide);
+    var openBtnPlain=document.getElementById('openSidePlain');
+    if(openBtnPlain) openBtnPlain.addEventListener('click',openSide);
     closeBtn.addEventListener('click',closeSide);
     scrim.addEventListener('click',closeSide);
     window.addEventListener('keydown',(e)=>{if(e.key==='Escape'){closeSide()}});
 
     if(printResumeBtn){printResumeBtn.addEventListener('click',()=>window.print())}
     function jump(sel){const v=sel.value;sel.selectedIndex=0;if(v)location.href=v;}
+
+    /* ===== MORE WORK VIEW TOGGLE ===== */
+    (function(){
+      var toggle=document.getElementById('moreViewToggle');
+      var hint=document.getElementById('moreViewHint');
+      var views={overview:document.getElementById('moreOverview'),detailed:document.getElementById('moreDetailed')};
+      var hints={overview:'Quick-jump to a specific version or page.',detailed:'Read what each project does, then open the page.'};
+      if(!toggle)return;
+      var saved=localStorage.getItem('moreWorkView')||'overview';
+      function activate(name){
+        toggle.querySelectorAll('button').forEach(function(b){b.classList.toggle('active',b.dataset.view===name)});
+        Object.keys(views).forEach(function(k){if(views[k])views[k].classList.toggle('active',k===name)});
+        if(hint)hint.textContent=hints[name]||'';
+        localStorage.setItem('moreWorkView',name);
+      }
+      toggle.addEventListener('click',function(e){var btn=e.target.closest('button[data-view]');if(btn)activate(btn.dataset.view);});
+      activate(saved);
+    })();
 
     const modalOpenButtons=document.querySelectorAll('[data-modal-open]');
     const modalCloseButtons=document.querySelectorAll('[data-modal-close]');
@@ -1155,6 +1547,104 @@
 
     removeSnapchatPreview();
     initializeSnapchatModal(false);
+
+    /* ===== HERO MODE SYSTEM ===== */
+    (function(){
+      var body=document.body;
+      var heroWord=document.getElementById('heroWord');
+      var heroLabel=document.getElementById('heroLabel');
+      var heroTitle=document.getElementById('heroTitle');
+      var heroSubtitle=document.getElementById('heroSubtitle');
+      var navBrand=document.getElementById('heroNavBrand');
+      var figPrimary=document.getElementById('heroFigPrimary');
+      var figSecondary=document.getElementById('heroFigSecondary');
+      var imgPrimary=document.getElementById('heroImgPrimary');
+      var imgSecondary=document.getElementById('heroImgSecondary');
+      var heroCta=document.getElementById('heroCta');
+      var heroSwitchBtn=document.getElementById('heroSwitchBtn');
+      var plainSwitchBtn=document.getElementById('plainSwitchBtn');
+      var sideSwitchBtn=document.getElementById('sideSwitchBtn');
+      var swapping=false;
+
+      var identities={
+        outer:{img:'image/outer.png',alt:'Yiyang Zhang',word:'YIYANG',label:'Interaction Design',title:'Yiyang Zhang',subtitle:'I design from the real \u2014 prototyping, testing, and iterating until the thing works.',cta:'<a class="btn" href="#featured">View Work</a><a class="btn" href="#resume" style="background:var(--card);color:var(--ink);border:1px solid var(--border)">Resume</a>'},
+        inner:{img:'image/inner.png',alt:'Antirender',word:'ANTIRENDER',label:'Creative Alter Ego',title:'Antirender',subtitle:'Music, experiments, and the things that don\u2019t fit neatly into a portfolio.',cta:'<a class="btn" href="#music-embed">Music</a><a class="btn" href="#more" style="background:var(--card);color:var(--ink);border:1px solid var(--border)">View More Work</a>'}
+      };
+
+      var mode=localStorage.getItem('heroMode')||'persona';
+      var primaryId=localStorage.getItem('heroPrimary')||'outer';
+
+      function secondaryId(){return primaryId==='outer'?'inner':'outer';}
+
+      function applyState(){
+        var isPlain=(mode==='plain');
+        body.classList.remove('mode-plain','mode-persona');
+        body.classList.add(isPlain?'mode-plain':'mode-persona');
+
+        var personaLabel='Want a boring plain portfolio? \u2192 Switch';
+        var plainLabel='Want the real me? \u2192 Switch';
+        if(heroSwitchBtn) heroSwitchBtn.textContent=personaLabel;
+        if(plainSwitchBtn) plainSwitchBtn.textContent=plainLabel;
+        if(sideSwitchBtn) sideSwitchBtn.textContent=isPlain?plainLabel:personaLabel;
+
+        var p=identities[primaryId];
+        var s=identities[secondaryId()];
+        heroWord.textContent=p.word;
+        heroLabel.textContent=p.label;
+        heroTitle.textContent=p.title;
+        heroSubtitle.textContent=p.subtitle;
+        navBrand.textContent=p.title;
+        heroCta.innerHTML=p.cta;
+
+        imgPrimary.src=p.img;
+        imgPrimary.alt=p.alt;
+        imgSecondary.src=s.img;
+        imgSecondary.alt=s.alt;
+
+        localStorage.setItem('heroMode',mode);
+        localStorage.setItem('heroPrimary',primaryId);
+      }
+
+      /* Position-swap animation (≤ 450 ms) */
+      function doSwap(){
+        if(swapping)return;
+        swapping=true;
+        var cs=getComputedStyle(document.getElementById('heroFigures'));
+        var sL=cs.getPropertyValue('--sec-left').trim();
+        var sH=cs.getPropertyValue('--sec-h').trim();
+        var pL=cs.getPropertyValue('--pri-left').trim();
+        var pH=cs.getPropertyValue('--pri-h').trim();
+        figPrimary.style.left=sL;figPrimary.style.height=sH;figPrimary.style.opacity='.38';figPrimary.style.filter='grayscale(.45)';figPrimary.style.zIndex='1';
+        figSecondary.style.left=pL;figSecondary.style.height=pH;figSecondary.style.opacity='1';figSecondary.style.filter='none';figSecondary.style.zIndex='2';
+        setTimeout(function(){
+          figPrimary.style.cssText='transition:none';
+          figSecondary.style.cssText='transition:none';
+          primaryId=secondaryId();
+          applyState();
+          requestAnimationFrame(function(){
+            figPrimary.style.cssText='';
+            figSecondary.style.cssText='';
+            swapping=false;
+          });
+        },420);
+      }
+
+      function toggleMode(){
+        mode=(mode==='persona')?'plain':'persona';
+        applyState();
+      }
+
+      if(heroSwitchBtn) heroSwitchBtn.addEventListener('click',toggleMode);
+      if(plainSwitchBtn) plainSwitchBtn.addEventListener('click',toggleMode);
+      if(sideSwitchBtn) sideSwitchBtn.addEventListener('click',toggleMode);
+
+      figPrimary.addEventListener('click',doSwap);
+      figSecondary.addEventListener('click',doSwap);
+      figPrimary.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();doSwap();}});
+      figSecondary.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();doSwap();}});
+
+      applyState();
+    })();
 
     const moodpeekDemoSelect=document.getElementById('moodpeek-demo-select');
     const moodpeekOpenLink=document.getElementById('moodpeek-open-demo');
