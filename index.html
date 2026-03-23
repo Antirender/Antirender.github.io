@@ -393,10 +393,8 @@
     .skill-card h4{font-size:var(--step-0);font-weight:700;margin:0 0 .5rem;color:var(--ink)}
     .skill-card p{font-size:var(--step--1);color:var(--sub);margin:0;line-height:1.55}
     .skill-card .skill-emoji{font-size:1.5rem;margin-bottom:.4rem;display:block}
-    .toolbox{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0}
-    .toolbox .tool-badge{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .7rem;border-radius:999px;background:var(--card);border:1px solid var(--border);font-size:var(--step--2);font-weight:700;color:var(--sub);transition:border-color .2s,color .2s}
-    .toolbox .tool-badge:hover{border-color:var(--accent);color:var(--accent)}
-    .toolbox .tool-badge .tool-icon{font-size:1rem}
+    .toolbox{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0;align-items:center}
+    .toolbox img{height:22px;border-radius:3px}
     @media(max-width:980px){.skills-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:560px){.skills-grid{grid-template-columns:1fr}}
 
@@ -409,11 +407,11 @@
   <script>
     // Apply saved theme before paint
     try{
-      var _t=localStorage.getItem('siteTheme')||'vivid-light';
+      var _t=localStorage.getItem('siteTheme')||'white';
       document.documentElement.setAttribute('data-theme',_t);
-      document.body.className=(localStorage.getItem('heroMode')==='plain')?'mode-plain':'mode-persona';
-      if(localStorage.getItem('emojiMode')!=='off') document.body.classList.add('emoji-on');
-    }catch(e){document.body.className='mode-persona emoji-on';document.documentElement.setAttribute('data-theme','vivid-light')}
+      document.body.className=(localStorage.getItem('heroMode')==='persona')?'mode-persona':'mode-plain';
+      if(localStorage.getItem('emojiMode')==='on') document.body.classList.add('emoji-on');
+    }catch(e){document.body.className='mode-plain';document.documentElement.setAttribute('data-theme','white')}
   </script>
 
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -434,7 +432,7 @@
           <option value="zh-TW">繁體中文</option>
           <option value="fr">Français</option>
         </select>
-        <button type="button" class="emoji-toggle" aria-label="Toggle emoji mode">😊 Emoji</button>
+        <button type="button" class="emoji-toggle" aria-label="Toggle emoji mode">Plain</button>
       </div>
       <h3 data-i18n="side.navigate">Navigate</h3>
       <ul class="side-links">
@@ -503,7 +501,7 @@
           <option value="zh-TW">繁體中文</option>
           <option value="fr">Français</option>
         </select>
-        <button type="button" class="emoji-toggle" aria-label="Toggle emoji mode">😊 Emoji</button>
+        <button type="button" class="emoji-toggle" aria-label="Toggle emoji mode">Plain</button>
       </div>
       </div>
       <button type="button" class="mode-switch-btn" id="plainSwitchBtn">Want the real me? → Switch</button>
@@ -541,7 +539,7 @@
             <option value="zh-TW">繁體中文</option>
             <option value="fr">Français</option>
           </select>
-          <button type="button" class="emoji-toggle" aria-label="Toggle emoji mode">😊 Emoji</button>
+          <button type="button" class="emoji-toggle" aria-label="Toggle emoji mode">Plain</button>
         </div>
         <button class="hero-hamburger" id="openSide" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
       </div>
@@ -583,8 +581,8 @@
   <!-- Philosophy -->
   <section id="philosophy">
     <div class="wrap">
-      <h2>Design Philosophy</h2>
-      <p>I design from the real. I keep what’s real, using limits to define form. If beauty shows up, it’s because the thing works.
+      <h2 data-i18n="section.philosophy">Design Philosophy</h2>
+      <p data-i18n="philosophy.text">I design from the real. I keep what’s real, using limits to define form. If beauty shows up, it’s because the thing works.
       Value should be discovered in the hand and over time. I treat software and electronics as craft, not magic.</p>
     </div>
   </section>
@@ -1044,26 +1042,26 @@
       </div>
       <h3 data-i18n="section.toolbox"><span class="emoji-prefix">🧰</span>Toolbox</h3>
       <div class="toolbox">
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🎨</span>Figma</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🌐</span>HTML5</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🎨</span>CSS3</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">⚙️</span>JavaScript</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🎆</span>p5.js</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">📊</span>Tableau</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🐍</span>Python</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">💻</span>PowerShell</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🔀</span>Git</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🐙</span>GitHub</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">📷</span>Photoshop</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">✏️</span>Illustrator</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🎬</span>After Effects</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🎞️</span>Premiere Pro</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🔌</span>Arduino</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">💎</span>TouchDesigner</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🧊</span>Cinema4D</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">📱</span>ProtoPie</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🎹</span>Logic Pro</span>
-        <span class="tool-badge"><span class="tool-icon emoji-prefix">🎛️</span>Ableton Live</span>
+        <img src="https://img.shields.io/badge/-Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" alt="Figma">
+        <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+        <img src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+        <img src="https://img.shields.io/badge/-JavaScript-F4D500?style=flat-square&logo=javascript&logoColor=white" alt="JavaScript">
+        <img src="https://img.shields.io/badge/-p5.js-ED225D?style=flat-square&logo=p5dotjs&logoColor=white" alt="p5.js">
+        <img src="https://img.shields.io/badge/-Tableau-E97627?style=flat-square&logo=tableau&logoColor=white" alt="Tableau">
+        <img src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+        <img src="https://img.shields.io/badge/-PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white" alt="PowerShell">
+        <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git">
+        <img src="https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub">
+        <img src="https://img.shields.io/badge/-Photoshop-31A8FF?style=flat-square&logo=adobephotoshop&logoColor=white" alt="Photoshop">
+        <img src="https://img.shields.io/badge/-Illustrator-FF9A00?style=flat-square&logo=adobeillustrator&logoColor=white" alt="Illustrator">
+        <img src="https://img.shields.io/badge/-After_Effects-9999FF?style=flat-square&logo=adobeaftereffects&logoColor=white" alt="After Effects">
+        <img src="https://img.shields.io/badge/-Premiere_Pro-9999FF?style=flat-square&logo=adobepremierepro&logoColor=white" alt="Premiere Pro">
+        <img src="https://img.shields.io/badge/-Arduino-00979D?style=flat-square&logo=arduino&logoColor=white" alt="Arduino">
+        <img src="https://img.shields.io/badge/-TouchDesigner-222222?style=flat-square&logoColor=white" alt="TouchDesigner">
+        <img src="https://img.shields.io/badge/-Cinema_4D-011A6A?style=flat-square&logo=cinema4d&logoColor=white" alt="Cinema4D">
+        <img src="https://img.shields.io/badge/-ProtoPie-FF6151?style=flat-square&logo=protopie&logoColor=white" alt="ProtoPie">
+        <img src="https://img.shields.io/badge/-Logic_Pro-000000?style=flat-square&logo=apple&logoColor=white" alt="Logic Pro">
+        <img src="https://img.shields.io/badge/-Ableton_Live-000000?style=flat-square&logo=abletonlive&logoColor=white" alt="Ableton Live">
       </div>
     </div>
   </section>
@@ -1780,7 +1778,7 @@
         inner:{img:'image/inner.png',alt:'Antirender',word:'ANTIRENDER',label:'Creative Alter Ego',title:'Antirender',subtitle:'Music, experiments, and the things that don\u2019t fit neatly into a portfolio.',cta:'<a class="btn" href="#music-embed">View Music</a><a class="btn" href="#more" style="background:var(--btn-secondary-bg);color:var(--btn-secondary-ink);border:1px solid var(--btn-secondary-border)">View More Work</a>'}
       };
 
-      var mode=localStorage.getItem('heroMode')||'persona';
+      var mode=localStorage.getItem('heroMode')||'plain';
       var primaryId=localStorage.getItem('heroPrimary')||'outer';
 
       function secondaryId(){return primaryId==='outer'?'inner':'outer';}
@@ -2254,11 +2252,11 @@
       function setEmoji(on){
         document.body.classList.toggle('emoji-on',on);
         localStorage.setItem('emojiMode',on?'on':'off');
-        document.querySelectorAll('.emoji-toggle').forEach(function(b){b.textContent=on?'\ud83d\ude0a Emoji':'\u270d\ufe0f Plain'});
+        document.querySelectorAll('.emoji-toggle').forEach(function(b){b.textContent=on?'\ud83d\ude0a Emoji':'Plain'});
       }
 
       /* ---------- INIT ---------- */
-      var savedTheme=localStorage.getItem('siteTheme')||'vivid-light';
+      var savedTheme=localStorage.getItem('siteTheme')||'white';
       applyTheme(savedTheme);
 
       var savedLang=localStorage.getItem('siteLang')||'en';
@@ -2266,7 +2264,7 @@
       if(savedLang!=='en') applyLang(savedLang);
 
       var emojiSaved=localStorage.getItem('emojiMode');
-      var emojiOn=(emojiSaved===null)?true:(emojiSaved==='on');
+      var emojiOn=(emojiSaved===null)?false:(emojiSaved==='on');
       setEmoji(emojiOn);
 
       /* ---------- EVENT LISTENERS (all instances) ---------- */
