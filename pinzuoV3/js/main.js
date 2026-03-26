@@ -5,6 +5,249 @@
 (function () {
   'use strict';
 
+  // ── i18n + Theme (sessionStorage) ──
+  var _lang = sessionStorage.getItem('pinzuo_lang') || 'zh';
+  var _theme = sessionStorage.getItem('pinzuo_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', _theme);
+
+  var TR = {
+    zh: {
+      'nav.about':'关于我们','nav.advantages':'核心优势','nav.services':'服务范围',
+      'nav.process':'项目流程','nav.portfolio':'作品集','nav.contact':'联系我们','nav.webdisk':'网盘后端',
+      'hero.title':'品作设计','hero.subtitle':'PINZUO DESIGN',
+      'hero.tagline':'设计与研究并重 · 艺术品质的人文环境',
+      'hero.desc':'跨界城市环境 / 景观 / 空间 / 公共艺术','hero.btn':'探索作品',
+      'about.label':'ABOUT US','about.title':'关于我们',
+      'about.lead':'品作设计（南京）有限公司是一个以设计与艺术专业高校教师领衔的艺术创意专业团队。我们专注于艺术设计及其跨界城市环境、景观、空间、公共艺术领域的设计实践和研究项目。',
+      'about.p1':'\u201c品作\u201d即富有价值的作品，值得品味的佳作，代表了我们对待设计的态度。\u201c作品\u201d是神圣的词，用专业力量与设计热情打造一件\u201c作品\u201d，期望以艺术品质、独特理念融入环境设计、景观设计、空间设计。',
+      'about.p2':'品作设计致力于创造艺术品质的人文环境，是一支秉承设计与研究并重，聚合着城市设计、景观设计、艺术设计等多元学科的集体智慧、多元文化、持续创新的设计团队。',
+      'adv.label':'CORE STRENGTHS','adv.title':'核心优势',
+      'adv.1.t':'学术引领','adv.1.d':'以高校教师领衔的专业团队，设计与研究并重，学术视野赋能设计实践',
+      'adv.2.t':'跨界融合','adv.2.d':'聚合城市设计、景观设计、艺术设计等多元学科的集体智慧与持续创新',
+      'adv.3.t':'艺术品质','adv.3.d':'以独特理念和艺术品质融入每一件作品，致力于创造人文环境',
+      'adv.4.t':'全程服务','adv.4.d':'从概念策划、方案设计到施工图纸及现场管理，提供全方位专业服务',
+      'svc.label':'SERVICES','svc.title':'服务范围',
+      'svc.intro':'品作设计长期从事环境设计、景观规划与设计、空间设计、公共艺术设计。擅长城市更新设计、特色文化环境景观、艺术空间设计、城市家具设计、公共艺术装置等类型项目。',
+      'svc.1.t':'景观设计','svc.1.en':'Landscape Design','svc.1.d':'校园景观、城市公园、文化景观、滨水空间、城市更新景观规划与设计',
+      'svc.2.t':'空间设计','svc.2.en':'Space Design','svc.2.d':'文化空间、教育空间、展示空间、办公空间、商业空间室内设计',
+      'svc.3.t':'雕塑与艺术装置','svc.3.en':'Sculpture & Art Installation','svc.3.d':'公共雕塑、艺术装置、校园文化雕塑、城市公共艺术创作',
+      'svc.4.t':'标识系统','svc.4.en':'Signage & Wayfinding','svc.4.d':'导视系统、标识设计、品牌视觉识别、环境标识规划与设计',
+      'svc.5.t':'城市家具','svc.5.en':'City Furniture','svc.5.d':'公共座椅、景观灯具、花箱、候车亭等城市公共设施设计',
+      'proc.label':'WORKFLOW','proc.title':'项目流程',
+      'proc.1.t':'概念策划','proc.1.d':'深入调研场地与需求，提炼设计概念与核心理念',
+      'proc.2.t':'方案设计','proc.2.d':'多轮方案推演，融合艺术美学与功能需求',
+      'proc.3.t':'深化设计','proc.3.d':'细化材料、工艺、结构，完善设计方案',
+      'proc.4.t':'扩初与施工图','proc.4.d':'输出完整的扩初设计与施工图纸',
+      'proc.5.t':'施工管理','proc.5.d':'现场施工指导与质量把控，确保设计落地',
+      'port.label':'PORTFOLIO','port.title':'作品集',
+      'f.all':'全部','f.landscape':'景观设计','f.space':'空间设计',
+      'f.sculpture':'雕塑与艺术装置','f.signage':'标识系统','f.furniture':'城市家具',
+      'ct.label':'CONTACT','ct.title':'联系我们',
+      'ct.company':'品作设计（南京）有限公司','ct.company.en':'Pinzuo Design (Nanjing) Co., Ltd.',
+      'ct.addr.l':'地址','ct.addr':'南京市鼓楼区',
+      'ct.email.l':'邮箱','ct.follow':'关注我们',
+      'ct.name.ph':'您的姓名','ct.email.ph':'电子邮箱','ct.subj.ph':'项目类型','ct.msg.ph':'项目描述或留言...',
+      'ct.submit':'发送咨询','ct.sent':'已发送 ✓',
+      'ft.copy':'\u00a9 2007 \u2013 2026 品作设计（南京）有限公司 Pinzuo Design (Nanjing) Co., Ltd.',
+      'ft.tag':'致力于创造艺术品质的人文环境',
+      'ft.about':'关于','ft.svc':'服务','ft.port':'作品','ft.ct':'联系','ft.wd':'网盘',
+      'pj.back':'\u2190 返回作品集','pj.all':'全部作品',
+      'wd.title':'网盘后端','wd.sub':'WEBDISK MANAGEMENT',
+      'wd.login':'登录网盘','wd.user':'用户名','wd.user.ph':'请输入用户名',
+      'wd.pass':'密码','wd.pass.ph':'请输入密码','wd.submit':'登录',
+      'wd.loading':'登录中...','wd.dev':'网盘功能开发中',
+      'wd.c1.t':'用户登录','wd.c1.en':'USER LOGIN','wd.c1.d':'通过安全身份验证登录系统，管理个人账户与权限，支持多用户协同管理。',
+      'wd.c2.t':'文件管理','wd.c2.en':'FILE MANAGEMENT','wd.c2.d':'上传、下载、预览和组织设计文件。支持文件夹分类管理，快捷搜索定位，高效管理项目素材与资料。',
+      'wd.c3.t':'远程控制','wd.c3.en':'REMOTE CONTROL','wd.c3.d':'远程访问和管理公司服务器，支持文件同步和远程操作，随时随地掌控项目进度。',
+      'wd.c4.t':'权限管理','wd.c4.en':'ACCESS CONTROL','wd.c4.d':'精细化权限设置，按角色分配文件访问与编辑权限，保障项目数据安全与信息保密。',
+      'wd.c5.t':'文件传输','wd.c5.en':'FILE TRANSFER','wd.c5.d':'高速文件传输通道，支持大文件上传与下载，断点续传，确保设计文件安全高效传递。',
+      'wd.c6.t':'AI 与 API 接口','wd.c6.en':'AI & API INTERFACE','wd.c6.d':'集成智能工具与 API 接口，提供自动化辅助功能，提升设计工作效率与团队协作水平。',
+      'ft2.tag':'设计与研究并重\n艺术品质的人文环境',
+      'ft2.ct':'联系方式','ft2.phone':'电话：025-86220928','ft2.email':'邮箱：pinzuodesign@163.com',
+      'ft2.addr':'地址：南京市鼓楼区北京西路 72 号 16 楼',
+      'ft2.links':'链接','ft2.port':'作品集','ft2.wd':'网盘'
+    },
+    en: {
+      'nav.about':'About','nav.advantages':'Strengths','nav.services':'Services',
+      'nav.process':'Workflow','nav.portfolio':'Portfolio','nav.contact':'Contact','nav.webdisk':'Webdisk',
+      'hero.title':'Pinzuo Design','hero.subtitle':'PINZUO DESIGN',
+      'hero.tagline':'Design & Research \u00b7 Artistic Humanistic Environments',
+      'hero.desc':'Urban Environment / Landscape / Space / Public Art','hero.btn':'Explore Works',
+      'about.label':'ABOUT US','about.title':'About Us',
+      'about.lead':'Pinzuo Design (Nanjing) Co., Ltd. is a professional creative team led by university professors in art and design. We focus on design practice and research across urban environments, landscapes, spaces, and public art.',
+      'about.p1':'\u201cPinzuo\u201d means a work of value \u2014 a masterpiece worth savoring. It represents our attitude toward design. With professional expertise and passion, we create works that infuse artistic quality and unique concepts into environmental, landscape, and spatial design.',
+      'about.p2':'Pinzuo Design is committed to creating humanistic environments of artistic quality. We value design and research equally, bringing together collective wisdom from urban design, landscape architecture, and art design with continuous innovation.',
+      'adv.label':'CORE STRENGTHS','adv.title':'Core Strengths',
+      'adv.1.t':'Academic Leadership','adv.1.d':'A professional team led by university faculty, integrating academic vision with design practice',
+      'adv.2.t':'Cross-disciplinary','adv.2.d':'Collective wisdom from urban design, landscape architecture, and art design with continuous innovation',
+      'adv.3.t':'Artistic Quality','adv.3.d':'Infusing unique concepts and artistic quality into every work, creating humanistic environments',
+      'adv.4.t':'Full Service','adv.4.d':'Comprehensive services from concept planning to construction documents and site management',
+      'svc.label':'SERVICES','svc.title':'Services',
+      'svc.intro':'Pinzuo Design specializes in environmental design, landscape planning, spatial design, and public art. We excel in urban renewal, cultural landscapes, art spaces, city furniture, and public art installations.',
+      'svc.1.t':'Landscape Design','svc.1.en':'Landscape Design','svc.1.d':'Campus landscapes, urban parks, cultural landscapes, waterfront spaces, and urban renewal',
+      'svc.2.t':'Space Design','svc.2.en':'Space Design','svc.2.d':'Cultural, educational, exhibition, office, and commercial interior design',
+      'svc.3.t':'Sculpture & Installation','svc.3.en':'Sculpture & Art Installation','svc.3.d':'Public sculptures, art installations, campus sculptures, and urban public art',
+      'svc.4.t':'Signage & Wayfinding','svc.4.en':'Signage & Wayfinding','svc.4.d':'Wayfinding systems, signage design, brand identity, and environmental signage',
+      'svc.5.t':'City Furniture','svc.5.en':'City Furniture','svc.5.d':'Public seating, landscape lighting, planters, bus shelters, and urban facilities',
+      'proc.label':'WORKFLOW','proc.title':'Workflow',
+      'proc.1.t':'Concept Planning','proc.1.d':'In-depth site research and needs analysis to refine design concepts',
+      'proc.2.t':'Schematic Design','proc.2.d':'Multiple design iterations blending aesthetics with functional requirements',
+      'proc.3.t':'Design Development','proc.3.d':'Refining materials, craftsmanship, and structure to perfect the design',
+      'proc.4.t':'Construction Docs','proc.4.d':'Delivering complete design development and construction documents',
+      'proc.5.t':'Site Management','proc.5.d':'On-site guidance and quality control ensuring design realization',
+      'port.label':'PORTFOLIO','port.title':'Portfolio',
+      'f.all':'All','f.landscape':'Landscape','f.space':'Space',
+      'f.sculpture':'Sculpture','f.signage':'Signage','f.furniture':'Furniture',
+      'ct.label':'CONTACT','ct.title':'Contact Us',
+      'ct.company':'Pinzuo Design (Nanjing) Co., Ltd.','ct.company.en':'Pinzuo Design (Nanjing) Co., Ltd.',
+      'ct.addr.l':'Address','ct.addr':'Gulou District, Nanjing',
+      'ct.email.l':'Email','ct.follow':'Follow Us',
+      'ct.name.ph':'Your Name','ct.email.ph':'Email Address','ct.subj.ph':'Project Type','ct.msg.ph':'Project description or message...',
+      'ct.submit':'Send Inquiry','ct.sent':'Sent \u2713',
+      'ft.copy':'\u00a9 2007 \u2013 2026 Pinzuo Design (Nanjing) Co., Ltd.',
+      'ft.tag':'Creating humanistic environments of artistic quality',
+      'ft.about':'About','ft.svc':'Services','ft.port':'Portfolio','ft.ct':'Contact','ft.wd':'Webdisk',
+      'pj.back':'\u2190 Back to Portfolio','pj.all':'All Works',
+      'wd.title':'Webdisk','wd.sub':'WEBDISK MANAGEMENT',
+      'wd.login':'Login','wd.user':'Username','wd.user.ph':'Enter username',
+      'wd.pass':'Password','wd.pass.ph':'Enter password','wd.submit':'Login',
+      'wd.loading':'Logging in...','wd.dev':'Under development',
+      'wd.c1.t':'User Login','wd.c1.en':'USER LOGIN','wd.c1.d':'Securely log in to manage accounts and permissions with multi-user collaboration.',
+      'wd.c2.t':'File Management','wd.c2.en':'FILE MANAGEMENT','wd.c2.d':'Upload, download, preview, and organize design files with folder management and search.',
+      'wd.c3.t':'Remote Control','wd.c3.en':'REMOTE CONTROL','wd.c3.d':'Remotely access and manage servers with file sync and remote operations.',
+      'wd.c4.t':'Access Control','wd.c4.en':'ACCESS CONTROL','wd.c4.d':'Fine-grained role-based permissions to ensure data security and confidentiality.',
+      'wd.c5.t':'File Transfer','wd.c5.en':'FILE TRANSFER','wd.c5.d':'High-speed file transfer with large file support and resumable uploads.',
+      'wd.c6.t':'AI & API','wd.c6.en':'AI & API INTERFACE','wd.c6.d':'Integrated smart tools and APIs for automation and enhanced team collaboration.',
+      'ft2.tag':'Design & Research\nArtistic Humanistic Environments',
+      'ft2.ct':'Contact','ft2.phone':'Tel: 025-86220928','ft2.email':'Email: pinzuodesign@163.com',
+      'ft2.addr':'Address: 72 Beijing West Rd, Floor 16, Gulou, Nanjing',
+      'ft2.links':'Links','ft2.port':'Portfolio','ft2.wd':'Webdisk'
+    }
+  };
+
+  var DESC_EN = {
+    'xinzheng-airport':'Themed "Dragon Soaring over Central Plains," abstracting dragon forms from Henan\'s rich history as the centerpiece of the airport plaza.',
+    'xuancheng-alligator-lake':'The 3.73 km\u00b2 Alligator Lake scenic area features twelve landscape zones including a theater area, exhibition hall, and waterfront leisure.',
+    'youth-olympic-village':'Landscape for the 2014 Nanjing Youth Olympic Village themed "Share Youth, Build the Future," using cloud motifs as the primary element.',
+    'procuratorate-academy':'Landscape design harmonizing with existing architecture, creating a dignified campus emphasizing cultural landscape aesthetics.',
+    'balihe':'Balihe waterfront design emphasizing recreational connectivity, divided into three themes: Wetland Garden, Green Water Fun, and Fitness Rhythm.',
+    'beijing-science-park':'Landscape renovation for Zhongguancun Dongsheng Science Park based on "Work Relief + Healthy Recreation + Innovation Activities."',
+    'zijinshan-villa':'Landscape design elevating spatial ambiance via a poetic approach, integrating mountain and water motifs with traditional aesthetics.',
+    'binjiang-law-trail':'Themed "Life and Law, Journey of Love," dividing the trail into four sections: Budding Youth, Prime of Spring, Life\'s Vigor, and Return to Simplicity.',
+    'nanjing-communications':'Campus landscape emphasizing rational and technological characteristics combined with humanistic care and modern garden aesthetics.',
+    'nju-middle-school-landscape':'Cultural landscape for NJU Affiliated Middle School emphasizing historical heritage, reflecting its century-old tradition and spirit.',
+    'ninghai-middle-school':'Landscape for the century-old Ninghai Middle School, expressing its unique philosophy of "Education through Beauty."',
+    'fangcaoyuan-primary':'Landscape themed "The Power of Grass," using natural forces to highlight educational philosophy.',
+    'gulou-experimental':'Campus landscape integrating traditional Chinese culture with the school\'s existing architecture and public spaces.',
+    'suzhou-north-america':'International campus landscape combining global perspective with local culture for an open, diverse environment.',
+    'yuying-foreign-lang':'Campus landscape creating a culturally rich and functional environment based on the school\'s unique character.',
+    'xingzhi-primary':'Campus landscape based on the "Garden School" concept, showcasing the school\'s culture of agricultural education.',
+    'longjiang-primary-landscape':'Campus planning and landscape themed "Green, LOHAS, Ecology."',
+    'binjiang-middle-landscape':'Ecological garden campus landscape creating green spaces for modern educational environments.',
+    'binjiang-facade':'Teaching building facade renovation using contemporary design language for a fresh visual identity.',
+    'baiziting-34':'Landscape combining the historic cultural district\'s character with modern design approaches.',
+    'procuratorate-concept':'Advanced landscape concept building upon existing completed design with deeper conceptual refinement.',
+    'huangshan-jiaocun':'Rural landscape integrating natural mountain scenery with Huizhou cultural heritage in the context of rural revitalization.',
+    'industrial-design-park':'Exhibition design using industrial visual language with steel and spider fittings to create a modern, futuristic atmosphere.',
+    'nua-model-studio':'Interior design for NUA model studio, organizing teaching, model-making, and discussion spaces in an open layout.',
+    'nua-library':'Library interior featuring natural wood tones and deconstructed geometric spaces creating an artistic atmosphere.',
+    'nua-media-studio':'Media studio interior emphasizing modern, futuristic style with flowing ceiling forms.',
+    'zijin-award-exhibition':'Exhibition design for the inaugural Zijin Award in a 4,000 m\u00b2 venue, designed for reassembly and touring.',
+    'nju-scholarly-campus':'"Scholarly Campus" reading corridor, enclosing columns with glass to create weather-protected spaces.',
+    'nju-anti-drug':'Anti-drug education room featuring interactive projection floors with "Poppy Fruits" theme, illustrating drug harm.',
+    'nju-memory-corridor':'"Memory Corridor" elevated space design, creating immersive school history exhibition based on century-old history.',
+    'nju-party-building':'Party building cultural space integrating party history education with campus culture in a visually impactful space.',
+    'nju-drug-prevention-2020':'Redesigned drug prevention education room and school history corridor using innovative exhibition approaches.',
+    'jinling-theater':'Interior for Jinling Theater blending classical Chinese elements with neo-classical design and traditional opera culture.',
+    'qinhuai-family':'Boutique hotel blending classical and modern, traditional and contemporary, with a "Qinhuai Elegance" lifestyle concept.',
+    'gupinggang-primary':'Nursery rhyme hall design inheriting traditional culture while respecting children\'s nature.',
+    'yuying-reading-corridor':'Reading corridor transforming campus public spaces into open reading and communication areas.',
+    'gulou-teacher-center':'Interior emphasizing the "Teachers\' Home" concept with minimalist grey and white tones plus natural wood.',
+    'gulou-experimental-space':'Interior renovation integrating traditional culture to create functional and culturally inspiring educational spaces.',
+    'fangcaoyuan-stilted':'Space renovation transforming columns into tree sculptures, creating a forest-like imagery in the open ground floor.',
+    'suhe-exhibition':'Modern, minimalist exhibition center with interconnected yet independently usable gallery spaces.',
+    'procuratorate-hotel':'Hotel interior with an elegant, understated style creating comfortable spaces with cultural sophistication.',
+    'binjiang-middle-interior':'Interior renovation guided by modern educational philosophy, optimizing teaching space layout.',
+    'fangcaoyuan-library':'"Seed Sprouting" themed library breaking conventional layouts by maximizing wall space utilization.',
+    'fangcaoyuan-history':'School history museum presenting development journey and educational achievements through a timeline.',
+    'wtc-26b03':'Modern minimalist high-end business office space in Nanjing World Trade Center.',
+    'xian-forest-belt-sculpture':'Sculpture and art installations for Xi\'an Happy Forest Belt, inspired by the city\'s rich historical culture.',
+    'beijing-science-sculpture':'Landscape sculpture for Zhongguancun Dongsheng Science Park themed around technology and nature.',
+    'nantong-sculpture':'Public sculpture for Nantong Historical District, reflecting the city\'s industrial heritage at Tangzha.',
+    'yuying-sculpture':'Campus sculpture centered on educational culture, integrating art with the school environment.',
+    'eye-of-justice':'"Guardian of Justice" sculpture composed of letters "JCG" and emblem, with thirteen stars representing Jiangsu\'s prosecutors.',
+    'rockery-series':'Rockery sculpture series inspired by traditional formations, reinterpreted through modern slicing and reassembly.',
+    'ninghai-sculpture':'Sculpture and art installations embodying the school\'s century-old cultural heritage.',
+    'longjiang-primary-sculpture':'Campus sculpture aligned with the "Green, LOHAS, Ecology" philosophy, creating vibrant works.',
+    'lishui-sculpture':'Urban sculpture planning for key landmark locations in Lishui District.',
+    'fangcaoyuan-public-art':'Public art for Fangcaoyuan Primary School themed around childhood wonder and nature.',
+    'xian-forest-belt-signage':'Signage system for Xi\'an Happy Forest Belt, integrating city culture into a comprehensive wayfinding system.',
+    'hohhot-signage':'Greenway signage for Hohhot, blending northern grassland cultural heritage with modern design.',
+    'guochuangyuan-signage':'Signage for Nanjing National Pioneer Park, establishing a professional wayfinding system in modern style.',
+    'nantong-signage':'Signage for Nantong Tangzha Industrial Historical District, centered on industrial heritage elements.',
+    'zhongguancun-signage':'Signage for Zhongguancun Dongsheng Science Park with clean, modern design language.',
+    'nanjing-communications-signage':'Campus signage establishing a unified, clear wayfinding and identification system.',
+    'gulou-training-signage':'Signage for Gulou Teacher Development Center in elegant minimalist style.',
+    'suzhou-north-america-signage':'International-style complete campus wayfinding system design.',
+    'nju-middle-school-signage':'Campus signage rooted in the century-old institution\'s cultural heritage.',
+    'ninghai-signage':'Signage system for Ninghai Middle School, grounded in its century of history.',
+    'jiangnan-industrial-park':'Signage for Jiangnan Modern Industrial Heritage Park, centered on industrial heritage elements.',
+    'xian-forest-belt-furniture':'City furniture weaving a harmonious system between people and nature with ecological design.',
+    'nanjing-series-furniture':'City furniture inspired by traditional Nanjing residential forms combined with Jiangnan garden elements.',
+    'viewing-scenery':'Landscape seating formed by combining Chinese characters, allowing flexible configurations with varied effects.',
+    'undulating-garden':'City furniture with undulating wave forms accommodating multiple users for resting.',
+    'puzzle-table':'Furniture incorporating puzzle elements with parametric design, creating cleverly interlocking tables.',
+    'heat-wave-red-chair':'Furniture with graceful curves and passionate form, demonstrating expressive furniture "posture."'
+  };
+
+  var CAT_EN = {
+    landscape:'Landscape Design', space:'Space Design',
+    sculpture:'Sculpture & Installation', signage:'Signage & Wayfinding', furniture:'City Furniture'
+  };
+
+  function getLang() { return _lang; }
+  function setLang(l) { _lang = l; sessionStorage.setItem('pinzuo_lang', l); applyLang(); }
+  function toggleLang() { setLang(_lang === 'zh' ? 'en' : 'zh'); }
+  function getTheme() { return _theme; }
+  function setThemePZ(th) {
+    _theme = th; sessionStorage.setItem('pinzuo_theme', th);
+    document.documentElement.setAttribute('data-theme', th);
+    var b = document.getElementById('themeToggle');
+    if (b) b.textContent = th === 'dark' ? '\u2600' : '\u263E';
+  }
+  function toggleTheme() { setThemePZ(_theme === 'dark' ? 'light' : 'dark'); }
+
+  function applyLang() {
+    var d = TR[_lang] || TR.zh;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n'); if (d[k] != null) el.textContent = d[k];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n-ph'); if (d[k] != null) el.placeholder = d[k];
+    });
+    document.documentElement.lang = _lang === 'zh' ? 'zh-CN' : 'en';
+    var lb = document.getElementById('langToggle');
+    if (lb) lb.textContent = _lang === 'zh' ? 'EN' : '\u4e2d';
+    if (window.__rerender) window.__rerender();
+  }
+
+  // Init theme toggle text
+  function initControls() {
+    var tb = document.getElementById('themeToggle');
+    if (tb) tb.textContent = _theme === 'dark' ? '\u2600' : '\u263E';
+    var lb = document.getElementById('langToggle');
+    if (lb) lb.textContent = _lang === 'zh' ? 'EN' : '\u4e2d';
+    if (tb) tb.addEventListener('click', toggleTheme);
+    if (lb) lb.addEventListener('click', toggleLang);
+  }
+
+  // Expose for other pages
+  window.__pinzuo = {
+    getLang: getLang, setLang: setLang, toggleLang: toggleLang,
+    getTheme: getTheme, setThemePZ: setThemePZ, toggleTheme: toggleTheme,
+    applyLang: applyLang, TR: TR, DESC_EN: DESC_EN, CAT_EN: CAT_EN
+  };
+
   // ── Category labels ──
   var catLabels = {
     landscape: '景观设计',
@@ -525,6 +768,8 @@
   // ── Expose globally for project detail page ──
   window.__PINZUO_PROJECTS = projects;
   window.__PINZUO_CAT_LABELS = catLabels;
+  window.__PINZUO_CAT_EN = CAT_EN;
+  window.__PINZUO_DESC_EN = DESC_EN;
 
   // ── Helper ──
   function escapeHtml(s) {
@@ -536,23 +781,29 @@
   // ── Portfolio Grid (index.html only) ──
   var grid = document.getElementById('portfolioGrid');
   if (grid) {
+    var currentFilter = 'all';
     function renderGrid(filter) {
+      if (filter != null) currentFilter = filter;
+      var lang = getLang();
       grid.innerHTML = '';
-      var filtered = filter === 'all' ? projects : projects.filter(function (p) { return p.cat === filter; });
+      var filtered = currentFilter === 'all' ? projects : projects.filter(function (p) { return p.cat === currentFilter; });
       filtered.forEach(function (proj, idx) {
+        var displayName = lang === 'en' ? proj.en : proj.name;
+        var subText = lang === 'en' ? (proj.year + ' \u00b7 ' + proj.name) : (proj.year + ' \u00b7 ' + proj.en);
         var card = document.createElement('a');
         card.className = 'port-card';
         card.href = 'project.html?slug=' + proj.slug;
         card.style.animationDelay = Math.min(idx * 0.05, 0.8) + 's';
         card.innerHTML =
-          '<img src="' + escapeHtml(proj.cover) + '" alt="' + escapeHtml(proj.name) + '" loading="lazy">' +
+          '<img src="' + escapeHtml(proj.cover) + '" alt="' + escapeHtml(displayName) + '" loading="lazy">' +
           '<div class="port-overlay">' +
-            '<h3>' + escapeHtml(proj.name) + '</h3>' +
-            '<p>' + proj.year + ' \u00b7 ' + escapeHtml(proj.en) + '</p>' +
+            '<h3>' + escapeHtml(displayName) + '</h3>' +
+            '<p>' + escapeHtml(subText) + '</p>' +
           '</div>';
         grid.appendChild(card);
       });
     }
+    window.__rerender = function () { renderGrid(); };
 
     renderGrid('all');
 
@@ -564,6 +815,8 @@
         renderGrid(btn.getAttribute('data-filter'));
       });
     });
+  } else {
+    window.__rerender = function () {};
   }
 
   // ── Lightbox (shared across pages) ──
@@ -680,15 +933,20 @@
   // ── Contact form (visual only) ──
   window.handleForm = function (e) {
     e.preventDefault();
+    var isEn = getLang() === 'en';
     var btn = e.target.querySelector('.form-submit');
-    btn.textContent = '\u5df2\u53d1\u9001 \u2713';
+    btn.textContent = isEn ? 'Sent \u2713' : '\u5df2\u53d1\u9001 \u2713';
     btn.style.background = '#8a7252';
     setTimeout(function () {
-      btn.textContent = '\u53d1\u9001\u54a8\u8be2';
+      btn.textContent = isEn ? 'Send Inquiry' : '\u53d1\u9001\u54a8\u8be2';
       btn.style.background = '';
       e.target.reset();
     }, 2500);
     return false;
   };
+
+  // ── Init controls + apply saved language ──
+  initControls();
+  applyLang();
 
 })();

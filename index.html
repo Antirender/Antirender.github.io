@@ -330,11 +330,11 @@
       .hero-hamburger{display:inline-block}
       .hero-inner{grid-template-columns:1fr;text-align:center;justify-items:center}
       .hero-text .hero-cta{justify-content:center}
-      .hero-figures{--pri-h:78%;--sec-left:48%;--sec-h:52%;height:clamp(220px,40vw,320px);width:100%;max-width:440px;margin:0 auto}
+      .hero-figures{--pri-left:10%;--pri-h:78%;--sec-left:50%;--sec-h:52%;height:clamp(220px,40vw,320px);width:100%;max-width:440px;margin:0 auto}
     }
     @media(max-width:640px){
       .hero{min-height:auto}
-      .hero-figures{--pri-h:72%;--sec-left:44%;--sec-h:46%;height:clamp(180px,50vw,260px)}
+      .hero-figures{--pri-left:8%;--pri-h:72%;--sec-left:46%;--sec-h:46%;height:clamp(180px,50vw,260px)}
       .hero-word{font-size:clamp(4rem,22vw,8rem)}
       .hero-nav-bar{gap:10px;padding:clamp(8px,1.2vw,12px) clamp(12px,3vw,20px)}
     }
@@ -409,9 +409,9 @@
     try{
       var _t=localStorage.getItem('siteTheme')||'white';
       document.documentElement.setAttribute('data-theme',_t);
-      document.body.className=(localStorage.getItem('heroMode')==='persona')?'mode-persona':'mode-plain';
+      document.body.className=(localStorage.getItem('heroMode')==='plain')?'mode-plain':'mode-persona';
       if(localStorage.getItem('emojiMode')==='on') document.body.classList.add('emoji-on');
-    }catch(e){document.body.className='mode-plain';document.documentElement.setAttribute('data-theme','white')}
+    }catch(e){document.body.className='mode-persona';document.documentElement.setAttribute('data-theme','white')}
   </script>
 
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -1778,7 +1778,7 @@
         inner:{img:'image/inner.png',alt:'Antirender',word:'ANTIRENDER',label:'Creative Alter Ego',title:'Antirender',subtitle:'Music, experiments, and the things that don\u2019t fit neatly into a portfolio.',cta:'<a class="btn" href="#music-embed">View Music</a><a class="btn" href="#more" style="background:var(--btn-secondary-bg);color:var(--btn-secondary-ink);border:1px solid var(--btn-secondary-border)">View More Work</a>'}
       };
 
-      var mode=localStorage.getItem('heroMode')||'plain';
+      var mode=localStorage.getItem('heroMode')||'persona';
       var primaryId=localStorage.getItem('heroPrimary')||'outer';
 
       function secondaryId(){return primaryId==='outer'?'inner':'outer';}

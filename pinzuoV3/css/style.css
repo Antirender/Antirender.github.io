@@ -541,3 +541,133 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .page-nav { background: rgba(255,255,255,.98); box-shadow: 0 1px 0 rgba(0,0,0,.06); }
 .page-nav .nav-links a { color: var(--gray-dark); }
 .page-nav .nav-toggle span { background: var(--gray-dark); }
+
+/* --- Nav Controls (Language + Theme toggles) --- */
+.nav-controls {
+  display: flex; align-items: center; gap: 8px; margin-left: 24px;
+}
+.lang-toggle, .theme-toggle {
+  width: 36px; height: 36px; border-radius: 50%;
+  font-size: .78rem; display: flex; align-items: center; justify-content: center;
+  color: var(--white); border: 1px solid rgba(255,255,255,.3);
+  transition: var(--transition); background: transparent; cursor: pointer;
+}
+.nav.scrolled .lang-toggle,
+.nav.scrolled .theme-toggle { color: var(--gray-dark); border-color: var(--gray-lighter); }
+.page-nav .lang-toggle,
+.page-nav .theme-toggle { color: var(--gray-dark); border-color: var(--gray-lighter); }
+.lang-toggle:hover, .theme-toggle:hover { background: rgba(255,255,255,.15); }
+.nav.scrolled .lang-toggle:hover,
+.nav.scrolled .theme-toggle:hover,
+.page-nav .lang-toggle:hover,
+.page-nav .theme-toggle:hover { background: var(--gray-bg); }
+.theme-toggle { font-size: 1rem; }
+
+/* --- Footer logo constraint --- */
+.footer-logo { max-height: 40px; width: auto; }
+
+/* =========================================
+   Dark Mode
+   ========================================= */
+[data-theme="dark"] body { background: #141414; color: #ddd; }
+
+/* Nav */
+[data-theme="dark"] .nav.scrolled { background: rgba(20,20,20,.95); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+[data-theme="dark"] .nav.scrolled .nav-links a { color: #ddd; }
+[data-theme="dark"] .nav.scrolled .nav-toggle span { background: #ddd; }
+[data-theme="dark"] .nav.scrolled .lang-toggle,
+[data-theme="dark"] .nav.scrolled .theme-toggle { color: #ddd; border-color: #555; }
+[data-theme="dark"] .nav.scrolled .lang-toggle:hover,
+[data-theme="dark"] .nav.scrolled .theme-toggle:hover { background: #333; }
+[data-theme="dark"] .nav-links { background: rgba(20,20,20,.98) !important; }
+[data-theme="dark"] .nav-links a { color: #ddd !important; }
+
+/* Sections */
+[data-theme="dark"] .section-title { color: #f0f0f0; }
+[data-theme="dark"] .section-label { color: #777; }
+
+/* About */
+[data-theme="dark"] .about { background: #141414; }
+[data-theme="dark"] .about-text p { color: #aaa; }
+[data-theme="dark"] .about-lead { color: #ddd !important; }
+
+/* Advantages */
+[data-theme="dark"] .advantages { background: #1a1a1a; }
+[data-theme="dark"] .adv-card { background: #222; }
+[data-theme="dark"] .adv-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+[data-theme="dark"] .adv-card h3 { color: #eee; }
+[data-theme="dark"] .adv-card p { color: #aaa; }
+
+/* Services */
+[data-theme="dark"] .services { background: #141414; }
+[data-theme="dark"] .services-intro { color: #aaa; }
+[data-theme="dark"] .service-card { border-color: #333; background: #1c1c1c; }
+[data-theme="dark"] .service-card:hover { border-color: var(--accent); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+[data-theme="dark"] .service-card h3 { color: #eee; }
+[data-theme="dark"] .service-en { color: #777; }
+[data-theme="dark"] .service-card > p:last-child { color: #aaa; }
+[data-theme="dark"] .service-icon img { filter: brightness(0) invert(1) opacity(.7); }
+
+/* Process */
+[data-theme="dark"] .process { background: #0d0d0d; }
+
+/* Portfolio */
+[data-theme="dark"] .portfolio { background: #1a1a1a; }
+[data-theme="dark"] .filter-btn { background: #222; color: #aaa; border-color: #444; }
+[data-theme="dark"] .filter-btn:hover,
+[data-theme="dark"] .filter-btn.active { background: #f0f0f0; color: #111; border-color: #f0f0f0; }
+[data-theme="dark"] .port-card { background: #333; }
+
+/* Contact */
+[data-theme="dark"] .contact { background: #141414; }
+[data-theme="dark"] .contact-item h3 { color: #eee; }
+[data-theme="dark"] .contact-item p { color: #aaa; }
+[data-theme="dark"] .contact-label { color: #777; }
+[data-theme="dark"] .contact-qr { border-color: #333; }
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea { color: #ddd; border-color: #444; background: transparent; }
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder { color: #666; }
+[data-theme="dark"] .form-submit { background: #f0f0f0; color: #111; }
+[data-theme="dark"] .form-submit:hover { background: var(--accent); color: #fff; }
+
+/* Footer */
+[data-theme="dark"] .footer { background: #0a0a0a; }
+
+/* Page Header (webdisk) */
+[data-theme="dark"] .page-header { background: #0d0d0d; }
+
+/* Webdisk cards */
+[data-theme="dark"] .webdisk-card { border-color: #333; background: #1c1c1c; }
+[data-theme="dark"] .webdisk-card:hover { border-color: var(--accent); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+[data-theme="dark"] .webdisk-card h3 { color: #eee; }
+[data-theme="dark"] .webdisk-card .card-en { color: #777; }
+[data-theme="dark"] .webdisk-card p { color: #aaa; }
+
+/* Project detail */
+[data-theme="dark"] .project-body { background: #141414; }
+[data-theme="dark"] .project-desc { color: #aaa; }
+[data-theme="dark"] .project-nav a { color: #aaa; }
+[data-theme="dark"] .project-nav a:hover { color: var(--accent); }
+[data-theme="dark"] .back-link { color: #aaa; }
+[data-theme="dark"] .back-link:hover { color: var(--accent); }
+
+/* Page nav (non-home) */
+[data-theme="dark"] .page-nav { background: rgba(20,20,20,.98); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+[data-theme="dark"] .page-nav .nav-links a { color: #ddd; }
+[data-theme="dark"] .page-nav .nav-toggle span { background: #ddd; }
+[data-theme="dark"] .page-nav .lang-toggle,
+[data-theme="dark"] .page-nav .theme-toggle { color: #ddd; border-color: #555; }
+[data-theme="dark"] .page-nav .lang-toggle:hover,
+[data-theme="dark"] .page-nav .theme-toggle:hover { background: #333; }
+
+/* Webdisk form */
+[data-theme="dark"] .webdisk-login h2 { color: #eee; }
+[data-theme="dark"] .form-input { color: #ddd; border-color: #444; background: transparent; }
+[data-theme="dark"] .form-input::placeholder { color: #666; }
+[data-theme="dark"] label { color: #ccc; }
+
+/* Mobile responsive for nav controls */
+@media (max-width: 768px) {
+  .nav-controls { margin-left: auto; margin-right: 8px; }
+}
