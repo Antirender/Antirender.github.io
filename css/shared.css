@@ -1,0 +1,29 @@
+/* ===== Shared Reset & Base ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Inter",system-ui,-apple-system,sans-serif;color:#0f172a;background:#fff;
+  line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+a{color:#2563eb;text-decoration:none} a:hover{text-decoration:underline}
+img{max-width:100%;height:auto;display:block}
+
+/* ===== Shared Layout ===== */
+.wrap{max-width:860px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.back{display:inline-block;padding:1.5rem 0;font-size:.875rem;font-weight:600;color:#64748b}
+.back:hover{color:#0f172a;text-decoration:none}
+.nav-back{padding:2rem 0;border-top:1px solid #e2e8f0;text-align:center}
+.nav-back a{font-weight:600;color:#64748b;font-size:.9rem}
+.nav-back a:hover{color:#0f172a}
+
+/* ===== Shared Components ===== */
+.btn{display:inline-block;padding:.45rem .85rem;border-radius:8px;background:#2563eb;color:#fff;font-weight:700;font-size:.875rem}
+.btn:hover{filter:brightness(.92);text-decoration:none}
+
+.contact-list{display:flex;flex-wrap:wrap;gap:.4rem 1rem;list-style:none;font-size:.9rem}
+.contact-list a{color:#334155;font-weight:600} .contact-list a:hover{color:#2563eb}
+.contact-list li+li::before{content:"·";color:#64748b;margin-right:0}
+
+/* ===== Focus & Accessibility ===== */
+:focus-visible{outline:3px solid #94a3b8;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

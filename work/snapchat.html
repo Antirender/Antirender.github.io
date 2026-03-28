@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Snapchat Data Transparency — Yiyang Zhang</title>
+  <meta name="description" content="An interactive redesign translating Snapchat's privacy policies into clear, scannable UI flows."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">&larr; Back to Portfolio</a>
+
+    <div class="project-hero">
+      <h1>Snapchat Data Transparency — Making Data Use Visible</h1>
+      <p>An interactive redesign translating Snapchat's privacy policies into clear, scannable UI flows. This project explored how to communicate data collection, processing, and user control through progressive disclosure and direct language.</p>
+      <div class="meta">
+        <span><strong>Role:</strong> UX research, interaction design</span>
+        <span><strong>Methods:</strong> User testing, progressive disclosure</span>
+        <span><strong>Outcome:</strong> 7 versions, increased user confidence</span>
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <label for="ver">Version:</label>
+      <select id="ver">
+        <option value="index3">v3</option>
+        <option value="index4">v4</option>
+        <option value="index5">v5</option>
+        <option value="index6">v6</option>
+        <option value="index7" selected>v7</option>
+      </select>
+      <a class="btn" id="openLink" href="../DESN10799P3/index7.html" target="_blank" rel="noopener">Open V7</a>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="../image/snapchat-data.png" alt="Snapchat Data Transparency prototype preview">
+
+      <div class="preview" id="previewBox">
+        <iframe src="../DESN10799P3/index7.html" loading="lazy" title="Snapchat Data Transparency preview" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div class="preview-label">Live preview — Snapchat Data Transparency V7</div>
+      </div>
+
+      <div class="tldr">
+        <h2>TL;DR</h2>
+        <dl>
+          <dt>Problem:</dt><dd>Users don't understand how their content is collected, processed, and shared on social platforms.</dd>
+          <dt>Role:</dt><dd>UX research, interaction design, wireframing</dd>
+          <dt>Tools:</dt><dd>HTML/CSS prototyping, user interviews, usability testing</dd>
+          <dt>Timeline:</dt><dd>7 versions over multiple iterations</dd>
+          <dt>Key Decisions:</dt><dd>Progressive disclosure, high-contrast cards, plain language verbs (Collect / Process / Share / Control)</dd>
+          <dt>Result:</dt><dd>Users navigated the flow more confidently and gave clearer answers about data movement.</dd>
+        </dl>
+      </div>
+
+      <h2>Rationale / Problem</h2>
+      <p>Users rarely understand how their content is collected, processed, and shared once posted on social platforms. Snapchat's existing privacy documentation was buried in legal text. This project aimed to surface that information in the app itself, using plain language and visual flows users could navigate on their own terms.</p>
+
+      <h2>Research &amp; User Needs</h2>
+      <ul>
+        <li>Interviewed users about their mental model of "where does my Story go after I post it?"</li>
+        <li>Most assumed content stayed local or was only visible to friends; few understood server-side processing or third-party access.</li>
+        <li>Users wanted answers but didn't want to read long policy documents or leave the app.</li>
+        <li>Key insight: people trust apps more when they can <em>see</em> data flow, even if the flow is complex.</li>
+      </ul>
+
+      <h2>Visual Research &amp; Inspiration</h2>
+      <p>Studied data flow diagrams, privacy dashboards (Apple, Google), and step-by-step explainers (Duolingo onboarding, government forms). Focused on high-contrast cards, short sentences, and clear action verbs like "Collect," "Analyze," "Share," "Control."</p>
+
+      <h2>Wireframe Development (v3–v7)</h2>
+      <ul>
+        <li><strong>v3:</strong> Initial card layout with three-step flow. Too dense; users skipped text blocks.</li>
+        <li><strong>v4:</strong> Split steps into separate screens with "Next" buttons. Improved focus but felt like a tutorial users wanted to skip.</li>
+        <li><strong>v5:</strong> Introduced progressive disclosure: tap a card to expand details. Reduced perceived length.</li>
+        <li><strong>v6:</strong> Added inline icons and color coding (amber for "processing," blue for "user control"). Improved scannability.</li>
+        <li><strong>v7:</strong> Final refinement: tightened copy, increased touch targets, ensured mobile-first responsive behavior, added a "Download My Data" link.</li>
+      </ul>
+
+      <h2>Design Decisions</h2>
+      <ul>
+        <li>Mapped a simple story: <em>Collect → Process → Share → Control</em>.</li>
+        <li>Used high-contrast typography and direct labels instead of abstract icons alone.</li>
+        <li>No hidden sticky UI or scroll-jacking that blocks screen readers.</li>
+        <li>Kept interactions lightweight and accessible without requiring JavaScript libraries.</li>
+      </ul>
+
+      <h2>Testing &amp; Validation</h2>
+      <ul>
+        <li>Test prompt: "Show me what happens to your Story after you post it."</li>
+        <li>Users navigated the flow more confidently in v7 than in earlier versions.</li>
+        <li>Fewer wrong taps, clearer answers, and increased willingness to explore privacy settings.</li>
+      </ul>
+
+      <h2>Outcome &amp; Next Steps</h2>
+      <p>The v7 prototype demonstrated that privacy information can live inside the app without overwhelming users. Next steps include adding a plain-language glossary, integrating the flow into Snapchat's existing settings menu, and providing a one-tap "Download My Data" option.</p>
+
+      <h2>Documentation</h2>
+      <a class="doc-link" href="../image/Snapchat.pdf" target="_blank" rel="noopener">View Full Case Study PDF</a>
+
+      <div class="preview" id="previewBottom">
+        <iframe src="../DESN10799P3/index7.html" loading="lazy" title="Snapchat Data Transparency preview" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div class="preview-label">Live preview — Snapchat Data Transparency V7</div>
+      </div>
+    </div>
+
+    <div class="nav-back">
+      <a href="../index.html">&larr; Back to Portfolio</a>
+    </div>
+  </div>
+
+  <script src="snapchat.js"></script>
+</body>
+</html>

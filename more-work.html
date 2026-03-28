@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>More Work — Yiyang Zhang</title>
+  <meta name="description" content="Full project archive — every version, prototype, and experiment across Interaction Design courses."/>
+  <link rel="icon" href="favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header mw-header">
+    <div class="wrap">
+      <a class="back-link" href="index.html">&larr; Back to Portfolio</a>
+      <h1>More Work</h1>
+      <p class="tagline">Full project archive — every version, prototype, and experiment.</p>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+  <section class="mw-controls">
+    <div class="wrap">
+      <div class="view-toggle" id="moreViewToggle">
+        <button type="button" data-view="overview">Overview</button>
+        <button type="button" class="active" data-view="detailed">Detailed</button>
+      </div>
+      <p class="view-hint" id="moreViewHint">Read what each project does, then open the page.</p>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="mw-view" id="moreOverview">
+    <div class="wrap">
+    <ul class="main-projects">
+      <li class="selector">
+        <select aria-label="QuickPick / Smart Sleep Tracker / Learn Code" onchange="jump(this)">
+          <option value="" selected disabled>QuickPick / Smart Sleep Tracker / Learn Code</option>
+          <optgroup label="QuickPick">
+            <option value="DESN18654V1/index.html">QuickPick — V1</option>
+            <option value="DESN18654V2/index.html">QuickPick — V2</option>
+            <option value="DESN18654V3/index.html">QuickPick — V3</option>
+          </optgroup>
+          <optgroup label="Smart Sleep Tracker">
+            <option value="DESN18654V4/index.html">Smart Sleep Tracker — V4</option>
+            <option value="DESN18654V5/index.html">Smart Sleep Tracker — V5</option>
+            <option value="DESN18654V6/index.html">Smart Sleep Tracker — V6</option>
+            <option value="DESN18654V7/index.html">Smart Sleep Tracker — V7</option>
+          </optgroup>
+          <optgroup label="Learn Code App">
+            <option value="DESN18654V8/index.html">Learn Code App — V8</option>
+            <option value="DESN18654V9/index.html">Learn Code App — V9</option>
+            <option value="DESN18654V10/index.html">Learn Code App — V10</option>
+            <option value="DESN18654V11/index.html">Learn Code App — V11</option>
+            <option value="DESN18654V12/index.html">Learn Code App — V12</option>
+            <option value="DESN18654V13/index.html">Learn Code App — V13</option>
+            <option value="DESN18654V14/index.html">Learn Code App — V14</option>
+            <option value="DESN18654V16/index.html">Learn Code App — V16</option>
+            <option value="DESN18654V17/index.html">Learn Code App — V17</option>
+            <option value="DESN18654V18/App-Store.html">Learn Code App — V18 — App Store demo</option>
+          </optgroup>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Green Sheridan Garden Club versions" onchange="jump(this)">
+          <option value="" selected disabled>Green Sheridan Garden Club Website Design</option>
+          <option value="GSGC/v1/index.html">1A — Website Documentation</option>
+          <option value="GSGC/v2/index.html">1B — Wireframe Version 1</option>
+          <option value="GSGC/v3/index.html">1B — Wireframe Version 2</option>
+          <option value="GSGC/v4/index.html">1B — Wireframe Version 3</option>
+          <option value="GSGC/v5/index.html">2 — Finished Website Version 1</option>
+          <option value="GSGC/v6/index.html">2 — Finished Website Version 2</option>
+          <option value="GSGC/v7/index.html">2 — Final Version</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Interactive Prototype versions" onchange="jump(this)">
+          <option value="" selected disabled>Interactive Prototype — Versions</option>
+          <option value="DESN22848/index.html">Overview</option>
+          <option value="DESN22848P2/index.html">Project 2</option>
+          <option value="DESN22848P3/index.html">Project 3</option>
+          <option value="DESN22848V1/index.html">Version 1</option>
+          <option value="DESN22848V2/index.html">Version 2</option>
+          <option value="DESN22848V3/index.html">Version 3</option>
+          <option value="DESN22848V4/index.html">Version 4</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Typographic Systems versions" onchange="jump(this)">
+          <option value="" selected disabled>Typographic Systems</option>
+          <option value="VDES15738P1/index.html">P1 — Letterform Construction, Classification and Use</option>
+          <option value="VDES15738P2/index.html">P2 — Grid Layout Exercises</option>
+          <option value="VDES15738P3/index.html">P3 — Typography on the Web Variant 1</option>
+          <option value="VDES15738P3V1/index.html">P3V1 — Typography on the Web Variant 2</option>
+          <option value="VDES15738P3V2/index.html">P3V2 — Typography on the Web Variant 3</option>
+          <option value="VDES15738P3V3/index.html">P3V3 — Typography on the Web Variant 4</option>
+          <option value="VDES15738P3V4/index.html">P3V4 — Typography on the Web Variant 5</option>
+          <option value="VDES15738P3V5/index.html">P3V5 — Typography on the Web Final Version</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Game prototypes" onchange="jump(this)">
+          <option value="" selected disabled>Game Prototypes</option>
+          <option value="g1/index.html">Prototype 1</option>
+          <option value="g2/index.html">Prototype 2</option>
+          <option value="g3/index.html">Prototype 3</option>
+          <option value="g4v1/index.html">Prototype 4 (V1)</option>
+          <option value="DESN18654V14/index.html">Hand surgery test</option>
+          <option value="power-calculator/index.html">Power Calculator</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Data Transparency versions" onchange="jump(this)">
+          <option value="" selected disabled>Data Transparency</option>
+          <option value="DESN10799/index.html">Overview</option>
+          <option value="DESN10799P3/index.html">Snapchat Data Transparency — V1</option>
+          <option value="DESN10799P3/index2.html">Snapchat Data Transparency — V2</option>
+          <option value="DESN10799P3/index3.html">Snapchat Data Transparency — V3</option>
+          <option value="DESN10799P3/index4.html">Snapchat Data Transparency — V4</option>
+          <option value="DESN10799P3/index5.html">Snapchat Data Transparency — V5</option>
+          <option value="DESN10799P3/index6.html">Snapchat Data Transparency — V6</option>
+          <option value="DESN10799P3/index7.html">Snapchat Data Transparency — V7</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Weather Advisor versions" onchange="jump(this)">
+          <option value="" selected disabled>Weather Advisor</option>
+          <option value="DESN31927P1V2/index.html">Final</option>
+          <option value="DESN31927P1/DESN31927P1V1/index.html">Weather Advisor — V1</option>
+          <option value="DESN31927P1/DESN31927P1V2/index.html">Weather Advisor — V2</option>
+          <option value="DESN31927P1/DESN31927P1V3/index.html">Weather Advisor — V3</option>
+          <option value="DESN31927P1/DESN31927P1V4/index.html">Weather Advisor — V4</option>
+          <option value="DESN31927P1/DESN31927P1V5/index.html">Weather Advisor — V5</option>
+          <option value="DESN31927P1/DESN31927P1V6/index.html">Weather Advisor — V6</option>
+          <option value="DESN31927P1/DESN31927P1V7/index.html">Weather Advisor — V7</option>
+          <option value="DESN31927P1/DESN31927P1V8/index.html">Weather Advisor — V8</option>
+          <option value="DESN31927P1/DESN31927P1V9/index.html">Weather Advisor — V9</option>
+        </select>
+      </li>
+    </ul>
+    </div>
+  </section>
+
+  <!-- Detailed -->
+  <section class="mw-view active" id="moreDetailed">
+    <div class="wrap">
+
+      <!-- Decision Tools -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Decision Tools / Everyday Products</h3>
+          <p class="dv-cat-sub">Decision Tools / Everyday Products</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card">
+            <h4>QuickPick</h4>
+            <p class="dv-desc">A lightweight random-decision tool that helps you pick between meals, drinks, desserts, and entertainment when you can't decide.</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN18654V3/index.html">Open Latest</a>
+              <details>
+                <summary>All versions (3)</summary>
+                <ul>
+                  <li><a href="DESN18654V1/index.html">QuickPick — V1</a></li>
+                  <li><a href="DESN18654V2/index.html">QuickPick — V2</a></li>
+                  <li><a href="DESN18654V3/index.html">QuickPick — V3</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+
+          <div class="dv-card">
+            <h4>Smart Sleep Tracker</h4>
+            <p class="dv-desc">A daily tool built around sleep management — helping you figure out better sleep/wake times, track sleep debt, analyze your chronotype, and prepare for sleep.</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN18654V7/index.html">Open Latest</a>
+              <details>
+                <summary>All versions (4)</summary>
+                <ul>
+                  <li><a href="DESN18654V4/index.html">Smart Sleep Tracker — V4</a></li>
+                  <li><a href="DESN18654V5/index.html">Smart Sleep Tracker — V5</a></li>
+                  <li><a href="DESN18654V6/index.html">Smart Sleep Tracker — V6</a></li>
+                  <li><a href="DESN18654V7/index.html">Smart Sleep Tracker — V7</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UX Interaction -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>UX Interaction</h3>
+          <p class="dv-cat-sub">UX Interaction</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <h4>Green Sheridan Garden Club Website Design</h4>
+            <p class="dv-desc">A responsive website designed for a virtual gardening community, focused on making content structure, navigation paths, and page hierarchy clear.</p>
+            <div class="dv-actions">
+              <a class="btn" href="GSGC/v7/index.html">Open Final Version</a>
+              <details>
+                <summary>All versions (7)</summary>
+                <ul>
+                  <li>
+                    <a href="GSGC/v1/index.html">V1 — 1A / Website Documentation</a>
+                    <span class="dv-ver-desc">Site map, personas, content analysis, and user flow.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v2/index.html">V2 — 1B / Wireframe Version 1</a>
+                    <span class="dv-ver-desc">Initial information hierarchy and navigation paths.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v3/index.html">V3 — 1B / Wireframe Version 2</a>
+                    <span class="dv-ver-desc">Refined page organization and content distribution.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v4/index.html">V4 — 1B / Wireframe Version 3</a>
+                    <span class="dv-ver-desc">Complete wireframe with structural precision.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v5/index.html">V5 — 2 / Finished Website Version 1</a>
+                    <span class="dv-ver-desc">Fuller content and visual language.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v6/index.html">V6 — 2 / Finished Website Version 2</a>
+                    <span class="dv-ver-desc">Refined content, visuals, and interaction details.</span>
+                  </li>
+                  <li>
+                    <a href="GSGC/v7/index.html">V7 — 2 / Final Version</a>
+                    <span class="dv-ver-desc">Fully integrated content, layout, and visual presentation.</span>
+                  </li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual System / Typography -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Visual System / Typography</h3>
+          <p class="dv-cat-sub">Visual System / Typography</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card">
+            <h4>P1 — Letterform Construction, Classification and Use</h4>
+            <p class="dv-desc">A web project exploring letterform construction, paragraph typesetting, and type classification logic.</p>
+            <div class="dv-actions">
+              <a class="btn" href="VDES15738P1/index.html">Open Project</a>
+            </div>
+          </div>
+          <div class="dv-card">
+            <h4>P2 — Grid Layout Exercises</h4>
+            <p class="dv-desc">Typography centered on packaging text and layout hierarchy, built around grid systems and bilingual content organization.</p>
+            <div class="dv-actions">
+              <a class="btn" href="VDES15738P2/index.html">Open Project</a>
+            </div>
+          </div>
+          <div class="dv-card dv-card-full">
+            <h4>P3 — Typography on the Web</h4>
+            <p class="dv-desc">Translates typographer and designer research into a web experience. Combines designer research, typeface analysis, and front-end implementation.</p>
+            <div class="dv-actions">
+              <a class="btn" href="VDES15738P3V5/index.html">Open Final Version</a>
+              <details>
+                <summary>All variants (6)</summary>
+                <ul>
+                  <li><a href="VDES15738P3/index.html">P3 — Variant 1</a></li>
+                  <li><a href="VDES15738P3V1/index.html">P3V1 — Variant 2</a></li>
+                  <li><a href="VDES15738P3V2/index.html">P3V2 — Variant 3</a></li>
+                  <li><a href="VDES15738P3V3/index.html">P3V3 — Variant 4</a></li>
+                  <li><a href="VDES15738P3V4/index.html">P3V4 — Variant 5</a></li>
+                  <li><a href="VDES15738P3V5/index.html">P3V5 — Final Version</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Transparency -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Data Transparency</h3>
+          <p class="dv-cat-sub">Privacy, Permissions / Data Transparency</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <h4>Snapchat Data Transparency</h4>
+            <p class="dv-desc">An interactive explanation page that translates platform data collection, permission scopes, privacy implications, and user control options into something easier to understand.</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN10799P3/index7.html">Open Latest (V7)</a>
+              <details>
+                <summary>All versions (8)</summary>
+                <ul>
+                  <li><a href="DESN10799/index.html">Overview</a></li>
+                  <li><a href="DESN10799P3/index.html">V1</a></li>
+                  <li><a href="DESN10799P3/index2.html">V2</a></li>
+                  <li><a href="DESN10799P3/index3.html">V3</a></li>
+                  <li><a href="DESN10799P3/index4.html">V4</a></li>
+                  <li><a href="DESN10799P3/index5.html">V5</a></li>
+                  <li><a href="DESN10799P3/index6.html">V6</a></li>
+                  <li><a href="DESN10799P3/index7.html">V7</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weather Advisor -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Weather Advisor</h3>
+          <p class="dv-cat-sub">Weather, Real Feel / Human-Centered Data</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <h4>Weather Advisor · Real Weather</h4>
+            <p class="dv-desc">A project that re-translates traditional weather data into human-felt experience. It combines Open-Meteo API data with heat index, wind chill, and other formulas to calculate real feel.</p>
+            <div class="dv-actions">
+              <a class="btn" href="DESN31927P1V2/index.html">Open Final</a>
+              <details>
+                <summary>All versions (10)</summary>
+                <ul>
+                  <li><a href="DESN31927P1V2/index.html">Final</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V1/index.html">V1</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V2/index.html">V2</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V3/index.html">V3</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V4/index.html">V4</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V5/index.html">V5</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V6/index.html">V6</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V7/index.html">V7</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V8/index.html">V8</a></li>
+                  <li><a href="DESN31927P1/DESN31927P1V9/index.html">V9</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section>
+    <div class="wrap">
+      <h2>Quick Links</h2>
+      <ul class="card-grid">
+        <li class="card"><a href="DESN30146P1/index.html">Interactive Circuits — P1</a></li>
+        <li class="card"><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
+        <li class="card"><a href="Milk/index.html">Milk Calculator</a></li>
+        <li class="card"><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
+        <li class="card"><a href="nevergonna/home.html">Never Gonna Give You Up V2</a></li>
+        <li class="card"><a href="Lak-crest/index.html">Lak-crest</a></li>
+        <li class="card"><a href="mytw.html">nightmare escape</a></li>
+      </ul>
+    </div>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="back-link" href="index.html">&larr; Back to Portfolio</a>
+      <p>&copy; <span id="year"></span> Yiyang Zhang</p>
+    </div>
+  </footer>
+
+  <script src="js/more-work.js"></script>
+</body>
+</html>

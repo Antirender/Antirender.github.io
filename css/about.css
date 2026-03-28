@@ -1,0 +1,55 @@
+/* ===== About Page ===== */
+
+/* Hero */
+.about-hero{position:relative;overflow:hidden;padding:3rem 0 2rem;border-bottom:1px solid #e2e8f0}
+.hero-bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(5rem,16vw,14rem);font-variation-settings:"wght" 900;letter-spacing:-.04em;line-height:1;color:#0f172a;opacity:.04;white-space:nowrap;user-select:none;pointer-events:none;transition:opacity .4s}
+.hero-layout{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,48px);align-items:end}
+.hero-text{display:flex;flex-direction:column;gap:.6rem;padding-bottom:1rem}
+.hero-label{font-size:.875rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#2563eb}
+.hero-title{font-size:clamp(2rem,5vw,3rem);line-height:1.08;font-variation-settings:"wght" 800}
+.hero-subtitle{font-size:clamp(1rem,.95rem + .3vw,1.2rem);color:#334155;line-height:1.45}
+.hero-tip{font-size:.8rem;color:#94a3b8;font-weight:500}
+.hero-text,.hero-text .hero-label,.hero-text .hero-title,.hero-text .hero-subtitle{transition:opacity .32s ease,transform .32s ease}
+.hero-text.swapping .hero-label,.hero-text.swapping .hero-title,.hero-text.swapping .hero-subtitle{opacity:0;transform:translateY(8px)}
+
+/* Figures */
+.hero-figures{position:relative;height:clamp(280px,40vw,440px);align-self:end}
+.hero-fig{position:absolute;bottom:0;-webkit-tap-highlight-color:transparent;transition:left .42s cubic-bezier(.4,0,.2,1),height .42s cubic-bezier(.4,0,.2,1),opacity .42s ease,filter .42s ease}
+.hero-fig img{display:block;height:100%;width:auto;object-fit:contain;pointer-events:none}
+.hero-fig-primary{left:0;height:88%;z-index:2;opacity:1;filter:none;cursor:pointer}
+.hero-fig-secondary{left:52%;height:62%;z-index:1;opacity:.38;filter:grayscale(.45);cursor:pointer}
+.hero-fig-secondary:hover{opacity:.55;filter:grayscale(.15)}
+
+/* Sections */
+.about-section{padding:clamp(24px,4vw,40px) 0;border-bottom:1px solid #e2e8f0}
+.about-section:last-of-type{border-bottom:0}
+.about-section h2{font-size:clamp(1.4rem,1.3rem + .6vw,1.8rem);font-variation-settings:"wght" 700;margin:0 0 .8rem;line-height:1.2}
+.about-section p{max-width:68ch;margin:0 0 .75rem;color:#334155}
+
+/* Identity cards */
+.identity-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1rem 0}
+.identity-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:clamp(16px,2.5vw,24px);text-align:center;transition:transform .2s,box-shadow .2s}
+.identity-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(15,23,42,.08)}
+.identity-img{width:120px;height:auto;margin:0 auto 1rem;border-radius:12px}
+.identity-card h3{font-size:1.15rem;font-weight:700;margin:0 0 .2rem}
+.identity-role{display:inline-block;font-size:.8rem;font-weight:700;color:#2563eb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+.identity-card p{font-size:.9rem;color:#64748b;margin:0;line-height:1.5;text-align:left}
+
+/* Music */
+.music-embed{margin:1.5rem 0 0;border-radius:12px;overflow:hidden}
+.spotify-embed{border-radius:12px}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero-layout{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .hero-figures{height:clamp(200px,50vw,300px);width:100%;max-width:380px}
+  .hero-fig-primary{left:10%;height:78%}
+  .hero-fig-secondary{left:48%;height:52%}
+  .identity-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-figures{height:clamp(160px,45vw,240px)}
+  .hero-fig-primary{left:8%;height:72%}
+  .hero-fig-secondary{left:44%;height:46%}
+  .hero-bg-word{font-size:clamp(3.5rem,20vw,7rem)}
+}

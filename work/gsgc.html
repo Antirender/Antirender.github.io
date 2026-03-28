@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>GSGC — Yiyang Zhang</title>
+  <meta name="description" content="A responsive community hub for the Green Sheridan Garden Club — volunteer programs, garden updates, and membership sign-up."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">&larr; Back to Portfolio</a>
+
+    <div class="project-hero">
+      <h1>GSGC — Green Sheridan Garden Club</h1>
+      <p>A responsive community hub that helps students find garden programs, sign up to volunteer, and track seasonal updates with minimal friction.</p>
+      <div class="meta">
+        <span><strong>Role:</strong> UI design, responsive layout</span>
+        <span><strong>Methods:</strong> Iterative refinement, mobile-first</span>
+        <span><strong>Outcome:</strong> 7 versions, improved scanability</span>
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <label for="ver">Version:</label>
+      <select id="ver">
+        <option value="v1">v1 — Documentation</option>
+        <option value="v2">v2 — Wireframe 1</option>
+        <option value="v3">v3 — Wireframe 2</option>
+        <option value="v4">v4 — Wireframe 3</option>
+        <option value="v5">v5 — Finished 1</option>
+        <option value="v6">v6 — Finished 2</option>
+        <option value="v7" selected>v7 — Final</option>
+      </select>
+      <a class="btn" id="openLink" href="../GSGC/v7/index.html" target="_blank" rel="noopener">Open V7</a>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="../image/gsgc-preview.png" alt="Green Sheridan Garden Club preview">
+
+      <div class="preview" id="previewBox">
+        <iframe src="../GSGC/v7/index.html" loading="lazy" title="GSGC preview" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div class="preview-label">Live preview — GSGC V7 (Final)</div>
+      </div>
+
+      <div class="tldr">
+        <h2>TL;DR</h2>
+        <dl>
+          <dt>Problem:</dt><dd>Garden Club needed a clear, lightweight site for announcements, membership info, and volunteer sign-ups.</dd>
+          <dt>Role:</dt><dd>UI design, responsive layout design</dd>
+          <dt>Tools:</dt><dd>HTML/CSS, mobile-first design</dd>
+          <dt>Timeline:</dt><dd>7 versions with progressive refinement</dd>
+          <dt>Key Decisions:</dt><dd>Navigation tabs (Programs / Events / Join), quick links block, compact content for on-campus browsing</dd>
+          <dt>Result:</dt><dd>Improved readability and reduced time-to-action for volunteers.</dd>
+        </dl>
+      </div>
+
+      <h2>Problem / Context</h2>
+      <p>The Garden Club needed a clear, lightweight site for announcements, membership info, and volunteer sign-ups. Prior versions were inconsistent and hard to scan on mobile.</p>
+
+      <h2>Audience</h2>
+      <p>Students, staff, and local community members looking for garden events, volunteer schedules, and quick answers about how to join.</p>
+
+      <h2>Goals</h2>
+      <ul>
+        <li>Make key actions obvious: Join, Volunteer, and View Events.</li>
+        <li>Keep information scannable on small screens.</li>
+        <li>Reduce navigation steps to reach program details.</li>
+        <li>Show seasonal updates without overwhelming the homepage.</li>
+      </ul>
+
+      <h2>Constraints</h2>
+      <p>Responsive layout, high readability, and simple navigation were mandatory. Content length had to stay compact to support quick on-campus browsing.</p>
+
+      <h2>Design Decisions</h2>
+      <ul>
+        <li>Navigation tabs for Programs, Events, and Join to reduce menu depth.</li>
+        <li>Quick links block near the top for recurring tasks.</li>
+        <li>Structured layout with short sections and clear typography.</li>
+        <li>Consistent spacing and card-based groupings for visual rhythm.</li>
+      </ul>
+
+      <h2>Iteration / Versions (v1–v7)</h2>
+      <p>Each version tested a clearer hierarchy. Later iterations tightened spacing, improved the tab layout, and simplified the volunteer flow.</p>
+
+      <h2>Outcome + Next Steps</h2>
+      <p>The v4–v7 structure improved readability and reduced time-to-action for volunteers. Next steps include a lightweight event filter and a simple newsletter signup.</p>
+
+      <div class="preview" id="previewBottom">
+        <iframe src="../GSGC/v7/index.html" loading="lazy" title="GSGC preview" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div class="preview-label">Live preview — GSGC V7 (Final)</div>
+      </div>
+    </div>
+
+    <div class="nav-back">
+      <a href="../index.html">&larr; Back to Portfolio</a>
+    </div>
+  </div>
+
+  <script src="gsgc.js"></script>
+</body>
+</html>

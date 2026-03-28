@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>MoodPeek Pro — Yiyang Zhang</title>
+  <meta name="description" content="MoodPeek Pro — Visualizing daily emotion through time with calendar-centered habit structure, multi-user isolation, and iCal export."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">&larr; Back to Portfolio</a>
+
+    <div class="project-hero">
+      <h1>MoodPeek Pro — Visualizing Daily Emotion Through Time</h1>
+      <p>MoodPeek Pro is a structural upgrade from the original MoodPeek: it uses Day → Week → Month continuity to support habit formation instead of one-off logging. The calendar acts as the main entry point, Weekly Insight lives inside the Week Detail view, and the Dashboard gives you a quick-glance home — streak count, 7-day sparkline, and a shortcut to log today.</p>
+      <div class="meta">
+        <span><strong>Role:</strong> Full-stack prototype, UX architecture</span>
+        <span><strong>Tools:</strong> React, JWT, iCal, Open-Meteo API</span>
+        <span><strong>Outcome:</strong> Calendar 2.0, Dashboard, multi-user isolation</span>
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <label for="ver">Demo:</label>
+      <select id="ver">
+        <option value="pro" selected>MoodPeek Pro — Calendar-centered habit system</option>
+        <option value="v1">MoodPeek (guest mode) — Emotion + Weather correlation</option>
+      </select>
+      <a class="btn" id="openLink" href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">Open MoodPeek Pro</a>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="../image/moodpeek-preview.png" alt="MoodPeek Pro interface preview">
+
+      <div class="preview preview-tall" id="previewBox">
+        <iframe src="https://moodpeek-pro.vercel.app" loading="lazy" title="MoodPeek Pro preview" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+        <div class="preview-label">Live preview — MoodPeek Pro</div>
+      </div>
+
+      <div class="tldr">
+        <h2>TL;DR</h2>
+        <dl>
+          <dt>Problem:</dt><dd>Original MoodPeek focused on visualization; needed structure for habit tracking across multiple users.</dd>
+          <dt>Role:</dt><dd>Full-stack prototype, UX architecture, multi-user system design</dd>
+          <dt>Tools:</dt><dd>React, JWT authentication, iCal export, Open-Meteo API</dd>
+          <dt>Timeline:</dt><dd>Structural upgrade from MoodPeek v1</dd>
+          <dt>Key Decisions:</dt><dd>Calendar as main anchor, Dashboard quick-glance, inline Weekly Insight, self-reported (no AI inference)</dd>
+          <dt>Result:</dt><dd>Calendar 2.0 with filtering, Dashboard with streak tracking, multi-user isolation, iCal export.</dd>
+        </dl>
+      </div>
+
+      <h2>Key Decisions</h2>
+      <ul>
+        <li><strong>Calendar is the anchor; weekly insight inline.</strong> Instead of scattering views across tabs, the calendar holds everything. Tap a day to see or edit; tap a week header to get the insight summary right there. Removed the standalone Weekly Report page — it was one screen too many.</li>
+        <li><strong>Dashboard as quick-glance home.</strong> Shows today's entry shortcut, this-week-at-a-glance, a 7-day sparkline, current streak, and quick nav links. The goal: see something useful in under 2 seconds, then decide whether to dig in.</li>
+        <li><strong>Preferences drive personalization.</strong> Default city auto-fills weather on each entry; theme (light / dark / system) syncs globally without a page refresh. Each user's settings are isolated via JWT.</li>
+        <li><strong>Keep it self-reported.</strong> No automatic mood inference or "mind-reading" features. The user decides what they felt and writes it down. Emotional agency matters more than algorithmic guessing.</li>
+      </ul>
+
+      <h2>Key Features</h2>
+      <ul>
+        <li><strong>Calendar 2.0:</strong> Month-view grid with color-coded emotion cells. Click any day to view or edit. Filter by tag, city, or mood range to find patterns fast.</li>
+        <li><strong>iCal export:</strong> Download your mood entries as .ics events — bring them into Apple Calendar, Google Calendar, or anything that speaks iCal.</li>
+        <li><strong>Login + "Already Signed In" smart routing:</strong> If your session is still valid, the app skips the login screen and drops you straight into the Dashboard.</li>
+        <li><strong>Multi-user isolation (JWT):</strong> Each account's data is separate. No cross-contamination between users, even on shared devices.</li>
+        <li><strong>Dashboard:</strong> Today quick entry · This week at a glance · 7-day mood sparkline · Current streak · Shortcut tiles to Calendar, Preferences, and past weeks.</li>
+        <li><strong>Preferences:</strong> Set your default city (auto-fills weather when logging); choose light / dark / system theme with instant global sync — no page reload needed.</li>
+        <li><strong>Friendly 409:</strong> Try to log a second entry for the same day and you get a clear, human message instead of a cryptic error.</li>
+      </ul>
+
+      <h2>About MoodPeek v1 (the original)</h2>
+      <p>The first version focused on making emotion data visible: it mapped mood entries against environmental context (weather via Open-Meteo, time of day) and rendered them as color-coded cards with dynamic gradients. Guest mode, no login required, purely visual. Think of v1 as "turn emotions into something you can see," while Pro is "build the daily structure so tracking actually sticks across multiple users."</p>
+
+      <h2>Links</h2>
+      <div class="links">
+        <a href="https://moodpeek1.vercel.app/" target="_blank" rel="noopener">Open MoodPeek v1</a>
+        <a href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">Open MoodPeek Pro</a>
+        <a href="https://github.com/Antirender/moodpeek-pro" target="_blank" rel="noopener">GitHub (MoodPeek Pro)</a>
+      </div>
+
+      <div class="preview preview-tall" id="previewBottom">
+        <iframe src="https://moodpeek-pro.vercel.app" loading="lazy" title="MoodPeek Pro preview" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
+        <div class="preview-label">Live preview — MoodPeek Pro</div>
+      </div>
+    </div>
+
+    <div class="nav-back">
+      <a href="../index.html">&larr; Back to Portfolio</a>
+    </div>
+  </div>
+
+  <script src="moodpeek.js"></script>
+</body>
+</html>
