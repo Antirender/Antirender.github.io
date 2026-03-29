@@ -44,9 +44,9 @@ nav.primary a.about-link:hover{filter:brightness(.92);text-decoration:none}
 /* ===== Sections ===== */
 section{padding:clamp(24px,4vw,48px) 0;border-bottom:1px solid var(--border)}
 
-/* Section reveal animation (driven by Scrollama) */
-main section{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
-main section.is-visible{opacity:1;transform:none}
+/* Section reveal animation — progressive enhancement: only hide when JS is active */
+.js main section{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+.js main section.is-visible{opacity:1;transform:none}
 
 /* Accent bar on featured & client-work headings */
 #featured h2::before,#client-work h2::before,#skills h2::before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:var(--accent);margin-bottom:.6rem}
