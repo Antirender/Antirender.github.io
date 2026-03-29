@@ -8,6 +8,10 @@
   <link rel="icon" href="favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    .dv-card-img{width:100%;border-radius:10px;margin-bottom:.25rem}
+    .dv-card .spotify-embed{border-radius:12px;margin-top:.5rem}
+  </style>
 </head>
 <body>
 
@@ -37,6 +41,13 @@
   <section class="mw-view" id="moreOverview">
     <div class="wrap">
     <ul class="main-projects">
+      <li class="selector">
+        <select aria-label="Music Composition & Arrangement" onchange="jump(this)">
+          <option value="" selected disabled>Music Composition &amp; Arrangement</option>
+          <option value="about.html#music">Listen on Spotify</option>
+        </select>
+      </li>
+
       <li class="selector">
         <select aria-label="QuickPick / Smart Sleep Tracker / Learn Code" onchange="jump(this)">
           <option value="" selected disabled>QuickPick / Smart Sleep Tracker / Learn Code</option>
@@ -154,6 +165,25 @@
   <!-- Detailed -->
   <section class="mw-view active" id="moreDetailed">
     <div class="wrap">
+
+      <!-- Music Composition & Arrangement -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3>Music Composition &amp; Arrangement</h3>
+          <p class="dv-cat-sub">作曲 · 编曲 · Composition · Arrangement</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <img class="dv-card-img" src="image/logic_cap.png" alt="Logic Pro arrangement session — multi-track composition with pads, arps, bass, keys, and melody layers">
+            <h4>Original Music — Composition &amp; Arrangement</h4>
+            <p class="dv-desc">As <strong>Antirender</strong>, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies (作曲 / Composition), then layering and structuring instruments — pads, arpeggios, bass, keys, leads — into a finished arrangement (编曲 / Arrangement). 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.</p>
+            <div class="dv-actions">
+              <a class="btn" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener">Open Spotify</a>
+            </div>
+            <iframe class="spotify-embed" src="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&amp;theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Antirender on Spotify"></iframe>
+          </div>
+        </div>
+      </div>
 
       <!-- Decision Tools -->
       <div class="dv-category">
