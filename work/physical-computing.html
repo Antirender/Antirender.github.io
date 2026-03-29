@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Physical Computing — Yiyang Zhang</title>
+  <meta name="description" content="A three-module Physical Computing journey: from Arduino exploration to a sensor-driven comfort lamp housed in a 3D-printed architectural scene."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .phase{margin:2.5rem 0 0;padding:2rem 0 0;border-top:2px solid #e2e8f0}
+    .phase-label{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+    .phase-label--p1{background:#dbeafe;color:#1e40af}
+    .phase-label--p2{background:#fef3c7;color:#92400e}
+    .phase-label--p3{background:#d1fae5;color:#065f46}
+    .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin:1rem 0 1.5rem}
+    .img-grid img{border-radius:8px;cursor:pointer;transition:opacity .15s}
+    .img-grid img:hover{opacity:.85}
+    .final-gallery{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+    .final-gallery img{border-radius:10px}
+    @media(max-width:560px){.final-gallery{grid-template-columns:1fr}}
+    /* Lightbox */
+    .lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;cursor:zoom-out}
+    .lb.open{display:flex}
+    .lb img{max-width:92vw;max-height:90vh;border-radius:8px}
+    .lb-cap{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;max-width:80vw;text-align:center;line-height:1.5}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">&larr; Back to Portfolio</a>
+
+    <div class="project-hero">
+      <h1>Physical Computing — Comfort Lamp</h1>
+      <p>A three-module journey from first Arduino blink to a sensor-driven ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states; a ProtoPie mobile UI replaces the LCD for richer feedback.</p>
+      <div class="meta">
+        <span><strong>Course:</strong> DESN 30146</span>
+        <span><strong>Role:</strong> Hardware + software prototyping</span>
+        <span><strong>Tools:</strong> Arduino, DHT11, NeoPixel, Logic Pro, TouchDesigner, 3D printing</span>
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <label for="ver">Module:</label>
+      <select id="ver">
+        <option value="p1">P1 — Exploration &amp; Concept</option>
+        <option value="p2">P2 — Sensor Build &amp; Prototype</option>
+        <option value="p3" selected>P3 — 3D Housing &amp; Final</option>
+      </select>
+      <a class="btn" id="openLink" href="../DESN30146P3/index.html" target="_blank" rel="noopener">Open P3</a>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="../DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp final prototype — 3D-printed staircase glowing green">
+
+      <div class="tldr">
+        <h2>TL;DR</h2>
+        <dl>
+          <dt>Problem:</dt><dd>People can't feel ambient temperature/humidity changes until discomfort — no calm visual cue.</dd>
+          <dt>Role:</dt><dd>Individual hardware + software prototyping within a collaborative team</dd>
+          <dt>Tools:</dt><dd>Arduino Uno, DHT11, NeoPixel RGB LEDs, LCD1602, 3D printer (Ultimaker), TouchDesigner, ProtoPie</dd>
+          <dt>Timeline:</dt><dd>3 modules — exploration → working circuit → 3D-printed ambient object</dd>
+          <dt>Key Decisions:</dt><dd>Tiered colour mapping with hysteresis; remove LCD, move UI to mobile; physical latching switch for clear on/off</dd>
+          <dt>Result:</dt><dd>A finished ambient lamp that communicates comfort state through colour and glow, paired with a ProtoPie mobile dashboard.</dd>
+        </dl>
+      </div>
+
+      <!-- ===== MODULE 1 ===== -->
+      <div class="phase">
+        <span class="phase-label phase-label--p1">Module 1 — Exploration &amp; Concept</span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Arduino Basics &amp; Research</h2>
+        <p>Set up Arduino for the first time — Blink, LEDs, buttons. Explored TouchDesigner for data-driven visuals. Researched WGSN consumer trends (Solarpunk Futures, Nomadic Tech) and defined problem spaces and HMI statements.</p>
+
+        <h3>Activity 1 — First Arduino Experiments</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P1/images/Activity1/001.gif" alt="Connecting Arduino and uploading Blink sketch" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity1/002.gif" alt="External LED on pin 13 blinking" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity1/003.gif" alt="Blue LED on breadboard blinking from program" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity1/004.gif" alt="Multiple LEDs blinking together" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity1/005.gif" alt="Button press lights up LED" onclick="lb(this)">
+        </div>
+
+        <h3>Activity 2 — ProtoPie + Board Setup</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P1/images/Activity2/001.jpeg" alt="Connecting dev board to laptop" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity2/002.jpeg" alt="Arduino IDE code ready to upload" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity2/003.jpeg" alt="Testing on second laptop" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity2/004.jpeg" alt="Running uploaded program, checking outputs" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity2/005.gif" alt="Board running in real time" onclick="lb(this)">
+        </div>
+
+        <h3>Activity 3 — Arduino → TouchDesigner</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P1/images/Activity3/001.png" alt="Potentiometer serial data 0–100" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity3/002.png" alt="TouchDesigner blank project" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity3/003.png" alt="Serial port error (monitor still open)" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity3/004.gif" alt="Instructor example: potentiometer → circle radius" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity3/005.gif" alt="My network: potentiometer controls circle size and hue" onclick="lb(this)">
+        </div>
+
+        <h3>Concept Direction</h3>
+        <p>Chose the ART path — transforming sensor signals into generative visuals. Core idea: make energy states legible at a glance through calm colour/particle fields mapped to real data.</p>
+        <div class="img-grid">
+          <img src="../DESN30146P1/images/Concept/001.png" alt="TouchDesigner prototype — solar energy mapped to colour and particle density" onclick="lb(this)">
+        </div>
+      </div>
+
+      <!-- ===== MODULE 2 ===== -->
+      <div class="phase">
+        <span class="phase-label phase-label--p2">Module 2 — Sensor Build &amp; Prototype</span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">DHT Sensor → LED → LCD Comfort Lamp</h2>
+        <p>Built the core circuit: DHT11 reads temperature &amp; humidity, Arduino maps values to four colour tiers (BLUE &lt; 16 °C, GREEN 16–26 °C, YELLOW 27–34 °C, RED ≥ 35 °C) with hysteresis. Added LCD1602 for live readout. Guerrilla prototyping sessions tested cardboard lamp housings.</p>
+
+        <h3>Guerrilla Prototyping I — Cardboard Stand</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P2/images/Activity1/001.jpg" alt="Cut cardboard parts — base, ribs, slot pieces" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/002.jpeg" alt="Measuring and layout" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/003.jpeg" alt="Assembly with hot glue" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/004.jpeg" alt="Prototype V1 — limited angle range" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/005.jpeg" alt="Prototype V2 — wider base, rear wedge" onclick="lb(this)">
+        </div>
+
+        <h3>DHT11 Sensor Exploration</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P2/images/Activity1/006.jpg" alt="Cardboard prototype checking balance and internal volume" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/007.jpeg" alt="Arduino IDE DHT11 sketch" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/008.jpeg" alt="DHT11 wiring close-up" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/009.jpeg" alt="Serial Monitor streaming sensor data" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/010.jpeg" alt="Sensor mounted in temporary case" onclick="lb(this)">
+        </div>
+
+        <h3>Iterating DHT Data → LED Signals</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P2/images/Activity2/006.jpeg" alt="Board selection and sensor choice" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/007.jpeg" alt="Breadboard layout — DHT wired" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/008.jpeg" alt="Wiring refinement — DATA/VCC/GND verified" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/009.png" alt="Arduino sketch with tiers and hysteresis" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/010.jpeg" alt="End-to-end serial test — live T/H readings" onclick="lb(this)">
+        </div>
+
+        <h3>Action Research — Adding LCD1602</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P2/images/ActionResearch/001.png" alt="Arduino sketch — DHT, tier, LED, LCD" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/002.jpeg" alt="Wiring full stack" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/003.jpeg" alt="Breadboard refinement with POT for contrast" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/004.jpeg" alt="LED cues live — tier colours" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/005.jpeg" alt="LCD readout: T, H, and tier label" onclick="lb(this)">
+        </div>
+
+        <h3>P2 Prototype Result</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P2/images/final/001.jpeg" alt="Comfort Lamp v1 — Arduino, DHT, LCD showing GREEN tier" onclick="lb(this)">
+        </div>
+      </div>
+
+      <!-- ===== MODULE 3 ===== -->
+      <div class="phase">
+        <span class="phase-label phase-label--p3">Module 3 — 3D Housing &amp; Final Prototype</span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">From Circuit to Ambient Object</h2>
+        <p>Evolved the comfort lamp into a finished ambient object. Researched and 3D-printed a staircase/arch housing, removed the LCD, added a light sensor and latching touch switch, and connected to a ProtoPie mobile UI for richer feedback.</p>
+
+        <h3>Workshop 1 — Bodystorming</h3>
+        <p>Role-played a clinic visit to study doctor–patient communication: eye contact, body language, tone, and digital tools for trust and comfort.</p>
+        <div class="img-grid">
+          <img src="../DESN30146P3/images/Workshop1/1.jpeg" alt="Setting up the consultation role-play" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/2.jpeg" alt="Doctor reads symptom checklist on phone" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/3.jpeg" alt="Doctor leans in to talk to patient" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/4.jpeg" alt="Patient describes chest pain" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/5.jpeg" alt="Emergency scenario — patient faints" onclick="lb(this)">
+        </div>
+
+        <h3>Activity 1 — Enclosure Design &amp; 3D Printing</h3>
+        <p>Found a staircase/arch model on Thingiverse, modified it in CAD, and 3D-printed a housing for the Arduino and sensors.</p>
+        <div class="img-grid">
+          <img src="../DESN30146P3/images/Activity1/001.png" alt="Reference 3D model from Thingiverse" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/002.png" alt="First CAD modification — interior architecture" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/003.png" alt="Second CAD iteration — Arduino slot" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/004.jpeg" alt="3D printing in progress on Ultimaker" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/005.jpeg" alt="Finished 3D-printed housing" onclick="lb(this)">
+        </div>
+
+        <h3>Activity 2 — Electronics &amp; Lighting Integration</h3>
+        <div class="img-grid">
+          <img src="../DESN30146P3/images/Activity2/001.jpeg" alt="Testing RGB LED ring" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/002.jpeg" alt="Soldering longer wires to LED" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/003.jpeg" alt="Wired connector for NeoPixel strip" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/004.gif" alt="Breadboard test — full comfort-lamp logic" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/005.gif" alt="First test placing electronics in housing" onclick="lb(this)">
+        </div>
+        <div class="img-grid">
+          <img src="../DESN30146P3/images/Activity2/006.jpeg" alt="Warm glow inside staircase housing" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/007.gif" alt="Adjusting LED ring position for light gradient" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/008.jpg" alt="Cool/green tier test" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/009.jpg" alt="Warm/orange tier test" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/010.jpg" alt="Bright magenta tier test" onclick="lb(this)">
+        </div>
+
+        <h3>Additional Research — Sensors &amp; Switch</h3>
+        <p>Removed LCD, added light sensor for ambient brightness, tested a latching touch switch for clear on/off control.</p>
+        <div class="img-grid">
+          <img src="../DESN30146P3/images/AdditionalResearch/001.jpeg" alt="Breadboard without LCD — added light sensor" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/002.jpeg" alt="Added latching touch switch" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/003.jpeg" alt="Tidied circuit — RGB LED lit" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/004.png" alt="Updated Arduino code for touch switch" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/005.gif" alt="Live test — LED responds to switch and sensors" onclick="lb(this)">
+        </div>
+        <div class="img-grid">
+          <img src="../DESN30146P3/images/AdditionalResearch/006.gif" alt="Touch switch and sensors test" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/007.jpeg" alt="Checking enclosure for electronics fit" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/008.jpeg" alt="Circuit beside enclosure — testing cable reach" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/009.gif" alt="Interior glowing with external circuit" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/010.jpeg" alt="Red tier glow inside enclosure" onclick="lb(this)">
+        </div>
+      </div>
+
+      <!-- ===== FINAL ===== -->
+      <div class="phase">
+        <span class="phase-label phase-label--p3">Final Prototype</span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Comfort Lamp — Finished Ambient Object</h2>
+        <p>The completed lamp uses tiered colour states driven by sensors, a latching touch switch for physical on/off, and a ProtoPie mobile UI that shows live data and sends commands back to the Arduino. The phone handles detailed information; the lamp communicates through colour and glow.</p>
+        <div class="final-gallery">
+          <img src="../DESN30146P3/images/final/001.jpeg" alt="Final prototype — staircase and archway lit with soft green glow" onclick="lb(this)">
+          <img src="../DESN30146P3/images/final/002.gif" alt="Final prototype cycling through rainbow and tiered colours" onclick="lb(this)">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="nav-back">
+      <a href="../index.html">&larr; Back to Portfolio</a>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lightbox" onclick="this.classList.remove('open')">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+
+  <script>
+(function () {
+  var sel = document.getElementById('ver');
+  var link = document.getElementById('openLink');
+  var map = { p1: '../DESN30146P1/index.html', p2: '../DESN30146P2/index.html', p3: '../DESN30146P3/index.html' };
+  var labels = { p1: 'P1', p2: 'P2', p3: 'P3' };
+  sel.addEventListener('change', function () {
+    var v = this.value;
+    link.href = map[v];
+    link.textContent = 'Open ' + labels[v];
+  });
+})();
+function lb(el) {
+  var box = document.getElementById('lightbox');
+  document.getElementById('lbImg').src = el.src;
+  document.getElementById('lbCap').textContent = el.alt;
+  box.classList.add('open');
+}
+  </script>
+</body>
+</html>
