@@ -18,7 +18,7 @@
   <section class="hero">
     <div class="wrap">
       <h1>Yiyang Zhang</h1>
-      <p class="tagline">Interaction Design student — prototyping, usability testing, and clear documentation.</p>
+      <p class="tagline" data-i18n="hero.tagline">Interaction Design student — prototyping, usability testing, and clear documentation.</p>
       <ul class="contact-list">
         <li><span>Oakville, ON</span></li>
         <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
@@ -35,16 +35,26 @@
       <a class="header-logo" href="#">YZ</a>
       <nav class="primary" aria-label="Primary">
         <ul>
-          <li><a href="#philosophy">Philosophy</a></li>
-          <li><a href="#featured">Featured</a></li>
-          <li><a href="#client-work">Client</a></li>
-          <li><a href="#more">More</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#resume">Resume</a></li>
-          <li><a href="intro.html">Intro</a></li>
-          <li><a class="about-link" href="about.html">About Me</a></li>
+          <li><a href="#philosophy" data-i18n="nav.philosophy">Philosophy</a></li>
+          <li><a href="#featured" data-i18n="nav.featured">Featured</a></li>
+          <li><a href="#client-work" data-i18n="nav.client">Client</a></li>
+          <li><a href="#more" data-i18n="nav.more">More</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#resume" data-i18n="nav.resume">Resume</a></li>
+          <li><a href="intro.html" data-i18n="nav.intro">Intro</a></li>
+          <li><a class="about-link" href="about.html" data-i18n="nav.about">About Me</a></li>
         </ul>
       </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
     </div>
   </header>
 
@@ -53,21 +63,21 @@
   <!-- Philosophy -->
   <section id="philosophy">
     <div class="wrap">
-      <h2>Design Philosophy</h2>
-      <p>I design from the real. I keep what's real, using limits to define form. If beauty shows up, it's because the thing works. Value should be discovered in the hand and over time. I treat software and electronics as craft, not magic.</p>
+      <h2 data-i18n="sec.philosophy">Design Philosophy</h2>
+      <p data-i18n="sec.philosophy.text">I design from the real. I keep what's real, using limits to define form. If beauty shows up, it's because the thing works. Value should be discovered in the hand and over time. I treat software and electronics as craft, not magic.</p>
     </div>
   </section>
 
   <!-- Featured Work -->
   <section id="featured">
     <div class="wrap">
-      <h2>Featured Work</h2>
+      <h2 data-i18n="sec.featured">Featured Work</h2>
       <div class="work-grid">
 
         <a class="work-card" href="work/learn-code.html">
           <img src="image/learn-code-app.png" alt="Learn Code App interface preview">
-          <h3>Learn Code — Building Pathways to Programming</h3>
-          <p>A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability.</p>
+          <h3 data-i18n="card.learn.title">Learn Code — Building Pathways to Programming</h3>
+          <p data-i18n="card.learn.desc">A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability.</p>
           <div class="card-meta">
             <span>UX/UI design</span>
             <span>7 versions</span>
@@ -78,8 +88,8 @@
 
         <a class="work-card" href="work/snapchat.html">
           <img src="image/snapchat-data.png" alt="Data transparency prototype preview">
-          <h3>Snapchat Data Transparency — Designing for Clarity</h3>
-          <p>An interactive explanation of how personal data moves through the app. Steps are short and visual with clear verbs.</p>
+          <h3 data-i18n="card.snap.title">Snapchat Data Transparency — Designing for Clarity</h3>
+          <p data-i18n="card.snap.desc">An interactive explanation of how personal data moves through the app. Steps are short and visual with clear verbs.</p>
           <div class="card-meta">
             <span>UX research</span>
             <span>7 versions</span>
@@ -90,8 +100,8 @@
 
         <a class="work-card" href="work/gsgc.html">
           <img src="image/gsgc-preview.png" alt="Green Sheridan Garden Club prototype preview">
-          <h3>GSGC — Green Sheridan Garden Club</h3>
-          <p>A campus community site exploring volunteer programs, garden updates, and membership sign-up. Designed for clarity and mobile-first use.</p>
+          <h3 data-i18n="card.gsgc.title">GSGC — Green Sheridan Garden Club</h3>
+          <p data-i18n="card.gsgc.desc">A campus community site exploring volunteer programs, garden updates, and membership sign-up. Designed for clarity and mobile-first use.</p>
           <div class="card-meta">
             <span>UI design</span>
             <span>7 versions</span>
@@ -102,8 +112,8 @@
 
         <a class="work-card" href="work/moodpeek.html">
           <img src="image/moodpeek-preview.png" alt="MoodPeek Pro calendar mood logging interface">
-          <h3>MoodPeek Pro — Calendar-First Mood Logging</h3>
-          <p>A structured mood tracker built around Day → Week → Month continuity. Calendar as the main entry, Dashboard for quick logging.</p>
+          <h3 data-i18n="card.mood.title">MoodPeek Pro — Calendar-First Mood Logging</h3>
+          <p data-i18n="card.mood.desc">A structured mood tracker built around Day → Week → Month continuity. Calendar as the main entry, Dashboard for quick logging.</p>
           <div class="card-meta">
             <span>Full-stack prototype</span>
             <span>React + JWT</span>
@@ -114,8 +124,8 @@
 
         <a class="work-card" href="work/physical-computing.html">
           <img src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp final prototype — 3D-printed staircase glowing green">
-          <h3>Physical Computing — Comfort Lamp</h3>
-          <p>A sensor-driven ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states with ProtoPie mobile UI.</p>
+          <h3 data-i18n="card.physical.title">Physical Computing — Comfort Lamp</h3>
+          <p data-i18n="card.physical.desc">A sensor-driven ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states with ProtoPie mobile UI.</p>
           <div class="card-meta">
             <span>Arduino + DHT11</span>
             <span>3D printing</span>
@@ -126,8 +136,8 @@
 
         <a class="work-card" href="work/interactive-prototype.html">
           <img src="DESN22848P3/images/final/happy.png" alt="Interactive Prototype — colourful p5.js experiment">
-          <h3>Interactive Prototype — Media, Motion &amp; the Body</h3>
-          <p>Copper-tape circuits, p5.js sound visualisations, and a Makey Makey drum machine — three modules exploring the overlap of physical materials and digital feedback.</p>
+          <h3 data-i18n="card.interactive.title">Interactive Prototype — Media, Motion &amp; the Body</h3>
+          <p data-i18n="card.interactive.desc">Copper-tape circuits, p5.js sound visualisations, and a Makey Makey drum machine — three modules exploring the overlap of physical materials and digital feedback.</p>
           <div class="card-meta">
             <span>Makey Makey</span>
             <span>p5.js + WebGL</span>
@@ -143,8 +153,8 @@
   <!-- Client Work -->
   <section id="client-work">
     <div class="wrap">
-      <h2>Client Work</h2>
-      <p class="cw-intro">Real-world commercial projects I contributed to — company websites designed, built, and iterated for actual clients.</p>
+      <h2 data-i18n="sec.client">Client Work</h2>
+      <p class="cw-intro" data-i18n="sec.client.intro">Real-world commercial projects I contributed to — company websites designed, built, and iterated for actual clients.</p>
 
       <div class="cw-main">
         <p class="cw-client">Client: 品作设计（南京）有限公司 — Pinzuo Design (Nanjing) Co., Ltd.</p>
@@ -188,47 +198,47 @@
   <!-- More Work -->
   <section id="more">
     <div class="wrap">
-      <h2>More Work</h2>
-      <p>Every version, prototype, and experiment — organized by category.</p>
-      <a class="btn" href="more-work.html">Browse Full Archive &rarr;</a>
+      <h2 data-i18n="sec.more">More Work</h2>
+      <p data-i18n="sec.more.text">Every version, prototype, and experiment — organized by category.</p>
+      <a class="btn" href="more-work.html" data-i18n="sec.more.btn">Browse Full Archive &rarr;</a>
     </div>
   </section>
 
   <!-- Skills -->
   <section id="skills">
     <div class="wrap">
-      <h2>Skills &amp; Toolbox</h2>
+      <h2 data-i18n="sec.skills">Skills &amp; Toolbox</h2>
       <div class="skills-grid">
         <div class="skill-card">
-          <h4>Responsive UI</h4>
-          <p>Build responsive pages and interactive UI with HTML, CSS, and JavaScript. Clean layouts, reusable components, mobile-first approach.</p>
+          <h4 data-i18n="skill.ui">Responsive UI</h4>
+          <p data-i18n="skill.ui.desc">Build responsive pages and interactive UI with HTML, CSS, and JavaScript. Clean layouts, reusable components, mobile-first approach.</p>
         </div>
         <div class="skill-card">
-          <h4>Rapid Prototyping</h4>
-          <p>Prototype fast from Figma to working code. Translate design systems into functional, well-structured web interfaces.</p>
+          <h4 data-i18n="skill.proto">Rapid Prototyping</h4>
+          <p data-i18n="skill.proto.desc">Prototype fast from Figma to working code. Translate design systems into functional, well-structured web interfaces.</p>
         </div>
         <div class="skill-card">
-          <h4>Sound-Reactive Visuals</h4>
-          <p>Create sound-reactive and input-driven visuals with p5.js and p5.sound. Interactive, generative, and expressive.</p>
+          <h4 data-i18n="skill.sound">Sound-Reactive Visuals</h4>
+          <p data-i18n="skill.sound.desc">Create sound-reactive and input-driven visuals with p5.js and p5.sound. Interactive, generative, and expressive.</p>
         </div>
         <div class="skill-card">
-          <h4>UX Design &amp; Documentation</h4>
-          <p>Design and document UX flows, user research, usability testing, wireframing, and dark-pattern case-study prototypes.</p>
+          <h4 data-i18n="skill.ux">UX Design &amp; Documentation</h4>
+          <p data-i18n="skill.ux.desc">Design and document UX flows, user research, usability testing, wireframing, and dark-pattern case-study prototypes.</p>
         </div>
         <div class="skill-card">
-          <h4>Data Visualization</h4>
-          <p>Produce data dashboards and visual analysis in Tableau. Turn complex data into clear, actionable stories.</p>
+          <h4 data-i18n="skill.data">Data Visualization</h4>
+          <p data-i18n="skill.data.desc">Produce data dashboards and visual analysis in Tableau. Turn complex data into clear, actionable stories.</p>
         </div>
         <div class="skill-card">
-          <h4>Automation &amp; Scripting</h4>
-          <p>Automate workflow tasks with Python and PowerShell. Comfortable with C++ and Python for problem-solving.</p>
+          <h4 data-i18n="skill.auto">Automation &amp; Scripting</h4>
+          <p data-i18n="skill.auto.desc">Automate workflow tasks with Python and PowerShell. Comfortable with C++ and Python for problem-solving.</p>
         </div>
         <div class="skill-card">
-          <h4>Compose Music</h4>
-          <p>Write and produce original tracks across genres using Logic Pro and Ableton Live. End-to-end workflow from composition to basic mastering.</p>
+          <h4 data-i18n="skill.music">Compose Music</h4>
+          <p data-i18n="skill.music.desc">Write and produce original tracks across genres using Logic Pro and Ableton Live. End-to-end workflow from composition to basic mastering.</p>
         </div>
       </div>
-      <h3>Toolbox</h3>
+      <h3 data-i18n="sec.toolbox">Toolbox</h3>
       <div class="toolbox">
         <img src="https://img.shields.io/badge/-Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" alt="Figma">
         <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
@@ -257,7 +267,7 @@
   <!-- Resume -->
   <section id="resume">
     <div class="wrap">
-      <h2>Resume</h2>
+      <h2 data-i18n="sec.resume">Resume</h2>
       <div id="resume-controls" class="no-print">
         <a class="btn" href="image/Yiyang-Zhang-Resume.pdf" download>Download Resume (PDF)</a>
         <button class="btn btn-outline" id="printResume" aria-label="Print or save resume as PDF">Print</button>
@@ -338,8 +348,8 @@
   <!-- Conclusion -->
   <section id="conclusion">
     <div class="wrap">
-      <h2>Conclusion</h2>
-      <p>This portfolio documents my growth as an Interaction Design student — from early prototypes to research-driven case studies. Every project reflects my approach: start with real constraints, prototype quickly, test with users, and iterate based on evidence. I treat software and electronics as craft, and I look forward to continuing that practice in professional work.</p>
+      <h2 data-i18n="sec.conclusion">Conclusion</h2>
+      <p data-i18n="sec.conclusion.text">This portfolio documents my growth as an Interaction Design student — from early prototypes to research-driven case studies. Every project reflects my approach: start with real constraints, prototype quickly, test with users, and iterate based on evidence. I treat software and electronics as craft, and I look forward to continuing that practice in professional work.</p>
     </div>
   </section>
 
@@ -438,6 +448,202 @@ function jump(sel) {
   }, { rootMargin: '-20% 0px -60% 0px' });
   sections.forEach(function(s) { io.observe(s.el); });
 })();
+
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;
+  var btn=document.getElementById('themeToggle');
+  var KEY='siteTheme';
+  function apply(theme){
+    root.setAttribute('data-theme',theme);
+    if(btn) btn.textContent=theme==='dark'?'\u2600':'\u263E';
+    try{localStorage.setItem(KEY,theme);}catch(_){}
+  }
+  var saved;try{saved=localStorage.getItem(KEY);}catch(_){}
+  if(saved){apply(saved);}
+  else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn) btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+
+/* ===== i18n ===== */
+var T={
+en:{
+'nav.philosophy':'Philosophy','nav.featured':'Featured','nav.client':'Client','nav.more':'More','nav.skills':'Skills','nav.resume':'Resume','nav.intro':'Intro','nav.about':'About Me',
+'hero.tagline':'Interaction Design student \u2014 prototyping, usability testing, and clear documentation.',
+'sec.philosophy':'Design Philosophy',
+'sec.philosophy.text':'I design from the real. I keep what\u2019s real, using limits to define form. If beauty shows up, it\u2019s because the thing works. Value should be discovered in the hand and over time. I treat software and electronics as craft, not magic.',
+'sec.featured':'Featured Work',
+'card.learn.title':'Learn Code \u2014 Building Pathways to Programming',
+'card.learn.desc':'A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability.',
+'card.snap.title':'Snapchat Data Transparency \u2014 Designing for Clarity',
+'card.snap.desc':'An interactive explanation of how personal data moves through the app. Steps are short and visual with clear verbs.',
+'card.gsgc.title':'GSGC \u2014 Green Sheridan Garden Club',
+'card.gsgc.desc':'A campus community site exploring volunteer programs, garden updates, and membership sign-up. Designed for clarity and mobile-first use.',
+'card.mood.title':'MoodPeek Pro \u2014 Calendar-First Mood Logging',
+'card.mood.desc':'A structured mood tracker built around Day \u2192 Week \u2192 Month continuity. Calendar as the main entry, Dashboard for quick logging.',
+'card.physical.title':'Physical Computing \u2014 Comfort Lamp',
+'card.physical.desc':'A sensor-driven ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states with ProtoPie mobile UI.',
+'card.interactive.title':'Interactive Prototype \u2014 Media, Motion & the Body',
+'card.interactive.desc':'Copper-tape circuits, p5.js sound visualisations, and a Makey Makey drum machine \u2014 three modules exploring the overlap of physical materials and digital feedback.',
+'sec.client':'Client Work',
+'sec.client.intro':'Real-world commercial projects I contributed to \u2014 company websites designed, built, and iterated for actual clients.',
+'sec.more':'More Work','sec.more.text':'Every version, prototype, and experiment \u2014 organized by category.','sec.more.btn':'Browse Full Archive \u2192',
+'sec.skills':'Skills & Toolbox','sec.toolbox':'Toolbox',
+'skill.ui':'Responsive UI','skill.ui.desc':'Build responsive pages and interactive UI with HTML, CSS, and JavaScript. Clean layouts, reusable components, mobile-first approach.',
+'skill.proto':'Rapid Prototyping','skill.proto.desc':'Prototype fast from Figma to working code. Translate design systems into functional, well-structured web interfaces.',
+'skill.sound':'Sound-Reactive Visuals','skill.sound.desc':'Create sound-reactive and input-driven visuals with p5.js and p5.sound. Interactive, generative, and expressive.',
+'skill.ux':'UX Design & Documentation','skill.ux.desc':'Design and document UX flows, user research, usability testing, wireframing, and dark-pattern case-study prototypes.',
+'skill.data':'Data Visualization','skill.data.desc':'Produce data dashboards and visual analysis in Tableau. Turn complex data into clear, actionable stories.',
+'skill.auto':'Automation & Scripting','skill.auto.desc':'Automate workflow tasks with Python and PowerShell. Comfortable with C++ and Python for problem-solving.',
+'skill.music':'Compose Music','skill.music.desc':'Write and produce original tracks across genres using Logic Pro and Ableton Live. End-to-end workflow from composition to basic mastering.',
+'sec.resume':'Resume','sec.conclusion':'Conclusion',
+'sec.conclusion.text':'This portfolio documents my growth as an Interaction Design student \u2014 from early prototypes to research-driven case studies. Every project reflects my approach: start with real constraints, prototype quickly, test with users, and iterate based on evidence. I treat software and electronics as craft, and I look forward to continuing that practice in professional work.'
+},
+'zh-CN':{
+'nav.philosophy':'\u8bbe\u8ba1\u7406\u5ff5','nav.featured':'\u7cbe\u9009','nav.client':'\u5ba2\u6237','nav.more':'\u66f4\u591a','nav.skills':'\u6280\u80fd','nav.resume':'\u7b80\u5386','nav.intro':'\u4ecb\u7ecd','nav.about':'\u5173\u4e8e\u6211',
+'hero.tagline':'\u4ea4\u4e92\u8bbe\u8ba1\u5b66\u751f \u2014 \u539f\u578b\u8bbe\u8ba1\u3001\u53ef\u7528\u6027\u6d4b\u8bd5\u4e0e\u6e05\u6670\u7684\u6587\u6863\u8bb0\u5f55\u3002',
+'sec.philosophy':'\u8bbe\u8ba1\u7406\u5ff5',
+'sec.philosophy.text':'\u6211\u4ece\u771f\u5b9e\u51fa\u53d1\u8bbe\u8ba1\u3002\u4fdd\u7559\u771f\u5b9e\u7684\u4e1c\u897f\uff0c\u7528\u9650\u5236\u6765\u5b9a\u4e49\u5f62\u5f0f\u3002\u5982\u679c\u7f8e\u51fa\u73b0\u4e86\uff0c\u90a3\u662f\u56e0\u4e3a\u5b83\u53ef\u7528\u3002\u4ef7\u503c\u5e94\u8be5\u5728\u4f7f\u7528\u4e2d\u88ab\u53d1\u73b0\u3002\u6211\u628a\u8f6f\u4ef6\u548c\u7535\u5b50\u5f53\u4f5c\u5de5\u827a\uff0c\u800c\u4e0d\u662f\u9b54\u6cd5\u3002',
+'sec.featured':'\u7cbe\u9009\u4f5c\u54c1',
+'card.learn.title':'Learn Code \u2014 \u6784\u5efa\u7f16\u7a0b\u5b66\u4e60\u8def\u5f84',
+'card.learn.desc':'\u4e00\u6b3e\u63a2\u7d22\u521d\u5b66\u8005\u5982\u4f55\u6d4f\u89c8\u548c\u7ee7\u7eed\u8bfe\u7a0b\u7684\u6d4f\u89c8\u5668\u5b66\u4e60\u5e94\u7528\u3002\u5c42\u7ea7\u5bfc\u822a\u4e0e\u4e00\u81f4\u7684\u5361\u7247\u63d0\u5347\u53ef\u626b\u63cf\u6027\u3002',
+'card.snap.title':'Snapchat \u6570\u636e\u900f\u660e\u5ea6 \u2014 \u4e3a\u6e05\u6670\u800c\u8bbe\u8ba1',
+'card.snap.desc':'\u4e00\u4e2a\u4ea4\u4e92\u5f0f\u89e3\u8bfe\uff0c\u5c55\u793a\u4e2a\u4eba\u6570\u636e\u5982\u4f55\u5728\u5e94\u7528\u4e2d\u6d41\u52a8\u3002\u6b65\u9aa4\u7b80\u77ed\u3001\u53ef\u89c6\u5316\u4e14\u52a8\u8bcd\u6e05\u6670\u3002',
+'card.gsgc.title':'GSGC \u2014 Green Sheridan Garden Club',
+'card.gsgc.desc':'\u4e00\u4e2a\u63a2\u7d22\u5fd7\u613f\u8005\u9879\u76ee\u3001\u82b1\u56ed\u52a8\u6001\u548c\u4f1a\u5458\u6ce8\u518c\u7684\u6821\u56ed\u793e\u533a\u7f51\u7ad9\u3002\u4ee5\u6e05\u6670\u548c\u79fb\u52a8\u7aef\u4f18\u5148\u4e3a\u8bbe\u8ba1\u76ee\u6807\u3002',
+'card.mood.title':'MoodPeek Pro \u2014 \u65e5\u5386\u4f18\u5148\u7684\u60c5\u7eea\u8bb0\u5f55',
+'card.mood.desc':'\u4e00\u6b3e\u56f4\u7ed5\u65e5 \u2192 \u5468 \u2192 \u6708\u8fde\u7eed\u6027\u6784\u5efa\u7684\u7ed3\u6784\u5316\u60c5\u7eea\u8ffd\u8e2a\u5668\u3002\u65e5\u5386\u4e3a\u4e3b\u5165\u53e3\uff0c\u4eea\u8868\u76d8\u7528\u4e8e\u5feb\u901f\u8bb0\u5f55\u3002',
+'card.physical.title':'\u7269\u7406\u8ba1\u7b97 \u2014 \u6170\u85c9\u706f',
+'card.physical.desc':'\u4e00\u76cf\u5185\u7f6e\u4e8e 3D \u6253\u5370\u5efa\u7b51\u573a\u666f\u4e2d\u7684\u4f20\u611f\u5668\u9a71\u52a8\u6c1b\u56f4\u706f\u3002\u6e29\u6e7f\u5ea6\u548c\u5149\u7167\u6570\u636e\u6620\u5c04\u4e3a\u5206\u5c42\u8272\u5f69\u72b6\u6001\uff0c\u914d\u5408 ProtoPie \u79fb\u52a8\u7aef UI\u3002',
+'card.interactive.title':'\u4ea4\u4e92\u539f\u578b \u2014 \u5a92\u4f53\u3001\u52a8\u6001\u4e0e\u8eab\u4f53',
+'card.interactive.desc':'\u94dc\u7b94\u5e26\u7535\u8def\u3001p5.js \u58f0\u97f3\u53ef\u89c6\u5316\u548c Makey Makey \u9f13\u673a \u2014 \u4e09\u4e2a\u6a21\u5757\u63a2\u7d22\u7269\u7406\u6750\u6599\u4e0e\u6570\u5b57\u53cd\u9988\u7684\u4ea4\u53c9\u3002',
+'sec.client':'\u5ba2\u6237\u4f5c\u54c1',
+'sec.client.intro':'\u6211\u53c2\u4e0e\u7684\u771f\u5b9e\u5546\u4e1a\u9879\u76ee \u2014 \u4e3a\u5b9e\u9645\u5ba2\u6237\u8bbe\u8ba1\u3001\u5f00\u53d1\u5e76\u8fed\u4ee3\u7684\u516c\u53f8\u7f51\u7ad9\u3002',
+'sec.more':'\u66f4\u591a\u4f5c\u54c1','sec.more.text':'\u6bcf\u4e2a\u7248\u672c\u3001\u539f\u578b\u4e0e\u5b9e\u9a8c \u2014 \u6309\u7c7b\u522b\u6574\u7406\u3002','sec.more.btn':'\u6d4f\u89c8\u5b8c\u6574\u5f52\u6863 \u2192',
+'sec.skills':'\u6280\u80fd\u4e0e\u5de5\u5177\u7bb1','sec.toolbox':'\u5de5\u5177\u7bb1',
+'skill.ui':'\u54cd\u5e94\u5f0f UI','skill.ui.desc':'\u7528 HTML\u3001CSS \u548c JavaScript \u6784\u5efa\u54cd\u5e94\u5f0f\u9875\u9762\u548c\u4ea4\u4e92\u754c\u9762\u3002\u6e05\u6670\u5e03\u5c40\u3001\u53ef\u590d\u7528\u7ec4\u4ef6\u3001\u79fb\u52a8\u7aef\u4f18\u5148\u3002',
+'skill.proto':'\u5feb\u901f\u539f\u578b','skill.proto.desc':'\u4ece Figma \u5230\u53ef\u8fd0\u884c\u4ee3\u7801\u7684\u5feb\u901f\u539f\u578b\u3002\u5c06\u8bbe\u8ba1\u7cfb\u7edf\u8f6c\u5316\u4e3a\u529f\u80fd\u5b8c\u5584\u3001\u7ed3\u6784\u6e05\u6670\u7684 Web \u754c\u9762\u3002',
+'skill.sound':'\u58f0\u97f3\u54cd\u5e94\u53ef\u89c6\u5316','skill.sound.desc':'\u7528 p5.js \u548c p5.sound \u521b\u5efa\u58f0\u97f3\u54cd\u5e94\u548c\u8f93\u5165\u9a71\u52a8\u7684\u53ef\u89c6\u5316\u3002\u4ea4\u4e92\u5f0f\u3001\u751f\u6210\u5f0f\u3001\u5bcc\u6709\u8868\u73b0\u529b\u3002',
+'skill.ux':'UX \u8bbe\u8ba1\u4e0e\u6587\u6863','skill.ux.desc':'\u8bbe\u8ba1\u548c\u6587\u6863\u8bb0\u5f55 UX \u6d41\u7a0b\u3001\u7528\u6237\u7814\u7a76\u3001\u53ef\u7528\u6027\u6d4b\u8bd5\u3001\u7ebf\u6846\u548c\u6697\u8272\u6a21\u5f0f\u6848\u4f8b\u539f\u578b\u3002',
+'skill.data':'\u6570\u636e\u53ef\u89c6\u5316','skill.data.desc':'\u5728 Tableau \u4e2d\u5236\u4f5c\u6570\u636e\u4eea\u8868\u76d8\u548c\u89c6\u89c9\u5206\u6790\u3002\u5c06\u590d\u6742\u6570\u636e\u8f6c\u5316\u4e3a\u6e05\u6670\u3001\u53ef\u64cd\u4f5c\u7684\u53d9\u4e8b\u3002',
+'skill.auto':'\u81ea\u52a8\u5316\u4e0e\u811a\u672c','skill.auto.desc':'\u7528 Python \u548c PowerShell \u81ea\u52a8\u5316\u5de5\u4f5c\u6d41\u4efb\u52a1\u3002\u719f\u7ec3\u4f7f\u7528 C++ \u548c Python \u89e3\u51b3\u95ee\u9898\u3002',
+'skill.music':'\u97f3\u4e50\u521b\u4f5c','skill.music.desc':'\u4f7f\u7528 Logic Pro \u548c Ableton Live \u8de8\u98ce\u683c\u521b\u4f5c\u548c\u5236\u4f5c\u539f\u521b\u66f2\u76ee\u3002\u4ece\u4f5c\u66f2\u5230\u57fa\u672c\u6bcd\u5e26\u7684\u7aef\u5230\u7aef\u5de5\u4f5c\u6d41\u3002',
+'sec.resume':'\u7b80\u5386','sec.conclusion':'\u7ed3\u8bed',
+'sec.conclusion.text':'\u8fd9\u4efd\u4f5c\u54c1\u96c6\u8bb0\u5f55\u4e86\u6211\u4f5c\u4e3a\u4ea4\u4e92\u8bbe\u8ba1\u5b66\u751f\u7684\u6210\u957f \u2014 \u4ece\u65e9\u671f\u539f\u578b\u5230\u7814\u7a76\u9a71\u52a8\u7684\u6848\u4f8b\u7814\u7a76\u3002\u6bcf\u4e2a\u9879\u76ee\u90fd\u53cd\u6620\u4e86\u6211\u7684\u65b9\u6cd5\uff1a\u4ece\u771f\u5b9e\u7ea6\u675f\u51fa\u53d1\u3001\u5feb\u901f\u539f\u578b\u3001\u7528\u6237\u6d4b\u8bd5\u5e76\u57fa\u4e8e\u8bc1\u636e\u8fed\u4ee3\u3002\u6211\u628a\u8f6f\u4ef6\u548c\u7535\u5b50\u5f53\u4f5c\u5de5\u827a\uff0c\u5e76\u671f\u5f85\u5728\u4e13\u4e1a\u5de5\u4f5c\u4e2d\u7ee7\u7eed\u8fd9\u4e00\u5b9e\u8df5\u3002'
+},
+'zh-TW':{
+'nav.philosophy':'\u8a2d\u8a08\u7406\u5ff5','nav.featured':'\u7cbe\u9078','nav.client':'\u5ba2\u6236','nav.more':'\u66f4\u591a','nav.skills':'\u6280\u80fd','nav.resume':'\u7c21\u6b77','nav.intro':'\u4ecb\u7d39','nav.about':'\u95dc\u65bc\u6211',
+'hero.tagline':'\u4e92\u52d5\u8a2d\u8a08\u5b78\u751f \u2014 \u539f\u578b\u8a2d\u8a08\u3001\u53ef\u7528\u6027\u6e2c\u8a66\u8207\u6e05\u6670\u7684\u6587\u4ef6\u8a18\u9304\u3002',
+'sec.philosophy':'\u8a2d\u8a08\u7406\u5ff5',
+'sec.philosophy.text':'\u6211\u5f9e\u771f\u5be6\u51fa\u767c\u8a2d\u8a08\u3002\u4fdd\u7559\u771f\u5be6\u7684\u6771\u897f\uff0c\u7528\u9650\u5236\u4f86\u5b9a\u7fa9\u5f62\u5f0f\u3002\u5982\u679c\u7f8e\u51fa\u73fe\u4e86\uff0c\u90a3\u662f\u56e0\u70ba\u5b83\u53ef\u7528\u3002\u50f9\u503c\u61c9\u8a72\u5728\u4f7f\u7528\u4e2d\u88ab\u767c\u73fe\u3002\u6211\u628a\u8edf\u9ad4\u548c\u96fb\u5b50\u7576\u4f5c\u5de5\u85dd\uff0c\u800c\u4e0d\u662f\u9b54\u6cd5\u3002',
+'sec.featured':'\u7cbe\u9078\u4f5c\u54c1',
+'card.learn.title':'Learn Code \u2014 \u69cb\u5efa\u7de8\u7a0b\u5b78\u7fd2\u8def\u5f91',
+'card.learn.desc':'\u4e00\u6b3e\u63a2\u7d22\u521d\u5b78\u8005\u5982\u4f55\u700f\u89bd\u548c\u7e7c\u7e8c\u8ab2\u7a0b\u7684\u700f\u89bd\u5668\u5b78\u7fd2\u61c9\u7528\u3002\u5c64\u7d1a\u5c0e\u822a\u8207\u4e00\u81f4\u7684\u5361\u7247\u63d0\u5347\u53ef\u6383\u63cf\u6027\u3002',
+'card.snap.title':'Snapchat \u8cc7\u6599\u900f\u660e\u5ea6 \u2014 \u70ba\u6e05\u6670\u800c\u8a2d\u8a08',
+'card.snap.desc':'\u4e00\u500b\u4e92\u52d5\u5f0f\u89e3\u8aaa\uff0c\u5c55\u793a\u500b\u4eba\u8cc7\u6599\u5982\u4f55\u5728\u61c9\u7528\u4e2d\u6d41\u52d5\u3002\u6b65\u9a5f\u7c21\u77ed\u3001\u53ef\u8996\u5316\u4e14\u52d5\u8a5e\u6e05\u6670\u3002',
+'card.gsgc.title':'GSGC \u2014 Green Sheridan Garden Club',
+'card.gsgc.desc':'\u4e00\u500b\u63a2\u7d22\u5fd7\u613f\u8005\u5c08\u6848\u3001\u82b1\u5712\u52d5\u614b\u548c\u6703\u54e1\u8a3b\u518a\u7684\u6821\u5712\u793e\u5340\u7db2\u7ad9\u3002\u4ee5\u6e05\u6670\u548c\u884c\u52d5\u7aef\u512a\u5148\u70ba\u8a2d\u8a08\u76ee\u6a19\u3002',
+'card.mood.title':'MoodPeek Pro \u2014 \u65e5\u66c6\u512a\u5148\u7684\u60c5\u7dd2\u8a18\u9304',
+'card.mood.desc':'\u4e00\u6b3e\u570d\u7e5e\u65e5 \u2192 \u9031 \u2192 \u6708\u9023\u7e8c\u6027\u69cb\u5efa\u7684\u7d50\u69cb\u5316\u60c5\u7dd2\u8ffd\u8e64\u5668\u3002\u65e5\u66c6\u70ba\u4e3b\u5165\u53e3\uff0c\u5100\u8868\u76e4\u7528\u65bc\u5feb\u901f\u8a18\u9304\u3002',
+'card.physical.title':'\u7269\u7406\u904b\u7b97 \u2014 \u6170\u85c9\u71c8',
+'card.physical.desc':'\u4e00\u76cf\u5167\u7f6e\u65bc 3D \u5217\u5370\u5efa\u7bc9\u5834\u666f\u4e2d\u7684\u50b3\u611f\u5668\u9a45\u52d5\u6c1b\u570d\u71c8\u3002\u6eab\u6fd5\u5ea6\u548c\u5149\u7167\u8cc7\u6599\u6620\u5c04\u70ba\u5206\u5c64\u8272\u5f69\u72c0\u614b\uff0c\u914d\u5408 ProtoPie \u884c\u52d5\u7aefUI\u3002',
+'card.interactive.title':'\u4e92\u52d5\u539f\u578b \u2014 \u5a92\u9ad4\u3001\u52d5\u614b\u8207\u8eab\u9ad4',
+'card.interactive.desc':'\u9285\u7b94\u5e36\u96fb\u8def\u3001p5.js \u8072\u97f3\u8996\u89ba\u5316\u548c Makey Makey \u9f13\u6a5f \u2014 \u4e09\u500b\u6a21\u7d44\u63a2\u7d22\u7269\u7406\u6750\u6599\u8207\u6578\u4f4d\u56de\u994b\u7684\u4ea4\u53c9\u3002',
+'sec.client':'\u5ba2\u6236\u4f5c\u54c1',
+'sec.client.intro':'\u6211\u53c3\u8207\u7684\u771f\u5be6\u5546\u696d\u5c08\u6848 \u2014 \u70ba\u5be6\u969b\u5ba2\u6236\u8a2d\u8a08\u3001\u958b\u767c\u4e26\u8fed\u4ee3\u7684\u516c\u53f8\u7db2\u7ad9\u3002',
+'sec.more':'\u66f4\u591a\u4f5c\u54c1','sec.more.text':'\u6bcf\u500b\u7248\u672c\u3001\u539f\u578b\u8207\u5be6\u9a57 \u2014 \u6309\u985e\u5225\u6574\u7406\u3002','sec.more.btn':'\u700f\u89bd\u5b8c\u6574\u6b78\u6a94 \u2192',
+'sec.skills':'\u6280\u80fd\u8207\u5de5\u5177\u7bb1','sec.toolbox':'\u5de5\u5177\u7bb1',
+'skill.ui':'\u97ff\u61c9\u5f0f UI','skill.ui.desc':'\u7528 HTML\u3001CSS \u548c JavaScript \u69cb\u5efa\u97ff\u61c9\u5f0f\u9801\u9762\u548c\u4e92\u52d5\u754c\u9762\u3002\u6e05\u6670\u4f48\u5c40\u3001\u53ef\u5fa9\u7528\u5143\u4ef6\u3001\u884c\u52d5\u7aef\u512a\u5148\u3002',
+'skill.proto':'\u5feb\u901f\u539f\u578b','skill.proto.desc':'\u5f9e Figma \u5230\u53ef\u904b\u884c\u4ee3\u78bc\u7684\u5feb\u901f\u539f\u578b\u3002\u5c07\u8a2d\u8a08\u7cfb\u7d71\u8f49\u5316\u70ba\u529f\u80fd\u5b8c\u5584\u3001\u7d50\u69cb\u6e05\u6670\u7684 Web \u754c\u9762\u3002',
+'skill.sound':'\u8072\u97f3\u97ff\u61c9\u8996\u89ba\u5316','skill.sound.desc':'\u7528 p5.js \u548c p5.sound \u5275\u5efa\u8072\u97f3\u97ff\u61c9\u548c\u8f38\u5165\u9a45\u52d5\u7684\u8996\u89ba\u5316\u3002\u4e92\u52d5\u5f0f\u3001\u751f\u6210\u5f0f\u3001\u5bcc\u6709\u8868\u73fe\u529b\u3002',
+'skill.ux':'UX \u8a2d\u8a08\u8207\u6587\u4ef6','skill.ux.desc':'\u8a2d\u8a08\u548c\u6587\u4ef6\u8a18\u9304 UX \u6d41\u7a0b\u3001\u7528\u6236\u7814\u7a76\u3001\u53ef\u7528\u6027\u6e2c\u8a66\u3001\u7dda\u6846\u548c\u6697\u8272\u6a21\u5f0f\u6848\u4f8b\u539f\u578b\u3002',
+'skill.data':'\u8cc7\u6599\u8996\u89ba\u5316','skill.data.desc':'\u5728 Tableau \u4e2d\u88fd\u4f5c\u8cc7\u6599\u5100\u8868\u76e4\u548c\u8996\u89ba\u5206\u6790\u3002\u5c07\u8907\u96dc\u8cc7\u6599\u8f49\u5316\u70ba\u6e05\u6670\u3001\u53ef\u64cd\u4f5c\u7684\u6558\u4e8b\u3002',
+'skill.auto':'\u81ea\u52d5\u5316\u8207\u8173\u672c','skill.auto.desc':'\u7528 Python \u548c PowerShell \u81ea\u52d5\u5316\u5de5\u4f5c\u6d41\u4efb\u52d9\u3002\u719f\u7df4\u4f7f\u7528 C++ \u548c Python \u89e3\u6c7a\u554f\u984c\u3002',
+'skill.music':'\u97f3\u6a02\u5275\u4f5c','skill.music.desc':'\u4f7f\u7528 Logic Pro \u548c Ableton Live \u8de8\u98a8\u683c\u5275\u4f5c\u548c\u88fd\u4f5c\u539f\u5275\u66f2\u76ee\u3002\u5f9e\u4f5c\u66f2\u5230\u57fa\u672c\u6bcd\u5e36\u7684\u7aef\u5230\u7aef\u5de5\u4f5c\u6d41\u3002',
+'sec.resume':'\u7c21\u6b77','sec.conclusion':'\u7d50\u8a9e',
+'sec.conclusion.text':'\u9019\u4efd\u4f5c\u54c1\u96c6\u8a18\u9304\u4e86\u6211\u4f5c\u70ba\u4e92\u52d5\u8a2d\u8a08\u5b78\u751f\u7684\u6210\u9577 \u2014 \u5f9e\u65e9\u671f\u539f\u578b\u5230\u7814\u7a76\u9a45\u52d5\u7684\u6848\u4f8b\u7814\u7a76\u3002\u6bcf\u500b\u5c08\u6848\u90fd\u53cd\u6620\u4e86\u6211\u7684\u65b9\u6cd5\uff1a\u5f9e\u771f\u5be6\u7d04\u675f\u51fa\u767c\u3001\u5feb\u901f\u539f\u578b\u3001\u7528\u6236\u6e2c\u8a66\u4e26\u57fa\u65bc\u8b49\u64da\u8fed\u4ee3\u3002\u6211\u628a\u8edf\u9ad4\u548c\u96fb\u5b50\u7576\u4f5c\u5de5\u85dd\uff0c\u4e26\u671f\u5f85\u5728\u5c08\u696d\u5de5\u4f5c\u4e2d\u7e7c\u7e8c\u9019\u4e00\u5be6\u8e10\u3002'
+},
+ja:{
+'nav.philosophy':'\u7406\u5ff5','nav.featured':'\u6ce8\u76ee\u4f5c\u54c1','nav.client':'\u30af\u30e9\u30a4\u30a2\u30f3\u30c8','nav.more':'\u305d\u306e\u4ed6','nav.skills':'\u30b9\u30ad\u30eb','nav.resume':'\u5c65\u6b74\u66f8','nav.intro':'\u7d39\u4ecb','nav.about':'\u81ea\u5df1\u7d39\u4ecb',
+'hero.tagline':'\u30a4\u30f3\u30bf\u30e9\u30af\u30b7\u30e7\u30f3\u30c7\u30b6\u30a4\u30f3\u5b66\u751f \u2014 \u30d7\u30ed\u30c8\u30bf\u30a4\u30d4\u30f3\u30b0\u3001\u30e6\u30fc\u30b6\u30d3\u30ea\u30c6\u30a3\u30c6\u30b9\u30c8\u3001\u660e\u78ba\u306a\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\u3002',
+'sec.philosophy':'\u30c7\u30b6\u30a4\u30f3\u7406\u5ff5',
+'sec.philosophy.text':'\u79c1\u306f\u73fe\u5b9f\u304b\u3089\u30c7\u30b6\u30a4\u30f3\u3059\u308b\u3002\u672c\u7269\u3092\u6b8b\u3057\u3001\u5236\u7d04\u3067\u5f62\u3092\u5b9a\u7fa9\u3059\u308b\u3002\u7f8e\u304c\u73fe\u308c\u308b\u306a\u3089\u3001\u305d\u308c\u306f\u6a5f\u80fd\u3059\u308b\u304b\u3089\u3002\u4fa1\u5024\u306f\u4f7f\u3046\u4e2d\u3067\u767a\u898b\u3055\u308c\u308b\u3079\u304d\u3082\u306e\u3002\u30bd\u30d5\u30c8\u30a6\u30a7\u30a2\u3068\u96fb\u5b50\u6a5f\u5668\u3092\u9b54\u6cd5\u3067\u306f\u306a\u304f\u5de5\u82b8\u3068\u3057\u3066\u6271\u3046\u3002',
+'sec.featured':'\u6ce8\u76ee\u4f5c\u54c1',
+'card.learn.title':'Learn Code \u2014 \u30d7\u30ed\u30b0\u30e9\u30df\u30f3\u30b0\u5b66\u7fd2\u306e\u9053',
+'card.learn.desc':'\u521d\u5fc3\u8005\u304c\u30ec\u30c3\u30b9\u30f3\u3092\u95b2\u89a7\u30fb\u518d\u958b\u3059\u308b\u65b9\u6cd5\u3092\u63a2\u308b\u30d6\u30e9\u30a6\u30b6\u30d9\u30fc\u30b9\u306e\u5b66\u7fd2\u30a2\u30d7\u30ea\u3002\u968e\u5c64\u30ca\u30d3\u3068\u4e00\u8cab\u3057\u305f\u30ab\u30fc\u30c9\u3067\u30b9\u30ad\u30e3\u30f3\u6027\u5411\u4e0a\u3002',
+'card.snap.title':'Snapchat \u30c7\u30fc\u30bf\u900f\u660e\u6027 \u2014 \u660e\u78ba\u3055\u306e\u305f\u3081\u306e\u30c7\u30b6\u30a4\u30f3',
+'card.snap.desc':'\u500b\u4eba\u30c7\u30fc\u30bf\u304c\u30a2\u30d7\u30ea\u5185\u3067\u3069\u3046\u6d41\u308c\u308b\u304b\u3092\u793a\u3059\u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6\u89e3\u8aac\u3002\u30b9\u30c6\u30c3\u30d7\u306f\u77ed\u304f\u3001\u8996\u899a\u7684\u3067\u52d5\u8a5e\u304c\u660e\u5feb\u3002',
+'card.gsgc.title':'GSGC \u2014 Green Sheridan Garden Club',
+'card.gsgc.desc':'\u30dc\u30e9\u30f3\u30c6\u30a3\u30a2\u3001\u30ac\u30fc\u30c7\u30f3\u66f4\u65b0\u3001\u4f1a\u54e1\u767b\u9332\u3092\u63a2\u308b\u30ad\u30e3\u30f3\u30d1\u30b9\u30b3\u30df\u30e5\u30cb\u30c6\u30a3\u30b5\u30a4\u30c8\u3002\u660e\u78ba\u3055\u3068\u30e2\u30d0\u30a4\u30eb\u30d5\u30a1\u30fc\u30b9\u30c8\u3092\u91cd\u8996\u3002',
+'card.mood.title':'MoodPeek Pro \u2014 \u30ab\u30ec\u30f3\u30c0\u30fc\u4e2d\u5fc3\u306e\u6c17\u5206\u8a18\u9332',
+'card.mood.desc':'\u65e5 \u2192 \u9031 \u2192 \u6708\u306e\u9023\u7d9a\u6027\u3092\u8edf\u306b\u69cb\u7bc9\u3055\u308c\u305f\u69cb\u9020\u5316\u6c17\u5206\u30c8\u30e9\u30c3\u30ab\u30fc\u3002\u30ab\u30ec\u30f3\u30c0\u30fc\u304c\u30e1\u30a4\u30f3\u5165\u53e3\u3001\u30c0\u30c3\u30b7\u30e5\u30dc\u30fc\u30c9\u3067\u7d20\u65e9\u304f\u8a18\u9332\u3002',
+'card.physical.title':'\u30d5\u30a3\u30b8\u30ab\u30eb\u30b3\u30f3\u30d4\u30e5\u30fc\u30c6\u30a3\u30f3\u30b0 \u2014 \u30b3\u30f3\u30d5\u30a9\u30fc\u30c8\u30e9\u30f3\u30d7',
+'card.physical.desc':'3D\u30d7\u30ea\u30f3\u30c8\u5efa\u7bc9\u30b7\u30fc\u30f3\u5185\u306e\u30bb\u30f3\u30b5\u30fc\u99c6\u52d5\u30a2\u30f3\u30d3\u30a8\u30f3\u30c8\u30e9\u30f3\u30d7\u3002\u6e29\u6e7f\u5ea6\u30fb\u5149\u30c7\u30fc\u30bf\u3067\u8272\u72b6\u614b\u5207\u66ff\u3001ProtoPie\u30e2\u30d0\u30a4\u30ebUI\u3002',
+'card.interactive.title':'\u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7 \u2014 \u30e1\u30c7\u30a3\u30a2\u30fb\u30e2\u30fc\u30b7\u30e7\u30f3\u30fb\u8eab\u4f53',
+'card.interactive.desc':'\u9285\u30c6\u30fc\u30d7\u56de\u8def\u3001p5.js\u30b5\u30a6\u30f3\u30c9\u30d3\u30b8\u30e5\u30a2\u30e9\u30a4\u30bc\u30fc\u30b7\u30e7\u30f3\u3001Makey Makey\u30c9\u30e9\u30e0\u30de\u30b7\u30f3 \u2014 \u7269\u7406\u7d20\u6750\u3068\u30c7\u30b8\u30bf\u30eb\u30d5\u30a3\u30fc\u30c9\u30d0\u30c3\u30af\u306e3\u30e2\u30b8\u30e5\u30fc\u30eb\u3002',
+'sec.client':'\u30af\u30e9\u30a4\u30a2\u30f3\u30c8\u30ef\u30fc\u30af',
+'sec.client.intro':'\u5b9f\u969b\u306e\u30af\u30e9\u30a4\u30a2\u30f3\u30c8\u5411\u3051\u306b\u8a2d\u8a08\u30fb\u958b\u767a\u30fb\u53cd\u5fa9\u3057\u305f\u4f01\u696d\u30b5\u30a4\u30c8\u3002',
+'sec.more':'\u305d\u306e\u4ed6\u306e\u4f5c\u54c1','sec.more.text':'\u3059\u3079\u3066\u306e\u30d0\u30fc\u30b8\u30e7\u30f3\u3001\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7\u3001\u5b9f\u9a13 \u2014 \u30ab\u30c6\u30b4\u30ea\u5225\u3002','sec.more.btn':'\u5168\u30a2\u30fc\u30ab\u30a4\u30d6\u3092\u898b\u308b \u2192',
+'sec.skills':'\u30b9\u30ad\u30eb\u30fb\u30c4\u30fc\u30eb\u30dc\u30c3\u30af\u30b9','sec.toolbox':'\u30c4\u30fc\u30eb\u30dc\u30c3\u30af\u30b9',
+'skill.ui':'\u30ec\u30b9\u30dd\u30f3\u30b7\u30d6UI','skill.ui.desc':'HTML\u3001CSS\u3001JavaScript\u3067\u30ec\u30b9\u30dd\u30f3\u30b7\u30d6\u30da\u30fc\u30b8\u3068\u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6UI\u3002\u30af\u30ea\u30fc\u30f3\u30ec\u30a4\u30a2\u30a6\u30c8\u3001\u518d\u5229\u7528\u53ef\u80fd\u306a\u30b3\u30f3\u30dd\u30fc\u30cd\u30f3\u30c8\u3001\u30e2\u30d0\u30a4\u30eb\u30d5\u30a1\u30fc\u30b9\u30c8\u3002',
+'skill.proto':'\u30e9\u30d4\u30c3\u30c9\u30d7\u30ed\u30c8\u30bf\u30a4\u30d4\u30f3\u30b0','skill.proto.desc':'Figma\u304b\u3089\u52d5\u4f5c\u30b3\u30fc\u30c9\u3078\u7d20\u65e9\u304f\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7\u3002\u30c7\u30b6\u30a4\u30f3\u30b7\u30b9\u30c6\u30e0\u3092\u6a5f\u80fd\u7684\u306a\u30a6\u30a7\u30d6\u754c\u9762\u306b\u3002',
+'skill.sound':'\u30b5\u30a6\u30f3\u30c9\u30ea\u30a2\u30af\u30c6\u30a3\u30d6\u30d3\u30b8\u30e5\u30a2\u30eb','skill.sound.desc':'p5.js\u3068p5.sound\u3067\u97f3\u58f0\u53cd\u5fdc\u30fb\u5165\u529b\u99c6\u52d5\u306e\u30d3\u30b8\u30e5\u30a2\u30eb\u3002\u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6\u3001\u30b8\u30a7\u30cd\u30e9\u30c6\u30a3\u30d6\u3001\u8868\u73fe\u8c4a\u304b\u3002',
+'skill.ux':'UX\u30c7\u30b6\u30a4\u30f3\u30fb\u30c9\u30ad\u30e5\u30e1\u30f3\u30c6\u30fc\u30b7\u30e7\u30f3','skill.ux.desc':'UX\u30d5\u30ed\u30fc\u3001\u30e6\u30fc\u30b6\u30fc\u30ea\u30b5\u30fc\u30c1\u3001\u30e6\u30fc\u30b6\u30d3\u30ea\u30c6\u30a3\u30c6\u30b9\u30c8\u3001\u30ef\u30a4\u30e4\u30fc\u30d5\u30ec\u30fc\u30e0\u3001\u30c0\u30fc\u30af\u30d1\u30bf\u30fc\u30f3\u30b1\u30fc\u30b9\u30b9\u30bf\u30c7\u30a3\u3002',
+'skill.data':'\u30c7\u30fc\u30bf\u53ef\u8996\u5316','skill.data.desc':'Tableau\u3067\u30c7\u30fc\u30bf\u30c0\u30c3\u30b7\u30e5\u30dc\u30fc\u30c9\u3068\u8996\u899a\u5206\u6790\u3002\u8907\u96d1\u306a\u30c7\u30fc\u30bf\u3092\u660e\u78ba\u3067\u5b9f\u7528\u7684\u306a\u30b9\u30c8\u30fc\u30ea\u30fc\u306b\u3002',
+'skill.auto':'\u81ea\u52d5\u5316\u30fb\u30b9\u30af\u30ea\u30d7\u30c8','skill.auto.desc':'Python\u3068PowerShell\u3067\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u81ea\u52d5\u5316\u3002C++\u3068Python\u3067\u554f\u984c\u89e3\u6c7a\u3002',
+'skill.music':'\u97f3\u697d\u5236\u4f5c','skill.music.desc':'Logic Pro\u3068Ableton Live\u3067\u30b8\u30e3\u30f3\u30eb\u6a2a\u65ad\u306e\u30aa\u30ea\u30b8\u30ca\u30eb\u697d\u66f2\u3002\u4f5c\u66f2\u304b\u3089\u57fa\u672c\u30de\u30b9\u30bf\u30ea\u30f3\u30b0\u307e\u3067\u3002',
+'sec.resume':'\u5c65\u6b74\u66f8','sec.conclusion':'\u304a\u308f\u308a\u306b',
+'sec.conclusion.text':'\u3053\u306e\u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u306f\u30a4\u30f3\u30bf\u30e9\u30af\u30b7\u30e7\u30f3\u30c7\u30b6\u30a4\u30f3\u5b66\u751f\u3068\u3057\u3066\u306e\u6210\u9577\u3092\u8a18\u9332 \u2014 \u521d\u671f\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7\u304b\u3089\u7814\u7a76\u99c6\u52d5\u306e\u30b1\u30fc\u30b9\u30b9\u30bf\u30c7\u30a3\u307e\u3067\u3002\u5404\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306f\u79c1\u306e\u65b9\u6cd5\u3092\u53cd\u6620\uff1a\u771f\u306e\u5236\u7d04\u304b\u3089\u59cb\u3081\u3001\u7d20\u65e9\u304f\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7\u3001\u30e6\u30fc\u30b6\u30fc\u30c6\u30b9\u30c8\u3001\u8a3c\u62e0\u306b\u57fa\u3065\u3044\u3066\u53cd\u5fa9\u3002'
+},
+fr:{
+'nav.philosophy':'Philosophie','nav.featured':'Vedettes','nav.client':'Client','nav.more':'Plus','nav.skills':'Comp\u00e9tences','nav.resume':'CV','nav.intro':'Intro','nav.about':'\u00c0 propos',
+'hero.tagline':'\u00c9tudiant en design d\u2019interaction \u2014 prototypage, tests d\u2019utilisabilit\u00e9 et documentation claire.',
+'sec.philosophy':'Philosophie de design',
+'sec.philosophy.text':'Je con\u00e7ois \u00e0 partir du r\u00e9el. Je garde ce qui est r\u00e9el, utilisant les limites pour d\u00e9finir la forme. Si la beaut\u00e9 appara\u00eet, c\u2019est parce que la chose fonctionne. La valeur doit \u00eatre d\u00e9couverte en main et au fil du temps. Je traite le logiciel et l\u2019\u00e9lectronique comme de l\u2019artisanat, pas de la magie.',
+'sec.featured':'Travaux en vedette',
+'card.learn.title':'Learn Code \u2014 Construire des parcours de programmation',
+'card.learn.desc':'Application d\u2019apprentissage en navigateur explorant comment les d\u00e9butants parcourent et reprennent les le\u00e7ons. Navigation hi\u00e9rarchique avec cartes coh\u00e9rentes.',
+'card.snap.title':'Snapchat Transparence des donn\u00e9es \u2014 Concevoir pour la clart\u00e9',
+'card.snap.desc':'Explication interactive du flux de donn\u00e9es personnelles dans l\u2019appli. \u00c9tapes courtes, visuelles, verbes clairs.',
+'card.gsgc.title':'GSGC \u2014 Green Sheridan Garden Club',
+'card.gsgc.desc':'Site communautaire de campus explorant le b\u00e9n\u00e9volat, les mises \u00e0 jour du jardin et l\u2019inscription. Clart\u00e9 et mobile-first.',
+'card.mood.title':'MoodPeek Pro \u2014 Journal d\u2019humeur calendrier',
+'card.mood.desc':'Suivi d\u2019humeur structur\u00e9 autour de Jour \u2192 Semaine \u2192 Mois. Calendrier comme point d\u2019entr\u00e9e, tableau de bord pour la saisie rapide.',
+'card.physical.title':'Informatique physique \u2014 Lampe Confort',
+'card.physical.desc':'Lampe ambiante pilot\u00e9e par capteurs dans un d\u00e9cor architectural imprim\u00e9 en 3D. Temp\u00e9rature, humidit\u00e9 et lumi\u00e8re d\u00e9terminent les \u00e9tats de couleur, UI mobile ProtoPie.',
+'card.interactive.title':'Prototype interactif \u2014 M\u00e9dias, Mouvement & Corps',
+'card.interactive.desc':'Circuits cuivr\u00e9s, visualisations sonores p5.js et batterie Makey Makey \u2014 trois modules explorant mat\u00e9riaux physiques et retour num\u00e9rique.',
+'sec.client':'Travail client',
+'sec.client.intro':'Projets commerciaux r\u00e9els \u2014 sites web con\u00e7us, d\u00e9velopp\u00e9s et it\u00e9r\u00e9s pour des clients r\u00e9els.',
+'sec.more':'Plus de travaux','sec.more.text':'Chaque version, prototype et exp\u00e9rience \u2014 class\u00e9s par cat\u00e9gorie.','sec.more.btn':'Parcourir les archives \u2192',
+'sec.skills':'Comp\u00e9tences & Outils','sec.toolbox':'Outils',
+'skill.ui':'UI responsive','skill.ui.desc':'Pages et UI interactives en HTML, CSS, JavaScript. Layouts propres, composants r\u00e9utilisables, mobile-first.',
+'skill.proto':'Prototypage rapide','skill.proto.desc':'Prototype rapide de Figma au code. Syst\u00e8mes de design en interfaces fonctionnelles.',
+'skill.sound':'Visuels r\u00e9actifs au son','skill.sound.desc':'Visuels sonores et input-driven avec p5.js et p5.sound. Interactifs, g\u00e9n\u00e9ratifs, expressifs.',
+'skill.ux':'Design UX & Documentation','skill.ux.desc':'Flux UX, recherche utilisateur, tests d\u2019utilisabilit\u00e9, wireframing et prototypes de dark-pattern.',
+'skill.data':'Visualisation de donn\u00e9es','skill.data.desc':'Tableaux de bord et analyses visuelles dans Tableau. Transformer des donn\u00e9es complexes en r\u00e9cits clairs.',
+'skill.auto':'Automatisation & Scripting','skill.auto.desc':'Automatisation avec Python et PowerShell. C++ et Python pour la r\u00e9solution de probl\u00e8mes.',
+'skill.music':'Musique','skill.music.desc':'Composition et production originale multi-genre avec Logic Pro et Ableton Live. Du d\u00e9but au mastering basique.',
+'sec.resume':'CV','sec.conclusion':'Conclusion',
+'sec.conclusion.text':'Ce portfolio documente ma croissance en design d\u2019interaction \u2014 des premiers prototypes aux \u00e9tudes de cas. Chaque projet refl\u00e8te mon approche: contraintes r\u00e9elles, prototypage rapide, tests utilisateurs et it\u00e9ration bas\u00e9e sur les preuves. Je traite le logiciel et l\u2019\u00e9lectronique comme de l\u2019artisanat.'
+}
+};
+var _curLang='en';
+function applyLang(lang){
+  var dict=T[lang]||T.en;_curLang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.getAttribute('data-i18n');
+    if(dict[key]!=null)el.textContent=dict[key];
+    else if(T.en[key]!=null)el.textContent=T.en[key];
+  });
+  document.querySelectorAll('.lang-sel').forEach(function(s){s.value=lang;});
+  try{localStorage.setItem('siteLang',lang);}catch(_){}
+}
+document.querySelectorAll('.lang-sel').forEach(function(s){
+  s.addEventListener('change',function(){applyLang(s.value);});
+});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>
 </body>
 </html>

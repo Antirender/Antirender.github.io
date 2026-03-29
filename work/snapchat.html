@@ -11,7 +11,17 @@
 </head>
 <body>
   <div class="wrap">
-    <a class="back" href="../index.html">&larr; Back to Portfolio</a>
+    <div class="site-tools">
+      <select class="lang-sel" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="zh-CN">简中</option>
+        <option value="zh-TW">繁中</option>
+        <option value="ja">日本語</option>
+        <option value="fr">FR</option>
+      </select>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+    </div>
+    <a class="back" href="../index.html" data-i18n="work.back">&larr; Back to Portfolio</a>
 
     <div class="project-hero">
       <h1>Snapchat Data Transparency — Making Data Use Visible</h1>
@@ -106,7 +116,7 @@
     </div>
 
     <div class="nav-back">
-      <a href="../index.html">&larr; Back to Portfolio</a>
+      <a href="../index.html" data-i18n="work.back">&larr; Back to Portfolio</a>
     </div>
   </div>
 
@@ -123,6 +133,21 @@
     var label = preview.querySelector('.preview-label'); if (label) label.textContent = 'Live preview \u2014 Snapchat Data Transparency ' + this.value.replace('index', 'V').toUpperCase();
   });
 })();
+
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;var btn=document.getElementById('themeToggle');var KEY='siteTheme';
+  function apply(t){root.setAttribute('data-theme',t);if(btn)btn.textContent=t==='dark'?'\u2600':'\u263E';try{localStorage.setItem(KEY,t);}catch(_){}}
+  var s;try{s=localStorage.getItem(KEY);}catch(_){}
+  if(s){apply(s);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn)btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+/* ===== i18n ===== */
+var T={en:{'work.back':'\u2190 Back to Portfolio'},'zh-CN':{'work.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6'},'zh-TW':{'work.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6'},ja:{'work.back':'\u2190 \u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u306b\u623b\u308b'},fr:{'work.back':'\u2190 Retour au portfolio'}};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});try{localStorage.setItem('siteLang',l);}catch(_){}}
+document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>
 </body>
 </html>

@@ -12,6 +12,9 @@
     .dv-card-img{width:100%;border-radius:10px;margin-bottom:.25rem}
     .dv-card .spotify-embed{border-radius:12px;margin-top:.5rem}
     .lang-sel{position:absolute;top:1rem;right:0;padding:.3rem .5rem;border:1px solid var(--border,#e2e8f0);border-radius:6px;font-size:.8rem;background:var(--bg,#fff);color:var(--ink,#0f172a);cursor:pointer}
+    .site-tools{position:absolute;top:1rem;right:0;display:flex;gap:.5rem;align-items:center}
+    .site-tools .lang-sel{position:static}
+    .theme-toggle{background:none;border:1px solid var(--border,#e2e8f0);border-radius:6px;padding:.25rem .5rem;font-size:1rem;cursor:pointer;color:var(--ink,#0f172a);line-height:1}
     .mw-header .wrap{position:relative}
   </style>
 </head>
@@ -24,13 +27,16 @@
       <a class="back-link" href="index.html" data-i18n="mw.back">&larr; Back to Portfolio</a>
       <h1 data-i18n="mw.title">More Work</h1>
       <p class="tagline" data-i18n="mw.tagline">Full project archive — every version, prototype, and experiment.</p>
-      <select class="lang-sel" aria-label="Language">
-        <option value="en">EN</option>
-        <option value="zh-CN">简中</option>
-        <option value="zh-TW">繁中</option>
-        <option value="ja">日本語</option>
-        <option value="fr">FR</option>
-      </select>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
     </div>
   </header>
 
@@ -192,13 +198,13 @@
       <div class="dv-category">
         <div class="dv-category-head">
           <h3 data-i18n="cat.music">Music Composition &amp; Arrangement</h3>
-          <p class="dv-cat-sub" data-i18n="cat.music.sub">作曲 · 编曲 · Composition · Arrangement</p>
+          <p class="dv-cat-sub" data-i18n="cat.music.sub">Composition · Arrangement</p>
         </div>
         <div class="dv-cards">
           <div class="dv-card dv-card-full">
             <img class="dv-card-img" src="image/logic_cap.png" alt="Logic Pro arrangement session — multi-track composition with pads, arps, bass, keys, and melody layers">
             <h4 data-i18n="cat.music.title">Original Music — Composition &amp; Arrangement</h4>
-            <p class="dv-desc" data-i18n="cat.music.desc">As <strong>Antirender</strong>, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies (作曲 / Composition), then layering and structuring instruments — pads, arpeggios, bass, keys, leads — into a finished arrangement (编曲 / Arrangement). 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.</p>
+            <p class="dv-desc" data-i18n="cat.music.desc">As <strong>Antirender</strong>, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies, then layering and structuring instruments — pads, arpeggios, bass, keys, leads — into a finished arrangement. 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.</p>
             <div class="dv-actions">
               <a class="btn" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener">Open Spotify</a>
             </div>
@@ -503,9 +509,9 @@ en: {
 'mw.hint.detailed':'Read what each project does, then open the page.',
 'mw.quicklinks':'Quick Links',
 'cat.music':'Music Composition & Arrangement',
-'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7f16\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.sub':'Composition \u00b7 Arrangement',
 'cat.music.title':'Original Music \u2014 Composition & Arrangement',
-'cat.music.desc':'As Antirender, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies (\u4f5c\u66f2 / Composition), then layering and structuring instruments \u2014 pads, arpeggios, bass, keys, leads \u2014 into a finished arrangement (\u7f16\u66f2 / Arrangement). 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.',
+'cat.music.desc':'As Antirender, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies, then layering and structuring instruments \u2014 pads, arpeggios, bass, keys, leads \u2014 into a finished arrangement. 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.',
 'cat.decision':'Decision Tools / Everyday Products',
 'cat.decision.sub':'Decision Tools / Everyday Products',
 'cat.quickpick.title':'QuickPick',
@@ -546,7 +552,7 @@ en: {
 'mw.hint.detailed':'\u5148\u9605\u8bfb\u9879\u76ee\u7b80\u4ecb\uff0c\u518d\u6253\u5f00\u9875\u9762\u3002',
 'mw.quicklinks':'\u5feb\u901f\u94fe\u63a5',
 'cat.music':'\u97f3\u4e50\u4f5c\u66f2\u4e0e\u7f16\u66f2',
-'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7f16\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7f16\u66f2',
 'cat.music.title':'\u539f\u521b\u97f3\u4e50 \u2014 \u4f5c\u66f2\u4e0e\u7f16\u66f2',
 'cat.music.desc':'\u4ee5 Antirender \u7684\u540d\u4e49\uff0c\u6211\u5728 Logic Pro \u4e2d\u4ece\u96f6\u5f00\u59cb\u4f5c\u66f2\u548c\u7f16\u66f2\u3002\u5de5\u4f5c\u6d41\u7a0b\u8986\u76d6\u5b8c\u6574\u7684\u521b\u4f5c\u8fc7\u7a0b\uff1a\u8c31\u5199\u548c\u5f26\u8fdb\u884c\u4e0e\u65cb\u5f8b\uff08\u4f5c\u66f2\uff09\uff0c\u7136\u540e\u5206\u5c42\u5e03\u5c40\u4e50\u5668 \u2014 \u94fa\u5e95\u3001\u7410\u97f3\u3001\u8d1d\u65af\u3001\u952e\u76d8\u3001\u4e3b\u97f3 \u2014 \u6700\u7ec8\u5f62\u6210\u5b8c\u6574\u7f16\u66f2\u3002\u5df2\u5728 Spotify \u53ca\u5404\u5927\u6d41\u5a92\u4f53\u5e73\u53f0\u53d1\u8868 7 \u5f20\u4e13\u8f91\uff0c\u5171 36 \u9996\u539f\u521b\u66f2\u76ee\u3002',
 'cat.decision':'\u51b3\u7b56\u5de5\u5177 / \u65e5\u5e38\u4ea7\u54c1',
@@ -590,7 +596,7 @@ en: {
 'mw.hint.detailed':'\u5148\u95b1\u8b80\u5c08\u6848\u7c21\u4ecb\uff0c\u518d\u958b\u555f\u9801\u9762\u3002',
 'mw.quicklinks':'\u5feb\u901f\u9023\u7d50',
 'cat.music':'\u97f3\u6a02\u4f5c\u66f2\u8207\u7de8\u66f2',
-'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7de8\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7de8\u66f2',
 'cat.music.title':'\u539f\u5275\u97f3\u6a02 \u2014 \u4f5c\u66f2\u8207\u7de8\u66f2',
 'cat.music.desc':'\u4ee5 Antirender \u7684\u540d\u7fa9\uff0c\u6211\u5728 Logic Pro \u4e2d\u5f9e\u96f6\u958b\u59cb\u4f5c\u66f2\u548c\u7de8\u66f2\u3002\u5de5\u4f5c\u6d41\u7a0b\u6db5\u84cb\u5b8c\u6574\u7684\u5275\u4f5c\u904e\u7a0b\uff1a\u8b5c\u5beb\u548c\u5f26\u9032\u884c\u8207\u65cb\u5f8b\uff08\u4f5c\u66f2\uff09\uff0c\u7136\u5f8c\u5206\u5c64\u4f48\u5c40\u6a02\u5668 \u2014 \u92ea\u5e95\u3001\u7436\u97f3\u3001\u8c9d\u65af\u3001\u9375\u76e4\u3001\u4e3b\u97f3 \u2014 \u6700\u7d42\u5f62\u6210\u5b8c\u6574\u7de8\u66f2\u3002\u5df2\u5728 Spotify \u53ca\u5404\u5927\u6d41\u5a92\u9ad4\u5e73\u53f0\u767c\u8868 7 \u5f35\u5c08\u8f2f\uff0c\u5171 36 \u9996\u539f\u5275\u66f2\u76ee\u3002',
 'cat.decision':'\u6c7a\u7b56\u5de5\u5177 / \u65e5\u5e38\u7522\u54c1',
@@ -634,7 +640,7 @@ ja: {
 'mw.hint.detailed':'\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306e\u8aac\u660e\u3092\u8aad\u3093\u3067\u304b\u3089\u30da\u30fc\u30b8\u3092\u958b\u3044\u3066\u304f\u3060\u3055\u3044\u3002',
 'mw.quicklinks':'\u30af\u30a4\u30c3\u30af\u30ea\u30f3\u30af',
 'cat.music':'\u97f3\u697d\u4f5c\u66f2\u30fb\u7de8\u66f2',
-'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7de8\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7de8\u66f2',
 'cat.music.title':'\u30aa\u30ea\u30b8\u30ca\u30eb\u97f3\u697d \u2014 \u4f5c\u66f2\u30fb\u7de8\u66f2',
 'cat.music.desc':'Antirender\u3068\u3057\u3066\u3001Logic Pro\u3067\u30bc\u30ed\u304b\u3089\u4f5c\u66f2\u30fb\u7de8\u66f2\u3002\u30b3\u30fc\u30c9\u9032\u884c\u3068\u30e1\u30ed\u30c7\u30a3\u306e\u4f5c\u66f2\u304b\u3089\u3001\u30d1\u30c3\u30c9\u3001\u30a2\u30eb\u30da\u30b8\u30aa\u3001\u30d9\u30fc\u30b9\u3001\u30ad\u30fc\u30dc\u30fc\u30c9\u3001\u30ea\u30fc\u30c9\u306e\u30ec\u30a4\u30e4\u30ea\u30f3\u30b0\u307e\u3067\u3002Spotify\u306a\u3069\u4e3b\u8981\u914d\u4fe1\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u30677\u679a\u306e\u30a2\u30eb\u30d0\u30e0\u300136\u66f2\u3092\u30ea\u30ea\u30fc\u30b9\u3002',
 'cat.decision':'\u610f\u601d\u6c7a\u5b9a\u30c4\u30fc\u30eb / \u65e5\u5e38\u88fd\u54c1',
@@ -678,7 +684,7 @@ fr: {
 'mw.hint.detailed':'Lisez la description du projet, puis ouvrez la page.',
 'mw.quicklinks':'Liens rapides',
 'cat.music':'Composition & Arrangement musicaux',
-'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7f16\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.sub':'Composition \u00b7 Arrangement',
 'cat.music.title':'Musique originale \u2014 Composition & Arrangement',
 'cat.music.desc':'Sous le nom Antirender, je compose et arrange des morceaux originaux de z\u00e9ro dans Logic Pro. Le flux de travail couvre tout le processus cr\u00e9atif: \u00e9criture d\u2019accords et de m\u00e9lodies (composition), puis superposition d\u2019instruments \u2014 nappes, arp\u00e8ges, basse, claviers, leads \u2014 en un arrangement fini. 7 albums, 36 titres originaux publi\u00e9s sur Spotify et toutes les grandes plateformes.',
 'cat.decision':'Outils de d\u00e9cision / Produits du quotidien',
@@ -730,6 +736,23 @@ document.querySelectorAll('.lang-sel').forEach(function (s) {
   s.addEventListener('change', function () { applyLang(s.value); });
 });
 try { var _sl = localStorage.getItem('siteLang'); if (_sl && T[_sl]) applyLang(_sl); } catch (_) {}
+
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;
+  var btn=document.getElementById('themeToggle');
+  var KEY='siteTheme';
+  function apply(theme){
+    root.setAttribute('data-theme',theme);
+    if(btn) btn.textContent=theme==='dark'?'\u2600':'\u263E';
+    try{localStorage.setItem(KEY,theme);}catch(_){}
+  }
+  var saved;try{saved=localStorage.getItem(KEY);}catch(_){}
+  if(saved){apply(saved);}
+  else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn) btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
 
 /* ---------- view toggle ---------- */
 (function () {

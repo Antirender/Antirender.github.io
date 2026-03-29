@@ -14,6 +14,17 @@
 
   <a class="skip-link" href="#scroll-intro">Skip to content</a>
 
+  <div class="site-tools" style="position:fixed;top:1rem;right:1rem;z-index:100">
+    <select class="lang-sel" aria-label="Language">
+      <option value="en">EN</option>
+      <option value="zh-CN">简中</option>
+      <option value="zh-TW">繁中</option>
+      <option value="ja">日本語</option>
+      <option value="fr">FR</option>
+    </select>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+  </div>
+
   <section id="scroll-intro">
     <div class="scroll-graphic">
       <div class="scroll-visual" data-step="0">
@@ -21,8 +32,8 @@
         <div class="orbit-ring ring-2"></div>
         <div class="orbit-ring ring-3"></div>
         <div class="center-text">
-          <h2>Yiyang Zhang</h2>
-          <p>Interaction Designer</p>
+          <h2 data-i18n="intro.name">Yiyang Zhang</h2>
+          <p data-i18n="intro.role">Interaction Designer</p>
         </div>
       </div>
     </div>
@@ -30,29 +41,29 @@
       <div class="scroll-step" data-step="1">
         <div class="step-inner">
           <span class="step-tag">01</span>
-          <h3>Who I Am</h3>
-          <p>An Interaction Design student at Sheridan College, turning ideas into working prototypes that put people first.</p>
+          <h3 data-i18n="intro.s1.title">Who I Am</h3>
+          <p data-i18n="intro.s1.text">An Interaction Design student at Sheridan College, turning ideas into working prototypes that put people first.</p>
         </div>
       </div>
       <div class="scroll-step" data-step="2">
         <div class="step-inner">
           <span class="step-tag">02</span>
-          <h3>How I Work</h3>
-          <p>I iterate fast — research, sketch, prototype, test, refine. Every version teaches something the last one didn't.</p>
+          <h3 data-i18n="intro.s2.title">How I Work</h3>
+          <p data-i18n="intro.s2.text">I iterate fast — research, sketch, prototype, test, refine. Every version teaches something the last one didn’t.</p>
         </div>
       </div>
       <div class="scroll-step" data-step="3">
         <div class="step-inner">
           <span class="step-tag">03</span>
-          <h3>What I Value</h3>
-          <p>Clarity over decoration. I keep what's real and let function shape form. If it doesn't serve the user, it goes.</p>
+          <h3 data-i18n="intro.s3.title">What I Value</h3>
+          <p data-i18n="intro.s3.text">Clarity over decoration. I keep what’s real and let function shape form. If it doesn’t serve the user, it goes.</p>
         </div>
       </div>
       <div class="scroll-step" data-step="4">
         <div class="step-inner">
           <span class="step-tag">04</span>
-          <h3>Where I'm Going</h3>
-          <p>Building a practice where design, code, and craft meet — making digital tools that feel honest and last.</p>
+          <h3 data-i18n="intro.s4.title">Where I’m Going</h3>
+          <p data-i18n="intro.s4.text">Building a practice where design, code, and craft meet — making digital tools that feel honest and last.</p>
         </div>
       </div>
     </div>
@@ -60,12 +71,89 @@
 
   <footer class="intro-footer">
     <div class="wrap">
-      <a class="btn" href="index.html">&larr; Back to Portfolio</a>
+      <a class="btn" href="index.html" data-i18n="intro.back">&larr; Back to Portfolio</a>
     </div>
   </footer>
 
   <script src="https://unpkg.com/scrollama"></script>
   <script>
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;
+  var btn=document.getElementById('themeToggle');
+  var KEY='siteTheme';
+  function apply(theme){
+    root.setAttribute('data-theme',theme);
+    if(btn) btn.textContent=theme==='dark'?'\u2600':'\u263E';
+    try{localStorage.setItem(KEY,theme);}catch(_){}
+  }
+  var saved;try{saved=localStorage.getItem(KEY);}catch(_){}
+  if(saved){apply(saved);}
+  else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn) btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+
+/* ===== i18n ===== */
+var T={
+en:{
+'intro.name':'Yiyang Zhang','intro.role':'Interaction Designer',
+'intro.s1.title':'Who I Am','intro.s1.text':'An Interaction Design student at Sheridan College, turning ideas into working prototypes that put people first.',
+'intro.s2.title':'How I Work','intro.s2.text':'I iterate fast \u2014 research, sketch, prototype, test, refine. Every version teaches something the last one didn\u2019t.',
+'intro.s3.title':'What I Value','intro.s3.text':'Clarity over decoration. I keep what\u2019s real and let function shape form. If it doesn\u2019t serve the user, it goes.',
+'intro.s4.title':'Where I\u2019m Going','intro.s4.text':'Building a practice where design, code, and craft meet \u2014 making digital tools that feel honest and last.',
+'intro.back':'\u2190 Back to Portfolio'
+},
+'zh-CN':{
+'intro.name':'\u5f20\u7ffc\u9633','intro.role':'\u4ea4\u4e92\u8bbe\u8ba1\u5e08',
+'intro.s1.title':'\u6211\u662f\u8c01','intro.s1.text':'\u8c22\u5c14\u4e39\u5b66\u9662\u4ea4\u4e92\u8bbe\u8ba1\u5b66\u751f\uff0c\u5c06\u60f3\u6cd5\u8f6c\u5316\u4e3a\u4ee5\u4eba\u4e3a\u672c\u7684\u53ef\u8fd0\u884c\u539f\u578b\u3002',
+'intro.s2.title':'\u6211\u5982\u4f55\u5de5\u4f5c','intro.s2.text':'\u5feb\u901f\u8fed\u4ee3 \u2014 \u7814\u7a76\u3001\u8349\u56fe\u3001\u539f\u578b\u3001\u6d4b\u8bd5\u3001\u4f18\u5316\u3002\u6bcf\u4e2a\u7248\u672c\u90fd\u6559\u4f1a\u6211\u4e0a\u4e00\u7248\u6ca1\u6709\u7684\u4e1c\u897f\u3002',
+'intro.s3.title':'\u6211\u770b\u91cd\u4ec0\u4e48','intro.s3.text':'\u6e05\u6670\u80dc\u4e8e\u88c5\u9970\u3002\u4fdd\u7559\u771f\u5b9e\uff0c\u8ba9\u529f\u80fd\u5851\u9020\u5f62\u5f0f\u3002\u4e0d\u670d\u52a1\u7528\u6237\u7684\uff0c\u5220\u3002',
+'intro.s4.title':'\u6211\u7684\u65b9\u5411','intro.s4.text':'\u6784\u5efa\u4e00\u4e2a\u8bbe\u8ba1\u3001\u4ee3\u7801\u548c\u5de5\u827a\u4ea4\u6c47\u7684\u5b9e\u8df5 \u2014 \u505a\u8bda\u5b9e\u800c\u6301\u4e45\u7684\u6570\u5b57\u5de5\u5177\u3002',
+'intro.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6'
+},
+'zh-TW':{
+'intro.name':'\u5f35\u7ffc\u967d','intro.role':'\u4e92\u52d5\u8a2d\u8a08\u5e2b',
+'intro.s1.title':'\u6211\u662f\u8ab0','intro.s1.text':'\u8b1d\u723e\u4e39\u5b78\u9662\u4e92\u52d5\u8a2d\u8a08\u5b78\u751f\uff0c\u5c07\u60f3\u6cd5\u8f49\u5316\u70ba\u4ee5\u4eba\u70ba\u672c\u7684\u53ef\u904b\u884c\u539f\u578b\u3002',
+'intro.s2.title':'\u6211\u5982\u4f55\u5de5\u4f5c','intro.s2.text':'\u5feb\u901f\u8fed\u4ee3 \u2014 \u7814\u7a76\u3001\u8349\u5716\u3001\u539f\u578b\u3001\u6e2c\u8a66\u3001\u512a\u5316\u3002\u6bcf\u500b\u7248\u672c\u90fd\u6559\u6703\u6211\u4e0a\u4e00\u7248\u6c92\u6709\u7684\u6771\u897f\u3002',
+'intro.s3.title':'\u6211\u770b\u91cd\u4ec0\u9ebc','intro.s3.text':'\u6e05\u6670\u52dd\u65bc\u88dd\u98fe\u3002\u4fdd\u7559\u771f\u5be6\uff0c\u8b93\u529f\u80fd\u5851\u9020\u5f62\u5f0f\u3002\u4e0d\u670d\u52d9\u7528\u6236\u7684\uff0c\u522a\u3002',
+'intro.s4.title':'\u6211\u7684\u65b9\u5411','intro.s4.text':'\u69cb\u5efa\u4e00\u500b\u8a2d\u8a08\u3001\u4ee3\u78bc\u548c\u5de5\u85dd\u4ea4\u532f\u7684\u5be6\u8e10 \u2014 \u505a\u8aa0\u5be6\u800c\u6301\u4e45\u7684\u6578\u4f4d\u5de5\u5177\u3002',
+'intro.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6'
+},
+ja:{
+'intro.name':'\u5f35 \u7ffc\u967d','intro.role':'\u30a4\u30f3\u30bf\u30e9\u30af\u30b7\u30e7\u30f3\u30c7\u30b6\u30a4\u30ca\u30fc',
+'intro.s1.title':'\u79c1\u306b\u3064\u3044\u3066','intro.s1.text':'\u30b7\u30a7\u30ea\u30c0\u30f3\u30ab\u30ec\u30c3\u30b8\u306e\u30a4\u30f3\u30bf\u30e9\u30af\u30b7\u30e7\u30f3\u30c7\u30b6\u30a4\u30f3\u5b66\u751f\u3002\u30a2\u30a4\u30c7\u30a2\u3092\u4eba\u4e2d\u5fc3\u306e\u52d5\u4f5c\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7\u306b\u3002',
+'intro.s2.title':'\u50cd\u304d\u65b9','intro.s2.text':'\u7d20\u65e9\u304f\u53cd\u5fa9 \u2014 \u8abf\u67fb\u3001\u30b9\u30b1\u30c3\u30c1\u3001\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7\u3001\u30c6\u30b9\u30c8\u3001\u6539\u5584\u3002\u6bcf\u56de\u65b0\u3057\u3044\u5b66\u3073\u304c\u3042\u308b\u3002',
+'intro.s3.title':'\u5927\u5207\u306b\u3059\u308b\u3053\u3068','intro.s3.text':'\u88c5\u98fe\u3088\u308a\u660e\u5feb\u3055\u3002\u672c\u7269\u3092\u6b8b\u3057\u3001\u6a5f\u80fd\u3067\u5f62\u3092\u6c7a\u3081\u308b\u3002\u30e6\u30fc\u30b6\u30fc\u306b\u5f79\u7acb\u305f\u306a\u3044\u3082\u306e\u306f\u524a\u9664\u3002',
+'intro.s4.title':'\u5411\u304b\u3046\u5148','intro.s4.text':'\u30c7\u30b6\u30a4\u30f3\u3001\u30b3\u30fc\u30c9\u3001\u5de5\u82b8\u304c\u4ea4\u308f\u308b\u5b9f\u8df5 \u2014 \u6b63\u76f4\u3067\u9577\u6301\u3061\u3059\u308b\u30c7\u30b8\u30bf\u30eb\u30c4\u30fc\u30eb\u3092\u4f5c\u308b\u3002',
+'intro.back':'\u2190 \u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u306b\u623b\u308b'
+},
+fr:{
+'intro.name':'Yiyang Zhang','intro.role':'Designer d\u2019interaction',
+'intro.s1.title':'Qui suis-je','intro.s1.text':'\u00c9tudiant en design d\u2019interaction au Sheridan College, transformant des id\u00e9es en prototypes fonctionnels centr\u00e9s sur l\u2019humain.',
+'intro.s2.title':'Ma m\u00e9thode','intro.s2.text':'J\u2019it\u00e8re vite \u2014 recherche, esquisse, prototype, test, affinage. Chaque version enseigne ce que la pr\u00e9c\u00e9dente ignorait.',
+'intro.s3.title':'Mes valeurs','intro.s3.text':'La clart\u00e9 avant la d\u00e9coration. Je garde le r\u00e9el et laisse la fonction fa\u00e7onner la forme. Ce qui ne sert pas l\u2019utilisateur dispara\u00eet.',
+'intro.s4.title':'O\u00f9 je vais','intro.s4.text':'Construire une pratique o\u00f9 design, code et artisanat se rencontrent \u2014 cr\u00e9er des outils num\u00e9riques honn\u00eates et durables.',
+'intro.back':'\u2190 Retour au portfolio'
+}
+};
+var _curLang='en';
+function applyLang(lang){
+  var dict=T[lang]||T.en;_curLang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.getAttribute('data-i18n');
+    if(dict[key]!=null)el.textContent=dict[key];
+    else if(T.en[key]!=null)el.textContent=T.en[key];
+  });
+  document.querySelectorAll('.lang-sel').forEach(function(s){s.value=lang;});
+  try{localStorage.setItem('siteLang',lang);}catch(_){}
+}
+document.querySelectorAll('.lang-sel').forEach(function(s){
+  s.addEventListener('change',function(){applyLang(s.value);});
+});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
+
+/* ===== Scrollama ===== */
 (function() {
   if (typeof scrollama === 'undefined') return;
   var scroller = scrollama();
