@@ -11,6 +11,8 @@
   <style>
     .dv-card-img{width:100%;border-radius:10px;margin-bottom:.25rem}
     .dv-card .spotify-embed{border-radius:12px;margin-top:.5rem}
+    .lang-sel{position:absolute;top:1rem;right:0;padding:.3rem .5rem;border:1px solid var(--border,#e2e8f0);border-radius:6px;font-size:.8rem;background:var(--bg,#fff);color:var(--ink,#0f172a);cursor:pointer}
+    .mw-header .wrap{position:relative}
   </style>
 </head>
 <body>
@@ -19,9 +21,16 @@
 
   <header class="site-header mw-header">
     <div class="wrap">
-      <a class="back-link" href="index.html">&larr; Back to Portfolio</a>
-      <h1>More Work</h1>
-      <p class="tagline">Full project archive — every version, prototype, and experiment.</p>
+      <a class="back-link" href="index.html" data-i18n="mw.back">&larr; Back to Portfolio</a>
+      <h1 data-i18n="mw.title">More Work</h1>
+      <p class="tagline" data-i18n="mw.tagline">Full project archive — every version, prototype, and experiment.</p>
+      <select class="lang-sel" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="zh-CN">简中</option>
+        <option value="zh-TW">繁中</option>
+        <option value="ja">日本語</option>
+        <option value="fr">FR</option>
+      </select>
     </div>
   </header>
 
@@ -30,10 +39,10 @@
   <section class="mw-controls">
     <div class="wrap">
       <div class="view-toggle" id="moreViewToggle">
-        <button type="button" data-view="overview">Overview</button>
-        <button type="button" class="active" data-view="detailed">Detailed</button>
+        <button type="button" data-view="overview" data-i18n="mw.overview">Overview</button>
+        <button type="button" class="active" data-view="detailed" data-i18n="mw.detailed">Detailed</button>
       </div>
-      <p class="view-hint" id="moreViewHint">Read what each project does, then open the page.</p>
+      <p class="view-hint" id="moreViewHint" data-i18n="mw.hint.detailed">Read what each project does, then open the page.</p>
     </div>
   </section>
 
@@ -45,16 +54,6 @@
         <select aria-label="Music Composition & Arrangement" onchange="jump(this)">
           <option value="" selected disabled>Music Composition &amp; Arrangement</option>
           <option value="about.html#music">Listen on Spotify</option>
-        </select>
-      </li>
-
-      <li class="selector">
-        <select aria-label="Physical Computing — Comfort Lamp" onchange="jump(this)">
-          <option value="" selected disabled>Physical Computing — Comfort Lamp</option>
-          <option value="DESN30146P1/index.html">P1 — Exploration &amp; Concept</option>
-          <option value="DESN30146P2/index.html">P2 — Sensor Build &amp; Prototype</option>
-          <option value="DESN30146P3/index.html">P3 — 3D Housing &amp; Final</option>
-          <option value="work/physical-computing.html">Full Case Study</option>
         </select>
       </li>
 
@@ -97,19 +96,6 @@
           <option value="GSGC/v5/index.html">2 — Finished Website Version 1</option>
           <option value="GSGC/v6/index.html">2 — Finished Website Version 2</option>
           <option value="GSGC/v7/index.html">2 — Final Version</option>
-        </select>
-      </li>
-
-      <li class="selector">
-        <select aria-label="Interactive Prototype versions" onchange="jump(this)">
-          <option value="" selected disabled>Interactive Prototype — Versions</option>
-          <option value="DESN22848/index.html">Overview</option>
-          <option value="DESN22848P2/index.html">Project 2</option>
-          <option value="DESN22848P3/index.html">Project 3</option>
-          <option value="DESN22848V1/index.html">Version 1</option>
-          <option value="DESN22848V2/index.html">Version 2</option>
-          <option value="DESN22848V3/index.html">Version 3</option>
-          <option value="DESN22848V4/index.html">Version 4</option>
         </select>
       </li>
 
@@ -168,6 +154,32 @@
           <option value="DESN31927P1/DESN31927P1V9/index.html">Weather Advisor — V9</option>
         </select>
       </li>
+
+      <li class="selector">
+        <select aria-label="Interactive Prototype" onchange="jump(this)">
+          <option value="" selected disabled>Interactive Prototype — Media, Motion &amp; the Body</option>
+          <option value="DESN22848/index.html">P1 — Circuits &amp; Formstorming</option>
+          <option value="DESN22848P2/index.html">P2 — Sound &amp; Visualisation</option>
+          <option value="DESN22848P3/index.html">P3 — Touch-to-Digital</option>
+          <optgroup label="Live Versions">
+            <option value="DESN22848V1/index.html">V1 — Sound Sketches</option>
+            <option value="DESN22848V2/index.html">V2 — Rainbow Bloom Header</option>
+            <option value="DESN22848V3/index.html">V3 — p5.js Experiments</option>
+            <option value="DESN22848V4/index.html">V4 — Drum Machine</option>
+          </optgroup>
+          <option value="work/interactive-prototype.html">★ Full Case Study</option>
+        </select>
+      </li>
+
+      <li class="selector">
+        <select aria-label="Physical Computing" onchange="jump(this)">
+          <option value="" selected disabled>Physical Computing — Comfort Lamp</option>
+          <option value="DESN30146P1/index.html">P1 — Exploration &amp; Concept</option>
+          <option value="DESN30146P2/index.html">P2 — Sensor Build &amp; Prototype</option>
+          <option value="DESN30146P3/index.html">P3 — 3D Housing &amp; Final</option>
+          <option value="work/physical-computing.html">★ Full Case Study</option>
+        </select>
+      </li>
     </ul>
     </div>
   </section>
@@ -179,14 +191,14 @@
       <!-- Music Composition & Arrangement -->
       <div class="dv-category">
         <div class="dv-category-head">
-          <h3>Music Composition &amp; Arrangement</h3>
-          <p class="dv-cat-sub">作曲 · 编曲 · Composition · Arrangement</p>
+          <h3 data-i18n="cat.music">Music Composition &amp; Arrangement</h3>
+          <p class="dv-cat-sub" data-i18n="cat.music.sub">作曲 · 编曲 · Composition · Arrangement</p>
         </div>
         <div class="dv-cards">
           <div class="dv-card dv-card-full">
             <img class="dv-card-img" src="image/logic_cap.png" alt="Logic Pro arrangement session — multi-track composition with pads, arps, bass, keys, and melody layers">
-            <h4>Original Music — Composition &amp; Arrangement</h4>
-            <p class="dv-desc">As <strong>Antirender</strong>, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies (作曲 / Composition), then layering and structuring instruments — pads, arpeggios, bass, keys, leads — into a finished arrangement (编曲 / Arrangement). 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.</p>
+            <h4 data-i18n="cat.music.title">Original Music — Composition &amp; Arrangement</h4>
+            <p class="dv-desc" data-i18n="cat.music.desc">As <strong>Antirender</strong>, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies (作曲 / Composition), then layering and structuring instruments — pads, arpeggios, bass, keys, leads — into a finished arrangement (编曲 / Arrangement). 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.</p>
             <div class="dv-actions">
               <a class="btn" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener">Open Spotify</a>
             </div>
@@ -195,42 +207,16 @@
         </div>
       </div>
 
-      <!-- Physical Computing -->
-      <div class="dv-category">
-        <div class="dv-category-head">
-          <h3>Physical Computing — Comfort Lamp</h3>
-          <p class="dv-cat-sub">Arduino · DHT11 · 3D Printing · ProtoPie</p>
-        </div>
-        <div class="dv-cards">
-          <div class="dv-card dv-card-full">
-            <img class="dv-card-img" src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp final prototype — 3D-printed staircase glowing green">
-            <h4>Comfort Lamp — Sensor-Driven Ambient Object</h4>
-            <p class="dv-desc">A three-module Physical Computing project: from first Arduino blink to a finished ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states (BLUE → GREEN → YELLOW → RED); a latching touch switch gives physical on/off, and a ProtoPie mobile UI replaces the LCD for richer feedback.</p>
-            <div class="dv-actions">
-              <a class="btn" href="work/physical-computing.html">Open Case Study</a>
-              <details>
-                <summary>All modules (3)</summary>
-                <ul>
-                  <li><a href="DESN30146P1/index.html">P1 — Exploration &amp; Concept</a><span class="dv-ver-desc">Arduino basics, TouchDesigner, WGSN research, HMI statements.</span></li>
-                  <li><a href="DESN30146P2/index.html">P2 — Sensor Build &amp; Prototype</a><span class="dv-ver-desc">DHT11 circuit, tiered LED colours, LCD readout, guerrilla prototyping.</span></li>
-                  <li><a href="DESN30146P3/index.html">P3 — 3D Housing &amp; Final</a><span class="dv-ver-desc">3D-printed enclosure, light sensor, touch switch, ProtoPie integration.</span></li>
-                </ul>
-              </details>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Decision Tools -->
       <div class="dv-category">
         <div class="dv-category-head">
-          <h3>Decision Tools / Everyday Products</h3>
-          <p class="dv-cat-sub">Decision Tools / Everyday Products</p>
+          <h3 data-i18n="cat.decision">Decision Tools / Everyday Products</h3>
+          <p class="dv-cat-sub" data-i18n="cat.decision.sub">Decision Tools / Everyday Products</p>
         </div>
         <div class="dv-cards">
           <div class="dv-card">
-            <h4>QuickPick</h4>
-            <p class="dv-desc">A lightweight random-decision tool that helps you pick between meals, drinks, desserts, and entertainment when you can't decide.</p>
+            <h4 data-i18n="cat.quickpick.title">QuickPick</h4>
+            <p class="dv-desc" data-i18n="cat.quickpick.desc">A lightweight random-decision tool that helps you pick between meals, drinks, desserts, and entertainment when you can’t decide.</p>
             <div class="dv-actions">
               <a class="btn" href="DESN18654V3/index.html">Open Latest</a>
               <details>
@@ -245,8 +231,8 @@
           </div>
 
           <div class="dv-card">
-            <h4>Smart Sleep Tracker</h4>
-            <p class="dv-desc">A daily tool built around sleep management — helping you figure out better sleep/wake times, track sleep debt, analyze your chronotype, and prepare for sleep.</p>
+            <h4 data-i18n="cat.sleep.title">Smart Sleep Tracker</h4>
+            <p class="dv-desc" data-i18n="cat.sleep.desc">A daily tool built around sleep management — helping you figure out better sleep/wake times, track sleep debt, analyze your chronotype, and prepare for sleep.</p>
             <div class="dv-actions">
               <a class="btn" href="DESN18654V7/index.html">Open Latest</a>
               <details>
@@ -266,13 +252,13 @@
       <!-- UX Interaction -->
       <div class="dv-category">
         <div class="dv-category-head">
-          <h3>UX Interaction</h3>
-          <p class="dv-cat-sub">UX Interaction</p>
+          <h3 data-i18n="cat.ux">UX Interaction</h3>
+          <p class="dv-cat-sub" data-i18n="cat.ux.sub">UX Interaction</p>
         </div>
         <div class="dv-cards">
           <div class="dv-card dv-card-full">
-            <h4>Green Sheridan Garden Club Website Design</h4>
-            <p class="dv-desc">A responsive website designed for a virtual gardening community, focused on making content structure, navigation paths, and page hierarchy clear.</p>
+            <h4 data-i18n="cat.gsgc.title">Green Sheridan Garden Club Website Design</h4>
+            <p class="dv-desc" data-i18n="cat.gsgc.desc">A responsive website designed for a virtual gardening community, focused on making content structure, navigation paths, and page hierarchy clear.</p>
             <div class="dv-actions">
               <a class="btn" href="GSGC/v7/index.html">Open Final Version</a>
               <details>
@@ -316,27 +302,27 @@
       <!-- Visual System / Typography -->
       <div class="dv-category">
         <div class="dv-category-head">
-          <h3>Visual System / Typography</h3>
-          <p class="dv-cat-sub">Visual System / Typography</p>
+          <h3 data-i18n="cat.visual">Visual System / Typography</h3>
+          <p class="dv-cat-sub" data-i18n="cat.visual.sub">Visual System / Typography</p>
         </div>
         <div class="dv-cards">
           <div class="dv-card">
-            <h4>P1 — Letterform Construction, Classification and Use</h4>
-            <p class="dv-desc">A web project exploring letterform construction, paragraph typesetting, and type classification logic.</p>
+            <h4 data-i18n="cat.typo.p1.title">P1 — Letterform Construction, Classification and Use</h4>
+            <p class="dv-desc" data-i18n="cat.typo.p1.desc">A web project exploring letterform construction, paragraph typesetting, and type classification logic.</p>
             <div class="dv-actions">
               <a class="btn" href="VDES15738P1/index.html">Open Project</a>
             </div>
           </div>
           <div class="dv-card">
-            <h4>P2 — Grid Layout Exercises</h4>
-            <p class="dv-desc">Typography centered on packaging text and layout hierarchy, built around grid systems and bilingual content organization.</p>
+            <h4 data-i18n="cat.typo.p2.title">P2 — Grid Layout Exercises</h4>
+            <p class="dv-desc" data-i18n="cat.typo.p2.desc">Typography centered on packaging text and layout hierarchy, built around grid systems and bilingual content organization.</p>
             <div class="dv-actions">
               <a class="btn" href="VDES15738P2/index.html">Open Project</a>
             </div>
           </div>
           <div class="dv-card dv-card-full">
-            <h4>P3 — Typography on the Web</h4>
-            <p class="dv-desc">Translates typographer and designer research into a web experience. Combines designer research, typeface analysis, and front-end implementation.</p>
+            <h4 data-i18n="cat.typo.p3.title">P3 — Typography on the Web</h4>
+            <p class="dv-desc" data-i18n="cat.typo.p3.desc">Translates typographer and designer research into a web experience. Combines designer research, typeface analysis, and front-end implementation.</p>
             <div class="dv-actions">
               <a class="btn" href="VDES15738P3V5/index.html">Open Final Version</a>
               <details>
@@ -358,13 +344,13 @@
       <!-- Data Transparency -->
       <div class="dv-category">
         <div class="dv-category-head">
-          <h3>Data Transparency</h3>
-          <p class="dv-cat-sub">Privacy, Permissions / Data Transparency</p>
+          <h3 data-i18n="cat.data">Data Transparency</h3>
+          <p class="dv-cat-sub" data-i18n="cat.data.sub">Privacy, Permissions / Data Transparency</p>
         </div>
         <div class="dv-cards">
           <div class="dv-card dv-card-full">
-            <h4>Snapchat Data Transparency</h4>
-            <p class="dv-desc">An interactive explanation page that translates platform data collection, permission scopes, privacy implications, and user control options into something easier to understand.</p>
+            <h4 data-i18n="cat.snap.title">Snapchat Data Transparency</h4>
+            <p class="dv-desc" data-i18n="cat.snap.desc">An interactive explanation page that translates platform data collection, permission scopes, privacy implications, and user control options into something easier to understand.</p>
             <div class="dv-actions">
               <a class="btn" href="DESN10799P3/index7.html">Open Latest (V7)</a>
               <details>
@@ -388,13 +374,13 @@
       <!-- Weather Advisor -->
       <div class="dv-category">
         <div class="dv-category-head">
-          <h3>Weather Advisor</h3>
-          <p class="dv-cat-sub">Weather, Real Feel / Human-Centered Data</p>
+          <h3 data-i18n="cat.weather">Weather Advisor</h3>
+          <p class="dv-cat-sub" data-i18n="cat.weather.sub">Weather, Real Feel / Human-Centered Data</p>
         </div>
         <div class="dv-cards">
           <div class="dv-card dv-card-full">
-            <h4>Weather Advisor · Real Weather</h4>
-            <p class="dv-desc">A project that re-translates traditional weather data into human-felt experience. It combines Open-Meteo API data with heat index, wind chill, and other formulas to calculate real feel.</p>
+            <h4 data-i18n="cat.weather.title">Weather Advisor · Real Weather</h4>
+            <p class="dv-desc" data-i18n="cat.weather.desc">A project that re-translates traditional weather data into human-felt experience. It combines Open-Meteo API data with heat index, wind chill, and other formulas to calculate real feel.</p>
             <div class="dv-actions">
               <a class="btn" href="DESN31927P1V2/index.html">Open Final</a>
               <details>
@@ -417,15 +403,72 @@
         </div>
       </div>
 
+      <!-- Interactive Prototype -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3 data-i18n="cat.interactive">Interactive Prototype — Media, Motion &amp; the Body</h3>
+          <p class="dv-cat-sub" data-i18n="cat.interactive.sub">Copper Tape · p5.js · Makey Makey · WebGL</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <img class="dv-card-img" src="DESN22848P3/images/final/happy.png" alt="Interactive Prototype — colourful p5.js experiment">
+            <h4 data-i18n="cat.interactive.title">Media, Motion &amp; the Body</h4>
+            <p class="dv-desc" data-i18n="cat.interactive.desc">A three-module exploration: P1 uses copper tape and LEDs to prototype wearable and non-wearable circuits; P2 collects sounds and builds p5.js visualisations culminating in an interactive audio header; P3 combines Makey Makey, touch-sensors, and WebGL to create a drum machine played with bare hands.</p>
+            <div class="dv-actions">
+              <a class="btn" href="work/interactive-prototype.html" data-i18n="btn.casestudy">Open Case Study</a>
+              <details>
+                <summary>All modules (3) + live versions</summary>
+                <ul>
+                  <li><a href="DESN22848/index.html">P1 — Circuits &amp; Formstorming</a><span class="dv-ver-desc">Copper tape, LED stickers, conductive materials.</span></li>
+                  <li><a href="DESN22848P2/index.html">P2 — Sound &amp; Visualisation</a><span class="dv-ver-desc">Sound library, 25 p5.js visualisations, Rainbow Bloom header.</span></li>
+                  <li><a href="DESN22848P3/index.html">P3 — Touch-to-Digital</a><span class="dv-ver-desc">Makey Makey, 50 p5.js experiments, WebGL drum machine.</span></li>
+                </ul>
+                <ul style="margin-top:.5rem">
+                  <li><a href="DESN22848V1/index.html">V1 — Sound Sketches</a></li>
+                  <li><a href="DESN22848V2/index.html">V2 — Rainbow Bloom Header</a></li>
+                  <li><a href="DESN22848V3/index.html">V3 — p5.js Experiments</a></li>
+                  <li><a href="DESN22848V4/index.html">V4 — Drum Machine</a></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical Computing -->
+      <div class="dv-category">
+        <div class="dv-category-head">
+          <h3 data-i18n="cat.physical">Physical Computing — Comfort Lamp</h3>
+          <p class="dv-cat-sub" data-i18n="cat.physical.sub">Arduino · DHT11 · 3D Printing · ProtoPie</p>
+        </div>
+        <div class="dv-cards">
+          <div class="dv-card dv-card-full">
+            <img class="dv-card-img" src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp final prototype — 3D-printed staircase glowing green">
+            <h4 data-i18n="cat.physical.title">Comfort Lamp — Sensor-Driven Ambient Object</h4>
+            <p class="dv-desc" data-i18n="cat.physical.desc">A three-module Physical Computing project: from first Arduino blink to a finished ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states (BLUE → GREEN → YELLOW → RED); a latching touch switch gives physical on/off, and a ProtoPie mobile UI replaces the LCD for richer feedback.</p>
+            <div class="dv-actions">
+              <a class="btn" href="work/physical-computing.html" data-i18n="btn.casestudy">Open Case Study</a>
+              <details>
+                <summary>All modules (3)</summary>
+                <ul>
+                  <li><a href="DESN30146P1/index.html">P1 — Exploration &amp; Concept</a><span class="dv-ver-desc">Arduino basics, TouchDesigner, WGSN research, HMI statements.</span></li>
+                  <li><a href="DESN30146P2/index.html">P2 — Sensor Build &amp; Prototype</a><span class="dv-ver-desc">DHT11 circuit, tiered LED colours, LCD readout, guerrilla prototyping.</span></li>
+                  <li><a href="DESN30146P3/index.html">P3 — 3D Housing &amp; Final</a><span class="dv-ver-desc">3D-printed enclosure, light sensor, touch switch, ProtoPie integration.</span></li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- Quick Links -->
   <section>
     <div class="wrap">
-      <h2>Quick Links</h2>
+      <h2 data-i18n="mw.quicklinks">Quick Links</h2>
       <ul class="card-grid">
-        <li class="card"><a href="DESN30146P1/index.html">Interactive Circuits — P1</a></li>
         <li class="card"><a href="Rocket-Calculator/index.html">Rocket Calculator</a></li>
         <li class="card"><a href="Milk/index.html">Milk Calculator</a></li>
         <li class="card"><a href="nevergonna/index.html">Never Gonna Give You Up</a></li>
@@ -449,6 +492,246 @@
 var y = document.getElementById('year');
 if (y) y.textContent = new Date().getFullYear();
 function jump(sel) { if (sel.value) window.open(sel.value, '_blank'); sel.selectedIndex = 0; }
+
+/* ---------- i18n ---------- */
+var T = {
+en: {
+'mw.back':'\u2190 Back to Portfolio','mw.title':'More Work',
+'mw.tagline':'Full project archive \u2014 every version, prototype, and experiment.',
+'mw.overview':'Overview','mw.detailed':'Detailed',
+'mw.hint.overview':'Pick a project from any dropdown to open it.',
+'mw.hint.detailed':'Read what each project does, then open the page.',
+'mw.quicklinks':'Quick Links',
+'cat.music':'Music Composition & Arrangement',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7f16\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.title':'Original Music \u2014 Composition & Arrangement',
+'cat.music.desc':'As Antirender, I compose and arrange original tracks from scratch in Logic Pro. The workflow covers the full creative process: writing chord progressions and melodies (\u4f5c\u66f2 / Composition), then layering and structuring instruments \u2014 pads, arpeggios, bass, keys, leads \u2014 into a finished arrangement (\u7f16\u66f2 / Arrangement). 36 original tracks across 7 self-released albums, published on Spotify and all major streaming platforms.',
+'cat.decision':'Decision Tools / Everyday Products',
+'cat.decision.sub':'Decision Tools / Everyday Products',
+'cat.quickpick.title':'QuickPick',
+'cat.quickpick.desc':'A lightweight random-decision tool that helps you pick between meals, drinks, desserts, and entertainment when you can\u2019t decide.',
+'cat.sleep.title':'Smart Sleep Tracker',
+'cat.sleep.desc':'A daily tool built around sleep management \u2014 helping you figure out better sleep/wake times, track sleep debt, analyze your chronotype, and prepare for sleep.',
+'cat.ux':'UX Interaction','cat.ux.sub':'UX Interaction',
+'cat.gsgc.title':'Green Sheridan Garden Club Website Design',
+'cat.gsgc.desc':'A responsive website designed for a virtual gardening community, focused on making content structure, navigation paths, and page hierarchy clear.',
+'cat.visual':'Visual System / Typography','cat.visual.sub':'Visual System / Typography',
+'cat.typo.p1.title':'P1 \u2014 Letterform Construction, Classification and Use',
+'cat.typo.p1.desc':'A web project exploring letterform construction, paragraph typesetting, and type classification logic.',
+'cat.typo.p2.title':'P2 \u2014 Grid Layout Exercises',
+'cat.typo.p2.desc':'Typography centered on packaging text and layout hierarchy, built around grid systems and bilingual content organization.',
+'cat.typo.p3.title':'P3 \u2014 Typography on the Web',
+'cat.typo.p3.desc':'Translates typographer and designer research into a web experience. Combines designer research, typeface analysis, and front-end implementation.',
+'cat.data':'Data Transparency','cat.data.sub':'Privacy, Permissions / Data Transparency',
+'cat.snap.title':'Snapchat Data Transparency',
+'cat.snap.desc':'An interactive explanation page that translates platform data collection, permission scopes, privacy implications, and user control options into something easier to understand.',
+'cat.weather':'Weather Advisor','cat.weather.sub':'Weather, Real Feel / Human-Centered Data',
+'cat.weather.title':'Weather Advisor \u00b7 Real Weather',
+'cat.weather.desc':'A project that re-translates traditional weather data into human-felt experience. It combines Open-Meteo API data with heat index, wind chill, and other formulas to calculate real feel.',
+'cat.interactive':'Interactive Prototype \u2014 Media, Motion & the Body',
+'cat.interactive.sub':'Copper Tape \u00b7 p5.js \u00b7 Makey Makey \u00b7 WebGL',
+'cat.interactive.title':'Media, Motion & the Body',
+'cat.interactive.desc':'A three-module exploration: P1 uses copper tape and LEDs to prototype wearable and non-wearable circuits; P2 collects sounds and builds p5.js visualisations culminating in an interactive audio header; P3 combines Makey Makey, touch-sensors, and WebGL to create a drum machine played with bare hands.',
+'cat.physical':'Physical Computing \u2014 Comfort Lamp',
+'cat.physical.sub':'Arduino \u00b7 DHT11 \u00b7 3D Printing \u00b7 ProtoPie',
+'cat.physical.title':'Comfort Lamp \u2014 Sensor-Driven Ambient Object',
+'cat.physical.desc':'A three-module Physical Computing project: from first Arduino blink to a finished ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states (BLUE \u2192 GREEN \u2192 YELLOW \u2192 RED); a latching touch switch gives physical on/off, and a ProtoPie mobile UI replaces the LCD for richer feedback.',
+'btn.casestudy':'Open Case Study'
+},
+'zh-CN': {
+'mw.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6','mw.title':'\u66f4\u591a\u4f5c\u54c1',
+'mw.tagline':'\u5b8c\u6574\u9879\u76ee\u5f52\u6863 \u2014 \u6bcf\u4e2a\u7248\u672c\u3001\u539f\u578b\u4e0e\u5b9e\u9a8c\u3002',
+'mw.overview':'\u6982\u89c8','mw.detailed':'\u8be6\u7ec6',
+'mw.hint.overview':'\u4ece\u4efb\u610f\u4e0b\u62c9\u83dc\u5355\u9009\u62e9\u4e00\u4e2a\u9879\u76ee\u6253\u5f00\u3002',
+'mw.hint.detailed':'\u5148\u9605\u8bfb\u9879\u76ee\u7b80\u4ecb\uff0c\u518d\u6253\u5f00\u9875\u9762\u3002',
+'mw.quicklinks':'\u5feb\u901f\u94fe\u63a5',
+'cat.music':'\u97f3\u4e50\u4f5c\u66f2\u4e0e\u7f16\u66f2',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7f16\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.title':'\u539f\u521b\u97f3\u4e50 \u2014 \u4f5c\u66f2\u4e0e\u7f16\u66f2',
+'cat.music.desc':'\u4ee5 Antirender \u7684\u540d\u4e49\uff0c\u6211\u5728 Logic Pro \u4e2d\u4ece\u96f6\u5f00\u59cb\u4f5c\u66f2\u548c\u7f16\u66f2\u3002\u5de5\u4f5c\u6d41\u7a0b\u8986\u76d6\u5b8c\u6574\u7684\u521b\u4f5c\u8fc7\u7a0b\uff1a\u8c31\u5199\u548c\u5f26\u8fdb\u884c\u4e0e\u65cb\u5f8b\uff08\u4f5c\u66f2\uff09\uff0c\u7136\u540e\u5206\u5c42\u5e03\u5c40\u4e50\u5668 \u2014 \u94fa\u5e95\u3001\u7410\u97f3\u3001\u8d1d\u65af\u3001\u952e\u76d8\u3001\u4e3b\u97f3 \u2014 \u6700\u7ec8\u5f62\u6210\u5b8c\u6574\u7f16\u66f2\u3002\u5df2\u5728 Spotify \u53ca\u5404\u5927\u6d41\u5a92\u4f53\u5e73\u53f0\u53d1\u8868 7 \u5f20\u4e13\u8f91\uff0c\u5171 36 \u9996\u539f\u521b\u66f2\u76ee\u3002',
+'cat.decision':'\u51b3\u7b56\u5de5\u5177 / \u65e5\u5e38\u4ea7\u54c1',
+'cat.decision.sub':'\u51b3\u7b56\u5de5\u5177 / \u65e5\u5e38\u4ea7\u54c1',
+'cat.quickpick.title':'QuickPick',
+'cat.quickpick.desc':'\u4e00\u6b3e\u8f7b\u91cf\u7ea7\u968f\u673a\u51b3\u7b56\u5de5\u5177\uff0c\u5e2e\u4f60\u5728\u996e\u98df\u3001\u751c\u54c1\u548c\u5a31\u4e50\u4e4b\u95f4\u505a\u51fa\u9009\u62e9\u3002',
+'cat.sleep.title':'\u667a\u80fd\u7761\u7720\u8ffd\u8e2a\u5668',
+'cat.sleep.desc':'\u4e00\u6b3e\u56f4\u7ed5\u7761\u7720\u7ba1\u7406\u6784\u5efa\u7684\u65e5\u5e38\u5de5\u5177 \u2014 \u5e2e\u4f60\u786e\u5b9a\u66f4\u4f73\u7684\u4f5c\u606f\u65f6\u95f4\u3001\u8ffd\u8e2a\u7761\u7720\u503a\u52a1\u3001\u5206\u6790\u65f6\u578b\u5e76\u505a\u597d\u5165\u7761\u51c6\u5907\u3002',
+'cat.ux':'UX \u4ea4\u4e92','cat.ux.sub':'UX \u4ea4\u4e92',
+'cat.gsgc.title':'Green Sheridan Garden Club \u7f51\u7ad9\u8bbe\u8ba1',
+'cat.gsgc.desc':'\u4e3a\u865a\u62df\u56ed\u827a\u793e\u533a\u8bbe\u8ba1\u7684\u54cd\u5e94\u5f0f\u7f51\u7ad9\uff0c\u4e13\u6ce8\u4e8e\u5185\u5bb9\u7ed3\u6784\u3001\u5bfc\u822a\u8def\u5f84\u4e0e\u9875\u9762\u5c42\u6b21\u7684\u6e05\u6670\u5448\u73b0\u3002',
+'cat.visual':'\u89c6\u89c9\u7cfb\u7edf / \u5b57\u4f53\u6392\u7248',
+'cat.visual.sub':'\u89c6\u89c9\u7cfb\u7edf / \u5b57\u4f53\u6392\u7248',
+'cat.typo.p1.title':'P1 \u2014 \u5b57\u5f62\u6784\u9020\u3001\u5206\u7c7b\u4e0e\u5e94\u7528',
+'cat.typo.p1.desc':'\u4e00\u4e2a\u63a2\u7d22\u5b57\u5f62\u6784\u9020\u3001\u6bb5\u843d\u6392\u7248\u548c\u5b57\u4f53\u5206\u7c7b\u903b\u8f91\u7684 Web \u9879\u76ee\u3002',
+'cat.typo.p2.title':'P2 \u2014 \u7f51\u683c\u5e03\u5c40\u7ec3\u4e60',
+'cat.typo.p2.desc':'\u4ee5\u5305\u88c5\u6587\u5b57\u548c\u5e03\u5c40\u5c42\u6b21\u4e3a\u4e2d\u5fc3\u7684\u5b57\u4f53\u6392\u7248\uff0c\u57fa\u4e8e\u7f51\u683c\u7cfb\u7edf\u548c\u53cc\u8bed\u5185\u5bb9\u7ec4\u7ec7\u3002',
+'cat.typo.p3.title':'P3 \u2014 Web \u5b57\u4f53\u6392\u7248',
+'cat.typo.p3.desc':'\u5c06\u5b57\u4f53\u8bbe\u8ba1\u5e08\u7684\u7814\u7a76\u8f6c\u5316\u4e3a Web \u4f53\u9a8c\u3002\u7ed3\u5408\u8bbe\u8ba1\u5e08\u7814\u7a76\u3001\u5b57\u4f53\u5206\u6790\u548c\u524d\u7aef\u5b9e\u73b0\u3002',
+'cat.data':'\u6570\u636e\u900f\u660e\u5ea6','cat.data.sub':'\u9690\u79c1\u3001\u6743\u9650 / \u6570\u636e\u900f\u660e\u5ea6',
+'cat.snap.title':'Snapchat \u6570\u636e\u900f\u660e\u5ea6',
+'cat.snap.desc':'\u4e00\u4e2a\u4ea4\u4e92\u5f0f\u89e3\u8bfe\u9875\u9762\uff0c\u5c06\u5e73\u53f0\u6570\u636e\u6536\u96c6\u3001\u6743\u9650\u8303\u56f4\u3001\u9690\u79c1\u5f71\u54cd\u548c\u7528\u6237\u63a7\u5236\u9009\u9879\u8f6c\u5316\u4e3a\u66f4\u6613\u7406\u89e3\u7684\u5185\u5bb9\u3002',
+'cat.weather':'\u5929\u6c14\u987e\u95ee','cat.weather.sub':'\u5929\u6c14\u3001\u4f53\u611f\u6e29\u5ea6 / \u4ee5\u4eba\u4e3a\u4e2d\u5fc3\u7684\u6570\u636e',
+'cat.weather.title':'\u5929\u6c14\u987e\u95ee \u00b7 \u771f\u5b9e\u5929\u6c14',
+'cat.weather.desc':'\u4e00\u4e2a\u5c06\u4f20\u7edf\u6c14\u8c61\u6570\u636e\u91cd\u65b0\u8f6c\u5316\u4e3a\u4eba\u4f53\u611f\u77e5\u4f53\u9a8c\u7684\u9879\u76ee\u3002\u7ed3\u5408 Open-Meteo API \u6570\u636e\u4e0e\u70ed\u6307\u6570\u3001\u98ce\u5bd2\u6307\u6570\u7b49\u516c\u5f0f\u8ba1\u7b97\u4f53\u611f\u6e29\u5ea6\u3002',
+'cat.interactive':'\u4ea4\u4e92\u539f\u578b \u2014 \u5a92\u4f53\u3001\u52a8\u6001\u4e0e\u8eab\u4f53',
+'cat.interactive.sub':'\u94dc\u7b94\u5e26 \u00b7 p5.js \u00b7 Makey Makey \u00b7 WebGL',
+'cat.interactive.title':'\u5a92\u4f53\u3001\u52a8\u6001\u4e0e\u8eab\u4f53',
+'cat.interactive.desc':'\u4e09\u6a21\u5757\u63a2\u7d22\uff1aP1 \u4f7f\u7528\u94dc\u7b94\u5e26\u548c LED \u5236\u4f5c\u53ef\u7a7f\u6234\u4e0e\u975e\u7a7f\u6234\u7535\u8def\u539f\u578b\uff1bP2 \u91c7\u96c6\u58f0\u97f3\u5e76\u6784\u5efa p5.js \u53ef\u89c6\u5316\uff0c\u6700\u7ec8\u5b8c\u6210\u4ea4\u4e92\u97f3\u9891\u5934\u90e8\uff1bP3 \u7ed3\u5408 Makey Makey\u3001\u89e6\u6478\u4f20\u611f\u5668\u548c WebGL\uff0c\u521b\u5efa\u4e86\u4e00\u4e2a\u53ef\u5f92\u624b\u6f14\u594f\u7684\u9f13\u673a\u3002',
+'cat.physical':'\u7269\u7406\u8ba1\u7b97 \u2014 \u6170\u85c9\u706f',
+'cat.physical.sub':'Arduino \u00b7 DHT11 \u00b7 3D \u6253\u5370 \u00b7 ProtoPie',
+'cat.physical.title':'\u6170\u85c9\u706f \u2014 \u4f20\u611f\u5668\u9a71\u52a8\u7684\u6c1b\u56f4\u7269\u4ef6',
+'cat.physical.desc':'\u4e09\u6a21\u5757\u7269\u7406\u8ba1\u7b97\u9879\u76ee\uff1a\u4ece\u7b2c\u4e00\u6b21 Arduino \u95ea\u70c1\u5230\u6700\u7ec8\u5b8c\u6210\u5185\u7f6e\u4e8e 3D \u6253\u5370\u5efa\u7b51\u573a\u666f\u4e2d\u7684\u6c1b\u56f4\u706f\u3002\u6e29\u6e7f\u5ea6\u548c\u5149\u7167\u6570\u636e\u6620\u5c04\u4e3a\u5206\u5c42\u8272\u5f69\u72b6\u6001\uff08\u84dd \u2192 \u7eff \u2192 \u9ec4 \u2192 \u7ea2\uff09\uff1b\u89e6\u6478\u5f00\u5173\u63d0\u4f9b\u7269\u7406\u5f00/\u5173\uff0cProtoPie \u624b\u673a\u754c\u9762\u66ff\u4ee3 LCD \u5b9e\u73b0\u66f4\u4e30\u5bcc\u7684\u53cd\u9988\u3002',
+'btn.casestudy':'\u6253\u5f00\u6848\u4f8b\u7814\u7a76'
+},
+'zh-TW': {
+'mw.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6','mw.title':'\u66f4\u591a\u4f5c\u54c1',
+'mw.tagline':'\u5b8c\u6574\u5c08\u6848\u6b78\u6a94 \u2014 \u6bcf\u500b\u7248\u672c\u3001\u539f\u578b\u8207\u5be6\u9a57\u3002',
+'mw.overview':'\u6982\u89bd','mw.detailed':'\u8a73\u7d30',
+'mw.hint.overview':'\u5f9e\u4efb\u610f\u4e0b\u62c9\u9078\u55ae\u9078\u64c7\u4e00\u500b\u5c08\u6848\u958b\u555f\u3002',
+'mw.hint.detailed':'\u5148\u95b1\u8b80\u5c08\u6848\u7c21\u4ecb\uff0c\u518d\u958b\u555f\u9801\u9762\u3002',
+'mw.quicklinks':'\u5feb\u901f\u9023\u7d50',
+'cat.music':'\u97f3\u6a02\u4f5c\u66f2\u8207\u7de8\u66f2',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7de8\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.title':'\u539f\u5275\u97f3\u6a02 \u2014 \u4f5c\u66f2\u8207\u7de8\u66f2',
+'cat.music.desc':'\u4ee5 Antirender \u7684\u540d\u7fa9\uff0c\u6211\u5728 Logic Pro \u4e2d\u5f9e\u96f6\u958b\u59cb\u4f5c\u66f2\u548c\u7de8\u66f2\u3002\u5de5\u4f5c\u6d41\u7a0b\u6db5\u84cb\u5b8c\u6574\u7684\u5275\u4f5c\u904e\u7a0b\uff1a\u8b5c\u5beb\u548c\u5f26\u9032\u884c\u8207\u65cb\u5f8b\uff08\u4f5c\u66f2\uff09\uff0c\u7136\u5f8c\u5206\u5c64\u4f48\u5c40\u6a02\u5668 \u2014 \u92ea\u5e95\u3001\u7436\u97f3\u3001\u8c9d\u65af\u3001\u9375\u76e4\u3001\u4e3b\u97f3 \u2014 \u6700\u7d42\u5f62\u6210\u5b8c\u6574\u7de8\u66f2\u3002\u5df2\u5728 Spotify \u53ca\u5404\u5927\u6d41\u5a92\u9ad4\u5e73\u53f0\u767c\u8868 7 \u5f35\u5c08\u8f2f\uff0c\u5171 36 \u9996\u539f\u5275\u66f2\u76ee\u3002',
+'cat.decision':'\u6c7a\u7b56\u5de5\u5177 / \u65e5\u5e38\u7522\u54c1',
+'cat.decision.sub':'\u6c7a\u7b56\u5de5\u5177 / \u65e5\u5e38\u7522\u54c1',
+'cat.quickpick.title':'QuickPick',
+'cat.quickpick.desc':'\u4e00\u6b3e\u8f15\u91cf\u7d1a\u96a8\u6a5f\u6c7a\u7b56\u5de5\u5177\uff0c\u5e6b\u4f60\u5728\u98f2\u98df\u3001\u751c\u54c1\u548c\u5a1b\u6a02\u4e4b\u9593\u505a\u51fa\u9078\u64c7\u3002',
+'cat.sleep.title':'\u667a\u6167\u7761\u7720\u8ffd\u8e64\u5668',
+'cat.sleep.desc':'\u4e00\u6b3e\u570d\u7e5e\u7761\u7720\u7ba1\u7406\u69cb\u5efa\u7684\u65e5\u5e38\u5de5\u5177 \u2014 \u5e6b\u4f60\u78ba\u5b9a\u66f4\u4f73\u7684\u4f5c\u606f\u6642\u9593\u3001\u8ffd\u8e64\u7761\u7720\u50b5\u52d9\u3001\u5206\u6790\u6642\u578b\u4e26\u505a\u597d\u5165\u7761\u6e96\u5099\u3002',
+'cat.ux':'UX \u4e92\u52d5','cat.ux.sub':'UX \u4e92\u52d5',
+'cat.gsgc.title':'Green Sheridan Garden Club \u7db2\u7ad9\u8a2d\u8a08',
+'cat.gsgc.desc':'\u70ba\u865b\u64ec\u5712\u85dd\u793e\u5340\u8a2d\u8a08\u7684\u97ff\u61c9\u5f0f\u7db2\u7ad9\uff0c\u5c08\u6ce8\u65bc\u5167\u5bb9\u7d50\u69cb\u3001\u5c0e\u822a\u8def\u5f91\u8207\u9801\u9762\u5c64\u6b21\u7684\u6e05\u6670\u5448\u73fe\u3002',
+'cat.visual':'\u8996\u89ba\u7cfb\u7d71 / \u5b57\u9ad4\u6392\u7248',
+'cat.visual.sub':'\u8996\u89ba\u7cfb\u7d71 / \u5b57\u9ad4\u6392\u7248',
+'cat.typo.p1.title':'P1 \u2014 \u5b57\u5f62\u69cb\u9020\u3001\u5206\u985e\u8207\u61c9\u7528',
+'cat.typo.p1.desc':'\u4e00\u500b\u63a2\u7d22\u5b57\u5f62\u69cb\u9020\u3001\u6bb5\u843d\u6392\u7248\u548c\u5b57\u9ad4\u5206\u985e\u908f\u8f2f\u7684 Web \u5c08\u6848\u3002',
+'cat.typo.p2.title':'P2 \u2014 \u7db2\u683c\u4f48\u5c40\u7df4\u7fd2',
+'cat.typo.p2.desc':'\u4ee5\u5305\u88dd\u6587\u5b57\u548c\u4f48\u5c40\u5c64\u6b21\u70ba\u4e2d\u5fc3\u7684\u5b57\u9ad4\u6392\u7248\uff0c\u57fa\u65bc\u7db2\u683c\u7cfb\u7d71\u548c\u96d9\u8a9e\u5167\u5bb9\u7d44\u7e54\u3002',
+'cat.typo.p3.title':'P3 \u2014 Web \u5b57\u9ad4\u6392\u7248',
+'cat.typo.p3.desc':'\u5c07\u5b57\u9ad4\u8a2d\u8a08\u5e2b\u7684\u7814\u7a76\u8f49\u5316\u70ba Web \u9ad4\u9a57\u3002\u7d50\u5408\u8a2d\u8a08\u5e2b\u7814\u7a76\u3001\u5b57\u9ad4\u5206\u6790\u548c\u524d\u7aef\u5be6\u73fe\u3002',
+'cat.data':'\u8cc7\u6599\u900f\u660e\u5ea6','cat.data.sub':'\u96b1\u79c1\u3001\u6b0a\u9650 / \u8cc7\u6599\u900f\u660e\u5ea6',
+'cat.snap.title':'Snapchat \u8cc7\u6599\u900f\u660e\u5ea6',
+'cat.snap.desc':'\u4e00\u500b\u4e92\u52d5\u5f0f\u89e3\u8aac\u9801\u9762\uff0c\u5c07\u5e73\u53f0\u8cc7\u6599\u6536\u96c6\u3001\u6b0a\u9650\u7bc4\u570d\u3001\u96b1\u79c1\u5f71\u97ff\u548c\u7528\u6236\u63a7\u5236\u9078\u9805\u8f49\u5316\u70ba\u66f4\u6613\u7406\u89e3\u7684\u5167\u5bb9\u3002',
+'cat.weather':'\u5929\u6c23\u9867\u554f','cat.weather.sub':'\u5929\u6c23\u3001\u9ad4\u611f\u6eab\u5ea6 / \u4ee5\u4eba\u70ba\u4e2d\u5fc3\u7684\u8cc7\u6599',
+'cat.weather.title':'\u5929\u6c23\u9867\u554f \u00b7 \u771f\u5be6\u5929\u6c23',
+'cat.weather.desc':'\u4e00\u500b\u5c07\u50b3\u7d71\u6c23\u8c61\u8cc7\u6599\u91cd\u65b0\u8f49\u5316\u70ba\u4eba\u9ad4\u611f\u77e5\u9ad4\u9a57\u7684\u5c08\u6848\u3002\u7d50\u5408 Open-Meteo API \u8cc7\u6599\u8207\u71b1\u6307\u6578\u3001\u98a8\u5bd2\u6307\u6578\u7b49\u516c\u5f0f\u8a08\u7b97\u9ad4\u611f\u6eab\u5ea6\u3002',
+'cat.interactive':'\u4e92\u52d5\u539f\u578b \u2014 \u5a92\u9ad4\u3001\u52d5\u614b\u8207\u8eab\u9ad4',
+'cat.interactive.sub':'\u9285\u7b94\u5e36 \u00b7 p5.js \u00b7 Makey Makey \u00b7 WebGL',
+'cat.interactive.title':'\u5a92\u9ad4\u3001\u52d5\u614b\u8207\u8eab\u9ad4',
+'cat.interactive.desc':'\u4e09\u6a21\u7d44\u63a2\u7d22\uff1aP1 \u4f7f\u7528\u9285\u7b94\u5e36\u548c LED \u88fd\u4f5c\u53ef\u7a7f\u6234\u8207\u975e\u7a7f\u6234\u96fb\u8def\u539f\u578b\uff1bP2 \u63a1\u96c6\u8072\u97f3\u4e26\u69cb\u5efa p5.js \u8996\u89ba\u5316\uff0c\u6700\u7d42\u5b8c\u6210\u4e92\u52d5\u97f3\u983b\u982d\u90e8\uff1bP3 \u7d50\u5408 Makey Makey\u3001\u89f8\u6478\u50b3\u611f\u5668\u548c WebGL\uff0c\u5275\u5efa\u4e86\u4e00\u500b\u53ef\u5f92\u624b\u6f14\u594f\u7684\u9f13\u6a5f\u3002',
+'cat.physical':'\u7269\u7406\u904b\u7b97 \u2014 \u6170\u85c9\u71c8',
+'cat.physical.sub':'Arduino \u00b7 DHT11 \u00b7 3D \u5217\u5370 \u00b7 ProtoPie',
+'cat.physical.title':'\u6170\u85c9\u71c8 \u2014 \u50b3\u611f\u5668\u9a45\u52d5\u7684\u6c1b\u570d\u7269\u4ef6',
+'cat.physical.desc':'\u4e09\u6a21\u7d44\u7269\u7406\u904b\u7b97\u5c08\u6848\uff1a\u5f9e\u7b2c\u4e00\u6b21 Arduino \u9583\u720d\u5230\u6700\u7d42\u5b8c\u6210\u5167\u7f6e\u65bc 3D \u5217\u5370\u5efa\u7bc9\u5834\u666f\u4e2d\u7684\u6c1b\u570d\u71c8\u3002\u6eab\u6fd5\u5ea6\u548c\u5149\u7167\u8cc7\u6599\u6620\u5c04\u70ba\u5206\u5c64\u8272\u5f69\u72c0\u614b\uff08\u85cd \u2192 \u7da0 \u2192 \u9ec3 \u2192 \u7d05\uff09\uff1b\u89f8\u6478\u958b\u95dc\u63d0\u4f9b\u7269\u7406\u958b/\u95dc\uff0cProtoPie \u624b\u6a5f\u4ecb\u9762\u66ff\u4ee3 LCD \u5be6\u73fe\u66f4\u8c50\u5bcc\u7684\u56de\u994b\u3002',
+'btn.casestudy':'\u958b\u555f\u6848\u4f8b\u7814\u7a76'
+},
+ja: {
+'mw.back':'\u2190 \u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u306b\u623b\u308b','mw.title':'\u305d\u306e\u4ed6\u306e\u4f5c\u54c1',
+'mw.tagline':'\u5168\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u30a2\u30fc\u30ab\u30a4\u30d6 \u2014 \u3059\u3079\u3066\u306e\u30d0\u30fc\u30b8\u30e7\u30f3\u3001\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7\u3001\u5b9f\u9a13\u3002',
+'mw.overview':'\u6982\u8981','mw.detailed':'\u8a73\u7d30',
+'mw.hint.overview':'\u30c9\u30ed\u30c3\u30d7\u30c0\u30a6\u30f3\u304b\u3089\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u3092\u9078\u3093\u3067\u958b\u3044\u3066\u304f\u3060\u3055\u3044\u3002',
+'mw.hint.detailed':'\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306e\u8aac\u660e\u3092\u8aad\u3093\u3067\u304b\u3089\u30da\u30fc\u30b8\u3092\u958b\u3044\u3066\u304f\u3060\u3055\u3044\u3002',
+'mw.quicklinks':'\u30af\u30a4\u30c3\u30af\u30ea\u30f3\u30af',
+'cat.music':'\u97f3\u697d\u4f5c\u66f2\u30fb\u7de8\u66f2',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7de8\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.title':'\u30aa\u30ea\u30b8\u30ca\u30eb\u97f3\u697d \u2014 \u4f5c\u66f2\u30fb\u7de8\u66f2',
+'cat.music.desc':'Antirender\u3068\u3057\u3066\u3001Logic Pro\u3067\u30bc\u30ed\u304b\u3089\u4f5c\u66f2\u30fb\u7de8\u66f2\u3002\u30b3\u30fc\u30c9\u9032\u884c\u3068\u30e1\u30ed\u30c7\u30a3\u306e\u4f5c\u66f2\u304b\u3089\u3001\u30d1\u30c3\u30c9\u3001\u30a2\u30eb\u30da\u30b8\u30aa\u3001\u30d9\u30fc\u30b9\u3001\u30ad\u30fc\u30dc\u30fc\u30c9\u3001\u30ea\u30fc\u30c9\u306e\u30ec\u30a4\u30e4\u30ea\u30f3\u30b0\u307e\u3067\u3002Spotify\u306a\u3069\u4e3b\u8981\u914d\u4fe1\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u30677\u679a\u306e\u30a2\u30eb\u30d0\u30e0\u300136\u66f2\u3092\u30ea\u30ea\u30fc\u30b9\u3002',
+'cat.decision':'\u610f\u601d\u6c7a\u5b9a\u30c4\u30fc\u30eb / \u65e5\u5e38\u88fd\u54c1',
+'cat.decision.sub':'\u610f\u601d\u6c7a\u5b9a\u30c4\u30fc\u30eb / \u65e5\u5e38\u88fd\u54c1',
+'cat.quickpick.title':'QuickPick',
+'cat.quickpick.desc':'\u98df\u4e8b\u3001\u30c7\u30b6\u30fc\u30c8\u3001\u5a2f\u697d\u3092\u30e9\u30f3\u30c0\u30e0\u306b\u9078\u3076\u8efd\u91cf\u610f\u601d\u6c7a\u5b9a\u30c4\u30fc\u30eb\u3002',
+'cat.sleep.title':'\u30b9\u30de\u30fc\u30c8\u7761\u7720\u30c8\u30e9\u30c3\u30ab\u30fc',
+'cat.sleep.desc':'\u7761\u7720\u7ba1\u7406\u306e\u305f\u3081\u306e\u65e5\u5e38\u30c4\u30fc\u30eb \u2014 \u6700\u9069\u306a\u5c31\u5bdd\u30fb\u8d77\u5e8a\u6642\u9593\u306e\u8a08\u7b97\u3001\u7761\u7720\u8ca0\u50b5\u306e\u8ffd\u8de1\u3001\u30af\u30ed\u30ce\u30bf\u30a4\u30d7\u5206\u6790\u3002',
+'cat.ux':'UX\u30a4\u30f3\u30bf\u30e9\u30af\u30b7\u30e7\u30f3','cat.ux.sub':'UX\u30a4\u30f3\u30bf\u30e9\u30af\u30b7\u30e7\u30f3',
+'cat.gsgc.title':'Green Sheridan Garden Club \u30a6\u30a7\u30d6\u30b5\u30a4\u30c8\u30c7\u30b6\u30a4\u30f3',
+'cat.gsgc.desc':'\u4eee\u60f3\u30ac\u30fc\u30c7\u30cb\u30f3\u30b0\u30b3\u30df\u30e5\u30cb\u30c6\u30a3\u5411\u3051\u306e\u30ec\u30b9\u30dd\u30f3\u30b7\u30d6\u30b5\u30a4\u30c8\u3002\u60c5\u5831\u69cb\u9020\u3001\u30ca\u30d3\u30b2\u30fc\u30b7\u30e7\u30f3\u3001\u30da\u30fc\u30b8\u968e\u5c64\u306e\u660e\u78ba\u5316\u306b\u6ce8\u529b\u3002',
+'cat.visual':'\u30d3\u30b8\u30e5\u30a2\u30eb\u30b7\u30b9\u30c6\u30e0 / \u30bf\u30a4\u30dd\u30b0\u30e9\u30d5\u30a3',
+'cat.visual.sub':'\u30d3\u30b8\u30e5\u30a2\u30eb\u30b7\u30b9\u30c6\u30e0 / \u30bf\u30a4\u30dd\u30b0\u30e9\u30d5\u30a3',
+'cat.typo.p1.title':'P1 \u2014 \u30ec\u30bf\u30fc\u30d5\u30a9\u30fc\u30e0\u306e\u69cb\u9020\u30fb\u5206\u985e\u30fb\u5fdc\u7528',
+'cat.typo.p1.desc':'\u30ec\u30bf\u30fc\u30d5\u30a9\u30fc\u30e0\u69cb\u9020\u3001\u6bb5\u843d\u7d44\u307f\u3001\u66f8\u4f53\u5206\u985e\u3092\u63a2\u308b\u30a6\u30a7\u30d6\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u3002',
+'cat.typo.p2.title':'P2 \u2014 \u30b0\u30ea\u30c3\u30c9\u30ec\u30a4\u30a2\u30a6\u30c8\u6f14\u7fd2',
+'cat.typo.p2.desc':'\u30d1\u30c3\u30b1\u30fc\u30b8\u30c6\u30ad\u30b9\u30c8\u3068\u30ec\u30a4\u30a2\u30a6\u30c8\u968e\u5c64\u3092\u4e2d\u5fc3\u306b\u3001\u30b0\u30ea\u30c3\u30c9\u3068\u30d0\u30a4\u30ea\u30f3\u30ac\u30eb\u69cb\u6210\u306b\u57fa\u3065\u304f\u30bf\u30a4\u30dd\u30b0\u30e9\u30d5\u30a3\u3002',
+'cat.typo.p3.title':'P3 \u2014 \u30a6\u30a7\u30d6\u30bf\u30a4\u30dd\u30b0\u30e9\u30d5\u30a3',
+'cat.typo.p3.desc':'\u30bf\u30a4\u30dd\u30b0\u30e9\u30d5\u30a1\u30fc\u306e\u7814\u7a76\u3092\u30a6\u30a7\u30d6\u4f53\u9a13\u306b\u5909\u63db\u3002\u30c7\u30b6\u30a4\u30ca\u30fc\u30ea\u30b5\u30fc\u30c1\u3001\u66f8\u4f53\u5206\u6790\u3001\u30d5\u30ed\u30f3\u30c8\u30a8\u30f3\u30c9\u5b9f\u88c5\u3002',
+'cat.data':'\u30c7\u30fc\u30bf\u900f\u660e\u6027','cat.data.sub':'\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u3001\u6a29\u9650 / \u30c7\u30fc\u30bf\u900f\u660e\u6027',
+'cat.snap.title':'Snapchat \u30c7\u30fc\u30bf\u900f\u660e\u6027',
+'cat.snap.desc':'\u30d7\u30e9\u30c3\u30c8\u30d5\u30a9\u30fc\u30e0\u306e\u30c7\u30fc\u30bf\u53ce\u96c6\u3001\u6a29\u9650\u7bc4\u56f2\u3001\u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u306e\u5f71\u97ff\u3001\u30e6\u30fc\u30b6\u30fc\u5236\u5fa1\u3092\u308f\u304b\u308a\u3084\u3059\u304f\u89e3\u8aac\u3059\u308b\u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6\u30da\u30fc\u30b8\u3002',
+'cat.weather':'\u5929\u6c17\u30a2\u30c9\u30d0\u30a4\u30b6\u30fc','cat.weather.sub':'\u5929\u6c17\u3001\u4f53\u611f\u6e29\u5ea6 / \u4eba\u9593\u4e2d\u5fc3\u30c7\u30fc\u30bf',
+'cat.weather.title':'\u5929\u6c17\u30a2\u30c9\u30d0\u30a4\u30b6\u30fc \u00b7 \u30ea\u30a2\u30eb\u30a6\u30a7\u30b6\u30fc',
+'cat.weather.desc':'\u5f93\u6765\u306e\u6c17\u8c61\u30c7\u30fc\u30bf\u3092\u4eba\u9593\u306e\u611f\u899a\u306b\u5909\u63db\u3002Open-Meteo API\u3001\u71b1\u6307\u6570\u3001\u98a8\u51b7\u6307\u6570\u306a\u3069\u3067\u4f53\u611f\u6e29\u5ea6\u3092\u7b97\u51fa\u3002',
+'cat.interactive':'\u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6\u30d7\u30ed\u30c8\u30bf\u30a4\u30d7 \u2014 \u30e1\u30c7\u30a3\u30a2\u30fb\u30e2\u30fc\u30b7\u30e7\u30f3\u30fb\u8eab\u4f53',
+'cat.interactive.sub':'\u9285\u30c6\u30fc\u30d7 \u00b7 p5.js \u00b7 Makey Makey \u00b7 WebGL',
+'cat.interactive.title':'\u30e1\u30c7\u30a3\u30a2\u30fb\u30e2\u30fc\u30b7\u30e7\u30f3\u30fb\u8eab\u4f53',
+'cat.interactive.desc':'3\u30e2\u30b8\u30e5\u30fc\u30eb\u306e\u63a2\u7d22\uff1aP1\u306f\u9285\u30c6\u30fc\u30d7\u3068LED\u3067\u30a6\u30a7\u30a2\u30e9\u30d6\u30eb/\u975e\u30a6\u30a7\u30a2\u30e9\u30d6\u30eb\u56de\u8def\u3001P2\u306f\u97f3\u3092\u53ce\u96c6\u3057p5.js\u30d3\u30b8\u30e5\u30a2\u30e9\u30a4\u30bc\u30fc\u30b7\u30e7\u30f3\u304b\u3089\u30a4\u30f3\u30bf\u30e9\u30af\u30c6\u30a3\u30d6\u30aa\u30fc\u30c7\u30a3\u30aa\u30d8\u30c3\u30c0\u30fc\u3078\u3001P3\u306fMakey Makey\u30fb\u30bf\u30c3\u30c1\u30bb\u30f3\u30b5\u30fc\u30fbWebGL\u3067\u7d20\u624b\u6f14\u594f\u30c9\u30e9\u30e0\u30de\u30b7\u30f3\u3002',
+'cat.physical':'\u30d5\u30a3\u30b8\u30ab\u30eb\u30b3\u30f3\u30d4\u30e5\u30fc\u30c6\u30a3\u30f3\u30b0 \u2014 \u30b3\u30f3\u30d5\u30a9\u30fc\u30c8\u30e9\u30f3\u30d7',
+'cat.physical.sub':'Arduino \u00b7 DHT11 \u00b7 3D\u30d7\u30ea\u30f3\u30c8 \u00b7 ProtoPie',
+'cat.physical.title':'\u30b3\u30f3\u30d5\u30a9\u30fc\u30c8\u30e9\u30f3\u30d7 \u2014 \u30bb\u30f3\u30b5\u30fc\u99c6\u52d5\u30a2\u30f3\u30d3\u30a8\u30f3\u30c8',
+'cat.physical.desc':'3\u30e2\u30b8\u30e5\u30fc\u30eb\u306e\u30d5\u30a3\u30b8\u30ab\u30eb\u30b3\u30f3\u30d4\u30e5\u30fc\u30c6\u30a3\u30f3\u30b0\uff1aArduino\u306e\u521d\u70b9\u6ec5\u304b\u30893D\u30d7\u30ea\u30f3\u30c8\u5efa\u7bc9\u30b7\u30fc\u30f3\u5185\u306e\u30a2\u30f3\u30d3\u30a8\u30f3\u30c8\u30e9\u30f3\u30d7\u3078\u3002\u6e29\u6e7f\u5ea6\u30fb\u5149\u30c7\u30fc\u30bf\u3067\u8272\u72b6\u614b\u5207\u66ff\uff08\u9752\u2192\u7dd1\u2192\u9ec4\u2192\u8d64\uff09\u3001\u30bf\u30c3\u30c1\u30b9\u30a4\u30c3\u30c1\u3001ProtoPie\u30e2\u30d0\u30a4\u30ebUI\u3002',
+'btn.casestudy':'\u30b1\u30fc\u30b9\u30b9\u30bf\u30c7\u30a3\u3092\u958b\u304f'
+},
+fr: {
+'mw.back':'\u2190 Retour au portfolio','mw.title':'Plus de travaux',
+'mw.tagline':'Archives compl\u00e8tes \u2014 chaque version, prototype et exp\u00e9rience.',
+'mw.overview':'Aper\u00e7u','mw.detailed':'D\u00e9taill\u00e9',
+'mw.hint.overview':'Choisissez un projet dans un menu d\u00e9roulant pour l\u2019ouvrir.',
+'mw.hint.detailed':'Lisez la description du projet, puis ouvrez la page.',
+'mw.quicklinks':'Liens rapides',
+'cat.music':'Composition & Arrangement musicaux',
+'cat.music.sub':'\u4f5c\u66f2 \u00b7 \u7f16\u66f2 \u00b7 Composition \u00b7 Arrangement',
+'cat.music.title':'Musique originale \u2014 Composition & Arrangement',
+'cat.music.desc':'Sous le nom Antirender, je compose et arrange des morceaux originaux de z\u00e9ro dans Logic Pro. Le flux de travail couvre tout le processus cr\u00e9atif: \u00e9criture d\u2019accords et de m\u00e9lodies (composition), puis superposition d\u2019instruments \u2014 nappes, arp\u00e8ges, basse, claviers, leads \u2014 en un arrangement fini. 7 albums, 36 titres originaux publi\u00e9s sur Spotify et toutes les grandes plateformes.',
+'cat.decision':'Outils de d\u00e9cision / Produits du quotidien',
+'cat.decision.sub':'Outils de d\u00e9cision / Produits du quotidien',
+'cat.quickpick.title':'QuickPick',
+'cat.quickpick.desc':'Un outil l\u00e9ger de d\u00e9cision al\u00e9atoire pour choisir entre repas, boissons, desserts et divertissements.',
+'cat.sleep.title':'Smart Sleep Tracker',
+'cat.sleep.desc':'Un outil quotidien de gestion du sommeil \u2014 horaires optimaux, dette de sommeil, chronotype et pr\u00e9paration au coucher.',
+'cat.ux':'Interaction UX','cat.ux.sub':'Interaction UX',
+'cat.gsgc.title':'Green Sheridan Garden Club \u2014 Conception web',
+'cat.gsgc.desc':'Site responsive pour une communaut\u00e9 de jardinage virtuelle, centr\u00e9 sur la structure du contenu, la navigation et la hi\u00e9rarchie des pages.',
+'cat.visual':'Syst\u00e8me visuel / Typographie','cat.visual.sub':'Syst\u00e8me visuel / Typographie',
+'cat.typo.p1.title':'P1 \u2014 Construction, classification et usage des lettres',
+'cat.typo.p1.desc':'Projet web explorant la construction des lettres, la composition de paragraphes et la logique de classification typographique.',
+'cat.typo.p2.title':'P2 \u2014 Exercices de mise en page sur grille',
+'cat.typo.p2.desc':'Typographie centr\u00e9e sur le texte d\u2019emballage et la hi\u00e9rarchie, bas\u00e9e sur des grilles et l\u2019organisation bilingue.',
+'cat.typo.p3.title':'P3 \u2014 Typographie sur le web',
+'cat.typo.p3.desc':'Traduit la recherche typographique en exp\u00e9rience web. Combine recherche, analyse de polices et impl\u00e9mentation front-end.',
+'cat.data':'Transparence des donn\u00e9es','cat.data.sub':'Confidentialit\u00e9, Permissions / Transparence des donn\u00e9es',
+'cat.snap.title':'Snapchat \u2014 Transparence des donn\u00e9es',
+'cat.snap.desc':'Page interactive expliquant la collecte de donn\u00e9es, les permissions, les implications pour la vie priv\u00e9e et les options de contr\u00f4le utilisateur.',
+'cat.weather':'Conseiller M\u00e9t\u00e9o','cat.weather.sub':'M\u00e9t\u00e9o, Ressenti / Donn\u00e9es centr\u00e9es sur l\u2019humain',
+'cat.weather.title':'Conseiller M\u00e9t\u00e9o \u00b7 M\u00e9t\u00e9o r\u00e9elle',
+'cat.weather.desc':'Transforme les donn\u00e9es m\u00e9t\u00e9o traditionnelles en exp\u00e9rience ressentie. Combine l\u2019API Open-Meteo avec l\u2019indice de chaleur et le refroidissement \u00e9olien.',
+'cat.interactive':'Prototype interactif \u2014 M\u00e9dias, Mouvement & Corps',
+'cat.interactive.sub':'Cuivre \u00b7 p5.js \u00b7 Makey Makey \u00b7 WebGL',
+'cat.interactive.title':'M\u00e9dias, Mouvement & Corps',
+'cat.interactive.desc':'Exploration en trois modules: P1 utilise du ruban cuivr\u00e9 et des LEDs pour prototyper des circuits portables; P2 collecte des sons et cr\u00e9e des visualisations p5.js; P3 combine Makey Makey, capteurs tactiles et WebGL pour cr\u00e9er une batterie jouable \u00e0 mains nues.',
+'cat.physical':'Informatique physique \u2014 Lampe Confort',
+'cat.physical.sub':'Arduino \u00b7 DHT11 \u00b7 Impression 3D \u00b7 ProtoPie',
+'cat.physical.title':'Lampe Confort \u2014 Objet ambient pilot\u00e9 par capteurs',
+'cat.physical.desc':'Projet en trois modules: du premier clignotement Arduino \u00e0 une lampe ambiante dans un d\u00e9cor architectural imprim\u00e9 en 3D. Temp\u00e9rature, humidit\u00e9 et lumi\u00e8re pilot\u00e9es par des \u00e9tats de couleur (BLEU \u2192 VERT \u2192 JAUNE \u2192 ROUGE); interrupteur tactile et UI mobile ProtoPie.',
+'btn.casestudy':'\u00c9tude de cas'
+}
+};
+var _curLang = 'en';
+function applyLang(lang) {
+  var dict = T[lang] || T.en;
+  _curLang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n');
+    if (dict[key] != null) el.textContent = dict[key];
+    else if (T.en[key] != null) el.textContent = T.en[key];
+  });
+  document.querySelectorAll('.lang-sel').forEach(function (s) { s.value = lang; });
+  try { localStorage.setItem('siteLang', lang); } catch (_) {}
+}
+document.querySelectorAll('.lang-sel').forEach(function (s) {
+  s.addEventListener('change', function () { applyLang(s.value); });
+});
+try { var _sl = localStorage.getItem('siteLang'); if (_sl && T[_sl]) applyLang(_sl); } catch (_) {}
+
+/* ---------- view toggle ---------- */
 (function () {
   var wrap = document.getElementById('moreViewToggle');
   if (!wrap) return;
@@ -459,7 +742,12 @@ function jump(sel) { if (sel.value) window.open(sel.value, '_blank'); sel.select
   function show(mode) {
     Object.entries(views).forEach(function (pair) { pair[1].classList.toggle('active', pair[0] === mode); });
     btns.forEach(function (b) { b.classList.toggle('active', b.dataset.view === mode); });
-    if (hint) hint.textContent = mode === 'overview' ? 'Pick a project from any dropdown to open it.' : 'Read what each project does, then open the page.';
+    if (hint) {
+      var hKey = mode === 'overview' ? 'mw.hint.overview' : 'mw.hint.detailed';
+      var dict = T[_curLang] || T.en;
+      hint.textContent = dict[hKey] || T.en[hKey];
+      hint.setAttribute('data-i18n', hKey);
+    }
     try { localStorage.setItem(KEY, mode); } catch (_) {}
   }
   btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.view); }); });

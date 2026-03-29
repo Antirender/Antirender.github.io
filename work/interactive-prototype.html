@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Interactive Prototype — Yiyang Zhang</title>
+  <meta name="description" content="A three-module IXD journey: from copper-tape circuits to sound-reactive visuals to Makey Makey touch-to-digital output."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .phase{margin:2.5rem 0 0;padding:2rem 0 0;border-top:2px solid #e2e8f0}
+    .phase-label{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+    .phase-label--p1{background:#dbeafe;color:#1e40af}
+    .phase-label--p2{background:#fef3c7;color:#92400e}
+    .phase-label--p3{background:#d1fae5;color:#065f46}
+    .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin:1rem 0 1.5rem}
+    .img-grid img{border-radius:8px;cursor:pointer;transition:opacity .15s}
+    .img-grid img:hover{opacity:.85}
+    .final-gallery{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+    .final-gallery img{border-radius:10px}
+    @media(max-width:560px){.final-gallery{grid-template-columns:1fr}}
+    .lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;cursor:zoom-out}
+    .lb.open{display:flex}
+    .lb img{max-width:92vw;max-height:90vh;border-radius:8px}
+    .lb-cap{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;max-width:80vw;text-align:center;line-height:1.5}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">&larr; Back to Portfolio</a>
+
+    <div class="project-hero">
+      <h1>Interactive Prototype — Media, Motion &amp; the Body</h1>
+      <p>A three-module IXD exploration: turning hidden circuits into visible interaction language, using sound as input with visuals as feedback, and mapping real-world touch into real-time digital output.</p>
+      <div class="meta">
+        <span><strong>Course:</strong> DESN 22848</span>
+        <span><strong>Role:</strong> Hardware + creative-coding prototyping</span>
+        <span><strong>Tools:</strong> Copper tape, Makey Makey, p5.js, p5.sound, WebGL</span>
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <label for="ver">Module:</label>
+      <select id="ver">
+        <option value="p1">P1 — Circuits &amp; Formstorming</option>
+        <option value="p2">P2 — Sound &amp; Visualisation</option>
+        <option value="p3" selected>P3 — Touch-to-Digital</option>
+      </select>
+      <a class="btn" id="openLink" href="../DESN22848P3/index.html" target="_blank" rel="noopener">Open P3</a>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="../DESN22848P3/images/final/happy.png" alt="Makey Makey drum kit — copper foil touch pads mapped to p5.js WebGL visuals">
+
+      <div class="tldr">
+        <h2>TL;DR</h2>
+        <dl>
+          <dt>Problem:</dt><dd>How can hidden electronic circuits and invisible data (sound, touch) become expressive, visible interaction?</dd>
+          <dt>Role:</dt><dd>Individual creative-coding and physical prototyping</dd>
+          <dt>Tools:</dt><dd>Copper tape, conductive thread/fabric, LEDs, Makey Makey, p5.js, p5.sound, WebGL</dd>
+          <dt>Timeline:</dt><dd>3 modules — circuits → sound-reactive visuals → touch-to-digital output</dd>
+          <dt>Key Decisions:</dt><dd>Use real conductive materials for tactile input; p5.js for real-time visual feedback; Makey Makey as analog-to-digital bridge</dd>
+          <dt>Result:</dt><dd>A drum machine driven by copper-foil touch pads, with 3D WebGL explosions reacting to each hit — combining physical craft with digital expression.</dd>
+        </dl>
+      </div>
+
+      <!-- ===== MODULE 1 ===== -->
+      <div class="phase">
+        <span class="phase-label phase-label--p1">Module 1 — Circuits &amp; Formstorming</span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Copper Tape, LEDs &amp; Conductive Materials</h2>
+        <p>Explored copper tape, conductive thread, and conductive fabric to build simple circuits. The goal: make the normally hidden wiring and connections visible, turning electronic circuits into a visual and interaction language.</p>
+
+        <h3>Activity 1 — Copper Tape Circuits</h3>
+        <div class="img-grid">
+          <img src="../DESN22848/images/Activity1/001.jpeg" alt="Simple circuit with copper tape and LED sticker" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/005.jpeg" alt="Copper tape + conductive fabric LED circuit" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/007.jpeg" alt="LED stickers glowing in a heart circuit" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/011.jpeg" alt="LED as a glowing window in a house design" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/015.jpeg" alt="Christmas tree design with copper tape" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/021.jpeg" alt="Blender icon with copper tape and blue LED" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/023.jpeg" alt="Printing Pod design with LEDs off" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/024.jpeg" alt="Printing Pod design with LEDs on" onclick="lb(this)">
+        </div>
+
+        <h3>Activity 2 — Affordance-Based Interaction Patterns</h3>
+        <div class="img-grid">
+          <img src="../DESN22848/images/Activity2/001.jpeg" alt="Press a button to call security" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/003.jpeg" alt="Door handle can open a door" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/011.jpeg" alt="Press to get hand sanitizer" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/017.jpeg" alt="Hand flipping a light switch" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/022.jpeg" alt="LED placement on clothes using conductive material" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/025.jpeg" alt="Three circuit design ideas with LEDs" onclick="lb(this)">
+        </div>
+
+        <h3>Final — Wearable &amp; Non-Wearable Circuits</h3>
+        <div class="final-gallery">
+          <div>
+            <h4>Wearable: Smart Cycling Helmet</h4>
+            <p>Conductive wires integrated into the helmet. The buckle doubles as a switch — fastening it completes the circuit and activates the headlight automatically.</p>
+            <img src="../DESN22848/images/final/Wear.jpg" alt="Smart cycling helmet with automatic lighting system" onclick="lb(this)">
+          </div>
+          <div>
+            <h4>Non-Wearable: Phone Holder Alert</h4>
+            <p>A phone holder with an integrated red-light alert. Placing the phone activates a visual reminder to reduce screen time — behavior modification through environmental cues.</p>
+            <img src="../DESN22848/images/final/NonWear.jpg" alt="Phone holder with red light feedback for behavior modification" onclick="lb(this)">
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== MODULE 2 ===== -->
+      <div class="phase">
+        <span class="phase-label phase-label--p2">Module 2 — Sound &amp; Visualisation</span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Sound as Input, Visuals as Feedback</h2>
+        <p>Collected 25 sound recordings to build a personal sound library, then created 25 real-time sound visualizations in p5.js. The module culminated in an interactive audio-reactive web header.</p>
+
+        <h3>Activity 1 — Sound Library (25 recordings)</h3>
+        <p>Ambient, environmental, synthesized, and recorded audio — from bicycle chains and subway sounds to synth arpeggios and boiling water.</p>
+        <div class="img-grid">
+          <img src="../DESN22848P2/images/Activity1/001.jpeg" alt="Sound of a bicycle chain" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/006.jpeg" alt="Keypad sound" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/010.jpeg" alt="Sequence of synthesizers" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/012.jpeg" alt="The subway pulls in" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/020.jpeg" alt="Boil water sound" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/025.jpeg" alt="Sounds of fries" onclick="lb(this)">
+        </div>
+
+        <h3>Activity 2 — 25 Sound Visualizations (p5.js)</h3>
+        <p>Each sketch maps audio amplitude or frequency to visual output: waveforms, particle systems, 3D shapes, spectral analyzers, radial equalizers, and more. <a href="../DESN22848V1/index.html" target="_blank" rel="noopener">Try V1 live →</a></p>
+
+        <h3>Final — Rainbow Bloom: Interactive Audio Web Header</h3>
+        <p>An audio-reactive header designed for a portfolio homepage. Sound drives colour and shape in real time. <a href="../DESN22848V2/index.html" target="_blank" rel="noopener">Try V2 live →</a></p>
+        <div class="img-grid">
+          <img src="../DESN22848P2/images/final/Final screenshot.jpeg" alt="Rainbow Bloom — sound-reactive visual header" onclick="lb(this)">
+        </div>
+      </div>
+
+      <!-- ===== MODULE 3 ===== -->
+      <div class="phase">
+        <span class="phase-label phase-label--p3">Module 3 — Touch-to-Digital</span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Makey Makey &amp; Real-Time Digital Output</h2>
+        <p>Mapped analogue-world touch (copper foil, conductive materials, Makey Makey) into real-time p5.js visuals. Explored 50 experiments across two activities, then built a final drum machine.</p>
+
+        <h3>Activity 1 — p5.js Experiments (25)</h3>
+        <p>Bouncing shapes, soundboards, 3D cubes, particle systems, mini-games — all driven by keyboard or Makey Makey input. <a href="../DESN22848V3/index.html" target="_blank" rel="noopener">Try V3 live →</a></p>
+        <div class="img-grid">
+          <img src="../DESN22848P3/images/Activity1/001.gif" alt="Bouncing shape reacting to keyboard input" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity1/003.gif" alt="Interactive mini-game with player movement" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity1/008.gif" alt="3D rotating cube controlled by keyboard" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity1/010.gif" alt="Piano-like experiment with sound keys" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity1/014.gif" alt="Particle system with gravity controlled by arrow keys" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity1/015.gif" alt="Makey Makey experiment with conductive materials" onclick="lb(this)">
+        </div>
+
+        <h3>Activity 2 — More Experiments (25)</h3>
+        <div class="img-grid">
+          <img src="../DESN22848P3/images/Activity2/001.gif" alt="Bouncing shape reacting to keyboard input" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity2/005.gif" alt="Interactive game with random shapes" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity2/012.gif" alt="3D bouncing ball simulation" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity2/016.gif" alt="Reaction-based game using Makey Makey" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity2/019.gif" alt="3D shape responding to Makey Makey inputs" onclick="lb(this)">
+          <img src="../DESN22848P3/images/Activity2/025.gif" alt="Debugging and testing Makey Makey interactions" onclick="lb(this)">
+        </div>
+
+        <h3>Final — Makey Makey Drum Machine</h3>
+        <p>Copper foil pads wired through Makey Makey trigger drum sounds (kick, snare, hi-hat, clap, crash) and 3D WebGL explosions in p5.js. Each touch creates a unique colour burst and sphere pulse. <a href="../DESN22848V4/index.html" target="_blank" rel="noopener">Try V4 live →</a></p>
+        <div class="img-grid">
+          <img src="../DESN22848P3/images/final/happy.png" alt="Final drum kit with copper foil touch pads" onclick="lb(this)">
+        </div>
+      </div>
+
+    </div>
+
+    <a class="back" href="../index.html" style="margin-top:2rem;display:inline-block">&larr; Back to Portfolio</a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lightbox" onclick="closeLb()">
+    <img id="lbImg" src="" alt="">
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+
+  <script>
+/* Module selector */
+var links = {
+  p1: '../DESN22848/index.html',
+  p2: '../DESN22848P2/index.html',
+  p3: '../DESN22848P3/index.html'
+};
+var labels = { p1: 'Open P1', p2: 'Open P2', p3: 'Open P3' };
+var sel = document.getElementById('ver');
+var btn = document.getElementById('openLink');
+sel.addEventListener('change', function () {
+  btn.href = links[sel.value];
+  btn.textContent = labels[sel.value];
+});
+
+/* Lightbox */
+var lbEl = document.getElementById('lightbox');
+var lbImg = document.getElementById('lbImg');
+var lbCap = document.getElementById('lbCap');
+function lb(img) {
+  lbImg.src = img.src;
+  lbCap.textContent = img.alt;
+  lbEl.classList.add('open');
+}
+function closeLb() { lbEl.classList.remove('open'); }
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+  </script>
+</body>
+</html>
