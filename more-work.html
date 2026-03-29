@@ -379,6 +379,26 @@
     </div>
   </footer>
 
-  <script src="js/more-work.js"></script>
+  <script>
+var y = document.getElementById('year');
+if (y) y.textContent = new Date().getFullYear();
+function jump(sel) { if (sel.value) window.open(sel.value, '_blank'); sel.selectedIndex = 0; }
+(function () {
+  var wrap = document.getElementById('moreViewToggle');
+  if (!wrap) return;
+  var btns = wrap.querySelectorAll('button[data-view]');
+  var views = { overview: document.getElementById('moreOverview'), detailed: document.getElementById('moreDetailed') };
+  var hint = document.getElementById('moreViewHint');
+  var KEY = 'mw-view';
+  function show(mode) {
+    Object.entries(views).forEach(function (pair) { pair[1].classList.toggle('active', pair[0] === mode); });
+    btns.forEach(function (b) { b.classList.toggle('active', b.dataset.view === mode); });
+    if (hint) hint.textContent = mode === 'overview' ? 'Pick a project from any dropdown to open it.' : 'Read what each project does, then open the page.';
+    try { localStorage.setItem(KEY, mode); } catch (_) {}
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.view); }); });
+  try { var saved = localStorage.getItem(KEY); if (saved && views[saved]) show(saved); } catch (_) {}
+})();
+  </script>
 </body>
 </html>
