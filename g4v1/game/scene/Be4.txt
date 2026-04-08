@@ -1,0 +1,6 @@
+playVideo:Be.mp4;
+changeBg:3.png -next
+changeFigure:1 (2).png -next;
+Nolitusne:It looks like you're confident in yourself, but you're going to be disappointed this time, I'm going to surpass you, and I'm going to prove that I'm better than you!;
+You: Go ahead and try, I'm not going to let you win over me!;
+changeScene:Nolitusne3.txt;

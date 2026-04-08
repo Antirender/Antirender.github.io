@@ -1,0 +1,164 @@
+/* ============================================================
+ *  userStyleSheet.css  —  梦魇逃亡 / Nightmare Escape
+ *  设计目标：
+ *    - 黑玻璃质感对话框 + 柔和霓虹高亮（青/紫）
+ *    - 选项“可点击感”强：悬停上浮，按下归位
+ *    - Intro 字幕暗场专用排版 + 轻微闪烁（梦境感）
+ *    - 移动端安全区与字号自适应
+ *  放置位置：项目根目录（与 config.txt 同级）
+ *  说明：选择器做了“宽口径”兼容，尽量覆盖 WebGAL 常见 DOM
+ * ============================================================ */
+
+/* ---------- 配色变量（如需整体换色，只改这里） ---------- */
+:root{
+  --accent-1: #67e8f9;          /* 青色高光（主） */
+  --accent-2: #a78bfa;          /* 紫色高光（副） */
+  --panel:    rgba(10,14,20,.52);/* 对话框底 */
+  --panel-2:  rgba(10,14,20,.70);/* 更实一点的底 */
+  --stroke:   rgba(255,255,255,.14);
+  --text:     #e6edf3;
+  --muted:    #9aa4ad;
+  --shadow:   rgba(0,0,0,.45);
+  --blur:     10px;
+}
+
+/* ---------- 全局文字/抗锯齿 ---------- */
+html, body{
+  color: var(--text);
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- 对话框容器（尽量兼容不同版本类名） ---------- */
+.dialog, #dialog, .text-box, .textbox, .textBox{
+  background: var(--panel);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px var(--shadow);
+  padding: 16px 20px;
+}
+
+/* 对话正文 */
+.content, .text, #content, .dialog .text-content{
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: .02em;
+}
+
+/* 发言者名字牌 */
+.name, .speaker, #name, .dialog .speaker-name{
+  font-weight: 700;
+  color: var(--accent-1);
+  letter-spacing: .04em;
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-1) 45%, transparent);
+}
+
+/* 迷你立绘/头像轻阴影（存在则美化，没有则忽略） */
+[class*="mini"], .miniAvatar, #miniAvatar, .avatar{
+  filter: drop-shadow(0 8px 16px var(--shadow));
+}
+
+/* ---------- 选项区域（两列栅格 + 悬浮反馈） ---------- */
+.chooseBox, .choices, .choose, .choice-list{
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+}
+@media (min-width: 960px){
+  .chooseBox, .choices, .choose, .choice-list{ grid-template-columns: 1fr 1fr; }
+}
+
+.chooseItem, .choice, .option, .choose .item{
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border: 1px solid var(--stroke);
+  border-radius: 14px;
+  padding: 12px 14px;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+  box-shadow: 0 6px 20px var(--shadow);
+}
+.chooseItem:hover, .choice:hover, .option:hover, .choose .item:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent-1) 50%, var(--stroke));
+  box-shadow: 0 10px 28px rgba(103,232,249,.25);
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+}
+.chooseItem:active, .choice:active, .option:active, .choose .item:active{
+  transform: translateY(0);
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+/* ---------- Intro 字幕（居中/暗场/轻闪烁） ---------- */
+.intro, .intro-container, .introBox, .intro_text{
+  font-size: 18px;
+  line-height: 1.85;
+  letter-spacing: .02em;
+  text-align: center;
+  color: var(--text);
+  text-shadow: 0 2px 10px rgba(0,0,0,.65), 0 0 16px rgba(103,232,249,.18);
+  padding: 12px 18px;
+  background: radial-gradient(1200px 300px at 50% 105%, rgba(103,232,249,.08), transparent);
+  border-radius: 12px;
+  animation: dream-flicker 3.8s ease-in-out infinite;
+}
+@keyframes dream-flicker{
+  0%, 100% { opacity: .98; filter: none; }
+  45%      { opacity: .90; filter: saturate(1.02); }
+  52%      { opacity: .82; filter: blur(.2px) saturate(1.1); }
+  60%      { opacity: .96; filter: none; }
+}
+
+/* ---------- 提示/旁白弱化色（如果引擎用 .tips/.aside） ---------- */
+.tips, .aside, .hint{
+  color: var(--muted);
+}
+
+/* ---------- 移动端/安全区优化 ---------- */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .dialog, #dialog, .text-box, .choices, .choose{
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}
+
+/* ---------- 滚动条（桌面端微型化） ---------- */
+*::-webkit-scrollbar{ width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb{
+  background: linear-gradient(180deg, var(--accent-2), var(--accent-1));
+  border-radius: 10px; opacity: .6;
+}
+*::-webkit-scrollbar-track{ background: transparent; }
+
+/* ---------- 可选：底部页脚/按钮条（若存在元素） ---------- */
+.toolbar, .ui-bar, .bottom-bar{
+  background: var(--panel-2);
+  backdrop-filter: blur(var(--blur));
+  border-top: 1px solid var(--stroke);
+}
+
+/* ---------- 小型状态标签（例如“自动/快进/跳过”） ---------- */
+.badge, .tag, .state{
+  background: rgba(103,232,249,.14);
+  color: var(--accent-1);
+  border: 1px solid rgba(103,232,249,.35);
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+/* ---------- 可选：开发水印（确认样式表已生效，调试完可注释） ---------- */
+/*
+body::after{
+  content: "Nightmare Escape • DEV";
+  position: fixed; right: 10px; bottom: 10px;
+  font: 600 12px/1 system-ui, -apple-system, "Noto Sans SC", sans-serif;
+  letter-spacing: .08em; opacity: .35;
+  padding: 6px 8px; border-radius: 6px;
+  background: rgba(0,0,0,.35); color: #fff;
+  pointer-events: none; z-index: 999999;
+}
+*/
+
+/* ---------- 备用：当页面进入“黑屏场景”时让 UI 更淡（若引擎在黑屏时给 body 加类可使用） ---------- */
+/* .is-black .dialog, .is-black .choices{ opacity: .92; } */

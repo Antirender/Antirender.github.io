@@ -1,0 +1,10 @@
+playVideo:He.mp4;
+changeBg:5.png
+changeFigure:1 (2).png;
+Nolitusne: Really? I also enjoyed the time I spent studying with you, and every time I wish it could have been longer.;
+Me: Then should we add weekends next time? That way we don't necessarily have to continue to sit in one place and study on the weekends, and it's important to relax properly. We can go to a park or something to relax.;
+Nolitusne: Weekends? I also think it's a good idea to relax ourselves, and most of all we can stay together and enjoy a relaxing moment.;
+Me: Then it's a deal! Don't be late when you get there!;
+ Nolitusne: You'll be the only one late! I'll be there before you.;
+:You and Nolitusne make a promise at the cafe, and looking at each other's smiling faces, you know that the days ahead will be happier and more meaningful than ever. ;
+changeScene:End.txt;

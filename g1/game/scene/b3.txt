@@ -1,0 +1,7 @@
+playVideo:Be.mp4;
+changeBg:3.png -next
+Me: What's wrong, Nolitusne?;
+changeFigure:1 (2).png -next;
+Nolitusne : So you're here I've thought of my next challenge for you, let's have a go!;
+: You laugh out loud at his childish look and talk for a moment before remembering Shungen in the infirmary;
+changeScene:Shungen3.txt;

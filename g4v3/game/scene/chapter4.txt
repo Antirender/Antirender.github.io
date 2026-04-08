@@ -1,0 +1,184 @@
+callScene:scene/util/normalize_vars.txt;
+; ===== chapter4：走廊影 → 晕厥 → 病房袭击 → 分歧时刻 =====
+
+bgm:hospital_noise.mp3 -volume=45 -enter=3000;
+unlockBgm:hospital_noise.mp3 -name=远方嘈杂;
+
+changeBg:school_corridor_dark.jpg -next;
+unlockCg:school_corridor_dark.jpg -name=昏暗走廊;
+
+miniAvatar:chuling_pale.png;
+changeFigure:chuling_pale.png -next;
+初苓:……走廊尽头……是谁……在那里站着……？;
+
+:模糊的身影，再次出现，立于远方，像是在等她靠近。;
+
+; === 选择A：在走廊里怎么做（混合：有影响/无影响） ===
+; approach：清醒 +1（面向恐惧）
+; hide：逃避 +1 / 现实锚 -1
+; name_call：共情 +1 / 现实痕迹 +1（呼名让“她确为旧识”的线索加深）
+; pinch：掐自己确认感觉（迷惑选项）
+choose:鼓起勇气靠近:approach|躲到墙角观察:hide|轻声叫她的名字:name_call|掐一下手臂看看痛不痛:pinch;
+
+label:approach;
+:她向前迈步，脚下地板像在轻轻起伏。;
+setVar:lucid=lucid+1;
+jumpLabel:hall_done;
+
+label:hide;
+:她把自己贴在墙角，尽量屏住呼吸。影子仍旧一动不动。;
+setVar:avoid=avoid+1;
+setVar:sanity=sanity-1;
+jumpLabel:hall_done;
+
+label:name_call;
+初苓:……小雪？
+:远处的剪影仿佛抬起了头。;
+setVar:empathy=empathy+1;
+setVar:trace=trace+1;
+jumpLabel:hall_done;
+
+label:pinch;
+:疼。|这就够了么？;
+jumpLabel:hall_done;
+
+label:hall_done;
+
+初苓:不……不行，我不能再看了……我不要再梦下去了！
+
+bgm:none -enter=1000;
+playEffect:falling.mp3;
+
+changeBg:none -next;
+:她眼前一黑，整个人失去意识。;
+
+; ===== 转入病房 =====
+bgm:hospital_room.mp3 -volume=30 -enter=2500;
+changeBg:hospital_bed.jpg -next;
+unlockCg:hospital_bed.jpg -name=病床视角;
+
+miniAvatar:chuling_sleep.png;
+changeFigure:chuling_sleep.png -next;
+:醒来时，她发现自己躺在医院的病床上，手臂缠着绷带。;
+:医生与她的父母站在门外低声交谈，她却一句也听不进去。;
+
+changeFigure:girl_ghost.png -next;
+playEffect:glitch_echo.mp3;
+???:……你逃不掉的……
+:女孩的幻影再次在墙边浮现。;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+初苓:（睁大双眼）你又来了……为什么……要纠缠我？！;
+
+:女孩缓缓举起手中的画笔，化作利刃，向她挥来——;
+changeBg:none -next;
+playEffect:cut_sharp.mp3;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+:一阵灼痛划过手臂，鲜血染红绷带。;
+
+bgm:none -enter=1500;
+
+; === 选择B：病房里如何反应（关键影响/含迷惑） ===
+; press_button：现实锚 +1 / 线索 +1 / 现实痕迹 +1（医护作证）
+; hide_quilt：逃避 +1
+; apologize：共情 +1
+; swing_rail：攻击 +1 / 受伤 +1（反击不一定有效）
+choose:按呼叫器找医生:press_button|把自己裹进被子:hide_quilt|对她说“对不起”:apologize|抓起床栏挥过去:swing_rail;
+
+label:press_button;
+:她按下呼叫器，红灯亮起，走廊里传来脚步声。幻影像被风掀起的纱，淡了些。;
+setVar:sanity=sanity+1;
+setVar:clue=clue+1;
+setVar:trace=trace+1;
+jumpLabel:ward_done;
+
+label:hide_quilt;
+:她把被子裹到下巴，只留下颤抖的呼吸。;
+setVar:avoid=avoid+1;
+jumpLabel:ward_done;
+
+label:apologize;
+初苓:……如果我做错了什么，对不起。|我愿意听你说。
+:空气像松动了一寸。;
+setVar:empathy=empathy+1;
+jumpLabel:ward_done;
+
+label:swing_rail;
+:她抓起床栏猛地一推，金属与空气相撞，腕骨一阵生疼。;
+setVar:aggr=aggr+1;
+setVar:injury=injury+1;
+jumpLabel:ward_done;
+
+label:ward_done;
+
+; ===== 调试面板（仅 dev==1 时出现）=====
+choose:打开调试面板:dev_on|继续剧情:dev_off -when=(dev==1);
+
+label:dev_on;
+showVars;
+初苓:【DEBUG】 clue={clue} trace={trace} empathy={empathy} lucid={lucid} sanity={sanity} avoid={avoid} aggr={aggr} injury={injury} guilt={guilt};
+jumpLabel:dev_end;
+
+label:dev_off;
+jumpLabel:dev_end;
+
+label:dev_end;
+
+; ——结局路由首次检查（此处可触发 BE4/BE2 等极端分支）——
+callScene:scene/endings/ending_router.txt;
+
+; ===== 分歧时刻：夜色病房 =====
+bgm:suspense_slow.mp3 -volume=40 -enter=2000;
+unlockBgm:suspense_slow.mp3 -name=分歧时刻;
+
+changeBg:hospital_dark.jpg -next;
+unlockCg:hospital_dark.jpg -name=病房夜晚;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+初苓:……这不是梦……这是现实。她真的伤到我了……
+
+:没有人相信她，没有人听她的解释。她孤独地坐在病床上，看着窗外无边的黑夜。;
+
+intro:你还能相信谁？|梦、记忆、现实——都开始崩塌。|而你，必须做出选择。;
+
+; === 选择C：分歧时刻（为 BE1/GE1 铺路） ===
+; talk_doctor：现实锚 +1 / 线索 +1 / 现实痕迹 +1（要求查看监控/交班记录）
+; talk_parents：共情 +1 / 现实锚 +1（沟通）
+; pretend_sleep：逃避 +1 / 现实锚 -1（BE1 方向）
+; stare_window：清醒 +1（把梦像作为能力使用）
+choose:和医生说明并要求查看记录:talk_doctor|跟父母认真沟通:talk_parents|假装睡着回避一切:pretend_sleep|盯着窗外数灯光:stare_window;
+
+label:talk_doctor;
+:她按铃请医生进来，要求调阅病区监控与交班记录，并记录伤口时间点。;
+setVar:sanity=sanity+1;
+setVar:clue=clue+1;
+setVar:trace=trace+1;
+jumpLabel:split_done;
+
+label:talk_parents;
+:她深吸一口气，把梦与现实的重合讲给父母听。两人沉默良久。;
+setVar:empathy=empathy+1;
+setVar:sanity=sanity+1;
+jumpLabel:split_done;
+
+label:pretend_sleep;
+:她翻身朝里，拉高被子，假装什么也没发生过。;
+setVar:avoid=avoid+1;
+setVar:sanity=sanity-1;
+jumpLabel:split_done;
+
+label:stare_window;
+:她盯着窗外远处的红点，一颗一颗数过去，努力把梦中的线索拼回现实。;
+setVar:lucid=lucid+1;
+jumpLabel:split_done;
+
+label:split_done;
+
+; ——结局路由第二次检查（此处可触发 BE1“被害妄想”等）——
+callScene:scene/endings/ending_router.txt;
+
+changeScene:chapter5.txt;

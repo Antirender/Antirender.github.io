@@ -1,0 +1,9 @@
+playVideo:He.mp4;
+changeBg:7.png -next
+You ignore the noise outside and look intently at Shungen, worried about his injuries.;
+changeFigure:2 (2).png -next;
+Shungen: Thank you, I'm happy to see you worrying so much about me;
+Me: Of course! We've grown up together! You used to care about me! Now I care about you!;
+changeFigure:2 (1).png -next;
+:(Shungen's eyes squint into slits as the sunlight from the window shines through, and I help Shungen back to the classroom after PE;
+changeScene:Shungen3.txt;

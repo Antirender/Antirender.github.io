@@ -1,0 +1,1 @@
+[{"type":"dialog","speaker":"","content":"","vocal":"","ignoreSpeaker":true},{"type":"bgm","bgm":"","noBgm":true},{"type":"bg","bg":"","noBg":true,"next":true},{"type":"changeP","newP":"","next":true,"noP":true,"pos":""},{"type":"intro","content":["『END』"]},{"type":"choose","chooseItem":[{"text":"Play again","scene":"start.txt"},{"text":"Play again","scene":"start.txt"}]}]

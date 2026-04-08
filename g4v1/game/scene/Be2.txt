@@ -1,0 +1,4 @@
+playVideo:Be.mp4;
+changeBg:4.png -next
+Nolitusne got rid of his classmates by himself and saw you looking at him from your seat;
+changeScene:Nolitusne1.txt;

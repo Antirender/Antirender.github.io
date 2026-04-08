@@ -1,0 +1,22 @@
+; ===== BE6：自杀（跳湖）=====
+; 典型来源：guilt>=4 && empathy<=1，且在桥/湖边选择“结束这一切”
+; 非血腥演出；不改变量
+
+bgm:quiet_night.mp3 -volume=45 -enter=1500;
+
+changeBg:lake_evening.jpg -next;
+:湖面像一张漆黑的纸。|风从耳边掠过，带走最后一丝体温。;
+
+miniAvatar:chuling_pale.png;
+changeFigure:chuling_pale.png -next;
+初苓:如果真的是我……那就到此为止。;
+
+playEffect:water_splash.mp3;
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:罪疚是最稳固的锚，|也是最深的水。;
+
+:【提示】若你把“对不起”说给对的人听，|也许就不用说给水听。;
+
+end;

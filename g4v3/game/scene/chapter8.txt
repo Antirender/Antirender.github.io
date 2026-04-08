@@ -1,0 +1,59 @@
+callScene:scene/util/normalize_vars.txt;
+; ===== chapter8：清晨尾声 · 好结局的收束（大量无改变量的迷惑选项） =====
+
+bgm:home_morninglight.mp3 -volume=65 -enter=3000;
+changeBg:bedroom_morning.jpg -next;
+unlockCg:bedroom_morning.jpg -name=清晨房间;
+
+miniAvatar:chuling_peaceful.png;
+changeFigure:chuling_peaceful.png -next;
+初苓:（睁眼）……清晨的阳光，真的很好。;
+
+:窗帘微动，鸟鸣阵阵。她深吸一口气，伸展手臂。;
+
+miniAvatar:chuling_calm.png;
+changeFigure:chuling_calm.png -next;
+初苓:最近的梦，安静了很多……但小雪，还是会偶尔出现。;
+
+; ——梦境一瞥：湖边并坐（不改变量）
+changeFigure:girl_shadow.png -left -next;
+changeFigure:chuling_peaceful.png -right -next;
+小雪:你现在，是不是更会倾听了？;
+
+miniAvatar:chuling_smile.png;
+changeFigure:chuling_smile.png -next;
+初苓:……我正在努力。;
+
+changeFigure:none -left -next;
+changeFigure:none -right -next;
+
+:镜头淡出，回到现实世界。她起身，看向窗外，目光坚定。;
+
+; === 选择A：今天的第一件小事（迷惑项：均不改变量） ===
+choose:给父母做早餐:a_breakfast|去图书馆坐一会儿:a_library|去湖边散步:a_lake|把阁楼再整理一次:a_attic;
+
+label:a_breakfast; :她在便签上写“今天别买早饭啦”。; jumpLabel:a_done;
+label:a_library;  :她把卡塞进口袋，随手带上那本小本。; jumpLabel:a_done;
+label:a_lake;     :她轻轻收好窗边那支画笔状的签字笔。; jumpLabel:a_done;
+label:a_attic;    :她决定把旧盒子贴上新的标签。; jumpLabel:a_done;
+
+label:a_done;
+
+; === 选择B：发一条谁也看不见的信息（迷惑项：均不改变量） ===
+choose:对着窗外小声说“早”:b_hello|在本子里写“今天也见面了”:b_note|把手机相册翻到那张湖面的光:b_photo|什么也不做，笑一下:b_smile;
+
+label:b_hello; :风把那声“早”吹得很远。; jumpLabel:b_done;
+label:b_note;  :页角被压出一道柔软的印子。; jumpLabel:b_done;
+label:b_photo; :水面那道光像在屏里继续动。; jumpLabel:b_done;
+label:b_smile; :她笑得很轻，像怕吵醒谁。; jumpLabel:b_done;
+
+label:b_done;
+
+miniAvatar:chuling_determined.png;
+changeFigure:chuling_determined.png -next;
+初苓:这个世界……还是值得继续走下去的。;
+
+intro:《梦魇逃亡》|完结于梦，|但不止于梦。;
+
+bgm:none -enter=2000;
+end;

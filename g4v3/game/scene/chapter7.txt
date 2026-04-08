@@ -1,0 +1,78 @@
+callScene:scene/util/normalize_vars.txt;
+; ===== chapter7：春光树下 · 平稳尾声（大量无改变量的迷惑选项） =====
+
+bgm:school_peaceful.mp3 -volume=60 -enter=2000;
+changeBg:school_tree_shade.jpg -next;
+unlockCg:school_tree_shade.jpg -name=校园树下;
+
+miniAvatar:chuling_calm.png;
+changeFigure:chuling_calm.png -next;
+:阳光正好，微风轻拂，校园在春日中焕发着新的生机。;
+
+; ——室友登场（修正：标准立绘两行）
+miniAvatar:roommate_smile.png;
+changeFigure:roommate_smile.png -next;
+室友:欸欸欸，初苓——你今天是怎么了啊，居然在笑！;
+
+miniAvatar:chuling_smile.png;
+changeFigure:chuling_smile.png -next;
+初苓:啊？我平时不笑的吗？;
+
+miniAvatar:roommate_smile.png;
+changeFigure:roommate_smile.png -next;
+室友:你平时最多那种“苦笑”……今天的你，看起来很放松欸。是不是偷偷谈恋爱了！;
+
+miniAvatar:chuling_peaceful.png;
+changeFigure:chuling_peaceful.png -next;
+初苓:（轻笑）没有啦……只是，想起一些很重要的事。;
+
+:她靠着树坐下，阳光透过树叶洒在她肩上。她从口袋里掏出一本小本子——封面写着【我们的小秘密】。;
+
+; === 选择A：敷衍室友的方式（迷惑项：均不改变量） ===
+choose:认真解释“只是睡饱了”:a_sleep|打岔说“春天到了”:a_spring|反问“你才偷偷谈恋爱吧”:a_tease|神秘一笑不回答:a_smile;
+
+label:a_sleep;
+:初苓说睡够了会变强，这学期要早睡。; jumpLabel:a_done;
+
+label:a_spring;
+:初苓仰头看树，认真地点了一下头。; jumpLabel:a_done;
+
+label:a_tease;
+:室友被噎住三秒，然后爆笑出声。; jumpLabel:a_done;
+
+label:a_smile;
+:她只是笑，什么也没说。; jumpLabel:a_done;
+
+label:a_done;
+
+miniAvatar:chuling_calm.png;
+changeFigure:chuling_calm.png -next;
+初苓:（心声）小雪，谢谢你。无论你身在何处，我都会记得你。;
+
+; === 选择B：如何翻阅小本（迷惑项：均不改变量） ===
+choose:翻看第一页的秋千素描:b_first|随机翻到中间一页:b_middle|合上本子只摸封面:b_cover|把本子递给室友看:b_share;
+
+label:b_first;
+:秋千的链条在纸上荡秋千，铅笔痕里藏着风。; jumpLabel:b_done;
+label:b_middle;
+:落在中间的，是两人最无聊的一天。无聊到现在看也会笑。; jumpLabel:b_done;
+label:b_cover;
+:封面温温的，像被某个夏天晒过。; jumpLabel:b_done;
+label:b_share;
+:室友翻了两页就红了眼眶：“……你要是早点跟我说就好了。”; jumpLabel:b_done;
+
+label:b_done;
+
+; === 选择C：写给“她”的只言片语（迷惑项：均不改变量） ===
+choose:写“我会先问你想做什么”:c_line1|写“我会继续记得你”:c_line2|写“我会把梦当线索，不当答案”:c_line3|什么也不写，只把页角压平:c_line4;
+
+label:c_line1; :她在页脚写下一句郑重的话。; jumpLabel:c_done;
+label:c_line2; :她把“记得”写了两遍，第二遍更轻。; jumpLabel:c_done;
+label:c_line3; :她停了几秒，才落下最后一个句号。; jumpLabel:c_done;
+label:c_line4; :她把折起的页角重新抚平。; jumpLabel:c_done;
+
+label:c_done;
+
+intro:她不再逃避过去，|而是选择记住它。|记住那个一直在梦中等她的人。;
+
+changeScene:chapter8.txt;

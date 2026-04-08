@@ -1,0 +1,15 @@
+bgm:和田俊輔 (わだしゅんすけ)-ファルツォーネの優雅なる風景.mp3;
+changeBg:2.png -next
+Me:It's finally the beginning of school, ah, it's my first day of high school, and there's still something to look forward to.;
+:You straighten up your school uniform and step into the place that you are so excited about, hoping that you can make a big difference in your new life.;
+changeFigure:2 (2).png;
+Shungen: (taps you on the shoulder) Hi! I've been looking for you for a long time, but here you are.;
+:This is your neighbor's kid, Shungen. You two have been playing together since you were little and you are very close. ;
+:In the old days, you also attended the same school together, and in high school, you didn't expect to be together now.;
+Me:Shungen!!! I'm scared to death!!! I didn't expect you to be in this school too!;
+changeFigure:2 (3).png -next;
+Shungen: It's really rude to say that, didn't you see the class list in front of you, I'm still in the same class as you.;
+changeFigure:2 (1).png -next;
+:Shungen smiled a little, he's always been a very gentle person, you never seem to see him angry.;
+:;
+choose:"I'm sorry, I was so excited that I forgot to look at my class list!:Be.txt|Who said that? I did! I was just trying to trick you on purpose!:He.txt;

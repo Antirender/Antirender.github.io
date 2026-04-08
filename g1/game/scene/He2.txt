@@ -1,0 +1,3 @@
+playVideo:He.mp4;
+ You move the classmates away a little and indicate that Nolitusne looks embarrassed, and the classmates walk away with good sense.;
+changeScene:Nolitusne1.txt;

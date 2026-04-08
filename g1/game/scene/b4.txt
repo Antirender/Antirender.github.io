@@ -1,0 +1,8 @@
+playVideo:Be.mp4;
+changeBg:4.png
+:The paper aeroplane flies back without hitting Nolitusne, and he makes a face at you.;
+Nolitusne: You won the last paper plane, I'm going to challenge you! This time I will fly farther than you!;
+Me: Yeah! Let's try it!;
+:On the spur of the moment, you play with him and Shungen is left alone.;
+ He feels that what you said in the infirmary about taking care of him was a lie, so he becomes disillusioned and moves away from you.;
+changeScene:End.txt;

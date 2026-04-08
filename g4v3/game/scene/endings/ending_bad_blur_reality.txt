@@ -1,0 +1,20 @@
+; ===== BE2：梦与现实不可分 =====
+; 典型来源：sanity<=-3，或 lucid>=4 && clue<=1
+
+bgm:distorted_dream.mp3 -volume=30 -enter=1500;
+
+changeBg:school_corridor_dark.jpg -next;
+:门一扇接一扇，尽头总是另一间教室。|她推门、后退、再推门。;
+
+playEffect:heartbeat.mp3;
+:她掐自己，疼。|可疼痛像是从别人的身体里传出来的。;
+
+changeBg:school_toilet.jpg -next;
+:水龙头开到最大，水声像无数脚步在倒退。镜子里的人抬手，|比她早半秒。;
+
+bgm:none -enter=1500;
+changeBg:none -next;
+
+intro:她醒来，|在梦里。|又睡去，|在现实。;
+
+end;

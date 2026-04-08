@@ -1,0 +1,20 @@
+changeBg:2.png -next
+changeFigure:2 (1).png -next;
+:But Shungen didn't care about it, he just gave you a familiar smile and you two walked together towards your class.;
+changeBg:3.png -next
+changeFigure:2 (2).png -next;
+Me:Are we too early? We didn't see anyone.;
+Shungen:Yeah, actually I didn't expect you to come so early, and I wanted to surprise you.;
+Me: Actually you already gave me a surprise and a certain amount of shock when you were shooting me that time.;
+:As you were just about to walk into the classroom, you noticed that the door of the next classroom suddenly opened.;
+changeFigure:1 (2).png -next;
+Nolitusne:hun! I knew you would come early.;
+Me:Nolitusne! How did you end up at this school too? Aren't you supposed to go to the school your uncle recommended for you?;
+:The pink-haired boy in front of you is the child of your and Shungen's elders' work counterparts.;
+:And because you're the same age you've always been pulled out by both parents for comparison.;
+:You don't really care about it because you've been compared since you were little, so you're used to it, but Nolitusne doesn't seem to think so.;
+Nolitusne:Now that we're in the same high school, I'm going to surpass you!;
+My uncle used to compare you to me forever, and I'm sick of it! I'm going to win over you!;
+:You feel a little confused because you don't really understand why Nolitusne reacted so much and why it was preferable to win over you.;
+Me:;
+choose:Yeah, well, this is a chance for us to compete in our senior year of high school!:He1.txt| "I don't see the point in that, but if you want to compete, I'll be happy to do so.:Be1.txt;

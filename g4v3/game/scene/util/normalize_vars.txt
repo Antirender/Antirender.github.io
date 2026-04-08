@@ -1,0 +1,10 @@
+; ===== normalize_vars：把计分变量强制转为数值 =====
+setVar:clue=clue*1;
+setVar:trace=trace*1;
+setVar:empathy=empathy*1;
+setVar:lucid=lucid*1;
+setVar:sanity=sanity*1;
+setVar:avoid=avoid*1;
+setVar:aggr=aggr*1;
+setVar:injury=injury*1;
+setVar:guilt=guilt*1;

@@ -1,0 +1,7 @@
+playVideo:Be.mp4;
+changeBg:6.png -next
+changeFigure:2 (2).png -next;
+Shungen: Sorry, I won't bother you, my family is picking me up today;
+changeFigure:none -next;
+You go home alone, the weather suddenly rains heavily, you are drenched into a soup, seriously ill with a cold for a few days, then return to school again to find Shungen and a girl you do not know very close.;
+changeScene:End.txt;

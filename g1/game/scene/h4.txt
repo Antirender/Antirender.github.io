@@ -1,0 +1,11 @@
+playVideo:He.mp4;
+changeBg:4.png -next
+:You ignore the flying paper plane and help Shungen to his seat;
+ You ignore the flying paper plane and help Shungen to his seat;
+Me: Does this position hurt your knees?;
+changeFigure:2 (2).png -next;
+Shungen: No, it's not.;
+changeFigure:none -next;
+:The bell rings and you quickly return to your seat, your pen is accidentally dropped on the floor;
+:;
+choose:Pick it up:h5.txt|take out another pen to use:b5.txt;

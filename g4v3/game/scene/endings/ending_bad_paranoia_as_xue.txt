@@ -1,0 +1,28 @@
+; ===== BE1：被害妄想（“她就是小雪”）=====
+; 典型来源：trace==0 && avoid>=4 && lucid>=2 && sanity<=-2
+; 不修改任何变量；仅演出与收束
+
+bgm:hospital_noise.mp3 -volume=40 -enter=1500;
+changeBg:hospital_dark.jpg -next;
+:白墙无窗，冷白灯像一层薄水铺在地面。;
+
+miniAvatar:chuling_pale.png;
+changeFigure:chuling_pale.png -next;
+初苓:……我不是我。|我是……小雪。;
+
+:玻璃柜门上映出另一个她。那个人先她半拍开口，像在提示词。;
+
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:当证据为零，|恐惧会补全叙事。|她开始相信镜子里的那个名字。;
+
+bgm:distorted_dream.mp3 -volume=30 -enter=1200;
+changeBg:hospital_dark.jpg -next;
+:她在病房里来回走，同一段地砖被走亮了颜色。|
+
+:有人敲门——没有回应。|门把手转了一下——也许是风。|
+
+intro:世界仍在运转，|只是她退出了轨道。;
+
+end;

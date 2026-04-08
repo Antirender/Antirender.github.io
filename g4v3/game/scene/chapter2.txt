@@ -1,0 +1,183 @@
+callScene:scene/util/normalize_vars.txt;
+
+bgm:night_low.mp3 -volume=60 -enter=3000;
+unlockBgm:night_low.mp3 -name=低语之夜;
+
+changeBg:school_playground_night.jpg -next;
+unlockCg:school_playground_night.jpg -name=夜晚操场;
+
+miniAvatar:chuling_night.png;
+changeFigure:chuling_night.png -next;
+初苓:……又是梦吗？为什么，这里也这么熟悉。;
+
+:她环顾四周，一切静得诡异，连风声都像被吞噬了。;
+
+:远处传来脚步声——越来越近、越来越重。;
+playEffect:echo_steps.mp3;
+
+changeFigure:student_shadow.png -left -next;
+changeFigure:student_shadow2.png -right -next;
+:两侧陆续出现“熟悉”的人影——同学们，脸色惨白，眼神空洞。;
+
+同学们:你为什么要杀人？;
+初苓:……什么！？你们在说什么？！;
+
+; ===== 选择A：第一反应（影响/不影响混合） =====
+choose:深呼吸并观察四周:keep_calm|转身就跑:run_away|大声反驳:argue|闭眼倒数十下:count10;
+
+label:keep_calm;
+:她用力吸气，目光掠过操场看台上的涂抹字迹，像是“阁楼”。;
+setVar:sanity=(sanity+1);
+setVar:clue=(clue+1);
+jumpLabel:a_done;
+
+label:run_away;
+:她拔腿就跑，脚下像陷在棉花里。人影也跟着飘动。;
+setVar:avoid=(avoid+1);
+jumpLabel:a_done;
+
+label:argue;
+初苓:我没有！你们别乱说！
+setVar:aggr=(aggr+1);
+jumpLabel:a_done;
+
+label:count10;
+:她闭眼在心里数数，试图让心跳慢下来。;
+jumpLabel:a_done;
+
+label:a_done;
+
+changeFigure:student_shadow3.png -center -next;
+同学们:你为什么要杀她？！;
+初苓:我没有杀人……我没有！;
+
+:人影越聚越多，围住她，他们的声音在操场四周回荡。;
+初苓:不要靠近我……住手！我没有做过！！;
+
+:人群突然让开。远处，一个熟悉的女孩身影站在黑暗中，静静注视。;
+changeFigure:girl_silhouette.png -center -next;
+
+???:你真的不记得了吗……初苓？;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+初苓:你是谁……你到底是谁？！;
+
+???:……我一直都在……你身边……;
+
+; ===== 选择B：面对剪影（影响/不影响混合） =====
+choose:向她迈一步:step_closer|叫出名字（若记不起也要试）:call_name|掉头离开:turn_back|握紧手心:clench;
+
+label:step_closer;
+:她向前迈出一步，地面像水面一样轻轻荡开。;
+setVar:lucid=(lucid+1);
+jumpLabel:b_done;
+
+label:call_name;
+初苓:……小——雪？
+:剪影微微颤了一下，像被风碰过。;
+setVar:empathy=(empathy+1);
+setVar:trace=(trace+1);
+jumpLabel:b_done;
+
+label:turn_back;
+:她转身，操场又复写了一层同样的黑。;
+setVar:avoid=(avoid+1);
+jumpLabel:b_done;
+
+label:clench;
+:她握紧手心，指甲刺进掌心，疼意让画面略清。;
+jumpLabel:b_done;
+
+label:b_done;
+
+changeFigure:none -center -next;
+changeFigure:none -left;
+changeFigure:none -right;
+
+:声音远去，场景开始崩裂，天色发红，地面破碎。;
+setAnimation:shake -target=bg-main;
+
+; ===== 选择C：崩裂时的抉择（影响/不影响混合） =====
+choose:用力回想“现实里的证据”:recall_clue|逃到看台下:hide_stand|对着空地道歉:say_sorry|原地尖叫:scream;
+
+label:recall_clue;
+:她努力回想白天的细节，窗边、被子、笔记、还有“阁楼”两个字。;
+setVar:clue=(clue+1);
+setVar:sanity=(sanity+1);
+jumpLabel:c_done;
+
+label:hide_stand;
+:她往看台下钻，人影在上方结成一圈。;
+setVar:avoid=(avoid+1);
+setVar:injury=(injury+1);    ; 躲避时被划伤
+jumpLabel:c_done;
+
+label:say_sorry;
+初苓:……对不起。若是我做错了什么——对不起。
+:风声像忽然停了一瞬。;
+setVar:empathy=(empathy+1);
+jumpLabel:c_done;
+
+label:scream;
+:她尖叫，嗓子像被砂纸刮过。;
+jumpLabel:c_done;
+
+label:c_done;
+
+; ——第一次结局路由检查（一般很难命中，但允许极端数值提前分歧）——
+callScene:scene/endings/ending_router.txt;
+
+初苓:不……我不要再看了！够了！！！！;
+
+changeBg:none -next;
+bgm:none -enter=3000;
+
+intro:记忆不愿苏醒，|梦境却反复质问。|逃避，终究不是答案。;
+
+changeBg:bedroom_night.jpg -next;
+unlockCg:bedroom_night.jpg -name=夜间房间;
+
+bgm:heartbeat_slow.mp3 -volume=40 -enter=1000;
+unlockBgm:heartbeat_slow.mp3 -name=梦后心跳;
+
+miniAvatar:chuling_sweat.png;
+changeFigure:chuling_sweat.png -next;
+初苓:呼……呼……;
+
+:她从梦中惊醒，汗湿透衣，胸口剧烈起伏。目光落在胸前的细小裂口。;
+
+初苓:梦里的事，真的越来越清晰了。那个女孩……我真的见过她。
+
+; ===== 选择D：醒后如何处置（影响/不影响混合） =====
+choose:拍下伤口并做记录:record_wound|给小念发消息:text_roommate|搜索事故新闻:search_news|假装什么也没发生:pretend;
+
+label:record_wound;
+:她用手机拍下裂口，备注“操场夜/人群/阁楼字”。;
+setVar:clue=(clue+1);
+setVar:trace=(trace+1);
+jumpLabel:d_done;
+
+label:text_roommate;
+:她给小念发了条消息，只说“我可能需要你陪我去一趟校医院”。;
+setVar:empathy=(empathy+1);
+setVar:sanity=(sanity+1);
+jumpLabel:d_done;
+
+label:search_news;
+:她打开浏览器，输入几个关键字，屏幕上弹出熟悉的地名。;
+setVar:clue=(clue+1);
+jumpLabel:d_done;
+
+label:pretend;
+:她把手机扣到一边，躺回枕头里。;
+jumpLabel:d_done;
+
+label:d_done;
+
+; ——第二次结局路由检查（允许极端数值提前落入坏结局/或进入温柔线索前置）——
+callScene:scene/endings/ending_router.txt;
+
+intro:梦境正在蚕食现实。|而初苓——仍一无所知。;
+
+changeScene:chapter3.txt;

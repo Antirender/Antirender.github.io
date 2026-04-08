@@ -1,0 +1,5 @@
+playVideo:Be.mp4;
+changeBg:8.png -next
+:You are a bit worried and stay where you are.;
+:When the PE teacher comes back, she asks you to go to the infirmary to look after Shungen because you have known him since he was a child;
+changeScene:Shungen2.txt;

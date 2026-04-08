@@ -1,0 +1,4 @@
+playVideo:Be.mp4;
+changeBg:5.png -next
+:Nolitusne heard what you said and didn't say anything, but gradually began to refuse your invitations and stopped talking to you when he saw you.;
+changeScene:End.txt;

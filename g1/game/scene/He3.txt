@@ -1,0 +1,6 @@
+playVideo:He.mp4;
+changeBg:3.png -next
+Me:Yes! I think it's challenging too! So let's see if you're a better learner or if I'm a better learner!;
+changeFigure:1 (2).png -next;
+Nolitusne:I knew you'd agree, even though you're my enemy, I think we're similar.;
+changeScene:Nolitusne2.txt;

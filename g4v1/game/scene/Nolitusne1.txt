@@ -1,0 +1,12 @@
+changeBg:4.png -next
+changeFigure:1 (2).png -next;
+Nolitusne:Come out with me for a moment, I have something to say to you.;
+:You look at Nolitusne's attitude, it is a look that you can not refuse, ;
+:so you follow him to the corridor after you pacify Shungen who is a little worried about you with your eyes.;
+changeBg:3.png -next
+Nolitusne:This midterm, the teacher said that the rankings would be announced, and it just so happens that this is a way to test who is actually the better student in high school.;
+Me:It's true, but is it really necessary to compete with me to win or lose?;
+Nolitusne:That's right! I need to win over you! To prove to my dad and uncle that I am better than you!;
+:You look at Nolitusne and decide;
+:;
+choose: say no:Be3.txt| Agree to the match:He3.txt;

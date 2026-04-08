@@ -1,0 +1,24 @@
+; ===== BE5：杀死小雪 =====
+; 典型来源：aggr>=3 && empathy==0（湖边/病房对峙选“反击/推开”等）
+; 非血腥演出；不改变量
+
+bgm:lake_twilight.mp3 -volume=60 -enter=1500;
+
+changeBg:lake_evening.jpg -next;
+:风把水面抹成一层银。|她握着那支画笔，指节发白。;
+
+miniAvatar:chuling_determined.png;
+changeFigure:chuling_determined.png -next;
+初苓:别再逼我了。;
+
+:她用力一推。|人影失衡，踏空。;
+
+playEffect:water_splash.mp3;
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:当真相必须流血，|它就不再是和解。;
+
+:【提示】攻击性会带来最短的道路，|也带来最长的阴影。;
+
+end;

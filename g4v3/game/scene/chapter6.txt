@@ -1,0 +1,197 @@
+callScene:scene/util/normalize_vars.txt;
+; ===== chapter6：湖边对峙 → 和解/失控的分岔闸 =====
+
+bgm:lake_twilight.mp3 -volume=60 -enter=2000;
+changeBg:lake_evening.jpg -next;
+unlockCg:lake_evening.jpg -name=黄昏湖边;
+
+:湖面微动，光影变幻。两人坐在湖边的木椅上，小雪轻声开口。;
+
+miniAvatar:chuling_peaceful.png;
+changeFigure:chuling_peaceful.png -next;
+小雪:其实……我一直都知道，你不是故意的。;
+
+miniAvatar:chuling_calm.png;
+changeFigure:chuling_calm.png -next;
+初苓:可是……你因为我痛苦了那么久。你父母、画展、还有我……
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+小雪:我也有错。我以为，只要继续画画，就可以不让任何人失望。包括你。;
+
+miniAvatar:chuling_tearful.png;
+changeFigure:chuling_tearful.png -next;
+初苓:小雪……;
+
+miniAvatar:chuling_peaceful.png;
+changeFigure:chuling_peaceful.png -next;
+小雪:但其实……我也一直在逃避。;
+
+:湖面泛起涟漪，一只画笔轻轻飘来，落在初苓脚边。她拾起，递还给小雪。;
+
+; === 选择A：开口方式（含迷惑）===
+; apologize_true：共情 +1
+; confess_kill：罪疚 +2（危险，靠近 BE6）
+; deflect：逃避 +1
+; talk_weather：无影响（迷惑项）
+choose:认真道歉并请她说完:apologize_true|脱口而出“是我害死你的”:confess_kill|转移话题含糊其辞:deflect|先聊天气缓冲一下:talk_weather;
+
+label:apologize_true;
+初苓:对不起。我愿意听你把话说完，不再替你做决定。;
+setVar:empathy=empathy+1;
+jumpLabel:open_done;
+
+label:confess_kill;
+初苓:如果是我害死了你……都是我的错。;
+setVar:guilt=guilt+2;
+jumpLabel:open_done;
+
+label:deflect;
+初苓:最近……你父母还好吗？媒体是不是又来烦你了。;
+setVar:avoid=avoid+1;
+jumpLabel:open_done;
+
+label:talk_weather;
+:她抬头看天，像在确认云层的走向。;
+jumpLabel:open_done;
+
+label:open_done;
+
+miniAvatar:chuling_determined.png;
+changeFigure:chuling_determined.png -next;
+初苓:这次……我们可以重新来过吗？;
+
+miniAvatar:chuling_smile.png;
+changeFigure:chuling_smile.png -next;
+小雪:（微笑）嗯。可以的。;
+
+; === 选择B：如何处理“画笔”（关键，含迷惑）===
+; return_brush：共情 +1 / 现实痕迹 +1
+; pocket_brush：线索 +1（带走做证据/纪念）
+; throw_brush：攻击 +1（靠近 BE5）
+; skip_brush：无影响（迷惑项）
+choose:郑重递还给她:return_brush|把画笔收进口袋:pocket_brush|顺手把画笔丢进湖里:throw_brush|别动它:skip_brush;
+
+label:return_brush;
+:她双手递回画笔。小雪接过时指尖微颤。;
+setVar:empathy=empathy+1;
+setVar:trace=trace+1;
+jumpLabel:brush_done;
+
+label:pocket_brush;
+:她把画笔收入兜里，像收下一段证词。;
+setVar:clue=clue+1;
+jumpLabel:brush_done;
+
+label:throw_brush;
+:画笔划出冷光，坠入水面。圈圈涟漪迅速散开。;
+setVar:aggr=aggr+1;
+jumpLabel:brush_done;
+
+label:skip_brush;
+:她把手放回膝上，什么也没做。;
+jumpLabel:brush_done;
+
+label:brush_done;
+
+; ===== 调试面板（仅 dev==1 时出现）=====
+choose:打开调试面板:dev_on|继续剧情:dev_off -when=(dev==1);
+
+label:dev_on;
+showVars;
+初苓:【DEBUG】 clue={clue} trace={trace} empathy={empathy} lucid={lucid} sanity={sanity} avoid={avoid} aggr={aggr} injury={injury} guilt={guilt};
+jumpLabel:dev_end;
+
+label:dev_off;
+jumpLabel:dev_end;
+
+label:dev_end;
+
+; ——中途结局路由检查（可能触发 BE5/BE6/BE2 等）——
+callScene:scene/endings/ending_router.txt;
+
+; === 选择C：对未来的承诺（含迷惑）===
+; listen_future：共情 +1 / 现实锚 +1
+; rely_dream：清醒 +1 / 现实锚 -1（把预知当依赖）
+; walk_away：逃避 +1
+; count_ripples：无影响（迷惑项）
+choose:我们以后先倾听再决定:listen_future|我可以继续用梦来帮你:rely_dream|还是算了，我不想再提:walk_away|一起数水面涟漪:count_ripples;
+
+label:listen_future;
+初苓:以后我会先问你想做什么，再谈“画”。;
+setVar:empathy=empathy+1;
+setVar:sanity=sanity+1;
+jumpLabel:pledge_done;
+
+label:rely_dream;
+初苓:别担心，我会用梦保护我们。;
+setVar:lucid=lucid+1;
+setVar:sanity=sanity-1;
+jumpLabel:pledge_done;
+
+label:walk_away;
+:她站起身，踢了踢木屑。话到嘴边又咽了回去。;
+setVar:avoid=avoid+1;
+jumpLabel:pledge_done;
+
+label:count_ripples;
+:一圈一圈，像年轮，也像时针。;
+jumpLabel:pledge_done;
+
+label:pledge_done;
+
+; === 选择D：临界边缘（出现条件/提示性选项） ===
+; 若 guilt 高，出现“我去桥边冷静一下”（可能走向 BE6，自杀线）
+; 若 aggr 高，出现“推开她/反击”（可能走向 BE5，杀小雪）
+; 其余为无影响迷惑项/或稳态项
+choose:(guilt>=3)[guilt>=3]->我去桥边冷静一下:to_bridge|(aggr>=2)[aggr>=2]->别靠近我:push_away|坐一会儿就回去:wait_more|捡起一片落叶:pick_leaf;
+
+label:to_bridge;
+:她沿着栈道走向桥心，风更冷了。;
+; 不直接跳结局，让 Router 判断（BE6 条件：guilt>=4 && empathy<=1）
+setVar:guilt=guilt+1;
+callScene:scene/endings/ending_router.txt;
+jumpLabel:final_gate;
+
+label:push_away;
+:她把小雪的手拨开，语气锋利得像刚才那支画笔。;
+setVar:aggr=aggr+1;
+callScene:scene/endings/ending_router.txt;
+jumpLabel:final_gate;
+
+label:wait_more;
+:她把下巴搁在手背上，听湖水贴着岸石细细磨。;
+jumpLabel:final_gate;
+
+label:pick_leaf;
+:她把叶柄绕在手指上，又放开。;
+jumpLabel:final_gate;
+
+label:final_gate;
+
+bgm:none -enter=2000;
+changeFigure:none -next;
+changeBg:none -next;
+
+intro:从那一夜起，|梦不再是噩梦。|她的梦里，多了一个会微笑的女孩。;
+
+; ——终局闸：先跑一次结局路由（若满足好结局锁/坏结局会直接跳）
+callScene:scene/endings/ending_router.txt;
+
+; ——智能回流：按缺项把玩家送回最能补齐的章节——
+
+; A) 证据/现实痕迹不足 → 回 ch5 阁楼搜证与记录
+intro:还不够。|你需要更多证据与确凿痕迹，|阁楼/记录能给你答案。 -when=(clue<5 || trace<3);
+changeScene:chapter5.txt -when=(clue<5 || trace<3);
+
+; B) 倾听/沟通不足或逃避过多 → 回 ch4 病房对话（医生/父母）
+intro:还不够。|有人愿意作证，|前提是你先开口。 -when=(empathy<4 || avoid>1);
+changeScene:chapter4.txt -when=(empathy<4 || avoid>1);
+
+; C) 现实锚过低或过度依赖清醒梦 → 回 ch3 镜前做现实检验
+intro:还不够。|把梦当作线索，|把现实当作锚。 -when=(sanity<2 || (lucid>=3 && sanity<=0));
+changeScene:chapter3.txt -when=(sanity<2 || (lucid>=3 && sanity<=0));
+
+; D) 兜底：若以上都未命中，默认回 ch5（避免死循环）
+intro:还不够。|也许答案还在对话里。;
+changeScene:chapter2.txt;

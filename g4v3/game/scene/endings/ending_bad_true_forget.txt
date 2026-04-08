@@ -1,0 +1,20 @@
+; ===== BE3：真正的遗忘（弃线）=====
+; 典型来源：clue<=1 && avoid>=3 && empathy<=1
+
+bgm:quiet_night.mp3 -volume=55 -enter=1500;
+
+changeBg:attic_dusty.jpg -next;
+:她把本子合上，灰尘落回原位。|灯光划过书脊，又退回黑暗。;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+初苓:也许……忘掉比较好。;
+
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:没有人被记起，|也就没有人真正离开。|她选择了空白。;
+
+:【提示】若你想面对真相，|回到阁楼或与人对话，|让“证据/共情”说话。;
+
+end;

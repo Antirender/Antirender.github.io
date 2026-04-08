@@ -1,0 +1,118 @@
+callScene:scene/util/normalize_vars.txt;
+
+bgm:school_day.mp3 -volume=60 -enter=2000;
+unlockBgm:school_day.mp3 -name=午后的校园;
+
+changeBg:dorm_room.jpg -next;
+unlockCg:dorm_room.jpg -name=宿舍午后;
+
+miniAvatar:chuling_think.png;
+changeFigure:chuling_normal.png -next;
+初苓:……为什么我会梦到她……还会受伤……;
+:初苓坐在床沿，盯着手臂的抓痕发呆，梦里的声音还在回荡。;
+
+初苓:这到底只是个梦……还是，我真的忘记了谁……;
+
+:宿舍门被打开，室友小念走进来。;
+
+miniAvatar:roommate_smile.png;
+changeFigure:roommate_smile.png -next;
+小念:呦——你昨晚怎么一整晚都没睡好？早上脸色跟 A4 似的。
+初苓:做噩梦。那种很真的。
+
+; === 选择1：是否坦白（不改主线，只调数值） ===
+choose:说实话:tell_truth|糊弄过去:hide_it;
+
+label:tell_truth;
+初苓:我在梦里被人追……醒来后手臂真的多了一道抓痕。
+小念:我靠，别吓我。|要不晚点一起去校医院看看？
+setVar:empathy=(empathy+1);
+setVar:sanity=(sanity+1);
+jumpLabel:after_talk;
+
+label:hide_it;
+初苓:就是普通的噩梦，没事。
+小念:行吧……可你别一个人憋着。
+setVar:avoid=(avoid+1);
+jumpLabel:after_talk;
+
+label:after_talk;
+
+bgm:none -enter=1200;
+playEffect:thunder.mp3;
+
+changeBg:window_rainy.jpg -next;
+unlockCg:window_rainy.jpg -name=窗边雷雨;
+
+:窗外闪电撕开云层，雷声把玻璃震得发颤。;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+初苓:等一下——我梦到过！|雷雨、闪电，还有……楼下晾着的被子！
+
+:她冲到窗边，铁架上果然挂着被子。;
+
+; === 选择2：如何处理被子（细节分歧，主线不变） ===
+choose:立刻下楼去收:go_alone|叫小念一起:go_with|先把梦记下来再去:note_then_go;
+
+label:go_alone;
+:她没再多想，直接冲下楼。;
+setVar:lucid=(lucid+1);       ; 迅速把梦用于行动
+setVar:sanity=(sanity+1);
+jumpLabel:downstairs;
+
+label:go_with;
+初苓:陪我一起下去吧……我有点慌。
+小念:走！
+setVar:empathy=(empathy+1);
+setVar:sanity=(sanity+1);
+jumpLabel:downstairs;
+
+label:note_then_go;
+:她抓起本子，把梦里的细节一一记下：时间、天气、被子的位置。;
+setVar:clue=(clue+1);
+setVar:trace=(trace+1);       ; “记录”将来可作为现实证据片段
+setVar:lucid=(lucid+1);
+jumpLabel:downstairs;
+
+label:downstairs;
+changeBg:dorm_laundry.jpg -next;
+unlockCg:dorm_laundry.jpg -name=晾衣架;
+playEffect:rain_run.mp3;
+:雨线斜织，被子已湿透。梦境像提前排练过一样在现实里重演。;
+
+初苓:那我梦见的其他……是不是也会成真？
+
+; === 选择3：回到宿舍后的自处（微调数值） ===
+changeBg:dorm_room.jpg -next;
+bgm:uneasy_ambience.mp3 -volume=50 -enter=1000;
+unlockBgm:uneasy_ambience.mp3 -name=不安的节奏;
+
+choose:洗把脸做现实检验:grounding|继续发呆沉浸梦感:immerse|打开手机备忘录记录更多细节:more_notes;
+
+label:grounding;
+:她去洗手台用冷水把脸浇透，数着自己的呼吸。;
+setVar:sanity=(sanity+1);
+jumpLabel:wrap;
+
+label:immerse;
+:她盯着掌心那道抓痕，任凭脑子往梦里滑。;
+setVar:sanity=(sanity-1);
+jumpLabel:wrap;
+
+label:more_notes;
+:她把“雷雨/被子/时间点/证人”一条条写下。;
+setVar:clue=(clue+1);
+jumpLabel:wrap;
+
+label:wrap;
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+初苓:她……那个女孩是谁？为什么这么熟悉……;
+
+intro:你是否曾|在梦中窥见未来？|又是否能承受那份真相？;
+
+; 可多次触发的结局路由（早期一般不会达成，但允许检查）
+callScene:scene/endings/ending_router.txt;
+
+changeScene:chapter2.txt;

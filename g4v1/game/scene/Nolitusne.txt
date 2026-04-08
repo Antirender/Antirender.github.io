@@ -1,0 +1,16 @@
+changeBg:4.png -next
+changeFigure:none -next;
+me:High school classes are really hard.;
+:You slump down on your desk, feeling a little tired from the heavy academic pressure.;
+changeFigure:2 (2).png -next;
+Shungen:Yeah, it feels like the classes are moving a lot faster all of a sudden, and it's not very easy to understand.;
+changeFigure:none -next;
+:At that moment, you feel some noise outside the door, and you look up to find a large group of students gathered at the door,;
+and at the center of it all is Nolitusne, who challenged you at the beginning of the school year.;
+changeFigure:1 (2).png -next;
+Nolitusne:You guys, can you get out of my way, I need to get in there and find someone.;
+:Because you go to a public school, it's actually rare for a rich guy like Nolitusne to show up at this school,;
+: and your classmates are curious and keep pulling Nolitusne in to ask him questions.;
+:You look at the trapped Nolitusne.;
+:;
+choose:Go help:He2.txt|Sit still:Be2.txt;

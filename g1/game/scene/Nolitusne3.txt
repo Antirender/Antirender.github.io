@@ -1,0 +1,11 @@
+changeBg:3.png -next
+:After saying this, Nolitusne waved at you;
+changeFigure:1 (2).png -next;
+Nolitusne: Then work hard, don't let me down.;
+:And so you kept up your studies until the exam was finished. On the day the results were announced, you were very nervous, but you went to see the ranking sheet with anticipation and apprehension.;
+changeFigure:2 (2).png -next;
+Shungen: Don't be so nervous, you've worked so hard and you'll be fine.;
+changeFigure:none -next;
+:You smiled at Shungen and walked towards the board where the results were posted. But on the way, you saw Nolitusne, who had a serious look on his face, and when he saw you, he turned his head and ran away.;
+:;
+choose:Go after him and ask him about it:He5.txt|Watch him run away in confusion:Be5.txt;

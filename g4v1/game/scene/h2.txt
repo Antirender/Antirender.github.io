@@ -1,0 +1,3 @@
+playVideo:He.mp4;
+Me: Teacher, I'll go with you! I can help pass things around;
+changeScene:Shungen2.txt;

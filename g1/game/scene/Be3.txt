@@ -1,0 +1,7 @@
+playVideo:Be.mp4;
+changeBg:3.png -next
+Me:I still don't think it's necessary, winning doesn't prove anything to me.;
+changeFigure:1 (2).png -next;
+Nolitusne:No, it's very important to me, if I win you, I'll be recognized by my clan!;
+Me:Although I don't think this is the right idea, but if you insist, then I agree.;
+changeScene:Nolitusne2.txt;

@@ -1,0 +1,262 @@
+callScene:scene/util/normalize_vars.txt;
+; ===== chapter5：深夜出逃 → 老家阁楼 → 湖边重逢 =====
+
+bgm:quiet_night.mp3 -volume=60 -enter=2000;
+changeBg:hospital_dark.jpg -next;
+unlockBgm: -name=病房夜晚;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+初苓:（低声）……没有人会信我……他们都以为我疯了……;
+
+:护士交班时的谈话也没避开她的耳朵：  
+:“她是不是又割伤了自己？”  
+:“医生说要重点看护，她的病越来越严重了。”;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+初苓:我不是疯子……这一切……都是梦……又不只是梦……;
+
+; === 选择A：离开病房前的准备（含迷惑） ===
+; open_curtain：现实锚 +1（先观察再行动）
+; sneak_out：逃避 +1 / 受伤 +1（匆忙刮到床栏）
+; leave_note：共情 +1 / 现实痕迹 +1（给父母留纸条）
+; rebandage：无影响（迷惑项）
+choose:拉开窗帘看清走廊:open_curtain|直接穿鞋溜走:sneak_out|给父母留张纸条:leave_note|把绷带重新包紧:rebandage;
+
+label:open_curtain;
+:她掀开窗帘缝，确认护士台的人影位置与巡逻节奏。;
+setVar:sanity=sanity+1;
+jumpLabel:escape_go;
+
+label:sneak_out;
+:她顾不得多想，踩落地凳时脚背一痛，像被金属边缘划过。;
+setVar:avoid=avoid+1;
+setVar:injury=injury+1;
+jumpLabel:escape_go;
+
+label:leave_note;
+:她在便签上写下“我去找答案，不要担心”，压在水杯底下。;
+setVar:empathy=empathy+1;
+setVar:trace=trace+1;
+jumpLabel:escape_go;
+
+label:rebandage;
+:她把绷带又勒紧了一圈，深呼吸三次。;
+jumpLabel:escape_go;
+
+label:escape_go;
+:夜深时，走廊的灯闪了一下。趁护士不注意，她轻轻翻身下床，忍住手臂的刺痛，悄悄溜出病房。;
+
+; ===== 调试面板（仅 dev==1 时出现）=====
+choose:打开调试面板:dev_on|继续剧情:dev_off -when=(dev==1);
+
+label:dev_on;
+showVars;
+初苓:【DEBUG】 clue={clue} trace={trace} empathy={empathy} lucid={lucid} sanity={sanity} avoid={avoid} aggr={aggr} injury={injury} guilt={guilt};
+jumpLabel:dev_end;
+
+label:dev_off;
+jumpLabel:dev_end;
+
+label:dev_end;
+
+; ——结局路由检查（极端数值时早分歧，如 BE4/BE2）——
+callScene:scene/endings/ending_router.txt;
+
+bgm:none -enter=1500;
+playEffect:running_soft.mp3;
+changeBg:city_street_night.jpg -next;
+unlockCg:city_street_night.jpg -name=夜晚街道;
+
+:街道冷清，只有路灯昏黄地亮着。她穿着病号服，瑟瑟发抖，却步履坚定。;
+
+miniAvatar:chuling_determined.png;
+changeFigure:chuling_determined.png -next;
+初苓:我要知道……我到底忘记了什么……小雪……我是不是真的伤害了你……;
+
+; === 选择B：回家路上的取舍（含迷惑） ===
+; camera_route：线索 +1 / 现实痕迹 +1 / 现实锚 +1（走摄像头密集路）
+; vacant_lot：逃避 +1 / 受伤 +1（抄近路）
+; count_lamps：无影响（迷惑项）
+; bus_line：无影响（迷惑项）
+choose:走有人行道且有摄像头的路:camera_route|抄近路穿过空地:vacant_lot|一盏一盏数路灯:count_lamps|沿着公交线走:bus_line;
+
+label:camera_route;
+:她贴着商店门面走，抬头确认摄像头的红点在闪。;
+setVar:clue=clue+1;
+setVar:trace=trace+1;
+setVar:sanity=sanity+1;
+jumpLabel:to_attic;
+
+label:vacant_lot;
+:她从栅栏缺口挤过去，被铁丝勾住了衣角。;
+setVar:avoid=avoid+1;
+setVar:injury=injury+1;
+jumpLabel:to_attic;
+
+label:count_lamps;
+:她从“一”数到“十三”，让脚步与数字同步。;
+jumpLabel:to_attic;
+
+label:bus_line;
+:她顺着夜班公交的方向走，借着车灯辨路。;
+jumpLabel:to_attic;
+
+label:to_attic;
+
+bgm:attic_dust.mp3 -volume=60 -enter=2500;
+changeBg:attic_dusty.jpg -next;
+unlockCg:attic_dusty.jpg -name=阁楼尘封;
+
+:回到老家的阁楼，推开厚重的木门，尘土扑面而来。;
+
+:她借着手机微弱的灯光在角落翻找。  
+突然，一本熟悉的笔记本掉落在地上，封面写着【我们的小秘密】。;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+初苓:这是……？
+
+:她翻开第一页，是一幅稚嫩的素描：她和另一个女孩笑着坐在秋千上。;
+
+; === 选择C：如何处理这本笔记（关键，BE3 可能从这里触发） ===
+; read_all：线索 +2 / 现实痕迹 +1 / 共情 +1（认真阅读）
+; close_book：逃避 +1（→ 路由后可能进 BE3 真正遗忘）
+; tear_page：攻击 +1（撕下会后悔的一页）
+; photo_pages：线索 +1 / 现实痕迹 +1（拍照存证）
+choose:继续翻下去:read_all|把本子合上:close_book|撕下其中一页:tear_page|拍几张关键页做备份:photo_pages;
+
+label:read_all;
+:她一页一页读过去，字迹由圆润到锋利，情绪从安静到撕裂。;
+setVar:clue=clue+2;
+setVar:trace=trace+1;
+setVar:empathy=empathy+1;
+jumpLabel:after_diary;
+
+label:close_book;
+:她把本子合上，灰尘又落回了原位。;
+setVar:avoid=avoid+1;
+; ——路由：若玩家一直回避/线索不足，这里大概率进 BE3“真正遗忘”——
+callScene:scene/endings/ending_router.txt;
+jumpLabel:after_diary;
+
+label:tear_page;
+:她拔下一页夹进口袋，撕裂的纤维发出恼人的声音。;
+setVar:aggr=aggr+1;
+jumpLabel:after_diary;
+
+label:photo_pages;
+:她用手机把日期、地点、人物都拍下，文件名写“阁楼_记录”。;
+setVar:clue=clue+1;
+setVar:trace=trace+1;
+jumpLabel:after_diary;
+
+label:after_diary;
+
+:接下来的几页，是她和小雪的日常。写着：
+
+“小雪：‘我不喜欢画画。’  
+初苓：‘可是你画得很好啊！’  
+小雪：‘我画得好，不代表我喜欢。你为什么不问问我呢？’”;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+初苓:……我一直……从来没问过你真正的感受。;
+
+bgm:none -enter=2000;
+playEffect:heartbeat.mp3;
+
+intro:尘封的回忆逐渐苏醒，|她看见了那些被自己忽略的真相。;
+
+; === 选择D：离开阁楼前（含迷惑） ===
+; call_roommate：共情 +1 / 现实锚 +1
+; call_parents：共情 +1 / 现实锚 +1
+; leave_diary：无影响（把本子放回原位，迷惑项）
+; pocket_diary：线索 +1（带走本子）
+choose:给小念打个电话:call_roommate|给父母留语音:call_parents|把本子放回原处:leave_diary|把本子带在身上:pocket_diary;
+
+label:call_roommate;
+:她把读到的内容结结实实讲给小念听，对面静静地“嗯”。;
+setVar:empathy=empathy+1;
+setVar:sanity=sanity+1;
+jumpLabel:to_lake;
+
+label:call_parents;
+:她在语音里说“我想起来一些事，回去再解释”，然后删掉了重录三遍的“对不起”。;
+setVar:empathy=empathy+1;
+setVar:sanity=sanity+1;
+jumpLabel:to_lake;
+
+label:leave_diary;
+:她把本子放回原处，拍了拍灰。;
+jumpLabel:to_lake;
+
+label:pocket_diary;
+:她把本子塞进外套内袋，贴着心口的位置。;
+setVar:clue=clue+1;
+jumpLabel:to_lake;
+
+label:to_lake;
+
+bgm:lake_twilight.mp3 -volume=70 -enter=3000;
+changeBg:lake_evening.jpg -next;
+unlockCg:lake_evening.jpg -name=黄昏湖边;
+
+:天色已晚，她带着画册与笔记，沿着熟悉的小径来到湖边。;
+
+miniAvatar:chuling_tearful.png;
+changeFigure:chuling_tearful.png -next;
+初苓:小雪……你真的还在这里吗……;
+
+:湖面被晚霞染成金红色，对岸，一个熟悉的身影静静站立。;
+
+changeFigure:girl_shadow.png -next;
+小雪:你终于来了……;
+
+; === 选择E：在湖边开口前（含迷惑） ===
+; call_soft：共情 +1 / 现实痕迹 +1
+; throw_album：攻击 +1（把画册扔进湖）
+; breathing：现实锚 +1
+; wish：无影响（迷惑项）
+choose:轻声叫她的名字:call_soft|把画册抛进湖里:throw_album|默数呼吸稳定自己:breathing|闭眼许一个愿望:wish;
+
+label:call_soft;
+初苓:……小雪。|我来了。
+setVar:empathy=empathy+1;
+setVar:trace=trace+1;
+jumpLabel:lake_meet;
+
+label:throw_album;
+:画册划出一个浅弧，落进水里，纸张迅速喝饱了晚霞。;
+setVar:aggr=aggr+1;
+jumpLabel:lake_meet;
+
+label:breathing;
+:她在胸前比划方形呼吸，四拍吸、四拍停、四拍呼、四拍停。;
+setVar:sanity=sanity+1;
+jumpLabel:lake_meet;
+
+label:wish;
+:她闭眼，在心里说了一句“别再错过”。;
+jumpLabel:lake_meet;
+
+label:lake_meet;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+初苓:（颤抖）我……我不记得所有的事了……但我知道……我伤害了你。;
+
+小雪:我不是来听你道歉的。我只想知道……你还愿意重新认识我吗？
+
+miniAvatar:chuling_tearful.png;
+changeFigure:chuling_tearful.png -next;
+初苓:（含泪点头）……我愿意。;
+
+changeFigure:none -next;
+intro:她们静静拥抱，仿佛时间停滞。|这一刻，梦境开始变得温柔。;
+
+; ——结局路由检查（此处可能因前文行为直接分歧，否则继续主线）——
+callScene:scene/endings/ending_router.txt;
+
+changeScene:chapter6.txt;

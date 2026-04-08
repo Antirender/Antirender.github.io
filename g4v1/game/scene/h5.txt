@@ -1,0 +1,12 @@
+playVideo:He.mp4;
+changeBg:6.png -next
+Me: Let me take you home;
+changeFigure:2 (2).png -next;
+Shungen: Yes;
+:At sunset;
+Me: Why don't I carry you on my back?;
+ Shungen: No, no, you're a girl;
+Me: No, no, no! I'll carry you, I'll carry you, I can definitely move you;
+Shungen: Hahahaha, thank you for being by my side;
+:The two of them walking side by side against the sunset, occasionally having a little fight, laughter accompanied by the beautiful afterglow, is a common youth and memory for both of them.;
+changeScene:End.txt;

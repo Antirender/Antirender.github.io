@@ -1,0 +1,173 @@
+callScene:scene/util/normalize_vars.txt;
+
+; ===== chapter3：走廊流言 → 涂鸦 → 女厕镜面 =====
+
+bgm:uneasy_ambience.mp3 -volume=60 -enter=3000;
+
+changeBg:school_hallway.jpg -next;
+unlockCg:school_hallway.jpg -name=教学楼走廊;
+
+:第二天清晨，校园的空气格外沉闷。阳光透过云层，显得黯淡无光。;
+
+miniAvatar:chuling_daze.png;
+changeFigure:chuling_daze.png -next;
+初苓:……为什么大家的眼神，好像比昨天还怪……;
+
+:她走过教学楼走廊，感受到来自每个角落的窃窃私语。;
+
+playEffect:whispers.mp3;
+
+同学C:（低语）你知道吗？就是她……
+同学D:那个“杀人未遂”的女生……听说在精神病院住过……
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+初苓:……我没做过那种事……我没有……
+
+; === 选择A：面对流言（混合型：有影响/无影响）===
+; keep_walking：逃避 +1
+; ask_direct：共情 +1（用“请你告诉我你听到的是什么”式的冷静提问）
+; record_audio：线索 +1 / 现实痕迹 +1（把流言证据化）
+; fix_hair：无影响（迷惑选项）
+choose:加快脚步离开:keep_walking|停下冷静问一句:ask_direct|打开录音记录下来:record_audio|整理刘海假装听不见:fix_hair;
+
+label:keep_walking;
+:她把肩带往上提了提，脚步不由自主地快起来。;
+setVar:avoid=(avoid+1);
+jumpLabel:a_done;
+
+label:ask_direct;
+初苓:你们在说谁？可以把你们听到的原话告诉我吗？
+:两个同学互相看了一眼，声音明显低了下去。;
+setVar:empathy=(empathy+1);
+setVar:sanity=(sanity+1);
+jumpLabel:a_done;
+
+label:record_audio;
+:她悄悄点开手机的录音。|“时间、地点、对象”都记在文件名里。;
+setVar:clue=(clue+1);
+setVar:trace=(trace+1);
+setVar:sanity=(sanity+1);
+jumpLabel:a_done;
+
+label:fix_hair;
+:她对着窗玻璃理了理碎发，假装什么也没听见。;
+jumpLabel:a_done;
+
+label:a_done;
+
+changeBg:school_wall.jpg -next;
+unlockCg:school_wall.jpg -name=涂鸦墙壁;
+
+:就在楼梯转角的墙壁上，她停住了脚步。;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+初苓:这……是谁写的？;
+
+:一行猩红的字，用油性笔划在墙上：  
+:【杀人犯】;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+初苓:（声音颤抖）为什么……为什么要这样……;
+
+:她不记得自己做过什么，却在每一个角落都被审判。;
+
+; === 选择B：面对涂鸦（混合型） ===
+; photo：线索 +1 / 现实痕迹 +1（照片证据）
+; wipe：受伤 +1（化学剂/利角擦伤），清醒 +1（直面现实）
+; walkaway：逃避 +1
+; write_back：攻击性 +1（反写“不是”/划线）
+choose:拍照存证:photo|试着擦一擦:wipe|转身离开:walkaway|在旁边写“不是”（反击）:write_back;
+
+label:photo;
+:她举起手机对准“杀人犯”，快门声在空荡的走廊里格外清晰。;
+setVar:clue=(clue+1);
+setVar:trace=(trace+1);
+setVar:sanity=(sanity+1);
+jumpLabel:b_done;
+
+label:wipe;
+:她找来纸巾用力擦拭，纸面被红色染开，指尖被墙面擦破。;
+setVar:injury=(injury+1);
+setVar:lucid=(lucid+1);
+jumpLabel:b_done;
+
+label:walkaway;
+:她呼吸一滞，还是别看了。;
+setVar:avoid=(avoid+1);
+jumpLabel:b_done;
+
+label:write_back;
+:她在下方写上“不是”，力度过猛，笔尖几乎要戳破纸。;
+setVar:aggr=(aggr+1);
+jumpLabel:b_done;
+
+label:b_done;
+
+; ——结局路由首次检查（早期很难命中，但允许极端值提早落坑）——
+callScene:scene/endings/ending_router.txt;
+
+bgm:none -enter=2000;
+changeBg:school_toilet.jpg -next;
+unlockCg:school_toilet.jpg -name=女生厕所;
+
+playEffect:heartbeat.mp3;
+bgm:distorted_dream.mp3 -volume=30 -enter=1500;
+unlockBgm:distorted_dream.mp3 -name=心跳回响;
+
+:她跑进厕所，用水拍打脸颊，却怎么也冷静不下来。;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+初苓:我是不是……真的做了什么？;
+初苓:为什么……我会对那个女孩的声音那么熟悉……;
+
+; === 选择C：镜前自处（关键影响） ===
+; wash：现实锚 +1
+; stare_smile：清醒 +1 / 现实锚 -1（向梦侧倾斜）
+; apologize：共情 +1（为未知之错先表达歉意）
+; hit_mirror：攻击 +1 / 受伤 +1
+choose:洗把脸，数呼吸:wash|盯着镜子学她微笑:stare_smile|对着镜子轻声说“对不起”:apologize|拍打镜框发泄:hit_mirror;
+
+label:wash;
+:冷水滑过皮肤，她数着“一、二、三”，心跳渐稳。;
+setVar:sanity=(sanity+1);
+jumpLabel:c_done;
+
+label:stare_smile;
+:她盯着镜中的自己，嘴角慢慢扬起，不知是挑衅还是求证。;
+setVar:lucid=(lucid+1);
+setVar:sanity=(sanity-1);
+jumpLabel:c_done;
+
+label:apologize;
+初苓:……如果真是我做错了什么，对不起。
+:镜面像水一样轻颤了一下。;
+setVar:empathy=(empathy+1);
+jumpLabel:c_done;
+
+label:hit_mirror;
+:她用指节敲击镜框，疼痛从骨头里震开。;
+setVar:aggr=(aggr+1);
+setVar:injury=(injury+1);
+jumpLabel:c_done;
+
+label:c_done;
+
+miniAvatar:chuling_pale.png;
+changeFigure:chuling_pale.png -next;
+:镜子中的自己苍白无血，目光涣散。她仿佛看见镜中的人影，露出奇异的笑容。;
+
+初苓:（惊慌后退）不……不对劲……镜子里的我在……笑？！
+
+; ——结局路由第二次检查（镜面事件后，可能命中 BE2/BE4 等）——
+callScene:scene/endings/ending_router.txt;
+
+changeBg:none -next;
+bgm:none -enter=1500;
+
+intro:现实，|正在被梦境一点点吞噬。|她的记忆，是否真的可靠？;
+
+changeScene:chapter4.txt;

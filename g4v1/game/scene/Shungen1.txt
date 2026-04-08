@@ -1,0 +1,5 @@
+changeBg:8.png
+:Suddenly a big, tall boy bumps Shungen, hurting his knee and elbow, and a look of pain comes over Shungen's face;
+P.E. teacher: I'll take him to the infirmary, the rest of the class is dismissed;
+:;
+choose:follow him:h2.txt|Stay where you are:b2.txt;

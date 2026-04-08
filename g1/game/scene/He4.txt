@@ -1,0 +1,7 @@
+playVideo:He.mp4;
+changeFigure:1 (2).png -next;
+changeBg:3.png -next
+Nolitusne: You don't see it as a competition but an agreement? You're quite a peculiar person.;
+You: This is my race with you and our pact, isn't it? That's why I'm going to try my best to finish it, so you'll feel happy too, right?;
+Nolitusne: Hahahaha you're right, so maybe I'll be convinced even if I lose to you later.;
+changeScene:Nolitusne3.txt;

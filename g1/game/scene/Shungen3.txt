@@ -1,0 +1,3 @@
+changeBg:4.png -next
+Back in the classroom, Nolitusne's folded paper aeroplane flies above your head at once;
+choose:Fly back:b4.txt|Ignore:h4.txt;

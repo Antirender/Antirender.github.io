@@ -1,0 +1,10 @@
+playVideo:Be.mp4;
+changeBg:8.png -next
+:When Shungen came down at the end of the first half and saw you, my heart warmed and I hurriedly handed over water;
+Me: Good work! That was a great shot!;
+:He rubs my head without saying a word and pushes a strand of hair behind his ear;
+changeFigure:2 (2).png -next;
+Shungen : The second half is about to start, I'm going to go first, will you stay here with me?;
+changeFigure: -next;
+Me: No problem! Go for it! Victory will be yours!;
+changeScene:Shungen1.txt;

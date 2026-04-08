@@ -1,0 +1,13 @@
+changeBg:3.png -next
+changeFigure:1 (2).png -next;
+Nolitusne:Whatever you say! Prepare to be challenged by me!;
+changeFigure:2 (2).png -next;
+:At this point Shungen pulls your shirt, signaling that your teacher will be here soon, and you walk into the classroom without talking to Nolitusne any further.;
+changeFigure:none -next;
+changeBg:4.png -next
+The opening ceremony went well and you had a great time in your new high school,;
+learning a lot of new things every day, except that sometimes Nolitusne would challenge you in various ways and enjoy it, ;
+but sometimes you still remembered that.;
+:;
+bgm:和田俊輔 (わだしゅんすけ)-ファルツォーネの優雅なる風景.mp3;
+choose:What is Shungen doing these days? Go see him!:Shungen.txt|Go to Nolitusne and ask him why he keeps trying to compete with me.:Nolitusne.txt;

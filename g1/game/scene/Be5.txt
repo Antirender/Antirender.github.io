@@ -1,0 +1,3 @@
+playVideo:Be.mp4;
+You don't see Nolitusne for a few days afterwards, only to find out that he transferred to;
+changeScene:End.txt;

@@ -1,0 +1,32 @@
+; ===== Ending Router（可在任意章节 callScene 进入）=====
+; 只负责“判断并跳转”。若均不满足条件，什么也不做，返回原场景。
+
+; 可选：调试时看一眼数值
+showVars -when=(dev==1);
+
+; --------- BAD 结局优先（不可逆行为 → 先拦） ---------
+
+; BE5 杀死小雪（高攻击 + 低共情）
+changeScene:scene/endings/ending_bad_kill_xue.txt -when=(aggr>=3 && empathy<=0);
+
+; BE6 自杀（高罪疚 + 低共情）
+changeScene:scene/endings/ending_bad_self_river.txt -when=(guilt>=4 && empathy<=1);
+
+; BE4 被杀/困梦（受伤过高 或 连续失败）
+changeScene:scene/endings/ending_bad_trapped_or_killed.txt -when=(injury>=3 || avoid>=5);
+
+; BE1 被害妄想：她就是小雪（0痕迹 + 高逃避 + 清醒梦 + 现实锚崩）
+changeScene:scene/endings/ending_bad_paranoia_as_xue.txt -when=(trace==0 && avoid>=4 && lucid>=2 && sanity<=-1);
+
+; BE2 梦现实混淆（现实锚很低 或 过度依赖梦且无证据）
+changeScene:scene/endings/ending_bad_blur_reality.txt -when=(sanity<=-3 || (lucid>=4 && clue<=1));
+
+; BE3 真正遗忘（弃线：少线索 + 高逃避 + 低共情）
+changeScene:scene/endings/ending_bad_true_forget.txt -when=(clue<=1 && avoid>=3 && empathy<=1);
+
+; --------- GOOD 结局通行证（尾声 ch7 → ch8） ---------
+; 好结局门槛：证据/痕迹/共情/现实锚均达标，且攻击与伤害控制在低位
+changeScene:chapter7.txt -when=(clue>=5 && trace>=3 && empathy>=4 && sanity>=2 && aggr<=1 && injury<=2 && guilt<=3);
+
+; --------- 若都没命中：不做任何事，返回原场景继续跑 ---------
+; （不要写 end; 也不要 changeScene；回到调用处的下一行）

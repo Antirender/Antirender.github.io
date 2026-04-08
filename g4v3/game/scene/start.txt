@@ -1,0 +1,154 @@
+callScene:scene/util/normalize_vars.txt;
+// ===== GLOBAL VARS 初始化（新开局数值清零）=====
+setVar:clue=0;      // 线索量
+setVar:trace=0;     // 现实痕迹（拍照/留字条/摄像头路径）
+setVar:empathy=0;   // 倾听/共情
+setVar:lucid=0;     // 清醒梦依赖（高了会被判“沉迷梦境”）
+setVar:sanity=0;    // 现实锚（理性/冷静）
+setVar:avoid=0;     // 逃避
+setVar:aggr=0;      // 攻击性
+setVar:injury=0;    // 受伤程度
+setVar:guilt=0;     // 罪疚
+
+// ——调试开关（0=关，1=开）。需要看变量就把它设成 1。
+setVar:dev=1;
+
+; ====== 标题与开场 ======
+intro:梦魇逃亡 Nightmare Escape -fontSize=medium -backgroundColor=rgba(0, 0, 0, 1) -fontColor=rgba(255, 255, 255, 1) -animation=fadeIn -delayTime=1500;
+
+bgm:dreamscape.mp3 -volume=70 -enter=3000;
+unlockBgm:dreamscape.mp3 -name=梦境低语;
+
+changeBg:waterpark.jpg -next;
+unlockCg:waterpark.jpg -name=室内水乐园;
+
+:巨大的室内水上乐园，水声与笑声此起彼伏。灯光映在水面上，流光溢彩。;
+
+miniAvatar:chuling_face1.png;
+changeFigure:chuling_face1.png -next;
+初苓:（微笑）好久没和家人一起来玩了……真开心……;
+
+:她顺着巨大的管道水滑梯滑下，水流轰鸣，速度越来越快。;
+
+changeBg:waterslide.jpg -next;
+:管道中光线昏暗，回声震荡。初苓忍不住尖叫。;
+
+changeBg:waterpool_empty.jpg -next;
+:滑道出口，她跌入水池，却惊讶地发现周围空无一人。刚才的欢笑声完全消失。;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+初苓:咦？爸爸？妈妈？……大家去哪了？;
+
+changeFigure:shadow.png -right -next;
+:一个模糊的身影浮现在水面远方，缓缓靠近。;
+
+???:你的记忆虽然抹去了我，|但我的死已经刻进了你的骨头里……;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+初苓:（心口猛地一紧，声音颤抖）谁……是谁在说话？！;
+
+changeFigure:none -right -next;
+changeBg:none -next;
+bgm:none -enter=3000;
+
+:画面一片黑暗。;
+
+医生:她现在有应激反应，不要和她提起以前的事情。;
+母亲:（压抑着哭腔）……我明白。;
+
+intro:梦境崩塌|意识消失在黑暗之中;
+
+bgm:alarm.mp3 -volume=50 -enter=1000;
+changeBg:bedroom_morning.jpg -next;
+unlockCg:bedroom_morning.jpg -name=房间清晨;
+
+miniAvatar:chuling_sleepy.png;
+changeFigure:chuling_sleepy.png -next;
+初苓:……唔……;
+
+:刺眼的晨光从窗帘缝隙透进来，初苓惊醒，心跳如擂鼓。;
+
+playEffect:heartbeat.mp3;
+setVar:injury=injury+1;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+初苓:又是……那个梦。为什么总是这样……;
+
+:她强迫自己冷静，不去想梦里的声音。;
+
+changeBg:school_gate.jpg -next;
+unlockCg:school_gate.jpg -name=校门;
+
+:为了不让父母担心，初苓照常回到学校。校门口的阳光刺眼，却透着异样。;
+
+changeBg:school_classroom.jpg -next;
+unlockCg:school_classroom.jpg -name=教室;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+初苓:……大家好像，都在看我。;
+
+:教室里窃窃私语，冷冷的低语声钻进耳朵。;
+
+同学A:（低声）就是她吧……那个谁……;
+同学B:听说她之前……害了人？;
+
+miniAvatar:chuling_sweat.png;
+changeFigure:chuling_sweat.png -next;
+初苓:（皱眉）……你们在说什么？！;
+
+:他们没有回答，只是退后，目光像刀锋。议论越来越多。;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+初苓:（心声）害了人……？我……为什么什么都不记得……;
+
+:窒息的压力下，初苓猛地冲出教室。;
+
+changeBg:school_corridor.jpg -next;
+:她推开门，却发现外面还是教室。走廊尽头，一间又一间相同的教室，似乎无穷无尽。;
+
+changeBg:school_classroom_dark.jpg -next;
+:她闯进另一间教室，耳边的指责更猛烈。;
+
+同学C:（冷笑）你以为可以假装忘记吗？凶手！;
+同学D:（大声）她害死了人！还敢来上学！;
+
+:课桌上出现歪曲的字迹——“凶手”“杀人犯”。纸团从四面砸来，笑声、骂声交织。;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+初苓:（抱头）不要……不要再说了！！;
+
+:她跌倒在地，所有的教室合并成一片黑暗。无数双手伸向她。;
+
+changeBg:none -next;
+bgm:none -enter=3000;
+
+intro:无尽的指责|将她淹没。|但在最深处，她依旧听见心脏的跳动。;
+
+bgm:heartbeat.mp3 -volume=60 -enter=1000;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+初苓:（猛然惊醒，大口喘息）……不……这不是真的……;
+
+:她望着天花板，满头冷汗，手臂上赫然一道鲜红的抓痕。;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+初苓:……梦里的东西……真的跟到现实里了？;
+
+intro:她回忆的碎片，|正在某个地方等待重新拼凑。|但前方……究竟是什么？;
+
+; ====== 跳转到第一章 ======
+changeScene:chapter1.txt;
+
+; ====== （提示）结局路由将在后续章节反复调用 ======
+; 说明：结局路由为可复用的条件跳转块，建议单独放在 scene/endings/ending_router.txt
+; 后续在 chapter5/6/7 等关键节点用：
+;   callScene:scene/endings/ending_router.txt;
+; 或者把同样的条件块直接内联到章节末尾（我会在 ch6 先落地一次）。

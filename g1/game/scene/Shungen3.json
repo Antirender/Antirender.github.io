@@ -1,0 +1,1 @@
+[{"type":"bg","bg":"4.png","noBg":false,"next":true},{"type":"dialog","speaker":"","content":"Back in the classroom, Nolitusne's folded paper aeroplane flies above your head at once","vocal":"","ignoreSpeaker":false},{"type":"choose","chooseItem":[{"text":"Fly back","scene":"b4.txt"},{"text":"Ignore","scene":"h4.txt"}]}]

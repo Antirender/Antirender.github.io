@@ -1,0 +1,294 @@
+intro:“ME”:;
+intro:(cough);
+intro:......;
+intro:What's happening?;
+intro:The car .... Why is it......;
+intro:(cough);
+intro:Ray, where are you, are you okay?;
+setBgAni:bg_down 1s;
+changeBg:AE26DCF9A7CB636856507EF9EE9CF0CF.png -next
+“ME”: Ray？！
+;
+Are you okay? I can't move ...... you wait, I'll call for help!;
+Ray, wake up!;
+Wake up ......
+;
+changeBg:none -next
+:;
+changeBg:F724FF258FE03DDF3EEB4FA15A807662.jpg -next
+？？？:Wake up！;
+“ME”:（……Where am I?）;
+:A sweet female voice came through.
+;
+？？？:Why are you asleep? Are you too tired?
+;
+:You want to get up to see who is talking.
+;
+？？？:Haha, it's okay, if you're tired just lie down on the grass for a while, we have plenty of time anyway.;
+How about this, if there' s nothing to do, let me sing a song for you. When I first came here I thought, such a nice view, such a comfortable wind, it's too sad not to do something about it.;
+Hey, it's been a long time since I sang to you, and I'm still a little nervous about it. I hope you will feeling better.;
+:The girl sits down next to you and plucks the strings with her hands. The beautiful sound of singing comes to you.
+;
+bgm:2022-0807-1.mp3;
+changeBg:G}A6~DU{F444[4}`4`$H99Y.png -next
+:The wind slowly blows past you, carrying the girl's voice far away.;
+:The singing is not supposed to cure the headache, but you feel better anyway. It's just that the melody that the girl is singing sounds very familiar.;
+:the melody that the girl is singing sounds very familiar.
+;
+:It's as if she's been singing it to you a lot since the old days.
+;
+bgm:none;
+？？？:That's it. Whew.;
+it's been a while since I've sung, so I hope the level doesn't drop. Hey, how do you feel? 
+;
+Ah, I'm sorry, I was so into it I almost forgot you weren't feeling well, how are you feeling now? Do you want to rest a bit more and get some sunshine?
+;
+changeBg:床边的灯.png -next
+The girl in front of you has an anxious face, and she used to ask you a series of questions in such a hurry that you suddenly remember that she is called ray and is your friend.
+;
+She is your bestie, she likes to sing, she used to walk like this and suddenly sing, causing passers-by to stop and watch;
+;
+She used to take care of you when you were not feeling well, but not quiet at all, always nagging and fumbling.
+;
+But this is her, your essential friend. The trip you have been planning for a long time finally came to fruition after graduation. 
+;
+And now, you are in the middle of the journey. 
+;
+With the comfortable wind blowing, you slowly remember it all.;
+changeBg:ray在蓝天下.png -next
+Ray: hello? can you hear me? Busted, did I sing you silly, it's not that hard to hear, right?
+;
+"Me": No, Ray, you're still so talkative. But I do feel a little better, thank you.;
+Ray: I can't believe you said thank you! Gosh, that must be the first time you've said that this year. I'm going to put that down in my notebook!
+;
+I heard that blowing more wind makes people smarter ...... Could that be true?
+;
+"Me": I don't know how to comment on it anymore, if it's really such a good thing, I'll definitely take you for more blowing.
+;
+I say thanks for not rocking my head when I have a headache.
+;
+Ray:You bastard, you still have the spirit to quarrel, it seems that the head must be fine.
+Since the rest is done, then do not waste time, let's continue to travel, according to the plan, the next place is to see the wheat field, I am looking forward to a long time.
+;
+:You watch as Ray solemnly raises her hand and snaps her fingers after a long wait. You just want to spit on her not to do something meaningless, the surrounding landscape suddenly began to change.
+;
+:The dark green grass flew up into the sky into a vast canopy of trees, dark clouds replaced the clear sky, and many mountains appeared out of nowhere in the distance like land masses moving, and golden wheat rose up and converged around you into a large wheat field.
+;
+changeBg:麦地.jpg -next
+:You were stunned by the surrounding scenery, Ray yet very ordinary look at all this. She looked at your shocked expression and said with a smile, "My magic is powerful, right?"
+;
+"Me": ...... What's going on here?
+;
+:Ray seemed to think for a moment how to explain, but soon showed a "forget it I give up" expression.
+;
+Ray: Now you may seem like this is impossible, but trust me, it's not a bad thing.
+;
+I'll tell you more about this when our trip is over.
+;
+:A kitten is chasing the sun spot, the mischievous and cute look makes you both laugh out loud.
+;
+Ray:Did you ever try to step on a spot of light before as a child? You know, those patches on the ground created when the sunlight passes through the leaves. 
+;
+I once thought that it would disappear if I stepped on it, but it would always jump onto my foot instead. I tried and tried and tried, but I never succeeded... 
+;
+Quite the sore loser I was, then — sitting on a rock, sighing to myself and thinking, "Ah, so there are things in this world that can't be stepped on..."
+;
+:Ray finished taking your hand and walked through the wheat field.
+;
+:You reached out and touched the wheat around you, the grains were clear and some of the leaves had flying insects on them. The wheat is all real.
+;
+:The clouds in the sky are slowly gathering, as if it is going to rain soon, and Ray is running ahead, faster and faster, and you are going all the way down, in the opposite direction from where the wind is blowing.
+;
+Ray：The wind's so strong—! It's blowing my voice back at me—! Hahaha...
+;
+:The rain is slowly coming down. Even if you run faster, but also cannot be faster than the wind and rain rushing behind you.
+;
+:Before you be like a drowned rat, Ray snapped her fingers, the landscape around you changed again, the rain stagnated in the air, the wheat just blown down by the wind stood up again, turning into a shorter and greener grass.
+;
+changeBg:教堂.jpg -next
+:The appearance of a church emerged in the distance.
+;
+:Although it was the second time, and there was no physical discomfort, but this sudden way still caught you off guard. 
+;
+“Me”：It's really a convenient way to travel......
+;
+:Maybe you can get used to it after a few more experiences ......
+;
+:In the distance a small child was holding a man, perhaps his father, by the hand and talking happily about something. But the father was concentrating on prayer and turned a deaf ear to his words.
+;
+Ray:Look at that daddy, totally ignoring his kids. Speaking of that, I thought of my daddy, he couldn't hear very well. 
+;
+When I was young, he would always smile no matter what I said to him, and so I thought that everything I said was correct. 
+;
+So I kept talking, and he would keep smiling. 
+;
+Later, I found out that he was smiling because he couldn't hear clearly, but... as long as he's truly happy, I'll keep talking to him.
+;
+:Looking at ray's expression, she doesn't seem to be upset by these things.
+;
+:You walked into the church together and felt the solemn atmosphere around you. Most of the people who come here are hoping for a better future, so they are quiet and devout.
+;
+changeBg:ray的招手示意.png -next
+:The wooden pews in the back of the church are empty, and Ray finds a place to sit and looks at you with a smile and gestures for you to sit next to her.
+;
+Ray: This lectern is really like the platform for fireworks at my house. I wonder if we can have fireworks in the church, Sparkling, crackling, little fireworks~
+;
+"Me": That's not a good idea.
+;
+:The priest with the books comes on stage and tells the story of the angels, Ray looks at the painted glass above the priest's head, from which many beams of light shine down and cast on the floor, decorating the room with an ancient look.
+;
+:Ray whispers to you as she watches：
+;
+Ray:My family doesn't like the church very much because it's where people come when they die. 
+;
+Every time it was the weekend, there were people singing here and my sister would say they were godly. 
+;
+Although I always agree with her, but in fact every time I see the yellow light in the church, I think it is particularly mysterious and beautiful. 
+;
+Haha, in fact I have long wanted to come in and see.
+;
+:Although you know that ray is not religious, you still sat down and listened quietly for a long time until the church bells rang and people left one after another in a chime. It was getting late.
+;
+Ray: So this is what church feels like! Every moment is giving birth to moving stories, people who met and knew each other under the watchful eye of the gods slowly growing up, maturing and eventually growing old. 
+;
+But when they come to this place, it feels like it has always been like this, and they are as they were at the beginning.
+;
+"Me": The church also has a different meaning for everyone, right?
+;
+:You look to ray and wait for her to "do her magic".
+;
+:Ray snaps her fingers. You trust yourself not to be surprised this time, and then watch yourself get farther and farther from the ground. 
+;
+changeBg:俯瞰地面.jpg -next
+“Me”：？！？！;
+:You cover your eyes in fear. You don't know when you lifted off, but the weightlessness doesn't hit you, and you slowly look around, this time in a hot air balloon.
+;
+Ray: Look at your emoji, you must not have thought there was such an exciting project.
+;
+"Me": If you knew, why didn't you warn me? I thought I was going to fall to my death, I was so scared.
+;
+Ray: Don't worry, I won't pull you together to kill yourself at such a happy time. Look around it is very safe. 
+;
+This is the first time I've been in a hot air balloon, and I don't feel like I'm flying that high. But the scenery is very beautiful ~
+;
+:You also poke your head out to see the view below. The hot air balloon is flying slowly and every now and then you can feel the hot air currents on your cheeks.;
+: The sun is almost setting, and although you've only just woken up in the morning, it feels like an incredibly fulfilling day.
+;
+Ray: Great, a chance to sit down, and I wanted to say thank you for helping me fulfill my wish to travel.;
+:You're not used to her solemn way of saying thank you, so you smile along with her. 
+;
+"Me": There are many more opportunities like this. If you want to go somewhere else in the future, just call me. As long as I have time, I'll definitely go.
+;
+Ray: Haha, I knew you were a nice guy. If it were my mom, I wouldn't guarantee she'd go anywhere with me.
+;
+"Me": Of course I'm a nice guy.
+;
+Ray: Just sit quietly for a while longer.;
+:……;
+:No one was talking. But the atmosphere wasn't awkward, you were all feeling the fresh experience of the hot air balloon ride and the short-lived sunset.
+;
+Ray: I have one more place want to go. Can you please accompany me?
+;
+:Having been to so many places together, why not. 
+;
+"Me": let's go.
+;
+changeBg:none
+:Ray snaps her fingers.;
+:The sky in the hot air balloon seemed to shatter into a torn piece of paper passing you by. The sky is dark, the environment is humid, and the building in front of you looks as if it is a hospital.
+;
+:You follow Ray, questioning where she wants to take you.
+;
+changeBg:医院.png -next
+Ray: My friend has been in the hospital for a long time, but she hasn't gotten better. I'm so worried that she won't wake up, sometimes I even want to knock her head to make her open her eyes in a hurry, but I can't do it.;
+I can only watch her here, and her parents crying, I can not do anything.
+;
+:Who is she talking about? Why only watch her from here but not go inside the hospital?
+;
+:You are pondering these questions and look over to the window.
+;
+:The person lying on the bed looks like she has lost her life and her eyes are tightly closed. When you look at the person's face, you are taken aback.;
+:The person lying on the bed is none other than you.
+;
+Ray: It was supposed to be a happy event. The trip that was planned for a long time had finally started. But on the way there we got into a car accident.
+;
+"Me": ......
+;
+Ray: I was so scared, I saw her get hit by the car door and her body rolled a long way away. I was going to wake her up, but I couldn't move either. Maybe I was pinned down by something, my head felt dizzy, and then I lost consciousness.
+;
+changeBg:none
+:......
+;
+:That's right.
+;
+:You were involved in a car accident on your way to a trip that developed into the worst possible situation.
+;
+:You slowly recalled it.
+;
+changeBg:事故1.png -next
+:You were awake only briefly for a short while, knowing that you had met with misfortune. But soon you saw Ray and she was in worse condition; her head was crushed and she was bleeding profusely.
+;
+Ray: But thanks to the ambulance you called, most of the people at the site were saved, and you were taken to the hospital for treatment. I have to say, you are very reliable in critical moments.
+;
+changeBg:事故2.png -next
+:You know what Ray's words mean.
+;
+:The first thing you thought of after seeing what happened to Ray was to call for help, and fortunately the phone was still in your pocket and undamaged. You called for help, but have no recollection of what happened after that.
+;
+Ray: You are also considered a lucky dog, injured but not serious, in addition to experience a disabled life should not affect it.
+;
+But ...... I was sentenced to die on the spot, is completely hopeless.
+;
+Your bastard is also, has not been able to wake up, has not opened your eyes.
+;
+I thought it was because I didn't go on the trip so you were angry with me, and that's why I did a lot of fantasy places to go with you. Luckily you didn't seem to have that intention at all.
+;
+However, I was the one who initially proposed the trip, so it should be my fault too. ;
+Thank you for not being angry with me.
+;
+changeBg:none
+:The information comes so fast that you don't know how to react for a while. It was an accident, which is certainly not Ray's fault. But you now understand the "magic", the scene you wish to see is what happened. Maybe it was just you, the real you in the hospital bed fantasy.
+;
+:But Ray...
+She's dead? Never to be seen again?
+;
+Ray: Then it's about time to wake up, my dear friend.;
+changeBg:ray仰视.png -next
+Ray: I heard the doctor say that if you don't wake up, you will be judged hopeless. You must cherish the life that was so carefully saved, so wake up quickly!
+;
+And your loved ones, every day at your bedside visit, weeping. You don't want to let them down, go open your eyes and surprise them.
+;
+And me too ...... although maybe we can't go somewhere else together, please live well for me.
+;
+changeBg:门和光线.jpg -next
+:Like a door opening, you see the sight of the hospital room and the blinding light on the other side of the door. 
+;
+:Maybe it really is time to wake up, and you feel the sounds of the outside world talking more and more clearly, your mother's cries, the doctor's comforting voice, the sound of cicadas, your own heartbeat.
+;
+:Lub-dub, lub-dub, lub-dub.
+;
+:Is this a fulfilling day? Yes. But Ray didn't come with you, and you know that the girl just now is not actually Ray, the real Ray may have ...... 
+;
+:"Thank you for traveling with me."
+;
+:Ray's voice said from behind.;
+changeBg:none
+:……;
+:……;
+:……;
+changeBg:天花板.png -next
+:Ceiling.
+;
+:The lights in the ward.
+;
+:People's gasps of surprise.
+;
+:Mom rushed to her feet and held your hand as the doctor said it was a miracle. The doctor's brown eyes, as if they had just been seen somewhere.
+;
+:You look at these things and for a moment you can't tell which are real and which are dreams. It seems like you have really just traveled to a very far country, with your best friend, to golden wheat fields, beautiful churches and warm hot air balloons. 
+;
+changeBg:‘'我'’.png -next
+“Me”:I will live a good life.
+;
+:I suddenly said this to myself, and then couldn't help the tears flowing down my face.;
+choose:play again:start.txt|play again:start.txt|play again:start.txt;

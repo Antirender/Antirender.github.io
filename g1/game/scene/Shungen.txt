@@ -1,0 +1,8 @@
+changeBg:8.png -next
+:The breeze sways the summer leaves, the blazing sun bakes the earth, the gym has just started the basketball game and it's already as hot as the weather outside;
+Me: Go Shungen ！！！！;
+:Shungen glances over at me when he hears my voice and gets right back into the game;
+:Towards the end of the first half;
+Girl A: Baby, I'm not feeling well, can you go to the toilet with me?;
+:;
+choose:Go:h1.txt|No!:b1.txt;

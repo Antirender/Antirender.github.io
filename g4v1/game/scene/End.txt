@@ -1,0 +1,6 @@
+:;
+bgm:none;
+changeBg:none -next
+changeFigure:none -next;
+intro:『END』;
+choose:Play again:start.txt|Play again:start.txt;

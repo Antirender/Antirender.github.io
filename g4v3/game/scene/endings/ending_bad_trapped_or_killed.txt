@@ -1,0 +1,28 @@
+; ===== BE4：被杀 / 困在梦里（两段式）=====
+; 典型来源：injury>=3 或 多次追杀失败
+; 仅演出；不改变量
+
+bgm:distorted_dream.mp3 -volume=30 -enter=1500;
+
+; ——段一：困梦回廊
+changeBg:school_corridor_dark.jpg -next;
+:走廊像被复制粘贴，一扇门后还是另一扇门。脚步声从四面八方合拢。;
+
+playEffect:heartbeat.mp3;
+:她试着奔跑，却像踩在湿纸上。空气稠得像浆。;
+
+setAnimation:shake -target=bg-main;
+:有人从她身后经过——没有影子。|她回头，自己也没有影子。;
+
+; ——段二：坠落/终止
+playEffect:cut_sharp.mp3;
+:一阵冰冷贴着肋下划过。疼痛来得很慢，像从梦的另一端漂来。;
+
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:她在尖叫里醒来，|也在尖叫里睡去。|梦境不再需要出口。;
+
+:【提示】你受伤过多，或在关键时刻没有用“清醒”去改变结果。|现实里也许还有人愿意作证。;
+
+end;

@@ -1,0 +1,14 @@
+changeBg:7.png -next
+:The PE teacher takes Shungen to the infirmary and goes back to the gym. The teacher in the infirmary has to go out after giving Shungen his medicine.;
+changeFigure:2 (2).png -next;
+Me: Is something wrong? Does it still hurt? It looks so bad.;
+Shungen: Don't worry so much, I'll be fine.;
+changeFigure:2 (1).png -next;
+:I look at him worriedly, but he is as gentle as ever with a smile on his face;
+Shungen: Don't worry, I'll stand up and show you if you don't believe me;
+Me: No, no, no! Sit down and have some water, your head is sweaty.;
+:I hand him a bottle of water from the water fountain;
+:Nolitusne's voice comes from the corridor;
+:;
+changeFigure:none -next;
+choose:go out and see what's going on:b3.txt| ignore it:h3.txt;

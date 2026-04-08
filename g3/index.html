@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fast Breeder Reactor Simulator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .pulse {
+      animation: pulse 0.5s ease-out;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .task-alert {
+      animation: taskAlert 1s ease-in-out infinite alternate;
+    }
+    @keyframes taskAlert {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans p-6">
+  <h1 class="text-3xl font-bold mb-6 text-center">Fast Breeder Reactor Simulator</h1>
+  <p class="text-sm text-center mb-6">Manage a fast breeder reactor by adjusting parameters and responding to random tasks. Keep the system stable to avoid a catastrophic meltdown. The output chart updates continuously, even if you do nothing.</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-gray-800 p-4 rounded-2xl shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Control Panel</h2>
+      <div class="mb-4">
+        <label class="block text-sm mb-1" for="breedingRate">Breeding Rate</label>
+        <input id="breedingRate" type="range" min="0" max="10" step="0.1" value="5" class="w-full">
+        <p class="text-sm mt-1">Current Breeding Rate: <span id="breedingRateValue">5.0</span> Pu/neutron</p>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm mb-1" for="coolant">Coolant Level</label>
+        <input id="coolant" type="range" min="0" max="100" step="1" value="100" class="w-full">
+        <p class="text-sm mt-1">Current Coolant Level: <span id="coolantValue">100</span>%</p>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm mb-1" for="newFuel">New Fuel Input</label>
+        <input id="newFuel" type="range" min="0" max="200" step="1" value="100" class="w-full">
+        <p class="text-sm mt-1">New Fuel Amount: <span id="newFuelValue">100</span> units</p>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm mb-1" for="timeScale">Time Scale</label>
+        <input id="timeScale" type="range" min="0.5" max="5" step="0.1" value="3" class="w-full">
+        <p class="text-sm mt-1">Current Time Scale: <span id="timeScaleValue">3.0</span>x</p>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm mb-1" for="gameMode">Fast Breeder Reactor Mode</label>
+        <select id="gameMode" class="w-full p-2 bg-gray-700 rounded">
+          <option value="stable">Stable</option>
+          <option value="efficient">Energy Saving</option>
+          <option value="overdrive">Overdrive</option>
+        </select>
+      </div>
+      <button id="reprocessBtn" class="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded mt-4">Online Reprocessing Module</button>
+      <p class="text-sm mt-2" id="reprocessStatus">Pu Generated: 0 units, Fission Products Cleaned: 0 units</p>
+      <button id="resetBtn" class="w-full bg-red-600 hover:bg-red-700 p-2 rounded mt-4">Reset Simulation</button>
+      <button id="shutdownBtn" class="w-full bg-yellow-600 hover:bg-yellow-700 p-2 rounded mt-4">Emergency Shutdown</button>
+      <div class="mt-4 bg-gray-700 p-3 rounded" id="taskContainer">
+        <p class="text-sm font-semibold">Random Task:</p>
+        <div id="taskContent" class="text-xs"></div>
+        <button id="taskBtn" class="mt-2 bg-green-600 hover:bg-green-700 p-1 rounded text-xs">Complete Task</button>
+      </div>
+    </div>
+    <div class="bg-gray-800 p-4 rounded-2xl shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Output Chart</h2>
+      <canvas id="outputChart" class="bg-gray-900 rounded"></canvas>
+    </div>
+  </div>
+  <div class="bg-gray-800 p-4 rounded-2xl shadow-md mt-6">
+    <h2 class="text-xl font-semibold mb-4">Reactor Status</h2>
+    <ul class="text-sm list-disc ml-5 space-y-1">
+      <li>Fission Power Output: <span id="fissionPower">500</span> MWth</li>
+      <li>Current Breeding Rate: <span id="currentBreedingRate">5.0</span> Pu/neutron</li>
+      <li>Reactor Mode: <span id="currentMode">Stable</span></li>
+      <li>Simulation Time: <span id="simulationTimeDisplay">0</span> s</li>
+    </ul>
+  </div>
+  <div class="bg-gray-800 p-4 rounded-2xl shadow-md mt-6">
+    <h2 class="text-xl font-semibold mb-4">Simulation Log</h2>
+    <div id="simLog" class="bg-gray-700 p-3 rounded h-48 overflow-y-auto text-xs"></div>
+  </div>
+  <footer class="text-center text-gray-500 text-sm mt-10">
+    Anti Render Nuclear Alchemy™ · Fast Breeder Reactor Simulator
+  </footer>
+  <script>
+    let fissionPower = 500
+    let breedingRate = 5.0
+    let coolant = 100
+    let newFuel = 100
+    let puGenerated = 0
+    let fissionProductsCleaned = 0
+    let simulationTime = 0
+    let timeScale = 3.0
+    let running = true
+    let gameMode = "stable"
+    const ctx = document.getElementById('outputChart').getContext('2d')
+    const chartData = {
+      labels: [],
+      datasets: [
+        { label: 'Fission Power (MWth)', data: [], borderColor: 'rgba(255,205,86,1)', backgroundColor: 'rgba(255,205,86,0.2)', fill: true, tension: 0.4 },
+        { label: 'Breeding Rate (Pu/neutron)', data: [], borderColor: 'rgba(75,192,192,1)', backgroundColor: 'rgba(75,192,192,0.2)', fill: true, tension: 0.4 }
+      ]
+    }
+    const outputChart = new Chart(ctx, {
+      type: 'line',
+      data: chartData,
+      options: {
+        responsive: true,
+        animation: { duration: 0 },
+        scales: {
+          x: { title: { display: true, text: 'Time (s)' } },
+          y: { title: { display: true, text: 'Value' } }
+        }
+      }
+    })
+    const breedingRateSlider = document.getElementById('breedingRate')
+    const coolantSlider = document.getElementById('coolant')
+    const newFuelSlider = document.getElementById('newFuel')
+    const timeScaleSlider = document.getElementById('timeScale')
+    const gameModeSelect = document.getElementById('gameMode')
+    const breedingRateValueDisplay = document.getElementById('breedingRateValue')
+    const coolantValueDisplay = document.getElementById('coolantValue')
+    const newFuelValueDisplay = document.getElementById('newFuelValue')
+    const timeScaleValueDisplay = document.getElementById('timeScaleValue')
+    const currentModeDisplay = document.getElementById('currentMode')
+    const fissionPowerDisplay = document.getElementById('fissionPower')
+    const currentBreedingRateDisplay = document.getElementById('currentBreedingRate')
+    const simulationTimeDisplay = document.getElementById('simulationTimeDisplay')
+    const reprocessBtn = document.getElementById('reprocessBtn')
+    const reprocessStatusDisplay = document.getElementById('reprocessStatus')
+    const resetBtn = document.getElementById('resetBtn')
+    const shutdownBtn = document.getElementById('shutdownBtn')
+    const simLog = document.getElementById('simLog')
+    const taskContainer = document.getElementById('taskContainer')
+    const taskContent = document.getElementById('taskContent')
+    const taskBtn = document.getElementById('taskBtn')
+    let activeTask = null
+    const tasks = [
+      { name: "Inspect Fuel Rods", description: "A routine inspection is required to prevent anomalies.", penalty: "Reactor instability" },
+      { name: "Adjust Control Rods", description: "Control rods must be tuned to maintain power output.", penalty: "Unstable breeding rate" },
+      { name: "Check Coolant Pump", description: "Coolant pump maintenance is due.", penalty: "Coolant drop" },
+      { name: "Vent Steam Pressure", description: "High pressure detected, vent steam to stabilize reactor.", penalty: "Heat buildup" },
+      { name: "Refine Fuel Mixture", description: "Fuel composition drifting, refine mixture now.", penalty: "Lower power output" }
+    ]
+    breedingRateSlider.addEventListener('input', () => {
+      breedingRate = parseFloat(breedingRateSlider.value)
+      breedingRateValueDisplay.textContent = breedingRate.toFixed(1)
+    })
+    coolantSlider.addEventListener('input', () => {
+      coolant = parseInt(coolantSlider.value)
+      coolantValueDisplay.textContent = coolant
+    })
+    newFuelSlider.addEventListener('input', () => {
+      newFuel = parseInt(newFuelSlider.value)
+      newFuelValueDisplay.textContent = newFuel
+    })
+    timeScaleSlider.addEventListener('input', () => {
+      timeScale = parseFloat(timeScaleSlider.value)
+      timeScaleValueDisplay.textContent = timeScale.toFixed(1)
+    })
+    gameModeSelect.addEventListener('change', () => {
+      gameMode = gameModeSelect.value
+      if(gameMode === "stable") { currentModeDisplay.textContent = "Stable" }
+      else if(gameMode === "efficient") { currentModeDisplay.textContent = "Energy Saving" }
+      else if(gameMode === "overdrive") { currentModeDisplay.textContent = "Overdrive" }
+    })
+    reprocessBtn.addEventListener('click', () => {
+      const puIncrement = Math.random() * 10 * (breedingRate / 1.0)
+      const fissionCleaned = Math.random() * 5
+      puGenerated += puIncrement
+      fissionProductsCleaned += fissionCleaned
+      reprocessStatusDisplay.textContent = "Pu Generated: " + puGenerated.toFixed(1) + " units, Fission Products Cleaned: " + fissionProductsCleaned.toFixed(1) + " units"
+      addLog("Reprocessing: +" + puIncrement.toFixed(1) + " Pu, Cleaned " + fissionCleaned.toFixed(1) + " FP")
+      reprocessBtn.classList.add('pulse')
+      setTimeout(() => {
+        reprocessBtn.classList.remove('pulse')
+      }, 500)
+    })
+    resetBtn.addEventListener('click', () => {
+      fissionPower = 500
+      breedingRate = 5.0
+      coolant = 100
+      newFuel = 100
+      puGenerated = 0
+      fissionProductsCleaned = 0
+      simulationTime = 0
+      timeScale = 3.0
+      running = true
+      gameMode = "stable"
+      breedingRateSlider.value = "5"
+      coolantSlider.value = "100"
+      newFuelSlider.value = "100"
+      timeScaleSlider.value = "3"
+      breedingRateValueDisplay.textContent = "5.0"
+      coolantValueDisplay.textContent = "100"
+      newFuelValueDisplay.textContent = "100"
+      timeScaleValueDisplay.textContent = "3.0"
+      gameModeSelect.value = "stable"
+      currentModeDisplay.textContent = "Stable"
+      simLog.innerHTML = ""
+      activeTask = null
+      taskContent.textContent = ""
+      addLog("Simulation reset.")
+      shutdownBtn.disabled = false
+      shutdownBtn.classList.remove('opacity-50')
+    })
+    shutdownBtn.addEventListener('click', () => {
+      running = false
+      addLog("Emergency shutdown initiated. Reactor offline.")
+      shutdownBtn.disabled = true
+      shutdownBtn.classList.add('opacity-50')
+    })
+    taskBtn.addEventListener('click', () => {
+      if(!activeTask) return
+      addLog("Task completed: " + activeTask.name)
+      activeTask = null
+      taskContent.textContent = ""
+      taskContainer.classList.remove('task-alert')
+    })
+    function addLog(message) {
+      let timestamp = new Date().toLocaleTimeString()
+      let entry = document.createElement("div")
+      entry.textContent = "[" + timestamp + "] " + message
+      simLog.prepend(entry)
+    }
+    function generateTask() {
+      if(!running || activeTask) return
+      let t = tasks[Math.floor(Math.random() * tasks.length)]
+      activeTask = t
+      taskContent.textContent = t.name + ": " + t.description
+      taskContainer.classList.add('task-alert')
+      addLog("New task generated: " + t.name)
+    }
+    function taskPenalty() {
+      if(!running || !activeTask) return
+      addLog("Task not completed: " + activeTask.penalty)
+      if(activeTask.penalty === "Reactor instability") { fissionPower -= 50 }
+      if(activeTask.penalty === "Unstable breeding rate") { breedingRate -= 1 }
+      if(activeTask.penalty === "Coolant drop") { coolant -= 10 }
+      if(activeTask.penalty === "Heat buildup") { fissionPower += 50 }
+      if(activeTask.penalty === "Lower power output") { fissionPower -= 30 }
+      activeTask = null
+      taskContent.textContent = ""
+      taskContainer.classList.remove('task-alert')
+    }
+    function updateSimulation() {
+      if(!running) {
+        chartFlow()
+        return
+      }
+      simulationTime += timeScale
+      let modeMultiplier = 1
+      if(gameMode === "efficient") modeMultiplier = 0.8
+      if(gameMode === "overdrive") modeMultiplier = 1.4
+      fissionPower = 500 + newFuel * 3 * modeMultiplier - (100 - coolant)
+      if(fissionPower < 0) fissionPower = 0
+      fissionPowerDisplay.textContent = fissionPower.toFixed(1)
+      currentBreedingRateDisplay.textContent = breedingRate.toFixed(1)
+      simulationTimeDisplay.textContent = simulationTime.toFixed(0)
+      chartData.labels.push(simulationTime.toFixed(0))
+      chartData.datasets[0].data.push(fissionPower)
+      chartData.datasets[1].data.push(breedingRate)
+      if(chartData.labels.length > 30) {
+        chartData.labels.shift()
+        chartData.datasets[0].data.shift()
+        chartData.datasets[1].data.shift()
+      }
+      outputChart.update()
+    }
+    function chartFlow() {
+      chartData.labels.push(simulationTime.toFixed(0))
+      chartData.datasets[0].data.push(chartData.datasets[0].data.length > 0 ? chartData.datasets[0].data[chartData.datasets[0].data.length - 1] : 500)
+      chartData.datasets[1].data.push(chartData.datasets[1].data.length > 0 ? chartData.datasets[1].data[chartData.datasets[1].data.length - 1] : 5)
+      if(chartData.labels.length > 30) {
+        chartData.labels.shift()
+        chartData.datasets[0].data.shift()
+        chartData.datasets[1].data.shift()
+      }
+      outputChart.update()
+    }
+    setInterval(updateSimulation, 1000)
+    setInterval(() => { if(running) generateTask() }, 15000)
+    setInterval(() => { if(running && activeTask) { taskPenalty() } }, 30000)
+  </script>
+</body>
+</html>
