@@ -1,0 +1,24 @@
+; ===== BE5: Kill Xiaoxue =====
+; Typical source: aggr>=3 && empathy==0 (choose "fight back / push away" during the lake or hospital confrontation, etc.)
+; Non-gory presentation; no stat changes
+
+bgm:lake_twilight.mp3 -volume=60 -enter=1500;
+
+changeBg:lake_evening.jpg -next;
+:The wind smears the lake into a sheet of silver. She grips the paintbrush, her knuckles white.;
+
+miniAvatar:chuling_determined.png;
+changeFigure:chuling_determined.png -next;
+Chuling:Stop forcing me.;
+
+:She shoves hard. The figure loses balance and steps into empty air.;
+
+playEffect:water_splash.mp3;
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:When truth has to bleed,|it is no longer reconciliation.;
+
+:[Hint] Aggression creates the shortest road,|and the longest shadow.;
+
+end;

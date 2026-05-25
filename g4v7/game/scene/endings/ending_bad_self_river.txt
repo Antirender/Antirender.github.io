@@ -1,0 +1,22 @@
+; ===== BE6: Self-destruction (jump into the lake) =====
+; Typical source: guilt>=4 && empathy<=1, and choosing "end this" at the bridge / lakeside
+; Non-gory presentation; no stat changes
+
+bgm:quiet_night.mp3 -volume=45 -enter=1500;
+
+changeBg:lake_evening.jpg -next;
+:The lake is like a sheet of black paper. Wind sweeps past her ears and carries away the last trace of warmth.;
+
+miniAvatar:chuling_pale.png;
+changeFigure:chuling_pale.png -next;
+Chuling:If it really was me... then let it end here.;
+
+playEffect:water_splash.mp3;
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:Guilt is the strongest anchor,|and the deepest water.;
+
+:[Hint] If you say "I'm sorry" to the right person,|maybe you won't have to say it to the water.;
+
+end;

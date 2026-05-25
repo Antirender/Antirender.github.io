@@ -1,0 +1,28 @@
+; ===== BE1: Paranoid delusion ("she is Xiaoxue") =====
+; Typical source: trace==0 && avoid>=4 && lucid>=2 && sanity<=-2
+; No variable changes; presentation and closure only
+
+bgm:hospital_noise.mp3 -volume=40 -enter=1500;
+changeBg:hospital_dark.jpg -next;
+:White walls without windows. Cold white light spread across the floor like a skin of water.;
+
+miniAvatar:chuling_pale.png;
+changeFigure:chuling_pale.png -next;
+Chuling:...I'm not me.|I'm... Xiaoxue.;
+
+:Another her is reflected in the glass cabinet door. That person speaks half a beat before she does, like a prompt being fed to an actor.;
+
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:When the evidence is zero,|fear fills in the narrative.|She begins to believe the name in the mirror.;
+
+bgm:distorted_dream.mp3 -volume=30 -enter=1200;
+changeBg:hospital_dark.jpg -next;
+:She paces the room until the same strip of floor tiles grows brighter beneath her footsteps.|;
+
+:Someone knocks at the door -- no answer. The handle turns once -- maybe it was the wind.|;
+
+intro:The world keeps turning,|but she has stepped off its track.;
+
+end;

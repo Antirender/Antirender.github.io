@@ -1,0 +1,225 @@
+; ===== BE7: Black Lotus Ending (gentle devouring / dream and reality fully overlap) =====
+; Presentation only; no stat changes
+
+bgm:distorted_dream.mp3 -volume=28 -enter=1500;
+changeBg:lake_evening.jpg -next;
+
+:When she wakes, the world is all soft white.;
+:The sky is motionless, and the wind is warm.|;
+:Sunlight falls across ground as fine and soft as a sandbox, while golden dust drifts in the air like an afternoon sealed inside a glass jar.;
+
+playEffect:whispers.mp3;
+:She hears someone softly calling her name.;
+
+changeFigure:girl_shadow.png -next;
+???:Chuling.;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+Chuling:...?;
+
+:That voice is gentle enough to feel like the edge of memory itself.|;
+:She looks up and sees Xiaoxue standing not far away, pale blue light caught in the ends of her hair, her gaze calm and a smile resting on her lips.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:You came.;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+Chuling:Mm... I think I... dreamed of you again.;
+
+:Xiaoxue walks toward her with light steps, as if she is afraid of disturbing the air itself.|;
+:She reaches out her hand. Her fingers are cold.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:This time, it isn't a dream.;
+
+miniAvatar:chuling_smile.png;
+changeFigure:chuling_smile.png -next;
+Chuling:Not a dream? Then what is it?;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:It's where you were always meant to come.;
+
+:When she says it, the wind stops.|;
+:There are only two people left in the world.;
+
+miniAvatar:chuling_tearful.png;
+changeFigure:chuling_tearful.png -next;
+Chuling:I... I'm sorry.|;
+:That day, I didn't hold on to you. I got you hurt...;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Stop saying you're sorry.|;
+:You didn't do anything wrong. You never did.;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+Chuling:But --;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Shh.;
+
+:Xiaoxue lightly presses her fingers to Chuling's lips.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:As long as you remember me, we will never be apart.;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+:At that moment, Chuling really starts crying.|;
+:She buries herself in Xiaoxue's arms, shoulders shaking. Her tears soak into Xiaoxue's clothes.;
+
+changeFigure:girl_shadow.png -next;
+:Xiaoxue's hand strokes the back of her neck, gently, over and over.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Don't be afraid. It's all right now.|;
+:At last, it's my turn to take care of you.;
+
+:The colors of the world begin to fade, leaving only soft gray-white and a trace of pale violet.|;
+:Chuling doesn't notice. She only leans closer, greedily wanting to be closer still.;
+
+miniAvatar:chuling_tearful.png;
+changeFigure:chuling_tearful.png -next;
+Chuling:Can it stay like this forever?;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Of course.;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+Chuling:You really won't leave again?;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Mm.|;
+:You can try to wake up and fail, and I can see you whenever I want. Isn't that nice?;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+:Chuling freezes and lifts her head.|;
+:For an instant, she sees a flash of red pass through Xiaoxue's eyes.;
+
+miniAvatar:chuling_shock.png;
+changeFigure:chuling_shock.png -next;
+Chuling:Xiaoxue?;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:What is it?;
+
+miniAvatar:chuling_doubt.png;
+changeFigure:chuling_doubt.png -next;
+Chuling:Your eyes --;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Don't look around.|;
+:It's too bright outside. It'll hurt your eyes.;
+
+:Smiling, she presses Chuling's head back into her arms.;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+:Her embrace tightens more and more.|;
+:It tightens until Chuling starts struggling for breath.;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+Chuling:Xue... Xiaoxue, you're holding me too tightly...;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:If I hold you tighter, you won't get lost.;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+Chuling:I... I can't --;
+
+bgm:distorted_dream.mp3 -volume=35 -enter=800;
+:The air grows thick.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:I tried calling to you gently, and you wouldn't even turn around.|;
+:So in that case, I had no choice but to make you hear me in a more dangerous way.;
+
+miniAvatar:chuling_panic.png;
+changeFigure:chuling_panic.png -next;
+:Chuling tries to struggle, but those hands clamp her tight against a chest.|;
+:A wave of cold climbs up her spine, and the world begins to spin.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Why did you have to run? I only wanted you to remember me.|;
+:You told me once that you liked the way I smiled.|;
+:So now, look at me smile.;
+
+playEffect:glitch_echo.mp3;
+:She hears Xiaoxue laughing.|;
+:At first it is still gentle, like spring wind.|;
+:But slowly the laughter sinks into a heavy echo, washing back and forth through the empty dream.|;
+:At last it splits into a shriek ripped raw from the throat.;
+
+changeFigure:girl_ghost.png -next;
+:Chuling shoves at her with all her strength, only to see Xiaoxue's face has already changed --;
+:that familiar face now split open at the corners of the mouth.|;
+:Teeth grow row by row like jagged glass shards.|;
+:Her eyes have gone completely crimson, her pupils trembling.;
+
+changeFigure:girl_ghost.png -next;
+Xiaoxue:See? Isn't it beautiful?|;
+:At last I can smile the way you wanted me to.;
+
+bgm:none -enter=800;
+changeBg:none -next;
+
+intro:The world collapses into dark violet.|The sandbox is gone.|The wind no longer moves.|Only those arms are still wrapped around her.;
+
+bgm:heartbeat_slow.mp3 -volume=40 -enter=800;
+
+changeBg:hospital_bed.jpg -next;
+:She hears her own breathing as if it is coming from very far away.;
+
+changeFigure:girl_ghost.png -next;
+Xiaoxue:Don't cry.|;
+:I'll remember every pain for you. You only have to remember me.|;
+:From today on, your dreams, your heartbeat, your fear, all of it belongs to me.;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+:Chuling's tears fall one drop at a time, but make no sound.|;
+:She wants to scream, but no voice comes.;
+
+changeFigure:girl_ghost.png -next;
+:Xiaoxue's voice grows blurry and distant.;
+
+changeFigure:girl_ghost.png -next;
+Xiaoxue:That's right.|;
+:Now, at last, you belong only to me.;
+
+bgm:none -enter=1200;
+changeBg:hospital_dark.jpg -next;
+
+intro:Night in the hospital.|The monitor line stretches into one thin, straight line.|Doctors rush into the room, and nurses shout her name.;
+
+bgm:distorted_dream.mp3 -volume=22 -enter=1200;
+changeBg:lake_evening.jpg -next;
+
+:But on the other side of the world, sunlight is pouring across that soft white ground.|;
+:Two girls sit side by side, smiling at one another.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:See? Doesn't it stop hurting now?;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+Chuling:(smiling) Mm.;
+
+:Her eyes are empty, and the corners of her mouth curve faintly upward.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Good.;
+
+:Xiaoxue leans in and whispers softly in her ear.;
+
+changeFigure:girl_shadow.png -next;
+Xiaoxue:Because now you'll never escape again.;
+
+bgm:none -enter=2000;
+end;

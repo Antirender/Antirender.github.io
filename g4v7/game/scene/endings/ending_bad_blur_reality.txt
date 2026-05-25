@@ -1,0 +1,20 @@
+; ===== BE2: Dream and reality become indistinguishable =====
+; Typical source: sanity<=-3, or lucid>=4 && clue<=1
+
+bgm:distorted_dream.mp3 -volume=30 -enter=1500;
+
+changeBg:school_corridor_dark.jpg -next;
+:One door after another, and at the end there is always another classroom. She pushes one open, steps back, and pushes again.;
+
+playEffect:heartbeat.mp3;
+:She pinches herself. It hurts. But the pain feels as if it is coming from someone else's body.;
+
+changeBg:school_toilet.jpg -next;
+:The faucet is turned all the way on. The sound of water is like countless footsteps retreating. The person in the mirror raises a hand half a beat before she does.;
+
+bgm:none -enter=1500;
+changeBg:none -next;
+
+intro:She wakes up,|inside the dream.|Then falls asleep again,|inside reality.;
+
+end;

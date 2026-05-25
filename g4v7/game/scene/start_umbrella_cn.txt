@@ -1,0 +1,10 @@
+callScene:scene/util/normalize_vars.txt;
+
+changeBg:startbg.JPG -next;
+intro:《伞下》 -fontSize=large -backgroundColor=rgba(0,0,0,1) -fontColor=rgba(255,255,255,1) -animation=fadeIn -delayTime=2000;
+bgm:dreamscape.mp3 -volume=65 -enter=2500;
+unlockBgm:dreamscape.mp3 -name=梦之低语;
+
+intro:序章 · 黑水 -fontSize=medium -delayTime=1500;
+
+changeScene:umbrella_prologue_cn.txt;

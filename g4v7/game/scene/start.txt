@@ -1,0 +1,1 @@
+changeScene:start_umbrella_cn.txt;

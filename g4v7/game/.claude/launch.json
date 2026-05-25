@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "jssnzs",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8766", "--directory", "/Users/zhangyiyang/Desktop/university/Sheridan/jssnzs/www.jssnzs.com"],
+      "port": 8766
+    }
+  ]
+}

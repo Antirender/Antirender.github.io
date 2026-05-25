@@ -1,0 +1,10 @@
+Game_name:梦魇逃亡;
+Game_key:e45cd3d6fa6c228;
+Title_img:startbg.JPG;
+Title_bgm:s_Title.mp3;
+Textbox_theme:imss;
+Game_Logo:;
+Default_Language:zh_CN;
+Description:梦魇逃亡;
+Package_name:梦魇逃亡;
+Enable_Appreciation:true;

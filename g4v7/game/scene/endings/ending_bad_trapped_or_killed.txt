@@ -1,0 +1,28 @@
+; ===== BE4: Killed / trapped in the dream (two-part structure) =====
+; Typical source: injury>=3 or repeated failures while being pursued
+; Presentation only; no stat changes
+
+bgm:distorted_dream.mp3 -volume=30 -enter=1500;
+
+; -- Part 1: hallway of the trapped dream
+changeBg:school_corridor_dark.jpg -next;
+:The hallway feels copy-pasted, one door after another with no end. Footsteps close in from every direction.;
+
+playEffect:heartbeat.mp3;
+:She tries to run, but it feels like stepping on wet paper. The air is thick as paste.;
+
+setAnimation:shake -target=bg-main;
+:Someone passes behind her with no shadow. She turns around and finds she has no shadow either.;
+
+; -- Part 2: fall / termination
+playEffect:cut_sharp.mp3;
+:A line of cold skims beneath her ribs. The pain arrives slowly, like it drifted over from the far side of the dream.;
+
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:She wakes in a scream,|and falls asleep in a scream too.|The dream no longer needs an exit.;
+;
+:[Hint] You were hurt too badly, or at the critical moment you failed to use lucidity to change the outcome.|There may still be someone in reality willing to testify for you.;
+
+end;

@@ -1,0 +1,4 @@
+; ===== Simplified Ending Router: debug only, no jumps =====
+; When other chapters callScene this file, it only shows the values. Safe, with no side effects.
+
+showVars -when=(dev==1);

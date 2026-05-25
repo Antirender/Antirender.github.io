@@ -1,0 +1,20 @@
+; ===== BE3: True Forgetting (abandoned trail) =====
+; Typical source: clue<=1 && avoid>=3 && empathy<=1
+
+bgm:quiet_night.mp3 -volume=55 -enter=1500;
+
+changeBg:attic_dusty.jpg -next;
+:She closes the notebook, and the dust settles back into place. Light skims across the spine, then retreats into the dark.;
+
+miniAvatar:chuling_blank.png;
+changeFigure:chuling_blank.png -next;
+Chuling:Maybe... forgetting would be better.;
+
+bgm:none -enter=1200;
+changeBg:none -next;
+
+intro:If no one is remembered,|then no one truly leaves.|She chooses blankness.;
+
+:[Hint] If you want to face the truth,|go back to the attic or speak with someone,|and let evidence and empathy do the talking.;
+
+end;
