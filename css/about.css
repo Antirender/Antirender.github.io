@@ -53,3 +53,33 @@
   .hero-fig-secondary{left:44%;height:46%}
   .hero-bg-word{font-size:clamp(3.5rem,20vw,7rem)}
 }
+
+/* Nav row */
+.about-nav{display:flex;flex-wrap:wrap;gap:0 1.25rem}
+
+/* Resume */
+.resume-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.75rem}
+.resume-head h2{margin:0}
+.resume-controls{display:flex;gap:.5rem}
+.btn-outline{background:transparent;color:var(--accent);border:1.5px solid var(--accent);font:inherit;font-weight:700;font-size:.875rem;padding:.45rem .85rem;border-radius:8px;cursor:pointer}
+.btn-outline:hover{background:var(--accent);color:#fff}
+#resume-full{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:clamp(14px,2vw,20px)}
+#resume-full h2{margin:0 0 .4rem;font-size:1.4rem}
+#resume-full h3{margin:.9rem 0 .35rem;font-size:1.05rem}
+#resume-full p{color:var(--ink)}
+#resume-full ul{padding-left:1.15rem;margin:.25rem 0}
+#resume-full li{margin:.15rem 0}
+
+/* Print: resume only */
+@page{size:A4;margin:10mm 12mm}
+@media print{
+  body *{visibility:hidden}
+  #resume-full,#resume-full *{visibility:visible}
+  #resume-full{position:absolute;left:0;top:0;width:100%;background:#fff!important;border:0!important;padding:0!important;color:#000!important}
+  html,body{font-size:9.6pt!important;line-height:1.28!important}
+  #resume-full h2{font-size:11pt!important;margin:1px 0 3px!important}
+  #resume-full h3{font-size:10.5pt!important;margin:2px 0 2px!important}
+  #resume-full p{margin:1px 0 2px!important;color:#000!important}
+  #resume-full ul{margin:0 0 2px!important}
+  #resume-full a{color:#000!important}
+}

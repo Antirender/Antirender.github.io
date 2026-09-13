@@ -22,9 +22,15 @@
       </select>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
     </div>
-    <a class="back" href="index.html" data-i18n="about.back">&larr; Back to Portfolio</a>
+    <nav class="about-nav" aria-label="Site">
+      <a class="back" href="index.html" data-i18n="about.back">&larr; Back to Portfolio</a>
+      <a class="back" href="work.html">Work</a>
+      <a class="back" href="music.html">Music</a>
+      <a class="back" href="#resume">Resume</a>
+    </nav>
 
-    <!-- Hero with persona switching -->
+    <!-- Persona hero moved to index.html — kept here for reference
+    (Hero with persona switching)
     <section class="about-hero" id="aboutHero">
       <div class="hero-bg-word" id="heroWord" aria-hidden="true">YIYANG</div>
       <div class="hero-layout">
@@ -44,6 +50,8 @@
         </div>
       </div>
     </section>
+
+    -->
 
     <!-- Bio -->
     <section class="about-section">
@@ -81,9 +89,88 @@
     <section class="about-section">
       <h2 data-i18n="about.music">Music</h2>
       <p data-i18n="about.music.text">As Antirender, I write and produce original tracks across genres using Logic Pro and Ableton Live — end-to-end from composition to basic mastering.</p>
-      <div class="music-embed">
-        <iframe class="spotify-embed" src="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&amp;theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify artist embed"></iframe>
+      <p><a class="btn" href="music.html">Selected tracks &amp; discography &rarr;</a></p>
+    </section>
+
+    <!-- Resume -->
+    <section class="about-section" id="resume">
+      <div class="resume-head">
+        <h2>Resume</h2>
+        <div class="no-print resume-controls">
+          <a class="btn" href="image/Yiyang-Zhang-Resume.pdf" download>Download PDF</a>
+          <button class="btn btn-outline" id="printResume" type="button" aria-label="Print or save resume as PDF">Print</button>
+        </div>
       </div>
+
+      <article id="resume-full">
+        <h2>Yiyang Zhang</h2>
+        <ul class="contact-list">
+          <li><span>Oakville, ON</span></li>
+          <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
+          <li><a href="tel:+17783187386">+1(778)318-7386</a></li>
+          <li><a href="https://antirender.github.io" target="_blank" rel="noopener">antirender.github.io</a></li>
+          <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+
+        <h3>Summary</h3>
+        <p>Interaction Design student specializing in prototyping and user testing. I build Arduino/web prototypes and document decisions to drive iteration.</p>
+
+        <h3>Skills</h3>
+        <ul>
+          <li><strong>Design:</strong> user research, usability testing, wireframing, prototyping</li>
+          <li><strong>Technical:</strong> Arduino (sensors/I-O), HTML/CSS, basic JavaScript</li>
+          <li><strong>Workflow:</strong> scoping, versioning, build docs, test planning</li>
+          <li><strong>Tools:</strong> Figma; Photoshop/Illustrator/After Effects/Premiere Pro; TouchDesigner; Cinema4D; XD; WordPress; Spark AR; Spline; Arduino IDE; VS Code</li>
+        </ul>
+
+        <h3>Education</h3>
+        <p><strong>Honours Bachelor of Interaction Design</strong> — Sheridan College · Sept 2024 – Expected Apr 2028 · GPA: 3.7</p>
+
+        <h3>Certifications &amp; Training</h3>
+        <ul>
+          <li><a href="https://mycourse.app/7dCD33jcE6I3CbOGL" target="_blank" rel="noopener">ProtoPie 101 — Crash Course Certificate</a> · ProtoPie · Sep 2025</li>
+        </ul>
+
+        <h3>Experience</h3>
+        <p><strong>IXD Designer (2023–Present)</strong></p>
+        <ul>
+          <li>Prototyped interaction concepts and built web/Arduino demos; integrated sensors and UI flows into working installations.</li>
+          <li>Scoped requirements and system integration; maintained versioned build docs, test checklists, and handoff notes.</li>
+          <li>Created music-interaction experiments and environmental coordination pieces for showcases.</li>
+        </ul>
+
+        <p><strong>Drone Photographer (2021–Present)</strong></p>
+        <ul>
+          <li>Captured aerial footage and stills; delivered edited videos and photos for events and promos.</li>
+          <li>Managed on-site logistics and post-production workflows; coordinated with clients and venues.</li>
+        </ul>
+
+        <p><strong>Music Producer &amp; Composer (2019–Present)</strong></p>
+        <ul>
+          <li>Wrote and arranged <strong>36</strong> original tracks across <strong>7</strong> self-released albums; handled end-to-end production from composition to basic mastering.</li>
+          <li>Published on Spotify and other streaming platforms; provided original cues for student projects and interaction demos.</li>
+        </ul>
+
+        <h3>Volunteer Work</h3>
+        <p><strong>Video Creator — Nanjing University High School, China (2018–2021)</strong></p>
+        <ul>
+          <li>Shot news photos, short videos, and drone footage for the school and its affiliated middle schools.</li>
+          <li>Produced and released a Teachers’ Day short film; led editing and post-production.</li>
+          <li>Supported multiple promotional shoots; coordinated schedules and on-site direction.</li>
+        </ul>
+
+        <h3>Projects</h3>
+        <ul>
+          <li><a href="work/learn-code.html">Learn Code — Interactive Learning App</a> — responsive card layout &amp; hierarchy.</li>
+          <li><a href="work/snapchat.html">Making Data Use Visible</a> — interactive flow explanation.</li>
+          <li><a href="VDES15738P2/reese11.html">Typographic Systems Exploration</a> — iterative exploration.</li>
+          <li><a href="https://moodpeek1.vercel.app/" target="_blank" rel="noopener">MoodPeek v1</a> — emotion + weather correlation visualization.</li>
+          <li><a href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">MoodPeek Pro</a> — calendar-centered mood tracking with multi-user support.</li>
+        </ul>
+
+        <h3>Languages</h3>
+        <p>English; Chinese (Mandarin)</p>
+      </article>
     </section>
 
     <!-- Contact -->
@@ -120,6 +207,9 @@
   if(btn) btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
   try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
 })();
+
+var printBtn=document.getElementById('printResume');
+if(printBtn)printBtn.addEventListener('click',function(){window.print();});
 
 /* ===== i18n ===== */
 var T={
@@ -225,7 +315,8 @@ document.querySelectorAll('.lang-sel').forEach(function(s){
 });
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
 
-/* ===== Persona Swap ===== */
+/* ===== Persona Swap — moved to index.html =====
+
 (function(){
   var heroWord=document.getElementById('heroWord');
   var heroLabel=document.getElementById('heroLabel');
@@ -273,6 +364,7 @@ try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catc
   figSecondary.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();doSwap();}});
   applyState();
 })();
+*/
   </script>
 </body>
 </html>

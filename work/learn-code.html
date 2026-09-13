@@ -10,26 +10,41 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <div class="site-tools">
-      <select class="lang-sel" aria-label="Language">
-        <option value="en">EN</option>
-        <option value="zh-CN">简中</option>
-        <option value="zh-TW">繁中</option>
-        <option value="ja">日本語</option>
-        <option value="fr">FR</option>
-      </select>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">Yiyang Zhang <small>Interaction Design</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
+          <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
     </div>
-    <a class="back" href="../index.html" data-i18n="work.back">&larr; Back to Portfolio</a>
+  </header>
+
+  <div class="wrap">
+    <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
+      <span class="eyebrow">Case Study · UX/UI · 2025</span>
       <h1>Learn Code — Building Pathways to Programming</h1>
       <p>A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability. Fully responsive, no custom scroll regions.</p>
       <div class="meta">
-        <span><strong>Role:</strong> UX/UI design, prototyping</span>
-        <span><strong>Methods:</strong> User interviews, iterative wireframing</span>
-        <span><strong>Outcome:</strong> 7 versions (v10–v17), improved nav clarity</span>
+        <span><strong>Role</strong> UX/UI design, prototyping</span>
+        <span><strong>Methods</strong> User interviews, iterative wireframing</span>
+        <span><strong>Outcome</strong> 7 versions (v10–v17), improved nav clarity</span>
       </div>
     </div>
 
@@ -49,6 +64,18 @@
     </div>
 
     <div class="content">
+      <div class="tldr">
+        <h2>At a glance</h2>
+        <dl>
+          <div><dt>Problem</dt><dd>Beginners struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</dd></div>
+          <div><dt>Role</dt><dd>UX/UI design, prototyping, iterative wireframing</dd></div>
+          <div><dt>Tools</dt><dd>HTML/CSS, user testing, responsive design</dd></div>
+          <div><dt>Timeline</dt><dd>7 versions (v10–v17, skipping v15) with iterative refinement</dd></div>
+          <div><dt>Key Decisions</dt><dd>Card-based interface, hierarchical nav (Home → Course → Lesson), single-column mobile layout</dd></div>
+          <div><dt>Result</dt><dd>Improved confidence in navigation and lesson discovery; clearer pathways through content.</dd></div>
+        </dl>
+      </div>
+
       <img class="cover-img" src="../image/learn-code-app.png" alt="Learn Code App interface preview">
 
       <div class="preview" id="previewBox">
@@ -56,17 +83,6 @@
         <div class="preview-label">Live preview — Learn Code V17 (Final)</div>
       </div>
 
-      <div class="tldr">
-        <h2>TL;DR</h2>
-        <dl>
-          <dt>Problem:</dt><dd>Beginners struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</dd>
-          <dt>Role:</dt><dd>UX/UI design, prototyping, iterative wireframing</dd>
-          <dt>Tools:</dt><dd>HTML/CSS, user testing, responsive design</dd>
-          <dt>Timeline:</dt><dd>7 versions (v10–v17, skipping v15) with iterative refinement</dd>
-          <dt>Key Decisions:</dt><dd>Card-based interface, hierarchical nav (Home → Course → Lesson), single-column mobile layout</dd>
-          <dt>Result:</dt><dd>Improved confidence in navigation and lesson discovery; clearer pathways through content.</dd>
-        </dl>
-      </div>
 
       <h2>Problem / Context</h2>
       <p>Beginners learning to code often struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns. This project explored how to create an intuitive learning environment that reduces cognitive load while maintaining clear pathways through programming content.</p>
@@ -108,16 +124,13 @@
 
       <h2>Outcome + Next Steps</h2>
       <p>The v17 prototype demonstrates a scalable, accessible learning structure. Feedback indicated improved confidence in navigation and lesson discovery. Future work includes adding search/filter functionality, user accounts for progress tracking, and interactive code editors within lessons.</p>
-
-      <div class="preview" id="previewBottom">
-        <iframe src="../DESN18654V17/index.html" loading="lazy" title="Learn Code preview" sandbox="allow-same-origin allow-scripts"></iframe>
-        <div class="preview-label">Live preview — Learn Code V17 (Final)</div>
-      </div>
     </div>
 
-    <div class="nav-back">
-      <a href="../index.html" data-i18n="work.back">&larr; Back to Portfolio</a>
-    </div>
+    <nav class="pager" aria-label="Case studies">
+      <a class="prev" href="interactive-prototype.html"><small>&larr; Previous</small><b>Media, Motion & the Body</b></a>
+      <a class="next" href="snapchat.html"><small>Next &rarr;</small><b>Snapchat Data Transparency</b></a>
+    </nav>
+    <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
   </div>
 
   <script>
@@ -144,7 +157,7 @@
   try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
 })();
 /* ===== i18n ===== */
-var T={en:{'work.back':'\u2190 Back to Portfolio'},'zh-CN':{'work.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6'},'zh-TW':{'work.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6'},ja:{'work.back':'\u2190 \u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u306b\u623b\u308b'},fr:{'work.back':'\u2190 Retour au portfolio'}};
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
 function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}

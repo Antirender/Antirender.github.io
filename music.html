@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Music — Antirender</title>
+  <meta name="description" content="Original music by Antirender (Yiyang Zhang) — 36 tracks across 7 self-released albums since 2019. Selected tracks, discography, and how each one is made."/>
+  <link rel="icon" href="favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    .track-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
+    @media(max-width:980px){.track-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){.track-grid{grid-template-columns:1fr}}
+    .artist-embed{height:380px}
+    .empty-note{color:var(--muted);font-size:.9rem;padding:1rem 0}
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">Yiyang Zhang <small>Antirender</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+          <li><a href="music.html" class="active" data-i18n="nav.music">Music</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+  <section class="hero hero--compact">
+    <div class="wrap">
+      <span class="eyebrow" data-i18n="m.eyebrow">Antirender · Original music</span>
+      <h1><span data-i18n="m.h1">Original music,</span><br><span class="dim" data-i18n="m.h1b">in many forms.</span></h1>
+      <p class="lede" data-i18n="m.lede">Since 2019 I’ve written, arranged and mixed every track myself — chord progressions and melodies first, then layered instruments and structure in Logic Pro and Ableton Live, through to release on Spotify.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener" data-i18n="m.open">Open on Spotify ↗</a>
+        <a class="btn btn-outline" href="#tracks" data-i18n="m.listen">Listen to selected tracks</a>
+      </div>
+      <div class="stats">
+        <div><b>36</b><span data-i18n="m.s1">Original tracks</span></div>
+        <div><b>7</b><span data-i18n="m.s2">Self-released albums</span></div>
+        <div><b>2019–</b><span data-i18n="m.s3">Writing &amp; producing</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected tracks -->
+  <section class="section" id="tracks">
+    <div class="wrap">
+      <div class="section-head section-head--row reveal">
+        <div>
+          <span class="eyebrow" data-i18n="m.t.eyebrow">Selected tracks</span>
+          <h2><span data-i18n="m.t.h2">Start here.</span> <span class="dim" data-i18n="m.t.h2b">Ten tracks across five years.</span></h2>
+          <p class="lede" data-i18n="m.t.lede">The most-played tracks from each release, newest first. Press play on any card — nothing to install.</p>
+        </div>
+      </div>
+      <div class="chips" id="yearChips" role="group" aria-label="Filter by year" style="margin:0 0 1.4rem"></div>
+      <div class="track-grid reveal" id="trackGrid"></div>
+      <noscript><p class="empty-note">Enable JavaScript to see the track list, or <a href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW">open the artist page on Spotify</a>.</p></noscript>
+    </div>
+  </section>
+
+  <!-- Discography -->
+  <section class="section" id="discography">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="m.d.eyebrow">Discography</span>
+        <h2><span data-i18n="m.d.h2">Seven albums,</span> <span class="dim" data-i18n="m.d.h2b">all on streaming.</span></h2>
+        <p class="lede" data-i18n="m.d.lede">The full catalogue — albums, top tracks and latest releases — straight from the artist page.</p>
+      </div>
+      <iframe class="spotify artist-embed reveal" src="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&theme=0" loading="lazy" title="Spotify — Anti Render artist page" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section" id="process">
+    <div class="wrap">
+      <div class="split reveal">
+        <img src="image/logic_cap.png" alt="Logic Pro arrangement — pads, arps, bass, keys and melody layers across a multi-track session" loading="lazy">
+        <div>
+          <span class="eyebrow" data-i18n="m.p.eyebrow">Process</span>
+          <h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2.2rem);margin-bottom:.8rem"><span data-i18n="m.p.h2">Written from scratch,</span> <span class="dim" data-i18n="m.p.h2b">finished end to end.</span></h2>
+          <p data-i18n="m.p.p1">Every track starts as a chord progression and a melody. From there I layer and structure the instruments — pads, arps, bass, keys, drums — until the arrangement carries the idea on its own.</p>
+          <p data-i18n="m.p.p2">Mixing and basic mastering happen in the same session, so what you hear on Spotify is the same decision chain from the first sketch to the export.</p>
+          <ul class="pairs" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:1.4rem">
+            <li><b data-i18n="m.p.1">Compose</b><span data-i18n="m.p.1d">Harmony and melody first; the hook has to work on one instrument.</span></li>
+            <li><b data-i18n="m.p.2">Arrange</b><span data-i18n="m.p.2d">Layered instruments, sections and transitions in Logic Pro.</span></li>
+            <li><b data-i18n="m.p.3">Mix</b><span data-i18n="m.p.3d">Balance, space and dynamics; basic mastering for streaming loudness.</span></li>
+            <li><b data-i18n="m.p.4">Release</b><span data-i18n="m.p.4d">Self-published to Spotify and other platforms as Antirender.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sound in design work -->
+  <section class="section" id="sound-design">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="m.x.eyebrow">Where sound meets design</span>
+        <h2><span data-i18n="m.x.h2">The same ear,</span> <span class="dim" data-i18n="m.x.h2b">in interaction work.</span></h2>
+      </div>
+      <ul class="row-list reveal">
+        <li>
+          <a class="row" href="work/interactive-prototype.html">
+            <span class="row-cat">p5.js · Sound</span>
+            <span class="row-main"><span class="row-title">Sound &amp; Visualisation — 25 sound-reactive sketches</span><p data-i18n="m.x.1">A collected sound library drives generative visuals, ending in the interactive Rainbow Bloom header.</p></span>
+            <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="DESN22848V4/index.html" target="_blank" rel="noopener">
+            <span class="row-cat">Makey Makey · WebGL</span>
+            <span class="row-main"><span class="row-title">Drum Machine — touch-to-digital instrument</span><p data-i18n="m.x.2">Conductive touch pads trigger a WebGL drum machine built in p5.js.</p></span>
+            <span class="row-side"><span class="year">2025</span><span>↗</span></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="wrap">
+      <div class="cta reveal">
+        <span class="eyebrow" data-i18n="nav.contact">Contact</span>
+        <h2 data-i18n="m.cta.h2">Need a cue, a theme, or a sound for a project?</h2>
+        <p data-i18n="m.cta.p">I write original music for student films, interaction demos and games — send a brief and a reference.</p>
+        <div class="hero-actions">
+          <a class="btn" href="mailto:zhyiyang@sheridancollege.ca?subject=Music%20for%20a%20project" data-i18n="cta.email">Email me</a>
+          <a class="btn btn-outline" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener">Spotify ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span data-year></span> Antirender · Yiyang Zhang</span>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="#top" data-i18n="foot.top">Back to top</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+/* ===== Track list — add a line here to add a card =====
+   id: Spotify track id · title · date (YYYY-MM-DD) · length · note (optional) */
+var TRACKS = [
+  { id: '6RBtBXukNVfRCsReW6CzhI', title: "I'm fine if You're Mine", date: '2026-01-12', len: '3:19', note: 'Latest release' },
+  { id: '2V5MOhPa6JYTVQf4XcUzUM', title: 'Chase the Unknown',        date: '2024-11-16', len: '4:07' },
+  { id: '1c75fmmHDbCGNg96YtraxE', title: 'T.T',                      date: '2024-03-08', len: '3:17' },
+  { id: '6mYugzbSgDzqYHSj7dk0r2', title: 'Normal punch',             date: '2023-07-26', len: '3:37', note: 'Album track' },
+  { id: '1iCLzThZPjm7uwJI9ozHkS', title: 'Vivid you',                date: '2023-07-26', len: '4:06', note: 'Album track' },
+  { id: '4qlSmJOe2I6TxBUDw8zzmv', title: 'Void simulator',           date: '2023-07-26', len: '3:45', note: 'Album track' },
+  { id: '6TBrw2BP09X3qgLQdhJg7n', title: 'Love in ice',              date: '2023-07-26', len: '3:44', note: 'Album track' },
+  { id: '4mlNgOk2kQS432XDkopyCA', title: 'Return to reason',         date: '2022-02-10', len: '3:41' },
+  { id: '3eyVw8blyZOA2VnAHIGFMT', title: 'Made for Fire',            date: '2021-10-07', len: '4:02', note: 'Album track' },
+  { id: '5kDhf8RWqXGpy8DEkQvioU', title: 'Ground Ensemble',          date: '2021-10-07', len: '4:02', note: 'Album track' }
+];
+
+(function () {
+  var grid = document.getElementById('trackGrid');
+  var chips = document.getElementById('yearChips');
+  if (!grid || !chips) return;
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function card(t) {
+    var y = t.date.slice(0, 4), m = MONTHS[parseInt(t.date.slice(5, 7), 10) - 1];
+    var meta = [t.note, m + ' ' + y, t.len].filter(Boolean).join(' · ');
+    return '<div class="track-card" data-cat="' + y + '">' +
+      '<span class="eyebrow">Original track</span>' +
+      '<h3>' + esc(t.title) + '</h3>' +
+      '<span class="card-cat">' + esc(meta) + '</span>' +
+      '<iframe class="spotify" loading="lazy" title="Spotify — ' + esc(t.title) + '" src="https://open.spotify.com/embed/track/' + t.id + '?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>' +
+      '</div>';
+  }
+  TRACKS.sort(function (a, b) { return b.date.localeCompare(a.date) || a.title.localeCompare(b.title); });
+  grid.innerHTML = TRACKS.map(card).join('');
+  var years = []; TRACKS.forEach(function (t) { var y = t.date.slice(0, 4); if (years.indexOf(y) === -1) years.push(y); });
+  chips.innerHTML = '<button class="chip active" type="button" data-filter="all">All</button>' +
+    years.map(function (y) { return '<button class="chip" type="button" data-filter="' + y + '">' + y + '</button>'; }).join('');
+  chips.addEventListener('click', function (e) {
+    var b = e.target.closest('.chip'); if (!b) return;
+    var want = b.getAttribute('data-filter');
+    chips.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('active', c === b); });
+    grid.querySelectorAll('[data-cat]').forEach(function (el) { el.classList.toggle('is-hidden', want !== 'all' && el.getAttribute('data-cat') !== want); });
+  });
+})();
+
+window.PAGE_T = {
+en: {},
+'zh-CN': {
+'m.eyebrow':'Antirender · 原创音乐','m.h1':'原创音乐，','m.h1b':'多种形态。',
+'m.lede':'从 2019 年起，每一首都由我独立作曲、编曲与混音 — 先写和弦与旋律，再在 Logic Pro 和 Ableton Live 中叠加乐器与结构，直至在 Spotify 发布。',
+'m.open':'在 Spotify 打开 ↗','m.listen':'听精选曲目','m.s1':'原创曲目','m.s2':'自发专辑','m.s3':'创作与制作',
+'m.t.eyebrow':'精选曲目','m.t.h2':'从这里开始。','m.t.h2b':'五年十首。',
+'m.t.lede':'每次发行中播放最多的曲目，最新在前。点击任意卡片播放，无需安装。',
+'m.d.eyebrow':'全部作品','m.d.h2':'七张专辑，','m.d.h2b':'均已上线。','m.d.lede':'完整目录 — 专辑、热门曲目与最新发行，直接来自艺人页面。',
+'m.p.eyebrow':'创作过程','m.p.h2':'从零开始写，','m.p.h2b':'到完整成品。',
+'m.p.p1':'每首曲子都从一段和弦和一条旋律开始。然后叠加与组织乐器 — pad、琴弦、贝斯、键盘、鼓 — 直到编曲自己能承载想法。',
+'m.p.p2':'混音和基础母带在同一个工程里完成，所以你在 Spotify 听到的，就是从第一个草稿到导出的同一条决策链。',
+'m.p.1':'作曲','m.p.1d':'先和声后旋律；主题必须在单一乐器上也成立。','m.p.2':'编曲','m.p.2d':'在 Logic Pro 中叠加乐器、段落与过渡。',
+'m.p.3':'混音','m.p.3d':'平衡、空间与动态；面向流媒体响度的基础母带。','m.p.4':'发行','m.p.4d':'以 Antirender 自主发布到 Spotify 等平台。',
+'m.x.eyebrow':'声音与设计的交点','m.x.h2':'同一双耳朵，','m.x.h2b':'用在交互作品里。',
+'m.cta.h2':'项目需要配乐、主题或音效？','m.cta.p':'我为学生短片、交互演示和游戏写原创音乐 — 发来需求和参考即可。',
+'cta.email':'发邮件'
+},
+'zh-TW': {
+'m.eyebrow':'Antirender · 原創音樂','m.h1':'原創音樂，','m.h1b':'多種形態。',
+'m.open':'在 Spotify 打開 ↗','m.listen':'聽精選曲目','m.s1':'原創曲目','m.s2':'自發專輯','m.s3':'創作與製作',
+'m.t.eyebrow':'精選曲目','m.t.h2':'從這裡開始。','m.t.h2b':'五年十首。',
+'m.d.eyebrow':'全部作品','m.d.h2':'七張專輯，','m.d.h2b':'均已上線。',
+'m.p.eyebrow':'創作過程','m.p.h2':'從零開始寫，','m.p.h2b':'到完整成品。',
+'m.p.1':'作曲','m.p.2':'編曲','m.p.3':'混音','m.p.4':'發行',
+'m.x.eyebrow':'聲音與設計的交點','m.x.h2':'同一雙耳朵，','m.x.h2b':'用在互動作品裡。',
+'m.cta.h2':'專案需要配樂、主題或音效？','cta.email':'寄信'
+},
+ja: {
+'m.eyebrow':'Antirender · オリジナル音楽','m.h1':'オリジナル音楽を、','m.h1b':'さまざまな形で。',
+'m.open':'Spotifyで開く ↗','m.listen':'選曲を聴く','m.s1':'オリジナル曲','m.s2':'セルフリリースアルバム','m.s3':'作曲・制作',
+'m.t.eyebrow':'選曲','m.t.h2':'まずはここから。','m.t.h2b':'5年間の10曲。',
+'m.d.eyebrow':'ディスコグラフィ','m.d.h2':'7枚のアルバム、','m.d.h2b':'すべて配信中。',
+'m.p.eyebrow':'制作過程','m.p.h2':'ゼロから書き、','m.p.h2b':'最後まで仕上げる。',
+'m.p.1':'作曲','m.p.2':'編曲','m.p.3':'ミックス','m.p.4':'リリース',
+'m.x.eyebrow':'音とデザインの接点','m.x.h2':'同じ耳を、','m.x.h2b':'インタラクションに。',
+'m.cta.h2':'プロジェクトに音楽が必要ですか？','cta.email':'メールする'
+},
+fr: {
+'m.eyebrow':'Antirender · Musique originale','m.h1':'Musique originale,','m.h1b':'sous toutes ses formes.',
+'m.lede':'Depuis 2019, j’écris, arrange et mixe chaque morceau moi-même — accords et mélodie d’abord, puis instruments et structure dans Logic Pro et Ableton Live, jusqu’à la sortie sur Spotify.',
+'m.open':'Ouvrir sur Spotify ↗','m.listen':'Écouter la sélection','m.s1':'Morceaux originaux','m.s2':'Albums autoproduits','m.s3':'Composition & production',
+'m.t.eyebrow':'Sélection','m.t.h2':'Commencez ici.','m.t.h2b':'Dix morceaux sur cinq ans.',
+'m.t.lede':'Les morceaux les plus écoutés de chaque sortie, du plus récent au plus ancien. Appuyez sur lecture — rien à installer.',
+'m.d.eyebrow':'Discographie','m.d.h2':'Sept albums,','m.d.h2b':'tous en streaming.','m.d.lede':'Le catalogue complet — albums, titres phares et dernières sorties — directement depuis la page artiste.',
+'m.p.eyebrow':'Processus','m.p.h2':'Écrit de zéro,','m.p.h2b':'fini de bout en bout.',
+'m.p.1':'Composer','m.p.2':'Arranger','m.p.3':'Mixer','m.p.4':'Publier',
+'m.x.eyebrow':'Où le son rencontre le design','m.x.h2':'La même oreille,','m.x.h2b':'dans le travail d’interaction.',
+'m.cta.h2':'Besoin d’un thème ou d’un son pour un projet ?','m.cta.p':'J’écris de la musique originale pour films étudiants, démos interactives et jeux — envoyez un brief et une référence.',
+'cta.email':'M’écrire'
+}
+};
+  </script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
