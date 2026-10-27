@@ -46,6 +46,7 @@
       <p class="lede" data-i18n="w.lede">Three levels: full case studies with research and testing; client work on a real brief; and the archive — every version of every project, grouped by category, so you can see how each one got there.</p>
       <div class="chips" data-filter-group="#work-all" role="group" aria-label="Filter by category">
         <button class="chip active" type="button" data-filter="all" data-i18n="w.f.all">All</button>
+        <button class="chip" type="button" data-filter="energy" data-i18n="w.f.energy">Energy</button>
         <button class="chip" type="button" data-filter="ux" data-i18n="w.f.ux">UX &amp; Web</button>
         <button class="chip" type="button" data-filter="physical" data-i18n="w.f.physical">Physical &amp; Interactive</button>
         <button class="chip" type="button" data-filter="games" data-i18n="w.f.games">Games &amp; Tools</button>
@@ -66,6 +67,18 @@
         <p data-i18n="w.t1.sub">Problem → versions → testing → outcome</p>
       </div>
       <div class="card-grid card-grid--3 reveal">
+
+        <a class="card" href="work/solar.html" data-cat="energy">
+          <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img src="work/solar/card-800.webp" alt="Aerial view of the solar arrays" loading="lazy"></picture></div>
+          <div class="card-body">
+            <span class="eyebrow">Case Study</span>
+            <span class="card-cat" data-i18n="w.solar.cat">Energy systems · Solar + storage</span>
+            <h3><span data-i18n="w.solar.h">Solar + Storage for AI Compute</span> <span class="year">(2024–26)</span></h3>
+            <p data-i18n="w.solar.p">A 49 kWp array and 180 kWh battery bank, self-built with my parents, powering servers for AI pretraining and inference.</p>
+            <div class="card-tags"><span>49 kWp</span><span>180 kWh LFP</span><span data-i18n="w.solar.tag">Zero export</span></div>
+            <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
+          </div>
+        </a>
 
         <a class="card" href="work/learn-code.html" data-cat="ux">
           <div class="card-media"><img src="image/learn-code-app.png" alt="Learn Code app interface" loading="lazy"></div>
@@ -483,6 +496,8 @@
 window.PAGE_T = {
 en: {},
 'zh-CN': {
+'w.f.energy':'能源','w.solar.cat':'能源系统 · 光伏 + 储能','w.solar.h':'为 AI 算力供电的光伏储能电站',
+'w.solar.p':'和父母一起自建的 49 kWp 光伏和 180 kWh 储能，给 AI 预训练和推理的服务器供电。','w.solar.tag':'不向电网卖电',
 'w.eyebrow':'全部作品 · 按深度排序','w.h1':'从案例研究开始。','w.h1b':'归档保留每一个版本。',
 'w.lede':'三个层级：带研究和测试的完整案例；真实需求的客户项目；以及归档 — 每个项目的每个版本，按类别分组。',
 'w.f.all':'全部','w.f.ux':'UX 与网页','w.f.physical':'实体与交互','w.f.games':'游戏与工具','w.f.type':'字体排版','w.f.client':'客户',
@@ -491,18 +506,21 @@ en: {},
 'w.cta.h2':'在找音乐？','w.cta.p':'原创曲目、专辑与创作过程在单独的页面。'
 },
 'zh-TW': {
+'w.f.energy':'能源',
 'w.eyebrow':'全部作品 · 按深度排序','w.h1':'從案例研究開始。','w.h1b':'归檔保留每一個版本。',
 'w.f.all':'全部','w.f.ux':'UX 與網頁','w.f.physical':'實體與互動','w.f.games':'遊戲與工具','w.f.type':'字體排版','w.f.client':'客戶',
 'w.t1':'案例研究','w.t2':'客戶專案','w.t3':'归檔','card.read':'閱讀案例 →','row.case':'案例研究',
 'w.cta.h2':'在找音樂？','w.cta.p':'原創曲目、專輯與創作過程在單獨的頁面。'
 },
 ja: {
+'w.f.energy':'エネルギー',
 'w.eyebrow':'すべての作品 · 深さ順','w.h1':'ケーススタディから。','w.h1b':'アーカイブには全バージョン。',
 'w.f.all':'すべて','w.f.ux':'UX・ウェブ','w.f.physical':'フィジカル・インタラクティブ','w.f.games':'ゲーム・ツール','w.f.type':'タイポグラフィ','w.f.client':'クライアント',
 'w.t1':'ケーススタディ','w.t2':'クライアントワーク','w.t3':'アーカイブ','card.read':'ケーススタディを読む →','row.case':'ケーススタディ',
 'w.cta.h2':'音楽をお探し？','w.cta.p':'オリジナル曲、ディスコグラフィ、制作過程は専用ページへ。'
 },
 fr: {
+'w.f.energy':'Énergie',
 'w.eyebrow':'Tous les travaux · par profondeur','w.h1':'Commencez par les études de cas.','w.h1b':'L’archive garde chaque version.',
 'w.lede':'Trois niveaux : des études de cas complètes avec recherche et tests ; un projet client sur un vrai brief ; et l’archive — chaque version de chaque projet, par catégorie.',
 'w.f.all':'Tout','w.f.ux':'UX & Web','w.f.physical':'Physique & interactif','w.f.games':'Jeux & outils','w.f.type':'Typographie','w.f.client':'Client',

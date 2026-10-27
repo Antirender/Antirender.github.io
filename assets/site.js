@@ -102,7 +102,9 @@
     var d = dict(lang);
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var k = el.getAttribute('data-i18n');
-      if (d[k] != null) el.textContent = d[k];
+      /* the markup's own (English) text is the fallback for keys a language lacks */
+      if (!el.hasAttribute('data-i18n-en')) el.setAttribute('data-i18n-en', el.textContent);
+      el.textContent = d[k] != null ? d[k] : el.getAttribute('data-i18n-en');
     });
     document.querySelectorAll('.lang-sel').forEach(function (s) { s.value = lang; });
     root.setAttribute('lang', lang === 'zh-CN' ? 'zh-Hans' : lang === 'zh-TW' ? 'zh-Hant' : lang);

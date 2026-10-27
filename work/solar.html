@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Solar + Storage for AI Compute — Yiyang Zhang</title>
+  <meta name="description" content="A 49 kWp solar array and 180 kWh battery bank, self-built with my parents in rural Jiangsu, powering servers for AI pretraining and inference."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: long-form copy is written twice, one block shows */
+    html:not([lang="zh-Hans"]) [data-lang="zh"],
+    html[lang="zh-Hans"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+
+    /* Hero video */
+    .hero-media{margin:1.5rem 0 0}
+    .hero-media video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:12px;border:1px solid var(--border);background:var(--card)}
+    .hero-media figcaption,.ph figcaption,.shot figcaption,.chart-note{font-size:.82rem;color:var(--muted);margin-top:.45rem;line-height:1.45}
+
+    /* Key numbers */
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;margin:0 0 1.75rem}
+    .stat{padding:.9rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:12px}
+    .stat b{display:block;font-size:clamp(1.35rem,1.1rem + 1vw,1.75rem);font-weight:750;letter-spacing:-.02em;color:var(--ink);line-height:1.15}
+    .stat span{display:block;font-size:.8rem;color:var(--muted);margin-top:.25rem;line-height:1.4}
+    @media(max-width:720px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+    /* System diagram */
+    .sys{display:grid;grid-template-columns:minmax(0,1fr) 2rem minmax(0,1.35fr) 2rem minmax(0,1fr);grid-template-areas:". . grid . ." ". . g2i . ." "pv a1 inv a2 load" ". . bus . ." ". . bat . .";align-items:center;margin:1.2rem 0 1.5rem}
+    .node{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem .95rem;font-size:.86rem;color:var(--sub);line-height:1.45}
+    .node h3{margin:0 0 .3rem!important;font-size:.92rem!important;color:var(--ink)}
+    .node ul{margin:.2rem 0 0!important;padding-left:1rem!important}
+    .node li{margin:.15rem 0!important;font-size:.84rem}
+    .node.inv{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+    .node.grid{border-style:dashed;text-align:center}
+    .n-pv{grid-area:pv}.n-inv{grid-area:inv}.n-load{grid-area:load}.n-grid{grid-area:grid}.n-bat{grid-area:bat}
+    .link{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.78rem;font-weight:600;text-align:center;line-height:1.3}
+    .l-a1{grid-area:a1}.l-a2{grid-area:a2}.l-a1,.l-a2{font-size:1.2rem}
+    .l-g2i,.l-bus{padding:.45rem 0}
+    .l-g2i{grid-area:g2i}.l-bus{grid-area:bus}
+    @media(max-width:720px){
+      .sys{grid-template-columns:1fr;grid-template-areas:"grid" "g2i" "pv" "a1" "inv" "a2" "load" "bus" "bat"}
+      .l-a1,.l-a2{padding:.35rem 0;transform:rotate(90deg)}
+    }
+
+    /* Photos */
+    .ph{margin:0}
+    .ph a{display:block;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--card)}
+    .ph img{width:100%;height:auto;transition:opacity .15s}
+    .ph a:hover img{opacity:.88}
+    .pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0 1.25rem}
+    .pair--mixed{grid-template-columns:16fr 9fr}
+    .pair--portrait{max-width:620px}
+    .trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin:1rem 0 1.25rem}
+    @media(max-width:560px){.pair,.pair--mixed,.trio{grid-template-columns:1fr}}
+
+    /* Timeline */
+    .timeline{list-style:none;padding:0!important;margin:1rem 0 0!important;border-left:2px solid var(--border)}
+    .timeline>li{position:relative;padding:0 0 1.6rem 1.25rem;margin:0!important;max-width:none!important}
+    .timeline>li::before{content:"";position:absolute;left:-7px;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--bg)}
+    .timeline time{display:block;font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+    .timeline h3{margin:.15rem 0 .35rem!important}
+
+    /* Bilibili embeds: muted, no autoplay */
+    .bili-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.5rem 0 0}
+    @media(max-width:560px){.bili-row{grid-template-columns:1fr}}
+    .bili-frame{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:#000}
+    .bili-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .bili-cap{font-size:.84rem!important;color:var(--sub);margin:.45rem 0 0!important}
+
+    /* Screenshots */
+    .shots{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:.25rem 0 .9rem;margin:1rem 0 .5rem}
+    .shot{flex:0 0 210px;margin:0;scroll-snap-align:start}
+    .shot a{display:block;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--card)}
+    .shot img{width:100%;height:auto}
+
+    /* Charts */
+    .chart-block{margin:1.25rem 0 1.75rem}
+    .chart-block h3{margin:0 0 .5rem!important}
+    .chart{position:relative;width:100%}
+    .chart svg{display:block;overflow:visible}
+    .chart .g{stroke:var(--border);stroke-width:1}
+    .chart .base{stroke:var(--muted)}
+    .chart .tick{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+    .chart .lbl{fill:var(--sub);font-size:11px;font-weight:600}
+    .chart .val{fill:var(--ink);font-size:11px;font-weight:700}
+    .chart .bar{fill:var(--accent);transition:opacity .12s}
+    .chart .hovering .bar{opacity:.4}
+    .chart .hovering .bar.on{opacity:1}
+    .chart .mk circle{fill:var(--bg);stroke:var(--muted);stroke-width:1}
+    .chart .mk text{fill:var(--sub);font-size:10px;font-weight:700}
+    .chart .hit{fill:transparent;cursor:default;outline:none}
+    .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:.78rem;line-height:1.4;padding:.4rem .6rem;border-radius:8px;white-space:nowrap;transform:translate(-50%,-100%);opacity:0;transition:opacity .1s}
+    .tip.show{opacity:1}
+    .notes{list-style:none;padding:0!important;margin:.6rem 0 0!important;font-size:.84rem}
+    .notes li{color:var(--muted);margin:.2rem 0!important}
+    .notes b{display:inline-flex;width:18px;height:18px;border:1px solid var(--muted);border-radius:50%;align-items:center;justify-content:center;font-size:.68rem;margin-right:.35rem;color:var(--sub)}
+    details.data{margin:.75rem 0 0;font-size:.86rem}
+    details.data summary{cursor:pointer;color:var(--accent);font-weight:600}
+    details.data table{border-collapse:collapse;margin:.6rem 0 0;font-variant-numeric:tabular-nums}
+    details.data th,details.data td{padding:.25rem .9rem .25rem 0;text-align:right;border-bottom:1px solid var(--border);color:var(--sub)}
+    details.data th:first-child,details.data td:first-child{text-align:left}
+
+    /* Engineering decisions */
+    .decision{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:clamp(16px,2.5vw,22px);margin:1rem 0}
+    .decision h3{margin:0 0 .7rem!important}
+    .decision h3 small{display:block;font-size:.7rem;font-weight:800;letter-spacing:.12em;color:var(--accent);margin-bottom:.2rem}
+    .decision dl{display:grid;grid-template-columns:6.5rem 1fr;gap:.45rem 1rem;margin:0}
+    .decision dt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding-top:.2rem}
+    .decision dd{margin:0;color:var(--sub);font-size:.95rem;line-height:1.55}
+    @media(max-width:560px){.decision dl{grid-template-columns:1fr}.decision dd{margin-bottom:.4rem}}
+
+    /* Lightbox */
+    .lb{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.8rem;padding:1rem;cursor:zoom-out}
+    .lb[hidden]{display:none}
+    .lb img{max-width:94vw;max-height:84vh;width:auto;border-radius:8px}
+    .lb-cap{color:#fff;font-size:.86rem;max-width:80ch;text-align:center;line-height:1.5}
+    .lb-close{position:absolute;top:.8rem;right:.8rem;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.4);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">Yiyang Zhang <small>Interaction Design</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
+          <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
+
+    <div class="project-hero">
+      <span class="eyebrow"><span data-lang="en">Case Study · Energy Systems · 2024–26</span><span data-lang="zh">案例研究 · 能源系统 · 2024–26</span></span>
+      <h1><span data-lang="en">Solar + Storage for AI Compute</span><span data-lang="zh">为 AI 算力供电的光伏储能电站</span></h1>
+      <p data-lang="en">A 49 kWp solar array and a 180 kWh battery bank on our family property near Nanjing, powering servers for AI pretraining and inference. My parents and I designed, wired and automated it ourselves — all self-taught.</p>
+      <p data-lang="zh">在南京附近农村的自家院子里，建了 49 kWp 光伏和 180 kWh 储能，给 AI 预训练和推理的服务器供电。从设计、接线到自动化，都是我和父母一起自学完成的。</p>
+      <div class="meta">
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span></strong><span data-lang="en">Design, wiring &amp; automation — with my parents</span><span data-lang="zh">设计、接线、自动化 · 和父母一起</span></span>
+        <span><strong><span data-lang="en">Scale</span><span data-lang="zh">规模</span></strong><span data-lang="en">49 kWp PV · ≈180 kWh LFP · 6 inverters</span><span data-lang="zh">光伏 49 kWp · 储能约 180 kWh · 6 台逆变器</span></span>
+        <span><strong><span data-lang="en">Stack</span><span data-lang="zh">技术</span></strong>Arduino + PLC · <span data-lang="en">Mi Home</span><span data-lang="zh">米家</span> · IoTrix</span>
+      </div>
+    </div>
+
+    <figure class="hero-media">
+      <video id="heroVideo" muted loop playsinline preload="metadata" poster="solar/poster-1280.avif" aria-label="Drone flyover of the solar arrays">
+        <source src="solar/aerial-loop.mp4" type="video/mp4">
+      </video>
+      <figcaption><span data-lang="en">Drone flyover of the first build, December 2024.</span><span data-lang="zh">2024 年 12 月第一版建成后的航拍。</span></figcaption>
+    </figure>
+
+    <div class="content">
+      <div class="tldr">
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span></h2>
+        <dl>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span></dt><dd><span data-lang="en">Servers for AI pretraining and inference run around the clock. Without solar, the site needs ≈32,888 kWh a month.</span><span data-lang="zh">AI 预训练和推理的服务器 24 小时运行，不用光伏的话，全站每月要用约 32,888 度电。</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span></dt><dd><span data-lang="en">Design, sourcing, wiring, BMS setup and automation — with my parents, all self-taught.</span><span data-lang="zh">设计、选型、接线、BMS 调试、自动化，和父母一起，全部自学。</span></dd></div>
+          <div><dt><span data-lang="en">System</span><span data-lang="zh">系统</span></dt><dd><span data-lang="en">70 × 700 W modules in 10 strings, 6 × 11 kVA inverter-chargers, ≈180 kWh LFP. Never exports; the grid is a last resort.</span><span data-lang="zh">70 块 700W 组件分 10 组串，6 台 11 kVA 逆变器，约 180 kWh 磷酸铁锂。不向电网卖电，市电只作最后兜底。</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span></dt><dd><span data-lang="en">First power in December 2024 → staged build-out and monitoring in 2025 → storage expanded in 2026.</span><span data-lang="zh">2024 年 12 月首次发电 → 2025 年分批完善、接入监控 → 2026 年储能扩建。</span></dd></div>
+          <div><dt><span data-lang="en">Cost</span><span data-lang="zh">成本</span></dt><dd><span data-lang="en">≈ ¥120,000</span><span data-lang="zh">约 12 万元</span></dd></div>
+          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span></dt><dd><span data-lang="en">66,504 kWh generated so far; solar covers ≈9–12% of monthly demand.</span><span data-lang="zh">累计发电 66,504 度，每月覆盖约 9–12% 的用电。</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>49 kWp</b><span data-lang="en">Solar array · 70 × 700 W</span><span data-lang="zh">光伏装机 · 70 块 700W</span></div>
+        <div class="stat"><b>≈180 kWh</b><span data-lang="en">LFP storage · 5 layers</span><span data-lang="zh">磷酸铁锂储能 · 5 层</span></div>
+        <div class="stat"><b>6 × 11 kVA</b><span data-lang="en">Inverter-chargers</span><span data-lang="zh">逆变充电一体机</span></div>
+        <div class="stat"><b>66,504 kWh</b><span data-lang="en">Generated to 31 Jul 2026</span><span data-lang="zh">累计发电（截至 2026-07-31）</span></div>
+      </div>
+
+      <!-- 01 -->
+      <h2><span data-lang="en">Context</span><span data-lang="zh">背景</span></h2>
+      <div data-lang="en">
+        <p>Our family property in a village near Nanjing hosts servers for AI pretraining and inference, alongside air-conditioning and everyday household loads. The compute runs around the clock, so without solar the site needs about 32,888 kWh a month.</p>
+        <p>We had roof and yard space but no installer, so my parents and I taught ourselves and built it. The brief:</p>
+        <ul>
+          <li><strong>Never sell to the grid.</strong> Loads run on solar first, then the batteries; the grid is used only when both are empty.</li>
+          <li><strong>Keep control alive.</strong> A fault in the power stage must not take down the system that coordinates it.</li>
+          <li><strong>Stay inside every limit</strong> — MPPT voltage and power, BMS current, cable and busbar ratings.</li>
+          <li><strong>Grow in stages</strong> without starting over.</li>
+        </ul>
+        <p><strong>Constraints:</strong> a budget of about ¥120,000, 40 kg modules on rural rooftops, and summer heat — 46–49 °C outdoors, 38–42 °C in the equipment room, 57–60 °C on the transformers.</p>
+      </div>
+      <div data-lang="zh">
+        <p>我们家在南京附近农村的院子里放着 AI 预训练和推理用的服务器，同时还有空调和日常家用负载。算力 24 小时不停，不用光伏的话，全站每月要用大约 32,888 度电。</p>
+        <p>屋顶和院子有空间，但没有找施工队，所以我和父母边学边做。给自己定的要求：</p>
+        <ul>
+          <li><strong>不向电网卖电。</strong>负载先用光伏，再用电池，两者都没电时才切到市电。</li>
+          <li><strong>控制系统不能跟着倒。</strong>功率部分出故障时，负责协调的控制系统要保持在线。</li>
+          <li><strong>每个器件都留在额定范围内</strong>：MPPT 电压和功率、BMS 电流、线缆和铜排的载流。</li>
+          <li><strong>能分阶段扩建</strong>，不用推倒重来。</li>
+        </ul>
+        <p><strong>限制条件：</strong>预算约 12 万元；每块组件约 40 kg，要装到农村屋顶上；夏季高温，室外 46–49°C，机房 38–42°C，变压器 57–60°C。</p>
+      </div>
+
+      <!-- 02 -->
+      <h2><span data-lang="en">System</span><span data-lang="zh">系统结构</span></h2>
+      <p data-lang="en">Power flows from the arrays through six inverter-chargers to the loads, with the battery bank on a shared DC bus. The grid is wired in only as a backup input.</p>
+      <p data-lang="zh">电从光伏阵列经过 6 台逆变器送到负载，电池组挂在共用的直流母线上。市电只作为后备输入接入。</p>
+
+      <div class="sys" role="group" aria-label="System diagram">
+        <div class="node grid n-grid">
+          <h3><span data-lang="en">Grid</span><span data-lang="zh">市电</span></h3>
+          <span data-lang="en">Backup only — used when PV and batteries are both empty. Nothing is exported.</span><span data-lang="zh">只作后备：光伏和电池都没电时才用，不向电网送电。</span>
+        </div>
+        <div class="link l-g2i">↓ <span data-lang="en">&nbsp;backup input</span><span data-lang="zh">&nbsp;后备输入</span></div>
+        <div class="node n-pv">
+          <h3><span data-lang="en">Solar array</span><span data-lang="zh">光伏阵列</span></h3>
+          <ul>
+            <li><span data-lang="en">70 × 700 W modules · 49 kWp</span><span data-lang="zh">70 块 700W 组件 · 49 kWp</span></li>
+            <li><span data-lang="en">10 strings · noon peak 31–33 kW</span><span data-lang="zh">10 组串 · 正午实测 31–33 kW</span></li>
+            <li><span data-lang="en">Left 45 modules, due south, 5°</span><span data-lang="zh">左阵列 45 块，正南，倾角 5°</span></li>
+            <li><span data-lang="en">Right 25 modules, 15°</span><span data-lang="zh">右阵列 25 块，倾角 15°</span></li>
+          </ul>
+        </div>
+        <div class="link l-a1" aria-hidden="true">→</div>
+        <div class="node inv n-inv">
+          <h3><span data-lang="en">6 × 11 kVA inverter-chargers</span><span data-lang="zh">6 台 11 kVA 逆变充电一体机</span></h3>
+          <ul>
+            <li><span data-lang="en">3 in parallel for the 220 V main output, phase-locked by Arduino + PLC</span><span data-lang="zh">3 台并联做 220V 主输出，Arduino + PLC 锁相位</span></li>
+            <li><span data-lang="en">1 charging only</span><span data-lang="zh">1 台纯充电</span></li>
+            <li><span data-lang="en">1 powers the control system, fully isolated</span><span data-lang="zh">1 台只给控制系统供电，完全隔离</span></li>
+            <li><span data-lang="en">1 hot standby, switches in on a fault</span><span data-lang="zh">1 台热备，主机故障时自动切入</span></li>
+          </ul>
+        </div>
+        <div class="link l-a2" aria-hidden="true">→</div>
+        <div class="node n-load">
+          <h3><span data-lang="en">Loads</span><span data-lang="zh">负载</span></h3>
+          <ul>
+            <li><span data-lang="en">Servers for AI pretraining &amp; inference</span><span data-lang="zh">AI 预训练和推理服务器</span></li>
+            <li><span data-lang="en">Air-conditioning</span><span data-lang="zh">空调</span></li>
+            <li><span data-lang="en">Household</span><span data-lang="zh">家用</span></li>
+          </ul>
+        </div>
+        <div class="link l-bus">⇅ <span data-lang="en">&nbsp;DC bus · 4 mm copper busbar · one 95 mm² cable per inverter</span><span data-lang="zh">&nbsp;直流母线 · 4mm 铜排 · 每台逆变器一根 95mm² 铜线</span></div>
+        <div class="node n-bat">
+          <h3><span data-lang="en">LFP battery bank</span><span data-lang="zh">磷酸铁锂电池组</span></h3>
+          <ul>
+            <li><span data-lang="en">16S · 51.2 V nominal · ≈180 kWh</span><span data-lang="zh">16 串 · 标称 51.2V · 约 180 kWh</span></li>
+            <li><span data-lang="en">4 layers 16S2P (400 Ah cells) + 1 layer 16S1P (310 Ah)</span><span data-lang="zh">4 层 16S2P（400Ah 电芯）+ 1 层 16S1P（310Ah）</span></li>
+            <li><span data-lang="en">Independent BMS on every layer</span><span data-lang="zh">每层独立 BMS</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <ul data-lang="en">
+        <li><strong>Inverter limits:</strong> MPPT window up to 500 V (inputs rated 550 V, built with 630 V capacitors); 5.5 kW per input, 11 kW per unit.</li>
+        <li><strong>Modules:</strong> Voc 48 V and Isc 19 A each, so a 9-module string sits near 432 V open-circuit.</li>
+        <li><strong>Operations:</strong> monitoring app since April 2025; all six units automated through Mi Home since October 2025.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>逆变器上限：</strong>MPPT 工作电压最高 500V（耐压 550V，用的是 630V 电容）；单路最大 5.5 kW，单机最大 11 kW。</li>
+        <li><strong>组件：</strong>单块 Voc 48V、Isc 19A，9 块一串开路电压约 432V。</li>
+        <li><strong>运行：</strong>2025 年 4 月接入监控 app；2025 年 10 月起 6 台机全部由米家自动化控制。</li>
+      </ul>
+
+      <!-- 03 -->
+      <h2><span data-lang="en">Site</span><span data-lang="zh">场地</span></h2>
+      <p data-lang="en">The left array covers the main roof, facing due south at a shallow 5°. The right array sits at 15° in 2 × 9 + 1 × 7 strings.</p>
+      <p data-lang="zh">左阵列铺满主屋顶，正南朝向，倾角只有 5°。右阵列倾角 15°，分 2 组 9 串和 1 组 7 串。</p>
+
+      <div class="pair">
+        <figure class="ph">
+          <a class="zoom" href="solar/aerial-2024-1600.avif" data-webp="solar/aerial-2024-1600.webp">
+            <picture>
+              <source type="image/avif" srcset="solar/aerial-2024-800.avif 800w, solar/aerial-2024-1600.avif 1600w" sizes="(max-width:560px) 100vw, 440px">
+              <img src="solar/aerial-2024-800.webp" srcset="solar/aerial-2024-800.webp 800w, solar/aerial-2024-1600.webp 1600w" sizes="(max-width:560px) 100vw, 440px" width="800" height="600" loading="lazy" alt="Aerial view of the arrays in December 2024" data-alt-zh="2024 年 12 月的阵列航拍">
+            </picture>
+          </a>
+          <figcaption><span data-lang="en">December 2024 — the first build.</span><span data-lang="zh">2024 年 12 月 · 第一版。</span></figcaption>
+        </figure>
+        <figure class="ph">
+          <a class="zoom" href="solar/aerial-2026-1600.avif" data-webp="solar/aerial-2026-1600.webp">
+            <picture>
+              <source type="image/avif" srcset="solar/aerial-2026-800.avif 800w, solar/aerial-2026-1600.avif 1600w" sizes="(max-width:560px) 100vw, 440px">
+              <img src="solar/aerial-2026-800.webp" srcset="solar/aerial-2026-800.webp 800w, solar/aerial-2026-1600.webp 1600w" sizes="(max-width:560px) 100vw, 440px" width="800" height="600" loading="lazy" alt="Top-down aerial view of the arrays in 2026" data-alt-zh="2026 年的阵列俯拍">
+            </picture>
+          </a>
+          <figcaption><span data-lang="en">2026 — after the expansion, seen from directly above.</span><span data-lang="zh">2026 年 · 扩建后，正上方俯拍。</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="trio">
+        <figure class="ph">
+          <a class="zoom" href="solar/overview-1600.avif" data-webp="solar/overview-1600.webp">
+            <picture>
+              <source type="image/avif" srcset="solar/overview-800.avif 800w, solar/overview-1600.avif 1600w" sizes="(max-width:560px) 100vw, 290px">
+              <img src="solar/overview-800.webp" srcset="solar/overview-800.webp 800w, solar/overview-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Low-angle aerial view across the arrays" data-alt-zh="低角度航拍阵列">
+            </picture>
+          </a>
+          <figcaption><span data-lang="en">The arrays from the air, 2026.</span><span data-lang="zh">2026 年航拍。</span></figcaption>
+        </figure>
+        <figure class="ph">
+          <a class="zoom" href="solar/rooftop-1600.avif" data-webp="solar/rooftop-1600.webp">
+            <picture>
+              <source type="image/avif" srcset="solar/rooftop-800.avif 800w, solar/rooftop-1600.avif 1600w" sizes="(max-width:560px) 100vw, 290px">
+              <img src="solar/rooftop-800.webp" srcset="solar/rooftop-800.webp 800w, solar/rooftop-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Module rows on the roof frame" data-alt-zh="屋顶支架上的组件">
+            </picture>
+          </a>
+          <figcaption><span data-lang="en">Module rows on the roof frame.</span><span data-lang="zh">屋顶支架上的组件。</span></figcaption>
+        </figure>
+        <figure class="ph">
+          <a class="zoom" href="solar/module-1600.avif" data-webp="solar/module-1600.webp">
+            <picture>
+              <source type="image/avif" srcset="solar/module-800.avif 800w, solar/module-1600.avif 1600w" sizes="(max-width:560px) 100vw, 290px">
+              <img src="solar/module-800.webp" srcset="solar/module-800.webp 800w, solar/module-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Close-up of a 700 W module" data-alt-zh="700W 组件近景">
+            </picture>
+          </a>
+          <figcaption><span data-lang="en">A 700 W module up close — about 40 kg each.</span><span data-lang="zh">700W 组件近景，每块约 40 kg。</span></figcaption>
+        </figure>
+      </div>
+
+      <!-- 04 -->
+      <h2><span data-lang="en">Build</span><span data-lang="zh">搭建过程</span></h2>
+      <ol class="timeline">
+        <li>
+          <time datetime="2024-12">2024-12</time>
+          <h3><span data-lang="en">First power</span><span data-lang="zh">首次发电</span></h3>
+          <p data-lang="en">The first working version: inverters on the equipment-room wall and a single battery rack in 16S4P — 64 × 400 Ah cells, about 80 kWh.</p>
+          <p data-lang="zh">第一个能发电的版本：逆变器上墙，一个 16S4P 的电池架，64 块 400Ah 电芯，约 80 kWh。</p>
+          <div class="pair pair--mixed">
+            <figure class="ph">
+              <a class="zoom" href="solar/inverters-1600.avif" data-webp="solar/inverters-1600.webp">
+                <picture>
+                  <source type="image/avif" srcset="solar/inverters-800.avif 800w, solar/inverters-1600.avif 1600w" sizes="(max-width:560px) 100vw, 500px">
+                  <img src="solar/inverters-800.webp" srcset="solar/inverters-800.webp 800w, solar/inverters-1600.webp 1600w" sizes="(max-width:560px) 100vw, 500px" width="800" height="600" loading="lazy" alt="Inverter-chargers mounted on the wall" data-alt-zh="墙上的逆变充电一体机">
+                </picture>
+              </a>
+              <figcaption><span data-lang="en">Inverter-chargers going up, December 2024.</span><span data-lang="zh">2024 年 12 月，逆变器上墙。</span></figcaption>
+            </figure>
+            <figure class="ph">
+              <a class="zoom" href="solar/battery-2024-1600.avif" data-webp="solar/battery-2024-1600.webp">
+                <picture>
+                  <source type="image/avif" srcset="solar/battery-2024-800.avif 600w, solar/battery-2024-1600.avif 1200w" sizes="(max-width:560px) 100vw, 280px">
+                  <img src="solar/battery-2024-800.webp" srcset="solar/battery-2024-800.webp 600w, solar/battery-2024-1600.webp 1200w" sizes="(max-width:560px) 100vw, 280px" width="600" height="800" loading="lazy" alt="First battery rack with blue cells on four shelves" data-alt-zh="第一版电池架，四层蓝色电芯">
+                </picture>
+              </a>
+              <figcaption><span data-lang="en">First rack: 16S4P, ≈80 kWh.</span><span data-lang="zh">第一版电池架：16S4P，约 80 kWh。</span></figcaption>
+            </figure>
+          </div>
+          <div class="bili-row">
+            <div>
+              <div class="bili-frame">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1kasNzAEj5&amp;autoplay=0&amp;muted=1&amp;danmaku=0&amp;high_quality=1" title="Bilibili video: Day 48" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="bili-cap"><span data-lang="en">Day 48 — assembling the BYD Blade cells.</span><span data-lang="zh">第 48 天，组装比亚迪大刀片电池。</span> <a href="https://www.bilibili.com/video/BV1kasNzAEj5/" target="_blank" rel="noopener"><span data-lang="en">Watch on Bilibili ↗</span><span data-lang="zh">在 B 站观看 ↗</span></a></p>
+            </div>
+            <div>
+              <div class="bili-frame">
+                <iframe src="https://player.bilibili.com/player.html?bvid=BV1Pgv6BrEJ9&amp;autoplay=0&amp;muted=1&amp;danmaku=0&amp;high_quality=1" title="Bilibili video: Day 73" loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <p class="bili-cap"><span data-lang="en">Day 73 — the second layer of cells.</span><span data-lang="zh">第 73 天，组装第二层比亚迪大刀片电池。</span> <a href="https://www.bilibili.com/video/BV1Pgv6BrEJ9/" target="_blank" rel="noopener"><span data-lang="en">Watch on Bilibili ↗</span><span data-lang="zh">在 B 站观看 ↗</span></a></p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <time datetime="2025-04">2025-04 → 08</time>
+          <h3><span data-lang="en">Staged build-out and monitoring</span><span data-lang="zh">分批完善，接入监控</span></h3>
+          <p data-lang="en">The rest of the modules went up in stages through August while we fixed problems as they appeared. The monitoring app came online in April, which is where the monthly data starts.</p>
+          <p data-lang="zh">到 8 月为止分批装完其余组件，边用边修。4 月接入监控 app，月度发电数据从这里开始。</p>
+        </li>
+        <li>
+          <time datetime="2025-10">2025-10</time>
+          <h3><span data-lang="en">Automation</span><span data-lang="zh">自动化</span></h3>
+          <p data-lang="en">All six inverters brought under Mi Home automation.</p>
+          <p data-lang="zh">6 台逆变器全部接入米家自动化。</p>
+        </li>
+        <li>
+          <time datetime="2026-04">2026-04 → 05</time>
+          <h3><span data-lang="en">Expansion</span><span data-lang="zh">扩建</span></h3>
+          <p data-lang="en">Storage grew from ≈80 kWh to ≈180 kWh across five layers. The left array was re-strung to stop clipping, and the outer-right string was connected.</p>
+          <p data-lang="zh">储能从约 80 kWh 扩到约 180 kWh，共 5 层。左阵列重新分串解决削峰，外侧右组串接入。</p>
+          <div class="pair pair--portrait">
+            <figure class="ph">
+              <a class="zoom" href="solar/battery-2026-1600.avif" data-webp="solar/battery-2026-1600.webp">
+                <picture>
+                  <source type="image/avif" srcset="solar/battery-2026-800.avif 600w, solar/battery-2026-1600.avif 1200w" sizes="(max-width:560px) 100vw, 440px">
+                  <img src="solar/battery-2026-800.webp" srcset="solar/battery-2026-800.webp 600w, solar/battery-2026-1600.webp 1200w" sizes="(max-width:560px) 100vw, 440px" width="600" height="800" loading="lazy" alt="Expanded battery rack with five layers of cells" data-alt-zh="扩建后的电池架，五层电芯">
+                </picture>
+              </a>
+              <figcaption><span data-lang="en">After the expansion: five layers, ≈180 kWh.</span><span data-lang="zh">扩建后：5 层，约 180 kWh。</span></figcaption>
+            </figure>
+            <figure class="ph">
+              <a class="zoom" href="solar/wiring-1600.avif" data-webp="solar/wiring-1600.webp">
+                <picture>
+                  <source type="image/avif" srcset="solar/wiring-800.avif 600w, solar/wiring-1600.avif 1200w" sizes="(max-width:560px) 100vw, 440px">
+                  <img src="solar/wiring-800.webp" srcset="solar/wiring-800.webp 600w, solar/wiring-1600.webp 1200w" sizes="(max-width:560px) 100vw, 440px" width="600" height="800" loading="lazy" alt="Battery rack with copper busbars and heavy cables" data-alt-zh="电池架上的铜排和粗电缆">
+                </picture>
+              </a>
+              <figcaption><span data-lang="en">Busbars on the rack posts, one 95 mm² cable per inverter.</span><span data-lang="zh">立柱上的铜排，每台逆变器一根 95mm² 铜线。</span></figcaption>
+            </figure>
+          </div>
+        </li>
+      </ol>
+
+      <!-- 05 -->
+      <h2><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span></h2>
+      <p data-lang="en">The system is watched through the IoTrix monitoring app and each layer's BMS app. The key numbers from each screen are pulled out below it. Scroll sideways for more.</p>
+      <p data-lang="zh">系统通过 IoTrix 监控 app 和每层电池的 BMS app 来看。每张截图下面列出了关键数字，可以左右滑动查看。</p>
+      <div class="shots">
+        <figure class="shot" data-lang="en">
+          <a class="zoom" href="solar/screen-platform-en.avif" data-webp="solar/screen-platform-en.webp">
+            <picture><source type="image/avif" srcset="solar/screen-platform-en.avif"><img src="solar/screen-platform-en.webp" width="720" height="1158" loading="lazy" alt="Monitoring app overview, English interface"></picture>
+          </a>
+          <figcaption>Overview (24 Jul 2026): 32.6 kW live across the arrays, 65,004 kWh generated in total.</figcaption>
+        </figure>
+        <figure class="shot" data-lang="zh">
+          <a class="zoom" href="solar/screen-platform-zh.avif" data-webp="solar/screen-platform-zh.webp">
+            <picture><source type="image/avif" srcset="solar/screen-platform-zh.avif"><img src="solar/screen-platform-zh.webp" width="720" height="1210" loading="lazy" alt="监控 app 总览，中文界面"></picture>
+          </a>
+          <figcaption>总览（2026-07-31）：实时功率 22.2 kW，当天已发 103 度，累计 66,504 度。</figcaption>
+        </figure>
+        <figure class="shot">
+          <a class="zoom" href="solar/screen-curve.avif" data-webp="solar/screen-curve.webp">
+            <picture><source type="image/avif" srcset="solar/screen-curve.avif"><img src="solar/screen-curve.webp" width="720" height="1340" loading="lazy" alt="One array's power curve over a day" data-alt-zh="单个阵列一天的功率曲线"></picture>
+          </a>
+          <figcaption><span data-lang="en">One array's day (30 Jul 2026): PV peaks near 6.2 kW at midday while grid power stays at 0 W.</span><span data-lang="zh">单个阵列一天的曲线（2026-07-30）：中午光伏接近 6.2 kW，市电功率保持 0 W。</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a class="zoom" href="solar/screen-mppt.avif" data-webp="solar/screen-mppt.webp">
+            <picture><source type="image/avif" srcset="solar/screen-mppt.avif"><img src="solar/screen-mppt.webp" width="720" height="1428" loading="lazy" alt="Monthly generation history stacked by array" data-alt-zh="按阵列堆叠的月度发电历史"></picture>
+          </a>
+          <figcaption><span data-lang="en">2026 so far: 24,917 kWh, stacked by array, month by month.</span><span data-lang="zh">2026 年至今发电 24,917 度，按月份和阵列堆叠。</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a class="zoom" href="solar/screen-bms.avif" data-webp="solar/screen-bms.webp">
+            <picture><source type="image/avif" srcset="solar/screen-bms.avif"><img src="solar/screen-bms.webp" width="720" height="1340" loading="lazy" alt="BMS live status for one battery layer" data-alt-zh="一层电池的 BMS 实时状态"></picture>
+          </a>
+          <figcaption><span data-lang="en">One battery layer: 54.35 V, 206 A, 16 cells within 0.142 V of each other. The 802 Ah is one layer (2 × 400 Ah in parallel); there are five.</span><span data-lang="zh">一层电池：54.35V、206A，16 节单体最大压差 0.142V。802Ah 只是一层（2 × 400Ah 并联），一共 5 层。</span></figcaption>
+        </figure>
+        <figure class="shot">
+          <a class="zoom" href="solar/screen-bill.avif" data-webp="solar/screen-bill.webp">
+            <picture><source type="image/avif" srcset="solar/screen-bill.avif"><img src="solar/screen-bill.webp" width="720" height="1458" loading="lazy" alt="Monthly electricity use" data-alt-zh="月度用电量"></picture>
+          </a>
+          <figcaption><span data-lang="en">Site demand without solar: 35,919 kWh in May and 32,888 kWh in June 2026.</span><span data-lang="zh">不用光伏时的全站用电：2026 年 5 月 35,919 度，6 月 32,888 度。</span></figcaption>
+        </figure>
+      </div>
+
+      <!-- 06 -->
+      <h2><span data-lang="en">Results</span><span data-lang="zh">结果</span></h2>
+      <div class="stats">
+        <div class="stat"><b>66,504 kWh</b><span data-lang="en">Total generated (31 Jul 2026)</span><span data-lang="zh">累计发电（2026-07-31）</span></div>
+        <div class="stat"><b>22,671 kWh</b><span data-lang="en">2025, April–December</span><span data-lang="zh">2025 年 4–12 月</span></div>
+        <div class="stat"><b>24,808 kWh</b><span data-lang="en">2026, January–July</span><span data-lang="zh">2026 年 1–7 月</span></div>
+        <div class="stat"><b>≈9–12%</b><span data-lang="en">Of monthly demand, 2026</span><span data-lang="zh">2026 年每月用电占比</span></div>
+      </div>
+
+      <div class="chart-block">
+        <h3><span data-lang="en">Monthly generation, Apr 2025 – Jul 2026 (kWh)</span><span data-lang="zh">月度发电量，2025 年 4 月 – 2026 年 7 月（度）</span></h3>
+        <div class="chart" id="genChart"></div>
+        <ul class="notes">
+          <li><b>1</b><span data-lang="en">Monitoring starts in April 2025; modules were still being added until August.</span><span data-lang="zh">2025 年 4 月开始有监控数据，组件到 8 月才装完。</span></li>
+          <li><b>2</b><span data-lang="en">The right array was being commissioned in September and October.</span><span data-lang="zh">9–10 月右路在调试。</span></li>
+          <li><b>3</b><span data-lang="en">Shut down in May 2026 to re-string the left array.</span><span data-lang="zh">2026 年 5 月停机给左阵列改串。</span></li>
+        </ul>
+        <p class="chart-note"><span data-lang="en">Monthly share uses the site's demand without solar, ≈32,888 kWh. The 66,504 kWh total comes from the metering module and includes output from before monthly records began.</span><span data-lang="zh">月度占比按不用光伏时的全站用电约 32,888 度计算。累计 66,504 度来自计量模块，包含开始按月记录之前的发电量。</span></p>
+        <details class="data">
+          <summary><span data-lang="en">Show data table</span><span data-lang="zh">查看数据表</span></summary>
+          <table>
+            <thead><tr><th><span data-lang="en">Month</span><span data-lang="zh">月份</span></th><th><span data-lang="en">kWh</span><span data-lang="zh">度</span></th></tr></thead>
+            <tbody>
+              <tr><td>2025-04</td><td>322.9</td></tr><tr><td>2025-05</td><td>1,076.0</td></tr><tr><td>2025-06</td><td>1,882.9</td></tr><tr><td>2025-07</td><td>2,869.9</td></tr>
+              <tr><td>2025-08</td><td>3,555.6</td></tr><tr><td>2025-09</td><td>3,181.6</td></tr><tr><td>2025-10</td><td>3,058.9</td></tr><tr><td>2025-11</td><td>3,660.9</td></tr>
+              <tr><td>2025-12</td><td>3,061.8</td></tr><tr><td>2026-01</td><td>2,866.3</td></tr><tr><td>2026-02</td><td>3,297.3</td></tr><tr><td>2026-03</td><td>3,636.4</td></tr>
+              <tr><td>2026-04</td><td>3,885.6</td></tr><tr><td>2026-05</td><td>3,534.1</td></tr><tr><td>2026-06</td><td>3,562.8</td></tr><tr><td>2026-07</td><td>4,025.9</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </div>
+
+      <div class="chart-block">
+        <h3><span data-lang="en">2026 to date by array, to 2 Aug (kWh)</span><span data-lang="zh">2026 年至今各阵列发电，截至 8 月 2 日（度）</span></h3>
+        <div class="chart" id="zoneChart"></div>
+        <p class="chart-note"><span data-lang="en">Outer-right was connected in May 2026, so it has fewer months of output.</span><span data-lang="zh">外侧右 2026 年 5 月才接入，所以发电月份少。</span></p>
+      </div>
+
+      <!-- 07 -->
+      <h2><span data-lang="en">Engineering decisions</span><span data-lang="zh">工程决策</span></h2>
+
+      <article class="decision">
+        <h3><small>01</small><span data-lang="en">Clipping on the left array → re-stringing</span><span data-lang="zh">左阵列削峰 → 重新分串</span></h3>
+        <dl>
+          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span></dt>
+          <dd><span data-lang="en">The left array ran as 5 strings of 9 modules. At noon a 9-module string makes about 6.3 kW.</span><span data-lang="zh">左阵列原来是 5 组、每组 9 块串联，正午一串约 6.3 kW。</span></dd>
+          <dt><span data-lang="en">Cause</span><span data-lang="zh">原因</span></dt>
+          <dd><span data-lang="en">One MPPT input handles at most 5.5 kW, so anything above that was clipped off.</span><span data-lang="zh">单路 MPPT 最大 5.5 kW，超出的部分被削掉。</span></dd>
+          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span></dt>
+          <dd><span data-lang="en">In May 2026 the 45 modules were re-wired into 5 strings of 7 plus 2 strings of 5, with one more inverter taking the extra inputs. A 7-module string peaks near 4.9 kW, and its open-circuit voltage (≈336 V) stays well under the 500 V window.</span><span data-lang="zh">2026 年 5 月把 45 块改成 5 组 7 串 + 2 组 5 串，多分出一台机来接。7 块一串峰值约 4.9 kW，开路电压约 336V，都在上限以内。</span></dd>
+          <dt><span data-lang="en">Result</span><span data-lang="zh">结果</span></dt>
+          <dd><span data-lang="en">Every input now sits below its power limit. The shutdown cost about 380 kWh that month.</span><span data-lang="zh">每一路都低于功率上限。停机改串那个月少发了约 380 度。</span></dd>
+        </dl>
+      </article>
+
+      <article class="decision">
+        <h3><small>02</small><span data-lang="en">Fault isolation for the control system</span><span data-lang="zh">故障隔离：控制系统单独供电</span></h3>
+        <dl>
+          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span></dt>
+          <dd><span data-lang="en">The three parallel units are phase-locked by an Arduino + PLC. If the controller went down with a failing power unit, the whole output would follow.</span><span data-lang="zh">3 台并联机靠 Arduino + PLC 锁相位。如果控制器跟着故障的主机一起掉电，整个输出都会停。</span></dd>
+          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span></dt>
+          <dd><span data-lang="en">One inverter powers only the control system and is fully isolated from the others. A sixth unit waits as a hot standby and switches in automatically when a main unit fails.</span><span data-lang="zh">单独用一台逆变器给控制系统供电，和其他机器完全隔离；再留一台热备，主机故障时自动切入。</span></dd>
+          <dt><span data-lang="en">Result</span><span data-lang="zh">结果</span></dt>
+          <dd><span data-lang="en">A fault in the power stage no longer takes the controller offline.</span><span data-lang="zh">主功率层出故障时，控制系统仍然在线。</span></dd>
+        </dl>
+      </article>
+
+      <article class="decision">
+        <h3><small>03</small><span data-lang="en">BMS “short circuit” on reconnect → pre-charge</span><span data-lang="zh">BMS 重新接入报短路 → 预充电阻</span></h3>
+        <dl>
+          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span></dt>
+          <dd><span data-lang="en">After a BMS cut off and the bus lost power, plugging the charger back in made the BMS report a short circuit.</span><span data-lang="zh">BMS 断开、母线掉电之后，一接充电器 BMS 就报短路。</span></dd>
+          <dt><span data-lang="en">Cause</span><span data-lang="zh">原因</span></dt>
+          <dd><span data-lang="en">Inrush current into the DC-bus capacitors, which charge from 0 V almost instantly.</span><span data-lang="zh">母线电容从 0V 瞬间充电，涌流太大。</span></dd>
+          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span></dt>
+          <dd><span data-lang="en">A pre-charge resistor brings the bus up gradually before the main connection closes.</span><span data-lang="zh">加预充电阻，先慢慢把母线电压充上来，再接通主回路。</span></dd>
+        </dl>
+      </article>
+
+      <h3><span data-lang="en">Other issues along the way</span><span data-lang="zh">其他遇到的问题</span></h3>
+      <ul data-lang="en">
+        <li><strong>Cables jumping at high current:</strong> battery cables moved on the floor and breakers tripped under heavy load. Positive and negative runs are now bundled together, and the breakers were replaced with DC fuses.</li>
+        <li><strong>Outer-right string collapsing under load:</strong> 430 V open-circuit fell to 80 V at just 2 A. In May 2026 the series connections were re-made and the string split into its own group. The root cause is still being confirmed.</li>
+        <li><strong>Heat:</strong> in summer it reaches 46–49 °C outdoors, 38–42 °C in the equipment room and 57–60 °C on the transformers.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>大电流时电缆跳动：</strong>重载时电池电缆在地上跳、断路器跳闸。现在正负线并在一起扎好，断路器换成了直流熔断器。</li>
+        <li><strong>外侧右组串带载塌压：</strong>开路 430V，带 2A 负载就掉到 80V。2026 年 5 月停机重接串联线，外侧右单独成一组。根本原因还在确认。</li>
+        <li><strong>散热：</strong>夏季室外 46–49°C，机房 38–42°C，变压器 57–60°C。</li>
+      </ul>
+
+      <!-- 08 -->
+      <h2><span data-lang="en">Reflection &amp; next steps</span><span data-lang="zh">总结与下一步</span></h2>
+      <div data-lang="en">
+        <p>Most of the problems came from a limit we hadn't designed around yet — input power on an MPPT, inrush into capacitors, the force between heavy cables at high current. Reading every rating before wiring anything became the habit that mattered most.</p>
+        <p>Separating control from power and keeping a hot standby made the system something we can leave running. Planning the busbar and inverter roles with room to spare let storage grow from 80 to 180 kWh without starting over.</p>
+        <ul>
+          <li>Find the root cause of the outer-right voltage collapse.</li>
+          <li>Bring transformer temperatures down before next summer.</li>
+        </ul>
+      </div>
+      <div data-lang="zh">
+        <p>大多数问题都来自当时还没考虑到的某个上限：MPPT 的输入功率、电容的涌流、大电流时电缆之间的作用力。后来养成的最重要的习惯，是接线之前先把每个器件的额定参数看一遍。</p>
+        <p>控制和功率分开供电、再留一台热备，系统才能放心长期运行。铜排和逆变器的分工一开始就留了余量，所以储能从 80 kWh 扩到 180 kWh 时不用推倒重来。</p>
+        <ul>
+          <li>查清外侧右组串塌压的根本原因。</li>
+          <li>明年夏天之前把变压器温度降下来。</li>
+        </ul>
+      </div>
+    </div>
+
+    <nav class="pager" aria-label="Case studies">
+      <a class="prev" href="interactive-prototype.html"><small>&larr; Previous</small><b>Media, Motion &amp; the Body</b></a>
+      <a class="next" href="learn-code.html"><small>Next &rarr;</small><b>Learn Code</b></a>
+    </nav>
+    <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+    <picture><source id="lbSrc" type="image/avif"><img id="lbImg" src="" alt=""></picture>
+    <div class="lb-cap" id="lbCap"></div>
+  </div>
+
+  <script>
+/* ===== Solar page: lightbox, hero video, Bilibili, charts ===== */
+(function () {
+  var root = document.documentElement;
+  function zh() { return root.getAttribute('lang') === 'zh-Hans'; }
+
+  /* Lightbox */
+  var box = document.getElementById('lightbox'), src = document.getElementById('lbSrc'),
+      img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'),
+      closeBtn = document.getElementById('lbClose'), opener = null;
+  function closeLb() { box.hidden = true; img.removeAttribute('src'); if (opener) opener.focus(); }
+  document.querySelectorAll('a.zoom').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      opener = a;
+      src.srcset = a.getAttribute('href');
+      img.src = a.getAttribute('data-webp') || a.getAttribute('href');
+      var inner = a.querySelector('img'); img.alt = inner ? inner.alt : '';
+      var fc = a.closest('figure').querySelector('figcaption');
+      cap.textContent = fc ? fc.innerText : '';
+      box.hidden = false; closeBtn.focus();
+    });
+  });
+  box.addEventListener('click', function (e) { if (e.target !== img) closeLb(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) closeLb(); });
+
+  /* Hero video: autoplay muted unless reduced motion is requested */
+  var v = document.getElementById('heroVideo');
+  if (v) {
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still) { v.controls = true; }
+    else { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); }
+  }
+
+  /* Charts */
+  var GEN = [['2025-04',322.9],['2025-05',1076],['2025-06',1882.9],['2025-07',2869.9],['2025-08',3555.6],['2025-09',3181.6],['2025-10',3058.9],['2025-11',3660.9],['2025-12',3061.8],
+             ['2026-01',2866.3],['2026-02',3297.3],['2026-03',3636.4],['2026-04',3885.6],['2026-05',3534.1],['2026-06',3562.8],['2026-07',4025.9]];
+  var MARKS = { 0: '1', 5: '2', 6: '2', 13: '3' };
+  var DEMAND = 32888;
+  var ZONES = [['Left','左',6956.4],['Centre','中',7252.5],['Right','右',7408.2],['Outer-left','外侧左',1905.9],['Outer-right','外侧右',1394.1]];
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function fmt(n, d) { return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function monthName(k) { var y = k.slice(0, 4), m = +k.slice(5); return zh() ? y + ' 年 ' + m + ' 月' : MON[m - 1] + ' ' + y; }
+  /* bar path: square at the baseline, 4px rounded data end */
+  function vbar(x, w, top, base) { var r = Math.min(4, base - top, w / 2);
+    return 'M' + x + ' ' + base + 'V' + (top + r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x + r) + ' ' + top + 'H' + (x + w - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x + w) + ' ' + (top + r) + 'V' + base + 'Z'; }
+  function hbar(x0, len, y, h) { var r = Math.min(4, len, h / 2), x1 = x0 + len;
+    return 'M' + x0 + ' ' + y + 'H' + (x1 - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + x1 + ' ' + (y + r) + 'V' + (y + h - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x1 - r) + ' ' + (y + h) + 'H' + x0 + 'Z'; }
+
+  function drawGen() {
+    var el = document.getElementById('genChart'); if (!el) return;
+    var W = Math.max(280, el.clientWidth), H = 270, m = { t: 30, r: 6, b: 46, l: 36 },
+        pw = W - m.l - m.r, ph = H - m.t - m.b, n = GEN.length, slot = pw / n,
+        bw = Math.min(24, slot * 0.62), max = 4500, narrow = slot < 34;
+    function y(val) { return m.t + ph - val / max * ph; }
+    var s = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
+            (zh() ? '月度发电量柱状图' : 'Bar chart of monthly generation') + '">';
+    [0, 1000, 2000, 3000, 4000].forEach(function (t) {
+      s += '<line class="g' + (t ? '' : ' base') + '" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(t) + '" y2="' + y(t) + '"/>' +
+           '<text class="tick" x="' + (m.l - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end">' + (t ? t / 1000 + 'K' : '0') + '</text>';
+    });
+    var bars = '', hits = '', labels = '', top = 0;
+    GEN.forEach(function (d, i) {
+      var cx = m.l + slot * i + slot / 2, t = y(d[1]), mo = +d[0].slice(5);
+      bars += '<path class="bar" data-i="' + i + '" d="' + vbar(cx - bw / 2, bw, t, y(0)) + '"/>';
+      labels += '<text class="tick" x="' + cx + '" y="' + (y(0) + 15) + '" text-anchor="middle">' + (narrow ? mo : (zh() ? mo + '月' : MON[mo - 1])) + '</text>';
+      if (MARKS[i]) labels += '<g class="mk"><circle cx="' + cx + '" cy="' + (t - 13) + '" r="7"/><text x="' + cx + '" y="' + (t - 9.5) + '" text-anchor="middle">' + MARKS[i] + '</text></g>';
+      if (d[1] > GEN[top][1]) top = i;
+      hits += '<rect class="hit" tabindex="0" data-i="' + i + '" x="' + (m.l + slot * i) + '" y="' + m.t + '" width="' + slot + '" height="' + ph + '" aria-label="' +
+              monthName(d[0]) + ': ' + fmt(d[1], 1) + (zh() ? ' 度' : ' kWh') + '"/>';
+    });
+    /* direct label on the peak month only */
+    var pcx = m.l + slot * top + slot / 2;
+    labels += '<text class="val" x="' + pcx + '" y="' + (y(GEN[top][1]) - 8) + '" text-anchor="middle">' + fmt(GEN[top][1], 0) + '</text>';
+    /* year labels under the month row */
+    [['2025', 0, 8], ['2026', 9, 15]].forEach(function (g) {
+      var x1 = m.l + slot * g[1] + 2, x2 = m.l + slot * (g[2] + 1) - 2;
+      labels += '<line class="g" x1="' + x1 + '" x2="' + x2 + '" y1="' + (y(0) + 24) + '" y2="' + (y(0) + 24) + '"/>' +
+                '<text class="lbl" x="' + ((x1 + x2) / 2) + '" y="' + (y(0) + 38) + '" text-anchor="middle">' + g[0] + '</text>';
+    });
+    s += '<g class="bars">' + bars + '</g>' + labels + hits + '</svg><div class="tip" role="status"></div>';
+    el.innerHTML = s;
+
+    var svg = el.querySelector('svg'), tip = el.querySelector('.tip'), paths = el.querySelectorAll('.bar');
+    function show(i) {
+      var d = GEN[i], share = d[1] / DEMAND * 100;
+      paths.forEach(function (p) { p.classList.toggle('on', +p.getAttribute('data-i') === i); });
+      svg.classList.add('hovering');
+      tip.innerHTML = '<b>' + monthName(d[0]) + '</b><br>' + fmt(d[1], 1) + (zh() ? ' 度 · 占月用电 ' : ' kWh · ') + fmt(share, 1) + '%' + (zh() ? '' : ' of monthly demand');
+      var cx = m.l + slot * i + slot / 2, half = 90;
+      tip.style.left = Math.min(Math.max(cx, half), W - half) + 'px';
+      tip.style.top = (y(d[1]) - 24) + 'px';
+      tip.classList.add('show');
+    }
+    function hide() { svg.classList.remove('hovering'); tip.classList.remove('show'); }
+    el.querySelectorAll('.hit').forEach(function (h) {
+      var i = +h.getAttribute('data-i');
+      h.addEventListener('pointerenter', function () { show(i); });
+      h.addEventListener('focus', function () { show(i); });
+      h.addEventListener('click', function () { show(i); });
+      /* touch fires pointerleave on lift, so only a mouse leaving hides the tip */
+      h.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hide(); });
+      h.addEventListener('blur', hide);
+    });
+    el._hide = hide;
+  }
+  document.addEventListener('pointerdown', function (e) {
+    var g = document.getElementById('genChart');
+    if (g && g._hide && !g.contains(e.target)) g._hide();
+  });
+
+  function drawZones() {
+    var el = document.getElementById('zoneChart'); if (!el) return;
+    var W = Math.max(280, el.clientWidth), lw = zh() ? 56 : 84, vw = 64, row = 34, bh = 20,
+        H = ZONES.length * row, max = 8000, pw = W - lw - vw;
+    var s = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
+            (zh() ? '各阵列发电量条形图' : 'Bar chart of generation by array') + '">';
+    s += '<line class="g base" x1="' + lw + '" x2="' + lw + '" y1="0" y2="' + H + '"/>';
+    ZONES.forEach(function (z, i) {
+      var yy = i * row + (row - bh) / 2, len = z[2] / max * pw;
+      s += '<text class="lbl" x="' + (lw - 8) + '" y="' + (yy + bh / 2 + 4) + '" text-anchor="end">' + (zh() ? z[1] : z[0]) + '</text>' +
+           '<path class="bar" d="' + hbar(lw, len, yy, bh) + '"><title>' + (zh() ? z[1] : z[0]) + ': ' + fmt(z[2], 1) + (zh() ? ' 度' : ' kWh') + '</title></path>' +
+           '<text class="val" x="' + (lw + len + 6) + '" y="' + (yy + bh / 2 + 4) + '">' + fmt(z[2], 0) + '</text>';
+    });
+    el.innerHTML = s + '</svg>';
+  }
+
+  function draw() { drawGen(); drawZones(); }
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+  window.solarRefresh = draw;
+})();
+
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;var btn=document.getElementById('themeToggle');var KEY='siteTheme';
+  function apply(t){root.setAttribute('data-theme',t);if(btn)btn.textContent=t==='dark'?'☀':'☾';try{localStorage.setItem(KEY,t);}catch(_){}}
+  var s;try{s=localStorage.getItem(KEY);}catch(_){}
+  if(s){apply(s);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn)btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+/* ===== i18n ===== */
+var T={en:{'work.back':'← All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音乐','nav.about':'关于','nav.contact':'联系'},'zh-TW':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音樂','nav.about':'關於','nav.contact':'聯絡'},ja:{'work.back':'← すべての作品','nav.work':'作品','nav.music':'音楽','nav.about':'紹介','nav.contact':'連絡'},fr:{'work.back':'← Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'À propos','nav.contact':'Contact'}};
+var TITLE={en:'Solar + Storage for AI Compute — Yiyang Zhang','zh-CN':'为 AI 算力供电的光伏储能电站 — Yiyang Zhang'};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});
+  /* long-form copy follows the root lang; only zh-CN has its own text, others fall back to English */
+  document.documentElement.setAttribute('lang',l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l);
+  document.title=TITLE[l]||TITLE.en;
+  document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);im.alt=l==='zh-CN'?im.getAttribute('data-alt-zh'):im.getAttribute('data-alt-en');});
+  if(window.solarRefresh)window.solarRefresh();
+  try{localStorage.setItem('siteLang',l);}catch(_){}}
+document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
+  </script>
+</body>
+</html>
