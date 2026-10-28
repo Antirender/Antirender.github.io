@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Solar + Storage for AI Compute — Yiyang Zhang</title>
-  <meta name="description" content="A 49 kWp solar array and 180 kWh battery bank, self-built with my parents in rural Jiangsu, powering servers for AI pretraining and inference."/>
+  <meta name="description" content="A 49 kWp solar array and 180 kWh battery bank on a rented farmhouse roof in Liuhe, Nanjing, built to power AI pretraining and inference, with surplus power shared with the farm and the village."/>
   <link rel="icon" href="../favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -30,7 +30,7 @@
     .sys{display:grid;grid-template-columns:minmax(0,1fr) 2rem minmax(0,1.35fr) 2rem minmax(0,1fr);grid-template-areas:". . grid . ." ". . g2i . ." "pv a1 inv a2 load" ". . bus . ." ". . bat . .";align-items:center;margin:1.2rem 0 1.5rem}
     .node{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.8rem .95rem;font-size:.86rem;color:var(--sub);line-height:1.45}
     .node h3{margin:0 0 .3rem!important;font-size:.92rem!important;color:var(--ink)}
-    .node ul{margin:.2rem 0 0!important;padding-left:1rem!important}
+    .node ul,.node ol{margin:.2rem 0 0!important;padding-left:1.1rem!important}
     .node li{margin:.15rem 0!important;font-size:.84rem}
     .node.inv{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
     .node.grid{border-style:dashed;text-align:center}
@@ -43,6 +43,15 @@
       .sys{grid-template-columns:1fr;grid-template-areas:"grid" "g2i" "pv" "a1" "inv" "a2" "load" "bus" "bat"}
       .l-a1,.l-a2{padding:.35rem 0;transform:rotate(90deg)}
     }
+
+    /* Sharing the surplus */
+    .share{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:1rem 0 1.25rem}
+    .share>div{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem}
+    .share b{display:block;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+    .share h3{margin:0 0 .35rem!important;font-size:1rem!important;color:var(--ink)}
+    .share p{font-size:.9rem;margin:0!important;line-height:1.55}
+    .share-quote{border-left:3px solid var(--accent);padding:.15rem 0 .15rem 1rem;margin:1.25rem 0!important;font-weight:600;color:var(--ink)!important}
+    @media(max-width:720px){.share{grid-template-columns:1fr}}
 
     /* Photos */
     .ph{margin:0}
@@ -150,8 +159,8 @@
     <div class="project-hero">
       <span class="eyebrow"><span data-lang="en">Case Study · Energy Systems · 2024–26</span><span data-lang="zh">案例研究 · 能源系统 · 2024–26</span></span>
       <h1><span data-lang="en">Solar + Storage for AI Compute</span><span data-lang="zh">为 AI 算力供电的光伏储能电站</span></h1>
-      <p data-lang="en">A 49 kWp solar array and a 180 kWh battery bank on our family property near Nanjing, powering servers for AI pretraining and inference. My parents and I designed, wired and automated it ourselves — all self-taught.</p>
-      <p data-lang="zh">在南京附近农村的自家院子里，建了 49 kWp 光伏和 180 kWh 储能，给 AI 预训练和推理的服务器供电。从设计、接线到自动化，都是我和父母一起自学完成的。</p>
+      <p data-lang="en">To give our AI compute enough power, I built a 49 kWp solar array and a 180 kWh battery bank on the rented roof of a farmhouse in Liuhe, Nanjing. The servers for AI pretraining and inference come first; the surplus goes to the farm and the village. My parents and I designed, wired and automated it ourselves — all self-taught.</p>
+      <p data-lang="zh">为了给 AI 算力提供足够的电能，我在南京六合租下一户农民的房屋屋顶，建了 49 kWp 光伏和 180 kWh 储能。电优先供给 AI 预训练和推理的服务器，余电留给农家和村里使用。从设计、接线到自动化，都是我和父母一起自学完成的。</p>
       <div class="meta">
         <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span></strong><span data-lang="en">Design, wiring &amp; automation — with my parents</span><span data-lang="zh">设计、接线、自动化 · 和父母一起</span></span>
         <span><strong><span data-lang="en">Scale</span><span data-lang="zh">规模</span></strong><span data-lang="en">49 kWp PV · ≈180 kWh LFP · 6 inverters</span><span data-lang="zh">光伏 49 kWp · 储能约 180 kWh · 6 台逆变器</span></span>
@@ -172,7 +181,8 @@
         <dl>
           <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span></dt><dd><span data-lang="en">Servers for AI pretraining and inference run around the clock. Without solar, the site needs ≈32,888 kWh a month.</span><span data-lang="zh">AI 预训练和推理的服务器 24 小时运行，不用光伏的话，全站每月要用约 32,888 度电。</span></dd></div>
           <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span></dt><dd><span data-lang="en">Design, sourcing, wiring, BMS setup and automation — with my parents, all self-taught.</span><span data-lang="zh">设计、选型、接线、BMS 调试、自动化，和父母一起，全部自学。</span></dd></div>
-          <div><dt><span data-lang="en">System</span><span data-lang="zh">系统</span></dt><dd><span data-lang="en">70 × 700 W modules in 10 strings, 6 × 11 kVA inverter-chargers, ≈180 kWh LFP. Never exports; the grid is a last resort.</span><span data-lang="zh">70 块 700W 组件分 10 组串，6 台 11 kVA 逆变器，约 180 kWh 磷酸铁锂。不向电网卖电，市电只作最后兜底。</span></dd></div>
+          <div><dt><span data-lang="en">Site</span><span data-lang="zh">场地</span></dt><dd><span data-lang="en">The rented rooftop of a farmhouse in Liuhe, Nanjing.</span><span data-lang="zh">南京六合，租用一户农民的房屋屋顶。</span></dd></div>
+          <div><dt><span data-lang="en">System</span><span data-lang="zh">系统</span></dt><dd><span data-lang="en">70 × 700 W modules in 10 strings, 6 × 11 kVA inverter-chargers, ≈180 kWh LFP. Surplus is shared with the farm and the community microgrid; nothing is sold to the grid.</span><span data-lang="zh">70 块 700W 组件分 10 组串，6 台 11 kVA 逆变器，约 180 kWh 磷酸铁锂。余电给农家和社区微网使用，不向电网卖电。</span></dd></div>
           <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span></dt><dd><span data-lang="en">First power in December 2024 → staged build-out and monitoring in 2025 → storage expanded in 2026.</span><span data-lang="zh">2024 年 12 月首次发电 → 2025 年分批完善、接入监控 → 2026 年储能扩建。</span></dd></div>
           <div><dt><span data-lang="en">Cost</span><span data-lang="zh">成本</span></dt><dd><span data-lang="en">≈ ¥120,000</span><span data-lang="zh">约 12 万元</span></dd></div>
           <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span></dt><dd><span data-lang="en">66,504 kWh generated so far; solar covers ≈9–12% of monthly demand.</span><span data-lang="zh">累计发电 66,504 度，每月覆盖约 9–12% 的用电。</span></dd></div>
@@ -189,10 +199,11 @@
       <!-- 01 -->
       <h2><span data-lang="en">Context</span><span data-lang="zh">背景</span></h2>
       <div data-lang="en">
-        <p>Our family property in a village near Nanjing hosts servers for AI pretraining and inference, alongside air-conditioning and everyday household loads. The compute runs around the clock, so without solar the site needs about 32,888 kWh a month.</p>
-        <p>We had roof and yard space but no installer, so my parents and I taught ourselves and built it. The brief:</p>
+        <p>Our servers for AI pretraining and inference run around the clock, and without solar the site needs about 32,888 kWh a month. To give the compute enough power, I built a solar station on the rented rooftop of a farmhouse in Liuhe, Nanjing.</p>
+        <p>Because the roof belongs to a farming family, the station was planned to serve them and the village too, not just the machine room. There was no installer — my parents and I taught ourselves and built it. The brief:</p>
         <ul>
-          <li><strong>Never sell to the grid.</strong> Loads run on solar first, then the batteries; the grid is used only when both are empty.</li>
+          <li><strong>AI compute first.</strong> Loads run on solar first, then the batteries; the grid is used only when both are empty.</li>
+          <li><strong>Share the surplus locally.</strong> The farmhouse first, then the community microgrid — nothing is sold to the grid.</li>
           <li><strong>Keep control alive.</strong> A fault in the power stage must not take down the system that coordinates it.</li>
           <li><strong>Stay inside every limit</strong> — MPPT voltage and power, BMS current, cable and busbar ratings.</li>
           <li><strong>Grow in stages</strong> without starting over.</li>
@@ -200,10 +211,11 @@
         <p><strong>Constraints:</strong> a budget of about ¥120,000, 40 kg modules on rural rooftops, and summer heat — 46–49 °C outdoors, 38–42 °C in the equipment room, 57–60 °C on the transformers.</p>
       </div>
       <div data-lang="zh">
-        <p>我们家在南京附近农村的院子里放着 AI 预训练和推理用的服务器，同时还有空调和日常家用负载。算力 24 小时不停，不用光伏的话，全站每月要用大约 32,888 度电。</p>
-        <p>屋顶和院子有空间，但没有找施工队，所以我和父母边学边做。给自己定的要求：</p>
+        <p>AI 预训练和推理的服务器 24 小时不停，不用光伏的话，全站每月要用大约 32,888 度电。为了给算力提供足够的电能，我在南京六合租下一户农民的房屋屋顶，自己建了这座太阳能电站。</p>
+        <p>屋顶是农户的，所以电站从一开始就不只为机房服务，也要让农家和村里受益。没有找施工队，我和父母边学边做。给自己定的要求：</p>
         <ul>
-          <li><strong>不向电网卖电。</strong>负载先用光伏，再用电池，两者都没电时才切到市电。</li>
+          <li><strong>算力优先。</strong>负载先用光伏，再用电池，两者都没电时才切到市电。</li>
+          <li><strong>余电就地共享。</strong>先给农家，再进社区微网，不向电网卖电。</li>
           <li><strong>控制系统不能跟着倒。</strong>功率部分出故障时，负责协调的控制系统要保持在线。</li>
           <li><strong>每个器件都留在额定范围内</strong>：MPPT 电压和功率、BMS 电流、线缆和铜排的载流。</li>
           <li><strong>能分阶段扩建</strong>，不用推倒重来。</li>
@@ -213,13 +225,13 @@
 
       <!-- 02 -->
       <h2><span data-lang="en">System</span><span data-lang="zh">系统结构</span></h2>
-      <p data-lang="en">Power flows from the arrays through six inverter-chargers to the loads, with the battery bank on a shared DC bus. The grid is wired in only as a backup input.</p>
-      <p data-lang="zh">电从光伏阵列经过 6 台逆变器送到负载，电池组挂在共用的直流母线上。市电只作为后备输入接入。</p>
+      <p data-lang="en">Power flows from the arrays through six inverter-chargers to the loads in priority order — AI compute, then the farmhouse, then the community microgrid — with the battery bank on a shared DC bus. The grid is wired in only as a backup input.</p>
+      <p data-lang="zh">电从光伏阵列经过 6 台逆变器，按优先级依次送给 AI 算力、农家和社区微网，电池组挂在共用的直流母线上。市电只作为后备输入接入。</p>
 
       <div class="sys" role="group" aria-label="System diagram">
         <div class="node grid n-grid">
           <h3><span data-lang="en">Grid</span><span data-lang="zh">市电</span></h3>
-          <span data-lang="en">Backup only — used when PV and batteries are both empty. Nothing is exported.</span><span data-lang="zh">只作后备：光伏和电池都没电时才用，不向电网送电。</span>
+          <span data-lang="en">Backup only — used when PV and batteries are both empty. Nothing is sold to the grid.</span><span data-lang="zh">只作后备：光伏和电池都没电时才用，不向电网卖电。</span>
         </div>
         <div class="link l-g2i">↓ <span data-lang="en">&nbsp;backup input</span><span data-lang="zh">&nbsp;后备输入</span></div>
         <div class="node n-pv">
@@ -243,12 +255,12 @@
         </div>
         <div class="link l-a2" aria-hidden="true">→</div>
         <div class="node n-load">
-          <h3><span data-lang="en">Loads</span><span data-lang="zh">负载</span></h3>
-          <ul>
-            <li><span data-lang="en">Servers for AI pretraining &amp; inference</span><span data-lang="zh">AI 预训练和推理服务器</span></li>
-            <li><span data-lang="en">Air-conditioning</span><span data-lang="zh">空调</span></li>
-            <li><span data-lang="en">Household</span><span data-lang="zh">家用</span></li>
-          </ul>
+          <h3><span data-lang="en">Loads, in priority order</span><span data-lang="zh">负载（按优先级）</span></h3>
+          <ol>
+            <li><span data-lang="en">AI compute: pretraining &amp; inference servers, cooling</span><span data-lang="zh">AI 算力：预训练和推理服务器、空调</span></li>
+            <li><span data-lang="en">Farmhouse: electric farm tools, household</span><span data-lang="zh">农家：电动农具充电、生活用电</span></li>
+            <li><span data-lang="en">Community microgrid: street lights, pump station, service points</span><span data-lang="zh">社区微网：路灯、公共泵站、便民服务点</span></li>
+          </ol>
         </div>
         <div class="link l-bus">⇅ <span data-lang="en">&nbsp;DC bus · 4 mm copper busbar · one 95 mm² cable per inverter</span><span data-lang="zh">&nbsp;直流母线 · 4mm 铜排 · 每台逆变器一根 95mm² 铜线</span></div>
         <div class="node n-bat">
@@ -273,6 +285,33 @@
       </ul>
 
       <!-- 03 -->
+      <h2><span data-lang="en">Sharing the surplus</span><span data-lang="zh">余电共享</span></h2>
+      <p data-lang="en">The station is the green heart of the AI compute, but it also ties into the village. Once the servers are covered, the surplus stays local instead of going to the grid.</p>
+      <p data-lang="zh">这座电站不仅是 AI 算力的“绿色心脏”，也是乡村振兴的“减碳纽带”。算力用电满足之后，余电留在村里，不送进电网。</p>
+      <div class="share">
+        <div>
+          <b><span data-lang="en">01 · Farmhouse</span><span data-lang="zh">01 · 农家</span></b>
+          <h3><span data-lang="en">Electric farm tools</span><span data-lang="zh">电动农具</span></h3>
+          <p data-lang="en">Surplus goes to the farming family first. Electric farm tools charge whenever needed, so tilling, irrigation and transport no longer run on diesel — each kWh replaces fuel and cuts emissions in the field.</p>
+          <p data-lang="zh">余电优先反哺农家：电动农具随时充电，旋耕、灌溉、运输告别柴油轰鸣，每一度绿电都替代原来的燃油，直接削减田间碳排放。</p>
+        </div>
+        <div>
+          <b><span data-lang="en">02 · Community</span><span data-lang="zh">02 · 社区</span></b>
+          <h3><span data-lang="en">Community microgrid</span><span data-lang="zh">社区微网</span></h3>
+          <p data-lang="en">Further surplus feeds the community microgrid — street lights, the public pump station and service points — so the neighbours share the clean power too.</p>
+          <p data-lang="zh">多余电力接入社区微网，为路灯、公共泵站和便民服务点供电，让清洁能源惠及左邻右舍。</p>
+        </div>
+        <div>
+          <b><span data-lang="en">03 · Shared model</span><span data-lang="zh">03 · 共享模式</span></b>
+          <h3><span data-lang="en">Roof rent + low-cost power + public supply</span><span data-lang="zh">屋顶收租 + 低价绿电 + 公共供电</span></h3>
+          <p data-lang="en">The farmer earns rent for the roof and gets low-cost green power, the community gains backup supply in emergencies, and zero-carbon solar replaces high-carbon grid power.</p>
+          <p data-lang="zh">农户收屋顶租金、用上低价绿电，社区增强应急保供能力，零碳电力替代电网的高碳电量。</p>
+        </div>
+      </div>
+      <p class="share-quote" data-lang="en">Clean energy flows from the machine room to the fields: one kWh of solar, many users, shared carbon cuts.</p>
+      <p class="share-quote" data-lang="zh">清洁能源从算力机房流向田间地头：一度绿电、多方使用、碳排共减。</p>
+
+      <!-- 04 -->
       <h2><span data-lang="en">Site</span><span data-lang="zh">场地</span></h2>
       <p data-lang="en">The left array covers the main roof, facing due south at a shallow 5°. The right array sits at 15° in 2 × 9 + 1 × 7 strings.</p>
       <p data-lang="zh">左阵列铺满主屋顶，正南朝向，倾角只有 5°。右阵列倾角 15°，分 2 组 9 串和 1 组 7 串。</p>
@@ -328,7 +367,7 @@
         </figure>
       </div>
 
-      <!-- 04 -->
+      <!-- 05 -->
       <h2><span data-lang="en">Build</span><span data-lang="zh">搭建过程</span></h2>
       <ol class="timeline">
         <li>
@@ -411,7 +450,7 @@
         </li>
       </ol>
 
-      <!-- 05 -->
+      <!-- 06 -->
       <h2><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span></h2>
       <p data-lang="en">The system is watched through the IoTrix monitoring app and each layer's BMS app. The key numbers from each screen are pulled out below it. Scroll sideways for more.</p>
       <p data-lang="zh">系统通过 IoTrix 监控 app 和每层电池的 BMS app 来看。每张截图下面列出了关键数字，可以左右滑动查看。</p>
@@ -454,7 +493,7 @@
         </figure>
       </div>
 
-      <!-- 06 -->
+      <!-- 07 -->
       <h2><span data-lang="en">Results</span><span data-lang="zh">结果</span></h2>
       <div class="stats">
         <div class="stat"><b>66,504 kWh</b><span data-lang="en">Total generated (31 Jul 2026)</span><span data-lang="zh">累计发电（2026-07-31）</span></div>
@@ -492,7 +531,7 @@
         <p class="chart-note"><span data-lang="en">Outer-right was connected in May 2026, so it has fewer months of output.</span><span data-lang="zh">外侧右 2026 年 5 月才接入，所以发电月份少。</span></p>
       </div>
 
-      <!-- 07 -->
+      <!-- 08 -->
       <h2><span data-lang="en">Engineering decisions</span><span data-lang="zh">工程决策</span></h2>
 
       <article class="decision">
@@ -545,7 +584,7 @@
         <li><strong>散热：</strong>夏季室外 46–49°C，机房 38–42°C，变压器 57–60°C。</li>
       </ul>
 
-      <!-- 08 -->
+      <!-- 09 -->
       <h2><span data-lang="en">Reflection &amp; next steps</span><span data-lang="zh">总结与下一步</span></h2>
       <div data-lang="en">
         <p>Most of the problems came from a limit we hadn't designed around yet — input power on an MPPT, inrush into capacitors, the force between heavy cables at high current. Reading every rating before wiring anything became the habit that mattered most.</p>
