@@ -111,6 +111,93 @@
     details.data th,details.data td{padding:.25rem .9rem .25rem 0;text-align:right;border-bottom:1px solid var(--border);color:var(--sub)}
     details.data th:first-child,details.data td:first-child{text-align:left}
 
+    /* Status colours (validation, checker) */
+    :root{--good:#15803d;--warn:#b45309;--bad:#b91c1c;--bad-soft:rgba(185,28,28,.12)}
+    :root[data-theme="dark"]{--good:#4ade80;--warn:#fbbf24;--bad:#f87171;--bad-soft:rgba(248,113,113,.18)}
+
+    /* Info tips */
+    .info{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:.35rem;padding:0;border:1px solid var(--muted);border-radius:50%;background:transparent;color:var(--sub);font:700 11px/1 "Inter",system-ui,sans-serif;letter-spacing:0;text-transform:none;cursor:help;vertical-align:.15em;flex:0 0 auto}
+    .info:hover,.info:focus-visible,.info[aria-describedby]{border-color:var(--accent);color:var(--accent)}
+    .info-bubble{position:fixed;z-index:1000;max-width:min(300px,calc(100vw - 16px));background:var(--ink);color:var(--bg);font-size:.8rem;line-height:1.5;padding:.55rem .75rem;border-radius:8px;box-shadow:0 8px 24px var(--shadow);pointer-events:none}
+    .info-bubble[hidden]{display:none}
+
+    /* Section nav */
+    .toc{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.75rem;padding:0;list-style:none}
+    .toc a{display:inline-block;padding:.3rem .7rem;border:1px solid var(--border);border-radius:999px;font-size:.8rem;font-weight:600;color:var(--sub);background:var(--bg)}
+    .toc a:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+    .toc a[aria-current="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+    /* Analysis */
+    .toolbar{display:flex;flex-wrap:wrap;gap:.9rem 1.4rem;align-items:flex-end;padding:.9rem 1rem;margin:0 0 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:12px}
+    .seg{display:flex;flex-wrap:wrap;align-items:center;gap:.3rem}
+    .seg-label{display:flex;align-items:center;width:100%;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .seg button,.presets button{padding:.35rem .7rem;border:1px solid var(--border);border-radius:999px;background:var(--bg);color:var(--sub);font-size:.82rem;font-weight:600;cursor:pointer}
+    .seg button:hover,.presets button:hover{border-color:var(--accent);color:var(--accent)}
+    .seg button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+    .num-field{display:flex;flex-direction:column;gap:.3rem}
+    .num-field input,.field input{width:7.5rem;padding:.38rem .55rem;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:.9rem;font-variant-numeric:tabular-nums}
+    .num-field input:focus-visible,.field input:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+    input[aria-invalid="true"]{border-color:var(--bad)!important;box-shadow:0 0 0 3px var(--bad-soft)!important}
+    .unit{font-size:.8rem;color:var(--muted)}
+    .err{min-height:1.1em;margin:0!important;font-size:.76rem!important;color:var(--bad)!important;line-height:1.35}
+    .btn-ghost{padding:.42rem .85rem;border:1px solid var(--border);border-radius:8px;background:transparent;color:var(--sub);font-size:.82rem;font-weight:600;cursor:pointer}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+    .toolbar .btn-ghost{margin-left:auto}
+    .viz-main{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:1.1rem;align-items:start}
+    .viz-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.4rem}
+    @media(max-width:760px){.viz-main,.viz-pair{grid-template-columns:1fr}.toolbar .btn-ghost{margin-left:0}}
+    .chart-block .seg{margin:0 0 .55rem}
+    .chart:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:6px}
+    .chart .tick{font-size:12px}
+    .chart .lbl,.chart .val{font-size:12px}
+    .chart .bar.sel{fill:var(--accent-ink)}
+    .chart .line{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+    .chart .area{fill:var(--accent);opacity:.1}
+    .chart .dot{fill:var(--accent);stroke:var(--bg);stroke-width:2}
+    .chart .dot.on{fill:var(--accent-ink)}
+    .chart .ref{stroke:var(--sub);stroke-width:1}
+    .chart .ref-solar{stroke:var(--good);stroke-width:2}
+    .chart .ref-txt{fill:var(--sub);font-size:11px;font-weight:600}
+    .chart .ref-solar-txt{fill:var(--good);font-size:11px;font-weight:700}
+    .chart .cross{stroke:var(--muted);stroke-width:1}
+    .chart .hit{fill:transparent;cursor:pointer}
+    .chart-hint{font-size:.78rem!important;color:var(--muted)!important;margin:.35rem 0 0!important}
+    .detail{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem}
+    .detail h4{margin:0 0 .65rem;font-size:1.02rem;color:var(--ink)}
+    .detail dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem .8rem;margin:0;font-size:.86rem}
+    .detail dt{color:var(--muted)}
+    .detail dd{margin:0;color:var(--ink);font-weight:650;font-variant-numeric:tabular-nums;text-align:right}
+    .detail .note{margin:.75rem 0 0!important;padding-top:.6rem;border-top:1px solid var(--border);font-size:.8rem!important;color:var(--sub)!important}
+    .readout{font-size:.84rem!important;color:var(--sub)!important;margin:.45rem 0 0!important;min-height:1.3em}
+    .check{display:inline-flex;align-items:center;gap:.45rem;font-size:.84rem;color:var(--sub);margin:0 0 .5rem;cursor:pointer}
+    .check input{width:16px;height:16px;accent-color:var(--accent)}
+    .stat .sub-note{display:block;font-size:.72rem;color:var(--muted);margin-top:.15rem}
+    .stat b span{display:inline;font-size:inherit;color:inherit;margin:0}
+
+    /* String checker */
+    .checker{margin:1.15rem 0 0;padding:1rem 1rem 1.1rem;border:1px dashed var(--border);border-radius:12px;background:var(--bg)}
+    .checker h4{margin:0 0 .3rem;font-size:1rem;color:var(--ink)}
+    .checker>p{font-size:.88rem!important;margin:0 0 .4rem!important}
+    .presets{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 0}
+    .fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:.55rem 1rem;margin:.9rem 0 .4rem}
+    .field-head{display:flex;align-items:center;font-size:.8rem;font-weight:600;color:var(--sub)}
+    .input-unit{display:flex;align-items:center;gap:.4rem;margin-top:.3rem}
+    .results{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.4rem 0 .8rem}
+    @media(max-width:560px){.results{grid-template-columns:1fr}}
+    .res{padding:.75rem .85rem;border:1px solid var(--border);border-radius:10px;background:var(--card)}
+    .res .lab{display:flex;align-items:center;font-size:.78rem;color:var(--muted);font-weight:600}
+    .res .big{display:block;font-size:1.3rem;font-weight:750;color:var(--ink);font-variant-numeric:tabular-nums;margin-top:.15rem}
+    .res .of{font-size:.78rem;color:var(--muted)}
+    .meter{position:relative;height:8px;border-radius:999px;background:var(--border);margin:.5rem 0;overflow:hidden}
+    .meter i{position:absolute;top:0;bottom:0;left:0;border-radius:999px;background:var(--good)}
+    .meter.warn i{background:var(--warn)}
+    .meter.bad i{background:var(--bad)}
+    .status{font-size:.84rem!important;margin:0!important;color:var(--ink)!important;line-height:1.45}
+    .status b{display:inline-flex;align-items:center;justify-content:center;width:1.25em;height:1.25em;margin-right:.35rem;border-radius:50%;font-size:.75rem;color:#fff}
+    .status.good b{background:var(--good)}
+    .status.warn b{background:var(--warn)}
+    .status.bad b{background:var(--bad)}
+
     /* Engineering decisions */
     .decision{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:clamp(16px,2.5vw,22px);margin:1rem 0}
     .decision h3{margin:0 0 .7rem!important}
@@ -190,14 +277,28 @@
       </div>
 
       <div class="stats">
-        <div class="stat"><b>49 kWp</b><span data-lang="en">Solar array · 70 × 700 W</span><span data-lang="zh">光伏装机 · 70 块 700W</span></div>
-        <div class="stat"><b>≈180 kWh</b><span data-lang="en">LFP storage · 5 layers</span><span data-lang="zh">磷酸铁锂储能 · 5 层</span></div>
-        <div class="stat"><b>6 × 11 kVA</b><span data-lang="en">Inverter-chargers</span><span data-lang="zh">逆变充电一体机</span></div>
-        <div class="stat"><b>66,504 kWh</b><span data-lang="en">Generated to 31 Jul 2026</span><span data-lang="zh">累计发电（截至 2026-07-31）</span></div>
+        <div class="stat"><b>49 kWp<button class="info" type="button" data-tip="kwp">?</button></b><span data-lang="en">Solar array · 70 × 700 W</span><span data-lang="zh">光伏装机 · 70 块 700W</span></div>
+        <div class="stat"><b>≈180 kWh<button class="info" type="button" data-tip="storage">?</button></b><span data-lang="en">LFP storage · 5 layers</span><span data-lang="zh">磷酸铁锂储能 · 5 层</span></div>
+        <div class="stat"><b>6 × 11 kVA<button class="info" type="button" data-tip="kva">?</button></b><span data-lang="en">Inverter-chargers</span><span data-lang="zh">逆变充电一体机</span></div>
+        <div class="stat"><b>66,504 kWh<button class="info" type="button" data-tip="meter">?</button></b><span data-lang="en">Generated to 31 Jul 2026</span><span data-lang="zh">累计发电（截至 2026-07-31）</span></div>
       </div>
 
+      <nav aria-label="On this page">
+        <ul class="toc">
+          <li><a href="#context"><span data-lang="en">Context</span><span data-lang="zh">背景</span></a></li>
+          <li><a href="#system"><span data-lang="en">System</span><span data-lang="zh">系统</span></a></li>
+          <li><a href="#sharing"><span data-lang="en">Sharing</span><span data-lang="zh">余电共享</span></a></li>
+          <li><a href="#site"><span data-lang="en">Site</span><span data-lang="zh">场地</span></a></li>
+          <li><a href="#build"><span data-lang="en">Build</span><span data-lang="zh">搭建</span></a></li>
+          <li><a href="#monitoring"><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span></a></li>
+          <li><a href="#analysis"><span data-lang="en">Analysis</span><span data-lang="zh">交互分析</span></a></li>
+          <li><a href="#decisions"><span data-lang="en">Decisions</span><span data-lang="zh">工程决策</span></a></li>
+          <li><a href="#reflection"><span data-lang="en">Reflection</span><span data-lang="zh">总结</span></a></li>
+        </ul>
+      </nav>
+
       <!-- 01 -->
-      <h2><span data-lang="en">Context</span><span data-lang="zh">背景</span></h2>
+      <h2 id="context"><span data-lang="en">Context</span><span data-lang="zh">背景</span></h2>
       <div data-lang="en">
         <p>Our servers for AI pretraining and inference run around the clock, and without solar the site needs about 32,888 kWh a month. To give the compute enough power, I built a solar station on the rented rooftop of a farmhouse in Liuhe, Nanjing.</p>
         <p>Because the roof belongs to a farming family, the station was planned to serve them and the village too, not just the machine room. There was no installer — my parents and I taught ourselves and built it. The brief:</p>
@@ -224,13 +325,13 @@
       </div>
 
       <!-- 02 -->
-      <h2><span data-lang="en">System</span><span data-lang="zh">系统结构</span></h2>
+      <h2 id="system"><span data-lang="en">System</span><span data-lang="zh">系统结构</span></h2>
       <p data-lang="en">Power flows from the arrays through six inverter-chargers to the loads in priority order — AI compute, then the farmhouse, then the community microgrid — with the battery bank on a shared DC bus. The grid is wired in only as a backup input.</p>
       <p data-lang="zh">电从光伏阵列经过 6 台逆变器，按优先级依次送给 AI 算力、农家和社区微网，电池组挂在共用的直流母线上。市电只作为后备输入接入。</p>
 
       <div class="sys" role="group" aria-label="System diagram">
         <div class="node grid n-grid">
-          <h3><span data-lang="en">Grid</span><span data-lang="zh">市电</span></h3>
+          <h3><span data-lang="en">Grid</span><span data-lang="zh">市电</span><button class="info" type="button" data-tip="zeroExport">?</button></h3>
           <span data-lang="en">Backup only — used when PV and batteries are both empty. Nothing is sold to the grid.</span><span data-lang="zh">只作后备：光伏和电池都没电时才用，不向电网卖电。</span>
         </div>
         <div class="link l-g2i">↓ <span data-lang="en">&nbsp;backup input</span><span data-lang="zh">&nbsp;后备输入</span></div>
@@ -262,30 +363,30 @@
             <li><span data-lang="en">Community microgrid: street lights, pump station, service points</span><span data-lang="zh">社区微网：路灯、公共泵站、便民服务点</span></li>
           </ol>
         </div>
-        <div class="link l-bus">⇅ <span data-lang="en">&nbsp;DC bus · 4 mm copper busbar · one 95 mm² cable per inverter</span><span data-lang="zh">&nbsp;直流母线 · 4mm 铜排 · 每台逆变器一根 95mm² 铜线</span></div>
+        <div class="link l-bus"><button class="info" type="button" data-tip="dcbus">?</button>&nbsp;⇅ <span data-lang="en">&nbsp;DC bus · 4 mm copper busbar · one 95 mm² cable per inverter</span><span data-lang="zh">&nbsp;直流母线 · 4mm 铜排 · 每台逆变器一根 95mm² 铜线</span></div>
         <div class="node n-bat">
-          <h3><span data-lang="en">LFP battery bank</span><span data-lang="zh">磷酸铁锂电池组</span></h3>
+          <h3><span data-lang="en">LFP battery bank</span><span data-lang="zh">磷酸铁锂电池组</span><button class="info" type="button" data-tip="s16">?</button></h3>
           <ul>
             <li><span data-lang="en">16S · 51.2 V nominal · ≈180 kWh</span><span data-lang="zh">16 串 · 标称 51.2V · 约 180 kWh</span></li>
             <li><span data-lang="en">4 layers 16S2P (400 Ah cells) + 1 layer 16S1P (310 Ah)</span><span data-lang="zh">4 层 16S2P（400Ah 电芯）+ 1 层 16S1P（310Ah）</span></li>
-            <li><span data-lang="en">Independent BMS on every layer</span><span data-lang="zh">每层独立 BMS</span></li>
+            <li><span data-lang="en">Independent BMS on every layer</span><span data-lang="zh">每层独立 BMS</span><button class="info" type="button" data-tip="bms">?</button></li>
           </ul>
         </div>
       </div>
 
       <ul data-lang="en">
-        <li><strong>Inverter limits:</strong> MPPT window up to 500 V (inputs rated 550 V, built with 630 V capacitors); 5.5 kW per input, 11 kW per unit.</li>
-        <li><strong>Modules:</strong> Voc 48 V and Isc 19 A each, so a 9-module string sits near 432 V open-circuit.</li>
+        <li><strong>Inverter limits</strong><button class="info" type="button" data-tip="mppt">?</button><strong>:</strong> MPPT window up to 500 V (inputs rated 550 V, built with 630 V capacitors); 5.5 kW per input, 11 kW per unit.</li>
+        <li><strong>Modules</strong><button class="info" type="button" data-tip="voc">?</button><strong>:</strong> Voc 48 V and Isc 19 A each, so a 9-module string sits near 432 V open-circuit.</li>
         <li><strong>Operations:</strong> monitoring app since April 2025; all six units automated through Mi Home since October 2025.</li>
       </ul>
       <ul data-lang="zh">
-        <li><strong>逆变器上限：</strong>MPPT 工作电压最高 500V（耐压 550V，用的是 630V 电容）；单路最大 5.5 kW，单机最大 11 kW。</li>
-        <li><strong>组件：</strong>单块 Voc 48V、Isc 19A，9 块一串开路电压约 432V。</li>
+        <li><strong>逆变器上限</strong><button class="info" type="button" data-tip="mppt">?</button><strong>：</strong>MPPT 工作电压最高 500V（耐压 550V，用的是 630V 电容）；单路最大 5.5 kW，单机最大 11 kW。</li>
+        <li><strong>组件</strong><button class="info" type="button" data-tip="voc">?</button><strong>：</strong>单块 Voc 48V、Isc 19A，9 块一串开路电压约 432V。</li>
         <li><strong>运行：</strong>2025 年 4 月接入监控 app；2025 年 10 月起 6 台机全部由米家自动化控制。</li>
       </ul>
 
       <!-- 03 -->
-      <h2><span data-lang="en">Sharing the surplus</span><span data-lang="zh">余电共享</span></h2>
+      <h2 id="sharing"><span data-lang="en">Sharing the surplus</span><span data-lang="zh">余电共享</span></h2>
       <p data-lang="en">The station is the green heart of the AI compute, but it also ties into the village. Once the servers are covered, the surplus stays local instead of going to the grid.</p>
       <p data-lang="zh">这座电站不仅是 AI 算力的“绿色心脏”，也是乡村振兴的“减碳纽带”。算力用电满足之后，余电留在村里，不送进电网。</p>
       <div class="share">
@@ -312,7 +413,7 @@
       <p class="share-quote" data-lang="zh">清洁能源从算力机房流向田间地头：一度绿电、多方使用、碳排共减。</p>
 
       <!-- 04 -->
-      <h2><span data-lang="en">Site</span><span data-lang="zh">场地</span></h2>
+      <h2 id="site"><span data-lang="en">Site</span><span data-lang="zh">场地</span></h2>
       <p data-lang="en">The left array covers the main roof, facing due south at a shallow 5°. The right array sits at 15° in 2 × 9 + 1 × 7 strings.</p>
       <p data-lang="zh">左阵列铺满主屋顶，正南朝向，倾角只有 5°。右阵列倾角 15°，分 2 组 9 串和 1 组 7 串。</p>
 
@@ -368,7 +469,7 @@
       </div>
 
       <!-- 05 -->
-      <h2><span data-lang="en">Build</span><span data-lang="zh">搭建过程</span></h2>
+      <h2 id="build"><span data-lang="en">Build</span><span data-lang="zh">搭建过程</span></h2>
       <ol class="timeline">
         <li>
           <time datetime="2024-12">2024-12</time>
@@ -451,7 +552,7 @@
       </ol>
 
       <!-- 06 -->
-      <h2><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span></h2>
+      <h2 id="monitoring"><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span></h2>
       <p data-lang="en">The system is watched through the IoTrix monitoring app and each layer's BMS app. The key numbers from each screen are pulled out below it. Scroll sideways for more.</p>
       <p data-lang="zh">系统通过 IoTrix 监控 app 和每层电池的 BMS app 来看。每张截图下面列出了关键数字，可以左右滑动查看。</p>
       <div class="shots">
@@ -494,45 +595,92 @@
       </div>
 
       <!-- 07 -->
-      <h2><span data-lang="en">Results</span><span data-lang="zh">结果</span></h2>
-      <div class="stats">
-        <div class="stat"><b>66,504 kWh</b><span data-lang="en">Total generated (31 Jul 2026)</span><span data-lang="zh">累计发电（2026-07-31）</span></div>
-        <div class="stat"><b>22,671 kWh</b><span data-lang="en">2025, April–December</span><span data-lang="zh">2025 年 4–12 月</span></div>
-        <div class="stat"><b>24,808 kWh</b><span data-lang="en">2026, January–July</span><span data-lang="zh">2026 年 1–7 月</span></div>
-        <div class="stat"><b>≈9–12%</b><span data-lang="en">Of monthly demand, 2026</span><span data-lang="zh">2026 年每月用电占比</span></div>
+      <h2 id="analysis"><span data-lang="en">Results &amp; interactive analysis</span><span data-lang="zh">结果与交互分析</span></h2>
+      <p data-lang="en">Explore the operating data directly. Pick a metric and a period, click a chart or use the arrow keys to inspect a month, and change the emission factor to test your own assumptions. Your choices are remembered on this device.</p>
+      <p data-lang="zh">可以直接在这里探索运行数据：选择指标和时间段，点击图表或用方向键查看某个月，修改排放因子来检验你自己的假设。你的选择会保存在这台设备上。</p>
+
+      <div class="stats" id="kpis">
+        <div class="stat"><b>66,504 kWh<button class="info" type="button" data-tip="meter">?</button></b><span data-lang="en">Total generated (meter, 31 Jul 2026)</span><span data-lang="zh">累计发电（计量模块，2026-07-31）</span></div>
+        <div class="stat"><b><span id="kpiPeriod">—</span> kWh<button class="info" type="button" data-tip="period">?</button></b><span data-lang="en">Recorded in the selected period</span><span data-lang="zh">所选时间段内的记录发电</span></div>
+        <div class="stat"><b><span id="kpiBest">—</span>%<button class="info" type="button" data-tip="share">?</button></b><span data-lang="en">Best month, share of demand</span><span data-lang="zh">最佳月份的用电占比</span><span class="sub-note" id="kpiBestMonth"></span></div>
+        <div class="stat"><b>≈<span id="kpiCo2">—</span> t<button class="info" type="button" data-tip="co2">?</button></b><span data-lang="en">CO₂ avoided to date (estimate)</span><span data-lang="zh">累计减少 CO₂（估算）</span></div>
+      </div>
+
+      <div class="toolbar">
+        <div class="seg" id="segMetric" role="group" aria-labelledby="lblMetric">
+          <span class="seg-label" id="lblMetric"><span data-lang="en">Metric</span><span data-lang="zh">指标</span><button class="info" type="button" data-tip="metric">?</button></span>
+          <button type="button" data-v="gen"><span data-lang="en">Generation</span><span data-lang="zh">发电量</span></button>
+          <button type="button" data-v="share"><span data-lang="en">Share of demand</span><span data-lang="zh">用电占比</span></button>
+          <button type="button" data-v="cum"><span data-lang="en">Cumulative</span><span data-lang="zh">累计</span></button>
+        </div>
+        <div class="seg" id="segPeriod" role="group" aria-labelledby="lblPeriod">
+          <span class="seg-label" id="lblPeriod"><span data-lang="en">Period</span><span data-lang="zh">时间段</span></span>
+          <button type="button" data-v="all"><span data-lang="en">All</span><span data-lang="zh">全部</span></button>
+          <button type="button" data-v="2025">2025</button>
+          <button type="button" data-v="2026">2026</button>
+        </div>
+        <div class="num-field">
+          <span class="seg-label"><label for="inFactor"><span data-lang="en">Emission factor</span><span data-lang="zh">排放因子</span></label><button class="info" type="button" data-tip="factor">?</button></span>
+          <span class="input-unit"><input id="inFactor" type="number" inputmode="decimal" step="0.01" min="0.1" max="1.5" aria-describedby="errFactor"><span class="unit">kg CO₂/kWh</span></span>
+          <p class="err" id="errFactor" aria-live="polite"></p>
+        </div>
+        <button type="button" class="btn-ghost" id="btnResetPrefs"><span data-lang="en">Reset preferences</span><span data-lang="zh">重置偏好</span></button>
+      </div>
+
+      <div class="viz-main">
+        <div class="chart-block">
+          <h3 id="genTitle">Monthly generation (kWh)</h3>
+          <div class="chart" id="genChart" tabindex="0" role="group" aria-describedby="genHint"></div>
+          <p class="chart-hint" id="genHint"><span data-lang="en">Click a bar or use ← → (Home / End) to select a month.</span><span data-lang="zh">点击柱子，或用 ← →（Home / End）选择月份。</span></p>
+          <ul class="notes">
+            <li><b>1</b><span data-lang="en">Monitoring starts in April 2025; modules were still being added until August.</span><span data-lang="zh">2025 年 4 月开始有监控数据，组件到 8 月才装完。</span></li>
+            <li><b>2</b><span data-lang="en">The right array was being commissioned in September and October.</span><span data-lang="zh">9–10 月右路在调试。</span></li>
+            <li><b>3</b><span data-lang="en">Shut down in May 2026 to re-string the left array.</span><span data-lang="zh">2026 年 5 月停机给左阵列改串。</span></li>
+          </ul>
+        </div>
+        <aside class="detail" id="monthDetail" aria-live="polite"></aside>
+      </div>
+      <details class="data">
+        <summary><span data-lang="en">Show data table</span><span data-lang="zh">查看数据表</span></summary>
+        <div id="genTable"></div>
+      </details>
+
+      <div class="viz-pair">
+        <div class="chart-block">
+          <h3><span data-lang="en">2026 output by array (to 2 Aug)</span><span data-lang="zh">2026 年各阵列发电（截至 8 月 2 日）</span><button class="info" type="button" data-tip="zones">?</button></h3>
+          <div class="seg" id="segZoneSort" role="group" aria-label="Sort">
+            <button type="button" data-v="name"><span data-lang="en">By name</span><span data-lang="zh">按名称</span></button>
+            <button type="button" data-v="value"><span data-lang="en">By output</span><span data-lang="zh">按发电量</span></button>
+          </div>
+          <div class="chart" id="zoneChart" tabindex="0" role="group" aria-describedby="zoneReadout"></div>
+          <p class="readout" id="zoneReadout" aria-live="polite"></p>
+        </div>
+        <div class="chart-block">
+          <h3><span data-lang="en">Battery cell balance, one layer</span><span data-lang="zh">电池单体均衡（一层）</span><button class="info" type="button" data-tip="cells">?</button></h3>
+          <div class="seg" id="segCell" role="group" aria-label="View">
+            <button type="button" data-v="dev"><span data-lang="en">Deviation (mV)</span><span data-lang="zh">偏差（mV）</span></button>
+            <button type="button" data-v="v"><span data-lang="en">Voltage (V)</span><span data-lang="zh">电压（V）</span></button>
+          </div>
+          <div class="chart" id="cellChart" tabindex="0" role="group" aria-describedby="cellReadout"></div>
+          <p class="readout" id="cellReadout" aria-live="polite"></p>
+        </div>
       </div>
 
       <div class="chart-block">
-        <h3><span data-lang="en">Monthly generation, Apr 2025 – Jul 2026 (kWh)</span><span data-lang="zh">月度发电量，2025 年 4 月 – 2026 年 7 月（度）</span></h3>
-        <div class="chart" id="genChart"></div>
-        <ul class="notes">
-          <li><b>1</b><span data-lang="en">Monitoring starts in April 2025; modules were still being added until August.</span><span data-lang="zh">2025 年 4 月开始有监控数据，组件到 8 月才装完。</span></li>
-          <li><b>2</b><span data-lang="en">The right array was being commissioned in September and October.</span><span data-lang="zh">9–10 月右路在调试。</span></li>
-          <li><b>3</b><span data-lang="en">Shut down in May 2026 to re-string the left array.</span><span data-lang="zh">2026 年 5 月停机给左阵列改串。</span></li>
-        </ul>
-        <p class="chart-note"><span data-lang="en">Monthly share uses the site's demand without solar, ≈32,888 kWh. The 66,504 kWh total comes from the metering module and includes output from before monthly records began.</span><span data-lang="zh">月度占比按不用光伏时的全站用电约 32,888 度计算。累计 66,504 度来自计量模块，包含开始按月记录之前的发电量。</span></p>
+        <h3><span data-lang="en">Daily site demand vs solar, 12–28 July 2026</span><span data-lang="zh">每日全站用电与光伏对比，2026 年 7 月 12–28 日</span><button class="info" type="button" data-tip="daily">?</button></h3>
+        <label class="check"><input type="checkbox" id="chkSolarRef"><span data-lang="en">Show the July solar average</span><span data-lang="zh">显示 7 月光伏日均发电</span></label>
+        <div class="chart" id="dailyChart" tabindex="0" role="group" aria-describedby="dailyHint"></div>
+        <p class="chart-hint" id="dailyHint"><span data-lang="en">Hover, tap or use ← → to read each day.</span><span data-lang="zh">悬停、点按或用 ← → 查看每一天。</span></p>
         <details class="data">
-          <summary><span data-lang="en">Show data table</span><span data-lang="zh">查看数据表</span></summary>
-          <table>
-            <thead><tr><th><span data-lang="en">Month</span><span data-lang="zh">月份</span></th><th><span data-lang="en">kWh</span><span data-lang="zh">度</span></th></tr></thead>
-            <tbody>
-              <tr><td>2025-04</td><td>322.9</td></tr><tr><td>2025-05</td><td>1,076.0</td></tr><tr><td>2025-06</td><td>1,882.9</td></tr><tr><td>2025-07</td><td>2,869.9</td></tr>
-              <tr><td>2025-08</td><td>3,555.6</td></tr><tr><td>2025-09</td><td>3,181.6</td></tr><tr><td>2025-10</td><td>3,058.9</td></tr><tr><td>2025-11</td><td>3,660.9</td></tr>
-              <tr><td>2025-12</td><td>3,061.8</td></tr><tr><td>2026-01</td><td>2,866.3</td></tr><tr><td>2026-02</td><td>3,297.3</td></tr><tr><td>2026-03</td><td>3,636.4</td></tr>
-              <tr><td>2026-04</td><td>3,885.6</td></tr><tr><td>2026-05</td><td>3,534.1</td></tr><tr><td>2026-06</td><td>3,562.8</td></tr><tr><td>2026-07</td><td>4,025.9</td></tr>
-            </tbody>
-          </table>
+          <summary><span data-lang="en">Show data tables</span><span data-lang="zh">查看数据表</span></summary>
+          <div id="dailyTable"></div>
+          <div id="cellTable"></div>
         </details>
       </div>
-
-      <div class="chart-block">
-        <h3><span data-lang="en">2026 to date by array, to 2 Aug (kWh)</span><span data-lang="zh">2026 年至今各阵列发电，截至 8 月 2 日（度）</span></h3>
-        <div class="chart" id="zoneChart"></div>
-        <p class="chart-note"><span data-lang="en">Outer-right was connected in May 2026, so it has fewer months of output.</span><span data-lang="zh">外侧右 2026 年 5 月才接入，所以发电月份少。</span></p>
-      </div>
+      <p class="chart-note"><span data-lang="en">Share of demand uses the site's monthly demand without solar, ≈32,888 kWh. The 66,504 kWh total comes from the metering module and includes output from before monthly records began. CO₂ figures are estimates: generation × the emission factor above.</span><span data-lang="zh">用电占比按不用光伏时的全站月用电约 32,888 度计算。累计 66,504 度来自计量模块，包含开始按月记录之前的发电量。CO₂ 数值是估算：发电量 × 上面的排放因子。</span></p>
 
       <!-- 08 -->
-      <h2><span data-lang="en">Engineering decisions</span><span data-lang="zh">工程决策</span></h2>
+      <h2 id="decisions"><span data-lang="en">Engineering decisions</span><span data-lang="zh">工程决策</span></h2>
 
       <article class="decision">
         <h3><small>01</small><span data-lang="en">Clipping on the left array → re-stringing</span><span data-lang="zh">左阵列削峰 → 重新分串</span></h3>
@@ -546,6 +694,68 @@
           <dt><span data-lang="en">Result</span><span data-lang="zh">结果</span></dt>
           <dd><span data-lang="en">Every input now sits below its power limit. The shutdown cost about 380 kWh that month.</span><span data-lang="zh">每一路都低于功率上限。停机改串那个月少发了约 380 度。</span></dd>
         </dl>
+        <div class="checker" id="checker">
+          <h4><span data-lang="en">Try it: string sizing check</span><span data-lang="zh">试一试：组串校核</span></h4>
+          <p data-lang="en">Change the inputs to see why 9 modules per string clipped and 7 does not. Every field is checked as you type.</p>
+          <p data-lang="zh">修改下面的参数，看看为什么 9 块一串会削峰、7 块一串不会。每个输入框都会实时校验。</p>
+          <div class="presets" role="group" aria-label="Presets">
+            <button type="button" data-preset="9"><span data-lang="en">Before: 9 in series</span><span data-lang="zh">改前：9 块一串</span></button>
+            <button type="button" data-preset="7"><span data-lang="en">After: 7 in series</span><span data-lang="zh">改后：7 块一串</span></button>
+            <button type="button" data-preset="5"><span data-lang="en">After: 5 in series</span><span data-lang="zh">改后：5 块一串</span></button>
+          </div>
+          <div class="fields">
+            <div class="field">
+              <div class="field-head"><label for="chk_n"><span data-lang="en">Modules per string</span><span data-lang="zh">每串组件数</span></label><button class="info" type="button" data-tip="chk_n">?</button></div>
+              <div class="input-unit"><input id="chk_n" type="number" inputmode="numeric" step="1" aria-describedby="cerr_n"><span class="unit"></span></div>
+              <p class="err" id="cerr_n"></p>
+            </div>
+            <div class="field">
+              <div class="field-head"><label for="chk_voc"><span data-lang="en">Module Voc (25 °C)</span><span data-lang="zh">组件开路电压（25°C）</span></label><button class="info" type="button" data-tip="chk_voc">?</button></div>
+              <div class="input-unit"><input id="chk_voc" type="number" inputmode="decimal" step="0.1" aria-describedby="cerr_voc"><span class="unit">V</span></div>
+              <p class="err" id="cerr_voc"></p>
+            </div>
+            <div class="field">
+              <div class="field-head"><label for="chk_pw"><span data-lang="en">Module power</span><span data-lang="zh">组件功率</span></label><button class="info" type="button" data-tip="chk_pw">?</button></div>
+              <div class="input-unit"><input id="chk_pw" type="number" inputmode="decimal" step="1" aria-describedby="cerr_pw"><span class="unit">W</span></div>
+              <p class="err" id="cerr_pw"></p>
+            </div>
+            <div class="field">
+              <div class="field-head"><label for="chk_tmin"><span data-lang="en">Coldest site temperature</span><span data-lang="zh">现场最低温度</span></label><button class="info" type="button" data-tip="chk_tmin">?</button></div>
+              <div class="input-unit"><input id="chk_tmin" type="number" inputmode="decimal" step="1" aria-describedby="cerr_tmin"><span class="unit">°C</span></div>
+              <p class="err" id="cerr_tmin"></p>
+            </div>
+            <div class="field">
+              <div class="field-head"><label for="chk_beta"><span data-lang="en">Voc temperature coefficient</span><span data-lang="zh">开路电压温度系数</span></label><button class="info" type="button" data-tip="chk_beta">?</button></div>
+              <div class="input-unit"><input id="chk_beta" type="number" inputmode="decimal" step="0.01" aria-describedby="cerr_beta"><span class="unit">%/°C</span></div>
+              <p class="err" id="cerr_beta"></p>
+            </div>
+            <div class="field">
+              <div class="field-head"><label for="chk_vmax"><span data-lang="en">MPPT voltage limit</span><span data-lang="zh">MPPT 电压上限</span></label><button class="info" type="button" data-tip="chk_vmax">?</button></div>
+              <div class="input-unit"><input id="chk_vmax" type="number" inputmode="decimal" step="1" aria-describedby="cerr_vmax"><span class="unit">V</span></div>
+              <p class="err" id="cerr_vmax"></p>
+            </div>
+            <div class="field">
+              <div class="field-head"><label for="chk_pmax"><span data-lang="en">MPPT power limit</span><span data-lang="zh">MPPT 功率上限</span></label><button class="info" type="button" data-tip="chk_pmax">?</button></div>
+              <div class="input-unit"><input id="chk_pmax" type="number" inputmode="decimal" step="50" aria-describedby="cerr_pmax"><span class="unit">W</span></div>
+              <p class="err" id="cerr_pmax"></p>
+            </div>
+          </div>
+          <div class="results" id="chkResults" role="status" aria-live="polite">
+            <div class="res" id="resV">
+              <span class="lab"><span data-lang="en">String Voc on the coldest day</span><span data-lang="zh">最低温下组串开路电压</span></span>
+              <span class="big">—</span><span class="of"></span>
+              <div class="meter"><i></i></div>
+              <p class="status"></p>
+            </div>
+            <div class="res" id="resP">
+              <span class="lab"><span data-lang="en">String power (rated)</span><span data-lang="zh">组串标称功率</span></span>
+              <span class="big">—</span><span class="of"></span>
+              <div class="meter"><i></i></div>
+              <p class="status"></p>
+            </div>
+          </div>
+          <button type="button" class="btn-ghost" id="chkReset"><span data-lang="en">Reset to defaults</span><span data-lang="zh">恢复默认值</span></button>
+        </div>
       </article>
 
       <article class="decision">
@@ -585,7 +795,7 @@
       </ul>
 
       <!-- 09 -->
-      <h2><span data-lang="en">Reflection &amp; next steps</span><span data-lang="zh">总结与下一步</span></h2>
+      <h2 id="reflection"><span data-lang="en">Reflection &amp; next steps</span><span data-lang="zh">总结与下一步</span></h2>
       <div data-lang="en">
         <p>Most of the problems came from a limit we hadn't designed around yet — input power on an MPPT, inrush into capacitors, the force between heavy cables at high current. Reading every rating before wiring anything became the habit that mattered most.</p>
         <p>Separating control from power and keeping a hot standby made the system something we can leave running. Planning the busbar and inverter roles with room to spare let storage grow from 80 to 180 kWh without starting over.</p>
@@ -652,103 +862,489 @@
     else { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); }
   }
 
-  /* Charts */
+  /* ===== Analysis: data, preferences, info tips, charts, string checker ===== */
   var GEN = [['2025-04',322.9],['2025-05',1076],['2025-06',1882.9],['2025-07',2869.9],['2025-08',3555.6],['2025-09',3181.6],['2025-10',3058.9],['2025-11',3660.9],['2025-12',3061.8],
              ['2026-01',2866.3],['2026-02',3297.3],['2026-03',3636.4],['2026-04',3885.6],['2026-05',3534.1],['2026-06',3562.8],['2026-07',4025.9]];
-  var MARKS = { 0: '1', 5: '2', 6: '2', 13: '3' };
-  var DEMAND = 32888;
-  var ZONES = [['Left','左',6956.4],['Centre','中',7252.5],['Right','右',7408.2],['Outer-left','外侧左',1905.9],['Outer-right','外侧右',1394.1]];
+  var NOTE = { '2025-04': 1, '2025-09': 2, '2025-10': 2, '2026-05': 3 };
+  var METER_TOTAL = 66504, DEMAND = 32888;
+  var ZONES = [['left','Left','左',6956.4],['centre','Centre','中',7252.5],['right','Right','右',7408.2],['oleft','Outer-left','外侧左',1905.9],['oright','Outer-right','外侧右',1394.1]];
+  var ZONE_TOTAL = ZONES.reduce(function (s, z) { return s + z[3]; }, 0);
+  var DAILY = [['2026-07-12',1004.5],['2026-07-13',1028.12],['2026-07-14',1026.72],['2026-07-15',1071.44],['2026-07-16',1115.85],['2026-07-17',1081.49],
+               ['2026-07-18',1054.27],['2026-07-19',1021.34],['2026-07-20',1059.78],['2026-07-21',1059.02],['2026-07-22',1082.12],['2026-07-23',1067.03],
+               ['2026-07-24',1108.28],['2026-07-25',1099.47],['2026-07-26',1050.07],['2026-07-27',1078.42],['2026-07-28',1038.57]];
+  var DAILY_AVG = DAILY.reduce(function (s, d) { return s + d[1]; }, 0) / DAILY.length;
+  var SOLAR_DAY = 4025.9 / 31;
+  /* one battery layer, read from the BMS app: cells 01-16 */
+  var CELLS = [3.342,3.486,3.436,3.446,3.379,3.390,3.385,3.390,3.387,3.391,3.383,3.387,3.383,3.378,3.398,3.387];
+  var CELL_MEAN = CELLS.reduce(function (s, v) { return s + v; }, 0) / CELLS.length;
+  var CELL_LO = CELLS.indexOf(Math.min.apply(null, CELLS)), CELL_HI = CELLS.indexOf(Math.max.apply(null, CELLS));
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  function fmt(n, d) { return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
-  function monthName(k) { var y = k.slice(0, 4), m = +k.slice(5); return zh() ? y + ' 年 ' + m + ' 月' : MON[m - 1] + ' ' + y; }
-  /* bar path: square at the baseline, 4px rounded data end */
+  var WD_EN = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], WD_ZH = ['日','一','二','三','四','五','六'];
+
+  var STR = {
+    en: {
+      kwh: 'kWh', info: 'What does this mean?',
+      genTitle: { gen: 'Monthly generation (kWh)', share: 'Monthly generation as a share of demand (%)', cum: 'Cumulative generation since monthly records began (kWh)' },
+      gen: 'Generation', share: 'Share of demand', prev: 'vs previous month', co2: 'CO₂ avoided (est.)', cum: 'Running total', noPrev: 'first record',
+      notes: { 1: 'Monitoring starts this month; modules were still being added until August.', 2: 'The right array was being commissioned this month.', 3: 'Shut down to re-string the left array (about 380 kWh lost).' },
+      bestIn: 'in {m}',
+      zoneReadout: '{n}: {v} kWh · {p}% of 2026 output so far', zoneAria: 'Bar chart of 2026 output by array. Use the arrow keys to select an array.',
+      genAria: 'Monthly chart. Use the left and right arrow keys to select a month.',
+      cellAria: 'Chart of 16 battery cell voltages. Use the left and right arrow keys to select a cell.',
+      cellReadout: 'Mean {m} V · spread {s} mV · lowest cell {lo} ({lov} V) · highest cell {hi} ({hiv} V)',
+      cellTip: 'Cell {c} · {v} V · {d} mV vs mean', mean: 'Mean {v} V',
+      dailyAria: 'Line chart of daily site demand. Use the left and right arrow keys to move between days.',
+      dailyTip: '{d} · {v} kWh · solar covers ≈{p}%', avgDemand: 'Avg. demand {v}', solarAvg: 'Solar avg. {v}/day',
+      tMonth: 'Month', tKwh: 'kWh', tShare: 'Share of demand', tCo2: 'CO₂ avoided, kg (est.)', tDate: 'Date', tDemand: 'Demand, kWh', tCell: 'Cell', tVolt: 'Voltage, V', tDev: 'vs mean, mV',
+      errNum: 'Enter a number from {a} to {b}.', errInt: 'Enter a whole number from {a} to {b}.',
+      vOk: 'Inside the MPPT voltage window ({p}% of the limit).', vWarn: 'Within 5% of the voltage limit on the coldest day ({p}%).', vBad: 'Over the MPPT voltage limit by {x} V. This string would be unsafe.',
+      pOk: 'Inside the input power limit ({p}% of it).', pBad: 'Clipped at peak: about {x} W ({y}% of the string’s rated power) is lost.',
+      invalid: 'Fix the highlighted fields to see the result.', ofLimit: 'of {l}'
+    },
+    zh: {
+      kwh: '度', info: '这是什么？',
+      genTitle: { gen: '月度发电量（度）', share: '月度发电量占全站用电的比例（%）', cum: '开始按月记录以来的累计发电（度）' },
+      gen: '发电量', share: '用电占比', prev: '比上个月', co2: '减少 CO₂（估算）', cum: '累计到本月', noPrev: '第一个记录',
+      notes: { 1: '这个月开始有监控数据，组件到 8 月才装完。', 2: '这个月右路在调试。', 3: '这个月停机给左阵列改串（约少发 380 度）。' },
+      bestIn: '{m}',
+      zoneReadout: '{n}：{v} 度 · 占 2026 年至今发电的 {p}%', zoneAria: '2026 年各阵列发电条形图。用方向键选择阵列。',
+      genAria: '月度图表。用左右方向键选择月份。',
+      cellAria: '16 节电池单体电压图。用左右方向键选择电芯。',
+      cellReadout: '平均 {m} V · 最大压差 {s} mV · 最低第 {lo} 节（{lov} V）· 最高第 {hi} 节（{hiv} V）',
+      cellTip: '第 {c} 节 · {v} V · 比平均 {d} mV', mean: '平均 {v} V',
+      dailyAria: '每日全站用电折线图。用左右方向键在日期间移动。',
+      dailyTip: '{d} · {v} 度 · 光伏约覆盖 {p}%', avgDemand: '日均用电 {v}', solarAvg: '光伏日均 {v}',
+      tMonth: '月份', tKwh: '度', tShare: '用电占比', tCo2: '减少 CO₂，kg（估算）', tDate: '日期', tDemand: '用电，度', tCell: '电芯', tVolt: '电压，V', tDev: '比平均，mV',
+      errNum: '请输入 {a} 到 {b} 之间的数字。', errInt: '请输入 {a} 到 {b} 之间的整数。',
+      vOk: '在 MPPT 电压范围内（上限的 {p}%）。', vWarn: '最冷的时候离电压上限不到 5%（{p}%）。', vBad: '超出 MPPT 电压上限 {x} V，这样接不安全。',
+      pOk: '在单路功率上限以内（上限的 {p}%）。', pBad: '正午会削峰：约 {x} W（组串标称功率的 {y}%）被削掉。',
+      invalid: '先修正标红的输入框，才能看到结果。', ofLimit: '上限 {l}'
+    }
+  };
+  var TIPS = {
+    kwp: ['Kilowatt-peak: the array’s rated output under standard test conditions (1,000 W/m², 25 °C). Real output is lower; here the noon peak is 31–33 kW.', '千瓦峰值：组件在标准测试条件（1000 W/m²、25°C）下的额定功率之和。实际输出更低，这里正午实测峰值是 31–33 kW。'],
+    storage: ['Energy the battery bank holds: 51.2 V × 3,510 Ah ≈ 180 kWh.', '电池组能存的电量：51.2 V × 3,510 Ah ≈ 180 kWh。'],
+    kva: ['kVA is the apparent power each inverter can deliver. The six 11 kVA units are split into main output, charging, control supply and hot standby.', 'kVA 是每台逆变器能输出的视在功率。6 台 11 kVA 分别负责主输出、充电、控制系统供电和热备。'],
+    meter: ['Read from the inverters’ metering module. It includes output from before the app began monthly records in April 2025, so it is higher than the sum of the monthly bars.', '来自逆变器的计量模块，包含 2025 年 4 月 app 开始按月记录之前的发电，所以比月度柱子加起来要多。'],
+    period: ['Sum of the monthly app records inside the period you selected above.', '上面所选时间段内，app 按月记录的发电量之和。'],
+    share: ['Share of demand = a month’s solar generation ÷ the site’s monthly demand without solar (≈32,888 kWh).', '用电占比 = 当月光伏发电量 ÷ 不用光伏时的全站月用电（约 32,888 度）。'],
+    co2: ['Estimated CO₂ avoided = total generation × the emission factor in the toolbar. An estimate, not a measurement.', '估算减少的 CO₂ = 累计发电量 × 工具栏里的排放因子。这是估算，不是实测。'],
+    metric: ['Generation shows kWh per month. Share of demand divides it by the site’s monthly demand. Cumulative adds the months up from the start of the selected period.', '发电量是每月的度数；用电占比是除以全站月用电后的比例；累计是从所选时间段开头逐月加起来。'],
+    factor: ['Grid emission factor: kg of CO₂ released per kWh of grid power. The default 0.57 is close to China’s recent national grid average. Change it to test other assumptions (0.1–1.5).', '电网排放因子：电网每发 1 度电排放的 CO₂（kg）。默认 0.57 接近中国近年的全国电网平均值。可以改成其他假设（0.1–1.5）。'],
+    zones: ['Each array zone is a group of strings on its own MPPT inputs. Outer-right was only connected in May 2026, so it has fewer months of output.', '每个阵列分区是接在各自 MPPT 输入上的一组组串。外侧右 2026 年 5 月才接入，所以发电月份少。'],
+    cells: ['Each of the 16 cells in a layer should sit close to the average. A spread of a few tens of mV is normal; the BMS balances cells that drift away.', '一层里的 16 节电芯都应该接近平均电压。几十 mV 的压差是正常的，偏离较多的电芯由 BMS 负责均衡。'],
+    daily: ['Daily site demand from the utility app. The green line is the July solar average per day (4,025.9 kWh ÷ 31), showing how much of a typical day solar covers.', '每日全站用电来自电力 app。绿色线是 7 月光伏的日均发电（4,025.9 度 ÷ 31），表示光伏大约能覆盖一天的多少。'],
+    mppt: ['Maximum Power Point Tracking: the inverter input that keeps a string at its best voltage and current. Each input here takes up to 500 V and 5.5 kW.', '最大功率点跟踪：逆变器上让组串保持在最佳电压和电流的输入口。这里每一路最高 500 V、5.5 kW。'],
+    voc: ['Open-circuit voltage: a module’s voltage with nothing connected. It rises in cold weather, so strings are checked at the coldest expected temperature.', '开路电压：组件不接负载时的电压。天冷时会升高，所以组串要按最低温度来校核。'],
+    s16: ['16S2P means 16 cells in series (51.2 V nominal) and 2 in parallel per layer. Four layers are 16S2P with 400 Ah cells; one is 16S1P with 310 Ah cells.', '16S2P 指每层 16 节串联（标称 51.2 V）、2 组并联。4 层是 400Ah 电芯的 16S2P，1 层是 310Ah 电芯的 16S1P。'],
+    bms: ['Battery Management System: watches each cell’s voltage and temperature, balances cells and disconnects the layer on a fault.', '电池管理系统：监测每节电芯的电压和温度，做均衡，出故障时断开这一层。'],
+    dcbus: ['The shared DC busbar that every inverter and battery layer connects to.', '所有逆变器和每层电池都接在这条共用的直流母线上。'],
+    zeroExport: ['Nothing is sold to the State Grid. Surplus is used on site, by the farm and by the community microgrid; the grid only covers nights when the batteries run out.', '不向国家电网卖电。余电在现场、农家和社区微网里用掉；只有电池用完的夜里才用市电。'],
+    chk_n: ['How many modules are wired in series in one string.', '一个组串里串联的组件数量。'],
+    chk_voc: ['Open-circuit voltage of one module at 25 °C, from the datasheet. The modules here are 48 V.', '单块组件在 25°C 下的开路电压，看规格书。这里的组件是 48 V。'],
+    chk_pw: ['Rated power of one module. The modules here are 700 W.', '单块组件的额定功率。这里是 700W。'],
+    chk_tmin: ['The coldest temperature you expect on site. Cold raises Voc, so this sets the worst case.', '现场可能出现的最低温度。温度越低开路电压越高，所以按这个算最坏情况。'],
+    chk_beta: ['How much Voc changes per °C. It is negative: Voc rises as the temperature falls. HJT modules are about −0.24 %/°C.', '温度每变化 1°C 开路电压变化的比例。这个值是负的：温度下降时开路电压上升。HJT 组件约 −0.24%/°C。'],
+    chk_vmax: ['The highest string voltage the MPPT input can track safely. Here 500 V.', 'MPPT 输入能安全跟踪的最高组串电压，这里是 500 V。'],
+    chk_pmax: ['The most power one MPPT input can convert. Anything above this is clipped. Here 5.5 kW.', '单路 MPPT 最多能转换的功率，超出的部分会被削掉。这里是 5.5 kW。']
+  };
+
+  function L() { return zh() ? 'zh' : 'en'; }
+  function t(k) { return STR[L()][k]; }
+  function tpl(str, o) { return str.replace(/\{(\w+)\}/g, function (_, k) { return o[k]; }); }
+  function fmt(n, d) { return Number(n).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function $(id) { return document.getElementById(id); }
+  function monthLabel(k) { var y = k.slice(0, 4), m = +k.slice(5); return zh() ? y + ' 年 ' + m + ' 月' : MON[m - 1] + ' ' + y; }
+  function dayLabel(k) { var d = new Date(k + 'T00:00:00'), m = +k.slice(5, 7), dd = +k.slice(8); return zh() ? m + ' 月 ' + dd + ' 日（周' + WD_ZH[d.getDay()] + '）' : WD_EN[d.getDay()] + ' ' + dd + ' ' + MON[m - 1]; }
+  function niceStep(raw) { var p = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+  function svgOpen(W, H, label) { return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + label + '">'; }
+  /* bar paths: square at the baseline, 4px rounded data end */
   function vbar(x, w, top, base) { var r = Math.min(4, base - top, w / 2);
     return 'M' + x + ' ' + base + 'V' + (top + r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x + r) + ' ' + top + 'H' + (x + w - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x + w) + ' ' + (top + r) + 'V' + base + 'Z'; }
+  function vbarDown(x, w, base, bottom) { var r = Math.min(4, bottom - base, w / 2);
+    return 'M' + x + ' ' + base + 'V' + (bottom - r) + 'A' + r + ' ' + r + ' 0 0 0 ' + (x + r) + ' ' + bottom + 'H' + (x + w - r) + 'A' + r + ' ' + r + ' 0 0 0 ' + (x + w) + ' ' + (bottom - r) + 'V' + base + 'Z'; }
   function hbar(x0, len, y, h) { var r = Math.min(4, len, h / 2), x1 = x0 + len;
     return 'M' + x0 + ' ' + y + 'H' + (x1 - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + x1 + ' ' + (y + r) + 'V' + (y + h - r) + 'A' + r + ' ' + r + ' 0 0 1 ' + (x1 - r) + ' ' + (y + h) + 'H' + x0 + 'Z'; }
 
-  function drawGen() {
-    var el = document.getElementById('genChart'); if (!el) return;
-    var W = Math.max(280, el.clientWidth), H = 270, m = { t: 30, r: 6, b: 46, l: 36 },
-        pw = W - m.l - m.r, ph = H - m.t - m.b, n = GEN.length, slot = pw / n,
-        bw = Math.min(24, slot * 0.62), max = 4500, narrow = slot < 34;
-    function y(val) { return m.t + ph - val / max * ph; }
-    var s = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
-            (zh() ? '月度发电量柱状图' : 'Bar chart of monthly generation') + '">';
-    [0, 1000, 2000, 3000, 4000].forEach(function (t) {
-      s += '<line class="g' + (t ? '' : ' base') + '" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(t) + '" y2="' + y(t) + '"/>' +
-           '<text class="tick" x="' + (m.l - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end">' + (t ? t / 1000 + 'K' : '0') + '</text>';
-    });
-    var bars = '', hits = '', labels = '', top = 0;
-    GEN.forEach(function (d, i) {
-      var cx = m.l + slot * i + slot / 2, t = y(d[1]), mo = +d[0].slice(5);
-      bars += '<path class="bar" data-i="' + i + '" d="' + vbar(cx - bw / 2, bw, t, y(0)) + '"/>';
-      labels += '<text class="tick" x="' + cx + '" y="' + (y(0) + 15) + '" text-anchor="middle">' + (narrow ? mo : (zh() ? mo + '月' : MON[mo - 1])) + '</text>';
-      if (MARKS[i]) labels += '<g class="mk"><circle cx="' + cx + '" cy="' + (t - 13) + '" r="7"/><text x="' + cx + '" y="' + (t - 9.5) + '" text-anchor="middle">' + MARKS[i] + '</text></g>';
-      if (d[1] > GEN[top][1]) top = i;
-      hits += '<rect class="hit" tabindex="0" data-i="' + i + '" x="' + (m.l + slot * i) + '" y="' + m.t + '" width="' + slot + '" height="' + ph + '" aria-label="' +
-              monthName(d[0]) + ': ' + fmt(d[1], 1) + (zh() ? ' 度' : ' kWh') + '"/>';
-    });
-    /* direct label on the peak month only */
-    var pcx = m.l + slot * top + slot / 2;
-    labels += '<text class="val" x="' + pcx + '" y="' + (y(GEN[top][1]) - 8) + '" text-anchor="middle">' + fmt(GEN[top][1], 0) + '</text>';
-    /* year labels under the month row */
-    [['2025', 0, 8], ['2026', 9, 15]].forEach(function (g) {
-      var x1 = m.l + slot * g[1] + 2, x2 = m.l + slot * (g[2] + 1) - 2;
-      labels += '<line class="g" x1="' + x1 + '" x2="' + x2 + '" y1="' + (y(0) + 24) + '" y2="' + (y(0) + 24) + '"/>' +
-                '<text class="lbl" x="' + ((x1 + x2) / 2) + '" y="' + (y(0) + 38) + '" text-anchor="middle">' + g[0] + '</text>';
-    });
-    s += '<g class="bars">' + bars + '</g>' + labels + hits + '</svg><div class="tip" role="status"></div>';
-    el.innerHTML = s;
-
-    var svg = el.querySelector('svg'), tip = el.querySelector('.tip'), paths = el.querySelectorAll('.bar');
-    function show(i) {
-      var d = GEN[i], share = d[1] / DEMAND * 100;
-      paths.forEach(function (p) { p.classList.toggle('on', +p.getAttribute('data-i') === i); });
-      svg.classList.add('hovering');
-      tip.innerHTML = '<b>' + monthName(d[0]) + '</b><br>' + fmt(d[1], 1) + (zh() ? ' 度 · 占月用电 ' : ' kWh · ') + fmt(share, 1) + '%' + (zh() ? '' : ' of monthly demand');
-      var cx = m.l + slot * i + slot / 2, half = 90;
-      tip.style.left = Math.min(Math.max(cx, half), W - half) + 'px';
-      tip.style.top = (y(d[1]) - 24) + 'px';
-      tip.classList.add('show');
-    }
-    function hide() { svg.classList.remove('hovering'); tip.classList.remove('show'); }
-    el.querySelectorAll('.hit').forEach(function (h) {
-      var i = +h.getAttribute('data-i');
-      h.addEventListener('pointerenter', function () { show(i); });
-      h.addEventListener('focus', function () { show(i); });
-      h.addEventListener('click', function () { show(i); });
-      /* touch fires pointerleave on lift, so only a mouse leaving hides the tip */
-      h.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') hide(); });
-      h.addEventListener('blur', hide);
-    });
-    el._hide = hide;
+  /* --- Preferences (this device only) --- */
+  var PREF_KEY = 'solarPrefs.v1';
+  var CHK_KEYS = ['n', 'voc', 'pw', 'tmin', 'beta', 'vmax', 'pmax'];
+  var CHK_DEF = { n: 9, voc: 48, pw: 700, tmin: -5, beta: -0.24, vmax: 500, pmax: 5500 };
+  var CHK_RULE = { n: [1, 20, true], voc: [10, 100], pw: [50, 1000], tmin: [-40, 25], beta: [-0.6, 0], vmax: [100, 1500], pmax: [500, 30000] };
+  function defaults() {
+    return { metric: 'gen', period: 'all', factor: 0.57, zoneSort: 'name', zone: 'right', cellMode: 'dev', cell: CELL_HI, solarRef: true, month: '2026-07', chk: JSON.parse(JSON.stringify(CHK_DEF)) };
   }
-  document.addEventListener('pointerdown', function (e) {
-    var g = document.getElementById('genChart');
-    if (g && g._hide && !g.contains(e.target)) g._hide();
+  function inRule(k, v) { var r = CHK_RULE[k]; return typeof v === 'number' && isFinite(v) && v >= r[0] && v <= r[1] && (!r[2] || Math.round(v) === v); }
+  function loadPrefs() {
+    var p = defaults(), s = null;
+    try { s = JSON.parse(localStorage.getItem(PREF_KEY) || 'null'); } catch (e) { s = null; }
+    if (!s || typeof s !== 'object') return p;
+    if (['gen', 'share', 'cum'].indexOf(s.metric) > -1) p.metric = s.metric;
+    if (['all', '2025', '2026'].indexOf(s.period) > -1) p.period = s.period;
+    if (typeof s.factor === 'number' && s.factor >= 0.1 && s.factor <= 1.5) p.factor = s.factor;
+    if (s.zoneSort === 'name' || s.zoneSort === 'value') p.zoneSort = s.zoneSort;
+    if (ZONES.some(function (z) { return z[0] === s.zone; })) p.zone = s.zone;
+    if (s.cellMode === 'dev' || s.cellMode === 'v') p.cellMode = s.cellMode;
+    if (typeof s.cell === 'number' && s.cell >= 0 && s.cell < CELLS.length) p.cell = s.cell | 0;
+    if (typeof s.solarRef === 'boolean') p.solarRef = s.solarRef;
+    if (GEN.some(function (d) { return d[0] === s.month; })) p.month = s.month;
+    if (s.chk) CHK_KEYS.forEach(function (k) { if (inRule(k, s.chk[k])) p.chk[k] = s.chk[k]; });
+    return p;
+  }
+  var P = loadPrefs();
+  function save() { try { localStorage.setItem(PREF_KEY, JSON.stringify(P)); } catch (e) {} }
+
+  /* --- Info tips: hover, focus or tap the "?" --- */
+  var bubble = document.createElement('div');
+  bubble.className = 'info-bubble'; bubble.id = 'infoBubble'; bubble.setAttribute('role', 'tooltip'); bubble.hidden = true;
+  document.body.appendChild(bubble);
+  var tipBtn = null, tipPinned = false;
+  function showInfo(btn) {
+    var tip = TIPS[btn.getAttribute('data-tip')]; if (!tip) return;
+    if (tipBtn && tipBtn !== btn) tipBtn.removeAttribute('aria-describedby');
+    tipBtn = btn; bubble.textContent = tip[zh() ? 1 : 0]; bubble.hidden = false;
+    btn.setAttribute('aria-describedby', 'infoBubble');
+    var r = btn.getBoundingClientRect(), bw = bubble.offsetWidth, bh = bubble.offsetHeight;
+    var top = r.top - bh - 8; if (top < 8) top = r.bottom + 8;
+    bubble.style.left = clamp(r.left + r.width / 2 - bw / 2, 8, window.innerWidth - bw - 8) + 'px';
+    bubble.style.top = top + 'px';
+  }
+  function hideInfo() { if (tipBtn) tipBtn.removeAttribute('aria-describedby'); tipBtn = null; tipPinned = false; bubble.hidden = true; }
+  function infoFrom(e) { return e.target.closest ? e.target.closest('.info') : null; }
+  document.addEventListener('mouseover', function (e) { var b = infoFrom(e); if (b && !tipPinned) showInfo(b); });
+  document.addEventListener('mouseout', function (e) { var b = infoFrom(e); if (b && !tipPinned && b === tipBtn) hideInfo(); });
+  document.addEventListener('focusin', function (e) { var b = infoFrom(e); if (b) showInfo(b); });
+  document.addEventListener('focusout', function (e) { var b = infoFrom(e); if (b && !tipPinned) hideInfo(); });
+  document.addEventListener('click', function (e) {
+    var b = infoFrom(e);
+    if (b) { e.preventDefault(); if (tipPinned && tipBtn === b) hideInfo(); else { showInfo(b); tipPinned = true; } }
+    else if (tipPinned) hideInfo();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && tipBtn) hideInfo(); });
+  window.addEventListener('scroll', function () { if (tipBtn) { if (tipPinned) showInfo(tipBtn); else hideInfo(); } }, { passive: true });
+
+  /* --- Section nav: highlight the section in view --- */
+  var tocLinks = [].slice.call(document.querySelectorAll('.toc a'));
+  if (tocLinks.length && 'IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        tocLinks.forEach(function (a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'true' : 'false'); });
+      });
+    }, { rootMargin: '-15% 0px -75% 0px' });
+    tocLinks.forEach(function (a) { var h = $(a.getAttribute('href').slice(1)); if (h) spy.observe(h); });
+  }
+
+  /* --- Toggle groups --- */
+  var SEGS = [['segMetric', 'metric', renderGen], ['segPeriod', 'period', renderGen], ['segZoneSort', 'zoneSort', drawZones], ['segCell', 'cellMode', drawCells]];
+  function syncSegs() {
+    SEGS.forEach(function (g) {
+      var el = $(g[0]); if (!el) return;
+      el.querySelectorAll('button[data-v]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === P[g[1]] ? 'true' : 'false'); });
+    });
+  }
+  SEGS.forEach(function (g) {
+    var el = $(g[0]); if (!el) return;
+    el.querySelectorAll('button[data-v]').forEach(function (b) {
+      b.addEventListener('click', function () { P[g[1]] = b.getAttribute('data-v'); save(); syncSegs(); g[2](); });
+    });
   });
 
+  /* --- Emission factor (validated) --- */
+  var inF = $('inFactor'), errF = $('errFactor');
+  function checkFactor(commit) {
+    var raw = inF.value.trim(), v = Number(raw);
+    var ok = raw !== '' && isFinite(v) && v >= 0.1 && v <= 1.5;
+    inF.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    errF.textContent = ok ? '' : tpl(t('errNum'), { a: '0.1', b: '1.5' });
+    if (ok && commit) { P.factor = v; save(); renderKpis(); renderDetail(); renderGenTable(); }
+  }
+  inF.addEventListener('input', function () { checkFactor(true); });
+
+  /* --- Monthly chart + detail panel --- */
+  function genRows() {
+    var run = 0;
+    return GEN.filter(function (d) { return P.period === 'all' || d[0].slice(0, 4) === P.period; })
+      .map(function (d) { run += d[1]; return { k: d[0], kwh: d[1], share: d[1] / DEMAND * 100, cum: run }; });
+  }
+  function selIndex(rows) {
+    for (var i = 0; i < rows.length; i++) if (rows[i].k === P.month) return i;
+    P.month = rows[rows.length - 1].k; return rows.length - 1;
+  }
+  function genVal(r) { return P.metric === 'gen' ? r.kwh : P.metric === 'share' ? r.share : r.cum; }
+  function genShort(v) { return P.metric === 'share' ? fmt(v, 1) + '%' : fmt(v, 0); }
+  function drawGen() {
+    var el = $('genChart'); if (!el) return;
+    var rows = genRows(), sel = selIndex(rows), n = rows.length;
+    var W = Math.max(280, el.clientWidth), H = 290, m = { t: 34, r: 10, b: 50, l: 46 };
+    var pw = W - m.l - m.r, ph = H - m.t - m.b, slot = pw / n, bw = Math.min(24, slot * 0.62), narrow = slot < 34;
+    var maxV = Math.max.apply(null, rows.map(genVal)), step = niceStep(maxV / 4), top = Math.ceil(maxV / step) * step;
+    if (top < maxV * 1.12) top += step;
+    function y(v) { return m.t + ph - v / top * ph; }
+    function cx(i) { return m.l + slot * i + slot / 2; }
+    var s = svgOpen(W, H, t('genAria'));
+    for (var tv = 0; tv <= top + 1e-9; tv += step) {
+      var lab = P.metric === 'share' ? (+tv.toFixed(1)) + '%' : tv >= 1000 ? (+(tv / 1000).toFixed(1)) + 'K' : tv;
+      s += '<line class="g' + (tv ? '' : ' base') + '" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(tv) + '" y2="' + y(tv) + '"/>' +
+           '<text class="tick" x="' + (m.l - 6) + '" y="' + (y(tv) + 4) + '" text-anchor="end">' + lab + '</text>';
+    }
+    if (P.metric === 'cum') {
+      var pts = rows.map(function (r, i) { return cx(i) + ',' + y(r.cum); });
+      s += '<path class="area" d="M' + cx(0) + ',' + y(0) + ' L' + pts.join(' L') + ' L' + cx(n - 1) + ',' + y(0) + 'Z"/>';
+      s += '<polyline class="line" points="' + pts.join(' ') + '"/>';
+      rows.forEach(function (r, i) { s += '<circle class="dot' + (i === sel ? ' on' : '') + '" cx="' + cx(i) + '" cy="' + y(r.cum) + '" r="' + (i === sel ? 6 : 4) + '"/>'; });
+    } else {
+      rows.forEach(function (r, i) { s += '<path class="bar' + (i === sel ? ' sel' : '') + '" d="' + vbar(cx(i) - bw / 2, bw, y(genVal(r)), y(0)) + '"/>'; });
+      rows.forEach(function (r, i) {
+        if (!NOTE[r.k]) return;
+        var ty = y(genVal(r)) - 13;
+        s += '<g class="mk"><circle cx="' + cx(i) + '" cy="' + ty + '" r="7"/><text x="' + cx(i) + '" y="' + (ty + 3.5) + '" text-anchor="middle">' + NOTE[r.k] + '</text></g>';
+      });
+    }
+    var sv = genVal(rows[sel]), lift = P.metric !== 'cum' && NOTE[rows[sel].k] ? 26 : 10;
+    s += '<text class="val" x="' + clamp(cx(sel), m.l + 16, W - m.r - 16) + '" y="' + (y(sv) - lift) + '" text-anchor="middle">' + genShort(sv) + '</text>';
+    rows.forEach(function (r, i) {
+      var mo = +r.k.slice(5);
+      if (narrow && n > 9 && i % 2 && i !== sel) return;
+      s += '<text class="tick" x="' + cx(i) + '" y="' + (y(0) + 16) + '" text-anchor="middle">' + (narrow ? mo : (zh() ? mo + '月' : MON[mo - 1])) + '</text>';
+    });
+    var years = {};
+    rows.forEach(function (r, i) { var yk = r.k.slice(0, 4); if (!years[yk]) years[yk] = [i, i]; years[yk][1] = i; });
+    Object.keys(years).forEach(function (yk) {
+      var x1 = m.l + slot * years[yk][0] + 2, x2 = m.l + slot * (years[yk][1] + 1) - 2;
+      s += '<line class="g" x1="' + x1 + '" x2="' + x2 + '" y1="' + (y(0) + 26) + '" y2="' + (y(0) + 26) + '"/>' +
+           '<text class="lbl" x="' + ((x1 + x2) / 2) + '" y="' + (y(0) + 41) + '" text-anchor="middle">' + yk + '</text>';
+    });
+    s += '<rect class="hit" x="' + m.l + '" y="' + m.t + '" width="' + pw + '" height="' + ph + '"/></svg><div class="tip"></div>';
+    el.innerHTML = s;
+    var svg = el.querySelector('svg'), tip = el.querySelector('.tip'), hit = el.querySelector('.hit');
+    function idxAt(ev) { var b = svg.getBoundingClientRect(); return clamp(Math.floor((ev.clientX - b.left - m.l) / slot), 0, n - 1); }
+    hit.addEventListener('pointermove', function (ev) {
+      var r = rows[idxAt(ev)];
+      tip.innerHTML = '<b>' + monthLabel(r.k) + '</b><br>' + fmt(r.kwh, 1) + ' ' + t('kwh') + ' · ' + fmt(r.share, 1) + '%';
+      tip.style.left = clamp(cx(idxAt(ev)), 90, W - 90) + 'px'; tip.style.top = (y(genVal(r)) - 14) + 'px'; tip.classList.add('show');
+    });
+    hit.addEventListener('pointerleave', function () { tip.classList.remove('show'); });
+    hit.addEventListener('click', function (ev) { P.month = rows[idxAt(ev)].k; save(); renderGen(); });
+  }
+  $('genChart').addEventListener('keydown', function (e) {
+    var rows = genRows(), i = selIndex(rows), j = i;
+    if (e.key === 'ArrowLeft') j = i - 1; else if (e.key === 'ArrowRight') j = i + 1;
+    else if (e.key === 'Home') j = 0; else if (e.key === 'End') j = rows.length - 1; else return;
+    e.preventDefault(); P.month = rows[clamp(j, 0, rows.length - 1)].k; save(); renderGen();
+  });
+  function renderDetail() {
+    var el = $('monthDetail'); if (!el) return;
+    var rows = genRows(), r = rows[selIndex(rows)], gi = -1, run = 0;
+    GEN.forEach(function (d, i) { if (gi < 0) run += d[1]; if (d[0] === r.k) gi = i; });
+    var prev = gi > 0 ? GEN[gi - 1] : null, ch = prev ? (r.kwh - prev[1]) / prev[1] * 100 : null;
+    var chTxt = ch === null ? t('noPrev') : (ch >= 0 ? '▲ +' : '▼ −') + fmt(Math.abs(ch), 1) + '%';
+    el.innerHTML = '<h4>' + monthLabel(r.k) + '</h4><dl>' +
+      '<dt>' + t('gen') + '</dt><dd>' + fmt(r.kwh, 1) + ' ' + t('kwh') + '</dd>' +
+      '<dt>' + t('share') + '</dt><dd>' + fmt(r.share, 1) + '%</dd>' +
+      '<dt>' + t('prev') + '</dt><dd>' + chTxt + '</dd>' +
+      '<dt>' + t('co2') + '</dt><dd>' + fmt(r.kwh * P.factor, 0) + ' kg</dd>' +
+      '<dt>' + t('cum') + '</dt><dd>' + fmt(run, 0) + ' ' + t('kwh') + '</dd></dl>' +
+      (NOTE[r.k] ? '<p class="note">' + NOTE[r.k] + ' · ' + t('notes')[NOTE[r.k]] + '</p>' : '');
+  }
+  function renderKpis() {
+    var rows = genRows(), sum = 0, best = rows[0];
+    rows.forEach(function (r) { sum += r.kwh; if (r.share > best.share) best = r; });
+    $('kpiPeriod').textContent = fmt(sum, 0);
+    $('kpiBest').textContent = fmt(best.share, 1);
+    $('kpiBestMonth').textContent = tpl(t('bestIn'), { m: monthLabel(best.k) });
+    $('kpiCo2').textContent = fmt(METER_TOTAL * P.factor / 1000, 1);
+  }
+  function renderGenTable() {
+    var h = '<table><thead><tr><th>' + t('tMonth') + '</th><th>' + t('tKwh') + '</th><th>' + t('tShare') + '</th><th>' + t('tCo2') + '</th></tr></thead><tbody>';
+    genRows().forEach(function (r) { h += '<tr><td>' + r.k + '</td><td>' + fmt(r.kwh, 1) + '</td><td>' + fmt(r.share, 1) + '%</td><td>' + fmt(r.kwh * P.factor, 0) + '</td></tr>'; });
+    $('genTable').innerHTML = h + '</tbody></table>';
+  }
+  function renderGen() { $('genTitle').textContent = t('genTitle')[P.metric]; drawGen(); renderDetail(); renderKpis(); renderGenTable(); }
+
+  /* --- Output by array --- */
+  function zoneRows() { var z = ZONES.slice(); if (P.zoneSort === 'value') z.sort(function (a, b) { return b[3] - a[3]; }); return z; }
+  function zoneName(z) { return zh() ? z[2] : z[1]; }
   function drawZones() {
-    var el = document.getElementById('zoneChart'); if (!el) return;
-    var W = Math.max(280, el.clientWidth), lw = zh() ? 56 : 84, vw = 64, row = 34, bh = 20,
-        H = ZONES.length * row, max = 8000, pw = W - lw - vw;
-    var s = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
-            (zh() ? '各阵列发电量条形图' : 'Bar chart of generation by array') + '">';
-    s += '<line class="g base" x1="' + lw + '" x2="' + lw + '" y1="0" y2="' + H + '"/>';
-    ZONES.forEach(function (z, i) {
-      var yy = i * row + (row - bh) / 2, len = z[2] / max * pw;
-      s += '<text class="lbl" x="' + (lw - 8) + '" y="' + (yy + bh / 2 + 4) + '" text-anchor="end">' + (zh() ? z[1] : z[0]) + '</text>' +
-           '<path class="bar" d="' + hbar(lw, len, yy, bh) + '"><title>' + (zh() ? z[1] : z[0]) + ': ' + fmt(z[2], 1) + (zh() ? ' 度' : ' kWh') + '</title></path>' +
-           '<text class="val" x="' + (lw + len + 6) + '" y="' + (yy + bh / 2 + 4) + '">' + fmt(z[2], 0) + '</text>';
+    var el = $('zoneChart'); if (!el) return;
+    var rows = zoneRows(), W = Math.max(260, el.clientWidth), lw = zh() ? 58 : 88, vw = 56, row = 36, bh = 20, H = rows.length * row, pw = W - lw - vw, max = 8000;
+    var s = svgOpen(W, H, t('zoneAria')) + '<line class="g base" x1="' + lw + '" x2="' + lw + '" y1="0" y2="' + H + '"/>';
+    rows.forEach(function (z, i) {
+      var yy = i * row + (row - bh) / 2, len = z[3] / max * pw, on = z[0] === P.zone;
+      s += '<text class="' + (on ? 'val' : 'lbl') + '" x="' + (lw - 8) + '" y="' + (yy + bh / 2 + 4) + '" text-anchor="end">' + zoneName(z) + '</text>' +
+           '<path class="bar' + (on ? ' sel' : '') + '" d="' + hbar(lw, len, yy, bh) + '"/>' +
+           '<text class="val" x="' + (lw + len + 6) + '" y="' + (yy + bh / 2 + 4) + '">' + fmt(z[3], 0) + '</text>' +
+           '<rect class="hit" data-k="' + z[0] + '" x="0" y="' + (i * row) + '" width="' + W + '" height="' + row + '"/>';
     });
     el.innerHTML = s + '</svg>';
+    el.querySelectorAll('.hit').forEach(function (h) { h.addEventListener('click', function () { P.zone = h.getAttribute('data-k'); save(); drawZones(); }); });
+    var z = ZONES.filter(function (q) { return q[0] === P.zone; })[0];
+    $('zoneReadout').textContent = tpl(t('zoneReadout'), { n: zoneName(z), v: fmt(z[3], 0), p: fmt(z[3] / ZONE_TOTAL * 100, 1) });
+  }
+  $('zoneChart').addEventListener('keydown', function (e) {
+    var rows = zoneRows(), i = 0, d = 0;
+    rows.forEach(function (z, k) { if (z[0] === P.zone) i = k; });
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') d = 1; else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') d = -1; else return;
+    e.preventDefault(); P.zone = rows[clamp(i + d, 0, rows.length - 1)][0]; save(); drawZones();
+  });
+
+  /* --- Battery cell balance --- */
+  function drawCells() {
+    var el = $('cellChart'); if (!el) return;
+    var W = Math.max(260, el.clientWidth), H = 240, m = { t: 22, r: 8, b: 30, l: 46 }, n = CELLS.length;
+    var pw = W - m.l - m.r, ph = H - m.t - m.b, slot = pw / n, bw = Math.min(16, slot * 0.62), dev = P.cellMode === 'dev';
+    var lo = dev ? -100 : 3.30, hi = dev ? 100 : 3.50, ticks = dev ? [-100, -50, 0, 50, 100] : [3.30, 3.35, 3.40, 3.45, 3.50];
+    function y(v) { return m.t + ph - (v - lo) / (hi - lo) * ph; }
+    function cx(i) { return m.l + slot * i + slot / 2; }
+    var s = svgOpen(W, H, t('cellAria'));
+    ticks.forEach(function (tv) {
+      s += '<line class="g' + ((dev && tv === 0) ? ' base' : '') + '" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(tv) + '" y2="' + y(tv) + '"/>' +
+           '<text class="tick" x="' + (m.l - 6) + '" y="' + (y(tv) + 4) + '" text-anchor="end">' + (dev ? (tv > 0 ? '+' : '') + tv : tv.toFixed(2)) + '</text>';
+    });
+    if (!dev) s += '<line class="ref" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(CELL_MEAN) + '" y2="' + y(CELL_MEAN) + '"/>' +
+                   '<text class="ref-txt" x="' + (W - m.r) + '" y="' + (y(CELL_MEAN) - 5) + '" text-anchor="end">' + tpl(t('mean'), { v: CELL_MEAN.toFixed(3) }) + '</text>';
+    CELLS.forEach(function (v, i) {
+      var on = i === P.cell, d = (v - CELL_MEAN) * 1000;
+      if (dev) s += '<path class="bar' + (on ? ' sel' : '') + '" d="' + (d >= 0 ? vbar(cx(i) - bw / 2, bw, y(d), y(0)) : vbarDown(cx(i) - bw / 2, bw, y(0), y(d))) + '"/>';
+      else s += '<circle class="dot' + (on ? ' on' : '') + '" cx="' + cx(i) + '" cy="' + y(v) + '" r="' + (on ? 6 : 4.5) + '"/>';
+      if (i === CELL_LO || i === CELL_HI || on) {
+        var ly = dev ? (d >= 0 ? y(d) - 6 : y(d) + 14) : y(v) - 10;
+        s += '<text class="val" x="' + clamp(cx(i), m.l + 14, W - m.r - 14) + '" y="' + ly + '" text-anchor="middle">' + (dev ? (d > 0 ? '+' : '') + d.toFixed(0) : v.toFixed(3)) + '</text>';
+      }
+      if (slot >= 18 || i % 2 === 0) s += '<text class="tick" x="' + cx(i) + '" y="' + (H - 10) + '" text-anchor="middle">' + (i + 1) + '</text>';
+    });
+    s += '<rect class="hit" x="' + m.l + '" y="' + m.t + '" width="' + pw + '" height="' + ph + '"/></svg><div class="tip"></div>';
+    el.innerHTML = s;
+    var svg = el.querySelector('svg'), tip = el.querySelector('.tip'), hit = el.querySelector('.hit');
+    function idxAt(ev) { var b = svg.getBoundingClientRect(); return clamp(Math.floor((ev.clientX - b.left - m.l) / slot), 0, n - 1); }
+    hit.addEventListener('pointermove', function (ev) {
+      var i = idxAt(ev), v = CELLS[i], d = (v - CELL_MEAN) * 1000;
+      tip.textContent = tpl(t('cellTip'), { c: i + 1, v: v.toFixed(3), d: (d > 0 ? '+' : '') + d.toFixed(0) });
+      tip.style.left = clamp(cx(i), 90, W - 90) + 'px'; tip.style.top = (dev ? Math.min(y(d), y(0)) : y(v)) - 10 + 'px'; tip.classList.add('show');
+    });
+    hit.addEventListener('pointerleave', function () { tip.classList.remove('show'); });
+    hit.addEventListener('click', function (ev) { P.cell = idxAt(ev); save(); drawCells(); });
+    $('cellReadout').textContent = tpl(t('cellReadout'), { m: CELL_MEAN.toFixed(3), s: ((CELLS[CELL_HI] - CELLS[CELL_LO]) * 1000).toFixed(0),
+      lo: CELL_LO + 1, lov: CELLS[CELL_LO].toFixed(3), hi: CELL_HI + 1, hiv: CELLS[CELL_HI].toFixed(3) });
+  }
+  $('cellChart').addEventListener('keydown', function (e) {
+    var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+    e.preventDefault(); P.cell = clamp(P.cell + d, 0, CELLS.length - 1); save(); drawCells();
+  });
+
+  /* --- Daily demand vs solar --- */
+  var dayIdx = null;
+  function drawDaily() {
+    var el = $('dailyChart'); if (!el) return;
+    var W = Math.max(280, el.clientWidth), H = 270, m = { t: 22, r: 12, b: 34, l: 46 }, n = DAILY.length, top = 1200;
+    var pw = W - m.l - m.r, ph = H - m.t - m.b;
+    function x(i) { return m.l + i * pw / (n - 1); }
+    function y(v) { return m.t + ph - v / top * ph; }
+    var s = svgOpen(W, H, t('dailyAria'));
+    [0, 300, 600, 900, 1200].forEach(function (tv) {
+      s += '<line class="g' + (tv ? '' : ' base') + '" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(tv) + '" y2="' + y(tv) + '"/>' +
+           '<text class="tick" x="' + (m.l - 6) + '" y="' + (y(tv) + 4) + '" text-anchor="end">' + (tv >= 1000 ? (tv / 1000) + 'K' : tv) + '</text>';
+    });
+    s += '<line class="ref" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(DAILY_AVG) + '" y2="' + y(DAILY_AVG) + '"/>' +
+         '<text class="ref-txt" x="' + (m.l + 6) + '" y="' + (y(DAILY_AVG) - 7) + '" text-anchor="start">' + tpl(t('avgDemand'), { v: fmt(DAILY_AVG, 0) }) + '</text>';
+    if (P.solarRef) s += '<line class="ref-solar" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(SOLAR_DAY) + '" y2="' + y(SOLAR_DAY) + '"/>' +
+         '<text class="ref-solar-txt" x="' + (W - m.r) + '" y="' + (y(SOLAR_DAY) - 6) + '" text-anchor="end">' + tpl(t('solarAvg'), { v: fmt(SOLAR_DAY, 0) }) + '</text>';
+    s += '<polyline class="line" points="' + DAILY.map(function (d, i) { return x(i) + ',' + y(d[1]); }).join(' ') + '"/>';
+    s += '<line class="cross" x1="0" x2="0" y1="' + m.t + '" y2="' + (m.t + ph) + '" style="display:none"/>';
+    DAILY.forEach(function (d, i) {
+      s += '<circle class="dot" cx="' + x(i) + '" cy="' + y(d[1]) + '" r="4"/>';
+      if (pw / (n - 1) >= 26 || i % 2 === 0) s += '<text class="tick" x="' + x(i) + '" y="' + (H - 12) + '" text-anchor="middle">' + (+d[0].slice(8)) + '</text>';
+    });
+    s += '<rect class="hit" x="' + (m.l - 8) + '" y="' + m.t + '" width="' + (pw + 16) + '" height="' + ph + '"/></svg><div class="tip"></div>';
+    el.innerHTML = s;
+    var svg = el.querySelector('svg'), tip = el.querySelector('.tip'), hit = el.querySelector('.hit'), cross = el.querySelector('.cross'), dots = el.querySelectorAll('.dot');
+    /* move the crosshair in place; never redraw while the pointer is over the chart */
+    el._mark = function (i) {
+      dayIdx = i;
+      dots.forEach(function (c, k) { c.setAttribute('class', 'dot' + (k === i ? ' on' : '')); c.setAttribute('r', k === i ? 6 : 4); });
+      if (i === null) { cross.style.display = 'none'; tip.classList.remove('show'); return; }
+      var d = DAILY[i];
+      cross.setAttribute('x1', x(i)); cross.setAttribute('x2', x(i)); cross.style.display = '';
+      tip.textContent = tpl(t('dailyTip'), { d: dayLabel(d[0]), v: fmt(d[1], 1), p: fmt(SOLAR_DAY / d[1] * 100, 1) });
+      tip.style.left = clamp(x(i), 100, W - 100) + 'px'; tip.style.top = (y(d[1]) - 14) + 'px'; tip.classList.add('show');
+    };
+    function idxAt(ev) { var b = svg.getBoundingClientRect(); return clamp(Math.round((ev.clientX - b.left - m.l) / (pw / (n - 1))), 0, n - 1); }
+    hit.addEventListener('pointermove', function (ev) { el._mark(idxAt(ev)); });
+    hit.addEventListener('pointerdown', function (ev) { el._mark(idxAt(ev)); });
+    hit.addEventListener('pointerleave', function (ev) { if (ev.pointerType === 'mouse') el._mark(null); });
+    if (dayIdx !== null) el._mark(dayIdx);
+  }
+  $('dailyChart').addEventListener('keydown', function (e) {
+    var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (!d) return;
+    e.preventDefault(); $('dailyChart')._mark(clamp((dayIdx === null ? (d > 0 ? -1 : DAILY.length) : dayIdx) + d, 0, DAILY.length - 1));
+  });
+  $('dailyChart').addEventListener('blur', function () { $('dailyChart')._mark(null); });
+  var chkRef = $('chkSolarRef');
+  chkRef.addEventListener('change', function () { P.solarRef = chkRef.checked; save(); drawDaily(); });
+
+  function renderSideTables() {
+    var h = '<table><thead><tr><th>' + t('tDate') + '</th><th>' + t('tDemand') + '</th></tr></thead><tbody>';
+    DAILY.forEach(function (d) { h += '<tr><td>' + d[0] + '</td><td>' + fmt(d[1], 2) + '</td></tr>'; });
+    $('dailyTable').innerHTML = h + '</tbody></table>';
+    h = '<table><thead><tr><th>' + t('tCell') + '</th><th>' + t('tVolt') + '</th><th>' + t('tDev') + '</th></tr></thead><tbody>';
+    CELLS.forEach(function (v, i) { var d = (v - CELL_MEAN) * 1000; h += '<tr><td>' + (i + 1) + '</td><td>' + v.toFixed(3) + '</td><td>' + (d > 0 ? '+' : '') + d.toFixed(0) + '</td></tr>'; });
+    $('cellTable').innerHTML = h + '</tbody></table>';
   }
 
-  function draw() { drawGen(); drawZones(); }
-  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
-  draw();
-  window.solarRefresh = draw;
+  /* --- String sizing checker (validated inputs) --- */
+  function chkInput(k) { return $('chk_' + k); }
+  function fillChecker() { CHK_KEYS.forEach(function (k) { chkInput(k).value = P.chk[k]; }); }
+  function setRes(id, big, of, ratio, level, text) {
+    var el = $(id), meter = el.querySelector('.meter'), st = el.querySelector('.status');
+    el.querySelector('.big').textContent = big; el.querySelector('.of').textContent = of;
+    meter.className = 'meter ' + (level || ''); meter.querySelector('i').style.width = (ratio === null ? 0 : Math.min(ratio, 1) * 100) + '%';
+    st.className = 'status ' + (level || '');
+    st.innerHTML = level ? '<b aria-hidden="true">' + (level === 'good' ? '✓' : level === 'warn' ? '!' : '✕') + '</b>' + text : text;
+  }
+  function runChecker() {
+    var vals = {}, ok = true;
+    CHK_KEYS.forEach(function (k) {
+      var inp = chkInput(k), err = $('cerr_' + k), r = CHK_RULE[k], raw = inp.value.trim(), v = Number(raw);
+      var good = raw !== '' && !inp.validity.badInput && isFinite(v) && v >= r[0] && v <= r[1] && (!r[2] || Math.round(v) === v);
+      inp.setAttribute('aria-invalid', good ? 'false' : 'true');
+      err.textContent = good ? '' : tpl(t(r[2] ? 'errInt' : 'errNum'), { a: r[0], b: r[1] });
+      if (good) vals[k] = v; else ok = false;
+    });
+    if (!ok) { setRes('resV', '—', '', null, '', t('invalid')); setRes('resP', '—', '', null, '', t('invalid')); return; }
+    P.chk = vals; save();
+    var voc = vals.n * vals.voc * (1 + (-vals.beta / 100) * (25 - vals.tmin)), rv = voc / vals.vmax;
+    var pw = vals.n * vals.pw, rp = pw / vals.pmax;
+    setRes('resV', fmt(voc, 0) + ' V', tpl(t('ofLimit'), { l: fmt(vals.vmax, 0) + ' V' }), rv, rv > 1 ? 'bad' : rv > 0.95 ? 'warn' : 'good',
+      tpl(t(rv > 1 ? 'vBad' : rv > 0.95 ? 'vWarn' : 'vOk'), { p: fmt(rv * 100, 0), x: fmt(voc - vals.vmax, 0) }));
+    setRes('resP', fmt(pw, 0) + ' W', tpl(t('ofLimit'), { l: fmt(vals.pmax, 0) + ' W' }), rp, rp > 1 ? 'warn' : 'good',
+      tpl(t(rp > 1 ? 'pBad' : 'pOk'), { p: fmt(rp * 100, 0), x: fmt(pw - vals.pmax, 0), y: fmt((pw - vals.pmax) / pw * 100, 1) }));
+  }
+  CHK_KEYS.forEach(function (k) {
+    var inp = chkInput(k), r = CHK_RULE[k];
+    inp.min = r[0]; inp.max = r[1];
+    inp.addEventListener('input', runChecker);
+  });
+  document.querySelectorAll('#checker [data-preset]').forEach(function (b) {
+    b.addEventListener('click', function () { chkInput('n').value = b.getAttribute('data-preset'); runChecker(); });
+  });
+  $('chkReset').addEventListener('click', function () { P.chk = JSON.parse(JSON.stringify(CHK_DEF)); fillChecker(); runChecker(); });
+
+  /* --- Reset all preferences --- */
+  $('btnResetPrefs').addEventListener('click', function () {
+    try { localStorage.removeItem(PREF_KEY); } catch (e) {}
+    P = defaults(); inF.value = P.factor; chkRef.checked = P.solarRef; fillChecker(); refresh();
+  });
+
+  function refresh() {
+    document.querySelectorAll('.info').forEach(function (b) { b.setAttribute('aria-label', t('info')); });
+    syncSegs(); checkFactor(false); renderGen(); drawZones(); drawCells(); drawDaily(); renderSideTables(); runChecker();
+    if (tipBtn) showInfo(tipBtn);
+  }
+  inF.value = P.factor; chkRef.checked = P.solarRef; fillChecker();
+  refresh();
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { drawGen(); drawZones(); drawCells(); drawDaily(); }, 120); });
+  window.solarRefresh = refresh;
 })();
 
 /* ===== Theme Toggle ===== */
