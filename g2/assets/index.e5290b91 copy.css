@@ -1,12 +1,12 @@
 @charset "UTF-8";
 @font-face {
     font-family: \601d\6e90\5b8b\4f53;
-    src: url(./SourceHanSerifCN-Regular.1e60cc2e.ttf) format("truetype")
+    src: url(../../assets/fonts/webgal/SourceHanSerifCN-Regular.woff2) format("woff2")
 }
 
 @font-face {
     font-family: WebgalUI;
-    src: url(./OPPOSans-R.ea925359.ttf) format("truetype")
+    src: url(../../assets/fonts/webgal/OPPOSans-R.woff2) format("woff2")
 }
 
 .StartButton {
