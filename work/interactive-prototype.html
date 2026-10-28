@@ -236,7 +236,7 @@ function lb(el) {
   var isVid = el.tagName === 'VIDEO';
   lbImg.hidden = isVid;
   lbVid.hidden = !isVid;
-  if (isVid) { lbVid.src = el.currentSrc || el.src; lbVid.play(); }
+  if (isVid) { lbVid.src = el.currentSrc || el.src; var vp = lbVid.play(); if (vp && vp.catch) vp.catch(function () {}); }
   else lbImg.src = el.src;
   lbCap.textContent = el.alt || el.getAttribute('aria-label');
   lbEl.classList.add('open');

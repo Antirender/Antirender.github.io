@@ -244,7 +244,7 @@ function onClick(element) {
     img.style.display = "none";
     vid.src = element.currentSrc || element.src;
     vid.style.display = "inline-block";
-    vid.play();
+    var vp = vid.play(); if (vp && vp.catch) vp.catch(function () {});
   } else {
     vid.style.display = "none";
     img.src = element.src;

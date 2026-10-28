@@ -15,15 +15,17 @@
     .phase-label--p2{background:#fef3c7;color:#92400e}
     .phase-label--p3{background:#d1fae5;color:#065f46}
     .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin:1rem 0 1.5rem}
-    .img-grid img{border-radius:8px;cursor:pointer;transition:opacity .15s}
-    .img-grid img:hover{opacity:.85}
+    .img-grid img,.img-grid video{border-radius:8px;cursor:pointer;transition:opacity .15s}
+    .img-grid video,.final-gallery video{display:block;width:100%;height:auto}
+    .img-grid img:hover,.img-grid video:hover{opacity:.85}
     .final-gallery{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
-    .final-gallery img{border-radius:10px}
+    .final-gallery img,.final-gallery video{border-radius:10px}
     @media(max-width:560px){.final-gallery{grid-template-columns:1fr}}
     /* Lightbox */
     .lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;cursor:zoom-out}
     .lb.open{display:flex}
-    .lb img{max-width:92vw;max-height:90vh;border-radius:8px}
+    .lb img,.lb video{max-width:92vw;max-height:90vh;border-radius:8px}
+    .lb [hidden]{display:none}
     .lb-cap{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;max-width:80vw;text-align:center;line-height:1.5}
   </style>
 </head>
@@ -99,11 +101,11 @@
 
         <h3>Activity 1 — First Arduino Experiments</h3>
         <div class="img-grid">
-          <img src="../DESN30146P1/images/Activity1/001.gif" alt="Connecting Arduino and uploading Blink sketch" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity1/002.gif" alt="External LED on pin 13 blinking" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity1/003.gif" alt="Blue LED on breadboard blinking from program" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity1/004.gif" alt="Multiple LEDs blinking together" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity1/005.gif" alt="Button press lights up LED" onclick="lb(this)">
+          <video src="../DESN30146P1/images/Activity1/001.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Connecting Arduino and uploading Blink sketch" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/002.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="External LED on pin 13 blinking" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/003.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Blue LED on breadboard blinking from program" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/004.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Multiple LEDs blinking together" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/005.mp4" width="600" height="338" muted loop playsinline preload="metadata" aria-label="Button press lights up LED" onclick="lb(this)"></video>
         </div>
 
         <h3>Activity 2 — ProtoPie + Board Setup</h3>
@@ -112,7 +114,7 @@
           <img src="../DESN30146P1/images/Activity2/002.jpeg" alt="Arduino IDE code ready to upload" onclick="lb(this)">
           <img src="../DESN30146P1/images/Activity2/003.jpeg" alt="Testing on second laptop" onclick="lb(this)">
           <img src="../DESN30146P1/images/Activity2/004.jpeg" alt="Running uploaded program, checking outputs" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity2/005.gif" alt="Board running in real time" onclick="lb(this)">
+          <video src="../DESN30146P1/images/Activity2/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Board running in real time" onclick="lb(this)"></video>
         </div>
 
         <h3>Activity 3 — Arduino → TouchDesigner</h3>
@@ -120,8 +122,8 @@
           <img src="../DESN30146P1/images/Activity3/001.png" alt="Potentiometer serial data 0–100" onclick="lb(this)">
           <img src="../DESN30146P1/images/Activity3/002.png" alt="TouchDesigner blank project" onclick="lb(this)">
           <img src="../DESN30146P1/images/Activity3/003.png" alt="Serial port error (monitor still open)" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity3/004.gif" alt="Instructor example: potentiometer → circle radius" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity3/005.gif" alt="My network: potentiometer controls circle size and hue" onclick="lb(this)">
+          <video src="../DESN30146P1/images/Activity3/004.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Instructor example: potentiometer → circle radius" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity3/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="My network: potentiometer controls circle size and hue" onclick="lb(this)"></video>
         </div>
 
         <h3>Concept Direction</h3>
@@ -210,12 +212,12 @@
           <img src="../DESN30146P3/images/Activity2/001.jpeg" alt="Testing RGB LED ring" onclick="lb(this)">
           <img src="../DESN30146P3/images/Activity2/002.jpeg" alt="Soldering longer wires to LED" onclick="lb(this)">
           <img src="../DESN30146P3/images/Activity2/003.jpeg" alt="Wired connector for NeoPixel strip" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity2/004.gif" alt="Breadboard test — full comfort-lamp logic" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity2/005.gif" alt="First test placing electronics in housing" onclick="lb(this)">
+          <video src="../DESN30146P3/images/Activity2/004.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Breadboard test — full comfort-lamp logic" onclick="lb(this)"></video>
+          <video src="../DESN30146P3/images/Activity2/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="First test placing electronics in housing" onclick="lb(this)"></video>
         </div>
         <div class="img-grid">
           <img src="../DESN30146P3/images/Activity2/006.jpeg" alt="Warm glow inside staircase housing" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity2/007.gif" alt="Adjusting LED ring position for light gradient" onclick="lb(this)">
+          <video src="../DESN30146P3/images/Activity2/007.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Adjusting LED ring position for light gradient" onclick="lb(this)"></video>
           <img src="../DESN30146P3/images/Activity2/008.jpg" alt="Cool/green tier test" onclick="lb(this)">
           <img src="../DESN30146P3/images/Activity2/009.jpg" alt="Warm/orange tier test" onclick="lb(this)">
           <img src="../DESN30146P3/images/Activity2/010.jpg" alt="Bright magenta tier test" onclick="lb(this)">
@@ -228,13 +230,13 @@
           <img src="../DESN30146P3/images/AdditionalResearch/002.jpeg" alt="Added latching touch switch" onclick="lb(this)">
           <img src="../DESN30146P3/images/AdditionalResearch/003.jpeg" alt="Tidied circuit — RGB LED lit" onclick="lb(this)">
           <img src="../DESN30146P3/images/AdditionalResearch/004.png" alt="Updated Arduino code for touch switch" onclick="lb(this)">
-          <img src="../DESN30146P3/images/AdditionalResearch/005.gif" alt="Live test — LED responds to switch and sensors" onclick="lb(this)">
+          <video src="../DESN30146P3/images/AdditionalResearch/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Live test — LED responds to switch and sensors" onclick="lb(this)"></video>
         </div>
         <div class="img-grid">
-          <img src="../DESN30146P3/images/AdditionalResearch/006.gif" alt="Touch switch and sensors test" onclick="lb(this)">
+          <video src="../DESN30146P3/images/AdditionalResearch/006.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Touch switch and sensors test" onclick="lb(this)"></video>
           <img src="../DESN30146P3/images/AdditionalResearch/007.jpeg" alt="Checking enclosure for electronics fit" onclick="lb(this)">
           <img src="../DESN30146P3/images/AdditionalResearch/008.jpeg" alt="Circuit beside enclosure — testing cable reach" onclick="lb(this)">
-          <img src="../DESN30146P3/images/AdditionalResearch/009.gif" alt="Interior glowing with external circuit" onclick="lb(this)">
+          <video src="../DESN30146P3/images/AdditionalResearch/009.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Interior glowing with external circuit" onclick="lb(this)"></video>
           <img src="../DESN30146P3/images/AdditionalResearch/010.jpeg" alt="Red tier glow inside enclosure" onclick="lb(this)">
         </div>
       </div>
@@ -246,7 +248,7 @@
         <p>The completed lamp uses tiered colour states driven by sensors, a latching touch switch for physical on/off, and a ProtoPie mobile UI that shows live data and sends commands back to the Arduino. The phone handles detailed information; the lamp communicates through colour and glow.</p>
         <div class="final-gallery">
           <img src="../DESN30146P3/images/final/001.jpeg" alt="Final prototype — staircase and archway lit with soft green glow" onclick="lb(this)">
-          <img src="../DESN30146P3/images/final/002.gif" alt="Final prototype cycling through rainbow and tiered colours" onclick="lb(this)">
+          <video src="../DESN30146P3/images/final/002.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Final prototype cycling through rainbow and tiered colours" onclick="lb(this)"></video>
         </div>
       </div>
 
@@ -260,8 +262,9 @@
   </div>
 
   <!-- Lightbox -->
-  <div class="lb" id="lightbox" onclick="this.classList.remove('open')">
+  <div class="lb" id="lightbox" onclick="closeLb()">
     <img id="lbImg" src="" alt="">
+    <video id="lbVid" controls loop muted playsinline hidden onclick="event.stopPropagation()"></video>
     <div class="lb-cap" id="lbCap"></div>
   </div>
 
@@ -279,9 +282,26 @@
 })();
 function lb(el) {
   var box = document.getElementById('lightbox');
-  document.getElementById('lbImg').src = el.src;
-  document.getElementById('lbCap').textContent = el.alt;
+  var img = document.getElementById('lbImg'), vid = document.getElementById('lbVid');
+  var isVid = el.tagName === 'VIDEO';
+  img.hidden = isVid;
+  vid.hidden = !isVid;
+  if (isVid) { vid.src = el.currentSrc || el.src; var vp = vid.play(); if (vp && vp.catch) vp.catch(function () {}); }
+  else img.src = el.src;
+  document.getElementById('lbCap').textContent = el.alt || el.getAttribute('aria-label');
   box.classList.add('open');
+}
+function closeLb() { document.getElementById('lightbox').classList.remove('open'); document.getElementById('lbVid').pause(); }
+
+/* Clips that replaced the old GIFs: play only while on screen */
+if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) && 'IntersectionObserver' in window) {
+  var clipObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+      else e.target.pause();
+    });
+  }, { rootMargin: '200px' });
+  document.querySelectorAll('.img-grid video, .final-gallery video').forEach(function (v) { clipObserver.observe(v); });
 }
 
 /* ===== Theme Toggle ===== */

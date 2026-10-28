@@ -170,11 +170,9 @@ img {
     <img src="images/Activity2/003.jpeg" style="width:100%" onclick="onClick(this)"
          alt="Finished wired connector to the NeoPixel strip, preparing a stable connection for the LED and sensor.">
 
-    <img src="images/Activity2/004.gif" style="width:100%" onclick="onClick(this)"
-         alt="Breadboard test of the comfort lamp logic: Arduino, DHT sensor, RGB LEDs and LCD all running to verify tier mapping and stability.">
+    <video src="images/Activity2/004.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Breadboard test of the comfort lamp logic: Arduino, DHT sensor, RGB LEDs and LCD all running to verify tier mapping and stability." onclick="onClick(this)"></video>
 
-    <img src="images/Activity2/005.gif" style="width:100%" onclick="onClick(this)"
-         alt="First in-class test of placing the electronics into the new design scene, checking fit and the colour cycle.">
+    <video src="images/Activity2/005.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="First in-class test of placing the electronics into the new design scene, checking fit and the colour cycle." onclick="onClick(this)"></video>
 
     <img src="images/Activity2/006.jpeg" style="width:100%" onclick="onClick(this)"
          alt="The lamp glowing in a warm tier inside the housing, evaluating how the staircase and arches catch and reflect the light.">
@@ -225,8 +223,7 @@ img {
          alt="Testing the RGB LED ring on its own, checking if it can adapt (at end it can not adapt my pipeline with arduino).">
 
 
-    <img src="images/Activity2/007.gif" style="width:100%" onclick="onClick(this)"
-         alt="Adjusting the position of the LED ring while the lamp is on to see how different placements change the light gradient in the scene.(plus color cycle)">
+    <video src="images/Activity2/007.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Adjusting the position of the LED ring while the lamp is on to see how different placements change the light gradient in the scene.(plus color cycle)" onclick="onClick(this)"></video>
 
     <img src="images/Activity2/008.jpg" style="width:100%" onclick="onClick(this)"
          alt="Cool/green tier test, checking if the colour still reads clearly once it is diffused by the 3D-printed structure.">
@@ -264,8 +261,7 @@ img {
     <img src="images/AdditionalResearch/004.png" style="width:100%" onclick="onClick(this)"
          alt="Arduino IDE screenshot showing the updated code that reads the sensors and handles the latching touch switch logic.">
 
-    <img src="images/AdditionalResearch/005.gif" style="width:100%" onclick="onClick(this)"
-         alt="Live test of the prototype: the RGB LED responds while the latching touch switch and sensors are being triggered on the breadboard.">
+    <video src="images/AdditionalResearch/005.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Live test of the prototype: the RGB LED responds while the latching touch switch and sensors are being triggered on the breadboard." onclick="onClick(this)"></video>
   </div>
 </div>
   <hr style="width:90%;border:5px solid grey;margin-top:80px" class="w3-round"></hr>
@@ -280,8 +276,7 @@ img {
     easy to read.
   </p>
   <div class="grid">
-    <img src="images/AdditionalResearch/006.gif" style="width:100%" onclick="onClick(this)"
-         alt="Animated test of the full breadboard circuit with the latching touch switch and sensors, verifying that the comfort-lamp logic responds correctly when the switch is tapped.">
+    <video src="images/AdditionalResearch/006.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Animated test of the full breadboard circuit with the latching touch switch and sensors, verifying that the comfort-lamp logic responds correctly when the switch is tapped." onclick="onClick(this)"></video>
 
     <img src="images/AdditionalResearch/007.jpeg" style="width:100%" onclick="onClick(this)"
          alt="Checking the empty staircase-and-arch enclosure by hand to plan how the electronics will sit inside the 3D-printed volume.">
@@ -289,8 +284,7 @@ img {
     <img src="images/AdditionalResearch/008.jpeg" style="width:100%" onclick="onClick(this)"
          alt="Breadboard, sensors and wiring arranged beside the 3D-printed enclosure, testing cable reach and layout before final assembly.">
 
-    <img src="images/AdditionalResearch/009.gif" style="width:100%" onclick="onClick(this)"
-         alt="Animated test with the enclosure in place, showing the interior glowing while the external breadboard circuit drives the LEDs.">
+    <video src="images/AdditionalResearch/009.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Animated test with the enclosure in place, showing the interior glowing while the external breadboard circuit drives the LEDs." onclick="onClick(this)"></video>
 
     <img src="images/AdditionalResearch/010.jpeg" style="width:100%" onclick="onClick(this)"
          alt="Close-up of the lamp glowing in a red tier inside the enclosure while the external circuit is still accessible for adjustment.">
@@ -319,18 +313,20 @@ img {
        onclick="onClick(this)"
        alt="Final prototype: a small architectural staircase and archway model lit from inside with a soft green LED glow, with the microcontroller and wiring attached on the side.">
 
-  <img src="images/final/002.gif"
-       style="width:100%; margin-top:16px"
+  <video src="images/final/002.mp4" width="800" height="450"
+       style="width:100%; height:auto; margin-top:16px"
+       muted loop playsinline preload="metadata"
        onclick="onClick(this)"
-       alt="Animated view of the final prototype cycling through rainbow and tiered colours to show different comfort states.">
+       aria-label="Animated view of the final prototype cycling through rainbow and tiered colours to show different comfort states."></video>
 </div>
 
 
    <!-- Modal for full size images on click-->
-   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+   <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="closeModal()">
     <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
     <div class="w3-modal-content w3-center w3-transparent" style ="padding:20px">
       <img id="img01" class="w3-image">
+      <video id="vid01" class="w3-image" controls loop muted playsinline style="display:none" onclick="event.stopPropagation()"></video>
       <h2 id="caption"></h2>
 
       <!-- <div id="urLink"></div> -->
@@ -347,11 +343,22 @@ img {
 
 // Modal Image Gallery
 function onClick(element) {
-  document.getElementById("img01").src = element.src;
+  var img = document.getElementById("img01");
+  var vid = document.getElementById("vid01");
+  if (element.tagName === "VIDEO") {
+    img.style.display = "none";
+    vid.src = element.currentSrc || element.src;
+    vid.style.display = "inline-block";
+    var vp = vid.play(); if (vp && vp.catch) vp.catch(function () {});
+  } else {
+    vid.style.display = "none";
+    img.src = element.src;
+    img.style.display = "";
+  }
 
   document.getElementById("modal01").style.display = "block";
   var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
+  captionText.innerHTML = element.alt || element.getAttribute("aria-label");
 
   // var captionUrl = document.getElementById("urLink");
   // captionUrl.innerHTML = element.url;
@@ -360,5 +367,23 @@ function onClick(element) {
 }
 </script>
 
+<script>
+function closeModal() {
+  document.getElementById("modal01").style.display = "none";
+  document.getElementById("vid01").pause();
+}
+// Clips that replaced the old GIFs: play only while on screen
+(function () {
+  var clips = document.querySelectorAll('video[preload="metadata"]');
+  if (!("IntersectionObserver" in window) || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+      else e.target.pause();
+    });
+  }, { rootMargin: "200px" });
+  clips.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 </html>

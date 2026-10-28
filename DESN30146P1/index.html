@@ -142,16 +142,11 @@
     <div id="Activity1">
       <h2>Activity 1</h2>
       <div class="grid">
-        <img src="images/Activity1/001.gif" style="width:100%" onclick="onClick(this)"
-          alt="Connecting the Arduino to the computer and installing/opening the Arduino IDE. The Uno is plugged in with a USB cable.">
-        <img src="images/Activity1/002.gif" style="width:100%" onclick="onClick(this)"
-          alt="Connecting an external LED to pin 13 and GND. The green LED on the Uno board starts blinking.">
-        <img src="images/Activity1/003.gif" style="width:100%" onclick="onClick(this)"
-          alt="Connecting an external LED to pin 13 and GND. The blue LED on the breadboard is blinking according to the program.">
-        <img src="images/Activity1/004.gif" style="width:100%" onclick="onClick(this)"
-          alt="Expanding the circuit with multiple LEDs on the breadboard. The green and blue LEDs are blinking together.">
-        <img src="images/Activity1/005.gif" style="width:100%" onclick="onClick(this)"
-          alt="Testing button interaction. When the button is pressed, the LED on the breadboard lights up.">
+        <video src="images/Activity1/001.mp4" width="800" height="600" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Connecting the Arduino to the computer and installing/opening the Arduino IDE. The Uno is plugged in with a USB cable." onclick="onClick(this)"></video>
+        <video src="images/Activity1/002.mp4" width="800" height="600" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Connecting an external LED to pin 13 and GND. The green LED on the Uno board starts blinking." onclick="onClick(this)"></video>
+        <video src="images/Activity1/003.mp4" width="800" height="600" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Connecting an external LED to pin 13 and GND. The blue LED on the breadboard is blinking according to the program." onclick="onClick(this)"></video>
+        <video src="images/Activity1/004.mp4" width="800" height="600" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Expanding the circuit with multiple LEDs on the breadboard. The green and blue LEDs are blinking together." onclick="onClick(this)"></video>
+        <video src="images/Activity1/005.mp4" width="600" height="338" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Testing button interaction. When the button is pressed, the LED on the breadboard lights up." onclick="onClick(this)"></video>
       </div>
     </div>
 
@@ -171,8 +166,7 @@
           alt="Testing the program on another laptop interface">
         <img src="images/Activity2/004.jpeg" style="width:100%" onclick="onClick(this)"
           alt="Running the uploaded program and checking live outputs">
-        <img src="images/Activity2/005.gif" style="width:100%" onclick="onClick(this)"
-          alt="The board running in real time, project demo in action">
+        <video src="images/Activity2/005.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="The board running in real time, project demo in action" onclick="onClick(this)"></video>
       </div>
     </div>
 
@@ -192,11 +186,9 @@
         <img src="images/Activity3/003.png" style="width:100%" onclick="onClick(this)"
           alt="TouchDesigner error reading serial port due to Arduino Serial Monitor still open.">
 
-        <img src="images/Activity3/004.gif" style="width:100%" onclick="onClick(this)"
-          alt="Instructor’s example network mapping Arduino data to a circle’s radius and color.">
+        <video src="images/Activity3/004.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="Instructor’s example network mapping Arduino data to a circle’s radius and color." onclick="onClick(this)"></video>
 
-        <img src="images/Activity3/005.gif" style="width:100%" onclick="onClick(this)"
-          alt="My recreated TouchDesigner network where potentiometer controls circle size and hue.">
+        <video src="images/Activity3/005.mp4" width="800" height="450" style="width:100%;height:100%;object-fit:cover" muted loop playsinline preload="metadata" aria-label="My recreated TouchDesigner network where potentiometer controls circle size and hue." onclick="onClick(this)"></video>
       </div>
     </div>
 
@@ -411,10 +403,11 @@
     </div>
 
     <!-- Modal for full size images on click-->
-    <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="this.style.display='none'">
+    <div id="modal01" class="w3-modal w3-grey" style="padding-top:0" onclick="closeModal()">
       <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
       <div class="w3-modal-content w3-center w3-transparent" style="padding:20px">
         <img id="img01" class="w3-image">
+        <video id="vid01" class="w3-image" controls loop muted playsinline style="display:none" onclick="event.stopPropagation()"></video>
         <h2 id="caption"></h2>
 
         <!-- <div id="urLink"></div> -->
@@ -434,11 +427,22 @@
 
       // Modal Image Gallery
       function onClick(element) {
-        document.getElementById("img01").src = element.src;
+        var img = document.getElementById("img01");
+        var vid = document.getElementById("vid01");
+        if (element.tagName === "VIDEO") {
+          img.style.display = "none";
+          vid.src = element.currentSrc || element.src;
+          vid.style.display = "inline-block";
+          var vp = vid.play(); if (vp && vp.catch) vp.catch(function () {});
+        } else {
+          vid.style.display = "none";
+          img.src = element.src;
+          img.style.display = "";
+        }
 
         document.getElementById("modal01").style.display = "block";
         var captionText = document.getElementById("caption");
-        captionText.innerHTML = element.alt;
+        captionText.innerHTML = element.alt || element.getAttribute("aria-label");
 
         // var captionUrl = document.getElementById("urLink");
         // captionUrl.innerHTML = element.url;
@@ -447,6 +451,24 @@
       }
     </script>
 
+<script>
+function closeModal() {
+  document.getElementById("modal01").style.display = "none";
+  document.getElementById("vid01").pause();
+}
+// Clips that replaced the old GIFs: play only while on screen
+(function () {
+  var clips = document.querySelectorAll('video[preload="metadata"]');
+  if (!("IntersectionObserver" in window) || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+      else e.target.pause();
+    });
+  }, { rootMargin: "200px" });
+  clips.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 
 </html>
