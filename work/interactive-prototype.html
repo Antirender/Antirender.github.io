@@ -15,14 +15,16 @@
     .phase-label--p2{background:#fef3c7;color:#92400e}
     .phase-label--p3{background:#d1fae5;color:#065f46}
     .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin:1rem 0 1.5rem}
-    .img-grid img{border-radius:8px;cursor:pointer;transition:opacity .15s}
-    .img-grid img:hover{opacity:.85}
+    .img-grid img,.img-grid video{border-radius:8px;cursor:pointer;transition:opacity .15s}
+    .img-grid video{display:block;width:100%;height:auto}
+    .img-grid img:hover,.img-grid video:hover{opacity:.85}
     .final-gallery{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
     .final-gallery img{border-radius:10px}
     @media(max-width:560px){.final-gallery{grid-template-columns:1fr}}
     .lb{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.85);align-items:center;justify-content:center;cursor:zoom-out}
     .lb.open{display:flex}
-    .lb img{max-width:92vw;max-height:90vh;border-radius:8px}
+    .lb img,.lb video{max-width:92vw;max-height:90vh;border-radius:8px}
+    .lb [hidden]{display:none}
     .lb-cap{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;max-width:80vw;text-align:center;line-height:1.5}
   </style>
 </head>
@@ -169,22 +171,22 @@
         <h3>Activity 1 — p5.js Experiments (25)</h3>
         <p>Bouncing shapes, soundboards, 3D cubes, particle systems, mini-games — all driven by keyboard or Makey Makey input. <a href="../DESN22848V3/index.html" target="_blank" rel="noopener">Try V3 live →</a></p>
         <div class="img-grid">
-          <img src="../DESN22848P3/images/Activity1/001.gif" alt="Bouncing shape reacting to keyboard input" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity1/003.gif" alt="Interactive mini-game with player movement" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity1/008.gif" alt="3D rotating cube controlled by keyboard" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity1/010.gif" alt="Piano-like experiment with sound keys" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity1/014.gif" alt="Particle system with gravity controlled by arrow keys" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity1/015.gif" alt="Makey Makey experiment with conductive materials" onclick="lb(this)">
+          <video src="../DESN22848P3/images/Activity1/001.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Bouncing shape reacting to keyboard input" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/003.mp4" width="1280" height="674" muted loop playsinline preload="metadata" aria-label="Interactive mini-game with player movement" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/008.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="3D rotating cube controlled by keyboard" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/010.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Piano-like experiment with sound keys" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/014.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Particle system with gravity controlled by arrow keys" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/015.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Makey Makey experiment with conductive materials" onclick="lb(this)"></video>
         </div>
 
         <h3>Activity 2 — More Experiments (25)</h3>
         <div class="img-grid">
-          <img src="../DESN22848P3/images/Activity2/001.gif" alt="Bouncing shape reacting to keyboard input" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity2/005.gif" alt="Interactive game with random shapes" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity2/012.gif" alt="3D bouncing ball simulation" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity2/016.gif" alt="Reaction-based game using Makey Makey" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity2/019.gif" alt="3D shape responding to Makey Makey inputs" onclick="lb(this)">
-          <img src="../DESN22848P3/images/Activity2/025.gif" alt="Debugging and testing Makey Makey interactions" onclick="lb(this)">
+          <video src="../DESN22848P3/images/Activity2/001.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Bouncing shape reacting to keyboard input" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/005.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Interactive game with random shapes" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/012.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="3D bouncing ball simulation" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/016.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Reaction-based game using Makey Makey" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/019.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="3D shape responding to Makey Makey inputs" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/025.mp4" width="1280" height="750" muted loop playsinline preload="metadata" aria-label="Debugging and testing Makey Makey interactions" onclick="lb(this)"></video>
         </div>
 
         <h3>Final — Makey Makey Drum Machine</h3>
@@ -206,6 +208,7 @@
   <!-- Lightbox -->
   <div class="lb" id="lightbox" onclick="closeLb()">
     <img id="lbImg" src="" alt="">
+    <video id="lbVid" controls loop muted playsinline hidden onclick="event.stopPropagation()"></video>
     <div class="lb-cap" id="lbCap"></div>
   </div>
 
@@ -228,12 +231,28 @@ sel.addEventListener('change', function () {
 var lbEl = document.getElementById('lightbox');
 var lbImg = document.getElementById('lbImg');
 var lbCap = document.getElementById('lbCap');
-function lb(img) {
-  lbImg.src = img.src;
-  lbCap.textContent = img.alt;
+var lbVid = document.getElementById('lbVid');
+function lb(el) {
+  var isVid = el.tagName === 'VIDEO';
+  lbImg.hidden = isVid;
+  lbVid.hidden = !isVid;
+  if (isVid) { lbVid.src = el.currentSrc || el.src; lbVid.play(); }
+  else lbImg.src = el.src;
+  lbCap.textContent = el.alt || el.getAttribute('aria-label');
   lbEl.classList.add('open');
 }
-function closeLb() { lbEl.classList.remove('open'); }
+function closeLb() { lbEl.classList.remove('open'); lbVid.pause(); }
+
+/* Module 3 clips: play only while on screen */
+if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) && 'IntersectionObserver' in window) {
+  var clipObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { var p = e.target.play(); if (p && p.catch) p.catch(function () {}); }
+      else e.target.pause();
+    });
+  }, { rootMargin: '200px' });
+  document.querySelectorAll('.img-grid video').forEach(function (v) { clipObserver.observe(v); });
+}
 document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
 
 /* ===== Theme Toggle ===== */
