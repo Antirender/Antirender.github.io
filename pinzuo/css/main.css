@@ -665,6 +665,16 @@ body {
   text-align: center;
 }
 
+.copyright .icp {
+  margin-top: 0.4rem;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.copyright .icp a {
+  color: inherit;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .nav-menu {

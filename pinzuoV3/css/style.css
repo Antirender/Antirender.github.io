@@ -334,6 +334,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer-links { display: flex; gap: 24px; }
 .footer-links a { font-size: .75rem; transition: color var(--transition); }
 .footer-links a:hover { color: var(--white); }
+.footer-icp { font-size: .75rem; margin-top: 4px; }
+.footer-icp a { color: inherit; transition: color var(--transition); }
+.footer-icp a:hover { color: var(--white); }
 
 /* --- Lightbox --- */
 .lightbox {

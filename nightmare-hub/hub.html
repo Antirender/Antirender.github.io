@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Hub</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+
+    <!-- Mode Banner -->
+    <div id="modeBanner" style="margin-bottom:16px;padding:12px 16px;border-radius:var(--radius);text-align:center;font-size:0.9rem;display:none;">
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="next-step-banner" style="margin-bottom:20px;">
+      <div class="step-icon" id="stepIcon">▸</div>
+      <div style="flex:1;">
+        <div class="section-label">Next Step</div>
+        <a id="ctaBtn" href="#" class="btn primary full" style="margin:6px 0 4px;">Loading…</a>
+        <div class="muted" id="ctaSub"></div>
+        <div class="muted" id="ctaWhy" style="margin-top:4px; font-style:italic;"></div>
+      </div>
+      <span id="onlineIndicator" class="online-pill" style="margin-left:auto; align-self:flex-start;"></span>
+    </div>
+
+    <!-- Progress -->
+    <div style="margin-bottom:20px;">
+      <div class="section-label">Progress</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
+      <div class="muted" id="progressText" style="margin-top:4px;"></div>
+    </div>
+
+    <!-- Mini Route Map -->
+    <div class="card route-map-card" style="margin-bottom:20px; padding:16px;">
+      <div class="section-label">Route Map <span id="routeMapMode" style="font-size:0.75rem;color:var(--muted);font-weight:400;"></span></div>
+
+      <!-- Normal Mode: String of Pearls (linear) -->
+      <svg id="routeMapNormal" viewBox="0 0 500 130" class="route-map-svg" aria-label="Normal mode route map">
+        <!-- Main chain: Entry → P1 → AR → P2 → VR → P3 → Exit -->
+        <line x1="46" y1="60" x2="94" y2="60" class="route-edge"/>
+        <line x1="126" y1="60" x2="164" y2="60" class="route-edge"/>
+        <line x1="196" y1="60" x2="234" y2="60" class="route-edge"/>
+        <line x1="266" y1="60" x2="304" y2="60" class="route-edge"/>
+        <line x1="336" y1="60" x2="374" y2="60" class="route-edge"/>
+        <line x1="406" y1="60" x2="434" y2="60" class="route-edge"/>
+        <!-- Branches: Phys (above P1), Rabbit (below P2) -->
+        <line x1="120" y1="47" x2="148" y2="18" class="route-edge" stroke-dasharray="4 3" opacity="0.6"/>
+        <line x1="250" y1="73" x2="250" y2="100" class="route-edge" stroke-dasharray="4 3" opacity="0.5"/>
+        <!-- Nodes -->
+        <g id="rn-start" class="route-node"><circle cx="30" cy="60" r="16"/><text x="30" y="64" text-anchor="middle" font-size="8">Entry</text></g>
+        <g id="rn-puzzle1" class="route-node"><circle cx="110" cy="60" r="16"/><text x="110" y="64" text-anchor="middle" font-size="9">P1</text></g>
+        <g id="rn-ar1" class="route-node"><circle cx="180" cy="60" r="13"/><text x="180" y="64" text-anchor="middle" font-size="8">AR</text></g>
+        <g id="rn-puzzle2" class="route-node"><circle cx="250" cy="60" r="16"/><text x="250" y="64" text-anchor="middle" font-size="9">P2</text></g>
+        <g id="rn-vr1" class="route-node"><circle cx="320" cy="60" r="13"/><text x="320" y="64" text-anchor="middle" font-size="8">VR</text></g>
+        <g id="rn-puzzle3" class="route-node"><circle cx="390" cy="60" r="16"/><text x="390" y="64" text-anchor="middle" font-size="9">P3</text></g>
+        <g id="rn-password" class="route-node"><circle cx="450" cy="60" r="16"/><text x="450" y="64" text-anchor="middle" font-size="8">Exit</text></g>
+        <g id="rn-physical1" class="route-node"><circle cx="155" cy="12" r="11"/><text x="155" y="16" text-anchor="middle" font-size="7">Phys</text></g>
+        <g id="rn-rabbit1" class="route-node"><circle cx="250" cy="112" r="11"/><text x="250" y="116" text-anchor="middle" font-size="7">Diag</text></g>
+      </svg>
+
+      <!-- Hard Mode: Hub & Spoke -->
+      <svg id="routeMapHard" viewBox="0 0 500 260" class="route-map-svg" style="display:none;" aria-label="Hard mode route map">
+        <!-- Spokes from center hub -->
+        <line x1="250" y1="130" x2="100" y2="40" class="route-edge"/>
+        <line x1="250" y1="130" x2="250" y2="30" class="route-edge"/>
+        <line x1="250" y1="130" x2="400" y2="40" class="route-edge"/>
+        <line x1="250" y1="130" x2="100" y2="220" class="route-edge"/>
+        <line x1="250" y1="130" x2="250" y2="230" class="route-edge"/>
+        <line x1="250" y1="130" x2="400" y2="220" class="route-edge"/>
+        <!-- Exit spoke (dashed until all fragments) -->
+        <line x1="250" y1="130" x2="470" y2="130" class="route-edge" stroke-dasharray="6 4" opacity="0.6"/>
+        <!-- Trap spoke -->
+        <line x1="250" y1="130" x2="30" y2="130" class="route-edge" stroke-dasharray="4 3" opacity="0.3"/>
+        <!-- Center Hub -->
+        <g id="rn-h-start" class="route-node"><circle cx="250" cy="130" r="22" style="stroke-width:3"/><text x="250" y="127" text-anchor="middle" font-size="9" font-weight="bold">HUB</text><text x="250" y="140" text-anchor="middle" font-size="7" fill="var(--muted)">Start</text></g>
+        <!-- Fragment nodes -->
+        <g id="rn-h-puzzle1" class="route-node"><circle cx="100" cy="40" r="16"/><text x="100" y="37" text-anchor="middle" font-size="8">Frag 1</text><text x="100" y="48" text-anchor="middle" font-size="7" fill="var(--muted)">Signal</text></g>
+        <g id="rn-h-puzzle2" class="route-node"><circle cx="250" cy="30" r="16"/><text x="250" y="27" text-anchor="middle" font-size="8">Frag 2</text><text x="250" y="38" text-anchor="middle" font-size="7" fill="var(--muted)">Archive</text></g>
+        <g id="rn-h-puzzle3" class="route-node"><circle cx="400" cy="40" r="16"/><text x="400" y="37" text-anchor="middle" font-size="8">Frag 3</text><text x="400" y="48" text-anchor="middle" font-size="7" fill="var(--muted)">Door</text></g>
+        <g id="rn-h-ar1" class="route-node"><circle cx="100" cy="220" r="16"/><text x="100" y="217" text-anchor="middle" font-size="8">Frag 4</text><text x="100" y="228" text-anchor="middle" font-size="7" fill="var(--muted)">AR</text></g>
+        <g id="rn-h-vr1" class="route-node"><circle cx="250" cy="230" r="16"/><text x="250" y="227" text-anchor="middle" font-size="8">Frag 5</text><text x="250" y="238" text-anchor="middle" font-size="7" fill="var(--muted)">VR</text></g>
+        <g id="rn-h-physical1" class="route-node"><circle cx="400" cy="220" r="16"/><text x="400" y="217" text-anchor="middle" font-size="8">Frag 6</text><text x="400" y="228" text-anchor="middle" font-size="7" fill="var(--muted)">Phys</text></g>
+        <g id="rn-h-password" class="route-node"><circle cx="470" cy="130" r="16"/><text x="470" y="134" text-anchor="middle" font-size="8">Exit</text></g>
+        <g id="rn-h-rabbit1" class="route-node"><circle cx="30" cy="130" r="11"/><text x="30" y="134" text-anchor="middle" font-size="7">Trap</text></g>
+      </svg>
+
+      <!-- Fragment counter for hard mode -->
+      <div id="fragmentCounter" style="display:none;text-align:center;margin-top:8px;">
+        <span style="font-size:0.85rem;color:var(--fg);">Fragments: <strong id="fragCount">0</strong> / <strong id="fragTotal">6</strong></span>
+      </div>
+    </div>
+
+    <div class="grid cols2">
+      <!-- Left: Grouped Tiles -->
+      <section>
+        <!-- Main Path -->
+        <div class="section-label">🧭 Main Path</div>
+        <div class="hub-grid" style="margin-bottom:16px;">
+          <a href="puzzle1.html" class="hub-tile primary-tile" aria-label="Puzzle 1">
+            <span class="tile-icon">🧩</span> Puzzle 1
+          </a>
+          <a href="puzzle2.html" class="hub-tile primary-tile" aria-label="Puzzle 2">
+            <span class="tile-icon">📁</span> Puzzle 2
+          </a>
+          <a href="puzzle3.html" class="hub-tile primary-tile" aria-label="Puzzle 3">
+            <span class="tile-icon">🚪</span> Puzzle 3
+          </a>
+          <a href="physical.html" class="hub-tile primary-tile" aria-label="Physical Clues">
+            <span class="tile-icon">📦</span> Physical
+          </a>
+          <a href="ar.html" class="hub-tile primary-tile" aria-label="AR Experience">
+            <span class="tile-icon">📷</span> AR
+          </a>
+          <a href="vr.html" class="hub-tile primary-tile" aria-label="VR Experience">
+            <span class="tile-icon">🥽</span> VR
+          </a>
+          <a href="password.html" class="hub-tile danger-tile" aria-label="Exit Terminal">
+            <span class="tile-icon">🔐</span> Exit
+          </a>
+        </div>
+
+        <!-- Explore -->
+        <div class="section-label">🔍 Explore</div>
+        <div class="hub-grid" style="margin-bottom:16px;">
+          <a href="lore.html" class="hub-tile" aria-label="Lore Archive">
+            <span class="tile-icon">📜</span> Lore
+          </a>
+          <a href="map.html" class="hub-tile" aria-label="Lab Map">
+            <span class="tile-icon">🗺️</span> Map
+          </a>
+          <a href="vr.html" class="hub-tile" aria-label="VR Experience">
+            <span class="tile-icon">🥽</span> VR
+          </a>
+          <a id="webgalTile" href="story.html" class="hub-tile story-tile" aria-label="Digital Story">
+            <span class="tile-icon">🎭</span> Story
+          </a>
+          <a id="rabbitLink" href="rabbit-hole.html" class="hub-tile" style="display:none;" aria-label="Diagnostics">
+            <span class="tile-icon">🐇</span> ???
+          </a>
+          <a id="fakeExitLink" href="dead-end.html?mode=fake-exit&from=hub" class="hub-tile" style="display:none;" aria-label="Suspicious Exit">
+            <span class="tile-icon">🚪</span> Exit?
+          </a>
+          <a id="endingLink" href="ending.html" class="hub-tile story-tile" style="display:none;" aria-label="Your Ending">
+            <span class="tile-icon">🏆</span> Ending
+          </a>
+        </div>
+
+        <!-- Tools -->
+        <div class="section-label">🛠 Tools</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="feedback.html" class="btn ghost sm">Feedback</a>
+          <button id="exportBtn" class="btn ghost sm">Export Progress</button>
+          <label class="btn ghost sm" style="cursor:pointer;">Import Progress
+            <input id="importFile" type="file" accept=".json" style="display:none;">
+          </label>
+          <button id="resetBtn" class="btn danger sm">Reset</button>
+        </div>
+      </section>
+
+      <!-- Right: Status -->
+      <section>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="section-label">ARI — Ariadne Routing Interface</div>
+          <div id="ariBubble" class="bubble" aria-live="polite" style="min-height:2.4em;"></div>
+          <!-- ARI Console -->
+          <div id="ariConsole" style="margin-top:12px;">
+            <div id="ariHistory" style="max-height:200px;overflow-y:auto;font-size:0.82rem;line-height:1.6;padding:8px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;" aria-live="polite" aria-label="ARI conversation history"></div>
+            <div style="display:flex;gap:6px;">
+              <input id="ariInput" type="text" placeholder="Ask ARI... (try: help, hint, status, route)" style="flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--fg);font-size:0.85rem;" autocomplete="off">
+              <button id="ariSend" class="btn primary sm" style="white-space:nowrap;">Ask</button>
+            </div>
+            <div id="ariQuickActions" style="display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <div class="section-label">Inventory</div>
+          <div id="inventoryList"></div>
+        </div>
+
+        <div class="card">
+          <div class="section-label">Nodes</div>
+          <div id="nodeList" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      NE.initPage(function (cfg, st) {
+        NE.logEvent("page_view", { page: "hub" });
+
+        var isHard = st.gameMode === "hard";
+        var mc = NE.getModeConfig();
+
+        // Mode banner
+        var modeBanner = document.getElementById("modeBanner");
+        if (st.gameMode) {
+          modeBanner.style.display = "block";
+          if (isHard) {
+            modeBanner.style.background = "rgba(239,68,68,0.06)";
+            modeBanner.style.border = "1px solid rgba(239,68,68,0.2)";
+            modeBanner.innerHTML = "🕸️ <strong>Hard Mode</strong> — Hub & Spoke · Collect all 6 fragments to unlock the exit. AR & VR are mandatory.";
+          } else {
+            modeBanner.style.background = "rgba(74,108,247,0.06)";
+            modeBanner.style.border = "1px solid rgba(74,108,247,0.15)";
+            modeBanner.innerHTML = "🧵 <strong>Normal Mode</strong> — String of Pearls · Solve puzzles in order. AR & VR provide shortcut clues.";
+          }
+        }
+
+        // Route map — show correct SVG
+        document.getElementById("routeMapMode").textContent = isHard ? "— Hub & Spoke" : "— String of Pearls";
+        if (isHard) {
+          document.getElementById("routeMapNormal").style.display = "none";
+          document.getElementById("routeMapHard").style.display = "block";
+          document.getElementById("fragmentCounter").style.display = "block";
+          document.getElementById("fragCount").textContent = NE.getFragmentCount();
+          document.getElementById("fragTotal").textContent = mc.requiredFragments || 6;
+        }
+
+        // ARI bubble (ambient cycling)
+        NE.renderAriBubble(document.getElementById("ariBubble"));
+
+        // ARI Console — interactive
+        (function initAriConsole() {
+          var history = document.getElementById("ariHistory");
+          var input = document.getElementById("ariInput");
+          var sendBtn = document.getElementById("ariSend");
+          var quickEl = document.getElementById("ariQuickActions");
+          if (!history || !input || !sendBtn) return;
+
+          var ariCfg = (cfg.COPY && cfg.COPY.ariConsole) || {};
+          // Welcome message
+          appendMsg(ariCfg.welcomeMessage || "ARI: Ariadne Routing Interface online. Type a question or use the quick-action buttons.", "ari");
+
+          function appendMsg(text, sender) {
+            var div = document.createElement("div");
+            div.style.marginBottom = "6px";
+            div.style.padding = "4px 0";
+            if (sender === "user") {
+              div.style.color = "var(--accent)";
+              div.style.fontWeight = "600";
+              div.textContent = "> " + text;
+            } else {
+              div.style.color = "var(--fg)";
+              div.style.whiteSpace = "pre-wrap";
+              div.textContent = text;
+            }
+            history.appendChild(div);
+            history.scrollTop = history.scrollHeight;
+            // Trim history
+            var max = (ariCfg.maxHistory || 50) * 2; // user + ari = 2 divs per exchange
+            while (history.children.length > max) history.removeChild(history.firstChild);
+          }
+
+          function handleSend() {
+            var val = input.value.trim();
+            if (!val) return;
+            appendMsg(val, "user");
+            NE.logEvent("ari_query", { input: val });
+            var response = NE.askAri(val);
+            appendMsg(response, "ari");
+            input.value = "";
+            input.focus();
+          }
+
+          sendBtn.addEventListener("click", handleSend);
+          input.addEventListener("keydown", function (e) { if (e.key === "Enter") handleSend(); });
+
+          // Quick actions
+          if (quickEl && window.ARI) {
+            var actions = ARI.getQuickActions();
+            actions.forEach(function (a) {
+              var btn = document.createElement("button");
+              btn.className = "btn ghost sm";
+              btn.style.fontSize = "0.75rem";
+              btn.textContent = a.label;
+              btn.addEventListener("click", function () {
+                input.value = a.query;
+                handleSend();
+              });
+              quickEl.appendChild(btn);
+            });
+          }
+        })();
+
+        // Inventory
+        NE.renderInventory(document.getElementById("inventoryList"));
+
+        // Nodes
+        NE.renderProgress(document.getElementById("nodeList"));
+
+        // CTA Banner
+        var cta = NE.getNextStepCTA();
+        var ctaBtn = document.getElementById("ctaBtn");
+        ctaBtn.href = cta.href;
+        ctaBtn.textContent = cta.icon + " " + cta.label;
+        document.getElementById("ctaSub").textContent = cta.sublabel;
+
+        // Why locked? explanation
+        var whyEl = document.getElementById("ctaWhy");
+        if (!st.unlocked) {
+          whyEl.textContent = "Why? — The labyrinth requires a 3-digit entry code to open.";
+        } else if (isHard) {
+          var frags = NE.getFragmentCount();
+          if (frags < (mc.requiredFragments || 6)) {
+            whyEl.textContent = "Why? — Collect all " + (mc.requiredFragments || 6) + " fragments to unlock the Exit. (" + frags + " collected)";
+          } else if (!st.exit.escaped) {
+            whyEl.textContent = "Why? — All fragments collected! Enter the exit code at the terminal.";
+          } else { whyEl.textContent = ""; }
+        } else if (!st.puzzle.puzzle1.solved) {
+          whyEl.textContent = "Why? — Solve Puzzle 1 to unlock Puzzle 2, Physical, AR & VR nodes.";
+        } else if (!st.puzzle.puzzle2.solved) {
+          whyEl.textContent = "Why? — Solve Puzzle 2 to unlock Puzzle 3 (the final door).";
+        } else if (!st.puzzle.puzzle3.solved) {
+          whyEl.textContent = "Why? — Solve Puzzle 3 to unlock the Exit Terminal.";
+        } else if (!st.exit.escaped) {
+          whyEl.textContent = "Why? — Enter the 3-digit exit code at the terminal to escape.";
+        } else {
+          whyEl.textContent = "";
+        }
+
+        // Online indicator
+        NE.renderOnlineIndicator(document.getElementById("onlineIndicator"));
+
+        // Progress bar
+        var nodes = NE.getModeNodes();
+        var total = nodes.length;
+        var done = st.unlockedNodes.length;
+        var pct = total > 0 ? Math.round((done / total) * 100) : 0;
+        document.getElementById("progressBar").style.width = pct + "%";
+        document.getElementById("progressText").textContent = done + " / " + total + " unlocked (" + pct + "%)";
+
+        // Step icon
+        if (cta.escaped) document.getElementById("stepIcon").textContent = "✓";
+        else if (isHard && NE.isHardModeExitReady()) document.getElementById("stepIcon").textContent = "◈";
+        else if (st.puzzle.puzzle3.solved) document.getElementById("stepIcon").textContent = "◈";
+        else if (st.puzzle.puzzle1.solved) document.getElementById("stepIcon").textContent = "◇";
+        else document.getElementById("stepIcon").textContent = "▸";
+
+        // Route map – highlight unlocked nodes
+        if (isHard) {
+          var hardIds = ["start","puzzle1","puzzle2","puzzle3","ar1","vr1","physical1","password","rabbit1"];
+          hardIds.forEach(function(id) {
+            var g = document.getElementById("rn-h-" + id);
+            if (!g) return;
+            if (st.unlockedNodes.indexOf(id) !== -1) g.classList.add("unlocked");
+          });
+        } else {
+          var nodeIds = ["start","puzzle1","physical1","ar1","vr1","puzzle2","rabbit1","puzzle3","password"];
+          nodeIds.forEach(function(id) {
+            var g = document.getElementById("rn-" + id);
+            if (!g) return;
+            if (st.unlockedNodes.indexOf(id) !== -1) g.classList.add("unlocked");
+          });
+        }
+
+        // Hard mode: unlock exit node in state if all fragments collected
+        if (isHard && NE.isHardModeExitReady() && st.unlockedNodes.indexOf("password") === -1) {
+          NE.unlockNode("password");
+          st = NE.loadState(); // refresh
+        }
+
+        // Rabbit hole link — show after puzzle1 is solved OR story is confirmed
+        if (st.puzzle.puzzle1.solved || st.storyConfirmed || st.puzzle.puzzle1.outcome === "red_herring" || (st.rabbit && (st.rabbit.step1 || st.rabbit.step2))) {
+          document.getElementById("rabbitLink").style.display = "";
+        }
+
+        // Fake exit — Minotaur trap appears after puzzle2, before puzzle3 is solved
+        if (st.puzzle.puzzle2.solved && !st.puzzle.puzzle3.solved) {
+          document.getElementById("fakeExitLink").style.display = "";
+        }
+
+        // Ending link — show after escaped
+        if (st.exit.escaped) {
+          document.getElementById("endingLink").style.display = "";
+        }
+
+        // Export
+        document.getElementById("exportBtn").addEventListener("click", function () {
+          NE.exportStateAndLog();
+        });
+
+        // Import
+        document.getElementById("importFile").addEventListener("change", function (e) {
+          var file = e.target.files && e.target.files[0];
+          if (!file) return;
+          NE.importJSON(file).then(function () {
+            alert("Progress imported successfully!");
+            location.reload();
+          }).catch(function (err) {
+            alert("Import failed: " + err.message);
+          });
+        });
+
+        // Reset
+        document.getElementById("resetBtn").addEventListener("click", function () {
+          if (confirm("Reset all progress? This cannot be undone.")) {
+            NE.resetState();
+            NE.logEvent("reset_progress", {});
+            location.reload();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

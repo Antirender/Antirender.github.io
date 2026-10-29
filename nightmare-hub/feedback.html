@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Feedback</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <section class="card">
+      <h1 class="h1">User Testing Feedback</h1>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+      <p class="p">Help us improve. Fill out the anonymous form below.</p>
+      <iframe class="form-embed"
+        src="https://docs.google.com/forms/d/e/1FAIpQLScpaXq6LsultzKKFnnpS7ToUdLiXihW-MRxSD7AEIH8wumXGA/viewform?embedded=true"
+        frameborder="0" marginheight="0" marginwidth="0"
+        title="Feedback Form"
+        loading="lazy">Loading…</iframe>
+      <hr>
+      <button id="exportBtn" class="btn ghost full">Export State + Log (Evidence)</button>
+      <a href="hub.html" class="btn ghost full" style="margin-top:8px;">Back to Hub</a>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble(document.getElementById("ariBubble"));
+      NE.logEvent("page_view", { page: "feedback" });
+
+      document.getElementById("exportBtn").addEventListener("click", function () {
+        NE.exportStateAndLog();
+      });
+    });
+  </script>
+</body>
+</html>

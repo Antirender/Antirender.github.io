@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · AR Experience</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .ar-mode-grid{display:grid;grid-template-columns:1fr;gap:16px;margin:20px 0;}
+    @media(min-width:600px){.ar-mode-grid{grid-template-columns:1fr 1fr;}}
+    .ar-mode-card{display:block;background:var(--bg3);border:2px solid var(--border);border-radius:var(--radius-lg);padding:24px 20px;text-align:center;transition:all var(--transition);cursor:pointer;text-decoration:none;color:var(--fg);}
+    .ar-mode-card:hover{border-color:var(--accent);box-shadow:0 6px 24px var(--accent-glow);transform:translateY(-3px);text-decoration:none;}
+    .ar-mode-card .mode-icon{font-size:2.5rem;margin-bottom:12px;}
+    .ar-mode-card h3{margin:0 0 8px;font-size:1.1rem;}
+    .ar-mode-card p{margin:0;font-size:0.85rem;color:var(--muted);line-height:1.6;}
+    .ar-mode-card.recommended{border-color:rgba(74,108,247,0.4);background:rgba(74,108,247,0.04);}
+    .ar-tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;}
+    .ar-tag.primary{background:var(--accent);color:#fff;}
+    .ar-tag.ghost{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
+    .ar-instructions{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:16px 0;font-size:0.9rem;line-height:1.7;}
+    .ar-instructions ol{padding-left:20px;margin:8px 0 0;}
+    .ar-instructions li{margin-bottom:6px;}
+    .ar-flow-note{display:flex;align-items:flex-start;gap:10px;background:rgba(74,108,247,0.06);border:1px solid rgba(74,108,247,0.15);border-radius:var(--radius);padding:12px 16px;margin:12px 0;font-size:0.85rem;}
+  </style>
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <section class="card">
+      <h1 class="h1">📷 AR Experience</h1>
+      <div id="modeBanner" style="display:none;text-align:center;padding:8px 16px;border-radius:var(--radius);margin-bottom:12px;font-size:0.85rem;font-weight:600;"></div>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+      <p class="p" id="arIntro">The Minotaur system has slowly taken over more of Sheridan's network. It is now also trying to escape the network to have access to other physical IOT devices! Even the vending machines might become locked! ARI has tried to intercept this by creating new access points that will trap the Minotaur. HOWEVER, it seems like the system knows and is already locking the new zones. (Please use your phone's camera to scan into the digital space and secure them.)</p>
+<div class="section-label">Choose Your AR Mode</div>
+      <div class="ar-mode-grid">      
+        <div class="ar-instructions">
+        <strong>📍 Marker image on campus AR — How it works:</strong>
+        <ol>
+          <li>Find the sacred dagger(image) in<strong> building AA printer area |OR| Artist Graffiti Alleyway |OR| Building B Floor 2 on an exposed concrete wall corner</strong> on campus.</li>
+          <li>Tap <strong>“Poster AR Scan”</strong> - A new tab will open! (Accept temporary camera usage notification)</li>
+          <li>Point your phone camera at the dagger image to see if anything changes, hopefully the virus has not infected this. The <strong>pink dot</strong> should be your focal point if you move the phone! </li>
+          <li>From there, it is up to you to find the correct hint from Ari. <strong>Exit back to hub if necessary.</strong></li>
+        </ol>
+      </div>
+      <div class="ar-instructions">
+        <strong>📍 QR on campus AR — How it works:</strong>
+        <ol>
+          <li>Find the <strong>QR code left by ARI in Building J Floor 3 Stairway B window </strong> on campus (the designated AR target image).</li>
+          <li>Tap <strong>“Poster AR Scan”</strong> Camera tool will open below!</li>
+          <li>Point your phone camera at the QR to tap the link that takes you to the compromised digital space</li>
+          <li>Once the sceurity loading screen has passed, aim your phone toward the ground.</li>
+          <li>When you see <Strong>"Place" tap it while you are pointing your camera downward</Strong>.</li>
+          <li>Once placed. Move yourself and the phone <strong>a bit back before tapping the gold ring.</strong></li>
+          <li>From there, it is up to you to help secure the envrionment by finding the correct hint, be careful and dont be locked in, <strong>exit back to hub if necessary.</strong></li>
+        </ol>
+      </div>
+    </div>
+
+
+      
+      <div class="ar-mode-grid">
+        <a id="arPosterLink" href="#" target="_blank" rel="noopener" class="ar-mode-card recommended">
+          <span class="ar-tag primary">Marker Scan (Access point 1)</span>
+          <div class="mode-icon">🎯</div>
+          <h3>Poster AR Scan</h3>
+          <p>Tap here when you are ready, camera mode will be used.</p>
+          <p>Point your camera at the image and touch the daggers to colour-match the AR layer.</p>
+        </a>
+        <div class="ar-mode-card" id="qrModeCard" style="cursor:pointer;">
+          <span class="ar-tag ghost">QR Scan (Access point 2)</span>
+          <div class="mode-icon">📱</div>
+          <h3>QR Code Scanner</h3>
+          <p>Tap here when you are ready, camera mode will be used.</p>
+          <p>Find the associated QR code on campus. Scan qr, point phone toward floor and tap place.</p>
+          <p>Interact to find the clue.</p>
+        </div>
+      </div>
+
+      
+
+      <div class="ar-flow-note">
+        <span style="font-size:1.2rem;">🔄</span>
+        <div><strong>Physical → Digital: Combine the two clues to get a shortcut pass that securely locks the network while you exit.</strong> The poster AR gives you the letter <strong>H</strong>. The QR path gives you <strong>thre_d</strong>. Combined with the VR clue (<code>t_read</code>), you can piece together the shortcut passphrase to try at the Exit Terminal.</div>
+      </div>
+
+      <div style="text-align:center;margin:20px 0;">
+        <button id="confirmAR" class="btn primary full">✅ I Completed the AR Scan</button>
+        <p class="muted" style="margin-top:6px;font-size:0.8rem;">Marks the AR node as visited and adds the clue to your inventory.</p>
+      </div>
+
+      <hr>
+
+      <!-- QR Scanner (toggled) -->
+      <div id="qrSection" style="display:none;">
+        <div class="section-label">QR Code Scanner</div>
+        <div class="ar-video-wrap" id="cameraWrap" style="display:none;">
+          <video id="cameraFeed" autoplay playsinline muted></video>
+          <canvas id="scanCanvas" style="display:none;"></canvas>
+          <div class="ar-overlay"><div class="scan-frame"></div></div>
+        </div>
+
+        <div id="cameraPlaceholder" class="placeholder-box" style="min-height:200px;">
+          <span>Camera not active</span>
+        </div>
+
+        <div style="display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;">
+          <button id="startCam" class="btn primary">Start Camera</button>
+          <button id="stopCam" class="btn ghost" style="display:none;">Stop Camera</button>
+        </div>
+
+        <p class="ar-hint" id="scanHint">Tap "Start Camera" to begin scanning for clues.</p>
+
+        <div id="arResults" class="ar-result" style="display:none;">
+          <div class="section-label">Discovered Clue</div>
+          <div id="clueContent" class="bubble"></div>
+        </div>
+        <hr>
+      </div>
+
+      <div class="section-label">Clue Log</div>
+      <div id="clueLog"></div>
+
+      <hr>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="hub.html" class="btn ghost">← Back to Hub</a>
+        <a href="physical.html" class="btn ghost">📦 Physical Clues</a>
+        <a href="vr.html" class="btn ghost">🥽 VR Experience</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble(document.getElementById("ariBubble"));
+      NE.logEvent("page_view", { page: "ar" });
+
+      var isHard = st.gameMode === "hard";
+
+      // Mode banner
+      var banner = document.getElementById("modeBanner");
+      if (isHard) {
+        banner.style.display = "block";
+        banner.style.background = "rgba(239,68,68,0.08)";
+        banner.style.border = "1px solid rgba(239,68,68,0.25)";
+        banner.style.color = "var(--danger)";
+        banner.innerHTML = "🕸️ Hard Mode — Fragment 4 of 6 (Required)";
+        document.getElementById("arIntro").textContent = "The labyrinth demands all six fragments. This AR scan is Fragment 4 — mandatory for exiting. Scan the poster, reveal the hidden glyph, and claim your fragment. The Minotaur system has slowly taken over more of Sheridan's network. It is now also trying to escape the network to have access to other physical IOT devices! Even the vending machines might become locked! ARI has tried to intercept this by creating new access points that will trap the Minotaur. HOWEVER, it seems like the system knows and is already locking the new zones. (Please use your phone's camera to scan into the digital space and secure them.)";
+      } else {
+        banner.style.display = "block";
+        banner.style.background = "rgba(74,108,247,0.06)";
+        banner.style.border = "1px solid rgba(74,108,247,0.15)";
+        banner.style.color = "var(--accent)";
+        banner.innerHTML = "🧵 Normal Mode — Shortcut Clue";
+        document.getElementById("arIntro").textContent = "The Minotaur system has slowly taken over more of Sheridan's network. It is now also trying to escape the network to have access to other physical IOT devices! Even the vending machines might become locked! ARI has tried to intercept this by creating new access points that will trap the Minotaur. HOWEVER, it seems like the system knows and is already locking the new zones. (Please use your phone's camera to scan into the digital space and secure them.)";
+      }
+
+      // Set poster AR link
+      var links = NE.CFG().LINKS || {};
+      document.getElementById("arPosterLink").href = links.arPoster || "#";
+
+      // Toggle QR section
+      document.getElementById("qrModeCard").addEventListener("click", function () {
+        var sec = document.getElementById("qrSection");
+        sec.style.display = sec.style.display === "none" ? "block" : "none";
+      });
+
+      // Confirm AR completion
+      var confirmBtn = document.getElementById("confirmAR");
+      if (isHard) {
+        confirmBtn.textContent = "✅ Claim Fragment 4 — AR Scan Complete";
+      }
+      if (st.inventory.some(function(i) { return i.text.indexOf("AR Poster") !== -1 || i.text.indexOf("Fragment 4") !== -1; })) {
+        confirmBtn.textContent = "✅ AR Scan Already Logged";
+        confirmBtn.disabled = true;
+        confirmBtn.style.opacity = "0.6";
+      }
+      confirmBtn.addEventListener("click", function () {
+        var itemText = isHard
+          ? "📷 Fragment 4 (AR): Dagger colour-match completed — glyph fragment claimed."
+          : "📷 AR Poster Scan: Dagger colour-match completed — letter H revealed.";
+        NE.addInventory(itemText);
+        NE.unlockNode("ar1");
+        NE.logEvent("ar_poster_completed", { clue: "H", mode: st.gameMode });
+        this.textContent = isHard ? "✅ Fragment 4 Claimed!" : "✅ AR Scan Logged!";
+        this.disabled = true;
+        this.style.opacity = "0.6";
+        renderClueLog();
+        NE.renderHeader();
+      });
+
+      // QR scanner logic
+      var video = document.getElementById("cameraFeed");
+      var canvas = document.getElementById("scanCanvas");
+      var ctx = canvas.getContext("2d", { willReadFrequently: true });
+      var cameraWrap = document.getElementById("cameraWrap");
+      var placeholder = document.getElementById("cameraPlaceholder");
+      var startBtn = document.getElementById("startCam");
+      var stopBtn = document.getElementById("stopCam");
+      var hint = document.getElementById("scanHint");
+      var results = document.getElementById("arResults");
+      var clueEl = document.getElementById("clueContent");
+      var clueLog = document.getElementById("clueLog");
+      var stream = null;
+      var scanning = false;
+      var foundCodes = [];
+
+      var clueMap = {
+        "THREAD-CLUE-1": { text: "Fragment revealed: thre_d — the missing letter completes the word. What’s the shortcut passphrase?", item: "AR Clue: thre_d (shortcut fragment)" },
+        "THREAD-CLUE-2": { text: "Fragment detected: The second character of the exit code is '1'. Remember this.", item: "AR Clue: Exit Hint (char 2 = 1)" },
+        "THREAD-CLUE-3": { text: "MINOTAUR: You scan, I log. Every reveal is also an exposure.", item: "AR Clue: Minotaur Warning" },
+        "FRAGMENT-H": { text: "Fragment 'H' recovered via AR scan. Combined with t_read from VR, the shortcut passphrase becomes clear.", item: "Fragment H (AR)" }
+      };
+
+      function renderClueLog() {
+        var st2 = NE.loadState();
+        var arItems = st2.inventory.filter(function(i) { return i.text.indexOf("AR") !== -1; });
+        if (!arItems.length && !foundCodes.length) {
+          clueLog.innerHTML = '<div class="inv-item" style="color:var(--muted)">No AR clues found yet.</div>';
+          return;
+        }
+        var html = "";
+        arItems.forEach(function(i) { html += '<div class="inv-item">' + i.text + '</div>'; });
+        foundCodes.forEach(function(c) { html += '<div class="inv-item">' + c.item + '</div>'; });
+        clueLog.innerHTML = html;
+      }
+      renderClueLog();
+
+      function handleQR(data) {
+        if (!data) return;
+        var code = data.trim();
+        for (var i = 0; i < foundCodes.length; i++) {
+          if (foundCodes[i].code === code) return;
+        }
+        var clue = clueMap[code];
+        if (clue) {
+          foundCodes.push({ code: code, item: clue.item });
+          NE.addInventory(clue.item);
+          NE.logEvent("ar_clue_found", { code: code });
+          clueEl.textContent = clue.text;
+          results.style.display = "block";
+          hint.textContent = "Clue discovered! Keep scanning for more.";
+          renderClueLog();
+        } else {
+          foundCodes.push({ code: code, item: "QR: " + code });
+          NE.logEvent("ar_qr_scanned", { code: code });
+          clueEl.textContent = "QR Code detected: " + code;
+          results.style.display = "block";
+          hint.textContent = "QR detected (not a known clue). Keep scanning.";
+          renderClueLog();
+        }
+      }
+
+      function scanFrame() {
+        if (!scanning || video.readyState < video.HAVE_ENOUGH_DATA) {
+          if (scanning) requestAnimationFrame(scanFrame);
+          return;
+        }
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        if (typeof jsQR === "function") {
+          var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          var qr = jsQR(imageData.data, canvas.width, canvas.height, { inversionAttempts: "dontInvert" });
+          if (qr && qr.data) handleQR(qr.data);
+        }
+        requestAnimationFrame(scanFrame);
+      }
+
+      startBtn.addEventListener("click", function () {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          hint.textContent = "Camera not supported on this device/browser.";
+          return;
+        }
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false })
+          .then(function (s) {
+            stream = s;
+            video.srcObject = s;
+            video.play();
+            scanning = true;
+            cameraWrap.style.display = "block";
+            placeholder.style.display = "none";
+            startBtn.style.display = "none";
+            stopBtn.style.display = "";
+            hint.textContent = "Scanning... Point at a QR code or AR marker.";
+            requestAnimationFrame(scanFrame);
+          })
+          .catch(function (err) {
+            hint.textContent = "Camera access denied: " + err.message;
+          });
+      });
+
+      stopBtn.addEventListener("click", function () {
+        scanning = false;
+        if (stream) {
+          stream.getTracks().forEach(function (t) { t.stop(); });
+          stream = null;
+        }
+        video.srcObject = null;
+        cameraWrap.style.display = "none";
+        placeholder.style.display = "flex";
+        startBtn.style.display = "";
+        stopBtn.style.display = "none";
+        hint.textContent = "Camera stopped. Tap to restart.";
+      });
+    });
+  </script>
+</body>
+</html>

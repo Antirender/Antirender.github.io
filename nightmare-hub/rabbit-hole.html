@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Rabbit Hole</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .rabbit-hero{text-align:center;padding:16px 0 0;margin-bottom:8px;position:relative;}
+    .rabbit-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(139,92,246,0.08) 0%,transparent 70%);pointer-events:none;}
+    .rabbit-hero h1{font-size:clamp(1.3rem,4vw,1.7rem);margin:0;color:var(--accent2);}
+    .rabbit-hero .subtitle{color:var(--muted);font-size:0.85rem;margin:4px 0 0;font-style:italic;}
+    .terminal-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;font-family:var(--font-mono);font-size:0.8rem;color:var(--ok);line-height:1.7;margin:12px 0;white-space:pre-wrap;}
+    .terminal-box.corrupted{color:var(--danger);border-color:rgba(239,68,68,0.2);}
+    .rabbit-warning{display:flex;align-items:flex-start;gap:10px;background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);border-radius:var(--radius);padding:12px 16px;margin:12px 0;font-size:0.85rem;}
+    .reward-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg3);border-radius:var(--radius);margin-bottom:6px;font-size:0.85rem;border:1px solid var(--border);}
+    .reward-item.claimed{border-color:rgba(16,185,129,0.2);background:rgba(16,185,129,0.05);}
+  </style>
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap grid cols2">
+    <section class="card">
+      <div class="rabbit-hero">
+        <h1 class="h1">🐇 Diagnostics / Recovery Terminal</h1>
+        <p class="subtitle">You've gone off the main path. This branch is optional — but the truth lives here.</p>
+      </div>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+
+      <div class="rabbit-warning">
+        <span style="font-size:1.2rem;">⚠️</span>
+        <div><strong>Side Path:</strong> This does not block the main experience. The Minotaur System has hidden diagnostics data in corrupted logs. Decode them to earn recovery rewards — exit hints, physical clue locations, and hidden lore.</div>
+      </div>
+
+      <div id="terminalStatus" class="terminal-box corrupted">$ system_status --diagnostic
+> STATUS: Corrupted. Recovery mode available.
+> WARNING: Signal integrity at 34%. Possible Minotaur interference.
+> Enter passphrase to initiate recovery...</div>
+
+      <h2 style="margin:16px 0 8px;">Step 1: Diagnostic Passphrase</h2>
+      <div class="field">
+        <label for="passphrase">Enter passphrase</label>
+        <input id="passphrase" type="text" placeholder="Found in Lore or Physical Media B">
+      </div>
+      <button id="passphraseBtn" class="btn full">Validate</button>
+      <p id="step1Result" class="muted" style="margin-top:8px;"></p>
+      <div id="step1Hint" style="display:none;"></div>
+
+      <div id="step2" style="display:none;">
+        <hr>
+        <h2 style="margin:16px 0 8px;">Step 2: Decode the Corrupted Log</h2>
+        <div class="bubble">
+          <p class="p">Log fragment recovered. Signal is interleaved with noise.</p>
+          <p class="muted"><strong>Encoded:</strong> <span id="encodedStr"></span></p>
+          <p class="muted"><strong>Hint:</strong> <span id="decodeHint"></span></p>
+        </div>
+        <div class="field">
+          <label for="locationTag">Location Tag</label>
+          <input id="locationTag" type="text" placeholder="e.g. NORTH DOOR">
+        </div>
+        <button id="decodeBtn" class="btn full">Submit Tag</button>
+        <p id="step2Result" class="muted" style="margin-top:8px;"></p>
+        <div id="step2Hint" style="display:none;"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 8px;">Step 3: Recovery Rewards</h2>
+      <p class="p">Verified recovery grants practical advantages — exit code hints and physical world clues that can shortcut your path.</p>
+      <ul id="rewardList"></ul>
+      <button id="claimBtn" class="btn full ok" style="margin-top:8px;">Claim Rewards</button>
+      <p id="claimMsg" class="muted" style="margin-top:8px;"></p>
+
+      <hr>
+      <div class="rabbit-warning" style="background:rgba(74,108,247,0.06);border-color:rgba(74,108,247,0.15);">
+        <span style="font-size:1.2rem;">💡</span>
+        <div><strong>Where to go next:</strong> The rewards may direct you to physical locations on campus, AR scans, or back to the main puzzle path. Check your inventory for specific directions.</div>
+      </div>
+
+      <hr>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="hub.html" class="btn ghost">← Back to Hub</a>
+        <a href="lore.html" class="btn ghost">📜 Lore Archive</a>
+        <a href="physical.html" class="btn ghost">📦 Physical Clues</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble();
+      NE.logEvent("page_view", { page: "rabbit-hole" });
+
+      var cfg = NE.CFG().RABBIT || {};
+      var passphrase = (cfg.passphrase || "").toUpperCase();
+      var locationTag = (cfg.locationTag || "").toUpperCase();
+
+      document.getElementById("encodedStr").textContent = cfg.encoded || "";
+      document.getElementById("decodeHint").textContent = cfg.hint || "";
+
+      function renderRewards() {
+        var rewards = cfg.rewards || {};
+        var items = [];
+        (rewards.exitHints || []).forEach(function(h) { items.push("Exit hint: " + h); });
+        if (rewards.physicalHint) items.push("Physical clue: " + rewards.physicalHint);
+        items.push("Unlocks Lore #5: Minotaur View");
+        document.getElementById("rewardList").innerHTML = items.map(function(t) { return "<li>" + t + "</li>"; }).join("");
+      }
+
+      function updateUI() {
+        var s = NE.loadState();
+        document.getElementById("step2").style.display = s.rabbit.step1 ? "block" : "none";
+        document.getElementById("claimBtn").disabled = !s.rabbit.step2 || s.rabbit.rewardsClaimed;
+        if (s.rabbit.rewardsClaimed) {
+          document.getElementById("claimMsg").textContent = "Rewards already claimed. Return to Hub.";
+        }
+      }
+
+      renderRewards();
+      updateUI();
+
+      document.getElementById("passphraseBtn").addEventListener("click", function() {
+        var input = document.getElementById("passphrase").value.trim().toUpperCase();
+        if (!input) return;
+        var s = NE.loadState();
+        if (input === passphrase) {
+          s.rabbit.step1 = true;
+          NE.saveState(s);
+          NE.logEvent("rabbit_step1", { ok: true });
+          document.getElementById("step1Result").textContent = "Passphrase accepted. Diagnostics channel opened.";
+          updateUI();
+        } else {
+          s.rabbitStep1Attempts = (s.rabbitStep1Attempts || 0) + 1;
+          NE.saveState(s);
+          NE.logEvent("rabbit_step1", { ok: false, attempts: s.rabbitStep1Attempts });
+          document.getElementById("step1Result").textContent = "Passphrase rejected.";
+          NE.setStress(Math.min(3, s.stressLevel + 1));
+          NE.renderAriBubble();
+          if (NE.shouldShowHint(s.rabbitStep1Attempts)) {
+            var h1 = document.getElementById("step1Hint");
+            h1.style.display = "block"; h1.className = "hint-toast";
+            h1.textContent = "\ud83d\udca1 Hint: The passphrase is THREADSAFE";
+          }
+        }
+      });
+
+      document.getElementById("decodeBtn").addEventListener("click", function() {
+        var input = document.getElementById("locationTag").value.trim().toUpperCase();
+        var s = NE.loadState();
+        if (input === locationTag) {
+          s.rabbit.step2 = true;
+          NE.saveState(s);
+          NE.logEvent("rabbit_step2", { ok: true });
+          document.getElementById("step2Result").textContent = "Tag verified. Recovery rewards unlocked.";
+          updateUI();
+        } else {
+          s.rabbitStep2Attempts = (s.rabbitStep2Attempts || 0) + 1;
+          NE.saveState(s);
+          NE.logEvent("rabbit_step2", { ok: false, attempts: s.rabbitStep2Attempts });
+          document.getElementById("step2Result").textContent = "Incorrect tag. Try again.";
+          NE.setStress(Math.min(3, s.stressLevel + 1));
+          NE.renderAriBubble();
+          if (NE.shouldShowHint(s.rabbitStep2Attempts)) {
+            var h2 = document.getElementById("step2Hint");
+            h2.style.display = "block"; h2.className = "hint-toast";
+            h2.textContent = "\ud83d\udca1 Hint: The location tag is NORTH DOOR";
+          }
+        }
+      });
+
+      document.getElementById("claimBtn").addEventListener("click", function() {
+        var s = NE.loadState();
+        if (!s.rabbit.step2 || s.rabbit.rewardsClaimed) return;
+        s.rabbit.rewardsClaimed = true;
+        if (!s.unlockedNodes.includes("rabbit1")) s.unlockedNodes.push("rabbit1");
+        NE.saveState(s);
+        NE.addInventory("Diagnostics complete: Rabbit Hole unlocked.");
+        (cfg.rewards && cfg.rewards.exitHints || []).forEach(function(h) { NE.addInventory("Exit hint: " + h); });
+        if (cfg.rewards && cfg.rewards.physicalHint) NE.addInventory("Physical clue: " + cfg.rewards.physicalHint);
+        NE.logEvent("rabbit_rewards", { claimed: true });
+        document.getElementById("claimMsg").textContent = "Rewards claimed. Lore #5 unlocked.";
+        updateUI();
+      });
+    });
+  </script>
+</body>
+</html>

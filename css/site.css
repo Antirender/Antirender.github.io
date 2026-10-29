@@ -197,6 +197,8 @@ footer{padding:clamp(24px,4vw,40px) 0;color:var(--muted);font-size:.85rem;border
 .footer-inner{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:center}
 .footer-inner ul{display:flex;flex-wrap:wrap;gap:.3rem 1rem;list-style:none}
 .footer-inner a{color:var(--sub);font-weight:600} .footer-inner a:hover{color:var(--accent)}
+.footer-legal{flex-basis:100%;display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;font-size:.8rem}
+.footer-inner .footer-legal a{color:var(--muted);font-weight:400}
 
 @media(max-width:640px){
   .header-inner{flex-wrap:wrap;row-gap:0;padding-top:.35rem;padding-bottom:.35rem}

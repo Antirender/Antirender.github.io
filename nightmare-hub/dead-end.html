@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Dead End</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    body{background:var(--bg);}
+    .dead-end-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+    .dead-end-card{max-width:520px;text-align:center;animation:deadFadeIn 1.2s ease both;}
+    .dead-end-card .glitch-icon{font-size:5rem;margin-bottom:16px;animation:glitchPulse 2s ease-in-out infinite;}
+    .dead-end-card h1{font-size:1.8rem;font-weight:800;color:var(--danger);margin:0 0 12px;letter-spacing:-0.02em;}
+    .dead-end-card .subtitle{font-size:1rem;color:var(--muted);margin:0 0 24px;line-height:1.7;}
+    .dead-end-card .minotaur-msg{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius);padding:16px;margin:0 0 28px;font-size:0.9rem;line-height:1.7;color:var(--fg);text-align:left;}
+    .dead-end-card .minotaur-msg strong{color:var(--danger);}
+    .dead-end-card .ari-msg{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:0 0 28px;font-size:0.85rem;line-height:1.7;color:var(--muted);text-align:left;}
+    .dead-end-card .restart-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;font-size:1rem;font-weight:700;border:none;border-radius:var(--radius);background:var(--danger);color:#fff;cursor:pointer;transition:all var(--transition);}
+    .dead-end-card .restart-btn:hover{background:#dc2626;transform:translateY(-2px);box-shadow:0 4px 16px rgba(239,68,68,0.3);}
+    .dead-end-card .source-info{margin-top:16px;font-size:0.75rem;color:var(--muted);}
+
+    /* Fake endpoint styles */
+    .fake-end-card{max-width:520px;text-align:center;}
+    .fake-end-card .victory-icon{font-size:5rem;margin-bottom:16px;animation:badgeSpin 1s cubic-bezier(.34,1.56,.64,1) both;}
+    .fake-end-card h1.victory{font-size:1.8rem;font-weight:800;color:var(--ok);margin:0 0 12px;animation:fadeUp 0.8s ease 0.3s both;}
+    .fake-end-card .victory-sub{font-size:1rem;color:var(--muted);margin:0 0 24px;line-height:1.7;animation:fadeUp 0.8s ease 0.5s both;}
+    .fake-end-card .fake-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0;animation:fadeUp 0.8s ease 0.7s both;}
+    .fake-end-card .fake-stat{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;}
+    .fake-end-card .fake-stat .val{font-size:1.5rem;font-weight:700;color:var(--ok);}
+    .fake-end-card .fake-stat .lbl{font-size:0.65rem;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+    .glitch-reveal{animation:glitchReveal 0.5s ease both;}
+    .fake-end-card .trap-msg{background:rgba(239,68,68,0.08);border:2px solid var(--danger);border-radius:var(--radius);padding:20px;margin:20px 0;font-size:0.95rem;line-height:1.7;color:var(--fg);text-align:left;animation:glitchReveal 0.3s ease both;}
+    .fake-end-card .trap-msg strong{color:var(--danger);}
+
+    @keyframes deadFadeIn{0%{opacity:0;transform:translateY(20px) scale(0.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes glitchPulse{0%,100%{transform:scale(1);filter:none}25%{transform:scale(1.05) skewX(-2deg);filter:hue-rotate(20deg)}50%{transform:scale(0.98);filter:brightness(1.2)}75%{transform:scale(1.02) skewX(1deg);filter:hue-rotate(-10deg)}}
+    @keyframes badgeSpin{0%{transform:scale(0) rotate(-180deg);opacity:0}100%{transform:scale(1) rotate(0deg);opacity:1}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes glitchReveal{0%{opacity:0;transform:skewX(-5deg) scale(0.95)}50%{transform:skewX(3deg) scale(1.02)}100%{opacity:1;transform:skewX(0) scale(1)}}
+
+    .dead-end-wrap::before{
+      content:"";position:fixed;top:0;left:0;width:100%;height:100%;
+      background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(239,68,68,0.015) 2px,rgba(239,68,68,0.015) 4px);
+      pointer-events:none;z-index:0;animation:scanlines 8s linear infinite;
+    }
+    @keyframes scanlines{0%{transform:translateY(0)}100%{transform:translateY(4px)}}
+  </style>
+</head>
+<body>
+  <div class="dead-end-wrap">
+    <!-- Regular Dead End -->
+    <div class="dead-end-card" id="deadEndView">
+      <div class="glitch-icon">💀</div>
+      <h1>DEAD END</h1>
+      <p class="subtitle">The labyrinth has closed around you.<br>There is no way forward from here.</p>
+
+      <div class="minotaur-msg">
+        <strong>MINOTAUR SYSTEM:</strong> Wrong path detected. Your thread has been severed. The labyrinth does not forgive hesitation — or error. This corridor leads nowhere. Your journey ends here.
+      </div>
+
+      <div class="ari-msg" id="ariMsg">
+        💡 ARI (weakening signal): "I'm sorry — I couldn't guide you in time. The Minotaur has locked this branch. You'll need to start over from the beginning. I'll be waiting at the entrance."
+      </div>
+
+      <button class="restart-btn" id="restartBtn">
+        🔄 Start Over
+      </button>
+
+      <p class="source-info" id="sourceInfo"></p>
+    </div>
+
+    <!-- Fake Endpoint (Minotaur trap) -->
+    <div class="fake-end-card" id="fakeEndView" style="display:none;">
+      <div class="victory-icon" id="fakeIcon">🏆</div>
+      <h1 class="victory" id="fakeTitle">CONGRATULATIONS</h1>
+      <p class="victory-sub" id="fakeSub">You have escaped the Labyrinth.<br>The Minotaur System has been shut down.</p>
+
+      <div class="fake-stats" id="fakeStats">
+        <div class="fake-stat"><div class="val">100%</div><div class="lbl">Complete</div></div>
+        <div class="fake-stat"><div class="val">S</div><div class="lbl">Rank</div></div>
+        <div class="fake-stat"><div class="val">8/8</div><div class="lbl">Nodes</div></div>
+        <div class="fake-stat"><div class="val">0:00</div><div class="lbl">Time</div></div>
+      </div>
+
+      <div class="trap-msg" id="trapReveal" style="display:none;">
+        <strong>MINOTAUR SYSTEM:</strong> Did you really think it would be that easy? This exit was a trap. The Minotaur constructed a false victory to capture your data. Every click you made on this page has been logged.<br><br>
+        <strong>ARI (faint signal):</strong> "That wasn't the real exit… I tried to warn you. The thread you followed was a copy — woven by the Minotaur. Go back to the Hub. The real path is still there."
+      </div>
+
+      <button class="restart-btn" id="fakeReturnBtn" style="display:none;background:var(--accent);">
+        ← Return to Hub
+      </button>
+      <p class="source-info" id="fakeSourceInfo"></p>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    var params = new URLSearchParams(location.search);
+    var from = params.get("from") || "unknown";
+    var mode = params.get("mode") || "dead-end";
+
+    if (mode === "fake-exit") {
+      // Fake endpoint mode — looks like a victory, then reveals the trap
+      document.getElementById("deadEndView").style.display = "none";
+      document.getElementById("fakeEndView").style.display = "block";
+      document.title = "Trafalgar Labyrinth · Victory!";
+
+      if (typeof NE !== "undefined") {
+        NE.logEvent("fake_endpoint_triggered", { from: from });
+        NE.setStress(Math.min(3, NE.loadState().stressLevel + 1));
+      }
+
+      // After 4 seconds, reveal the trap
+      setTimeout(function() {
+        var icon = document.getElementById("fakeIcon");
+        var title = document.getElementById("fakeTitle");
+        var sub = document.getElementById("fakeSub");
+        var stats = document.getElementById("fakeStats");
+
+        icon.textContent = "💀";
+        icon.style.animation = "glitchPulse 2s ease-in-out infinite";
+        title.textContent = "SYSTEM COMPROMISED";
+        title.style.color = "var(--danger)";
+        sub.innerHTML = "This was never the exit.<br>The Minotaur was waiting.";
+        stats.style.opacity = "0.2";
+
+        document.getElementById("trapReveal").style.display = "block";
+        document.getElementById("fakeReturnBtn").style.display = "";
+        document.getElementById("fakeSourceInfo").textContent = "Trap triggered from: " + from;
+
+        document.title = "Trafalgar Labyrinth · TRAP";
+      }, 4000);
+
+      document.getElementById("fakeReturnBtn").addEventListener("click", function() {
+        location.href = "hub.html";
+      });
+    } else {
+      // Regular dead end mode
+      var sourceEl = document.getElementById("sourceInfo");
+      var labels = { puzzle1: "Puzzle 1: Intercepted Signals", puzzle2: "Puzzle 2: The Archive", puzzle3: "Puzzle 3: The Final Door" };
+      sourceEl.textContent = "Failed at: " + (labels[from] || from);
+
+      document.getElementById("restartBtn").addEventListener("click", function() {
+        if (typeof NE !== "undefined" && NE.resetState) {
+          NE.resetState();
+        } else {
+          try { localStorage.removeItem("ne_state_v1"); } catch(e) {}
+        }
+        location.href = "index.html";
+      });
+    }
+  </script>
+</body>
+</html>

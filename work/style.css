@@ -114,6 +114,9 @@ nav.primary a.active{color:var(--accent);background:var(--accent-soft)}
 .pager b{font-size:1rem;font-weight:750;line-height:1.3}
 .pager-all{display:block;text-align:center;font-weight:600;color:var(--muted);font-size:.9rem;padding-bottom:2rem}
 .pager-all:hover{color:var(--accent);text-decoration:none}
+.site-foot{border-top:1px solid var(--border);padding:1.25rem 0 1.75rem;font-size:.8rem;color:var(--muted)}
+.site-foot .wrap{display:flex;flex-wrap:wrap;gap:.3rem 1.25rem;justify-content:center}
+.site-foot a{color:var(--muted)} .site-foot a:hover{color:var(--accent)}
 .nav-back{padding:2rem 0;border-top:1px solid var(--border);text-align:center}
 .nav-back a{font-weight:600;color:var(--muted);font-size:.9rem}
 .nav-back a:hover{color:var(--ink)}

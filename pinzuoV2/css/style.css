@@ -652,3 +652,13 @@ footer .footer-info {
   }
 }
 
+
+/* ICP filing */
+footer .icp {
+  font-size: 0.85em;
+  margin-top: 0.25em;
+}
+
+footer .icp a {
+  color: inherit;
+}

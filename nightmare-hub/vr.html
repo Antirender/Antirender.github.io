@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · VR Experience</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .vr-hero{text-align:center;padding:20px 0 0;margin-bottom:16px;}
+    .vr-mode-grid{display:grid;grid-template-columns:1fr;gap:16px;margin:20px 0;}
+    @media(min-width:600px){.vr-mode-grid{grid-template-columns:1fr 1fr;}}
+    .vr-mode-card{display:block;background:var(--bg3);border:2px solid var(--border);border-radius:var(--radius-lg);padding:24px 20px;text-align:center;transition:all var(--transition);cursor:pointer;text-decoration:none;color:var(--fg);}
+    .vr-mode-card:hover{border-color:var(--accent2);box-shadow:0 6px 24px rgba(139,92,246,0.15);transform:translateY(-3px);text-decoration:none;}
+    .vr-mode-card .mode-icon{font-size:2.5rem;margin-bottom:12px;}
+    .vr-mode-card h3{margin:0 0 8px;font-size:1.1rem;}
+    .vr-mode-card p{margin:0;font-size:0.85rem;color:var(--muted);line-height:1.6;}
+    .vr-mode-card.primary-vr{border-color:rgba(139,92,246,0.4);background:rgba(139,92,246,0.04);}
+    .vr-tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;}
+    .vr-tag.primary{background:var(--accent2);color:#fff;}
+    .vr-tag.secondary{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
+    .vr-context{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:16px 0;font-size:0.9rem;line-height:1.7;}
+    .vr-flow-note{display:flex;align-items:flex-start;gap:10px;border-radius:var(--radius);padding:12px 16px;margin:12px 0;font-size:0.85rem;}
+    .vr-flow-note.phys-digital{background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);}
+    .vr-flow-note.warning{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);}
+    .ar-instructions{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:16px 0;font-size:0.9rem;line-height:1.7;}
+    .ar-instructions ol{padding-left:20px;margin:8px 0 0;}
+    .ar-instructions li{margin-bottom:6px;}
+  </style>
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <section class="card">
+      <div class="vr-hero">
+        <h1 class="h1">🥽 VR Experience</h1>
+      </div>
+      <div id="modeBanner" style="display:none;text-align:center;padding:8px 16px;border-radius:var(--radius);margin-bottom:12px;font-size:0.85rem;font-weight:600;"></div>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+      <p class="p" id="vrIntro">Great news it seems like the Minotaru system is slowing down. There are some options that ARI has found to allow for a quicker way to secure Sheridan's network and remove the Minotaur system at the same time.This requires you to be more interactive though....The VR experiences bridge the digital platform with in-person exploration — enter the locked room, find clues in 3D space, and discover the door that leads back to the digital world.</p>
+
+      <div class="section-label">Choose Your VR Mode</div>
+      <div class="vr-mode-grid">
+              
+            <div class="ar-instructions">
+        <strong>📍 VR through campus poster — How it works:</strong>
+        <ol>
+          <li>Find the VR access poster arranged by ARI<strong> at J building Floor 2 |OR| J Building Floor 1 Stairway A |OR| Room J216 </strong> on campus.</li>
+          <li>Tap <strong>“VR locked Room”</strong> - A new tab will open! (Accept temporary camera usage notification)</li>
+          <li>Scan the QR code to enter the compromised digital access point.</li>
+          <li>From there, it is up to you to find the correct hint from Ari. <strong>Exit back to hub if necessary.</strong></li>
+        </ol>
+      </div>
+      <div class="ar-instructions">
+        <strong>📍 VR on webhub — How it works:</strong>
+        <ol>
+          <li>Click the VR Fragment Finder below when ready.</li>
+          <li>Navigate the digital space to reveal <strong>the building that should be passed through</strong> to find another fragment for the shortcut.</li>
+          <Li>If you walk in the order suggested, the AR access point(image) will be on your right hand side.</Li>
+          <Li>Be careful, the directions are meant to be jarring with all the different hand drawn distractions along the walls!<strong> Exit back to hub if necessary.</strong></Li>
+
+        </ol>
+      </div>
+        <a id="vrRoomLink" href="#" target="_blank" rel="noopener" class="vr-mode-card primary-vr">
+          <span class="vr-tag primary">Secure the room (Access point 3 )</span>
+          <div class="mode-icon">🚪</div>
+          <h3>VR locked Room</h3>
+          <p>Find the <strong>Network Issue Poster</strong> on campus to locate the VR station. Enter the immersive locked room , find the <strong> door at the end</strong> — it takes you back to the hub. </p>
+          <p><strong>A fragment text will be reveal upon successful securing: <code>t_read</code></strong>.</p>
+        </a>
+        <a id="vrFragmentLink" href="https://chuian.github.io/NE_VR_Fragment_Final/" target="_blank" rel="noopener" class="vr-mode-card">
+          <span class="vr-tag secondary"> Location hunt (Access Point 4)</span>
+          <div class="mode-icon">📍</div>
+          <h3>VR Fragment Finder</h3>
+          <p>Use the on-screen arrows and tap the <strong>digital dagger</strong> to reveal a location on campus. This points you to the <strong>graffiti hallway through the SCAT building</strong> — look for the AR dagger image there.</p>
+        </a>
+      </div>
+      
+
+      <div class="vr-context">
+        <strong>🔄 Physical ↔ Digital Hooks:</strong>
+        <ul style="margin:8px 0 0;padding-left:20px;">
+          <li><strong>Digital → Physical:</strong> The web platform directs you to the VR station on campus.</li>
+          <li><strong>Physical → Digital:</strong> The VR locked room has a door at the end that represents re-entering the digital space. After the VR session, return to your Hub tab — your progress is preserved.</li>
+          <li><strong>VR Fragment:</strong> Provides location hints to guide you to a physical artifact on campus.</li>
+        </ul>
+      </div>
+
+      <div class="vr-flow-note phys-digital">
+        <span style="font-size:1.2rem;">🚪</span>
+        <div><strong>After the VR Room:</strong> Tapping the door at the end takes you back to the hub. Your session data persists in localStorage — simply return to this browser tab. The clue <code>t_read</code> is your reward. Think about what word it might be part of.</div>
+      </div>
+
+      <div class="vr-flow-note warning">
+        <span style="font-size:1.2rem;">⚠️</span>
+        <div><strong>Note:</strong> VR experiences require being at the physical venue. If you're not on campus, you can still explore the VR links on a flat screen, but the full spatial experience can be enhanced with a mr/vr headset.</div>
+      </div>
+
+      <div style="text-align:center;margin:20px 0;">
+        <button id="confirmVR" class="btn primary full">✅ I Completed the VR Experience</button>
+        <p class="muted" style="margin-top:6px;font-size:0.8rem;">Marks the VR node as visited and adds the <code>t_read</code> clue to your inventory.</p>
+      </div>
+
+      <div class="vr-flow-note phys-digital" style="margin-top:12px;">
+        <span style="font-size:1.2rem;">📜</span>
+        <div><strong>Lore connection:</strong> The locked room reveals more than a clue — <a href="lore.html" style="color:var(--accent2);">visit the Lore Archive</a> for deeper context on the thread and the labyrinth's origin.</div>
+      </div>
+
+      <hr>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="hub.html" class="btn ghost">← Back to Hub</a>
+        <a href="ar.html" class="btn ghost">📷 AR Experience</a>
+        <a href="physical.html" class="btn ghost">📦 Physical Clues</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble(document.getElementById("ariBubble"));
+      NE.logEvent("page_view", { page: "vr" });
+
+      var isHard = st.gameMode === "hard";
+
+      // Mode banner
+      var vrBanner = document.getElementById("modeBanner");
+      if (isHard) {
+        vrBanner.style.display = "block";
+        vrBanner.style.background = "rgba(239,68,68,0.08)";
+        vrBanner.style.border = "1px solid rgba(239,68,68,0.25)";
+        vrBanner.style.color = "var(--danger)";
+        vrBanner.innerHTML = "🕸️ Hard Mode — Fragment 5 of 6 (Required)";
+        document.getElementById("vrIntro").textContent = "Great news it seems like the Minotaru system is slowing down from what AIR can detect. There are some options that ARI has found to allow for a quicker way to secure Sheridan's network and remove the Minotaur system at the same time.This requires you to be more interactive though....The VR experiences bridge the digital platform with in-person exploration — enter the locked room, find clues in 3D space, and discover the door that leads back to the digital world. The labyrinth demands all six fragments. This VR locked room is Fragment 5 — mandatory for exiting.";
+      } else {
+        vrBanner.style.display = "block";
+        vrBanner.style.background = "rgba(139,92,246,0.06)";
+        vrBanner.style.border = "1px solid rgba(139,92,246,0.15)";
+        vrBanner.style.color = "var(--accent2)";
+        vrBanner.innerHTML = "🧵 Normal Mode — Shortcut Clue";
+        document.getElementById("vrIntro").textContent = "Great news it seems like the Minotaru system is slowing down. There are some options that ARI has found to allow for a quicker way to secure Sheridan's network and remove the Minotaur system at the same time.This requires you to be more interactive though....The VR experiences bridge the digital platform with in-person exploration — enter the locked room, find clues in 3D space, and discover the door that leads back to the digital world.";
+      }
+
+      var links = NE.CFG().LINKS || {};
+      document.getElementById("vrRoomLink").href = links.vrRoom || "#";
+      document.getElementById("vrFragmentLink").href = links.vrFragment || "#";
+
+      // Confirm VR completion
+      var vrConfirmBtn = document.getElementById("confirmVR");
+      if (isHard) {
+        vrConfirmBtn.textContent = "✅ Claim Fragment 5 — VR locked room Complete";
+      }
+      if (st.inventory.some(function(i) { return i.text.indexOf("VR locked room") !== -1 || i.text.indexOf("Fragment 5") !== -1; })) {
+        vrConfirmBtn.textContent = "✅ VR Already Logged";
+        vrConfirmBtn.disabled = true;
+        vrConfirmBtn.style.opacity = "0.6";
+      }
+      vrConfirmBtn.addEventListener("click", function () {
+        var itemText = isHard
+          ? "🥽 Fragment 5 (VR): locked room completed — exit glyph fragment claimed."
+          : "🥽 VR locked room Room: Completed — clue revealed: t_read";
+        NE.addInventory(itemText);
+        NE.unlockNode("vr1");
+        NE.logEvent("vr_completed", { clue: "t_read", mode: st.gameMode });
+        this.textContent = isHard ? "✅ Fragment 5 Claimed!" : "✅ VR Experience Logged!";
+        this.disabled = true;
+        this.style.opacity = "0.6";
+        NE.renderHeader();
+      });
+    });
+  </script>
+</body>
+</html>

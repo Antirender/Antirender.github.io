@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Story</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .story-wrap{display:flex;flex-direction:column;gap:24px;padding-bottom:40px;}
+
+    /* Iframe container */
+    .story-frame-wrap{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      background:var(--bg3);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+    .story-frame-wrap iframe{
+      width:100%;height:100%;border:none;display:block;
+    }
+    .story-frame-label{
+      font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;
+      color:var(--muted);margin-bottom:8px;
+    }
+
+    /* Passphrase gate */
+    .passphrase-card{
+      background:var(--bg2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+    }
+    .passphrase-card h2{margin:0 0 6px;font-size:1.1rem;}
+    .passphrase-card p{margin:0 0 16px;color:var(--muted);font-size:0.9rem;line-height:1.6;}
+    .passphrase-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    .passphrase-input{
+      flex:1;min-width:180px;padding:10px 14px;
+      border:2px solid var(--border);border-radius:var(--radius);
+      background:var(--bg3);color:var(--fg);font-size:1rem;
+      font-family:var(--font);letter-spacing:0.05em;
+      transition:border-color var(--transition);
+    }
+    .passphrase-input:focus{outline:none;border-color:var(--accent);}
+    .passphrase-input.ok{border-color:var(--ok);}
+    .passphrase-input.err{border-color:var(--danger);animation:pShake 0.4s ease;}
+    @keyframes pShake{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-6px)}50%{transform:translateX(6px)}}
+    .passphrase-result{
+      margin-top:14px;padding:14px 16px;border-radius:var(--radius);
+      font-size:0.9rem;line-height:1.6;display:none;
+    }
+    .passphrase-result.ok{background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.25);color:var(--fg);}
+    .passphrase-result.err{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);color:var(--fg);}
+
+    /* Already-confirmed state */
+    .story-confirmed{
+      display:flex;align-items:center;gap:12px;
+      background:rgba(52,211,153,0.06);
+      border:1px solid rgba(52,211,153,0.2);
+      border-radius:var(--radius);
+      padding:14px 18px;
+      font-size:0.9rem;
+      color:var(--fg);
+    }
+  </style>
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <div class="story-wrap">
+
+      <!-- Heading -->
+      <section class="card" style="padding-bottom:12px;">
+        <h1 class="h1" style="margin-bottom:6px;">🎭 Visual Story</h1>
+        <div id="ariBubble" class="bubble" aria-live="polite"></div>
+        <p class="muted" style="margin:0;font-size:0.9rem;">Experience the narrative of the Trafalgar Labyrinth. Complete the story, then enter the passphrase below to confirm.</p>
+      </section>
+
+      <!-- iframe -->
+      <section>
+        <div class="story-frame-label">📖 Interactive Story — Trafalgar Labyrinth</div>
+        <div class="story-frame-wrap">
+          <iframe
+            id="storyFrame"
+            src=""
+            title="Trafalgar Labyrinth Visual Novel"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="muted" style="font-size:0.75rem;margin:6px 0 0;">If the story doesn't load, <a id="storyLink" href="#" target="_blank" rel="noopener" style="color:var(--accent);">open it in a new tab ↗</a></p>
+      </section>
+
+      <!-- Passphrase gate -->
+      <section class="passphrase-card">
+        <div id="alreadyConfirmed" class="story-confirmed" style="display:none;">
+          <span style="font-size:1.4rem;">✅</span>
+          <div>
+            <strong>Story confirmed.</strong><br>
+            <span class="muted">You've verified completion of the visual story.</span>
+          </div>
+        </div>
+
+        <div id="passphraseForm">
+          <h2>🔒 Story Completion Check</h2>
+          <p>The story ends with a passphrase. Enter it below to confirm you've completed the visual novel. This unlocks the Diagnostics terminal and adds a story badge to your inventory.</p>
+          <div class="passphrase-row">
+            <input
+              id="passphraseInput"
+              class="passphrase-input"
+              type="text"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              placeholder="Enter the passphrase…"
+              maxlength="32"
+            >
+            <button id="passphraseBtn" class="btn primary">Confirm</button>
+          </div>
+          <div id="passphraseResult" class="passphrase-result"></div>
+        </div>
+      </section>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="hub.html" class="btn ghost">← Back to Hub</a>
+        <a id="storyExtLink" href="#" target="_blank" rel="noopener" class="btn ghost">Open Story Fullscreen ↗</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble();
+      NE.logEvent("page_view", { page: "story" });
+
+      // Set iframe src from config
+      var cfg = NE.CFG();
+      var storyUrl = (cfg.LINKS && cfg.LINKS.webgal) || "";
+      if (storyUrl) {
+        document.getElementById("storyFrame").src = storyUrl;
+        document.getElementById("storyLink").href = storyUrl;
+        document.getElementById("storyExtLink").href = storyUrl;
+      }
+
+      // Check if story already confirmed
+      var s = NE.loadState();
+      if (s.storyConfirmed) {
+        document.getElementById("passphraseForm").style.display = "none";
+        document.getElementById("alreadyConfirmed").style.display = "flex";
+        return;
+      }
+
+      var PASS = "thread";
+      var input = document.getElementById("passphraseInput");
+      var result = document.getElementById("passphraseResult");
+
+      function tryConfirm() {
+        var val = input.value.trim().toLowerCase();
+        if (!val) return;
+
+        if (val === PASS) {
+          input.classList.remove("err");
+          input.classList.add("ok");
+
+          // Update state
+          var s2 = NE.loadState();
+          s2.storyConfirmed = true;
+          NE.saveState(s2);
+          NE.unlockNode("rabbit1");
+          NE.addInventory("🎭 Story Badge: Visual novel completed — passphrase verified.");
+          NE.logEvent("story_confirmed", { pass: val });
+
+          result.style.display = "block";
+          result.className = "passphrase-result ok";
+          result.innerHTML = "✅ <strong>Passphrase accepted.</strong> The Diagnostics terminal is now unlocked in your Hub. A story badge has been added to your inventory.";
+
+          document.getElementById("passphraseBtn").disabled = true;
+          input.disabled = true;
+
+          // Swap to confirmed state after delay
+          setTimeout(function() {
+            document.getElementById("passphraseForm").style.display = "none";
+            document.getElementById("alreadyConfirmed").style.display = "flex";
+          }, 2500);
+
+        } else {
+          input.classList.remove("ok");
+          input.classList.add("err");
+          setTimeout(function() { input.classList.remove("err"); }, 500);
+
+          result.style.display = "block";
+          result.className = "passphrase-result err";
+          result.textContent = "Passphrase not recognised. Complete the story and look for the word revealed at the end.";
+          NE.logEvent("story_passphrase_fail", { attempt: val });
+        }
+      }
+
+      document.getElementById("passphraseBtn").addEventListener("click", tryConfirm);
+      input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") tryConfirm();
+      });
+    });
+  </script>
+</body>
+</html>

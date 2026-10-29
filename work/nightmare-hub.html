@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Trafalgar Labyrinth — Yiyang Zhang</title>
+  <meta name="description" content="Trafalgar Labyrinth — a transmedia escape game across a web hub, a WebGAL visual novel, poster AR, a WebXR maze room and physical clues on Sheridan’s Trafalgar campus."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+    .phase-label--p1{background:#dbeafe;color:#1e40af}
+    .phase-label--p2{background:#fef3c7;color:#92400e}
+    .phase-label--p3{background:#d1fae5;color:#065f46}
+    .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1rem;margin:1rem 0 1.75rem;align-items:start}
+    .shots--wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+    .shots figure{margin:0}
+    .shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border)}
+    .shots figcaption{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.45}
+    .note{font-size:.9rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">Yiyang Zhang <small>Interaction Design</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
+          <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
+
+    <div class="project-hero">
+      <span class="eyebrow"><span data-lang="en">Case Study · Interactive Narrative · 2026</span><span data-lang="zh">案例研究 · 互动叙事 · 2026</span><span data-lang="tw">案例研究 · 互動敘事 · 2026</span><span data-lang="ja">ケーススタディ · インタラクティブ・ナラティブ · 2026</span><span data-lang="fr">Étude de cas · Narration interactive · 2026</span></span>
+      <h1><span data-lang="en">Trafalgar Labyrinth — a campus-wide escape across web, AR, VR and paper</span><span data-lang="zh">Trafalgar Labyrinth — 横跨网页、AR、VR 与实体空间的校园解谜</span><span data-lang="tw">Trafalgar Labyrinth — 橫跨網頁、AR、VR 與實體空間的校園解謎</span><span data-lang="ja">Trafalgar Labyrinth — ウェブ・AR・VR・紙をまたぐキャンパス脱出ゲーム</span><span data-lang="fr">Trafalgar Labyrinth — une évasion à l’échelle du campus, entre web, RA, RV et papier</span></h1>
+      <p data-lang="en">A transmedia escape game that turns the network of Sheridan’s Trafalgar campus into a labyrinth. A QR code on a poster drops players into a web hub as Theos, recruited by ARI to collect the six fragments of the password THREAD before the Minotaur system spreads — through web puzzles, a WebGAL visual novel, a poster AR scan, a WebXR maze room and an envelope hidden in the library. Built in 14 weeks by a team of three for VDES 34444; I led the team and built the hub.</p>
+      <p data-lang="zh">一款跨媒介解谜游戏，把谢尔丹学院 Trafalgar 校区的网络变成一座迷宫。玩家扫描海报上的二维码进入网页中枢，化身 Theos，受 ARI 之托，在“米诺陶”系统蔓延之前集齐密码 THREAD 的六个碎片——途经网页谜题、WebGAL 视觉小说、海报 AR 扫描、WebXR 迷宫房间，以及藏在图书馆里的一封信。这是 VDES 34444 的课程项目，三人团队用 14 周完成；我担任组长并开发了网页中枢。</p>
+      <p data-lang="tw">一款跨媒介解謎遊戲，把謝爾丹學院 Trafalgar 校區的網路變成一座迷宮。玩家掃描海報上的 QR Code 進入網頁中樞，化身 Theos，受 ARI 之託，在“米諾陶”系統蔓延之前集齊密碼 THREAD 的六個碎片——途經網頁謎題、WebGAL 視覺小說、海報 AR 掃描、WebXR 迷宮房間，以及藏在圖書館裡的一封信。這是 VDES 34444 的課程專案，三人團隊用 14 週完成；我擔任組長並開發了網頁中樞。</p>
+      <p data-lang="ja">シェリダン・カレッジ Trafalgar キャンパスのネットワークを迷宮に変える、トランスメディアの脱出ゲーム。ポスターの QR コードからウェブハブに入ったプレイヤーは Theos となり、ARI の依頼を受けて、ミノタウロス・システムが広がる前にパスワード THREAD の 6 つの欠片を集めます。舞台はウェブのパズル、WebGAL のビジュアルノベル、ポスターの AR スキャン、WebXR の迷路ルーム、そして図書館に隠された封筒。VDES 34444 の授業で 3 人のチームが 14 週間で制作し、私はチームリーダーとしてハブを開発しました。</p>
+      <p data-lang="fr">Un jeu d’évasion transmédia qui transforme le réseau du campus Trafalgar de Sheridan en labyrinthe. Un QR code sur une affiche fait entrer les joueurs dans un hub web sous les traits de Theos, recruté par ARI pour réunir les six fragments du mot de passe THREAD avant que le système Minotaure ne se propage — à travers des énigmes web, un visual novel WebGAL, un scan d’affiche en RA, une salle-labyrinthe WebXR et une enveloppe cachée à la bibliothèque. Réalisé en 14 semaines par une équipe de trois pour le cours VDES 34444 ; j’ai dirigé l’équipe et développé le hub.</p>
+      <div class="meta">
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></strong> <span data-lang="en">Team lead, web hub + WebGAL integration</span><span data-lang="zh">组长，网页中枢与 WebGAL 集成</span><span data-lang="tw">組長，網頁中樞與 WebGAL 整合</span><span data-lang="ja">チームリーダー、ウェブハブと WebGAL 連携</span><span data-lang="fr">Chef d’équipe, hub web + intégration WebGAL</span></span>
+        <span><strong><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></strong> HTML/CSS/JS, WebGAL, A-Frame, Zappar</span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></strong> <span data-lang="en">2 modes, 6 platforms, 3 endings, 4 rounds of campus testing</span><span data-lang="zh">2 种模式、6 个平台、3 个结局、4 轮校园测试</span><span data-lang="tw">2 種模式、6 個平臺、3 個結局、4 輪校園測試</span><span data-lang="ja">2 モード・6 プラットフォーム・3 エンディング・キャンパスでのテスト 4 回</span><span data-lang="fr">2 modes, 6 plateformes, 3 fins, 4 sessions de test sur le campus</span></span>
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <label><span data-lang="en">Play:</span><span data-lang="zh">试玩：</span><span data-lang="tw">試玩：</span><span data-lang="ja">プレイ：</span><span data-lang="fr">Jouer :</span></label>
+      <a class="btn" href="../nightmare-hub/index.html" target="_blank" rel="noopener"><span data-lang="en">Open the web hub ↗</span><span data-lang="zh">打开网页中枢 ↗</span><span data-lang="tw">開啟網頁中樞 ↗</span><span data-lang="ja">ウェブハブを開く ↗</span><span data-lang="fr">Ouvrir le hub web ↗</span></a>
+      <span class="note"><span data-lang="en">Entry code 713 (Normal) · 159 (Hard)</span><span data-lang="zh">入口代码 713（普通）· 159（困难）</span><span data-lang="tw">入口代碼 713（普通）· 159（困難）</span><span data-lang="ja">入口コード 713（ノーマル）· 159（ハード）</span><span data-lang="fr">Code d’entrée 713 (Normal) · 159 (Difficile)</span></span>
+    </div>
+
+    <div class="content">
+      <div class="tldr">
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
+        <dl>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">Keep one story coherent across four disconnected media, and hold a campus audience for 15 minutes.</span><span data-lang="zh">让一个故事在四种互不相连的媒介之间保持连贯，并让校园里的玩家投入 15 分钟。</span><span data-lang="tw">讓一個故事在四種互不相連的媒介之間保持連貫，並讓校園裡的玩家投入 15 分鐘。</span><span data-lang="ja">互いにつながっていない 4 つのメディアをまたいで 1 つの物語を破綻させず、キャンパスのプレイヤーを 15 分間引きつけること。</span><span data-lang="fr">Garder une histoire cohérente sur quatre médias déconnectés, et retenir un public étudiant pendant 15 minutes.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">Team lead. Built the web hub (state, routing, puzzles, the ARI guide panel) and integrated the WebGAL story. Henry: UI/UX and interaction. Andrew: AR/VR.</span><span data-lang="zh">组长。开发网页中枢（状态、路由、谜题、ARI 引导面板）并集成 WebGAL 剧情。Henry 负责 UI/UX 与交互，Andrew 负责 AR/VR。</span><span data-lang="tw">組長。開發網頁中樞（狀態、路由、謎題、ARI 引導面板）並整合 WebGAL 劇情。Henry 負責 UI/UX 與互動，Andrew 負責 AR/VR。</span><span data-lang="ja">チームリーダー。ウェブハブ（状態管理、ルーティング、パズル、ARI のガイドパネル）を開発し、WebGAL のストーリーを組み込みました。Henry は UI/UX とインタラクション、Andrew は AR/VR を担当。</span><span data-lang="fr">Chef d’équipe. J’ai développé le hub web (état, routage, énigmes, panneau du guide ARI) et intégré l’histoire WebGAL. Henry : UI/UX et interaction. Andrew : RA/RV.</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></dt><dd><span data-lang="en">Plain HTML/CSS/JS with localStorage, WebGAL, A-Frame / WebXR, Zappar Mattercraft, Leaflet</span><span data-lang="zh">原生 HTML/CSS/JS 与 localStorage、WebGAL、A-Frame / WebXR、Zappar Mattercraft、Leaflet</span><span data-lang="tw">原生 HTML/CSS/JS 與 localStorage、WebGAL、A-Frame / WebXR、Zappar Mattercraft、Leaflet</span><span data-lang="ja">素の HTML/CSS/JS と localStorage、WebGAL、A-Frame / WebXR、Zappar Mattercraft、Leaflet</span><span data-lang="fr">HTML/CSS/JS natif avec localStorage, WebGAL, A-Frame / WebXR, Zappar Mattercraft, Leaflet</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="tw">時間線</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">14 weeks · P1 Narrative → P2 Mapping → P3 Cognitive walkthrough</span><span data-lang="zh">14 周 · P1 叙事 → P2 路线图 → P3 认知走查</span><span data-lang="tw">14 週 · P1 敘事 → P2 路線圖 → P3 認知走查</span><span data-lang="ja">14 週間 · P1 ナラティブ → P2 マッピング → P3 認知的ウォークスルー</span><span data-lang="fr">14 semaines · P1 Narration → P2 Cartographie → P3 Parcours cognitif</span></dd></div>
+          <div><dt><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></dt><dd><span data-lang="en">Two pure structures instead of one hybrid; one config file drives every route; AR/VR are shortcuts, never gates</span><span data-lang="zh">用两种纯粹的结构代替一种混合结构；一个配置文件驱动所有路线；AR/VR 是捷径，而不是关卡</span><span data-lang="tw">用兩種純粹的結構代替一種混合結構；一個配置檔案驅動所有路線；AR/VR 是捷徑，而不是關卡</span><span data-lang="ja">ひとつの混合構造ではなく純粋な構造を 2 つ；1 つの設定ファイルがすべてのルートを動かす；AR/VR は近道であって関門ではない</span><span data-lang="fr">Deux structures pures plutôt qu’un hybride ; un seul fichier de configuration pilote chaque parcours ; la RA et la RV sont des raccourcis, jamais des barrières</span></dd></div>
+          <div><dt><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">Tester feedback moved from “I don’t know what to do” to “I want to play again on Hard Mode.”</span><span data-lang="zh">测试反馈从“我不知道该做什么”变成了“我想用困难模式再玩一遍”。</span><span data-lang="tw">測試回饋從“我不知道該做什麼”變成了“我想用困難模式再玩一遍”。</span><span data-lang="ja">テスターの声は「何をすればいいかわからない」から「ハードモードでもう一度遊びたい」に変わりました。</span><span data-lang="fr">Les retours sont passés de « je ne sais pas quoi faire » à « je veux rejouer en mode Difficile ».</span></dd></div>
+        </dl>
+      </div>
+
+      <img class="cover-img" src="nightmare-hub/hero-art.webp" alt="Nightmare Escape key art: a golden thread winding through a Greek labyrinth" data-alt-zh="Nightmare Escape 主视觉：一条金线穿过希腊式迷宫" data-alt-tw="Nightmare Escape 主視覺：一條金線穿過希臘式迷宮" data-alt-ja="Nightmare Escape のキービジュアル：ギリシャ風の迷宮を縫う金の糸" data-alt-fr="Visuel de Nightmare Escape : un fil d’or serpente dans un labyrinthe grec">
+
+      <h2><span data-lang="en">The problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Le problème</span></h2>
+      <p data-lang="en">Students walk past posters every day, and interactive fiction usually stays inside one browser tab. Spreading a story over web, AR, VR and physical objects risks fragmentation, and AR/VR reliability varies from phone to phone. We needed one mechanic to tie every touchpoint together — collecting the letters of THREAD — and an architecture where no single medium could strand a player.</p>
+      <p data-lang="zh">学生每天从海报前走过，而互动小说通常只停留在一个浏览器标签页里。把一个故事分散到网页、AR、VR 和实体物件上，很容易支离破碎；而 AR/VR 在不同手机上的稳定性也参差不齐。我们需要一个把所有触点串起来的机制——收集 THREAD 的字母——以及一套不会让玩家卡死在任何一种媒介上的架构。</p>
+      <p data-lang="tw">學生每天從海報前走過，而互動小說通常只停留在一個瀏覽器標籤頁裡。把一個故事分散到網頁、AR、VR 和實體物件上，很容易支離破碎；而 AR/VR 在不同手機上的穩定性也參差不齊。我們需要一個把所有觸點串起來的機制——收集 THREAD 的字母——以及一套不會讓玩家卡死在任何一種媒介上的架構。</p>
+      <p data-lang="ja">学生は毎日ポスターの前を素通りし、インタラクティブ・フィクションはたいてい 1 つのブラウザタブの中で完結します。物語をウェブ・AR・VR・実物に分散させるとバラバラになりやすく、AR/VR の安定性もスマートフォンによってまちまちです。すべての接点を 1 本につなぐ仕組み——THREAD の文字を集めること——と、どのメディアでもプレイヤーが行き詰まらない構造が必要でした。</p>
+      <p data-lang="fr">Les étudiants passent tous les jours devant des affiches, et la fiction interactive reste en général dans un seul onglet. Répartir une histoire entre web, RA, RV et objets physiques risque de la fragmenter, et la fiabilité de la RA/RV varie d’un téléphone à l’autre. Il nous fallait une mécanique qui relie chaque point de contact — réunir les lettres de THREAD — et une architecture où aucun média ne peut bloquer un joueur.</p>
+      <div class="shots">
+        <figure><img src="nightmare-hub/poster-clue.webp" alt="Entry poster — the intended first scan" data-alt-zh="入口海报——预期的第一次扫码" data-alt-tw="入口海報——預期的第一次掃描" data-alt-ja="入口ポスター——最初にスキャンしてもらう想定" data-alt-fr="Affiche d’entrée — le premier scan prévu" loading="lazy"><figcaption><span data-lang="en">Entry poster — the intended first scan</span><span data-lang="zh">入口海报——预期的第一次扫码</span><span data-lang="tw">入口海報——預期的第一次掃描</span><span data-lang="ja">入口ポスター——最初にスキャンしてもらう想定</span><span data-lang="fr">Affiche d’entrée — le premier scan prévu</span></figcaption></figure>
+        <figure><img src="nightmare-hub/poster-network.webp" alt="“Network notice” poster, made to read as real campus signage" data-alt-zh="“网络通知”海报，刻意做得像真实的校园告示" data-alt-tw="“網路通知”海報，刻意做得像真實的校園告示" data-alt-ja="本物の学内掲示に見えるよう作った「ネットワーク通知」ポスター" data-alt-fr="Affiche « avis réseau », conçue pour passer pour une vraie signalétique du campus" loading="lazy"><figcaption><span data-lang="en">“Network notice” poster, made to read as real campus signage</span><span data-lang="zh">“网络通知”海报，刻意做得像真实的校园告示</span><span data-lang="tw">“網路通知”海報，刻意做得像真實的校園告示</span><span data-lang="ja">本物の学内掲示に見えるよう作った「ネットワーク通知」ポスター</span><span data-lang="fr">Affiche « avis réseau », conçue pour passer pour une vraie signalétique du campus</span></figcaption></figure>
+      </div>
+
+      <h2><span data-lang="en">How it plays</span><span data-lang="zh">玩法</span><span data-lang="tw">玩法</span><span data-lang="ja">遊び方</span><span data-lang="fr">Comment on joue</span></h2>
+      <ul data-lang="en">
+        <li><strong>Normal Mode (string of pearls)</strong> — Entry → Puzzle 1 → 2 → 3 → Exit. AR and VR branch off after Puzzle 1 as optional shortcuts.</li>
+        <li><strong>Hard Mode (hub and spoke)</strong> — all six fragment nodes open at once, and the exit needs every one: three web puzzles, AR, VR and the physical envelope.</li>
+        <li>Guessing THREAD at the exit works at any time in Normal Mode; Hard Mode closes that shortcut.</li>
+        <li>Three endings — Won, Observed and Thread Weaver — depend on the player’s choices and how efficiently they moved through the maze. Finishing a run unlocks New Game+.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>普通模式（串珠式）</strong>——入口 → 谜题 1 → 2 → 3 → 出口。AR 与 VR 在谜题 1 之后作为可选捷径分出。</li>
+        <li><strong>困难模式（中心辐射式）</strong>——六个碎片节点同时开放，出口需要全部集齐：三个网页谜题、AR、VR 和实体信封。</li>
+        <li>普通模式下，随时在出口猜出 THREAD 都能过关；困难模式关闭了这条捷径。</li>
+        <li>三个结局——Won、Observed、Thread Weaver——取决于玩家的选择和穿越迷宫的效率。通关后解锁二周目（New Game+）。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>普通模式（串珠式）</strong>——入口 → 謎題 1 → 2 → 3 → 出口。AR 與 VR 在謎題 1 之後作為可選捷徑分出。</li>
+        <li><strong>困難模式（中心輻射式）</strong>——六個碎片節點同時開放，出口需要全部集齊：三個網頁謎題、AR、VR 和實體信封。</li>
+        <li>普通模式下，隨時在出口猜出 THREAD 都能過關；困難模式關閉了這條捷徑。</li>
+        <li>三個結局——Won、Observed、Thread Weaver——取決於玩家的選擇和穿越迷宮的效率。通關後解鎖二週目（New Game+）。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>ノーマルモード（ストリング・オブ・パールズ）</strong>——入口 → パズル 1 → 2 → 3 → 出口。AR と VR はパズル 1 の後に任意の近道として分岐します。</li>
+        <li><strong>ハードモード（ハブ＆スポーク）</strong>——6 つの欠片ノードが最初からすべて開き、出口にはその全部が必要：ウェブパズル 3 つ、AR、VR、そして実物の封筒。</li>
+        <li>ノーマルモードでは、出口でいつでも THREAD を当てればクリアできます。ハードモードではこの近道は使えません。</li>
+        <li>3 つのエンディング——Won、Observed、Thread Weaver——は、プレイヤーの選択と迷宮を進む効率で決まります。クリアすると New Game+ が解放されます。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Mode Normal (collier de perles)</strong> — Entrée → Énigme 1 → 2 → 3 → Sortie. La RA et la RV s’ouvrent après l’énigme 1 comme raccourcis facultatifs.</li>
+        <li><strong>Mode Difficile (en étoile)</strong> — les six nœuds de fragments s’ouvrent d’emblée, et la sortie les exige tous : trois énigmes web, la RA, la RV et l’enveloppe physique.</li>
+        <li>En mode Normal, deviner THREAD à la sortie fonctionne à tout moment ; le mode Difficile ferme ce raccourci.</li>
+        <li>Trois fins — Won, Observed et Thread Weaver — dépendent des choix du joueur et de l’efficacité de son parcours. Terminer une partie débloque un New Game+.</li>
+      </ul>
+      <div class="shots">
+        <figure><img src="nightmare-hub/hub-main.webp" alt="Hub — progress, route map and the ARI panel" data-alt-zh="中枢——进度、路线图和 ARI 面板" data-alt-tw="中樞——進度、路線圖和 ARI 面板" data-alt-ja="ハブ——進行状況、ルートマップ、ARI パネル" data-alt-fr="Hub — progression, carte des parcours et panneau ARI" loading="lazy"><figcaption><span data-lang="en">Hub — progress, route map and the ARI panel</span><span data-lang="zh">中枢——进度、路线图和 ARI 面板</span><span data-lang="tw">中樞——進度、路線圖和 ARI 面板</span><span data-lang="ja">ハブ——進行状況、ルートマップ、ARI パネル</span><span data-lang="fr">Hub — progression, carte des parcours et panneau ARI</span></figcaption></figure>
+        <figure><img src="nightmare-hub/hub-map.webp" alt="Campus map with the clue nodes" data-alt-zh="标注线索节点的校园地图" data-alt-tw="標註線索節點的校園地圖" data-alt-ja="手がかりノードを載せたキャンパスマップ" data-alt-fr="Carte du campus avec les nœuds d’indices" loading="lazy"><figcaption><span data-lang="en">Campus map with the clue nodes</span><span data-lang="zh">标注线索节点的校园地图</span><span data-lang="tw">標註線索節點的校園地圖</span><span data-lang="ja">手がかりノードを載せたキャンパスマップ</span><span data-lang="fr">Carte du campus avec les nœuds d’indices</span></figcaption></figure>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p1"><span data-lang="en">P1 — Narrative</span><span data-lang="zh">P1 — 叙事</span><span data-lang="tw">P1 — 敘事</span><span data-lang="ja">P1 — ナラティブ</span><span data-lang="fr">P1 — Narration</span></span>
+      <p data-lang="en">We chose the Theseus myth because it gives a clear antagonist (the Minotaur), guide (Ariadne, here ARI) and goal (escape), and it justifies every platform as another corridor of the maze. The Minotaur is a system, not a character: glitches, misdirected links and hostile messages. The player stays nameless so any student can step in.</p>
+      <p data-lang="zh">我们选择了忒修斯神话：它自带清晰的反派（米诺陶）、向导（阿里阿德涅，在这里是 ARI）和目标（逃出去），也让每个平台都顺理成章地成为迷宫里的又一条走廊。米诺陶不是一个角色，而是一个系统：故障、错误跳转的链接和充满敌意的提示。玩家没有名字，任何学生都能代入。</p>
+      <p data-lang="tw">我們選擇了忒修斯神話：它自帶清晰的反派（米諾陶）、嚮導（阿里阿德涅，在這裡是 ARI）和目標（逃出去），也讓每個平臺都順理成章地成為迷宮裡的又一條走廊。米諾陶不是一個角色，而是一個系統：故障、錯誤跳轉的連結和充滿敵意的提示。玩家沒有名字，任何學生都能代入。</p>
+      <p data-lang="ja">テセウス神話を選んだのは、明確な敵（ミノタウロス）、案内役（アリアドネ、ここでは ARI）、目的（脱出）がそろっていて、どのプラットフォームも迷宮の新しい通路として自然に位置づけられるからです。ミノタウロスはキャラクターではなくシステム——グリッチ、誤ったリンク、敵意のあるメッセージ。プレイヤーは名前を持たず、どの学生でも自分を重ねられます。</p>
+      <p data-lang="fr">Nous avons choisi le mythe de Thésée parce qu’il offre un antagoniste clair (le Minotaure), un guide (Ariane, ici ARI) et un but (s’échapper), et qu’il justifie chaque plateforme comme un couloir de plus du labyrinthe. Le Minotaure est un système, pas un personnage : bugs, liens détournés et messages hostiles. Le joueur reste anonyme pour que n’importe quel étudiant puisse s’y projeter.</p>
+        <ul data-lang="en">
+          <li><strong>Cut:</strong> a two-player AR puzzle that needed simultaneous scans. It worked in testing, but players meet the game alone.</li>
+          <li><strong>Cut:</strong> an AI-voiced ARI on the hub. So-VITS-SVC output felt uncanny, so the hub’s ARI became text-only; the physical ARI still speaks.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>砍掉：</strong>需要两人同时扫描的双人 AR 谜题。测试中可行，但玩家通常是一个人遇到这个游戏。</li>
+          <li><strong>砍掉：</strong>中枢里用 AI 配音的 ARI。So-VITS-SVC 的效果让人不适，于是中枢里的 ARI 改为纯文字；实体 ARI 仍然保留语音。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>砍掉：</strong>需要兩人同時掃描的雙人 AR 謎題。測試中可行，但玩家通常是一個人遇到這個遊戲。</li>
+          <li><strong>砍掉：</strong>中樞裡用 AI 配音的 ARI。So-VITS-SVC 的效果讓人不適，於是中樞裡的 ARI 改為純文字；實體 ARI 仍然保留語音。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>カット：</strong>2 人同時のスキャンが必要な協力型 AR パズル。テストでは動いたものの、プレイヤーはたいてい 1 人でゲームに出会います。</li>
+          <li><strong>カット：</strong>ハブ上の AI 音声の ARI。So-VITS-SVC の声が不気味だったため、ハブの ARI はテキストのみに。実体の ARI は今も話します。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>Abandonné :</strong> une énigme RA à deux joueurs exigeant des scans simultanés. Elle fonctionnait en test, mais on découvre le jeu seul.</li>
+          <li><strong>Abandonné :</strong> un ARI doublé par IA sur le hub. La voix So-VITS-SVC dérangeait, l’ARI du hub est donc passé au texte seul ; l’ARI physique parle toujours.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p2"><span data-lang="en">P2 — Mapping</span><span data-lang="zh">P2 — 路线图</span><span data-lang="tw">P2 — 路線圖</span><span data-lang="ja">P2 — マッピング</span><span data-lang="fr">P2 — Cartographie</span></span>
+        <p data-lang="en">Every path became a node with an ID, a type (web, AR, VR, physical, rabbit hole), hint text and the nodes it unlocks. That data lives in a single config.js the hub reads at runtime, so the map is the game logic, not a drawing of it — we could rebalance a route without touching the engine.</p>
+        <p data-lang="zh">每条路径都被拆成一个节点：ID、类型（网页、AR、VR、实体、兔子洞）、提示文字，以及它会解锁的节点。这些数据都放在一个 config.js 里，中枢在运行时读取——路线图就是游戏逻辑本身，而不是一张示意图。调整路线时完全不用改引擎。</p>
+        <p data-lang="tw">每條路徑都被拆成一個節點：ID、類型（網頁、AR、VR、實體、兔子洞）、提示文字，以及它會解鎖的節點。這些資料都放在一個 config.js 裡，中樞在執行時讀取——路線圖就是遊戲邏輯本身，而不是一張示意圖。調整路線時完全不用改引擎。</p>
+        <p data-lang="ja">すべての経路を、ID・種類（ウェブ、AR、VR、実物、ラビットホール）・ヒント文・解放するノードを持つノードにしました。データは 1 つの config.js にまとめ、ハブが実行時に読み込みます。マップは図ではなくゲームロジックそのもので、エンジンに触れずにルートを調整できました。</p>
+        <p data-lang="fr">Chaque parcours est devenu un nœud avec un identifiant, un type (web, RA, RV, physique, terrier), un texte d’indice et les nœuds qu’il débloque. Ces données vivent dans un seul config.js lu par le hub à l’exécution : la carte est la logique du jeu, pas un dessin — on pouvait rééquilibrer un parcours sans toucher au moteur.</p>
+        <p data-lang="en">We kept the two modes pure instead of fusing them, which made each one predictable to test. Dynamic difficulty was prototyped and dropped: it made runs impossible to compare.</p>
+        <p data-lang="zh">我们让两种模式各自保持纯粹，而不是揉成一种，这样每种模式都便于预测和测试。动态难度做过原型后被放弃：它让每一局都无法相互比较。</p>
+        <p data-lang="tw">我們讓兩種模式各自保持純粹，而不是揉成一種，這樣每種模式都便於預測和測試。動態難度做過原型後被放棄：它讓每一局都無法相互比較。</p>
+        <p data-lang="ja">2 つのモードは混ぜずにそれぞれ純粋に保ち、テストしやすくしました。動的難易度も試作しましたが、プレイ同士を比較できなくなるため見送りました。</p>
+        <p data-lang="fr">Nous avons gardé les deux modes purs plutôt que de les fusionner, ce qui rendait chacun prévisible à tester. La difficulté dynamique a été prototypée puis abandonnée : elle rendait les parties impossibles à comparer.</p>
+        <div class="shots shots--wide">
+          <figure><img src="nightmare-hub/hard-mode-map.webp" alt="Hard Mode: six fragments around one hub" data-alt-zh="困难模式：围绕一个中枢的六个碎片" data-alt-tw="困難模式：圍繞一個中樞的六個碎片" data-alt-ja="ハードモード：1 つのハブを囲む 6 つの欠片" data-alt-fr="Mode Difficile : six fragments autour d’un hub" loading="lazy"><figcaption><span data-lang="en">Hard Mode: six fragments around one hub</span><span data-lang="zh">困难模式：围绕一个中枢的六个碎片</span><span data-lang="tw">困難模式：圍繞一個中樞的六個碎片</span><span data-lang="ja">ハードモード：1 つのハブを囲む 6 つの欠片</span><span data-lang="fr">Mode Difficile : six fragments autour d’un hub</span></figcaption></figure>
+          <figure><img src="nightmare-hub/platform-flow.webp" alt="Platform flow from the poster to the three exits" data-alt-zh="从海报到三个出口的平台流程" data-alt-tw="從海報到三個出口的平臺流程" data-alt-ja="ポスターから 3 つの出口までのプラットフォームの流れ" data-alt-fr="Parcours des plateformes, de l’affiche aux trois sorties" loading="lazy"><figcaption><span data-lang="en">Platform flow from the poster to the three exits</span><span data-lang="zh">从海报到三个出口的平台流程</span><span data-lang="tw">從海報到三個出口的平臺流程</span><span data-lang="ja">ポスターから 3 つの出口までのプラットフォームの流れ</span><span data-lang="fr">Parcours des plateformes, de l’affiche aux trois sorties</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p3"><span data-lang="en">P3 — Walkthrough &amp; testing</span><span data-lang="zh">P3 — 走查与测试</span><span data-lang="tw">P3 — 走查與測試</span><span data-lang="ja">P3 — ウォークスルーとテスト</span><span data-lang="fr">P3 — Parcours cognitif et tests</span></span>
+        <p data-lang="en">Four rounds of in-person testing on campus. Watching testers freeze right after the QR scan told us more than any survey could, and every change below came from that.</p>
+        <p data-lang="zh">我们在校园里做了四轮面对面测试。亲眼看到测试者扫完二维码就愣住，比任何问卷都更有说服力——下面的每一项改动都来自这样的观察。</p>
+        <p data-lang="tw">我們在校園裡做了四輪面對面測試。親眼看到測試者掃完 QR Code 就愣住，比任何問卷都更有說服力——下面的每一項改動都來自這樣的觀察。</p>
+        <p data-lang="ja">キャンパスで対面テストを 4 回行いました。QR コードを読み取った直後に固まってしまうテスターを見ることは、どんなアンケートよりも多くを教えてくれました。以下の変更はすべてそこから生まれています。</p>
+        <p data-lang="fr">Quatre sessions de tests en personne sur le campus. Voir des testeurs se figer juste après le scan du QR code nous en a appris plus qu’un sondage, et chaque changement ci-dessous en découle.</p>
+        <ul data-lang="en">
+          <li><strong>User guide</strong> — testers didn’t understand the objective after scanning.</li>
+          <li><strong>Progress bar and route map</strong> — players lost track of which fragments they had.</li>
+          <li><strong>Progress import/export</strong> — 15 minutes was optimistic, so a run can be resumed later with a code.</li>
+          <li><strong>A real ending screen</strong> — typing the password and simply stopping felt abrupt.</li>
+          <li><strong>Gentler pressure</strong> — a countdown timer became a subtle heat meter, and a free-text ARI chatbot became quick-action hint buttons.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>新手指引</strong>——测试者扫码后不明白目标是什么。</li>
+          <li><strong>进度条与路线图</strong>——玩家记不清自己拿到了哪些碎片。</li>
+          <li><strong>进度导入/导出</strong>——15 分钟的预估偏乐观，现在可以凭一段代码稍后继续。</li>
+          <li><strong>真正的结局页面</strong>——输完密码就戛然而止，太突兀了。</li>
+          <li><strong>更温和的压迫感</strong>——倒计时改成了含蓄的“热度”指示，自由输入的 ARI 聊天机器人改成了快捷提示按钮。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>新手指引</strong>——測試者掃描後不明白目標是什麼。</li>
+          <li><strong>進度條與路線圖</strong>——玩家記不清自己拿到了哪些碎片。</li>
+          <li><strong>進度匯入/匯出</strong>——15 分鐘的預估偏樂觀，現在可以憑一段代碼稍後繼續。</li>
+          <li><strong>真正的結局頁面</strong>——輸完密碼就戛然而止，太突兀了。</li>
+          <li><strong>更溫和的壓迫感</strong>——倒計時改成了含蓄的“熱度”指示，自由輸入的 ARI 聊天機器人改成了快捷提示按鈕。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>ユーザーガイド</strong>——スキャン後、テスターは目的を理解できていませんでした。</li>
+          <li><strong>進行バーとルートマップ</strong>——どの欠片を持っているか、プレイヤーが把握できなくなっていました。</li>
+          <li><strong>進行状況のインポート／エクスポート</strong>——15 分という見積もりは楽観的だったため、コードで後から再開できるようにしました。</li>
+          <li><strong>きちんとしたエンディング画面</strong>——パスワードを入れて終わるだけでは唐突でした。</li>
+          <li><strong>やわらかいプレッシャー</strong>——カウントダウンは控えめなヒートメーターに、自由入力の ARI チャットボットはワンタップのヒントボタンに変えました。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>Guide de démarrage</strong> — après le scan, les testeurs ne comprenaient pas l’objectif.</li>
+          <li><strong>Barre de progression et carte</strong> — les joueurs ne savaient plus quels fragments ils avaient.</li>
+          <li><strong>Import/export de la progression</strong> — 15 minutes était optimiste ; une partie peut reprendre plus tard grâce à un code.</li>
+          <li><strong>Un véritable écran de fin</strong> — taper le mot de passe puis s’arrêter net semblait abrupt.</li>
+          <li><strong>Une pression plus douce</strong> — le compte à rebours est devenu une jauge de chaleur discrète, et le chatbot ARI en texte libre, des boutons d’indice rapides.</li>
+        </ul>
+        <div class="shots">
+          <figure><img src="nightmare-hub/testing.webp" alt="Testing notes and the fixes they led to" data-alt-zh="测试记录及由此带来的改动" data-alt-tw="測試記錄及由此帶來的改動" data-alt-ja="テストの記録と、そこから生まれた修正" data-alt-fr="Notes de test et corrections qui en découlent" loading="lazy"><figcaption><span data-lang="en">Testing notes and the fixes they led to</span><span data-lang="zh">测试记录及由此带来的改动</span><span data-lang="tw">測試記錄及由此帶來的改動</span><span data-lang="ja">テストの記録と、そこから生まれた修正</span><span data-lang="fr">Notes de test et corrections qui en découlent</span></figcaption></figure>
+          <figure><img src="nightmare-hub/ending-screen.webp" alt="Ending screen with rank and run stats" data-alt-zh="带评级与本局数据的结局页面" data-alt-tw="帶評級與本局資料的結局頁面" data-alt-ja="ランクとプレイ記録を表示するエンディング画面" data-alt-fr="Écran de fin avec rang et statistiques de la partie" loading="lazy"><figcaption><span data-lang="en">Ending screen with rank and run stats</span><span data-lang="zh">带评级与本局数据的结局页面</span><span data-lang="tw">帶評級與本局資料的結局頁面</span><span data-lang="ja">ランクとプレイ記録を表示するエンディング画面</span><span data-lang="fr">Écran de fin avec rang et statistiques de la partie</span></figcaption></figure>
+        </div>
+      </div>
+
+      <h2><span data-lang="en">The six platforms</span><span data-lang="zh">六个平台</span><span data-lang="tw">六個平臺</span><span data-lang="ja">6 つのプラットフォーム</span><span data-lang="fr">Les six plateformes</span></h2>
+      <p data-lang="en">Every platform hands back to the hub. When VR crashed on one tester’s phone, the web hub still carried them to a valid ending.</p>
+      <p data-lang="zh">每个平台最终都会回到中枢。有一位测试者的手机上 VR 崩溃了，但网页中枢依然让这局游戏走到了有效的结局。</p>
+      <p data-lang="tw">每個平臺最終都會回到中樞。有一位測試者的手機上 VR 崩潰了，但網頁中樞依然讓這局遊戲走到了有效的結局。</p>
+      <p data-lang="ja">どのプラットフォームも最後はハブに戻ります。あるテスターのスマートフォンで VR が落ちたときも、ウェブハブがきちんとしたエンディングまで導きました。</p>
+      <p data-lang="fr">Chaque plateforme renvoie au hub. Quand la RV a planté sur le téléphone d’un testeur, le hub web l’a tout de même mené à une fin valide.</p>
+      <div class="shots">
+        <figure><img src="nightmare-hub/webgal-choice.webp" alt="WebGAL story layer — a branching choice" data-alt-zh="WebGAL 剧情层——一次分支选择" data-alt-tw="WebGAL 劇情層——一次分支選擇" data-alt-ja="WebGAL のストーリー層——分岐する選択肢" data-alt-fr="Couche narrative WebGAL — un choix à embranchements" loading="lazy"><figcaption><span data-lang="en">WebGAL story layer — a branching choice</span><span data-lang="zh">WebGAL 剧情层——一次分支选择</span><span data-lang="tw">WebGAL 劇情層——一次分支選擇</span><span data-lang="ja">WebGAL のストーリー層——分岐する選択肢</span><span data-lang="fr">Couche narrative WebGAL — un choix à embranchements</span></figcaption></figure>
+        <figure><img src="nightmare-hub/vr-room.webp" alt="WebXR maze room (Andrew)" data-alt-zh="WebXR 迷宫房间（Andrew）" data-alt-tw="WebXR 迷宮房間（Andrew）" data-alt-ja="WebXR の迷路ルーム（Andrew）" data-alt-fr="Salle-labyrinthe WebXR (Andrew)" loading="lazy"><figcaption><span data-lang="en">WebXR maze room (Andrew)</span><span data-lang="zh">WebXR 迷宫房间（Andrew）</span><span data-lang="tw">WebXR 迷宮房間（Andrew）</span><span data-lang="ja">WebXR の迷路ルーム（Andrew）</span><span data-lang="fr">Salle-labyrinthe WebXR (Andrew)</span></figcaption></figure>
+        <figure><img src="nightmare-hub/ar-overlay.webp" alt="Poster AR overlay revealing the shortcut clue" data-alt-zh="海报 AR 叠加层，揭示捷径线索" data-alt-tw="海報 AR 疊加層，揭示捷徑線索" data-alt-ja="近道の手がかりを表示するポスター AR" data-alt-fr="Surcouche RA de l’affiche révélant l’indice du raccourci" loading="lazy"><figcaption><span data-lang="en">Poster AR overlay revealing the shortcut clue</span><span data-lang="zh">海报 AR 叠加层，揭示捷径线索</span><span data-lang="tw">海報 AR 疊加層，揭示捷徑線索</span><span data-lang="ja">近道の手がかりを表示するポスター AR</span><span data-lang="fr">Surcouche RA de l’affiche révélant l’indice du raccourci</span></figcaption></figure>
+        <figure><img src="nightmare-hub/ari-helper.webp" alt="ARI, the physical helper revealed at the true ending" data-alt-zh="ARI——在真结局时现身的实体助手" data-alt-tw="ARI——在真結局時現身的實體助手" data-alt-ja="ARI——真エンディングで姿を現す実体のヘルパー" data-alt-fr="ARI, l’assistant physique révélé à la vraie fin" loading="lazy"><figcaption><span data-lang="en">ARI, the physical helper revealed at the true ending</span><span data-lang="zh">ARI——在真结局时现身的实体助手</span><span data-lang="tw">ARI——在真結局時現身的實體助手</span><span data-lang="ja">ARI——真エンディングで姿を現す実体のヘルパー</span><span data-lang="fr">ARI, l’assistant physique révélé à la vraie fin</span></figcaption></figure>
+        <figure><img src="nightmare-hub/envelope.webp" alt="Envelope hidden in the library" data-alt-zh="藏在图书馆里的信封" data-alt-tw="藏在圖書館裡的信封" data-alt-ja="図書館に隠された封筒" data-alt-fr="Enveloppe cachée à la bibliothèque" loading="lazy"><figcaption><span data-lang="en">Envelope hidden in the library</span><span data-lang="zh">藏在图书馆里的信封</span><span data-lang="tw">藏在圖書館裡的信封</span><span data-lang="ja">図書館に隠された封筒</span><span data-lang="fr">Enveloppe cachée à la bibliothèque</span></figcaption></figure>
+      </div>
+
+      <h2><span data-lang="en">What I learned</span><span data-lang="zh">收获</span><span data-lang="tw">收穫</span><span data-lang="ja">学んだこと</span><span data-lang="fr">Ce que j’en retiens</span></h2>
+      <ul data-lang="en">
+        <li><strong>Test in person, early.</strong> Seeing someone freeze at the entry screen beat fifty “it was fine” survey answers.</li>
+        <li><strong>Design for failure.</strong> With AR and VR required, the job was anticipating device and user errors so no node could strand a player.</li>
+        <li><strong>Use AI where it pays.</strong> It sped up 3D concept models and asset ideas; video editing and some debugging were faster by hand.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>尽早做面对面测试。</strong>亲眼看到有人在入口页愣住，胜过五十份写着“还行”的问卷。</li>
+        <li><strong>为失败而设计。</strong>既然 AR 和 VR 是必选项，关键就在于预判设备和用户的各种出错，确保没有任何一个节点会把玩家困住。</li>
+        <li><strong>把 AI 用在值得的地方。</strong>它加快了 3D 概念模型和素材构思；而剪视频和部分调试，手动反而更快。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>儘早做面對面測試。</strong>親眼看到有人在入口頁愣住，勝過五十份寫著“還行”的問卷。</li>
+        <li><strong>為失敗而設計。</strong>既然 AR 和 VR 是必選項，關鍵就在於預判裝置和使用者的各種出錯，確保沒有任何一個節點會把玩家困住。</li>
+        <li><strong>把 AI 用在值得的地方。</strong>它加快了 3D 概念模型和素材構思；而剪影片和部分除錯，手動反而更快。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>早めに、対面でテストする。</strong>入口画面で固まる人を一度見るほうが、「問題なかった」というアンケート 50 件よりも役に立ちます。</li>
+        <li><strong>失敗を前提に設計する。</strong>AR と VR が必須である以上、端末やユーザーのミスを先回りして、どのノードでもプレイヤーが行き詰まらないようにすることが仕事でした。</li>
+        <li><strong>AI は効果のあるところで使う。</strong>3D のコンセプトモデルや素材のアイデア出しは速くなりましたが、動画編集や一部のデバッグは手作業のほうが速かったです。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Tester tôt, en personne.</strong> Voir quelqu’un se figer sur l’écran d’entrée vaut mieux que cinquante réponses « c’était bien ».</li>
+        <li><strong>Concevoir pour l’échec.</strong> La RA et la RV étant obligatoires, il fallait anticiper les erreurs d’appareil et d’utilisateur pour qu’aucun nœud ne bloque un joueur.</li>
+        <li><strong>Utiliser l’IA là où elle rapporte.</strong> Elle a accéléré les modèles 3D de concept et les idées d’assets ; le montage vidéo et une partie du débogage allaient plus vite à la main.</li>
+      </ul>
+
+      <h2><span data-lang="en">Credits</span><span data-lang="zh">致谢</span><span data-lang="tw">致謝</span><span data-lang="ja">クレジット</span><span data-lang="fr">Crédits</span></h2>
+      <p data-lang="en">Team Nightmare Escape — Yiyang Zhang (team lead, code), Henry (UI/UX and interaction), Andrew (AR/VR). VDES 34444 Interactive Narrative, Sheridan College, Winter 2026.</p>
+      <p data-lang="zh">Nightmare Escape 小组——Yiyang Zhang（组长、开发）、Henry（UI/UX 与交互）、Andrew（AR/VR）。谢尔丹学院 VDES 34444 互动叙事课程，2026 年冬季学期。</p>
+      <p data-lang="tw">Nightmare Escape 小組——Yiyang Zhang（組長、開發）、Henry（UI/UX 與互動）、Andrew（AR/VR）。謝爾丹學院 VDES 34444 互動敘事課程，2026 年冬季學期。</p>
+      <p data-lang="ja">チーム Nightmare Escape——Yiyang Zhang（チームリーダー、開発）、Henry（UI/UX とインタラクション）、Andrew（AR/VR）。シェリダン・カレッジ VDES 34444 インタラクティブ・ナラティブ、2026 年冬学期。</p>
+      <p data-lang="fr">Équipe Nightmare Escape — Yiyang Zhang (chef d’équipe, code), Henry (UI/UX et interaction), Andrew (RA/RV). VDES 34444 Narration interactive, Sheridan College, hiver 2026.</p>
+      <p data-lang="en">Related: <a href="nightmare-escape.html">梦魇逃亡 Nightmare Escape</a>, the visual novel I’m developing for Steam.</p>
+      <p data-lang="zh">相关：<a href="nightmare-escape.html">梦魇逃亡</a>，我正在为 Steam 开发的视觉小说。</p>
+      <p data-lang="tw">相關：<a href="nightmare-escape.html">梦魇逃亡</a>，我正在為 Steam 開發的視覺小說。</p>
+      <p data-lang="ja">関連：<a href="nightmare-escape.html">梦魇逃亡 Nightmare Escape</a>——Steam 向けに開発中のビジュアルノベル。</p>
+      <p data-lang="fr">Voir aussi : <a href="nightmare-escape.html">梦魇逃亡 Nightmare Escape</a>, le visual novel que je développe pour Steam.</p>
+    </div>
+
+    <nav class="pager" aria-label="Case studies">
+      <a class="prev" href="solar.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>Solar + Storage for AI Compute</b></a>
+      <a class="next" href="nightmare-escape.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>梦魇逃亡 Nightmare Escape</b></a>
+    </nav>
+    <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
+  </div>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>&copy; Yiyang Zhang</span>
+      <a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">苏ICP备2024103495号</a>
+    </div>
+  </footer>
+
+  <script>
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;var btn=document.getElementById('themeToggle');var KEY='siteTheme';
+  function apply(t){root.setAttribute('data-theme',t);if(btn)btn.textContent=t==='dark'?'\u2600':'\u263E';try{localStorage.setItem(KEY,t);}catch(_){}}
+  var s;try{s=localStorage.getItem(KEY);}catch(_){}
+  if(s){apply(s);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn)btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+/* ===== i18n ===== */
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);im.alt=(ak&&im.getAttribute('data-alt-'+ak))||im.getAttribute('data-alt-en');});try{localStorage.setItem('siteLang',l);}catch(_){}}
+document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
+  </script>
+</body>
+</html>

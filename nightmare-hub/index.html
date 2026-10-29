@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Enter</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <style>
+    .ob-hero {
+      text-align:center;padding:60px 20px 40px;min-height:80vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .ob-hero::before {
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse at 50% 30%,rgba(74,108,247,0.12) 0%,transparent 70%);
+      pointer-events:none;
+    }
+    .ob-hero-title {
+      font-size:clamp(2rem,6vw,3.5rem);font-weight:200;letter-spacing:0.05em;line-height:1.15;margin:0 0 16px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:heroFI 1.2s ease both;
+    }
+    .ob-hero-sub {
+      font-size:1.05rem;color:var(--muted);max-width:500px;line-height:1.6;margin:0 0 8px;
+      animation:heroFI 1.2s ease 0.3s both;
+    }
+    .ob-hero-time {
+      display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:999px;
+      background:rgba(74,108,247,0.08);border:1px solid rgba(74,108,247,0.15);
+      color:var(--accent);font-size:0.8rem;font-weight:600;margin-top:12px;
+      animation:heroFI 1s ease 0.6s both;
+    }
+    .ob-scroll-cue {margin-top:32px;font-size:0.75rem;color:var(--muted);animation:scBounce 2s ease-in-out infinite;}
+    @keyframes heroFI{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes scBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+    .scrolly-section{display:flex;position:relative;}
+    .scrolly-steps{flex:1;position:relative;z-index:2;}
+    .scrolly-sticky{flex:0 0 380px;position:sticky;top:80px;height:fit-content;padding:20px;z-index:1;}
+    @media(max-width:800px){
+      .scrolly-section{flex-direction:column;}
+      .scrolly-sticky{position:sticky;top:60px;flex:none;width:100%;padding:12px;background:var(--bg);border-bottom:1px solid var(--border);z-index:10;max-height:220px;overflow:hidden;}
+    }
+    .step-card{min-height:70vh;display:flex;align-items:center;padding:40px 20px;opacity:0.25;transition:opacity 0.5s ease;}
+    .step-card.is-active{opacity:1;}
+    .step-inner{max-width:460px;}
+    .step-number{display:inline-block;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;background:var(--accent);color:#fff;font-size:0.8rem;font-weight:700;margin-bottom:12px;}
+    .step-inner h2{font-size:1.3rem;font-weight:600;margin:0 0 10px;}
+    .step-inner p{color:var(--muted);font-size:0.95rem;line-height:1.7;margin:0 0 12px;}
+    .step-detail{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;font-size:0.85rem;color:var(--fg);line-height:1.6;}
+    .viz-container{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;text-align:center;}
+    .viz-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin:0 0 12px;font-weight:600;}
+    #vizSVG{width:100%;max-height:260px;}
+    #vizSVG .viz-node{transition:all 0.5s ease;}
+    #vizSVG .viz-node circle{fill:var(--bg3);stroke:var(--muted);stroke-width:2;}
+    #vizSVG .viz-node.highlight circle{fill:var(--accent);stroke:var(--accent);}
+    #vizSVG .viz-node.highlight text{fill:#fff;font-weight:600;}
+    #vizSVG .viz-node text{fill:var(--muted);font-size:10px;font-family:var(--font);}
+    #vizSVG .viz-edge{stroke:var(--border);stroke-width:1.5;fill:none;}
+    #vizSVG .viz-edge.highlight{stroke:var(--accent);stroke-width:2.5;}
+    .viz-counter{display:flex;justify-content:center;gap:16px;margin-top:14px;flex-wrap:wrap;}
+    .viz-count-val{font-size:1.5rem;font-weight:700;color:var(--accent);transition:color 0.3s;}
+    .viz-count-val.active{color:var(--ok);}
+    .viz-count-label{font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+    .entry-gate{text-align:center;padding:40px 20px 60px;}
+    .entry-gate h2{font-size:1.5rem;margin:0 0 8px;}
+    .entry-gate p{color:var(--muted);margin:0 0 20px;}
+    .gate-input-wrap{max-width:320px;margin:0 auto;}
+    .gate-glow{padding:24px;border:2px solid var(--accent);border-radius:var(--radius-lg);background:rgba(74,108,247,0.04);box-shadow:0 0 40px var(--accent-glow);animation:gGlow 3s ease-in-out infinite;}
+    @keyframes gGlow{0%,100%{box-shadow:0 0 30px var(--accent-glow)}50%{box-shadow:0 0 60px var(--accent-glow),0 0 100px rgba(74,108,247,0.05)}}
+    .music-toggle{position:fixed;bottom:16px;right:16px;z-index:100;background:var(--bg2);border:1px solid var(--border);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;box-shadow:var(--shadow);transition:all var(--transition);}
+    .music-toggle:hover{border-color:var(--accent);box-shadow:0 4px 16px var(--accent-glow);}
+    /* Mode selection */
+    .mode-select-section{text-align:center;padding:40px 20px 20px;}
+    .mode-select-section h2{font-size:1.5rem;margin:0 0 8px;}
+    .mode-cards{display:grid;grid-template-columns:1fr;gap:16px;max-width:640px;margin:20px auto;}
+    @media(min-width:600px){.mode-cards{grid-template-columns:1fr 1fr;}}
+    .mode-card{display:block;background:var(--bg3);border:2px solid var(--border);border-radius:var(--radius-lg);padding:24px 20px;text-align:center;cursor:pointer;transition:all var(--transition);color:var(--fg);}
+    .mode-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px var(--accent-glow);}
+    .mode-card.selected{border-color:var(--accent);background:rgba(74,108,247,0.06);}
+    .mode-card .mode-icon{font-size:2.5rem;margin-bottom:10px;}
+    .mode-card h3{margin:0 0 6px;font-size:1.1rem;}
+    .mode-card p{margin:0;font-size:0.85rem;color:var(--muted);line-height:1.5;}
+    .mode-tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;}
+    .mode-tag.rec{background:var(--accent);color:#fff;}
+    .mode-tag.hard-tag{background:var(--danger);color:#fff;}
+    .ngplus-banner{max-width:640px;margin:0 auto 20px;padding:16px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius);text-align:center;font-size:0.9rem;color:var(--fg);animation:heroFI 0.8s ease both;}
+    .ngplus-banner strong{color:var(--warn);}
+  </style>
+</head>
+<body>
+  <header data-ne-header></header>
+
+  <button class="music-toggle" id="musicToggle" aria-label="Toggle background music" title="Toggle music">🔇</button>
+  <audio id="bgMusic" src="assets/audio/ambient.mp3" loop preload="none"></audio>
+
+  <main id="main">
+    <!-- Resume state -->
+    <div id="resumeState" class="wrap" style="display:none;">
+      <section class="card" style="text-align:center;padding:40px;">
+        <h1 class="h1">Welcome Back, Survivor</h1>
+        <div id="ariBubbleResume" class="bubble" aria-live="polite"></div>
+        <p class="p">Your session is active. The labyrinth awaits.</p>
+        <a href="hub.html" class="btn primary full" style="max-width:360px;margin:16px auto;">Resume Session →</a>
+        <div style="margin-top:12px;">
+          <a href="#entryGate" class="muted" style="font-size:0.8rem;" id="reenterLink">Re-enter with a different code</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Onboarding -->
+    <div id="onboardingWrap">
+
+      <div class="ob-hero">
+        <h1 class="ob-hero-title">Trafalgar<br>Labyrinth</h1>
+        <p class="ob-hero-sub">A cybernetic labyrinth has locked down the Sheridan Trafalgar campus. Navigate the maze, solve puzzles, collect fragments — and find the exit code before the Minotaur System finds you.</p>
+        <div class="ob-hero-time">⏱ Estimated play time: 15–30 minutes</div>
+        <div class="ob-scroll-cue">↓ Scroll to begin ↓</div>
+      </div>
+
+      <div class="scrolly-section" id="scrollySection">
+        <div class="scrolly-steps" id="scrollySteps">
+
+          <div class="step-card" data-step="1">
+            <div class="step-inner">
+              <div class="step-number">1</div>
+              <h2>You Are a Participant</h2>
+              <p>The <strong>Minotaur System</strong> has infiltrated the campus network. You've been recruited to shut it down.</p>
+              <p>Your guide is <strong>ARI</strong>, a distributed guidance system. ARI offers directions — but the Minotaur can mimic its signal. Trust wisely.</p>
+              <div class="step-detail">⚡ <strong>Core tension:</strong> Is ARI helping you, or herding you? One wrong turn and the labyrinth closes.</div>
+            </div>
+          </div>
+
+          <div class="step-card" data-step="2">
+            <div class="step-inner">
+              <div class="step-number">2</div>
+              <h2>Solve Puzzles, Collect Fragments</h2>
+              <p>The labyrinth contains <strong>3 puzzles</strong> — each with 4 choices. Pick correctly to advance. <strong>Pick wrong and it's a dead end</strong> — you'll have to start over.</p>
+              <p>Along the way, collect evidence from physical clues, AR scans, and lore archives.</p>
+              <div class="step-detail">⚠️ <strong>No second chances:</strong> Each puzzle is single-choice. Choose carefully — wrong answers end your run.</div>
+            </div>
+          </div>
+
+          <div class="step-card" data-step="3">
+            <div class="step-inner">
+              <div class="step-number">3</div>
+              <h2>The Hub Is Your Home Base</h2>
+              <p>After entering your code, the <strong>Hub</strong> becomes your command center. It shows progress, unlocked nodes, and the next step.</p>
+              <p>Navigate between puzzles, physical clues, AR experiences, and more.</p>
+              <div class="step-detail">🧭 <strong>Route:</strong> Entry → Puzzle 1 → Puzzle 2 → Puzzle 3 → Exit Terminal<br><span style="font-size:0.8em;color:var(--muted);">Puzzle 1 also unlocks Physical & AR exploration nodes.</span></div>
+            </div>
+          </div>
+
+          <div class="step-card" data-step="4">
+            <div class="step-inner">
+              <div class="step-number">4</div>
+              <h2>Physical + Digital Touchpoints</h2>
+              <p>The labyrinth extends into the <strong>real campus</strong>:</p>
+              <div class="step-detail">
+                📦 <strong>Physical:</strong> Find hidden envelopes and fragment cards.<br><br>
+                📷 <strong>AR:</strong> Scan QR codes and AR markers.<br><br>
+                🗺️ <strong>Map:</strong> A live map shows node locations on campus.<br><br>
+                🥽 <strong>VR:</strong> Optional immersive maze-room experience.
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card" data-step="5">
+            <div class="step-inner">
+              <div class="step-number">5</div>
+              <h2>Enter the Labyrinth</h2>
+              <p>You need a <strong>3-digit entry code</strong> to begin. Got it from a poster, QR scan, or team member? Enter it on the numpad below.</p>
+              <p class="muted" style="font-size:0.8rem;">The code is on the entry poster at the venue.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="scrolly-sticky" id="scrollySticky">
+          <div class="viz-container">
+            <div class="viz-title" id="vizLabel">The Labyrinth</div>
+            <svg id="vizSVG" viewBox="0 0 380 200" aria-hidden="true">
+              <!-- Main chain -->
+              <line class="viz-edge" id="ve-start-p1" x1="56" y1="100" x2="99" y2="100"/>
+              <line class="viz-edge" id="ve-p1-p2" x1="131" y1="100" x2="179" y2="100"/>
+              <line class="viz-edge" id="ve-p2-p3" x1="211" y1="100" x2="259" y2="100"/>
+              <line class="viz-edge" id="ve-p3-exit" x1="291" y1="100" x2="339" y2="100"/>
+              <!-- Branches from P1: Phys (top), AR (bottom-left), VR (bottom-right) -->
+              <line class="viz-edge" id="ve-p1-phys" x1="123" y1="87" x2="159" y2="50"/>
+              <line class="viz-edge" id="ve-p1-ar" x1="123" y1="113" x2="145" y2="150"/>
+              <line class="viz-edge" id="ve-p1-vr" x1="127" y1="113" x2="192" y2="150" stroke-dasharray="4 3" opacity="0.7"/>
+              <!-- Diag optional -->
+              <line class="viz-edge" id="ve-p2-diag" x1="195" y1="116" x2="195" y2="145" stroke-dasharray="4 3" opacity="0.5"/>
+              <!-- Nodes -->
+              <g class="viz-node" id="vn-start"><circle cx="40" cy="100" r="16"/><text x="40" y="104" text-anchor="middle">Entry</text></g>
+              <g class="viz-node" id="vn-p1"><circle cx="115" cy="100" r="16"/><text x="115" y="104" text-anchor="middle">P1</text></g>
+              <g class="viz-node" id="vn-phys"><circle cx="168" cy="42" r="13"/><text x="168" y="46" text-anchor="middle" font-size="9">Phys</text></g>
+              <g class="viz-node" id="vn-ar"><circle cx="150" cy="158" r="13"/><text x="150" y="162" text-anchor="middle" font-size="9">AR</text></g>
+              <g class="viz-node" id="vn-vr"><circle cx="200" cy="158" r="13"/><text x="200" y="162" text-anchor="middle" font-size="9">VR</text></g>
+              <g class="viz-node" id="vn-p2"><circle cx="195" cy="100" r="16"/><text x="195" y="104" text-anchor="middle">P2</text></g>
+              <g class="viz-node" id="vn-diag"><circle cx="245" cy="160" r="11"/><text x="245" y="164" text-anchor="middle" font-size="8">Diag</text></g>
+              <g class="viz-node" id="vn-p3"><circle cx="275" cy="100" r="16"/><text x="275" y="104" text-anchor="middle">P3</text></g>
+              <g class="viz-node" id="vn-exit"><circle cx="355" cy="100" r="16"/><text x="355" y="104" text-anchor="middle">Exit</text></g>
+            </svg>
+            <div class="viz-counter" id="vizCounters">
+              <div class="viz-count-item"><div class="viz-count-val" id="vc-nodes">0</div><div class="viz-count-label">Nodes</div></div>
+              <div class="viz-count-item"><div class="viz-count-val" id="vc-fragments">0</div><div class="viz-count-label">Fragments</div></div>
+              <div class="viz-count-item"><div class="viz-count-val" id="vc-stress">0</div><div class="viz-count-label">Stress</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode selection + Entry gate -->
+      <div class="mode-select-section" id="modeSelectSection">
+        <h2>⚙️ Choose Your Mode</h2>
+        <p class="muted">Select how you want to experience the labyrinth.</p>
+        <div id="ngplusBanner" class="ngplus-banner" style="display:none;">
+          <strong>🔁 New Game+</strong> — You've escaped before! Hard Mode is recommended for your second run.
+        </div>
+        <div class="mode-cards" id="modeCards">
+          <div class="mode-card selected" data-mode="normal" id="modeNormal">
+            <span class="mode-tag rec">Recommended</span>
+            <div class="mode-icon">🧵</div>
+            <h3>Normal Mode</h3>
+            <p><strong>String of Pearls</strong> — Linear progression through interconnected fragments. Solve puzzles in order. AR &amp; VR provide shortcut clues.</p>
+            <p style="margin-top:8px;font-size:0.8rem;color:var(--accent);">Entry code: <strong id="normalEntryCodeDisplay">…</strong></p>
+          </div>
+          <div class="mode-card" data-mode="hard" id="modeHard">
+            <span class="mode-tag hard-tag">Challenge</span>
+            <div class="mode-icon">🕸️</div>
+            <h3>Hard Mode</h3>
+            <p><strong>Hub &amp; Spoke</strong> — Non-linear exploration. All 6 fragment nodes available from the start. AR &amp; VR are <strong>mandatory</strong>. Collect all fragments to exit.</p>
+            <p style="margin-top:8px;font-size:0.8rem;color:var(--danger);">Entry code: <strong id="hardEntryCodeDisplay">…</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry-gate" id="entryGate">
+        <h2>🔑 Open the Gate</h2>
+        <p id="entryModeLabel">Enter the 3-digit entry code on the numpad.</p>
+        <div class="gate-input-wrap">
+          <div class="gate-glow">
+            <div class="numpad-dots" id="entryDots">
+              <div class="numpad-dot" data-i="0"></div>
+              <div class="numpad-dot" data-i="1"></div>
+              <div class="numpad-dot" data-i="2"></div>
+            </div>
+            <div class="numpad-display" id="entryDisplay">_ _ _</div>
+            <div class="numpad-grid" id="entryNumpad">
+              <button class="numpad-key" data-val="1">1</button>
+              <button class="numpad-key" data-val="2">2</button>
+              <button class="numpad-key" data-val="3">3</button>
+              <button class="numpad-key" data-val="4">4</button>
+              <button class="numpad-key" data-val="5">5</button>
+              <button class="numpad-key" data-val="6">6</button>
+              <button class="numpad-key" data-val="7">7</button>
+              <button class="numpad-key" data-val="8">8</button>
+              <button class="numpad-key" data-val="9">9</button>
+              <button class="numpad-key fn" data-val="clear">⌫</button>
+              <button class="numpad-key" data-val="0">0</button>
+              <button class="numpad-key fn enter" data-val="enter">↵</button>
+            </div>
+          </div>
+          <div id="entryHint" style="display:none;margin-top:12px;"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      NE.renderHeader();
+      NE.renderAriBubble(document.getElementById("ariBubbleResume"));
+      NE.logEvent("page_view", { page: "index" });
+
+      // Populate real entry codes in mode cards
+      var cfg = NE.CFG();
+      var nmcNormal = cfg.MODES && cfg.MODES.normal;
+      var nmcHard   = cfg.MODES && cfg.MODES.hard;
+      var normalCode = (nmcNormal && nmcNormal.entryCodes && nmcNormal.entryCodes[0]) || (cfg.ENTRY_CODES && cfg.ENTRY_CODES[0]) || "?";
+      var hardCode   = (nmcHard   && nmcHard.entryCodes   && nmcHard.entryCodes[0])   || "?";
+      document.getElementById("normalEntryCodeDisplay").textContent = normalCode;
+      document.getElementById("hardEntryCodeDisplay").textContent   = hardCode;
+
+      var st = NE.loadState();
+
+      // NG+ banner — show if completed at least once
+      if (st.completedRuns > 0) {
+        document.getElementById("ngplusBanner").style.display = "block";
+        /* Swap recommended badge to Hard */
+        var tagN = document.querySelector("#modeNormal .mode-tag");
+        var tagH = document.querySelector("#modeHard .mode-tag");
+        if (tagN) { tagN.className = "mode-tag"; tagN.textContent = "Standard"; }
+        if (tagH) { tagH.className = "mode-tag rec"; tagH.textContent = "Recommended"; }
+      }
+
+      // Resume state
+      if (st.unlocked) {
+        document.getElementById("onboardingWrap").style.display = "none";
+        document.getElementById("resumeState").style.display = "block";
+        document.getElementById("reenterLink").addEventListener("click", function(e) {
+          e.preventDefault();
+          document.getElementById("resumeState").style.display = "none";
+          document.getElementById("onboardingWrap").style.display = "block";
+        });
+        return;
+      }
+
+      // Mode selection
+      var selectedMode = "normal";
+      document.getElementById("modeCards").addEventListener("click", function(e) {
+        var card = e.target.closest(".mode-card");
+        if (!card) return;
+        document.querySelectorAll(".mode-card").forEach(function(c){ c.classList.remove("selected"); });
+        card.classList.add("selected");
+        selectedMode = card.getAttribute("data-mode");
+        var label = document.getElementById("entryModeLabel");
+        if (selectedMode === "hard") {
+          label.textContent = "Hard Mode selected. Enter the Hard Mode 3-digit entry code.";
+        } else {
+          label.textContent = "Normal Mode selected. Enter the 3-digit entry code.";
+        }
+      });
+
+      // Scrollytelling
+      var steps = document.querySelectorAll(".step-card");
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            steps.forEach(function(s) { s.classList.remove("is-active"); });
+            entry.target.classList.add("is-active");
+            updateViz(parseInt(entry.target.getAttribute("data-step"), 10));
+          }
+        });
+      }, { threshold: 0.4, rootMargin: "-10% 0px -30% 0px" });
+      steps.forEach(function(s) { observer.observe(s); });
+
+      function updateViz(step) {
+        var allN = document.querySelectorAll("#vizSVG .viz-node");
+        var allE = document.querySelectorAll("#vizSVG .viz-edge");
+        allN.forEach(function(n) { n.classList.remove("highlight"); });
+        allE.forEach(function(e) { e.classList.remove("highlight"); });
+        var vcN = document.getElementById("vc-nodes"), vcF = document.getElementById("vc-fragments"), vcS = document.getElementById("vc-stress");
+        vcN.textContent = "0"; vcN.classList.remove("active");
+        vcF.textContent = "0"; vcF.classList.remove("active");
+        vcS.textContent = "0"; vcS.classList.remove("active");
+        document.getElementById("vizLabel").textContent =
+          step===1?"🌐 The Network":step===2?"⚠️ 3 Puzzles, No Retries":step===3?"🧭 Your Route":step===4?"📍 Reality Touchpoints":"🔑 Ready?";
+        if (step===1) { document.getElementById("vn-start").classList.add("highlight"); }
+        else if (step===2) { allN.forEach(function(n){n.classList.add("highlight");}); vcN.textContent="9"; vcN.classList.add("active"); vcF.textContent="3+"; vcF.classList.add("active"); }
+        else if (step===3) {
+          ["vn-start","vn-p1","vn-p2","vn-p3","vn-exit"].forEach(function(id){document.getElementById(id).classList.add("highlight");});
+          ["ve-start-p1","ve-p1-p2","ve-p2-p3","ve-p3-exit"].forEach(function(id){document.getElementById(id).classList.add("highlight");});
+          vcN.textContent="5"; vcN.classList.add("active");
+        }
+        else if (step===4) {
+          ["vn-phys","vn-ar","vn-vr","vn-diag"].forEach(function(id){document.getElementById(id).classList.add("highlight");});
+          ["ve-p1-phys","ve-p1-ar","ve-p1-vr","ve-p2-diag"].forEach(function(id){document.getElementById(id).classList.add("highlight");});
+        }
+        else if (step===5) {
+          ["vn-start","vn-exit"].forEach(function(id){document.getElementById(id).classList.add("highlight");});
+          vcS.textContent="?"; vcS.classList.add("active");
+        }
+      }
+
+      // ─── Numpad logic ───
+      var entryCode = "";
+      var maxLen = 3;
+      var display = document.getElementById("entryDisplay");
+      var dots = document.querySelectorAll("#entryDots .numpad-dot");
+
+      function renderEntry() {
+        var txt = "";
+        for (var i = 0; i < maxLen; i++) txt += (entryCode[i] || "_") + (i < maxLen - 1 ? " " : "");
+        display.textContent = txt;
+        dots.forEach(function(d, idx) {
+          d.classList.toggle("filled", idx < entryCode.length);
+        });
+      }
+
+      document.getElementById("entryNumpad").addEventListener("click", function(e) {
+        var btn = e.target.closest(".numpad-key");
+        if (!btn) return;
+        var val = btn.getAttribute("data-val");
+        display.classList.remove("error", "success");
+
+        if (val === "clear") {
+          entryCode = entryCode.slice(0, -1);
+          renderEntry();
+        } else if (val === "enter") {
+          if (entryCode.length < maxLen) return;
+          if (NE.isValidEntryCode(entryCode)) {
+            display.classList.add("success");
+            var detectedMode = NE.detectModeFromCode(entryCode);
+            var s = NE.loadState();
+            s.unlocked = true;
+            s.entryCode = entryCode;
+            s.startedAt = NE.nowISO();
+            s.step = "hub";
+            s.gameMode = detectedMode;
+            /* Unlock nodes based on mode */
+            var mc = NE.getModeConfig(detectedMode);
+            var startNode = (mc.nodes || [])[0];
+            if (startNode && startNode.unlocks) {
+              startNode.unlocks.forEach(function(uid) {
+                if (s.unlockedNodes.indexOf(uid) === -1) s.unlockedNodes.push(uid);
+              });
+            }
+            if (s.unlockedNodes.indexOf("puzzle1") === -1) s.unlockedNodes.push("puzzle1");
+            NE.saveState(s);
+            NE.logEvent("unlock_success", { code: entryCode, mode: detectedMode });
+            setTimeout(function(){ location.href = "hub.html"; }, 600);
+          } else {
+            display.classList.add("error");
+            var s2 = NE.loadState();
+            s2.entryAttempts = (s2.entryAttempts || 0) + 1;
+            NE.saveState(s2);
+            NE.logEvent("unlock_fail", { code: entryCode, attempts: s2.entryAttempts, selectedMode: selectedMode });
+            entryCode = "";
+            setTimeout(function() { renderEntry(); display.classList.remove("error"); }, 500);
+            if (NE.shouldShowHint(s2.entryAttempts)) {
+              var h = document.getElementById("entryHint");
+              h.style.display = "block"; h.className = "hint-toast";
+              h.innerHTML = "💡 <strong>Hint:</strong> Normal Mode code is <strong>713</strong> · Hard Mode code is <strong>159</strong>";
+            }
+          }
+        } else {
+          if (entryCode.length < maxLen) {
+            entryCode += val;
+            renderEntry();
+          }
+        }
+      });
+
+      // Background music
+      var bgMusic = document.getElementById("bgMusic");
+      var musicBtn = document.getElementById("musicToggle");
+      var musicOn = false;
+      musicBtn.addEventListener("click", function() {
+        if (musicOn) { bgMusic.pause(); musicBtn.textContent = "🔇"; musicOn = false; }
+        else { bgMusic.volume = 0.15; bgMusic.play().then(function(){ musicBtn.textContent = "🔊"; musicOn = true; }).catch(function(){}); }
+      });
+    });
+  </script>
+</body>
+</html>

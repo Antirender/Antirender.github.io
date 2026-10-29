@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Puzzle 2</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .puzzle-intro{max-width:620px;margin:0 auto 20px;line-height:1.7;color:var(--fg);}
+    .puzzle-intro strong{color:var(--accent);}
+    .archive-panel{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:16px 0;font-size:0.9rem;line-height:1.6;}
+    .archive-panel .panel-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:8px;}
+    .choice-grid{display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+    .choice-btn{position:relative;border:2px solid var(--border);border-radius:var(--radius);background:var(--bg2);padding:16px 20px;text-align:left;cursor:pointer;transition:all var(--transition);font-size:0.95rem;line-height:1.5;color:var(--fg);}
+    .choice-btn:hover:not(:disabled){border-color:var(--accent);background:rgba(74,108,247,0.04);transform:translateX(4px);}
+    .choice-btn:disabled{opacity:0.4;cursor:not-allowed;}
+    .choice-btn .choice-tag{display:inline-block;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:4px;margin-bottom:6px;}
+    .choice-btn:nth-child(1) .choice-tag{background:rgba(52,211,153,0.12);color:var(--ok);}
+    .choice-btn:nth-child(2) .choice-tag{background:rgba(139,92,246,0.12);color:var(--accent2);}
+    .choice-btn:nth-child(3) .choice-tag{background:rgba(245,158,11,0.12);color:var(--warn);}
+    .choice-btn:nth-child(4) .choice-tag{background:rgba(239,68,68,0.12);color:var(--danger);}
+    .choice-btn .choice-title{font-weight:600;display:block;margin-bottom:4px;}
+    .choice-btn .choice-desc{font-size:0.85rem;color:var(--muted);}
+    .already-solved{text-align:center;padding:20px;}
+    .already-solved .checkmark{font-size:3rem;margin-bottom:8px;}
+    .puzzle-warning{display:flex;align-items:center;gap:10px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:var(--radius);padding:12px 16px;margin:12px 0;font-size:0.85rem;color:var(--fg);}
+  </style>
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <section class="card">
+      <h1 class="h1">Puzzle 2: The Archive</h1>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+
+      <div id="solvedState" class="already-solved" style="display:none;">
+        <div class="checkmark">✅</div>
+        <h2 style="margin:0 0 8px;">Puzzle 2 Complete</h2>
+        <p class="muted">You recovered the genuine archive log. Puzzle 3 is now unlocked.</p>
+        <a href="hub.html" class="btn primary" style="margin-top:16px;">Continue to Hub →</a>
+      </div>
+
+      <div id="puzzleState">
+        <div class="puzzle-intro">
+          <p>Deep in the labyrinth's memory banks, ARI has located <strong>four archived logs</strong>. One is the genuine record left by previous explorers — the other three have been corrupted by the Minotaur System.</p>
+          <p>Examine each log's metadata and content signature. Only the authentic log will reveal the path forward.</p>
+        </div>
+
+        <div class="archive-panel">
+          <div class="panel-label">📁 Archive Vault — Log Recovery</div>
+          <p style="margin:0;color:var(--muted);font-size:0.85rem;">ARI: "The Minotaur has rewritten three of these logs. Look for consistency — the real log won't contradict what we already know about the labyrinth's structure."</p>
+        </div>
+
+        <div class="puzzle-warning">
+          <span style="font-size:1.2rem;">⚠️</span>
+          <div><strong>Single choice.</strong> Pick wrong and the labyrinth closes — you'll need to start over.</div>
+        </div>
+
+        <div class="choice-grid" id="choices">
+          <button class="choice-btn" data-idx="0">
+            <div class="choice-tag">Log #041</div>
+            <span class="choice-title">📜 "Maintenance Report — Level 3 East"</span>
+            <span class="choice-desc">Dated three cycles ago. Describes corridor repairs and sealed exits. The writing style shifts mid-paragraph — as if two authors overlapped.</span>
+          </button>
+          <button class="choice-btn" data-idx="1">
+            <div class="choice-tag">Log #077</div>
+            <span class="choice-title">🔊 "Audio Transcript — Control Room"</span>
+            <span class="choice-desc">A conversation between two operators. References "the thread" by name — but the timestamp predates ARI's activation by years. Anachronistic.</span>
+          </button>
+          <button class="choice-btn" data-idx="2">
+            <div class="choice-tag">Log #112</div>
+            <span class="choice-title">🗺️ "Navigator's Field Notes"</span>
+            <span class="choice-desc">Handwritten observations with consistent detail. References landmarks you've already seen. The metadata checksum matches ARI's verification protocol.</span>
+          </button>
+          <button class="choice-btn" data-idx="3">
+            <div class="choice-tag">Log #199</div>
+            <span class="choice-title">⚡ "Emergency Broadcast — All Levels"</span>
+            <span class="choice-desc">An urgent evacuation notice. Mentions exits that don't appear on any map. The broadcast loops — identical content, different timestamps.</span>
+          </button>
+        </div>
+      </div>
+
+      <hr>
+      <a href="hub.html" class="btn ghost">← Back to Hub</a>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble();
+      NE.logEvent("page_view", { page: "puzzle2" });
+
+      if (st.puzzle.puzzle2.solved) {
+        document.getElementById("puzzleState").style.display = "none";
+        document.getElementById("solvedState").style.display = "block";
+        return;
+      }
+
+      var correctIdx = (NE.CFG().PUZZLES && NE.CFG().PUZZLES.puzzle2) ? NE.CFG().PUZZLES.puzzle2.correctIndex : 2;
+      var chosen = false;
+
+      document.getElementById("choices").addEventListener("click", function(e) {
+        var btn = e.target.closest(".choice-btn");
+        if (!btn || chosen) return;
+        chosen = true;
+        var idx = parseInt(btn.getAttribute("data-idx"), 10);
+        var s = NE.loadState();
+        s.puzzle.puzzle2.attempts++;
+
+        document.querySelectorAll(".choice-btn").forEach(function(b) { b.disabled = true; });
+
+        if (idx === correctIdx) {
+          s.puzzle.puzzle2.solved = true;
+          s.puzzle.puzzle2.outcome = "correct";
+          NE.saveState(s);
+          NE.unlockNode("puzzle3");
+          NE.addInventory("🧩 Puzzle 2 Complete: Navigator's Field Notes (Log #112) verified.");
+          NE.setStress(0);
+          NE.logEvent("puzzle2_result", { outcome: "correct", choice: idx });
+          btn.style.borderColor = "var(--ok)";
+          btn.style.background = "rgba(52,211,153,0.08)";
+          setTimeout(function() {
+            document.getElementById("puzzleState").style.display = "none";
+            document.getElementById("solvedState").style.display = "block";
+          }, 1200);
+        } else {
+          s.puzzle.puzzle2.outcome = "dead_end";
+          NE.saveState(s);
+          NE.logEvent("puzzle2_result", { outcome: "dead_end", choice: idx });
+          btn.style.borderColor = "var(--danger)";
+          btn.style.background = "rgba(239,68,68,0.08)";
+          setTimeout(function() { location.href = "dead-end.html?from=puzzle2"; }, 1500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

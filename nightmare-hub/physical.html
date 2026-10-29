@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Physical Clues</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .phys-hero{text-align:center;padding:20px 0 0;margin-bottom:16px;}
+    .phys-hero h1{font-size:clamp(1.4rem,4vw,1.8rem);margin:0;}
+    .phys-context{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:16px 0;font-size:0.92rem;line-height:1.7;}
+    .phys-context strong{color:var(--accent);}
+    .mission-steps{list-style:none;padding:0;margin:16px 0;counter-reset:ms;}
+    .mission-steps li{counter-increment:ms;display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+    .mission-steps li:last-child{border-bottom:none;}
+    .step-num{flex:0 0 36px;height:36px;line-height:36px;text-align:center;border-radius:50%;background:var(--accent);color:#fff;font-size:0.85rem;font-weight:700;}
+    .step-content{flex:1;}
+    .step-content strong{display:block;margin-bottom:2px;}
+    .step-content p{margin:0;color:var(--muted);font-size:0.88rem;line-height:1.6;}
+    .safety-note{display:flex;align-items:center;gap:10px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius);padding:12px 16px;margin:16px 0;font-size:0.85rem;color:var(--fg);}
+    .frag-callout{text-align:center;padding:20px;background:rgba(52,211,153,0.05);border:2px dashed var(--ok);border-radius:var(--radius-lg);margin:16px 0;}
+    .frag-callout .frag-icon{font-size:2.5rem;margin-bottom:8px;}
+    .frag-callout p{margin:4px 0;font-size:0.9rem;}
+    .frag-callout .frag-format{font-family:var(--font-mono);font-size:1.1rem;letter-spacing:3px;color:var(--ok);font-weight:700;margin-top:8px;}
+    .confirm-box{text-align:center;margin:20px 0;}
+  </style>
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <section class="card">
+      <div class="phys-hero">
+        <h1 class="h1" id="physTitle">📦 Physical Clues: Fragment A</h1>
+      </div>
+      <div id="modeBanner" style="display:none;text-align:center;padding:8px 16px;border-radius:var(--radius);margin-bottom:12px;font-size:0.85rem;font-weight:600;"></div>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+
+      <div class="phys-context">
+        <p style="margin:0 0 8px;">The Minotaur System has hidden <strong>Fragment A</strong> — a physical card containing the 6-character exit password — somewhere on campus.</p>
+        <p style="margin:0;">ARI has triangulated its location. Follow the steps below to retrieve it. <strong>This is a real physical task</strong> — you'll need to go to the location and find the hidden envelope.</p>
+      </div>
+
+      <h2 style="font-size:1.1rem;margin:20px 0 8px;">🗺️ Your Mission</h2>
+      <ol class="mission-steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Go to the Location</strong>
+            <p>Head to <strong>Studio Shelf 7B</strong>. Look for a small hidden envelope with a red "NE" seal.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Open the Envelope</strong>
+            <p>Inside you'll find a <strong>Fragment Card</strong>. It contains the 6-character exit password and a lore note.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Photograph It</strong>
+            <p>Take a photo of the card for your records — this is part of your evidence collection.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>Memorize the Code</strong>
+            <p>The 6 characters on the card are your exit password. You'll enter them at the Exit Terminal.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <strong>Return & Continue</strong>
+            <p>Come back here and go to the Exit Terminal from the Hub. Enter the password to escape.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="safety-note">
+        <span style="font-size:1.2rem;">⚠️</span>
+        <div><strong>Safety:</strong> Walk, don't run. Stay in designated areas. Respect other people using the space.</div>
+      </div>
+
+      <div class="frag-callout">
+        <div class="frag-icon">🃏</div>
+        <p><strong>What you're looking for:</strong></p>
+        <p>A small card with a code in this format:</p>
+        <div class="frag-format">_ _ _ _ _ _</div>
+        <p class="muted" style="font-size:0.8rem;margin-top:8px;">6 uppercase characters (letters + digits)</p>
+      </div>
+
+      <div class="confirm-box">
+        <button id="confirmFound" class="btn primary full">✅ I Found Fragment A</button>
+        <p class="muted" style="margin-top:8px;font-size:0.8rem;">This marks the physical node as visited and adds it to your evidence.</p>
+      </div>
+
+      <hr>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="hub.html" class="btn ghost">← Back to Hub</a>
+        <a href="map.html" class="btn ghost">🗺️ Open Map</a>
+        <a href="password.html" class="btn ghost">🚪 Go to Exit Terminal</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble();
+      NE.logEvent("page_view", { page: "physical" });
+
+      var isHard = st.gameMode === "hard";
+
+      // Mode banner
+      var pBanner = document.getElementById("modeBanner");
+      if (isHard) {
+        pBanner.style.display = "block";
+        pBanner.style.background = "rgba(239,68,68,0.08)";
+        pBanner.style.border = "1px solid rgba(239,68,68,0.25)";
+        pBanner.style.color = "var(--danger)";
+        pBanner.innerHTML = "🕸️ Hard Mode — Fragment 6 of 6 (Required)";
+        document.getElementById("physTitle").textContent = "📦 Physical Clues: Fragment 6";
+      } else {
+        pBanner.style.display = "block";
+        pBanner.style.background = "rgba(74,108,247,0.06)";
+        pBanner.style.border = "1px solid rgba(74,108,247,0.15)";
+        pBanner.style.color = "var(--accent)";
+        pBanner.innerHTML = "🧵 Normal Mode — Optional Enrichment";
+      }
+
+      // If already confirmed, update button
+      if (st.inventory.some(function(i) { return i.text.indexOf("Fragment A") !== -1 || i.text.indexOf("Fragment 6") !== -1; })) {
+        var btn = document.getElementById("confirmFound");
+        btn.textContent = "✅ Already Collected";
+        btn.disabled = true;
+        btn.style.opacity = "0.6";
+      }
+
+      document.getElementById("confirmFound").addEventListener("click", function() {
+        var itemText = isHard
+          ? "📦 Fragment 6 (Physical): Card retrieved from Shelf 7B."
+          : "📦 Fragment A: Physical card retrieved from Shelf 7B.";
+        NE.addInventory(itemText);
+        NE.unlockNode("physical1");
+        NE.logEvent("physical_fragment_found", { location: "shelf_7b", mode: st.gameMode });
+        this.textContent = isHard ? "✅ Fragment 6 Collected!" : "✅ Fragment A Collected!";
+        this.disabled = true;
+        this.style.opacity = "0.6";
+        NE.renderHeader();
+      });
+    });
+  </script>
+</body>
+</html>

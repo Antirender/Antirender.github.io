@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Map</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <section class="card" style="margin-bottom:16px;">
+      <h1 class="h1">Campus Map &amp; Nodes</h1>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+      <p class="p">Interactive map of Sheridan College Trafalgar Campus. Tap markers to see node details and hints.</p>
+      <div id="map" style="height:420px; border-radius:var(--radius); margin-top:12px;"></div>
+      <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+        <button id="locateBtn" class="btn sm ghost">📍 Find My Location</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-label">Node Progress</div>
+      <div id="nodeList"></div>
+      <hr>
+      <a href="hub.html" class="btn ghost full">Back to Hub</a>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble(document.getElementById("ariBubble"));
+      NE.logEvent("page_view", { page: "map" });
+
+      // Sheridan College Trafalgar Campus center
+      var center = [43.4688, -79.7002];
+      var map = L.map("map").setView(center, 17);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 19
+      }).addTo(map);
+
+      // Campus waypoints matching game nodes
+      var waypoints = [
+        { id: "start",    name: "Entry Portal",         lat: 43.4692, lng: -79.6998, hint: "Main entrance — scan QR or type artifact code." },
+        { id: "puzzle1",  name: "Web Puzzle 1",          lat: 43.4685, lng: -79.7008, hint: "B-Wing Lab — three paths, one is true." },
+        { id: "physical1",name: "Envelope Drop",         lat: 43.4680, lng: -79.6995, hint: "Library area — find envelope at shelf 7B." },
+        { id: "ar1",      name: "AR Marker",             lat: 43.4690, lng: -79.7015, hint: "A-Wing Lobby — scan the AR marker on the poster." },
+        { id: "rabbit1",  name: "Diagnostics Terminal",  lat: 43.4683, lng: -79.7020, hint: "C-Wing hallway — optional lore via recovery terminal." },
+        { id: "password", name: "Exit Terminal",          lat: 43.4695, lng: -79.7005, hint: "Student Commons — submit 6-char exit password." }
+      ];
+
+      // Color markers based on unlock state
+      function markerColor(unlocked) {
+        return unlocked ? "#10b981" : "#6b6b80";
+      }
+
+      waypoints.forEach(function (wp) {
+        var unlocked = st.unlockedNodes.indexOf(wp.id) !== -1;
+        var color = markerColor(unlocked);
+        var icon = L.divIcon({
+          className: "",
+          html: '<div style="width:14px;height:14px;border-radius:50%;background:' + color + ';border:2px solid #fff;box-shadow:0 0 6px ' + color + ';"></div>',
+          iconSize: [14, 14],
+          iconAnchor: [7, 7]
+        });
+        L.marker([wp.lat, wp.lng], { icon: icon })
+          .addTo(map)
+          .bindPopup(
+            '<strong>' + wp.name + '</strong><br>' +
+            '<span style="font-size:0.8em;color:#888;">' + (unlocked ? "✓ Unlocked" : "🔒 Locked") + '</span><br>' +
+            '<span style="font-size:0.85em;">' + (unlocked ? wp.hint : "Complete earlier steps to unlock.") + '</span>'
+          );
+      });
+
+      // Locate user
+      document.getElementById("locateBtn").addEventListener("click", function () {
+        if (!navigator.geolocation) { alert("Geolocation not supported."); return; }
+        navigator.geolocation.getCurrentPosition(
+          function (pos) {
+            var ll = [pos.coords.latitude, pos.coords.longitude];
+            L.circleMarker(ll, { radius: 8, color: "#4a6cf7", fillColor: "#4a6cf7", fillOpacity: 0.6 })
+              .addTo(map)
+              .bindPopup("You are here").openPopup();
+            map.setView(ll, 18);
+          },
+          function () { alert("Could not get your location."); }
+        );
+      });
+
+      // Node list below map
+      var nodes = NE.CFG().NODES || [];
+      var html = nodes.map(function (n) {
+        var unlocked = st.unlockedNodes.indexOf(n.id) !== -1;
+        return '<div class="lore-entry ' + (unlocked ? '' : 'locked') + '">' +
+          '<h3>' + (unlocked ? '✓ ' : '🔒 ') + n.name + '</h3>' +
+          '<p>' + (unlocked ? n.hint : 'Locked') + '</p></div>';
+      }).join('');
+      document.getElementById("nodeList").innerHTML = html;
+    });
+  </script>
+</body>
+</html>

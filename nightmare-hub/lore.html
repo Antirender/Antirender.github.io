@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trafalgar Labyrinth · Lore</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header data-ne-header></header>
+  <main id="main" class="wrap">
+    <section class="card">
+      <h1 class="h1">Lore Archive</h1>
+      <div id="ariBubble" class="bubble" aria-live="polite"></div>
+      <p class="p muted">Some entries are unlocked by completing puzzles or discovering nodes.</p>
+      <hr>
+      <div id="loreList"></div>
+      <hr>
+      <p class="muted">Audio logs (if available):</p>
+      <audio controls src="assets/audio/lore1.mp3" style="width:100%;" onerror="this.outerHTML='<div class=placeholder-box>Audio not available.</div>'"></audio>
+      <p id="diagnosticsLink" class="muted" style="display:none; font-size:0.75rem; margin-top:12px;">Diagnostics / Recovery / Maintenance → <a href="rabbit-hole.html">Open terminal</a></p>
+      <hr>
+      <a href="hub.html" class="btn ghost full">Back to Hub</a>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ari.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var st = NE.gateOrRedirect(true);
+      if (!st) return;
+      NE.renderHeader();
+      NE.renderAriBubble();
+      NE.logEvent("page_view", { page: "lore" });
+
+      var lore = NE.CFG().COPY.lore || [];
+      var html = lore.map(function(e) {
+        var unlocked = !e.unlockReq || st.unlockedNodes.includes(e.unlockReq) || (e.unlockReq === "puzzle1" && st.puzzle.puzzle1.solved);
+        var locked = !unlocked;
+        return '<div class="lore-entry ' + (locked ? 'locked' : '') + '">' +
+          '<h3>' + (locked ? '🔒 ' : '') + e.title + '</h3>' +
+          '<p>' + (locked ? '[Complete more puzzles to unlock]' : e.text) + '</p>' +
+          '</div>';
+      }).join('');
+      document.getElementById("loreList").innerHTML = html;
+
+      if (st.puzzle.puzzle1.outcome === "red_herring" || st.rabbit.step1 || st.rabbit.step2) {
+        document.getElementById("diagnosticsLink").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,3 +1,5 @@
 /* intro.css — standalone intro page overrides */
 body{margin:0;background:var(--bg)}
 .intro-footer{padding:clamp(16px,3vw,32px) 0;text-align:center;border-top:1px solid var(--border)}
+.intro-legal{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;justify-content:center;margin-top:1rem;font-size:.8rem;color:var(--muted)}
+.intro-legal a{color:inherit}

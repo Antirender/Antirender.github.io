@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>梦魇逃亡 Nightmare Escape — Yiyang Zhang</title>
+  <meta name="description" content="梦魇逃亡 Nightmare Escape — a choice-driven psychological-thriller visual novel in development, coming soon on Steam."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+    .phase-label--p1{background:#dbeafe;color:#1e40af}
+    .phase-label--p2{background:#fef3c7;color:#92400e}
+    .phase-label--p3{background:#d1fae5;color:#065f46}
+    .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1rem;margin:1rem 0 1.75rem;align-items:start}
+    .shots--wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+    .shots figure{margin:0}
+    .shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border)}
+    .shots figcaption{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.45}
+    .note{font-size:.9rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">Yiyang Zhang <small>Interaction Design</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
+          <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
+
+    <div class="project-hero">
+      <span class="eyebrow"><span data-lang="en">In development · Visual novel · Steam</span><span data-lang="zh">开发中 · 视觉小说 · Steam</span><span data-lang="tw">開發中 · 視覺小說 · Steam</span><span data-lang="ja">開発中 · ビジュアルノベル · Steam</span><span data-lang="fr">En développement · Visual novel · Steam</span></span>
+      <h1>梦魇逃亡 Nightmare Escape</h1>
+      <p data-lang="en">A choice-driven psychological-thriller visual novel with a yuri thread, coming soon on Steam. Chu-Ling keeps reliving the same stormy night with gaps in her memory — and every gap is about Xiaoxue, the neighbour born on the same day as her. She follows clues that everyone around her avoids, and her choices branch across eight chapters into multiple endings.</p>
+      <p data-lang="zh">一部由选择驱动的百合向心理惊悚视觉小说，即将登陆 Steam。初苓一次次回到同一个雷雨夜，记忆里有大块空白——而每一处空白都与小雪有关，那个和她同年同月同日生的邻家女孩。她追查身边所有人都避而不谈的线索，她的选择将在八个章节中分支，通向多个结局。</p>
+      <p data-lang="tw">一部由選擇驅動的百合向心理驚悚視覺小說，即將登陸 Steam。初苓一次次回到同一個雷雨夜，記憶裡有大塊空白——而每一處空白都與小雪有關，那個和她同年同月同日生的鄰家女孩。她追查身邊所有人都避而不談的線索，她的選擇將在八個章節中分支，通向多個結局。</p>
+      <p data-lang="ja">選択で物語が分岐する、百合要素のあるサイコスリラー・ビジュアルノベル。Steam で近日公開予定です。初苓（チューリン）は同じ雷雨の夜を何度も繰り返し、記憶には大きな空白があります——その空白はすべて、同じ日に生まれた隣家の少女・小雪（シャオシュエ）に関わるもの。周囲の誰もが口を閉ざす手がかりを追い、彼女の選択は 8 つの章を通して複数のエンディングへ分かれていきます。</p>
+      <p data-lang="fr">Un visual novel de thriller psychologique piloté par les choix, avec une trame yuri, bientôt sur Steam. Chu-Ling revit sans cesse la même nuit d’orage, la mémoire trouée — et chaque trou concerne Xiaoxue, la voisine née le même jour qu’elle. Elle suit des indices que tout le monde évite, et ses choix se ramifient sur huit chapitres vers plusieurs fins.</p>
+      <div class="meta">
+        <span><strong><span data-lang="en">Status</span><span data-lang="zh">状态</span><span data-lang="tw">狀態</span><span data-lang="ja">ステータス</span><span data-lang="fr">Statut</span></strong> <span data-lang="en">Coming soon on Steam</span><span data-lang="zh">即将登陆 Steam</span><span data-lang="tw">即將登陸 Steam</span><span data-lang="ja">Steam で近日公開</span><span data-lang="fr">Bientôt sur Steam</span></span>
+        <span><strong><span data-lang="en">Engine</span><span data-lang="zh">引擎</span><span data-lang="tw">引擎</span><span data-lang="ja">エンジン</span><span data-lang="fr">Moteur</span></strong> WebGAL</span>
+        <span><strong><span data-lang="en">Language</span><span data-lang="zh">语言</span><span data-lang="tw">語言</span><span data-lang="ja">言語</span><span data-lang="fr">Langue</span></strong> <span data-lang="en">Simplified Chinese</span><span data-lang="zh">简体中文</span><span data-lang="tw">簡體中文</span><span data-lang="ja">簡体字中国語</span><span data-lang="fr">Chinois simplifié</span></span>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="https://store.steampowered.com/app/4132450/" target="_blank" rel="noopener"><span data-lang="en">Wishlist on Steam ↗</span><span data-lang="zh">在 Steam 加入愿望单 ↗</span><span data-lang="tw">在 Steam 加入願望單 ↗</span><span data-lang="ja">Steam でウィッシュリストに追加 ↗</span><span data-lang="fr">Ajouter à la liste de souhaits Steam ↗</span></a>
+      <a href="../g4v7/index.html" target="_blank" rel="noopener"><span data-lang="en">Play the web build ↗</span><span data-lang="zh">试玩网页版 ↗</span><span data-lang="tw">試玩網頁版 ↗</span><span data-lang="ja">ウェブ版をプレイ ↗</span><span data-lang="fr">Jouer à la version web ↗</span></a>
+      <a href="../mytw.html" target="_blank" rel="noopener"><span data-lang="en">Design doc (spoilers) ↗</span><span data-lang="zh">企划书（含剧透）↗</span><span data-lang="tw">企劃書（含劇透）↗</span><span data-lang="ja">企画書（ネタバレあり）↗</span><span data-lang="fr">Document de conception (spoilers) ↗</span></a>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="nightmare-escape/key-art.webp" alt="梦魇逃亡 title art: Chu-Ling lying in the grass at night, holding a plush rabbit" data-alt-zh="梦魇逃亡标题画面：初苓抱着兔子玩偶，夜里躺在草地上" data-alt-tw="梦魇逃亡標題畫面：初苓抱著兔子玩偶，夜裡躺在草地上" data-alt-ja="梦魇逃亡のタイトル画面：夜の草むらでうさぎのぬいぐるみを抱いて横たわる初苓" data-alt-fr="Écran-titre de 梦魇逃亡 : Chu-Ling allongée dans l’herbe la nuit, une peluche de lapin dans les bras">
+
+      <div class="tldr">
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
+        <dl>
+          <div><dt><span data-lang="en">Genre</span><span data-lang="zh">类型</span><span data-lang="tw">類型</span><span data-lang="ja">ジャンル</span><span data-lang="fr">Genre</span></dt><dd><span data-lang="en">Psychological thriller with a yuri thread · multiple endings</span><span data-lang="zh">百合向心理惊悚 · 多结局</span><span data-lang="tw">百合向心理驚悚 · 多結局</span><span data-lang="ja">百合要素のあるサイコスリラー · マルチエンディング</span><span data-lang="fr">Thriller psychologique, trame yuri · fins multiples</span></dd></div>
+          <div><dt><span data-lang="en">Structure</span><span data-lang="zh">结构</span><span data-lang="tw">結構</span><span data-lang="ja">構成</span><span data-lang="fr">Structure</span></dt><dd><span data-lang="en">Two interwoven timelines: the present, full of gaps, and the past, recovered through a diary and dreams</span><span data-lang="zh">双线交织：充满空白的现在，与靠日记和梦境找回的过去</span><span data-lang="tw">雙線交織：充滿空白的現在，與靠日記和夢境找回的過去</span><span data-lang="ja">2 本の時間軸が交差：空白だらけの現在と、日記や夢を通して取り戻す過去</span><span data-lang="fr">Deux temporalités entrelacées : un présent plein de trous et un passé retrouvé par un journal et des rêves</span></dd></div>
+          <div><dt><span data-lang="en">Choices</span><span data-lang="zh">选择</span><span data-lang="tw">選擇</span><span data-lang="ja">選択</span><span data-lang="fr">Choix</span></dt><dd><span data-lang="en">Choices accumulate, and the final attitude at the lake picks the ending. A hidden ending unlocks on a second playthrough.</span><span data-lang="zh">选择会不断累积，最后在湖边的态度决定结局。二周目解锁隐藏结局。</span><span data-lang="tw">選擇會不斷累積，最後在湖邊的態度決定結局。二週目解鎖隱藏結局。</span><span data-lang="ja">選択は積み重なり、最後に湖のほとりで取る態度がエンディングを決めます。2 周目で隠しエンディングが解放されます。</span><span data-lang="fr">Les choix s’accumulent, et l’attitude finale au bord du lac décide de la fin. Une fin cachée se débloque en deuxième partie.</span></dd></div>
+          <div><dt><span data-lang="en">Builds</span><span data-lang="zh">版本</span><span data-lang="tw">版本</span><span data-lang="ja">ビルド</span><span data-lang="fr">Versions</span></dt><dd><span data-lang="en">Five WebGAL web builds so far, used for playtesting</span><span data-lang="zh">目前已有五个 WebGAL 网页版本，用于试玩测试</span><span data-lang="tw">目前已有五個 WebGAL 網頁版本，用於試玩測試</span><span data-lang="ja">これまでに WebGAL のウェブビルドを 5 つ制作し、プレイテストに使用</span><span data-lang="fr">Cinq versions web WebGAL à ce jour, utilisées pour les tests</span></dd></div>
+          <div><dt><span data-lang="en">Status</span><span data-lang="zh">状态</span><span data-lang="tw">狀態</span><span data-lang="ja">ステータス</span><span data-lang="fr">Statut</span></dt><dd><span data-lang="en">Steam page live (developer: deertube), release date to be announced</span><span data-lang="zh">Steam 页面已上线（开发者：deertube），发售日期待定</span><span data-lang="tw">Steam 頁面已上線（開發者：deertube），發售日期待定</span><span data-lang="ja">Steam ページ公開済み（開発：deertube）、発売日は未定</span><span data-lang="fr">Page Steam en ligne (développeur : deertube), date de sortie à venir</span></dd></div>
+        </dl>
+      </div>
+
+      <h2><span data-lang="en">Design notes</span><span data-lang="zh">设计笔记</span><span data-lang="tw">設計筆記</span><span data-lang="ja">設計メモ</span><span data-lang="fr">Notes de conception</span></h2>
+      <ul data-lang="en">
+        <li><strong>The player learns at Chu-Ling’s pace.</strong> Present-day scenes have holes; the past comes back through the diary and recurring dreams of thunder, the lake and a figure seen from behind.</li>
+        <li><strong>Endings are interpretations, not fail states.</strong> Each one is a different answer to the same question: how to understand Xiaoxue’s love.</li>
+        <li><strong>Recurring symbols hold the branches together.</strong> The mirror, the lake, the sketchbook, the storm, hands and an umbrella return in every ending with a different meaning.</li>
+        <li><strong>Echoed lines.</strong> A few lines of dialogue recur across endings and change meaning with context.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>玩家和初苓同步得知真相。</strong>现在的场景处处是空白；过去则通过日记，以及反复出现的雷声、湖水和一个模糊背影的梦境一点点回来。</li>
+        <li><strong>结局是诠释，而不是失败。</strong>每个结局都是对同一个问题的不同回答：如何理解小雪的爱。</li>
+        <li><strong>反复出现的意象把各条分支串在一起。</strong>镜子、湖水、画册、雷雨、手和那把伞，在每个结局里都会再次出现，含义却各不相同。</li>
+        <li><strong>台词呼应。</strong>几句台词会在不同结局里重复出现，随语境不同而改变含义。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>玩家和初苓同步得知真相。</strong>現在的場景處處是空白；過去則透過日記，以及反覆出現的雷聲、湖水和一個模糊背影的夢境一點點回來。</li>
+        <li><strong>結局是詮釋，而不是失敗。</strong>每個結局都是對同一個問題的不同回答：如何理解小雪的愛。</li>
+        <li><strong>反覆出現的意象把各條分支串在一起。</strong>鏡子、湖水、畫冊、雷雨、手和那把傘，在每個結局裡都會再次出現，含義卻各不相同。</li>
+        <li><strong>臺詞呼應。</strong>幾句臺詞會在不同結局裡重複出現，隨語境不同而改變含義。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>プレイヤーは初苓と同じ速さで真実を知る。</strong>現在の場面には空白があり、過去は日記と、雷鳴・湖・ぼやけた後ろ姿が繰り返し現れる夢を通して戻ってきます。</li>
+        <li><strong>エンディングは失敗ではなく解釈。</strong>どれも同じ問い——小雪の愛をどう受け止めるか——への異なる答えです。</li>
+        <li><strong>繰り返し現れるモチーフが分岐をひとつに束ねる。</strong>鏡、湖、スケッチブック、雷雨、手、そして傘が、どのエンディングにも違う意味で戻ってきます。</li>
+        <li><strong>台詞の反響。</strong>いくつかの台詞が複数のエンディングで繰り返され、文脈によって意味が変わります。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Le joueur apprend au rythme de Chu-Ling.</strong> Les scènes du présent sont trouées ; le passé revient par le journal et par des rêves récurrents de tonnerre, de lac et d’une silhouette vue de dos.</li>
+        <li><strong>Les fins sont des interprétations, pas des échecs.</strong> Chacune répond autrement à la même question : comment comprendre l’amour de Xiaoxue.</li>
+        <li><strong>Des symboles récurrents relient les branches.</strong> Le miroir, le lac, le carnet de croquis, l’orage, les mains et un parapluie reviennent dans chaque fin avec un sens différent.</li>
+        <li><strong>Répliques en écho.</strong> Quelques répliques reviennent d’une fin à l’autre et changent de sens selon le contexte.</li>
+      </ul>
+
+      <h2><span data-lang="en">Builds</span><span data-lang="zh">版本</span><span data-lang="tw">版本</span><span data-lang="ja">ビルド</span><span data-lang="fr">Versions</span></h2>
+      <p data-lang="en">The story has been prototyped through five WebGAL builds on this site, from engine tests to the current Chinese build with the prologue and first two chapters. The latest one is playable in the browser; older builds are in the <a href="../work.html#archive">archive</a>.</p>
+      <p data-lang="zh">这个故事在本站上经历了五个 WebGAL 版本的原型迭代，从最初的引擎测试，到目前包含序章和前两章的中文版本。最新版本可以直接在浏览器里试玩；更早的版本收录在<a href="../work.html#archive">归档</a>中。</p>
+      <p data-lang="tw">這個故事在本站上經歷了五個 WebGAL 版本的原型迭代，從最初的引擎測試，到目前包含序章和前兩章的中文版本。最新版本可以直接在瀏覽器裡試玩；更早的版本收錄在<a href="../work.html#archive">歸檔</a>中。</p>
+      <p data-lang="ja">この物語は、このサイト上で 5 つの WebGAL ビルドを経て試作してきました。エンジンのテストから、序章と最初の 2 章を収めた現在の中国語版まで。最新版はブラウザでプレイでき、以前のビルドは<a href="../work.html#archive">アーカイブ</a>にあります。</p>
+      <p data-lang="fr">L’histoire a été prototypée à travers cinq versions WebGAL sur ce site, des tests du moteur jusqu’à la version chinoise actuelle avec le prologue et les deux premiers chapitres. La dernière se joue dans le navigateur ; les plus anciennes sont dans l’<a href="../work.html#archive">archive</a>.</p>
+      <p class="note" data-lang="en">The design doc maps every route and ending, including the hidden one — read it after playing if you’d rather not be spoiled.</p>
+      <p class="note" data-lang="zh">企划书里画出了所有路线和结局，包括隐藏结局——不想被剧透的话，建议玩过之后再看。</p>
+      <p class="note" data-lang="tw">企劃書裡畫出了所有路線和結局，包括隱藏結局——不想被劇透的話，建議玩過之後再看。</p>
+      <p class="note" data-lang="ja">企画書にはすべてのルートとエンディング（隠しエンディングを含む）が載っています。ネタバレを避けたい方はプレイ後にどうぞ。</p>
+      <p class="note" data-lang="fr">Le document de conception détaille chaque parcours et chaque fin, y compris la fin cachée — à lire après avoir joué si vous voulez éviter les spoilers.</p>
+
+      <h2><span data-lang="en">Related</span><span data-lang="zh">相关</span><span data-lang="tw">相關</span><span data-lang="ja">関連</span><span data-lang="fr">Voir aussi</span></h2>
+      <p data-lang="en"><a href="nightmare-hub.html">Trafalgar Labyrinth</a> — the transmedia escape game my team built under the Nightmare Escape name for VDES 34444.</p>
+      <p data-lang="zh"><a href="nightmare-hub.html">Trafalgar Labyrinth</a>——我们小组以 Nightmare Escape 为名、为 VDES 34444 课程制作的跨媒介解谜游戏。</p>
+      <p data-lang="tw"><a href="nightmare-hub.html">Trafalgar Labyrinth</a>——我們小組以 Nightmare Escape 為名、為 VDES 34444 課程製作的跨媒介解謎遊戲。</p>
+      <p data-lang="ja"><a href="nightmare-hub.html">Trafalgar Labyrinth</a>——私たちのチームが Nightmare Escape の名で VDES 34444 のために制作したトランスメディア脱出ゲーム。</p>
+      <p data-lang="fr"><a href="nightmare-hub.html">Trafalgar Labyrinth</a> — le jeu d’évasion transmédia que mon équipe a réalisé sous le nom Nightmare Escape pour VDES 34444.</p>
+    </div>
+
+    <nav class="pager" aria-label="Case studies">
+      <a class="prev" href="nightmare-hub.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>Trafalgar Labyrinth</b></a>
+      <a class="next" href="learn-code.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>Learn Code</b></a>
+    </nav>
+    <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
+  </div>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>&copy; Yiyang Zhang</span>
+      <a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">苏ICP备2024103495号</a>
+    </div>
+  </footer>
+
+  <script>
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;var btn=document.getElementById('themeToggle');var KEY='siteTheme';
+  function apply(t){root.setAttribute('data-theme',t);if(btn)btn.textContent=t==='dark'?'\u2600':'\u263E';try{localStorage.setItem(KEY,t);}catch(_){}}
+  var s;try{s=localStorage.getItem(KEY);}catch(_){}
+  if(s){apply(s);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn)btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+/* ===== i18n ===== */
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);im.alt=(ak&&im.getAttribute('data-alt-'+ak))||im.getAttribute('data-alt-en');});try{localStorage.setItem('siteLang',l);}catch(_){}}
+document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
+  </script>
+</body>
+</html>
