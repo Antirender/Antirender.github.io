@@ -9,11 +9,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Language blocks: long-form copy is written per language (EN / 简中 / FR); zh-TW, ja fall back to EN */
-    html:not([lang="zh-Hans"]) [data-lang="zh"],
-    html:not([lang="fr"]) [data-lang="fr"],
-    html[lang="zh-Hans"] [data-lang="en"],
-    html[lang="fr"] [data-lang="en"]{display:none!important}
+    /* Language blocks: long-form copy is written per language (EN / 简中 / 繁中 / 日本語 / FR); one block shows */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
     .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
 
     /* Hero video */
@@ -152,7 +152,7 @@
     .toolbar .btn-ghost{margin-left:auto}
     .viz-main{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:1.1rem;align-items:start}
     .viz-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.4rem}
-    @media(max-width:760px){.viz-main,.viz-pair{grid-template-columns:1fr}.toolbar .btn-ghost{margin-left:0}}
+    @media(max-width:760px){.viz-main,.viz-pair{grid-template-columns:minmax(0,1fr)}.toolbar .btn-ghost{margin-left:0}}
     .chart-block .seg{margin:0 0 .55rem}
     .chart:focus-visible{outline:3px solid var(--accent);outline-offset:4px;border-radius:6px}
     .chart .tick{font-size:12px}
@@ -166,6 +166,7 @@
     .chart .ref-solar{stroke:var(--good);stroke-width:2}
     .chart .ref-txt{fill:var(--sub);font-size:11px;font-weight:600}
     .chart .ref-solar-txt{fill:var(--good);font-size:11px;font-weight:700}
+    .chart .ref-txt,.chart .ref-solar-txt{paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
     .chart .cross{stroke:var(--muted);stroke-width:1}
     .chart .hit{fill:transparent;cursor:pointer}
     .chart-hint{font-size:.78rem!important;color:var(--muted)!important;margin:.35rem 0 0!important}
@@ -251,15 +252,17 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow"><span data-lang="en">Case Study · Energy Systems · 2024–26</span><span data-lang="zh">案例研究 · 能源系统 · 2024–26</span><span data-lang="fr">Étude de cas · Systèmes énergétiques · 2024–26</span></span>
-      <h1><span data-lang="en">Solar + Storage for AI Compute</span><span data-lang="zh">为 AI 算力供电的光伏储能电站</span><span data-lang="fr">Solaire + stockage pour le calcul IA</span></h1>
+      <span class="eyebrow"><span data-lang="en">Case Study · Energy Systems · 2024–26</span><span data-lang="zh">案例研究 · 能源系统 · 2024–26</span><span data-lang="fr">Étude de cas · Systèmes énergétiques · 2024–26</span><span data-lang="tw">案例研究 · 能源系統 · 2024–26</span><span data-lang="ja">ケーススタディ · エネルギーシステム · 2024–26</span></span>
+      <h1><span data-lang="en">Solar + Storage for AI Compute</span><span data-lang="zh">为 AI 算力供电的光伏储能电站</span><span data-lang="fr">Solaire + stockage pour le calcul IA</span><span data-lang="tw">為 AI 算力供電的光伏儲能電站</span><span data-lang="ja">AI コンピューティングのための太陽光 + 蓄電</span></h1>
       <p data-lang="en">To give our AI compute enough power, I built a 49 kWp solar array and a 180 kWh battery bank on the rented roof of a farmhouse in Liuhe, Nanjing. The servers for AI pretraining and inference come first; the surplus goes to the farm and the village. My parents and I designed, wired and automated it ourselves — all self-taught.</p>
       <p data-lang="zh">为了给 AI 算力提供足够的电能，我在南京六合租下一户农民的房屋屋顶，建了 49 kWp 光伏和 180 kWh 储能。电优先供给 AI 预训练和推理的服务器，余电留给农家和村里使用。从设计、接线到自动化，都是我和父母一起自学完成的。</p>
       <p data-lang="fr">Pour fournir assez d’électricité à notre calcul IA, j’ai construit un champ solaire de 49 kWc et un parc de batteries de 180 kWh sur le toit loué d’une ferme à Liuhe, à Nankin. Les serveurs de pré-entraînement et d’inférence passent en premier ; le surplus va à la ferme et au village. Mes parents et moi l’avons conçu, câblé et automatisé nous-mêmes, en autodidactes.</p>
+      <p data-lang="tw">為了給 AI 算力提供足夠的電能，我在南京六合租下一戶農民的房屋屋頂，建了 49 kWp 光伏和 180 kWh 儲能。電優先供給 AI 預訓練和推理的伺服器，餘電留給農家和村裡使用。從設計、接線到自動化，都是我和父母一起自學完成的。</p>
+      <p data-lang="ja">AI の計算に十分な電力を確保するため、南京市六合にある農家の屋根を借りて、49 kWp の太陽光アレイと 180 kWh の蓄電池を建てました。AI の事前学習と推論を担うサーバーが最優先で、余った電力は農家と村に回します。設計・配線・自動化は両親と私の 3 人で、すべて独学で行いました。</p>
       <div class="meta">
-        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="fr">Rôle</span></strong><span data-lang="en">Design, wiring &amp; automation — with my parents</span><span data-lang="zh">设计、接线、自动化 · 和父母一起</span><span data-lang="fr">Conception, câblage et automatisation, avec mes parents</span></span>
-        <span><strong><span data-lang="en">Scale</span><span data-lang="zh">规模</span><span data-lang="fr">Échelle</span></strong><span data-lang="en">49 kWp PV · ≈180 kWh LFP · 6 inverters</span><span data-lang="zh">光伏 49 kWp · 储能约 180 kWh · 6 台逆变器</span><span data-lang="fr">49 kWc PV · ≈180 kWh LFP · 6 onduleurs</span></span>
-        <span><strong><span data-lang="en">Stack</span><span data-lang="zh">技术</span><span data-lang="fr">Technique</span></strong>Arduino + PLC · <span data-lang="en">Mi Home</span><span data-lang="zh">米家</span><span data-lang="fr">Mi Home</span> · IoTrix</span>
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="fr">Rôle</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span></strong><span data-lang="en">Design, wiring &amp; automation — with my parents</span><span data-lang="zh">设计、接线、自动化 · 和父母一起</span><span data-lang="fr">Conception, câblage et automatisation, avec mes parents</span><span data-lang="tw">設計、接線、自動化 · 和父母一起</span><span data-lang="ja">設計・配線・自動化 — 両親と共に</span></span>
+        <span><strong><span data-lang="en">Scale</span><span data-lang="zh">规模</span><span data-lang="fr">Échelle</span><span data-lang="tw">規模</span><span data-lang="ja">規模</span></strong><span data-lang="en">49 kWp PV · ≈180 kWh LFP · 6 inverters</span><span data-lang="zh">光伏 49 kWp · 储能约 180 kWh · 6 台逆变器</span><span data-lang="fr">49 kWc PV · ≈180 kWh LFP · 6 onduleurs</span><span data-lang="tw">光伏 49 kWp · 儲能約 180 kWh · 6 臺逆變器</span><span data-lang="ja">太陽光 49 kWp · LFP 約 180 kWh · インバーター 6 台</span></span>
+        <span><strong><span data-lang="en">Stack</span><span data-lang="zh">技术</span><span data-lang="fr">Technique</span><span data-lang="tw">技術</span><span data-lang="ja">技術</span></strong>Arduino + PLC · <span data-lang="en">Mi Home</span><span data-lang="zh">米家</span><span data-lang="fr">Mi Home</span><span data-lang="tw">米家</span><span data-lang="ja">Mi Home</span> · IoTrix</span>
       </div>
     </div>
 
@@ -267,46 +270,46 @@
       <video id="heroVideo" muted loop playsinline preload="metadata" poster="solar/poster-1280.avif" aria-label="Drone flyover of the solar arrays">
         <source src="solar/aerial-loop.mp4" type="video/mp4">
       </video>
-      <figcaption><span data-lang="en">Drone flyover of the first build, December 2024.</span><span data-lang="zh">2024 年 12 月第一版建成后的航拍。</span><span data-lang="fr">Survol en drone de la première installation, décembre 2024.</span></figcaption>
+      <figcaption><span data-lang="en">Drone flyover of the first build, December 2024.</span><span data-lang="zh">2024 年 12 月第一版建成后的航拍。</span><span data-lang="fr">Survol en drone de la première installation, décembre 2024.</span><span data-lang="tw">2024 年 12 月第一版建成後的航拍。</span><span data-lang="ja">初号機のドローン空撮（2024 年 12 月）。</span></figcaption>
     </figure>
 
     <div class="content">
       <div class="tldr">
-        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="fr">En bref</span></h2>
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="fr">En bref</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span></h2>
         <dl>
-          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">Servers for AI pretraining and inference run around the clock. Without solar, the site needs ≈32,888 kWh a month.</span><span data-lang="zh">AI 预训练和推理的服务器 24 小时运行，不用光伏的话，全站每月要用约 32,888 度电。</span><span data-lang="fr">Les serveurs de pré-entraînement et d’inférence tournent jour et nuit. Sans solaire, le site consomme ≈32 888 kWh par mois.</span></dd></div>
-          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">Design, sourcing, wiring, BMS setup and automation — with my parents, all self-taught.</span><span data-lang="zh">设计、选型、接线、BMS 调试、自动化，和父母一起，全部自学。</span><span data-lang="fr">Conception, choix du matériel, câblage, réglage des BMS et automatisation, avec mes parents, en autodidactes.</span></dd></div>
-          <div><dt><span data-lang="en">Site</span><span data-lang="zh">场地</span><span data-lang="fr">Site</span></dt><dd><span data-lang="en">The rented rooftop of a farmhouse in Liuhe, Nanjing.</span><span data-lang="zh">南京六合，租用一户农民的房屋屋顶。</span><span data-lang="fr">Le toit loué d’une ferme à Liuhe, à Nankin.</span></dd></div>
-          <div><dt><span data-lang="en">System</span><span data-lang="zh">系统</span><span data-lang="fr">Système</span></dt><dd><span data-lang="en">70 × 700 W modules in 10 strings, 6 × 11 kVA inverter-chargers, ≈180 kWh LFP. Surplus is shared with the farm and the community microgrid; nothing is sold to the grid.</span><span data-lang="zh">70 块 700W 组件分 10 组串，6 台 11 kVA 逆变器，约 180 kWh 磷酸铁锂。余电给农家和社区微网使用，不向电网卖电。</span><span data-lang="fr">70 modules de 700 W en 10 chaînes, 6 onduleurs-chargeurs de 11 kVA, ≈180 kWh LFP. Le surplus est partagé avec la ferme et le micro-réseau communautaire ; rien n’est revendu au réseau.</span></dd></div>
-          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">First power in December 2024 → staged build-out and monitoring in 2025 → storage expanded in 2026.</span><span data-lang="zh">2024 年 12 月首次发电 → 2025 年分批完善、接入监控 → 2026 年储能扩建。</span><span data-lang="fr">Première mise en service en décembre 2024 → extension progressive et supervision en 2025 → stockage agrandi en 2026.</span></dd></div>
-          <div><dt><span data-lang="en">Cost</span><span data-lang="zh">成本</span><span data-lang="fr">Coût</span></dt><dd><span data-lang="en">≈ ¥120,000</span><span data-lang="zh">约 12 万元</span><span data-lang="fr">≈ 120 000 ¥</span></dd></div>
-          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">66,504 kWh generated so far; solar covers ≈9–12% of monthly demand.</span><span data-lang="zh">累计发电 66,504 度，每月覆盖约 9–12% 的用电。</span><span data-lang="fr">66 504 kWh produits à ce jour ; le solaire couvre ≈9–12 % de la consommation mensuelle.</span></dd></div>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span></dt><dd><span data-lang="en">Servers for AI pretraining and inference run around the clock. Without solar, the site needs ≈32,888 kWh a month.</span><span data-lang="zh">AI 预训练和推理的服务器 24 小时运行，不用光伏的话，全站每月要用约 32,888 度电。</span><span data-lang="fr">Les serveurs de pré-entraînement et d’inférence tournent jour et nuit. Sans solaire, le site consomme ≈32 888 kWh par mois.</span><span data-lang="tw">AI 預訓練和推理的伺服器 24 小時運轉，不用光伏的話，全站每月要用約 32,888 度電。</span><span data-lang="ja">AI の事前学習と推論を行うサーバーは 24 時間稼働しています。太陽光がなければ、拠点の電力使用量は月に約 32,888 kWh です。</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="fr">Rôle</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span></dt><dd><span data-lang="en">Design, sourcing, wiring, BMS setup and automation — with my parents, all self-taught.</span><span data-lang="zh">设计、选型、接线、BMS 调试、自动化，和父母一起，全部自学。</span><span data-lang="fr">Conception, choix du matériel, câblage, réglage des BMS et automatisation, avec mes parents, en autodidactes.</span><span data-lang="tw">設計、選型、接線、BMS 調試、自動化，和父母一起，全部自學。</span><span data-lang="ja">設計、機材の調達、配線、BMS の設定、自動化 — 両親と共に、すべて独学で。</span></dd></div>
+          <div><dt><span data-lang="en">Site</span><span data-lang="zh">场地</span><span data-lang="fr">Site</span><span data-lang="tw">場地</span><span data-lang="ja">設置場所</span></dt><dd><span data-lang="en">The rented rooftop of a farmhouse in Liuhe, Nanjing.</span><span data-lang="zh">南京六合，租用一户农民的房屋屋顶。</span><span data-lang="fr">Le toit loué d’une ferme à Liuhe, à Nankin.</span><span data-lang="tw">南京六合，租用一戶農民的房屋屋頂。</span><span data-lang="ja">南京市六合にある農家の屋根を借りています。</span></dd></div>
+          <div><dt><span data-lang="en">System</span><span data-lang="zh">系统</span><span data-lang="fr">Système</span><span data-lang="tw">系統</span><span data-lang="ja">システム</span></dt><dd><span data-lang="en">70 × 700 W modules in 10 strings, 6 × 11 kVA inverter-chargers, ≈180 kWh LFP. Surplus is shared with the farm and the community microgrid; nothing is sold to the grid.</span><span data-lang="zh">70 块 700W 组件分 10 组串，6 台 11 kVA 逆变器，约 180 kWh 磷酸铁锂。余电给农家和社区微网使用，不向电网卖电。</span><span data-lang="fr">70 modules de 700 W en 10 chaînes, 6 onduleurs-chargeurs de 11 kVA, ≈180 kWh LFP. Le surplus est partagé avec la ferme et le micro-réseau communautaire ; rien n’est revendu au réseau.</span><span data-lang="tw">70 塊 700W 模組分 10 組串，6 臺 11 kVA 逆變器，約 180 kWh 磷酸鐵鋰。餘電給農家和社區微網使用，不向電網賣電。</span><span data-lang="ja">700 W モジュール 70 枚を 10 ストリングに、11 kVA のインバーター充電器 6 台、LFP 約 180 kWh。余剰電力は農家とコミュニティのマイクログリッドで共有し、系統へは一切売電しません。</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="fr">Calendrier</span><span data-lang="tw">時間線</span><span data-lang="ja">タイムライン</span></dt><dd><span data-lang="en">First power in December 2024 → staged build-out and monitoring in 2025 → storage expanded in 2026.</span><span data-lang="zh">2024 年 12 月首次发电 → 2025 年分批完善、接入监控 → 2026 年储能扩建。</span><span data-lang="fr">Première mise en service en décembre 2024 → extension progressive et supervision en 2025 → stockage agrandi en 2026.</span><span data-lang="tw">2024 年 12 月首次發電 → 2025 年分批完善、接入監控 → 2026 年儲能擴建。</span><span data-lang="ja">2024 年 12 月に初めて発電 → 2025 年に段階的な増設と監視の導入 → 2026 年に蓄電容量を拡張。</span></dd></div>
+          <div><dt><span data-lang="en">Cost</span><span data-lang="zh">成本</span><span data-lang="fr">Coût</span><span data-lang="tw">成本</span><span data-lang="ja">費用</span></dt><dd><span data-lang="en">≈ ¥120,000</span><span data-lang="zh">约 12 万元</span><span data-lang="fr">≈ 120 000 ¥</span><span data-lang="tw">約 12 萬元</span><span data-lang="ja">約 12 万元</span></dd></div>
+          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="fr">Résultat</span><span data-lang="tw">結果</span><span data-lang="ja">成果</span></dt><dd><span data-lang="en">66,504 kWh generated so far; solar covers ≈9–12% of monthly demand.</span><span data-lang="zh">累计发电 66,504 度，每月覆盖约 9–12% 的用电。</span><span data-lang="fr">66 504 kWh produits à ce jour ; le solaire couvre ≈9–12 % de la consommation mensuelle.</span><span data-lang="tw">累計發電 66,504 度，每月覆蓋約 9–12% 的用電。</span><span data-lang="ja">これまでの発電量は 66,504 kWh。太陽光で月間需要の約 9〜12% をまかなっています。</span></dd></div>
         </dl>
       </div>
 
       <div class="stats">
-        <div class="stat"><b><span data-lang="en">49 kWp</span><span data-lang="zh">49 kWp</span><span data-lang="fr">49 kWc</span><button class="info" type="button" data-tip="kwp">?</button></b><span data-lang="en">Solar array · 70 × 700 W</span><span data-lang="zh">光伏装机 · 70 块 700W</span><span data-lang="fr">Champ solaire · 70 × 700 W</span></div>
-        <div class="stat"><b>≈180 kWh<button class="info" type="button" data-tip="storage">?</button></b><span data-lang="en">LFP storage · 5 layers</span><span data-lang="zh">磷酸铁锂储能 · 5 层</span><span data-lang="fr">Stockage LFP · 5 étages</span></div>
-        <div class="stat"><b>6 × 11 kVA<button class="info" type="button" data-tip="kva">?</button></b><span data-lang="en">Inverter-chargers</span><span data-lang="zh">逆变充电一体机</span><span data-lang="fr">Onduleurs-chargeurs</span></div>
-        <div class="stat"><b><span data-lang="en">66,504 kWh</span><span data-lang="zh">66,504 kWh</span><span data-lang="fr">66 504 kWh</span><button class="info" type="button" data-tip="meter">?</button></b><span data-lang="en">Generated to 31 Jul 2026</span><span data-lang="zh">累计发电（截至 2026-07-31）</span><span data-lang="fr">Produit au 31 juil. 2026</span></div>
+        <div class="stat"><b><span data-lang="en">49 kWp</span><span data-lang="zh">49 kWp</span><span data-lang="fr">49 kWc</span><span data-lang="tw">49 kWp</span><span data-lang="ja">49 kWp</span><button class="info" type="button" data-tip="kwp">?</button></b><span data-lang="en">Solar array · 70 × 700 W</span><span data-lang="zh">光伏装机 · 70 块 700W</span><span data-lang="fr">Champ solaire · 70 × 700 W</span><span data-lang="tw">光伏裝機 · 70 塊 700W</span><span data-lang="ja">太陽光アレイ · 700 W × 70 枚</span></div>
+        <div class="stat"><b>≈180 kWh<button class="info" type="button" data-tip="storage">?</button></b><span data-lang="en">LFP storage · 5 layers</span><span data-lang="zh">磷酸铁锂储能 · 5 层</span><span data-lang="fr">Stockage LFP · 5 étages</span><span data-lang="tw">磷酸鐵鋰儲能 · 5 層</span><span data-lang="ja">LFP 蓄電池 · 5 段</span></div>
+        <div class="stat"><b>6 × 11 kVA<button class="info" type="button" data-tip="kva">?</button></b><span data-lang="en">Inverter-chargers</span><span data-lang="zh">逆变充电一体机</span><span data-lang="fr">Onduleurs-chargeurs</span><span data-lang="tw">逆變充電一體機</span><span data-lang="ja">インバーター充電器</span></div>
+        <div class="stat"><b><span data-lang="en">66,504 kWh</span><span data-lang="zh">66,504 kWh</span><span data-lang="fr">66 504 kWh</span><span data-lang="tw">66,504 kWh</span><span data-lang="ja">66,504 kWh</span><button class="info" type="button" data-tip="meter">?</button></b><span data-lang="en">Generated to 31 Jul 2026</span><span data-lang="zh">累计发电（截至 2026-07-31）</span><span data-lang="fr">Produit au 31 juil. 2026</span><span data-lang="tw">累計發電（截至 2026-07-31）</span><span data-lang="ja">2026 年 7 月 31 日までの発電量</span></div>
       </div>
 
       <nav aria-label="On this page">
         <ul class="toc">
-          <li><a href="#context"><span data-lang="en">Context</span><span data-lang="zh">背景</span><span data-lang="fr">Contexte</span></a></li>
-          <li><a href="#system"><span data-lang="en">System</span><span data-lang="zh">系统</span><span data-lang="fr">Système</span></a></li>
-          <li><a href="#sharing"><span data-lang="en">Sharing</span><span data-lang="zh">余电共享</span><span data-lang="fr">Partage</span></a></li>
-          <li><a href="#site"><span data-lang="en">Site</span><span data-lang="zh">场地</span><span data-lang="fr">Site</span></a></li>
-          <li><a href="#build"><span data-lang="en">Build</span><span data-lang="zh">搭建</span><span data-lang="fr">Construction</span></a></li>
-          <li><a href="#monitoring"><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span><span data-lang="fr">Supervision</span></a></li>
-          <li><a href="#analysis"><span data-lang="en">Analysis</span><span data-lang="zh">交互分析</span><span data-lang="fr">Analyse</span></a></li>
-          <li><a href="#decisions"><span data-lang="en">Decisions</span><span data-lang="zh">工程决策</span><span data-lang="fr">Décisions</span></a></li>
-          <li><a href="#reflection"><span data-lang="en">Reflection</span><span data-lang="zh">总结</span><span data-lang="fr">Bilan</span></a></li>
+          <li><a href="#context"><span data-lang="en">Context</span><span data-lang="zh">背景</span><span data-lang="fr">Contexte</span><span data-lang="tw">背景</span><span data-lang="ja">背景</span></a></li>
+          <li><a href="#system"><span data-lang="en">System</span><span data-lang="zh">系统</span><span data-lang="fr">Système</span><span data-lang="tw">系統</span><span data-lang="ja">システム</span></a></li>
+          <li><a href="#sharing"><span data-lang="en">Sharing</span><span data-lang="zh">余电共享</span><span data-lang="fr">Partage</span><span data-lang="tw">餘電共享</span><span data-lang="ja">電力の共有</span></a></li>
+          <li><a href="#site"><span data-lang="en">Site</span><span data-lang="zh">场地</span><span data-lang="fr">Site</span><span data-lang="tw">場地</span><span data-lang="ja">設置場所</span></a></li>
+          <li><a href="#build"><span data-lang="en">Build</span><span data-lang="zh">搭建</span><span data-lang="fr">Construction</span><span data-lang="tw">搭建</span><span data-lang="ja">施工</span></a></li>
+          <li><a href="#monitoring"><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span><span data-lang="fr">Supervision</span><span data-lang="tw">監控</span><span data-lang="ja">モニタリング</span></a></li>
+          <li><a href="#analysis"><span data-lang="en">Analysis</span><span data-lang="zh">交互分析</span><span data-lang="fr">Analyse</span><span data-lang="tw">互動分析</span><span data-lang="ja">分析</span></a></li>
+          <li><a href="#decisions"><span data-lang="en">Decisions</span><span data-lang="zh">工程决策</span><span data-lang="fr">Décisions</span><span data-lang="tw">工程決策</span><span data-lang="ja">設計判断</span></a></li>
+          <li><a href="#reflection"><span data-lang="en">Reflection</span><span data-lang="zh">总结</span><span data-lang="fr">Bilan</span><span data-lang="tw">總結</span><span data-lang="ja">振り返り</span></a></li>
         </ul>
       </nav>
 
       <!-- 01 -->
-      <h2 id="context"><span data-lang="en">Context</span><span data-lang="zh">背景</span><span data-lang="fr">Contexte</span></h2>
+      <h2 id="context"><span data-lang="en">Context</span><span data-lang="zh">背景</span><span data-lang="fr">Contexte</span><span data-lang="tw">背景</span><span data-lang="ja">背景</span></h2>
       <div data-lang="en">
         <p>Our servers for AI pretraining and inference run around the clock, and without solar the site needs about 32,888 kWh a month. To give the compute enough power, I built a solar station on the rented rooftop of a farmhouse in Liuhe, Nanjing.</p>
         <p>Because the roof belongs to a farming family, the station was planned to serve them and the village too, not just the machine room. There was no installer — my parents and I taught ourselves and built it. The brief:</p>
@@ -342,54 +345,79 @@
         </ul>
         <p><strong>Contraintes :</strong> un budget d’environ 120 000 ¥, des modules de 40 kg sur des toits ruraux, et la chaleur de l’été : 46–49 °C dehors, 38–42 °C dans la salle technique, 57–60 °C sur les transformateurs.</p>
       </div>
+      <div data-lang="tw">
+        <p>AI 預訓練和推理的伺服器 24 小時不停，不用光伏的話，全站每月要用大約 32,888 度電。為了給算力提供足夠的電能，我在南京六合租下一戶農民的房屋屋頂，自己建了這座太陽能電站。</p>
+        <p>屋頂是農戶的，所以電站從一開始就不只為機房服務，也要讓農家和村裡受益。沒有找施工隊，我和父母邊學邊做。給自己定的要求：</p>
+        <ul>
+          <li><strong>算力優先。</strong>負載先用光伏，再用電池，兩者都沒電時才切到市電。</li>
+          <li><strong>餘電就地共享。</strong>先給農家，再進社區微網，不向電網賣電。</li>
+          <li><strong>控制系統不能跟著倒。</strong>功率部分出故障時，負責協調的控制系統要保持線上。</li>
+          <li><strong>每個器件都留在額定範圍內</strong>：MPPT 電壓和功率、BMS 電流、線纜和銅排的載流。</li>
+          <li><strong>能分階段擴建</strong>，不用推倒重來。</li>
+        </ul>
+        <p><strong>限制條件：</strong>預算約 12 萬元；每塊模組約 40 kg，要裝到農村屋頂上；夏季高溫，室外 46–49°C，機房 38–42°C，變壓器 57–60°C。</p>
+      </div>
+      <div data-lang="ja"><p>AI の事前学習と推論を行うサーバーは 24 時間稼働しており、太陽光がなければ拠点の電力使用量は月に約 32,888 kWh になります。計算に十分な電力を確保するため、南京市六合にある農家の屋根を借りて太陽光発電所を建てました。</p>
+        <p>屋根は農家の方の持ち物なので、マシンルームだけでなく、その家族や村の役にも立つように計画しました。施工業者は入れず、両親と私で一から学んで建てました。要件は次のとおりです。</p>
+        <ul>
+          <li><strong>AI の計算が最優先。</strong>負荷はまず太陽光、次に蓄電池でまかない、両方が空のときだけ系統電力を使います。</li>
+          <li><strong>余剰電力は地元で共有。</strong>まず農家、次にコミュニティのマイクログリッドへ。系統への売電はしません。</li>
+          <li><strong>制御系を止めない。</strong>電力段の故障で、それを統括する制御システムまで落ちてはいけません。</li>
+          <li><strong>すべての定格を守る</strong> — MPPT の電圧と電力、BMS の電流、ケーブルとバスバーの定格。</li>
+          <li><strong>段階的に拡張できる</strong>こと。一から作り直さずに。</li>
+        </ul>
+        <p><strong>制約：</strong>予算は約 12 万元、1 枚 40 kg のモジュールを農村の屋根に載せること、そして夏の暑さ — 屋外 46〜49 °C、機械室 38〜42 °C、変圧器は 57〜60 °C。</p>
+      </div>
 
       <!-- 02 -->
-      <h2 id="system"><span data-lang="en">System</span><span data-lang="zh">系统结构</span><span data-lang="fr">Système</span></h2>
+      <h2 id="system"><span data-lang="en">System</span><span data-lang="zh">系统结构</span><span data-lang="fr">Système</span><span data-lang="tw">系統結構</span><span data-lang="ja">システム</span></h2>
       <p data-lang="en">Power flows from the arrays through six inverter-chargers to the loads in priority order — AI compute, then the farmhouse, then the community microgrid — with the battery bank on a shared DC bus. The grid is wired in only as a backup input.</p>
       <p data-lang="zh">电从光伏阵列经过 6 台逆变器，按优先级依次送给 AI 算力、农家和社区微网，电池组挂在共用的直流母线上。市电只作为后备输入接入。</p>
       <p data-lang="fr">L’électricité va des champs solaires, via six onduleurs-chargeurs, vers les charges par ordre de priorité (calcul IA, puis la ferme, puis le micro-réseau communautaire), le parc de batteries étant relié à un bus CC commun. Le réseau n’est câblé qu’en entrée de secours.</p>
+      <p data-lang="tw">電從光伏陣列經過 6 臺逆變器，按優先順序依次送給 AI 算力、農家和社區微網，電池組掛在共用的直流母線上。市電只作為後備輸入接入。</p>
+      <p data-lang="ja">電力はアレイから 6 台のインバーター充電器を通り、優先順位に従って負荷へ流れます — AI の計算、次に農家、次にコミュニティのマイクログリッド。蓄電池は共通の DC バスにつながっています。系統電力はバックアップ入力としてのみ接続しています。</p>
 
       <div class="sys" role="group" aria-label="System diagram">
         <div class="node grid n-grid">
-          <h3><span data-lang="en">Grid</span><span data-lang="zh">市电</span><span data-lang="fr">Réseau</span><button class="info" type="button" data-tip="zeroExport">?</button></h3>
-          <span data-lang="en">Backup only — used when PV and batteries are both empty. Nothing is sold to the grid.</span><span data-lang="zh">只作后备：光伏和电池都没电时才用，不向电网卖电。</span><span data-lang="fr">Secours uniquement : utilisé quand le solaire et les batteries sont tous deux vides. Rien n’est revendu au réseau.</span>
+          <h3><span data-lang="en">Grid</span><span data-lang="zh">市电</span><span data-lang="fr">Réseau</span><span data-lang="tw">市電</span><span data-lang="ja">系統電力</span><button class="info" type="button" data-tip="zeroExport">?</button></h3>
+          <span data-lang="en">Backup only — used when PV and batteries are both empty. Nothing is sold to the grid.</span><span data-lang="zh">只作后备：光伏和电池都没电时才用，不向电网卖电。</span><span data-lang="fr">Secours uniquement : utilisé quand le solaire et les batteries sont tous deux vides. Rien n’est revendu au réseau.</span><span data-lang="tw">只作後備：光伏和電池都沒電時才用，不向電網賣電。</span><span data-lang="ja">バックアップ専用 — 太陽光と蓄電池の両方が空のときだけ使用。系統への売電はしません。</span>
         </div>
-        <div class="link l-g2i">↓ <span data-lang="en">&nbsp;backup input</span><span data-lang="zh">&nbsp;后备输入</span><span data-lang="fr">&nbsp;entrée de secours</span></div>
+        <div class="link l-g2i">↓ <span data-lang="en">&nbsp;backup input</span><span data-lang="zh">&nbsp;后备输入</span><span data-lang="fr">&nbsp;entrée de secours</span><span data-lang="tw">&nbsp;後備輸入</span><span data-lang="ja">&nbsp;バックアップ入力</span></div>
         <div class="node n-pv">
-          <h3><span data-lang="en">Solar array</span><span data-lang="zh">光伏阵列</span><span data-lang="fr">Champ solaire</span></h3>
+          <h3><span data-lang="en">Solar array</span><span data-lang="zh">光伏阵列</span><span data-lang="fr">Champ solaire</span><span data-lang="tw">光伏陣列</span><span data-lang="ja">太陽光アレイ</span></h3>
           <ul>
-            <li><span data-lang="en">70 × 700 W modules · 49 kWp</span><span data-lang="zh">70 块 700W 组件 · 49 kWp</span><span data-lang="fr">70 modules de 700 W · 49 kWc</span></li>
-            <li><span data-lang="en">10 strings · noon peak 31–33 kW</span><span data-lang="zh">10 组串 · 正午实测 31–33 kW</span><span data-lang="fr">10 chaînes · pic de midi 31–33 kW</span></li>
-            <li><span data-lang="en">Left 45 modules, due south, 5°</span><span data-lang="zh">左阵列 45 块，正南，倾角 5°</span><span data-lang="fr">Gauche : 45 modules, plein sud, 5°</span></li>
-            <li><span data-lang="en">Right 25 modules, 15°</span><span data-lang="zh">右阵列 25 块，倾角 15°</span><span data-lang="fr">Droite : 25 modules, 15°</span></li>
+            <li><span data-lang="en">70 × 700 W modules · 49 kWp</span><span data-lang="zh">70 块 700W 组件 · 49 kWp</span><span data-lang="fr">70 modules de 700 W · 49 kWc</span><span data-lang="tw">70 塊 700W 模組 · 49 kWp</span><span data-lang="ja">700 W モジュール × 70 枚 · 49 kWp</span></li>
+            <li><span data-lang="en">10 strings · noon peak 31–33 kW</span><span data-lang="zh">10 组串 · 正午实测 31–33 kW</span><span data-lang="fr">10 chaînes · pic de midi 31–33 kW</span><span data-lang="tw">10 組串 · 正午實測 31–33 kW</span><span data-lang="ja">10 ストリング · 正午のピーク 31〜33 kW</span></li>
+            <li><span data-lang="en">Left 45 modules, due south, 5°</span><span data-lang="zh">左阵列 45 块，正南，倾角 5°</span><span data-lang="fr">Gauche : 45 modules, plein sud, 5°</span><span data-lang="tw">左陣列 45 塊，正南，傾角 5°</span><span data-lang="ja">左：45 枚、真南向き、5°</span></li>
+            <li><span data-lang="en">Right 25 modules, 15°</span><span data-lang="zh">右阵列 25 块，倾角 15°</span><span data-lang="fr">Droite : 25 modules, 15°</span><span data-lang="tw">右陣列 25 塊，傾角 15°</span><span data-lang="ja">右：25 枚、15°</span></li>
           </ul>
         </div>
         <div class="link l-a1" aria-hidden="true">→</div>
         <div class="node inv n-inv">
-          <h3><span data-lang="en">6 × 11 kVA inverter-chargers</span><span data-lang="zh">6 台 11 kVA 逆变充电一体机</span><span data-lang="fr">6 onduleurs-chargeurs de 11 kVA</span></h3>
+          <h3><span data-lang="en">6 × 11 kVA inverter-chargers</span><span data-lang="zh">6 台 11 kVA 逆变充电一体机</span><span data-lang="fr">6 onduleurs-chargeurs de 11 kVA</span><span data-lang="tw">6 臺 11 kVA 逆變充電一體機</span><span data-lang="ja">11 kVA インバーター充電器 × 6 台</span></h3>
           <ul>
-            <li><span data-lang="en">3 in parallel for the 220 V main output, phase-locked by Arduino + PLC</span><span data-lang="zh">3 台并联做 220V 主输出，Arduino + PLC 锁相位</span><span data-lang="fr">3 en parallèle pour la sortie principale 220 V, synchronisés en phase par Arduino + automate</span></li>
-            <li><span data-lang="en">1 charging only</span><span data-lang="zh">1 台纯充电</span><span data-lang="fr">1 uniquement pour la charge</span></li>
-            <li><span data-lang="en">1 powers the control system, fully isolated</span><span data-lang="zh">1 台只给控制系统供电，完全隔离</span><span data-lang="fr">1 alimente le système de contrôle, entièrement isolé</span></li>
-            <li><span data-lang="en">1 hot standby, switches in on a fault</span><span data-lang="zh">1 台热备，主机故障时自动切入</span><span data-lang="fr">1 en secours actif, bascule en cas de panne</span></li>
+            <li><span data-lang="en">3 in parallel for the 220 V main output, phase-locked by Arduino + PLC</span><span data-lang="zh">3 台并联做 220V 主输出，Arduino + PLC 锁相位</span><span data-lang="fr">3 en parallèle pour la sortie principale 220 V, synchronisés en phase par Arduino + automate</span><span data-lang="tw">3 臺並聯做 220V 主輸出，Arduino + PLC 鎖相位</span><span data-lang="ja">3 台を並列にして 220 V の主出力に。Arduino + PLC で位相同期</span></li>
+            <li><span data-lang="en">1 charging only</span><span data-lang="zh">1 台纯充电</span><span data-lang="fr">1 uniquement pour la charge</span><span data-lang="tw">1 臺純充電</span><span data-lang="ja">1 台は充電専用</span></li>
+            <li><span data-lang="en">1 powers the control system, fully isolated</span><span data-lang="zh">1 台只给控制系统供电，完全隔离</span><span data-lang="fr">1 alimente le système de contrôle, entièrement isolé</span><span data-lang="tw">1 臺只給控制系統供電，完全隔離</span><span data-lang="ja">1 台は制御システムに給電、完全に分離</span></li>
+            <li><span data-lang="en">1 hot standby, switches in on a fault</span><span data-lang="zh">1 台热备，主机故障时自动切入</span><span data-lang="fr">1 en secours actif, bascule en cas de panne</span><span data-lang="tw">1 臺熱備，主機故障時自動切入</span><span data-lang="ja">1 台はホットスタンバイ、故障時に自動で切り替え</span></li>
           </ul>
         </div>
         <div class="link l-a2" aria-hidden="true">→</div>
         <div class="node n-load">
-          <h3><span data-lang="en">Loads, in priority order</span><span data-lang="zh">负载（按优先级）</span><span data-lang="fr">Charges, par ordre de priorité</span></h3>
+          <h3><span data-lang="en">Loads, in priority order</span><span data-lang="zh">负载（按优先级）</span><span data-lang="fr">Charges, par ordre de priorité</span><span data-lang="tw">負載（按優先順序）</span><span data-lang="ja">負荷（優先順）</span></h3>
           <ol>
-            <li><span data-lang="en">AI compute: pretraining &amp; inference servers, cooling</span><span data-lang="zh">AI 算力：预训练和推理服务器、空调</span><span data-lang="fr">Calcul IA : serveurs de pré-entraînement et d’inférence, climatisation</span></li>
-            <li><span data-lang="en">Farmhouse: electric farm tools, household</span><span data-lang="zh">农家：电动农具充电、生活用电</span><span data-lang="fr">Ferme : outils agricoles électriques, usage domestique</span></li>
-            <li><span data-lang="en">Community microgrid: street lights, pump station, service points</span><span data-lang="zh">社区微网：路灯、公共泵站、便民服务点</span><span data-lang="fr">Micro-réseau communautaire : éclairage public, station de pompage, points de service</span></li>
+            <li><span data-lang="en">AI compute: pretraining &amp; inference servers, cooling</span><span data-lang="zh">AI 算力：预训练和推理服务器、空调</span><span data-lang="fr">Calcul IA : serveurs de pré-entraînement et d’inférence, climatisation</span><span data-lang="tw">AI 算力：預訓練和推理伺服器、空調</span><span data-lang="ja">AI の計算：事前学習・推論サーバー、冷却</span></li>
+            <li><span data-lang="en">Farmhouse: electric farm tools, household</span><span data-lang="zh">农家：电动农具充电、生活用电</span><span data-lang="fr">Ferme : outils agricoles électriques, usage domestique</span><span data-lang="tw">農家：電動農具充電、生活用電</span><span data-lang="ja">農家：電動農機具、家庭用</span></li>
+            <li><span data-lang="en">Community microgrid: street lights, pump station, service points</span><span data-lang="zh">社区微网：路灯、公共泵站、便民服务点</span><span data-lang="fr">Micro-réseau communautaire : éclairage public, station de pompage, points de service</span><span data-lang="tw">社區微網：路燈、公共泵站、便民服務點</span><span data-lang="ja">コミュニティのマイクログリッド：街灯、ポンプ場、サービス拠点</span></li>
           </ol>
         </div>
-        <div class="link l-bus"><button class="info" type="button" data-tip="dcbus">?</button>&nbsp;⇅ <span data-lang="en">&nbsp;DC bus · 4 mm copper busbar · one 95 mm² cable per inverter</span><span data-lang="zh">&nbsp;直流母线 · 4mm 铜排 · 每台逆变器一根 95mm² 铜线</span><span data-lang="fr">&nbsp;Bus CC · barre de cuivre de 4 mm · un câble de 95 mm² par onduleur</span></div>
+        <div class="link l-bus"><button class="info" type="button" data-tip="dcbus">?</button>&nbsp;⇅ <span data-lang="en">&nbsp;DC bus · 4 mm copper busbar · one 95 mm² cable per inverter</span><span data-lang="zh">&nbsp;直流母线 · 4mm 铜排 · 每台逆变器一根 95mm² 铜线</span><span data-lang="fr">&nbsp;Bus CC · barre de cuivre de 4 mm · un câble de 95 mm² par onduleur</span><span data-lang="tw">&nbsp;直流母線 · 4mm 銅排 · 每臺逆變器一根 95mm² 銅線</span><span data-lang="ja">&nbsp;DC バス · 4 mm 銅バスバー · インバーターごとに 95 mm² ケーブル 1 本</span></div>
         <div class="node n-bat">
-          <h3><span data-lang="en">LFP battery bank</span><span data-lang="zh">磷酸铁锂电池组</span><span data-lang="fr">Parc de batteries LFP</span><button class="info" type="button" data-tip="s16">?</button></h3>
+          <h3><span data-lang="en">LFP battery bank</span><span data-lang="zh">磷酸铁锂电池组</span><span data-lang="fr">Parc de batteries LFP</span><span data-lang="tw">磷酸鐵鋰電池組</span><span data-lang="ja">LFP 蓄電池</span><button class="info" type="button" data-tip="s16">?</button></h3>
           <ul>
-            <li><span data-lang="en">16S · 51.2 V nominal · ≈180 kWh</span><span data-lang="zh">16 串 · 标称 51.2V · 约 180 kWh</span><span data-lang="fr">16S · 51,2 V nominal · ≈180 kWh</span></li>
-            <li><span data-lang="en">4 layers 16S2P (400 Ah cells) + 1 layer 16S1P (310 Ah)</span><span data-lang="zh">4 层 16S2P（400Ah 电芯）+ 1 层 16S1P（310Ah）</span><span data-lang="fr">4 étages 16S2P (cellules de 400 Ah) + 1 étage 16S1P (310 Ah)</span></li>
-            <li><span data-lang="en">Independent BMS on every layer</span><span data-lang="zh">每层独立 BMS</span><span data-lang="fr">Un BMS indépendant par étage</span><button class="info" type="button" data-tip="bms">?</button></li>
+            <li><span data-lang="en">16S · 51.2 V nominal · ≈180 kWh</span><span data-lang="zh">16 串 · 标称 51.2V · 约 180 kWh</span><span data-lang="fr">16S · 51,2 V nominal · ≈180 kWh</span><span data-lang="tw">16 串 · 標稱 51.2V · 約 180 kWh</span><span data-lang="ja">16S · 公称 51.2 V · 約 180 kWh</span></li>
+            <li><span data-lang="en">4 layers 16S2P (400 Ah cells) + 1 layer 16S1P (310 Ah)</span><span data-lang="zh">4 层 16S2P（400Ah 电芯）+ 1 层 16S1P（310Ah）</span><span data-lang="fr">4 étages 16S2P (cellules de 400 Ah) + 1 étage 16S1P (310 Ah)</span><span data-lang="tw">4 層 16S2P（400Ah 電芯）+ 1 層 16S1P（310Ah）</span><span data-lang="ja">16S2P（400 Ah セル）× 4 段 + 16S1P（310 Ah）× 1 段</span></li>
+            <li><span data-lang="en">Independent BMS on every layer</span><span data-lang="zh">每层独立 BMS</span><span data-lang="fr">Un BMS indépendant par étage</span><span data-lang="tw">每層獨立 BMS</span><span data-lang="ja">各段に独立した BMS</span><button class="info" type="button" data-tip="bms">?</button></li>
           </ul>
         </div>
       </div>
@@ -408,63 +436,85 @@
         <li><strong>Modules</strong><button class="info" type="button" data-tip="voc">?</button><strong> :</strong> Voc 48 V et Isc 19 A chacun, donc une chaîne de 9 modules avoisine 432 V en circuit ouvert.</li>
         <li><strong>Exploitation :</strong> application de supervision depuis avril 2025 ; les six appareils sont automatisés via Mi Home depuis octobre 2025.</li>
       </ul>
+      <ul data-lang="tw">
+        <li><strong>逆變器上限</strong><button class="info" type="button" data-tip="mppt">?</button><strong>：</strong>MPPT 工作電壓最高 500V（耐壓 550V，用的是 630V 電容）；單路最大 5.5 kW，單機最大 11 kW。</li>
+        <li><strong>模組</strong><button class="info" type="button" data-tip="voc">?</button><strong>：</strong>單塊 Voc 48V、Isc 19A，9 塊一串開路電壓約 432V。</li>
+        <li><strong>運轉：</strong>2025 年 4 月接入監控 app；2025 年 10 月起 6 臺機全部由米家自動化控制。</li>
+      </ul>
+      <ul data-lang="ja">
+          <li><strong>インバーターの制限</strong><button class="info" type="button" data-tip="mppt">?</button><strong>：</strong>MPPT の動作範囲は最大 500 V（入力定格 550 V、630 V のコンデンサを使用）。1 入力あたり 5.5 kW、1 台あたり 11 kW。</li>
+          <li><strong>モジュール</strong><button class="info" type="button" data-tip="voc">?</button><strong>：</strong>1 枚あたり Voc 48 V、Isc 19 A。9 枚のストリングの開放電圧は約 432 V になります。</li>
+          <li><strong>運用：</strong>2025 年 4 月から監視アプリを導入。2025 年 10 月からは 6 台すべてを Mi Home で自動化しています。</li>
+        </ul>
 
       <!-- 03 -->
-      <h2 id="sharing"><span data-lang="en">Sharing the surplus</span><span data-lang="zh">余电共享</span><span data-lang="fr">Partager le surplus</span></h2>
+      <h2 id="sharing"><span data-lang="en">Sharing the surplus</span><span data-lang="zh">余电共享</span><span data-lang="fr">Partager le surplus</span><span data-lang="tw">餘電共享</span><span data-lang="ja">余剰電力の共有</span></h2>
       <p data-lang="en">The station is the green heart of the AI compute, but it also ties into the village. Once the servers are covered, the surplus stays local instead of going to the grid.</p>
       <p data-lang="zh">这座电站不仅是 AI 算力的“绿色心脏”，也是乡村振兴的“减碳纽带”。算力用电满足之后，余电留在村里，不送进电网。</p>
       <p data-lang="fr">La centrale est le cœur vert du calcul IA, mais elle est aussi reliée au village. Une fois les serveurs servis, le surplus reste sur place au lieu de partir sur le réseau.</p>
+      <p data-lang="tw">這座電站不僅是 AI 算力的“綠色心臟”，也是鄉村振興的“減碳紐帶”。算力用電滿足之後，餘電留在村裡，不送進電網。</p>
+      <p data-lang="ja">この発電所は AI の計算を支える「グリーンな心臓」であると同時に、村ともつながっています。サーバーの分をまかなった後の余剰電力は、系統に流さずに地元で使います。</p>
       <div class="share">
         <div>
-          <b><span data-lang="en">01 · Farmhouse</span><span data-lang="zh">01 · 农家</span><span data-lang="fr">01 · Ferme</span></b>
-          <h3><span data-lang="en">Electric farm tools</span><span data-lang="zh">电动农具</span><span data-lang="fr">Outils agricoles électriques</span></h3>
+          <b><span data-lang="en">01 · Farmhouse</span><span data-lang="zh">01 · 农家</span><span data-lang="fr">01 · Ferme</span><span data-lang="tw">01 · 農家</span><span data-lang="ja">01 · 農家</span></b>
+          <h3><span data-lang="en">Electric farm tools</span><span data-lang="zh">电动农具</span><span data-lang="fr">Outils agricoles électriques</span><span data-lang="tw">電動農具</span><span data-lang="ja">電動農機具</span></h3>
           <p data-lang="en">Surplus goes to the farming family first. Electric farm tools charge whenever needed, so tilling, irrigation and transport no longer run on diesel — each kWh replaces fuel and cuts emissions in the field.</p>
           <p data-lang="zh">余电优先反哺农家：电动农具随时充电，旋耕、灌溉、运输告别柴油轰鸣，每一度绿电都替代原来的燃油，直接削减田间碳排放。</p>
           <p data-lang="fr">Le surplus va d’abord à la famille d’agriculteurs. Les outils agricoles électriques se rechargent à tout moment : labour, irrigation et transport ne tournent plus au diesel, et chaque kWh remplace du carburant et réduit les émissions aux champs.</p>
+          <p data-lang="tw">餘電優先反哺農家：電動農具隨時充電，旋耕、灌溉、運輸告別柴油轟鳴，每一度綠電都替代原來的燃油，直接削減田間碳排放。</p>
+          <p data-lang="ja">余剰電力はまず農家の方へ。電動農機具をいつでも充電できるので、耕起・灌漑・運搬にディーゼルを使わずに済みます — 1 kWh ごとに燃料を置き換え、畑からの排出を減らします。</p>
         </div>
         <div>
-          <b><span data-lang="en">02 · Community</span><span data-lang="zh">02 · 社区</span><span data-lang="fr">02 · Communauté</span></b>
-          <h3><span data-lang="en">Community microgrid</span><span data-lang="zh">社区微网</span><span data-lang="fr">Micro-réseau communautaire</span></h3>
+          <b><span data-lang="en">02 · Community</span><span data-lang="zh">02 · 社区</span><span data-lang="fr">02 · Communauté</span><span data-lang="tw">02 · 社區</span><span data-lang="ja">02 · コミュニティ</span></b>
+          <h3><span data-lang="en">Community microgrid</span><span data-lang="zh">社区微网</span><span data-lang="fr">Micro-réseau communautaire</span><span data-lang="tw">社區微網</span><span data-lang="ja">コミュニティのマイクログリッド</span></h3>
           <p data-lang="en">Further surplus feeds the community microgrid — street lights, the public pump station and service points — so the neighbours share the clean power too.</p>
           <p data-lang="zh">多余电力接入社区微网，为路灯、公共泵站和便民服务点供电，让清洁能源惠及左邻右舍。</p>
           <p data-lang="fr">Le surplus restant alimente le micro-réseau communautaire (éclairage public, station de pompage publique et points de service) pour que les voisins profitent aussi de l’énergie propre.</p>
+          <p data-lang="tw">多餘電力接入社區微網，為路燈、公共泵站和便民服務點供電，讓清潔能源惠及左鄰右舍。</p>
+          <p data-lang="ja">さらに余った電力はコミュニティのマイクログリッドへ — 街灯、公共のポンプ場、サービス拠点 — 近所の人たちもクリーンな電力を共有できます。</p>
         </div>
         <div>
-          <b><span data-lang="en">03 · Shared model</span><span data-lang="zh">03 · 共享模式</span><span data-lang="fr">03 · Modèle partagé</span></b>
-          <h3><span data-lang="en">Roof rent + low-cost power + public supply</span><span data-lang="zh">屋顶收租 + 低价绿电 + 公共供电</span><span data-lang="fr">Loyer du toit + électricité bon marché + service public</span></h3>
+          <b><span data-lang="en">03 · Shared model</span><span data-lang="zh">03 · 共享模式</span><span data-lang="fr">03 · Modèle partagé</span><span data-lang="tw">03 · 共享模式</span><span data-lang="ja">03 · 共有モデル</span></b>
+          <h3><span data-lang="en">Roof rent + low-cost power + public supply</span><span data-lang="zh">屋顶收租 + 低价绿电 + 公共供电</span><span data-lang="fr">Loyer du toit + électricité bon marché + service public</span><span data-lang="tw">屋頂收租 + 低價綠電 + 公共供電</span><span data-lang="ja">屋根の賃料 + 低価格の電力 + 公共への供給</span></h3>
           <p data-lang="en">The farmer earns rent for the roof and gets low-cost green power, the community gains backup supply in emergencies, and zero-carbon solar replaces high-carbon grid power.</p>
           <p data-lang="zh">农户收屋顶租金、用上低价绿电，社区增强应急保供能力，零碳电力替代电网的高碳电量。</p>
           <p data-lang="fr">L’agriculteur touche un loyer pour son toit et bénéficie d’une électricité verte bon marché, la communauté gagne une alimentation de secours en cas d’urgence, et le solaire zéro carbone remplace l’électricité carbonée du réseau.</p>
+          <p data-lang="tw">農戶收屋頂租金、用上低價綠電，社區增強應急保供能力，零碳電力替代電網的高碳電量。</p>
+          <p data-lang="ja">農家は屋根の賃料を得て、安価なグリーン電力を使えます。コミュニティは非常時のバックアップ電源を得て、ゼロカーボンの太陽光が高炭素の系統電力を置き換えます。</p>
         </div>
       </div>
       <p class="share-quote" data-lang="en">Clean energy flows from the machine room to the fields: one kWh of solar, many users, shared carbon cuts.</p>
       <p class="share-quote" data-lang="zh">清洁能源从算力机房流向田间地头：一度绿电、多方使用、碳排共减。</p>
       <p class="share-quote" data-lang="fr">L’énergie propre circule de la salle des machines jusqu’aux champs : un kWh solaire, de nombreux usagers, des émissions réduites pour tous.</p>
+      <p class="share-quote" data-lang="tw">清潔能源從算力機房流向田間地頭：一度綠電、多方使用、碳排共減。</p>
+      <p class="share-quote" data-lang="ja">クリーンなエネルギーがマシンルームから畑へ。1 kWh の太陽光を多くの人で使い、炭素削減を分かち合う。</p>
 
       <!-- 04 -->
-      <h2 id="site"><span data-lang="en">Site</span><span data-lang="zh">场地</span><span data-lang="fr">Site</span></h2>
+      <h2 id="site"><span data-lang="en">Site</span><span data-lang="zh">场地</span><span data-lang="fr">Site</span><span data-lang="tw">場地</span><span data-lang="ja">設置場所</span></h2>
       <p data-lang="en">The left array covers the main roof, facing due south at a shallow 5°. The right array sits at 15° in 2 × 9 + 1 × 7 strings.</p>
       <p data-lang="zh">左阵列铺满主屋顶，正南朝向，倾角只有 5°。右阵列倾角 15°，分 2 组 9 串和 1 组 7 串。</p>
       <p data-lang="fr">Le champ gauche couvre le toit principal, plein sud avec une faible inclinaison de 5°. Le champ droit est incliné à 15°, en chaînes de 2 × 9 + 1 × 7.</p>
+      <p data-lang="tw">左陣列鋪滿主屋頂，正南朝向，傾角只有 5°。右陣列傾角 15°，分 2 組 9 串和 1 組 7 串。</p>
+      <p data-lang="ja">左アレイはメインの屋根を覆い、真南向きに 5° の緩い傾斜で設置しています。右アレイは 15° で、9 枚 × 2 + 7 枚 × 1 のストリング構成です。</p>
 
       <div class="pair">
         <figure class="ph">
           <a class="zoom" href="solar/aerial-2024-1600.avif" data-webp="solar/aerial-2024-1600.webp">
             <picture>
               <source type="image/avif" srcset="solar/aerial-2024-800.avif 800w, solar/aerial-2024-1600.avif 1600w" sizes="(max-width:560px) 100vw, 440px">
-              <img src="solar/aerial-2024-800.webp" srcset="solar/aerial-2024-800.webp 800w, solar/aerial-2024-1600.webp 1600w" sizes="(max-width:560px) 100vw, 440px" width="800" height="600" loading="lazy" alt="Aerial view of the arrays in December 2024" data-alt-zh="2024 年 12 月的阵列航拍" data-alt-fr="Vue aérienne des champs en décembre 2024">
+              <img src="solar/aerial-2024-800.webp" srcset="solar/aerial-2024-800.webp 800w, solar/aerial-2024-1600.webp 1600w" sizes="(max-width:560px) 100vw, 440px" width="800" height="600" loading="lazy" alt="Aerial view of the arrays in December 2024" data-alt-zh="2024 年 12 月的阵列航拍" data-alt-fr="Vue aérienne des champs en décembre 2024" data-alt-tw="2024 年 12 月的陣列航拍" data-alt-ja="2024 年 12 月のアレイの空撮">
             </picture>
           </a>
-          <figcaption><span data-lang="en">December 2024 — the first build.</span><span data-lang="zh">2024 年 12 月 · 第一版。</span><span data-lang="fr">Décembre 2024 : la première installation.</span></figcaption>
+          <figcaption><span data-lang="en">December 2024 — the first build.</span><span data-lang="zh">2024 年 12 月 · 第一版。</span><span data-lang="fr">Décembre 2024 : la première installation.</span><span data-lang="tw">2024 年 12 月 · 第一版。</span><span data-lang="ja">2024 年 12 月 — 初号機。</span></figcaption>
         </figure>
         <figure class="ph">
           <a class="zoom" href="solar/aerial-2026-1600.avif" data-webp="solar/aerial-2026-1600.webp">
             <picture>
               <source type="image/avif" srcset="solar/aerial-2026-800.avif 800w, solar/aerial-2026-1600.avif 1600w" sizes="(max-width:560px) 100vw, 440px">
-              <img src="solar/aerial-2026-800.webp" srcset="solar/aerial-2026-800.webp 800w, solar/aerial-2026-1600.webp 1600w" sizes="(max-width:560px) 100vw, 440px" width="800" height="600" loading="lazy" alt="Top-down aerial view of the arrays in 2026" data-alt-zh="2026 年的阵列俯拍" data-alt-fr="Vue aérienne verticale des champs en 2026">
+              <img src="solar/aerial-2026-800.webp" srcset="solar/aerial-2026-800.webp 800w, solar/aerial-2026-1600.webp 1600w" sizes="(max-width:560px) 100vw, 440px" width="800" height="600" loading="lazy" alt="Top-down aerial view of the arrays in 2026" data-alt-zh="2026 年的阵列俯拍" data-alt-fr="Vue aérienne verticale des champs en 2026" data-alt-tw="2026 年的陣列俯拍" data-alt-ja="2026 年のアレイを真上から空撮">
             </picture>
           </a>
-          <figcaption><span data-lang="en">2026 — after the expansion, seen from directly above.</span><span data-lang="zh">2026 年 · 扩建后，正上方俯拍。</span><span data-lang="fr">2026 : après l’extension, vu du dessus.</span></figcaption>
+          <figcaption><span data-lang="en">2026 — after the expansion, seen from directly above.</span><span data-lang="zh">2026 年 · 扩建后，正上方俯拍。</span><span data-lang="fr">2026 : après l’extension, vu du dessus.</span><span data-lang="tw">2026 年 · 擴建後，正上方俯拍。</span><span data-lang="ja">2026 年 — 拡張後を真上から。</span></figcaption>
         </figure>
       </div>
 
@@ -473,58 +523,60 @@
           <a class="zoom" href="solar/overview-1600.avif" data-webp="solar/overview-1600.webp">
             <picture>
               <source type="image/avif" srcset="solar/overview-800.avif 800w, solar/overview-1600.avif 1600w" sizes="(max-width:560px) 100vw, 290px">
-              <img src="solar/overview-800.webp" srcset="solar/overview-800.webp 800w, solar/overview-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Low-angle aerial view across the arrays" data-alt-zh="低角度航拍阵列" data-alt-fr="Vue aérienne rasante sur les champs">
+              <img src="solar/overview-800.webp" srcset="solar/overview-800.webp 800w, solar/overview-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Low-angle aerial view across the arrays" data-alt-zh="低角度航拍阵列" data-alt-fr="Vue aérienne rasante sur les champs" data-alt-tw="低角度航拍陣列" data-alt-ja="アレイを低い角度から空撮">
             </picture>
           </a>
-          <figcaption><span data-lang="en">The arrays from the air, 2026.</span><span data-lang="zh">2026 年航拍。</span><span data-lang="fr">Les champs vus du ciel, 2026.</span></figcaption>
+          <figcaption><span data-lang="en">The arrays from the air, 2026.</span><span data-lang="zh">2026 年航拍。</span><span data-lang="fr">Les champs vus du ciel, 2026.</span><span data-lang="tw">2026 年航拍。</span><span data-lang="ja">2026 年、上空から見たアレイ。</span></figcaption>
         </figure>
         <figure class="ph">
           <a class="zoom" href="solar/rooftop-1600.avif" data-webp="solar/rooftop-1600.webp">
             <picture>
               <source type="image/avif" srcset="solar/rooftop-800.avif 800w, solar/rooftop-1600.avif 1600w" sizes="(max-width:560px) 100vw, 290px">
-              <img src="solar/rooftop-800.webp" srcset="solar/rooftop-800.webp 800w, solar/rooftop-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Module rows on the roof frame" data-alt-zh="屋顶支架上的组件" data-alt-fr="Rangées de modules sur la structure du toit">
+              <img src="solar/rooftop-800.webp" srcset="solar/rooftop-800.webp 800w, solar/rooftop-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Module rows on the roof frame" data-alt-zh="屋顶支架上的组件" data-alt-fr="Rangées de modules sur la structure du toit" data-alt-tw="屋頂支架上的模組" data-alt-ja="屋根の架台に並ぶモジュール">
             </picture>
           </a>
-          <figcaption><span data-lang="en">Module rows on the roof frame.</span><span data-lang="zh">屋顶支架上的组件。</span><span data-lang="fr">Rangées de modules sur la structure du toit.</span></figcaption>
+          <figcaption><span data-lang="en">Module rows on the roof frame.</span><span data-lang="zh">屋顶支架上的组件。</span><span data-lang="fr">Rangées de modules sur la structure du toit.</span><span data-lang="tw">屋頂支架上的模組。</span><span data-lang="ja">屋根の架台に並ぶモジュール。</span></figcaption>
         </figure>
         <figure class="ph">
           <a class="zoom" href="solar/module-1600.avif" data-webp="solar/module-1600.webp">
             <picture>
               <source type="image/avif" srcset="solar/module-800.avif 800w, solar/module-1600.avif 1600w" sizes="(max-width:560px) 100vw, 290px">
-              <img src="solar/module-800.webp" srcset="solar/module-800.webp 800w, solar/module-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Close-up of a 700 W module" data-alt-zh="700W 组件近景" data-alt-fr="Gros plan sur un module de 700 W">
+              <img src="solar/module-800.webp" srcset="solar/module-800.webp 800w, solar/module-1600.webp 1600w" sizes="(max-width:560px) 100vw, 290px" width="800" height="600" loading="lazy" alt="Close-up of a 700 W module" data-alt-zh="700W 组件近景" data-alt-fr="Gros plan sur un module de 700 W" data-alt-tw="700W 模組近景" data-alt-ja="700 W モジュールのクローズアップ">
             </picture>
           </a>
-          <figcaption><span data-lang="en">A 700 W module up close — about 40 kg each.</span><span data-lang="zh">700W 组件近景，每块约 40 kg。</span><span data-lang="fr">Un module de 700 W de près : environ 40 kg chacun.</span></figcaption>
+          <figcaption><span data-lang="en">A 700 W module up close — about 40 kg each.</span><span data-lang="zh">700W 组件近景，每块约 40 kg。</span><span data-lang="fr">Un module de 700 W de près : environ 40 kg chacun.</span><span data-lang="tw">700W 模組近景，每塊約 40 kg。</span><span data-lang="ja">700 W モジュールのアップ — 1 枚約 40 kg。</span></figcaption>
         </figure>
       </div>
 
       <!-- 05 -->
-      <h2 id="build"><span data-lang="en">Build</span><span data-lang="zh">搭建过程</span><span data-lang="fr">Construction</span></h2>
+      <h2 id="build"><span data-lang="en">Build</span><span data-lang="zh">搭建过程</span><span data-lang="fr">Construction</span><span data-lang="tw">搭建過程</span><span data-lang="ja">施工</span></h2>
       <ol class="timeline">
         <li>
           <time datetime="2024-12">2024-12</time>
-          <h3><span data-lang="en">First power</span><span data-lang="zh">首次发电</span><span data-lang="fr">Première mise en service</span></h3>
+          <h3><span data-lang="en">First power</span><span data-lang="zh">首次发电</span><span data-lang="fr">Première mise en service</span><span data-lang="tw">首次發電</span><span data-lang="ja">初めての発電</span></h3>
           <p data-lang="en">The first working version: inverters on the equipment-room wall and a single battery rack in 16S4P — 64 × 400 Ah cells, about 80 kWh.</p>
           <p data-lang="zh">第一个能发电的版本：逆变器上墙，一个 16S4P 的电池架，64 块 400Ah 电芯，约 80 kWh。</p>
           <p data-lang="fr">La première version fonctionnelle : les onduleurs au mur de la salle technique et une seule baie de batteries en 16S4P, soit 64 cellules de 400 Ah, environ 80 kWh.</p>
+          <p data-lang="tw">第一個能發電的版本：逆變器上牆，一個 16S4P 的電池架，64 塊 400Ah 電芯，約 80 kWh。</p>
+          <p data-lang="ja">最初に動いたバージョン：インバーターは機械室の壁に、蓄電池は 16S4P のラック 1 台 — 400 Ah セル 64 個で約 80 kWh。</p>
           <div class="pair pair--mixed">
             <figure class="ph">
               <a class="zoom" href="solar/inverters-1600.avif" data-webp="solar/inverters-1600.webp">
                 <picture>
                   <source type="image/avif" srcset="solar/inverters-800.avif 800w, solar/inverters-1600.avif 1600w" sizes="(max-width:560px) 100vw, 500px">
-                  <img src="solar/inverters-800.webp" srcset="solar/inverters-800.webp 800w, solar/inverters-1600.webp 1600w" sizes="(max-width:560px) 100vw, 500px" width="800" height="600" loading="lazy" alt="Inverter-chargers mounted on the wall" data-alt-zh="墙上的逆变充电一体机" data-alt-fr="Onduleurs-chargeurs fixés au mur">
+                  <img src="solar/inverters-800.webp" srcset="solar/inverters-800.webp 800w, solar/inverters-1600.webp 1600w" sizes="(max-width:560px) 100vw, 500px" width="800" height="600" loading="lazy" alt="Inverter-chargers mounted on the wall" data-alt-zh="墙上的逆变充电一体机" data-alt-fr="Onduleurs-chargeurs fixés au mur" data-alt-tw="牆上的逆變充電一體機" data-alt-ja="壁に取り付けたインバーター充電器">
                 </picture>
               </a>
-              <figcaption><span data-lang="en">Inverter-chargers going up, December 2024.</span><span data-lang="zh">2024 年 12 月，逆变器上墙。</span><span data-lang="fr">Pose des onduleurs-chargeurs, décembre 2024.</span></figcaption>
+              <figcaption><span data-lang="en">Inverter-chargers going up, December 2024.</span><span data-lang="zh">2024 年 12 月，逆变器上墙。</span><span data-lang="fr">Pose des onduleurs-chargeurs, décembre 2024.</span><span data-lang="tw">2024 年 12 月，逆變器上牆。</span><span data-lang="ja">インバーター充電器の取り付け（2024 年 12 月）。</span></figcaption>
             </figure>
             <figure class="ph">
               <a class="zoom" href="solar/battery-2024-1600.avif" data-webp="solar/battery-2024-1600.webp">
                 <picture>
                   <source type="image/avif" srcset="solar/battery-2024-800.avif 600w, solar/battery-2024-1600.avif 1200w" sizes="(max-width:560px) 100vw, 280px">
-                  <img src="solar/battery-2024-800.webp" srcset="solar/battery-2024-800.webp 600w, solar/battery-2024-1600.webp 1200w" sizes="(max-width:560px) 100vw, 280px" width="600" height="800" loading="lazy" alt="First battery rack with blue cells on four shelves" data-alt-zh="第一版电池架，四层蓝色电芯" data-alt-fr="Première baie de batteries, cellules bleues sur quatre étagères">
+                  <img src="solar/battery-2024-800.webp" srcset="solar/battery-2024-800.webp 600w, solar/battery-2024-1600.webp 1200w" sizes="(max-width:560px) 100vw, 280px" width="600" height="800" loading="lazy" alt="First battery rack with blue cells on four shelves" data-alt-zh="第一版电池架，四层蓝色电芯" data-alt-fr="Première baie de batteries, cellules bleues sur quatre étagères" data-alt-tw="第一版電池架，四層藍色電芯" data-alt-ja="4 段の棚に青いセルを並べた最初の蓄電池ラック">
                 </picture>
               </a>
-              <figcaption><span data-lang="en">First rack: 16S4P, ≈80 kWh.</span><span data-lang="zh">第一版电池架：16S4P，约 80 kWh。</span><span data-lang="fr">Première baie : 16S4P, ≈80 kWh.</span></figcaption>
+              <figcaption><span data-lang="en">First rack: 16S4P, ≈80 kWh.</span><span data-lang="zh">第一版电池架：16S4P，约 80 kWh。</span><span data-lang="fr">Première baie : 16S4P, ≈80 kWh.</span><span data-lang="tw">第一版電池架：16S4P，約 80 kWh。</span><span data-lang="ja">最初のラック：16S4P、約 80 kWh。</span></figcaption>
             </figure>
           </div>
           <div class="bili-row">
@@ -533,71 +585,79 @@
                 <button class="bili-play" type="button" data-bvid="BV1kasNzAEj5">
                   <picture><source type="image/avif" srcset="solar/bili-day48.avif"><img src="solar/bili-day48.webp" width="1280" height="720" loading="lazy" alt=""></picture>
                   <span class="bili-icon" aria-hidden="true">▶</span>
-                  <span class="vh"><span data-lang="en">Play video: Day 48</span><span data-lang="zh">播放视频：第 48 天</span><span data-lang="fr">Lire la vidéo : jour 48</span></span>
+                  <span class="vh"><span data-lang="en">Play video: Day 48</span><span data-lang="zh">播放视频：第 48 天</span><span data-lang="fr">Lire la vidéo : jour 48</span><span data-lang="tw">播放影片：第 48 天</span><span data-lang="ja">動画を再生：48 日目</span></span>
                 </button>
               </div>
-              <p class="bili-cap"><span data-lang="en">Day 48 — assembling the BYD Blade cells.</span><span data-lang="zh">第 48 天，组装比亚迪大刀片电池。</span><span data-lang="fr">Jour 48 : assemblage des cellules BYD Blade.</span> <a href="https://www.bilibili.com/video/BV1kasNzAEj5/" target="_blank" rel="noopener"><span data-lang="en">Watch on Bilibili ↗</span><span data-lang="zh">在 B 站观看 ↗</span><span data-lang="fr">Voir sur Bilibili ↗</span></a></p>
+              <p class="bili-cap"><span data-lang="en">Day 48 — assembling the BYD Blade cells.</span><span data-lang="zh">第 48 天，组装比亚迪大刀片电池。</span><span data-lang="fr">Jour 48 : assemblage des cellules BYD Blade.</span><span data-lang="tw">第 48 天，組裝比亞迪大刀片電池。</span><span data-lang="ja">48 日目 — BYD ブレードバッテリーのセルを組み立て。</span> <a href="https://www.bilibili.com/video/BV1kasNzAEj5/" target="_blank" rel="noopener"><span data-lang="en">Watch on Bilibili ↗</span><span data-lang="zh">在 B 站观看 ↗</span><span data-lang="fr">Voir sur Bilibili ↗</span><span data-lang="tw">在 B 站觀看 ↗</span><span data-lang="ja">Bilibili で見る ↗</span></a></p>
             </div>
             <div>
               <div class="bili-frame">
                 <button class="bili-play" type="button" data-bvid="BV1Pgv6BrEJ9">
                   <picture><source type="image/avif" srcset="solar/bili-day73.avif"><img src="solar/bili-day73.webp" width="1280" height="720" loading="lazy" alt=""></picture>
                   <span class="bili-icon" aria-hidden="true">▶</span>
-                  <span class="vh"><span data-lang="en">Play video: Day 73</span><span data-lang="zh">播放视频：第 73 天</span><span data-lang="fr">Lire la vidéo : jour 73</span></span>
+                  <span class="vh"><span data-lang="en">Play video: Day 73</span><span data-lang="zh">播放视频：第 73 天</span><span data-lang="fr">Lire la vidéo : jour 73</span><span data-lang="tw">播放影片：第 73 天</span><span data-lang="ja">動画を再生：73 日目</span></span>
                 </button>
               </div>
-              <p class="bili-cap"><span data-lang="en">Day 73 — the second layer of cells.</span><span data-lang="zh">第 73 天，组装第二层比亚迪大刀片电池。</span><span data-lang="fr">Jour 73 : le deuxième étage de cellules.</span> <a href="https://www.bilibili.com/video/BV1Pgv6BrEJ9/" target="_blank" rel="noopener"><span data-lang="en">Watch on Bilibili ↗</span><span data-lang="zh">在 B 站观看 ↗</span><span data-lang="fr">Voir sur Bilibili ↗</span></a></p>
+              <p class="bili-cap"><span data-lang="en">Day 73 — the second layer of cells.</span><span data-lang="zh">第 73 天，组装第二层比亚迪大刀片电池。</span><span data-lang="fr">Jour 73 : le deuxième étage de cellules.</span><span data-lang="tw">第 73 天，組裝第二層比亞迪大刀片電池。</span><span data-lang="ja">73 日目 — 2 段目のセル。</span> <a href="https://www.bilibili.com/video/BV1Pgv6BrEJ9/" target="_blank" rel="noopener"><span data-lang="en">Watch on Bilibili ↗</span><span data-lang="zh">在 B 站观看 ↗</span><span data-lang="fr">Voir sur Bilibili ↗</span><span data-lang="tw">在 B 站觀看 ↗</span><span data-lang="ja">Bilibili で見る ↗</span></a></p>
             </div>
           </div>
         </li>
         <li>
           <time datetime="2025-04">2025-04 → 08</time>
-          <h3><span data-lang="en">Staged build-out and monitoring</span><span data-lang="zh">分批完善，接入监控</span><span data-lang="fr">Extension progressive et supervision</span></h3>
+          <h3><span data-lang="en">Staged build-out and monitoring</span><span data-lang="zh">分批完善，接入监控</span><span data-lang="fr">Extension progressive et supervision</span><span data-lang="tw">分批完善，接入監控</span><span data-lang="ja">段階的な増設と監視</span></h3>
           <p data-lang="en">The rest of the modules went up in stages through August while we fixed problems as they appeared. The monitoring app came online in April, which is where the monthly data starts.</p>
           <p data-lang="zh">到 8 月为止分批装完其余组件，边用边修。4 月接入监控 app，月度发电数据从这里开始。</p>
           <p data-lang="fr">Le reste des modules a été posé par étapes jusqu’en août, en corrigeant les problèmes au fil de l’eau. L’application de supervision est arrivée en avril : c’est là que commencent les données mensuelles.</p>
+          <p data-lang="tw">到 8 月為止分批裝完其餘模組，邊用邊修。4 月接入監控 app，月度發電資料從這裡開始。</p>
+          <p data-lang="ja">残りのモジュールは 8 月にかけて段階的に設置し、問題が出るたびに直していきました。4 月には監視アプリが稼働し、月別データはここから始まります。</p>
         </li>
         <li>
           <time datetime="2025-10">2025-10</time>
-          <h3><span data-lang="en">Automation</span><span data-lang="zh">自动化</span><span data-lang="fr">Automatisation</span></h3>
+          <h3><span data-lang="en">Automation</span><span data-lang="zh">自动化</span><span data-lang="fr">Automatisation</span><span data-lang="tw">自動化</span><span data-lang="ja">自動化</span></h3>
           <p data-lang="en">All six inverters brought under Mi Home automation.</p>
           <p data-lang="zh">6 台逆变器全部接入米家自动化。</p>
           <p data-lang="fr">Les six onduleurs sont passés sous l’automatisation Mi Home.</p>
+          <p data-lang="tw">6 臺逆變器全部接入米家自動化。</p>
+          <p data-lang="ja">インバーター 6 台すべてを Mi Home で自動化。</p>
         </li>
         <li>
           <time datetime="2026-04">2026-04 → 05</time>
-          <h3><span data-lang="en">Expansion</span><span data-lang="zh">扩建</span><span data-lang="fr">Extension</span></h3>
+          <h3><span data-lang="en">Expansion</span><span data-lang="zh">扩建</span><span data-lang="fr">Extension</span><span data-lang="tw">擴建</span><span data-lang="ja">拡張</span></h3>
           <p data-lang="en">Storage grew from ≈80 kWh to ≈180 kWh across five layers. The left array was re-strung to stop clipping, and the outer-right string was connected.</p>
           <p data-lang="zh">储能从约 80 kWh 扩到约 180 kWh，共 5 层。左阵列重新分串解决削峰，外侧右组串接入。</p>
           <p data-lang="fr">Le stockage est passé de ≈80 kWh à ≈180 kWh sur cinq étages. Le champ gauche a été recâblé pour supprimer l’écrêtage, et la chaîne extérieure droite a été raccordée.</p>
+          <p data-lang="tw">儲能從約 80 kWh 擴到約 180 kWh，共 5 層。左陣列重新分串解決削峰，外側右組串接入。</p>
+          <p data-lang="ja">蓄電容量を約 80 kWh から 5 段・約 180 kWh に拡張。クリッピングを止めるために左アレイのストリングを組み直し、外側右のストリングを接続しました。</p>
           <div class="pair pair--portrait">
             <figure class="ph">
               <a class="zoom" href="solar/battery-2026-1600.avif" data-webp="solar/battery-2026-1600.webp">
                 <picture>
                   <source type="image/avif" srcset="solar/battery-2026-800.avif 600w, solar/battery-2026-1600.avif 1200w" sizes="(max-width:560px) 100vw, 440px">
-                  <img src="solar/battery-2026-800.webp" srcset="solar/battery-2026-800.webp 600w, solar/battery-2026-1600.webp 1200w" sizes="(max-width:560px) 100vw, 440px" width="600" height="800" loading="lazy" alt="Expanded battery rack with five layers of cells" data-alt-zh="扩建后的电池架，五层电芯" data-alt-fr="Baie de batteries agrandie, cinq étages de cellules">
+                  <img src="solar/battery-2026-800.webp" srcset="solar/battery-2026-800.webp 600w, solar/battery-2026-1600.webp 1200w" sizes="(max-width:560px) 100vw, 440px" width="600" height="800" loading="lazy" alt="Expanded battery rack with five layers of cells" data-alt-zh="扩建后的电池架，五层电芯" data-alt-fr="Baie de batteries agrandie, cinq étages de cellules" data-alt-tw="擴建後的電池架，五層電芯" data-alt-ja="5 段のセルを備えた拡張後の蓄電池ラック">
                 </picture>
               </a>
-              <figcaption><span data-lang="en">After the expansion: five layers, ≈180 kWh.</span><span data-lang="zh">扩建后：5 层，约 180 kWh。</span><span data-lang="fr">Après l’extension : cinq étages, ≈180 kWh.</span></figcaption>
+              <figcaption><span data-lang="en">After the expansion: five layers, ≈180 kWh.</span><span data-lang="zh">扩建后：5 层，约 180 kWh。</span><span data-lang="fr">Après l’extension : cinq étages, ≈180 kWh.</span><span data-lang="tw">擴建後：5 層，約 180 kWh。</span><span data-lang="ja">拡張後：5 段、約 180 kWh。</span></figcaption>
             </figure>
             <figure class="ph">
               <a class="zoom" href="solar/wiring-1600.avif" data-webp="solar/wiring-1600.webp">
                 <picture>
                   <source type="image/avif" srcset="solar/wiring-800.avif 600w, solar/wiring-1600.avif 1200w" sizes="(max-width:560px) 100vw, 440px">
-                  <img src="solar/wiring-800.webp" srcset="solar/wiring-800.webp 600w, solar/wiring-1600.webp 1200w" sizes="(max-width:560px) 100vw, 440px" width="600" height="800" loading="lazy" alt="Battery rack with copper busbars and heavy cables" data-alt-zh="电池架上的铜排和粗电缆" data-alt-fr="Baie de batteries avec barres de cuivre et câbles épais">
+                  <img src="solar/wiring-800.webp" srcset="solar/wiring-800.webp 600w, solar/wiring-1600.webp 1200w" sizes="(max-width:560px) 100vw, 440px" width="600" height="800" loading="lazy" alt="Battery rack with copper busbars and heavy cables" data-alt-zh="电池架上的铜排和粗电缆" data-alt-fr="Baie de batteries avec barres de cuivre et câbles épais" data-alt-tw="電池架上的銅排和粗電纜" data-alt-ja="銅バスバーと太いケーブルを備えた蓄電池ラック">
                 </picture>
               </a>
-              <figcaption><span data-lang="en">Busbars on the rack posts, one 95 mm² cable per inverter.</span><span data-lang="zh">立柱上的铜排，每台逆变器一根 95mm² 铜线。</span><span data-lang="fr">Barres de cuivre sur les montants de la baie, un câble de 95 mm² par onduleur.</span></figcaption>
+              <figcaption><span data-lang="en">Busbars on the rack posts, one 95 mm² cable per inverter.</span><span data-lang="zh">立柱上的铜排，每台逆变器一根 95mm² 铜线。</span><span data-lang="fr">Barres de cuivre sur les montants de la baie, un câble de 95 mm² par onduleur.</span><span data-lang="tw">立柱上的銅排，每臺逆變器一根 95mm² 銅線。</span><span data-lang="ja">ラックの支柱に沿ったバスバーと、インバーターごとに 1 本の 95 mm² ケーブル。</span></figcaption>
             </figure>
           </div>
         </li>
       </ol>
 
       <!-- 06 -->
-      <h2 id="monitoring"><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span><span data-lang="fr">Supervision</span></h2>
+      <h2 id="monitoring"><span data-lang="en">Monitoring</span><span data-lang="zh">监控</span><span data-lang="fr">Supervision</span><span data-lang="tw">監控</span><span data-lang="ja">モニタリング</span></h2>
       <p data-lang="en">The system is watched through the IoTrix monitoring app and each layer's BMS app. The key numbers from each screen are pulled out below it. Scroll sideways for more.</p>
       <p data-lang="zh">系统通过 IoTrix 监控 app 和每层电池的 BMS app 来看。每张截图下面列出了关键数字，可以左右滑动查看。</p>
       <p data-lang="fr">Le système est suivi via l’application de supervision IoTrix et l’application BMS de chaque étage. Les chiffres clés de chaque écran sont repris en dessous. Faites défiler horizontalement pour voir la suite.</p>
+      <p data-lang="tw">系統透過 IoTrix 監控 app 和每層電池的 BMS app 來看。每張截圖下面列出了關鍵數字，可以左右滑動檢視。</p>
+      <p data-lang="ja">システムは IoTrix の監視アプリと、各段の BMS アプリで見守っています。各画面の主な数値は、その下に抜き出しました。横にスクロールすると続きが見られます。</p>
       <div class="shots">
         <figure class="shot" data-lang="en">
           <a class="zoom" href="solar/screen-platform-en.avif" data-webp="solar/screen-platform-en.webp">
@@ -616,99 +676,113 @@
           </a>
           <figcaption>Vue d’ensemble (24 juil. 2026) : 32,6 kW en direct sur les champs, 65 004 kWh produits au total.</figcaption>
         </figure>
+        <figure class="shot" data-lang="tw">
+          <a class="zoom" href="solar/screen-platform-zh.avif" data-webp="solar/screen-platform-zh.webp">
+            <picture><source type="image/avif" srcset="solar/screen-platform-zh.avif"><img src="solar/screen-platform-zh.webp" width="720" height="1210" loading="lazy" alt="監控 app 總覽，中文介面"></picture>
+          </a>
+          <figcaption>總覽（2026-07-31）：實時功率 22.2 kW，當天已發 103 度，累計 66,504 度。</figcaption>
+        </figure>
+        <figure class="shot" data-lang="ja">
+          <a class="zoom" href="solar/screen-platform-en.avif" data-webp="solar/screen-platform-en.webp">
+            <picture><source type="image/avif" srcset="solar/screen-platform-en.avif"><img src="solar/screen-platform-en.webp" width="720" height="1158" loading="lazy" alt="監視アプリの概要画面（英語表示）"></picture>
+          </a>
+          <figcaption>概要（2026 年 7 月 24 日）：アレイ全体のリアルタイム出力 32.6 kW、累計発電量 65,004 kWh。</figcaption>
+        </figure>
         <figure class="shot">
           <a class="zoom" href="solar/screen-curve.avif" data-webp="solar/screen-curve.webp">
-            <picture><source type="image/avif" srcset="solar/screen-curve.avif"><img src="solar/screen-curve.webp" width="720" height="1340" loading="lazy" alt="One array's power curve over a day" data-alt-zh="单个阵列一天的功率曲线" data-alt-fr="Courbe de puissance d’un champ sur une journée"></picture>
+            <picture><source type="image/avif" srcset="solar/screen-curve.avif"><img src="solar/screen-curve.webp" width="720" height="1340" loading="lazy" alt="One array's power curve over a day" data-alt-zh="单个阵列一天的功率曲线" data-alt-fr="Courbe de puissance d’un champ sur une journée" data-alt-tw="單個陣列一天的功率曲線" data-alt-ja="あるアレイの 1 日の出力カーブ"></picture>
           </a>
-          <figcaption><span data-lang="en">One array's day (30 Jul 2026): PV peaks near 6.2 kW at midday while grid power stays at 0 W.</span><span data-lang="zh">单个阵列一天的曲线（2026-07-30）：中午光伏接近 6.2 kW，市电功率保持 0 W。</span><span data-lang="fr">La journée d’un champ (30 juil. 2026) : le solaire culmine vers 6,2 kW à midi tandis que la puissance réseau reste à 0 W.</span></figcaption>
+          <figcaption><span data-lang="en">One array's day (30 Jul 2026): PV peaks near 6.2 kW at midday while grid power stays at 0 W.</span><span data-lang="zh">单个阵列一天的曲线（2026-07-30）：中午光伏接近 6.2 kW，市电功率保持 0 W。</span><span data-lang="fr">La journée d’un champ (30 juil. 2026) : le solaire culmine vers 6,2 kW à midi tandis que la puissance réseau reste à 0 W.</span><span data-lang="tw">單個陣列一天的曲線（2026-07-30）：中午光伏接近 6.2 kW，市電功率保持 0 W。</span><span data-lang="ja">あるアレイの 1 日（2026 年 7 月 30 日）：太陽光の出力は正午に約 6.2 kW でピークに達し、系統からの電力は 0 W のまま。</span></figcaption>
         </figure>
         <figure class="shot">
           <a class="zoom" href="solar/screen-mppt.avif" data-webp="solar/screen-mppt.webp">
-            <picture><source type="image/avif" srcset="solar/screen-mppt.avif"><img src="solar/screen-mppt.webp" width="720" height="1428" loading="lazy" alt="Monthly generation history stacked by array" data-alt-zh="按阵列堆叠的月度发电历史" data-alt-fr="Historique de production mensuelle empilé par champ"></picture>
+            <picture><source type="image/avif" srcset="solar/screen-mppt.avif"><img src="solar/screen-mppt.webp" width="720" height="1428" loading="lazy" alt="Monthly generation history stacked by array" data-alt-zh="按阵列堆叠的月度发电历史" data-alt-fr="Historique de production mensuelle empilé par champ" data-alt-tw="按陣列堆疊的月度發電歷史" data-alt-ja="アレイ別に積み上げた月別発電量の履歴"></picture>
           </a>
-          <figcaption><span data-lang="en">2026 so far: 24,917 kWh, stacked by array, month by month.</span><span data-lang="zh">2026 年至今发电 24,917 度，按月份和阵列堆叠。</span><span data-lang="fr">2026 jusqu’ici : 24 917 kWh, empilés par champ, mois par mois.</span></figcaption>
+          <figcaption><span data-lang="en">2026 so far: 24,917 kWh, stacked by array, month by month.</span><span data-lang="zh">2026 年至今发电 24,917 度，按月份和阵列堆叠。</span><span data-lang="fr">2026 jusqu’ici : 24 917 kWh, empilés par champ, mois par mois.</span><span data-lang="tw">2026 年至今發電 24,917 度，按月份和陣列堆疊。</span><span data-lang="ja">2026 年の累計：24,917 kWh。アレイ別に月ごとに積み上げ。</span></figcaption>
         </figure>
         <figure class="shot">
           <a class="zoom" href="solar/screen-bms.avif" data-webp="solar/screen-bms.webp">
-            <picture><source type="image/avif" srcset="solar/screen-bms.avif"><img src="solar/screen-bms.webp" width="720" height="1340" loading="lazy" alt="BMS live status for one battery layer" data-alt-zh="一层电池的 BMS 实时状态" data-alt-fr="État en direct du BMS pour un étage de batteries"></picture>
+            <picture><source type="image/avif" srcset="solar/screen-bms.avif"><img src="solar/screen-bms.webp" width="720" height="1340" loading="lazy" alt="BMS live status for one battery layer" data-alt-zh="一层电池的 BMS 实时状态" data-alt-fr="État en direct du BMS pour un étage de batteries" data-alt-tw="一層電池的 BMS 實時狀態" data-alt-ja="蓄電池 1 段の BMS リアルタイム状態"></picture>
           </a>
-          <figcaption><span data-lang="en">One battery layer: 54.35 V, 206 A, 16 cells within 0.142 V of each other. The 802 Ah is one layer (2 × 400 Ah in parallel); there are five.</span><span data-lang="zh">一层电池：54.35V、206A，16 节单体最大压差 0.142V。802Ah 只是一层（2 × 400Ah 并联），一共 5 层。</span><span data-lang="fr">Un étage de batteries : 54,35 V, 206 A, 16 cellules à moins de 0,142 V les unes des autres. Les 802 Ah correspondent à un étage (2 × 400 Ah en parallèle) ; il y en a cinq.</span></figcaption>
+          <figcaption><span data-lang="en">One battery layer: 54.35 V, 206 A, 16 cells within 0.142 V of each other. The 802 Ah is one layer (2 × 400 Ah in parallel); there are five.</span><span data-lang="zh">一层电池：54.35V、206A，16 节单体最大压差 0.142V。802Ah 只是一层（2 × 400Ah 并联），一共 5 层。</span><span data-lang="fr">Un étage de batteries : 54,35 V, 206 A, 16 cellules à moins de 0,142 V les unes des autres. Les 802 Ah correspondent à un étage (2 × 400 Ah en parallèle) ; il y en a cinq.</span><span data-lang="tw">一層電池：54.35V、206A，16 節單體最大壓差 0.142V。802Ah 只是一層（2 × 400Ah 並聯），一共 5 層。</span><span data-lang="ja">蓄電池 1 段：54.35 V、206 A、16 セルの電圧差は 0.142 V 以内。802 Ah は 1 段分（400 Ah × 2 並列）で、これが 5 段あります。</span></figcaption>
         </figure>
         <figure class="shot">
           <a class="zoom" href="solar/screen-bill.avif" data-webp="solar/screen-bill.webp">
-            <picture><source type="image/avif" srcset="solar/screen-bill.avif"><img src="solar/screen-bill.webp" width="720" height="1458" loading="lazy" alt="Monthly electricity use" data-alt-zh="月度用电量" data-alt-fr="Consommation électrique mensuelle"></picture>
+            <picture><source type="image/avif" srcset="solar/screen-bill.avif"><img src="solar/screen-bill.webp" width="720" height="1458" loading="lazy" alt="Monthly electricity use" data-alt-zh="月度用电量" data-alt-fr="Consommation électrique mensuelle" data-alt-tw="月度用電量" data-alt-ja="月別の電力使用量"></picture>
           </a>
-          <figcaption><span data-lang="en">Site demand without solar: 35,919 kWh in May and 32,888 kWh in June 2026.</span><span data-lang="zh">不用光伏时的全站用电：2026 年 5 月 35,919 度，6 月 32,888 度。</span><span data-lang="fr">Consommation du site sans solaire : 35 919 kWh en mai et 32 888 kWh en juin 2026.</span></figcaption>
+          <figcaption><span data-lang="en">Site demand without solar: 35,919 kWh in May and 32,888 kWh in June 2026.</span><span data-lang="zh">不用光伏时的全站用电：2026 年 5 月 35,919 度，6 月 32,888 度。</span><span data-lang="fr">Consommation du site sans solaire : 35 919 kWh en mai et 32 888 kWh en juin 2026.</span><span data-lang="tw">不用光伏時的全站用電：2026 年 5 月 35,919 度，6 月 32,888 度。</span><span data-lang="ja">太陽光なしの拠点の需要：2026 年 5 月は 35,919 kWh、6 月は 32,888 kWh。</span></figcaption>
         </figure>
       </div>
 
       <!-- 07 -->
-      <h2 id="analysis"><span data-lang="en">Results &amp; interactive analysis</span><span data-lang="zh">结果与交互分析</span><span data-lang="fr">Résultats et analyse interactive</span></h2>
+      <h2 id="analysis"><span data-lang="en">Results &amp; interactive analysis</span><span data-lang="zh">结果与交互分析</span><span data-lang="fr">Résultats et analyse interactive</span><span data-lang="tw">結果與互動分析</span><span data-lang="ja">成果とインタラクティブ分析</span></h2>
       <p data-lang="en">Explore the operating data directly. Pick a metric and a period, click a chart or use the arrow keys to inspect a month, and change the emission factor to test your own assumptions. Your choices are remembered on this device.</p>
       <p data-lang="zh">可以直接在这里探索运行数据：选择指标和时间段，点击图表或用方向键查看某个月，修改排放因子来检验你自己的假设。你的选择会保存在这台设备上。</p>
       <p data-lang="fr">Explorez directement les données d’exploitation. Choisissez un indicateur et une période, cliquez sur un graphique ou utilisez les flèches pour examiner un mois, et modifiez le facteur d’émission pour tester vos propres hypothèses. Vos choix sont mémorisés sur cet appareil.</p>
+      <p data-lang="tw">可以直接在這裡探索運轉資料：選擇指標和時間段，點選圖表或用方向鍵檢視某個月，修改排放因子來檢驗你自己的假設。你的選擇會儲存在這臺裝置上。</p>
+      <p data-lang="ja">運用データを直接探ってみてください。指標と期間を選び、グラフをクリックするか矢印キーで月ごとに確認し、排出係数を変えて自分の仮定を試せます。選択内容はこの端末に保存されます。</p>
 
       <div class="stats" id="kpis">
-        <div class="stat"><b><span data-lang="en">66,504 kWh</span><span data-lang="zh">66,504 kWh</span><span data-lang="fr">66 504 kWh</span><button class="info" type="button" data-tip="meter">?</button></b><span data-lang="en">Total generated (meter, 31 Jul 2026)</span><span data-lang="zh">累计发电（计量模块，2026-07-31）</span><span data-lang="fr">Production totale (compteur, 31 juil. 2026)</span></div>
-        <div class="stat"><b><span id="kpiPeriod">—</span> kWh<button class="info" type="button" data-tip="period">?</button></b><span data-lang="en">Recorded in the selected period</span><span data-lang="zh">所选时间段内的记录发电</span><span data-lang="fr">Enregistré sur la période choisie</span></div>
-        <div class="stat"><b><span id="kpiBest">—</span>%<button class="info" type="button" data-tip="share">?</button></b><span data-lang="en">Best month, share of demand</span><span data-lang="zh">最佳月份的用电占比</span><span data-lang="fr">Meilleur mois, part de la consommation</span><span class="sub-note" id="kpiBestMonth"></span></div>
-        <div class="stat"><b>≈<span id="kpiCo2">—</span> t<button class="info" type="button" data-tip="co2">?</button></b><span data-lang="en">CO₂ avoided to date (estimate)</span><span data-lang="zh">累计减少 CO₂（估算）</span><span data-lang="fr">CO₂ évité à ce jour (estimation)</span></div>
+        <div class="stat"><b><span data-lang="en">66,504 kWh</span><span data-lang="zh">66,504 kWh</span><span data-lang="fr">66 504 kWh</span><span data-lang="tw">66,504 kWh</span><span data-lang="ja">66,504 kWh</span><button class="info" type="button" data-tip="meter">?</button></b><span data-lang="en">Total generated (meter, 31 Jul 2026)</span><span data-lang="zh">累计发电（计量模块，2026-07-31）</span><span data-lang="fr">Production totale (compteur, 31 juil. 2026)</span><span data-lang="tw">累計發電（計量模組，2026-07-31）</span><span data-lang="ja">総発電量（メーター、2026 年 7 月 31 日）</span></div>
+        <div class="stat"><b><span id="kpiPeriod">—</span> kWh<button class="info" type="button" data-tip="period">?</button></b><span data-lang="en">Recorded in the selected period</span><span data-lang="zh">所选时间段内的记录发电</span><span data-lang="fr">Enregistré sur la période choisie</span><span data-lang="tw">所選時間段內的記錄發電</span><span data-lang="ja">選択した期間の記録</span></div>
+        <div class="stat"><b><span id="kpiBest">—</span>%<button class="info" type="button" data-tip="share">?</button></b><span data-lang="en">Best month, share of demand</span><span data-lang="zh">最佳月份的用电占比</span><span data-lang="fr">Meilleur mois, part de la consommation</span><span data-lang="tw">最佳月份的用電佔比</span><span data-lang="ja">最高の月（需要に占める割合）</span><span class="sub-note" id="kpiBestMonth"></span></div>
+        <div class="stat"><b>≈<span id="kpiCo2">—</span> t<button class="info" type="button" data-tip="co2">?</button></b><span data-lang="en">CO₂ avoided to date (estimate)</span><span data-lang="zh">累计减少 CO₂（估算）</span><span data-lang="fr">CO₂ évité à ce jour (estimation)</span><span data-lang="tw">累計減少 CO₂（估算）</span><span data-lang="ja">これまでの CO₂ 削減量（推定）</span></div>
       </div>
 
       <div class="toolbar">
         <div class="seg" id="segMetric" role="group" aria-labelledby="lblMetric">
-          <span class="seg-label" id="lblMetric"><span data-lang="en">Metric</span><span data-lang="zh">指标</span><span data-lang="fr">Indicateur</span><button class="info" type="button" data-tip="metric">?</button></span>
-          <button type="button" data-v="gen"><span data-lang="en">Generation</span><span data-lang="zh">发电量</span><span data-lang="fr">Production</span></button>
-          <button type="button" data-v="share"><span data-lang="en">Share of demand</span><span data-lang="zh">用电占比</span><span data-lang="fr">Part de la consommation</span></button>
-          <button type="button" data-v="cum"><span data-lang="en">Cumulative</span><span data-lang="zh">累计</span><span data-lang="fr">Cumul</span></button>
+          <span class="seg-label" id="lblMetric"><span data-lang="en">Metric</span><span data-lang="zh">指标</span><span data-lang="fr">Indicateur</span><span data-lang="tw">指標</span><span data-lang="ja">指標</span><button class="info" type="button" data-tip="metric">?</button></span>
+          <button type="button" data-v="gen"><span data-lang="en">Generation</span><span data-lang="zh">发电量</span><span data-lang="fr">Production</span><span data-lang="tw">發電量</span><span data-lang="ja">発電量</span></button>
+          <button type="button" data-v="share"><span data-lang="en">Share of demand</span><span data-lang="zh">用电占比</span><span data-lang="fr">Part de la consommation</span><span data-lang="tw">用電佔比</span><span data-lang="ja">需要に占める割合</span></button>
+          <button type="button" data-v="cum"><span data-lang="en">Cumulative</span><span data-lang="zh">累计</span><span data-lang="fr">Cumul</span><span data-lang="tw">累計</span><span data-lang="ja">累計</span></button>
         </div>
         <div class="seg" id="segPeriod" role="group" aria-labelledby="lblPeriod">
-          <span class="seg-label" id="lblPeriod"><span data-lang="en">Period</span><span data-lang="zh">时间段</span><span data-lang="fr">Période</span></span>
-          <button type="button" data-v="all"><span data-lang="en">All</span><span data-lang="zh">全部</span><span data-lang="fr">Tout</span></button>
+          <span class="seg-label" id="lblPeriod"><span data-lang="en">Period</span><span data-lang="zh">时间段</span><span data-lang="fr">Période</span><span data-lang="tw">時間段</span><span data-lang="ja">期間</span></span>
+          <button type="button" data-v="all"><span data-lang="en">All</span><span data-lang="zh">全部</span><span data-lang="fr">Tout</span><span data-lang="tw">全部</span><span data-lang="ja">すべて</span></button>
           <button type="button" data-v="2025">2025</button>
           <button type="button" data-v="2026">2026</button>
         </div>
         <div class="num-field">
-          <span class="seg-label"><label for="inFactor"><span data-lang="en">Emission factor</span><span data-lang="zh">排放因子</span><span data-lang="fr">Facteur d’émission</span></label><button class="info" type="button" data-tip="factor">?</button></span>
+          <span class="seg-label"><label for="inFactor"><span data-lang="en">Emission factor</span><span data-lang="zh">排放因子</span><span data-lang="fr">Facteur d’émission</span><span data-lang="tw">排放因子</span><span data-lang="ja">排出係数</span></label><button class="info" type="button" data-tip="factor">?</button></span>
           <span class="input-unit"><input id="inFactor" type="number" inputmode="decimal" step="0.01" min="0.1" max="1.5" aria-describedby="errFactor"><span class="unit">kg CO₂/kWh</span></span>
           <p class="err" id="errFactor" aria-live="polite"></p>
         </div>
-        <button type="button" class="btn-ghost" id="btnResetPrefs"><span data-lang="en">Reset preferences</span><span data-lang="zh">重置偏好</span><span data-lang="fr">Réinitialiser les préférences</span></button>
+        <button type="button" class="btn-ghost" id="btnResetPrefs"><span data-lang="en">Reset preferences</span><span data-lang="zh">重置偏好</span><span data-lang="fr">Réinitialiser les préférences</span><span data-lang="tw">重置偏好</span><span data-lang="ja">設定をリセット</span></button>
       </div>
 
       <div class="viz-main">
         <div class="chart-block">
           <h3 id="genTitle">Monthly generation (kWh)</h3>
           <div class="chart" id="genChart" tabindex="0" role="group" aria-describedby="genHint"></div>
-          <p class="chart-hint" id="genHint"><span data-lang="en">Click a bar or use ← → (Home / End) to select a month.</span><span data-lang="zh">点击柱子，或用 ← →（Home / End）选择月份。</span><span data-lang="fr">Cliquez sur une barre ou utilisez ← → (Début / Fin) pour choisir un mois.</span></p>
+          <p class="chart-hint" id="genHint"><span data-lang="en">Click a bar or use ← → (Home / End) to select a month.</span><span data-lang="zh">点击柱子，或用 ← →（Home / End）选择月份。</span><span data-lang="fr">Cliquez sur une barre ou utilisez ← → (Début / Fin) pour choisir un mois.</span><span data-lang="tw">點選柱子，或用 ← →（Home / End）選擇月份。</span><span data-lang="ja">棒をクリックするか ← →（Home / End）で月を選択できます。</span></p>
           <ul class="notes">
-            <li><b>1</b><span data-lang="en">Monitoring starts in April 2025; modules were still being added until August.</span><span data-lang="zh">2025 年 4 月开始有监控数据，组件到 8 月才装完。</span><span data-lang="fr">La supervision commence en avril 2025 ; des modules ont encore été ajoutés jusqu’en août.</span></li>
-            <li><b>2</b><span data-lang="en">The right array was being commissioned in September and October.</span><span data-lang="zh">9–10 月右路在调试。</span><span data-lang="fr">Le champ droit était en cours de mise en service en septembre et octobre.</span></li>
-            <li><b>3</b><span data-lang="en">Shut down in May 2026 to re-string the left array.</span><span data-lang="zh">2026 年 5 月停机给左阵列改串。</span><span data-lang="fr">Arrêt en mai 2026 pour recâbler le champ gauche.</span></li>
+            <li><b>1</b><span data-lang="en">Monitoring starts in April 2025; modules were still being added until August.</span><span data-lang="zh">2025 年 4 月开始有监控数据，组件到 8 月才装完。</span><span data-lang="fr">La supervision commence en avril 2025 ; des modules ont encore été ajoutés jusqu’en août.</span><span data-lang="tw">2025 年 4 月開始有監控資料，模組到 8 月才裝完。</span><span data-lang="ja">監視は 2025 年 4 月から。モジュールは 8 月まで追加し続けていました。</span></li>
+            <li><b>2</b><span data-lang="en">The right array was being commissioned in September and October.</span><span data-lang="zh">9–10 月右路在调试。</span><span data-lang="fr">Le champ droit était en cours de mise en service en septembre et octobre.</span><span data-lang="tw">9–10 月右路在調試。</span><span data-lang="ja">右アレイは 9 月と 10 月に試運転中でした。</span></li>
+            <li><b>3</b><span data-lang="en">Shut down in May 2026 to re-string the left array.</span><span data-lang="zh">2026 年 5 月停机给左阵列改串。</span><span data-lang="fr">Arrêt en mai 2026 pour recâbler le champ gauche.</span><span data-lang="tw">2026 年 5 月停機給左陣列改串。</span><span data-lang="ja">2026 年 5 月、左アレイのストリング組み直しのため停止。</span></li>
           </ul>
         </div>
         <aside class="detail" id="monthDetail" aria-live="polite"></aside>
       </div>
       <details class="data">
-        <summary><span data-lang="en">Show data table</span><span data-lang="zh">查看数据表</span><span data-lang="fr">Afficher le tableau de données</span></summary>
+        <summary><span data-lang="en">Show data table</span><span data-lang="zh">查看数据表</span><span data-lang="fr">Afficher le tableau de données</span><span data-lang="tw">檢視資料表</span><span data-lang="ja">データ表を表示</span></summary>
         <div id="genTable"></div>
       </details>
 
       <div class="viz-pair">
         <div class="chart-block">
-          <h3><span data-lang="en">2026 output by array (to 2 Aug)</span><span data-lang="zh">2026 年各阵列发电（截至 8 月 2 日）</span><span data-lang="fr">Production 2026 par champ (au 2 août)</span><button class="info" type="button" data-tip="zones">?</button></h3>
+          <h3><span data-lang="en">2026 output by array (to 2 Aug)</span><span data-lang="zh">2026 年各阵列发电（截至 8 月 2 日）</span><span data-lang="fr">Production 2026 par champ (au 2 août)</span><span data-lang="tw">2026 年各陣列發電（截至 8 月 2 日）</span><span data-lang="ja">2026 年のアレイ別発電量（8 月 2 日まで）</span><button class="info" type="button" data-tip="zones">?</button></h3>
           <div class="seg" id="segZoneSort" role="group" aria-label="Sort">
-            <button type="button" data-v="name"><span data-lang="en">By name</span><span data-lang="zh">按名称</span><span data-lang="fr">Par nom</span></button>
-            <button type="button" data-v="value"><span data-lang="en">By output</span><span data-lang="zh">按发电量</span><span data-lang="fr">Par production</span></button>
+            <button type="button" data-v="name"><span data-lang="en">By name</span><span data-lang="zh">按名称</span><span data-lang="fr">Par nom</span><span data-lang="tw">按名稱</span><span data-lang="ja">名前順</span></button>
+            <button type="button" data-v="value"><span data-lang="en">By output</span><span data-lang="zh">按发电量</span><span data-lang="fr">Par production</span><span data-lang="tw">按發電量</span><span data-lang="ja">発電量順</span></button>
           </div>
           <div class="chart" id="zoneChart" tabindex="0" role="group" aria-describedby="zoneReadout"></div>
           <p class="readout" id="zoneReadout" aria-live="polite"></p>
         </div>
         <div class="chart-block">
-          <h3><span data-lang="en">Battery cell balance, one layer</span><span data-lang="zh">电池单体均衡（一层）</span><span data-lang="fr">Équilibrage des cellules, un étage</span><button class="info" type="button" data-tip="cells">?</button></h3>
+          <h3><span data-lang="en">Battery cell balance, one layer</span><span data-lang="zh">电池单体均衡（一层）</span><span data-lang="fr">Équilibrage des cellules, un étage</span><span data-lang="tw">電池單體均衡（一層）</span><span data-lang="ja">蓄電池セルのバランス（1 段）</span><button class="info" type="button" data-tip="cells">?</button></h3>
           <div class="seg" id="segCell" role="group" aria-label="View">
-            <button type="button" data-v="dev"><span data-lang="en">Deviation (mV)</span><span data-lang="zh">偏差（mV）</span><span data-lang="fr">Écart (mV)</span></button>
-            <button type="button" data-v="v"><span data-lang="en">Voltage (V)</span><span data-lang="zh">电压（V）</span><span data-lang="fr">Tension (V)</span></button>
+            <button type="button" data-v="dev"><span data-lang="en">Deviation (mV)</span><span data-lang="zh">偏差（mV）</span><span data-lang="fr">Écart (mV)</span><span data-lang="tw">偏差（mV）</span><span data-lang="ja">偏差（mV）</span></button>
+            <button type="button" data-v="v"><span data-lang="en">Voltage (V)</span><span data-lang="zh">电压（V）</span><span data-lang="fr">Tension (V)</span><span data-lang="tw">電壓（V）</span><span data-lang="ja">電圧（V）</span></button>
           </div>
           <div class="chart" id="cellChart" tabindex="0" role="group" aria-describedby="cellReadout"></div>
           <p class="readout" id="cellReadout" aria-live="polite"></p>
@@ -716,123 +790,125 @@
       </div>
 
       <div class="chart-block">
-        <h3><span data-lang="en">Daily site demand vs solar, 12–28 July 2026</span><span data-lang="zh">每日全站用电与光伏对比，2026 年 7 月 12–28 日</span><span data-lang="fr">Consommation quotidienne du site et solaire, 12–28 juillet 2026</span><button class="info" type="button" data-tip="daily">?</button></h3>
-        <label class="check"><input type="checkbox" id="chkSolarRef"><span data-lang="en">Show the July solar average</span><span data-lang="zh">显示 7 月光伏日均发电</span><span data-lang="fr">Afficher la moyenne solaire de juillet</span></label>
+        <h3><span data-lang="en">Daily site demand vs solar, 12–28 July 2026</span><span data-lang="zh">每日全站用电与光伏对比，2026 年 7 月 12–28 日</span><span data-lang="fr">Consommation quotidienne du site et solaire, 12–28 juillet 2026</span><span data-lang="tw">每日全站用電與光伏對比，2026 年 7 月 12–28 日</span><span data-lang="ja">拠点の日別需要と太陽光（2026 年 7 月 12〜28 日）</span><button class="info" type="button" data-tip="daily">?</button></h3>
+        <label class="check"><input type="checkbox" id="chkSolarRef"><span data-lang="en">Show the July solar average</span><span data-lang="zh">显示 7 月光伏日均发电</span><span data-lang="fr">Afficher la moyenne solaire de juillet</span><span data-lang="tw">顯示 7 月光伏日均發電</span><span data-lang="ja">7 月の太陽光平均を表示</span></label>
         <div class="chart" id="dailyChart" tabindex="0" role="group" aria-describedby="dailyHint"></div>
-        <p class="chart-hint" id="dailyHint"><span data-lang="en">Hover, tap or use ← → to read each day.</span><span data-lang="zh">悬停、点按或用 ← → 查看每一天。</span><span data-lang="fr">Survolez, touchez ou utilisez ← → pour lire chaque jour.</span></p>
+        <p class="chart-hint" id="dailyHint"><span data-lang="en">Hover, tap or use ← → to read each day.</span><span data-lang="zh">悬停、点按或用 ← → 查看每一天。</span><span data-lang="fr">Survolez, touchez ou utilisez ← → pour lire chaque jour.</span><span data-lang="tw">懸停、點按或用 ← → 檢視每一天。</span><span data-lang="ja">ホバー、タップ、または ← → で各日の値を確認できます。</span></p>
         <details class="data">
-          <summary><span data-lang="en">Show data tables</span><span data-lang="zh">查看数据表</span><span data-lang="fr">Afficher les tableaux de données</span></summary>
+          <summary><span data-lang="en">Show data tables</span><span data-lang="zh">查看数据表</span><span data-lang="fr">Afficher les tableaux de données</span><span data-lang="tw">檢視資料表</span><span data-lang="ja">データ表を表示</span></summary>
           <div id="dailyTable"></div>
           <div id="cellTable"></div>
         </details>
       </div>
-      <p class="chart-note"><span data-lang="en">Share of demand uses the site's monthly demand without solar, ≈32,888 kWh. The 66,504 kWh total comes from the metering module and includes output from before monthly records began. CO₂ figures are estimates: generation × the emission factor above.</span><span data-lang="zh">用电占比按不用光伏时的全站月用电约 32,888 度计算。累计 66,504 度来自计量模块，包含开始按月记录之前的发电量。CO₂ 数值是估算：发电量 × 上面的排放因子。</span><span data-lang="fr">La part de la consommation se base sur la consommation mensuelle du site sans solaire, ≈32 888 kWh. Le total de 66 504 kWh provient du module de comptage et inclut la production antérieure aux relevés mensuels. Les chiffres de CO₂ sont des estimations : production × le facteur d’émission ci-dessus.</span></p>
+      <p class="chart-note"><span data-lang="en">Share of demand uses the site's monthly demand without solar, ≈32,888 kWh. The 66,504 kWh total comes from the metering module and includes output from before monthly records began. CO₂ figures are estimates: generation × the emission factor above.</span><span data-lang="zh">用电占比按不用光伏时的全站月用电约 32,888 度计算。累计 66,504 度来自计量模块，包含开始按月记录之前的发电量。CO₂ 数值是估算：发电量 × 上面的排放因子。</span><span data-lang="fr">La part de la consommation se base sur la consommation mensuelle du site sans solaire, ≈32 888 kWh. Le total de 66 504 kWh provient du module de comptage et inclut la production antérieure aux relevés mensuels. Les chiffres de CO₂ sont des estimations : production × le facteur d’émission ci-dessus.</span><span data-lang="tw">用電佔比按不用光伏時的全站月用電約 32,888 度計算。累計 66,504 度來自計量模組，包含開始按月記錄之前的發電量。CO₂ 數值是估算：發電量 × 上面的排放因子。</span><span data-lang="ja">需要に占める割合は、太陽光なしの拠点の月間需要（約 32,888 kWh）を基準にしています。合計 66,504 kWh は計量モジュールの値で、月別記録が始まる前の発電量も含みます。CO₂ の数値は推定値です（発電量 × 上の排出係数）。</span></p>
 
       <!-- 08 -->
-      <h2 id="decisions"><span data-lang="en">Engineering decisions</span><span data-lang="zh">工程决策</span><span data-lang="fr">Décisions techniques</span></h2>
+      <h2 id="decisions"><span data-lang="en">Engineering decisions</span><span data-lang="zh">工程决策</span><span data-lang="fr">Décisions techniques</span><span data-lang="tw">工程決策</span><span data-lang="ja">設計判断</span></h2>
 
       <article class="decision">
-        <h3><small>01</small><span data-lang="en">Clipping on the left array → re-stringing</span><span data-lang="zh">左阵列削峰 → 重新分串</span><span data-lang="fr">Écrêtage du champ gauche → recâblage des chaînes</span></h3>
+        <h3><small>01</small><span data-lang="en">Clipping on the left array → re-stringing</span><span data-lang="zh">左阵列削峰 → 重新分串</span><span data-lang="fr">Écrêtage du champ gauche → recâblage des chaînes</span><span data-lang="tw">左陣列削峰 → 重新分串</span><span data-lang="ja">左アレイのクリッピング → ストリングの組み直し</span></h3>
         <dl>
-          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span></dt>
-          <dd><span data-lang="en">The left array ran as 5 strings of 9 modules. At noon a 9-module string makes about 6.3 kW.</span><span data-lang="zh">左阵列原来是 5 组、每组 9 块串联，正午一串约 6.3 kW。</span><span data-lang="fr">Le champ gauche fonctionnait en 5 chaînes de 9 modules. À midi, une chaîne de 9 modules produit environ 6,3 kW.</span></dd>
-          <dt><span data-lang="en">Cause</span><span data-lang="zh">原因</span><span data-lang="fr">Cause</span></dt>
-          <dd><span data-lang="en">One MPPT input handles at most 5.5 kW, so anything above that was clipped off.</span><span data-lang="zh">单路 MPPT 最大 5.5 kW，超出的部分被削掉。</span><span data-lang="fr">Une entrée MPPT accepte au plus 5,5 kW ; tout ce qui dépassait était écrêté.</span></dd>
-          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span><span data-lang="fr">Solution</span></dt>
-          <dd><span data-lang="en">In May 2026 the 45 modules were re-wired into 5 strings of 7 plus 2 strings of 5, with one more inverter taking the extra inputs. A 7-module string peaks near 4.9 kW, and its open-circuit voltage (≈336 V) stays well under the 500 V window.</span><span data-lang="zh">2026 年 5 月把 45 块改成 5 组 7 串 + 2 组 5 串，多分出一台机来接。7 块一串峰值约 4.9 kW，开路电压约 336V，都在上限以内。</span><span data-lang="fr">En mai 2026, les 45 modules ont été recâblés en 5 chaînes de 7 plus 2 chaînes de 5, un onduleur supplémentaire prenant les entrées en plus. Une chaîne de 7 modules culmine vers 4,9 kW, et sa tension en circuit ouvert (≈336 V) reste bien sous la limite de 500 V.</span></dd>
-          <dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="fr">Résultat</span></dt>
-          <dd><span data-lang="en">Every input now sits below its power limit. The shutdown cost about 380 kWh that month.</span><span data-lang="zh">每一路都低于功率上限。停机改串那个月少发了约 380 度。</span><span data-lang="fr">Chaque entrée reste désormais sous sa limite de puissance. L’arrêt a coûté environ 380 kWh ce mois-là.</span></dd>
+          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span></dt>
+          <dd><span data-lang="en">The left array ran as 5 strings of 9 modules. At noon a 9-module string makes about 6.3 kW.</span><span data-lang="zh">左阵列原来是 5 组、每组 9 块串联，正午一串约 6.3 kW。</span><span data-lang="fr">Le champ gauche fonctionnait en 5 chaînes de 9 modules. À midi, une chaîne de 9 modules produit environ 6,3 kW.</span><span data-lang="tw">左陣列原來是 5 組、每組 9 塊串聯，正午一串約 6.3 kW。</span><span data-lang="ja">左アレイは 9 枚 × 5 ストリングで運用していました。正午には 9 枚のストリングで約 6.3 kW 出ます。</span></dd>
+          <dt><span data-lang="en">Cause</span><span data-lang="zh">原因</span><span data-lang="fr">Cause</span><span data-lang="tw">原因</span><span data-lang="ja">原因</span></dt>
+          <dd><span data-lang="en">One MPPT input handles at most 5.5 kW, so anything above that was clipped off.</span><span data-lang="zh">单路 MPPT 最大 5.5 kW，超出的部分被削掉。</span><span data-lang="fr">Une entrée MPPT accepte au plus 5,5 kW ; tout ce qui dépassait était écrêté.</span><span data-lang="tw">單路 MPPT 最大 5.5 kW，超出的部分被削掉。</span><span data-lang="ja">MPPT の 1 入力が扱えるのは最大 5.5 kW なので、それを超えた分はカットされていました。</span></dd>
+          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span><span data-lang="fr">Solution</span><span data-lang="tw">做法</span><span data-lang="ja">対策</span></dt>
+          <dd><span data-lang="en">In May 2026 the 45 modules were re-wired into 5 strings of 7 plus 2 strings of 5, with one more inverter taking the extra inputs. A 7-module string peaks near 4.9 kW, and its open-circuit voltage (≈336 V) stays well under the 500 V window.</span><span data-lang="zh">2026 年 5 月把 45 块改成 5 组 7 串 + 2 组 5 串，多分出一台机来接。7 块一串峰值约 4.9 kW，开路电压约 336V，都在上限以内。</span><span data-lang="fr">En mai 2026, les 45 modules ont été recâblés en 5 chaînes de 7 plus 2 chaînes de 5, un onduleur supplémentaire prenant les entrées en plus. Une chaîne de 7 modules culmine vers 4,9 kW, et sa tension en circuit ouvert (≈336 V) reste bien sous la limite de 500 V.</span><span data-lang="tw">2026 年 5 月把 45 塊改成 5 組 7 串 + 2 組 5 串，多分出一臺機來接。7 塊一串峰值約 4.9 kW，開路電壓約 336V，都在上限以內。</span><span data-lang="ja">2026 年 5 月、45 枚を 7 枚 × 5 ストリングと 5 枚 × 2 ストリングに配線し直し、増えた入力はもう 1 台のインバーターで受けるようにしました。7 枚のストリングのピークは約 4.9 kW、開放電圧（約 336 V）も 500 V の範囲に十分収まります。</span></dd>
+          <dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="fr">Résultat</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span></dt>
+          <dd><span data-lang="en">Every input now sits below its power limit. The shutdown cost about 380 kWh that month.</span><span data-lang="zh">每一路都低于功率上限。停机改串那个月少发了约 380 度。</span><span data-lang="fr">Chaque entrée reste désormais sous sa limite de puissance. L’arrêt a coûté environ 380 kWh ce mois-là.</span><span data-lang="tw">每一路都低於功率上限。停機改串那個月少發了約 380 度。</span><span data-lang="ja">すべての入力が電力上限を下回るようになりました。停止により、その月は約 380 kWh を失いました。</span></dd>
         </dl>
         <div class="checker" id="checker">
-          <h4><span data-lang="en">Try it: string sizing check</span><span data-lang="zh">试一试：组串校核</span><span data-lang="fr">À vous : vérifier le dimensionnement d’une chaîne</span></h4>
+          <h4><span data-lang="en">Try it: string sizing check</span><span data-lang="zh">试一试：组串校核</span><span data-lang="fr">À vous : vérifier le dimensionnement d’une chaîne</span><span data-lang="tw">試一試：組串校核</span><span data-lang="ja">試してみる：ストリング構成チェック</span></h4>
           <p data-lang="en">Change the inputs to see why 9 modules per string clipped and 7 does not. Every field is checked as you type.</p>
           <p data-lang="zh">修改下面的参数，看看为什么 9 块一串会削峰、7 块一串不会。每个输入框都会实时校验。</p>
           <p data-lang="fr">Modifiez les valeurs pour voir pourquoi 9 modules par chaîne écrêtaient et pas 7. Chaque champ est vérifié pendant la saisie.</p>
+          <p data-lang="tw">修改下面的參數，看看為什麼 9 塊一串會削峰、7 塊一串不會。每個輸入框都會實時校驗。</p>
+          <p data-lang="ja">入力を変えると、1 ストリング 9 枚ではクリッピングし、7 枚ではしない理由が分かります。各項目は入力と同時にチェックされます。</p>
           <div class="presets" role="group" aria-label="Presets">
-            <button type="button" data-preset="9"><span data-lang="en">Before: 9 in series</span><span data-lang="zh">改前：9 块一串</span><span data-lang="fr">Avant : 9 en série</span></button>
-            <button type="button" data-preset="7"><span data-lang="en">After: 7 in series</span><span data-lang="zh">改后：7 块一串</span><span data-lang="fr">Après : 7 en série</span></button>
-            <button type="button" data-preset="5"><span data-lang="en">After: 5 in series</span><span data-lang="zh">改后：5 块一串</span><span data-lang="fr">Après : 5 en série</span></button>
+            <button type="button" data-preset="9"><span data-lang="en">Before: 9 in series</span><span data-lang="zh">改前：9 块一串</span><span data-lang="fr">Avant : 9 en série</span><span data-lang="tw">改前：9 塊一串</span><span data-lang="ja">変更前：9 枚直列</span></button>
+            <button type="button" data-preset="7"><span data-lang="en">After: 7 in series</span><span data-lang="zh">改后：7 块一串</span><span data-lang="fr">Après : 7 en série</span><span data-lang="tw">改後：7 塊一串</span><span data-lang="ja">変更後：7 枚直列</span></button>
+            <button type="button" data-preset="5"><span data-lang="en">After: 5 in series</span><span data-lang="zh">改后：5 块一串</span><span data-lang="fr">Après : 5 en série</span><span data-lang="tw">改後：5 塊一串</span><span data-lang="ja">変更後：5 枚直列</span></button>
           </div>
           <div class="fields">
             <div class="field">
-              <div class="field-head"><label for="chk_n"><span data-lang="en">Modules per string</span><span data-lang="zh">每串组件数</span><span data-lang="fr">Modules par chaîne</span></label><button class="info" type="button" data-tip="chk_n">?</button></div>
+              <div class="field-head"><label for="chk_n"><span data-lang="en">Modules per string</span><span data-lang="zh">每串组件数</span><span data-lang="fr">Modules par chaîne</span><span data-lang="tw">每串模組數</span><span data-lang="ja">1 ストリングのモジュール数</span></label><button class="info" type="button" data-tip="chk_n">?</button></div>
               <div class="input-unit"><input id="chk_n" type="number" inputmode="numeric" step="1" aria-describedby="cerr_n"><span class="unit"></span></div>
               <p class="err" id="cerr_n"></p>
             </div>
             <div class="field">
-              <div class="field-head"><label for="chk_voc"><span data-lang="en">Module Voc (25 °C)</span><span data-lang="zh">组件开路电压（25°C）</span><span data-lang="fr">Voc du module (25 °C)</span></label><button class="info" type="button" data-tip="chk_voc">?</button></div>
+              <div class="field-head"><label for="chk_voc"><span data-lang="en">Module Voc (25 °C)</span><span data-lang="zh">组件开路电压（25°C）</span><span data-lang="fr">Voc du module (25 °C)</span><span data-lang="tw">模組開路電壓（25°C）</span><span data-lang="ja">モジュールの Voc（25 °C）</span></label><button class="info" type="button" data-tip="chk_voc">?</button></div>
               <div class="input-unit"><input id="chk_voc" type="number" inputmode="decimal" step="0.1" aria-describedby="cerr_voc"><span class="unit">V</span></div>
               <p class="err" id="cerr_voc"></p>
             </div>
             <div class="field">
-              <div class="field-head"><label for="chk_pw"><span data-lang="en">Module power</span><span data-lang="zh">组件功率</span><span data-lang="fr">Puissance du module</span></label><button class="info" type="button" data-tip="chk_pw">?</button></div>
+              <div class="field-head"><label for="chk_pw"><span data-lang="en">Module power</span><span data-lang="zh">组件功率</span><span data-lang="fr">Puissance du module</span><span data-lang="tw">模組功率</span><span data-lang="ja">モジュール出力</span></label><button class="info" type="button" data-tip="chk_pw">?</button></div>
               <div class="input-unit"><input id="chk_pw" type="number" inputmode="decimal" step="1" aria-describedby="cerr_pw"><span class="unit">W</span></div>
               <p class="err" id="cerr_pw"></p>
             </div>
             <div class="field">
-              <div class="field-head"><label for="chk_tmin"><span data-lang="en">Coldest site temperature</span><span data-lang="zh">现场最低温度</span><span data-lang="fr">Température minimale sur site</span></label><button class="info" type="button" data-tip="chk_tmin">?</button></div>
+              <div class="field-head"><label for="chk_tmin"><span data-lang="en">Coldest site temperature</span><span data-lang="zh">现场最低温度</span><span data-lang="fr">Température minimale sur site</span><span data-lang="tw">現場最低溫度</span><span data-lang="ja">現地の最低気温</span></label><button class="info" type="button" data-tip="chk_tmin">?</button></div>
               <div class="input-unit"><input id="chk_tmin" type="number" inputmode="decimal" step="1" aria-describedby="cerr_tmin"><span class="unit">°C</span></div>
               <p class="err" id="cerr_tmin"></p>
             </div>
             <div class="field">
-              <div class="field-head"><label for="chk_beta"><span data-lang="en">Voc temperature coefficient</span><span data-lang="zh">开路电压温度系数</span><span data-lang="fr">Coefficient de température de Voc</span></label><button class="info" type="button" data-tip="chk_beta">?</button></div>
+              <div class="field-head"><label for="chk_beta"><span data-lang="en">Voc temperature coefficient</span><span data-lang="zh">开路电压温度系数</span><span data-lang="fr">Coefficient de température de Voc</span><span data-lang="tw">開路電壓溫度係數</span><span data-lang="ja">Voc の温度係数</span></label><button class="info" type="button" data-tip="chk_beta">?</button></div>
               <div class="input-unit"><input id="chk_beta" type="number" inputmode="decimal" step="0.01" aria-describedby="cerr_beta"><span class="unit">%/°C</span></div>
               <p class="err" id="cerr_beta"></p>
             </div>
             <div class="field">
-              <div class="field-head"><label for="chk_vmax"><span data-lang="en">MPPT voltage limit</span><span data-lang="zh">MPPT 电压上限</span><span data-lang="fr">Limite de tension MPPT</span></label><button class="info" type="button" data-tip="chk_vmax">?</button></div>
+              <div class="field-head"><label for="chk_vmax"><span data-lang="en">MPPT voltage limit</span><span data-lang="zh">MPPT 电压上限</span><span data-lang="fr">Limite de tension MPPT</span><span data-lang="tw">MPPT 電壓上限</span><span data-lang="ja">MPPT 電圧上限</span></label><button class="info" type="button" data-tip="chk_vmax">?</button></div>
               <div class="input-unit"><input id="chk_vmax" type="number" inputmode="decimal" step="1" aria-describedby="cerr_vmax"><span class="unit">V</span></div>
               <p class="err" id="cerr_vmax"></p>
             </div>
             <div class="field">
-              <div class="field-head"><label for="chk_pmax"><span data-lang="en">MPPT power limit</span><span data-lang="zh">MPPT 功率上限</span><span data-lang="fr">Limite de puissance MPPT</span></label><button class="info" type="button" data-tip="chk_pmax">?</button></div>
+              <div class="field-head"><label for="chk_pmax"><span data-lang="en">MPPT power limit</span><span data-lang="zh">MPPT 功率上限</span><span data-lang="fr">Limite de puissance MPPT</span><span data-lang="tw">MPPT 功率上限</span><span data-lang="ja">MPPT 電力上限</span></label><button class="info" type="button" data-tip="chk_pmax">?</button></div>
               <div class="input-unit"><input id="chk_pmax" type="number" inputmode="decimal" step="50" aria-describedby="cerr_pmax"><span class="unit">W</span></div>
               <p class="err" id="cerr_pmax"></p>
             </div>
           </div>
           <div class="results" id="chkResults" role="status" aria-live="polite">
             <div class="res" id="resV">
-              <span class="lab"><span data-lang="en">String Voc on the coldest day</span><span data-lang="zh">最低温下组串开路电压</span><span data-lang="fr">Voc de la chaîne au jour le plus froid</span></span>
+              <span class="lab"><span data-lang="en">String Voc on the coldest day</span><span data-lang="zh">最低温下组串开路电压</span><span data-lang="fr">Voc de la chaîne au jour le plus froid</span><span data-lang="tw">最低溫下組串開路電壓</span><span data-lang="ja">最も寒い日のストリング Voc</span></span>
               <span class="big">—</span><span class="of"></span>
               <div class="meter"><i></i></div>
               <p class="status"></p>
             </div>
             <div class="res" id="resP">
-              <span class="lab"><span data-lang="en">String power (rated)</span><span data-lang="zh">组串标称功率</span><span data-lang="fr">Puissance de la chaîne (nominale)</span></span>
+              <span class="lab"><span data-lang="en">String power (rated)</span><span data-lang="zh">组串标称功率</span><span data-lang="fr">Puissance de la chaîne (nominale)</span><span data-lang="tw">組串標稱功率</span><span data-lang="ja">ストリング出力（定格）</span></span>
               <span class="big">—</span><span class="of"></span>
               <div class="meter"><i></i></div>
               <p class="status"></p>
             </div>
           </div>
-          <button type="button" class="btn-ghost" id="chkReset"><span data-lang="en">Reset to defaults</span><span data-lang="zh">恢复默认值</span><span data-lang="fr">Valeurs par défaut</span></button>
+          <button type="button" class="btn-ghost" id="chkReset"><span data-lang="en">Reset to defaults</span><span data-lang="zh">恢复默认值</span><span data-lang="fr">Valeurs par défaut</span><span data-lang="tw">恢復預設值</span><span data-lang="ja">初期値に戻す</span></button>
         </div>
       </article>
 
       <article class="decision">
-        <h3><small>02</small><span data-lang="en">Fault isolation for the control system</span><span data-lang="zh">故障隔离：控制系统单独供电</span><span data-lang="fr">Isolation des pannes pour le système de contrôle</span></h3>
+        <h3><small>02</small><span data-lang="en">Fault isolation for the control system</span><span data-lang="zh">故障隔离：控制系统单独供电</span><span data-lang="fr">Isolation des pannes pour le système de contrôle</span><span data-lang="tw">故障隔離：控制系統單獨供電</span><span data-lang="ja">制御システムの故障分離</span></h3>
         <dl>
-          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span></dt>
-          <dd><span data-lang="en">The three parallel units are phase-locked by an Arduino + PLC. If the controller went down with a failing power unit, the whole output would follow.</span><span data-lang="zh">3 台并联机靠 Arduino + PLC 锁相位。如果控制器跟着故障的主机一起掉电，整个输出都会停。</span><span data-lang="fr">Les trois appareils en parallèle sont synchronisés en phase par un Arduino + automate. Si le contrôleur tombait avec un appareil de puissance défaillant, toute la sortie suivrait.</span></dd>
-          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span><span data-lang="fr">Solution</span></dt>
-          <dd><span data-lang="en">One inverter powers only the control system and is fully isolated from the others. A sixth unit waits as a hot standby and switches in automatically when a main unit fails.</span><span data-lang="zh">单独用一台逆变器给控制系统供电，和其他机器完全隔离；再留一台热备，主机故障时自动切入。</span><span data-lang="fr">Un onduleur alimente uniquement le système de contrôle et reste entièrement isolé des autres. Un sixième appareil attend en secours actif et prend le relais automatiquement quand un appareil principal tombe en panne.</span></dd>
-          <dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="fr">Résultat</span></dt>
-          <dd><span data-lang="en">A fault in the power stage no longer takes the controller offline.</span><span data-lang="zh">主功率层出故障时，控制系统仍然在线。</span><span data-lang="fr">Une panne de l’étage de puissance ne met plus le contrôleur hors ligne.</span></dd>
+          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span></dt>
+          <dd><span data-lang="en">The three parallel units are phase-locked by an Arduino + PLC. If the controller went down with a failing power unit, the whole output would follow.</span><span data-lang="zh">3 台并联机靠 Arduino + PLC 锁相位。如果控制器跟着故障的主机一起掉电，整个输出都会停。</span><span data-lang="fr">Les trois appareils en parallèle sont synchronisés en phase par un Arduino + automate. Si le contrôleur tombait avec un appareil de puissance défaillant, toute la sortie suivrait.</span><span data-lang="tw">3 臺並聯機靠 Arduino + PLC 鎖相位。如果控制器跟著故障的主機一起掉電，整個輸出都會停。</span><span data-lang="ja">並列の 3 台は Arduino + PLC で位相同期しています。故障した電力ユニットと一緒にコントローラーが落ちると、出力全体が止まってしまいます。</span></dd>
+          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span><span data-lang="fr">Solution</span><span data-lang="tw">做法</span><span data-lang="ja">対策</span></dt>
+          <dd><span data-lang="en">One inverter powers only the control system and is fully isolated from the others. A sixth unit waits as a hot standby and switches in automatically when a main unit fails.</span><span data-lang="zh">单独用一台逆变器给控制系统供电，和其他机器完全隔离；再留一台热备，主机故障时自动切入。</span><span data-lang="fr">Un onduleur alimente uniquement le système de contrôle et reste entièrement isolé des autres. Un sixième appareil attend en secours actif et prend le relais automatiquement quand un appareil principal tombe en panne.</span><span data-lang="tw">單獨用一臺逆變器給控制系統供電，和其他機器完全隔離；再留一臺熱備，主機故障時自動切入。</span><span data-lang="ja">インバーター 1 台は制御システム専用にして、他から完全に分離しました。6 台目はホットスタンバイとして待機し、メインのユニットが故障すると自動で切り替わります。</span></dd>
+          <dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="fr">Résultat</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span></dt>
+          <dd><span data-lang="en">A fault in the power stage no longer takes the controller offline.</span><span data-lang="zh">主功率层出故障时，控制系统仍然在线。</span><span data-lang="fr">Une panne de l’étage de puissance ne met plus le contrôleur hors ligne.</span><span data-lang="tw">主功率層出故障時，控制系統仍然在線。</span><span data-lang="ja">電力段で故障が起きても、コントローラーが落ちなくなりました。</span></dd>
         </dl>
       </article>
 
       <article class="decision">
-        <h3><small>03</small><span data-lang="en">BMS “short circuit” on reconnect → pre-charge</span><span data-lang="zh">BMS 重新接入报短路 → 预充电阻</span><span data-lang="fr">« Court-circuit » BMS à la reconnexion → précharge</span></h3>
+        <h3><small>03</small><span data-lang="en">BMS “short circuit” on reconnect → pre-charge</span><span data-lang="zh">BMS 重新接入报短路 → 预充电阻</span><span data-lang="fr">« Court-circuit » BMS à la reconnexion → précharge</span><span data-lang="tw">BMS 重新接入報短路 → 預充電阻</span><span data-lang="ja">再接続時の BMS「短絡」→ プリチャージ</span></h3>
         <dl>
-          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span></dt>
-          <dd><span data-lang="en">After a BMS cut off and the bus lost power, plugging the charger back in made the BMS report a short circuit.</span><span data-lang="zh">BMS 断开、母线掉电之后，一接充电器 BMS 就报短路。</span><span data-lang="fr">Après une coupure du BMS et la perte de tension du bus, rebrancher le chargeur faisait signaler un court-circuit au BMS.</span></dd>
-          <dt><span data-lang="en">Cause</span><span data-lang="zh">原因</span><span data-lang="fr">Cause</span></dt>
-          <dd><span data-lang="en">Inrush current into the DC-bus capacitors, which charge from 0 V almost instantly.</span><span data-lang="zh">母线电容从 0V 瞬间充电，涌流太大。</span><span data-lang="fr">Le courant d’appel dans les condensateurs du bus CC, qui se chargent presque instantanément depuis 0 V.</span></dd>
-          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span><span data-lang="fr">Solution</span></dt>
-          <dd><span data-lang="en">A pre-charge resistor brings the bus up gradually before the main connection closes.</span><span data-lang="zh">加预充电阻，先慢慢把母线电压充上来，再接通主回路。</span><span data-lang="fr">Une résistance de précharge fait monter la tension du bus progressivement avant la fermeture du circuit principal.</span></dd>
+          <dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="fr">Problème</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span></dt>
+          <dd><span data-lang="en">After a BMS cut off and the bus lost power, plugging the charger back in made the BMS report a short circuit.</span><span data-lang="zh">BMS 断开、母线掉电之后，一接充电器 BMS 就报短路。</span><span data-lang="fr">Après une coupure du BMS et la perte de tension du bus, rebrancher le chargeur faisait signaler un court-circuit au BMS.</span><span data-lang="tw">BMS 斷開、母線掉電之後，一接充電器 BMS 就報短路。</span><span data-lang="ja">BMS が遮断してバスの電源が落ちた後、充電器をつなぎ直すと BMS が短絡を報告しました。</span></dd>
+          <dt><span data-lang="en">Cause</span><span data-lang="zh">原因</span><span data-lang="fr">Cause</span><span data-lang="tw">原因</span><span data-lang="ja">原因</span></dt>
+          <dd><span data-lang="en">Inrush current into the DC-bus capacitors, which charge from 0 V almost instantly.</span><span data-lang="zh">母线电容从 0V 瞬间充电，涌流太大。</span><span data-lang="fr">Le courant d’appel dans les condensateurs du bus CC, qui se chargent presque instantanément depuis 0 V.</span><span data-lang="tw">母線電容從 0V 瞬間充電，湧流太大。</span><span data-lang="ja">DC バスのコンデンサへの突入電流です。0 V からほぼ一瞬で充電されるためです。</span></dd>
+          <dt><span data-lang="en">Fix</span><span data-lang="zh">做法</span><span data-lang="fr">Solution</span><span data-lang="tw">做法</span><span data-lang="ja">対策</span></dt>
+          <dd><span data-lang="en">A pre-charge resistor brings the bus up gradually before the main connection closes.</span><span data-lang="zh">加预充电阻，先慢慢把母线电压充上来，再接通主回路。</span><span data-lang="fr">Une résistance de précharge fait monter la tension du bus progressivement avant la fermeture du circuit principal.</span><span data-lang="tw">加預充電阻，先慢慢把母線電壓充上來，再接通主迴路。</span><span data-lang="ja">メインの接続を閉じる前に、プリチャージ抵抗でバスの電圧をゆっくり上げます。</span></dd>
         </dl>
       </article>
 
-      <h3><span data-lang="en">Other issues along the way</span><span data-lang="zh">其他遇到的问题</span><span data-lang="fr">Autres problèmes rencontrés</span></h3>
+      <h3><span data-lang="en">Other issues along the way</span><span data-lang="zh">其他遇到的问题</span><span data-lang="fr">Autres problèmes rencontrés</span><span data-lang="tw">其他遇到的問題</span><span data-lang="ja">その他の問題</span></h3>
       <ul data-lang="en">
         <li><strong>Cables jumping at high current:</strong> battery cables moved on the floor and breakers tripped under heavy load. Positive and negative runs are now bundled together, and the breakers were replaced with DC fuses.</li>
         <li><strong>Outer-right string collapsing under load:</strong> 430 V open-circuit fell to 80 V at just 2 A. In May 2026 the series connections were re-made and the string split into its own group. The root cause is still being confirmed.</li>
@@ -847,9 +923,19 @@
         <li><strong>Chaîne extérieure droite qui s’effondre en charge :</strong> 430 V en circuit ouvert tombaient à 80 V sous seulement 2 A. En mai 2026, les connexions série ont été refaites et la chaîne isolée dans son propre groupe. La cause exacte reste à confirmer.</li>
         <li><strong>Chaleur :</strong> en été, il fait 46–49 °C dehors, 38–42 °C dans la salle technique et 57–60 °C sur les transformateurs.</li>
       </ul>
+      <ul data-lang="tw">
+        <li><strong>大電流時電纜跳動：</strong>過載時電池電纜在地上跳、斷路器跳閘。現在正負線並在一起紮好，斷路器換成了直流熔斷器。</li>
+        <li><strong>外側右組串帶載塌壓：</strong>開路 430V，帶 2A 負載就掉到 80V。2026 年 5 月停機重接串聯線，外側右單獨成一組。根本原因還在確認。</li>
+        <li><strong>散熱：</strong>夏季室外 46–49°C，機房 38–42°C，變壓器 57–60°C。</li>
+      </ul>
+      <ul data-lang="ja">
+          <li><strong>大電流でケーブルが跳ねる：</strong>高負荷時に床の電池ケーブルが動き、ブレーカーが落ちていました。今はプラスとマイナスを束ねて配線し、ブレーカーは DC ヒューズに交換しました。</li>
+          <li><strong>外側右のストリングが負荷で電圧低下：</strong>開放電圧 430 V が、わずか 2 A で 80 V まで落ちました。2026 年 5 月に直列接続をやり直し、ストリングを独立したグループに分けました。根本原因はまだ確認中です。</li>
+          <li><strong>暑さ：</strong>夏は屋外 46〜49 °C、機械室 38〜42 °C、変圧器は 57〜60 °C に達します。</li>
+        </ul>
 
       <!-- 09 -->
-      <h2 id="reflection"><span data-lang="en">Reflection &amp; next steps</span><span data-lang="zh">总结与下一步</span><span data-lang="fr">Bilan et prochaines étapes</span></h2>
+      <h2 id="reflection"><span data-lang="en">Reflection &amp; next steps</span><span data-lang="zh">总结与下一步</span><span data-lang="fr">Bilan et prochaines étapes</span><span data-lang="tw">總結與下一步</span><span data-lang="ja">振り返りと今後</span></h2>
       <div data-lang="en">
         <p>Most of the problems came from a limit we hadn't designed around yet — input power on an MPPT, inrush into capacitors, the force between heavy cables at high current. Reading every rating before wiring anything became the habit that mattered most.</p>
         <p>Separating control from power and keeping a hot standby made the system something we can leave running. Planning the busbar and inverter roles with room to spare let storage grow from 80 to 180 kWh without starting over.</p>
@@ -873,6 +959,22 @@
           <li>Faire baisser la température des transformateurs avant l’été prochain.</li>
         </ul>
       </div>
+      <div data-lang="tw">
+        <p>大多數問題都來自當時還沒考慮到的某個上限：MPPT 的輸入功率、電容的湧流、大電流時電纜之間的作用力。後來養成的最重要的習慣，是接線之前先把每個器件的額定參數看一遍。</p>
+        <p>控制和功率分開供電、再留一臺熱備，系統才能放心長期運轉。銅排和逆變器的分工一開始就留了餘量，所以儲能從 80 kWh 擴到 180 kWh 時不用推倒重來。</p>
+        <ul>
+          <li>查清外側右組串塌壓的根本原因。</li>
+          <li>明年夏天之前把變壓器溫度降下來。</li>
+        </ul>
+      </div>
+      <div data-lang="ja">
+        <p>問題の多くは、まだ設計で考慮していなかった制限から生じていました — MPPT の入力電力、コンデンサへの突入電流、大電流時に太いケーブル同士にかかる力。配線する前にすべての定格を読むことが、最も大切な習慣になりました。</p>
+        <p>制御と電力を分け、ホットスタンバイを置いたことで、安心して動かし続けられるシステムになりました。バスバーとインバーターの役割に余裕を持たせて計画したので、一から作り直さずに蓄電容量を 80 kWh から 180 kWh まで増やせました。</p>
+        <ul>
+          <li>外側右の電圧低下の根本原因を突き止める。</li>
+          <li>来年の夏までに変圧器の温度を下げる。</li>
+        </ul>
+      </div>
     </div>
 
     <nav class="pager" aria-label="Case studies">
@@ -893,7 +995,8 @@
 /* ===== Solar page: lightbox, hero video, Bilibili, charts ===== */
 (function () {
   var root = document.documentElement;
-  function zh() { return root.getAttribute('lang') === 'zh-Hans'; }
+  /* CJK date and label formats: 简中, 繁中 and 日本語 */
+  function cjk() { return /^(zh|ja)/.test(root.getAttribute('lang') || ''); }
 
   /* Lightbox */
   var box = document.getElementById('lightbox'), src = document.getElementById('lbSrc'),
@@ -1074,15 +1177,113 @@
     chk_pmax: 'La puissance maximale qu’une entrée MPPT peut convertir ; tout surplus est écrêté. Ici, 5,5 kW.'
   };
   Object.keys(TIPS_FR).forEach(function (k) { if (TIPS[k]) TIPS[k][2] = TIPS_FR[k]; });
-  function L() { var l = root.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'fr' ? 'fr' : 'en'; }
+
+  /* Japanese; Traditional Chinese is converted from the Simplified strings */
+  var WD_JA = ['日','月','火','水','木','金','土'];
+  var ZONE_JA = { left: '左', centre: '中央', right: '右', oleft: '外側左', oright: '外側右' };
+  var ZONE_TW = { left: '左', centre: '中', right: '右', oleft: '外側左', oright: '外側右' };
+  STR.ja = {
+    kwh: 'kWh', info: 'これは何？',
+    genTitle: { gen: '月別発電量（kWh）', share: '月別発電量の需要に占める割合（%）', cum: '月別記録の開始以降の累計発電量（kWh）' },
+    gen: '発電量', share: '需要に占める割合', prev: '前月比', co2: 'CO₂ 削減量（推定）', cum: '累計', noPrev: '最初の記録',
+    notes: { 1: 'この月から監視を開始。モジュールは 8 月まで追加中でした。', 2: 'この月は右アレイを試運転中でした。', 3: '左アレイのストリング組み直しのため停止（約 380 kWh の損失）。' },
+    bestIn: '{m}',
+    zoneReadout: '{n}：{v} kWh · 2026 年これまでの発電量の {p}%', zoneAria: '2026 年のアレイ別発電量の棒グラフ。矢印キーでアレイを選択できます。',
+    genAria: '月別グラフ。左右の矢印キーで月を選択できます。',
+    cellAria: '16 セルの電圧グラフ。左右の矢印キーでセルを選択できます。',
+    cellReadout: '平均 {m} V · 最大差 {s} mV · 最低はセル {lo}（{lov} V）· 最高はセル {hi}（{hiv} V）',
+    cellTip: 'セル {c} · {v} V · 平均比 {d} mV', mean: '平均 {v} V',
+    dailyAria: '拠点の日別需要の折れ線グラフ。左右の矢印キーで日を移動できます。',
+    dailyTip: '{d} · {v} kWh · 太陽光でカバー ≈{p}%', avgDemand: '平均需要 {v}', solarAvg: '太陽光の平均 {v}/日',
+    tMonth: '月', tKwh: 'kWh', tShare: '需要に占める割合', tCo2: 'CO₂ 削減量、kg（推定）', tDate: '日付', tDemand: '需要、kWh', tCell: 'セル', tVolt: '電圧、V', tDev: '平均比、mV',
+    errNum: '{a}〜{b} の数値を入力してください。', errInt: '{a}〜{b} の整数を入力してください。',
+    vOk: 'MPPT の電圧範囲内です（上限の {p}%）。', vWarn: '最も寒い日に電圧上限まで 5% 未満です（{p}%）。', vBad: 'MPPT の電圧上限を {x} V 超えています。このストリングは危険です。',
+    pOk: '入力電力の上限内です（上限の {p}%）。', pBad: 'ピーク時にクリッピング：約 {x} W（ストリング定格の {y}%）が失われます。',
+    invalid: '赤く表示された項目を直すと結果が表示されます。', ofLimit: '上限 {l}'
+  };
+  var TIPS_JA = {
+    kwp: 'キロワットピーク：標準試験条件（1,000 W/m²、25 °C）でのアレイの定格出力。実際の出力はこれより低く、ここでは正午のピークが 31〜33 kW です。',
+    storage: '蓄電池に蓄えられる電力量：51.2 V × 3,510 Ah ≈ 180 kWh。',
+    kva: 'kVA は各インバーターが出力できる皮相電力です。11 kVA の 6 台を、主出力・充電・制御系への給電・ホットスタンバイに振り分けています。',
+    meter: 'インバーターの計量モジュールの値です。2025 年 4 月にアプリで月別記録を始める前の発電量も含むため、月別の棒の合計より大きくなります。',
+    period: '上で選んだ期間内の、アプリの月別記録の合計です。',
+    share: '需要に占める割合 = その月の太陽光発電量 ÷ 太陽光なしの拠点の月間需要（約 32,888 kWh）。',
+    co2: '推定 CO₂ 削減量 = 総発電量 × ツールバーの排出係数。測定値ではなく推定値です。',
+    metric: '発電量は月ごとの kWh。需要に占める割合は、それを拠点の月間需要で割ったもの。累計は、選択した期間の最初から月ごとに足し上げたものです。',
+    factor: '系統の排出係数：系統電力 1 kWh あたりに排出される CO₂ の量（kg）。初期値の 0.57 は、近年の中国全国の系統平均に近い値です。別の仮定を試すには変更してください（0.1〜1.5）。',
+    zones: '各アレイ区画は、それぞれの MPPT 入力につながったストリングのグループです。外側右は 2026 年 5 月に接続したばかりなので、発電した月数が少なくなっています。',
+    cells: '1 段の 16 セルはすべて平均に近い電圧であるべきです。数十 mV の差は正常で、ずれたセルは BMS がバランス調整します。',
+    daily: '拠点の日別需要は電力会社のアプリから。緑の線は 7 月の太陽光の 1 日平均（4,025.9 kWh ÷ 31）で、典型的な 1 日のどれだけを太陽光でまかなえるかを示します。',
+    mppt: '最大電力点追従（MPPT）：ストリングを最適な電圧と電流に保つインバーターの入力です。ここでは各入力が最大 500 V、5.5 kW まで対応します。',
+    voc: '開放電圧：何も接続していないときのモジュールの電圧。寒いと上がるので、ストリングは想定される最低気温でチェックします。',
+    s16: '16S2P は 1 段あたり 16 セル直列（公称 51.2 V）、2 並列という意味です。4 段は 400 Ah セルの 16S2P、1 段は 310 Ah セルの 16S1P です。',
+    bms: 'バッテリー管理システム（BMS）：各セルの電圧と温度を監視し、セルのバランスを取り、故障時にはその段を切り離します。',
+    dcbus: 'すべてのインバーターと蓄電池の各段がつながる、共通の DC バスバーです。',
+    zeroExport: '国家電網には一切売電しません。余剰電力は現地、農家、コミュニティのマイクログリッドで使い、系統電力は蓄電池が尽きた夜だけ使います。',
+    chk_n: '1 つのストリングに直列でつなぐモジュールの枚数。',
+    chk_voc: '25 °C でのモジュール 1 枚の開放電圧（データシートより）。ここでは 48 V。',
+    chk_pw: 'モジュール 1 枚の定格出力。ここでは 700 W。',
+    chk_tmin: '現地で想定される最低気温。寒いほど Voc が上がるので、これが最悪条件になります。',
+    chk_beta: '1 °C あたりの Voc の変化率。負の値で、気温が下がると Voc は上がります。HJT モジュールは約 −0.24 %/°C。',
+    chk_vmax: 'MPPT 入力が安全に追従できる最大のストリング電圧。ここでは 500 V。',
+    chk_pmax: 'MPPT 1 入力で変換できる最大電力。それを超えた分はクリッピングされます。ここでは 5.5 kW。'
+  };
+  STR.tw = {
+      kwh: '度', info: '這是什麼？',
+      genTitle: { gen: '月度發電量（度）', share: '月度發電量佔全站用電的比例（%）', cum: '開始按月記錄以來的累計發電（度）' },
+      gen: '發電量', share: '用電佔比', prev: '比上個月', co2: '減少 CO₂（估算）', cum: '累計到本月', noPrev: '第一個記錄',
+      notes: { 1: '這個月開始有監控資料，模組到 8 月才裝完。', 2: '這個月右路在調試。', 3: '這個月停機給左陣列改串（約少發 380 度）。' },
+      bestIn: '{m}',
+      zoneReadout: '{n}：{v} 度 · 佔 2026 年至今發電的 {p}%', zoneAria: '2026 年各陣列發電條形圖。用方向鍵選擇陣列。',
+      genAria: '月度圖表。用左右方向鍵選擇月份。',
+      cellAria: '16 節電池單體電壓圖。用左右方向鍵選擇電芯。',
+      cellReadout: '平均 {m} V · 最大壓差 {s} mV · 最低第 {lo} 節（{lov} V）· 最高第 {hi} 節（{hiv} V）',
+      cellTip: '第 {c} 節 · {v} V · 比平均 {d} mV', mean: '平均 {v} V',
+      dailyAria: '每日全站用電折線圖。用左右方向鍵在日期間移動。',
+      dailyTip: '{d} · {v} 度 · 光伏約覆蓋 {p}%', avgDemand: '日均用電 {v}', solarAvg: '光伏日均 {v}',
+      tMonth: '月份', tKwh: '度', tShare: '用電佔比', tCo2: '減少 CO₂，kg（估算）', tDate: '日期', tDemand: '用電，度', tCell: '電芯', tVolt: '電壓，V', tDev: '比平均，mV',
+      errNum: '請輸入 {a} 到 {b} 之間的數字。', errInt: '請輸入 {a} 到 {b} 之間的整數。',
+      vOk: '在 MPPT 電壓範圍內（上限的 {p}%）。', vWarn: '最冷的時候離電壓上限不到 5%（{p}%）。', vBad: '超出 MPPT 電壓上限 {x} V，這樣接不安全。',
+      pOk: '在單路功率上限以內（上限的 {p}%）。', pBad: '正午會削峰：約 {x} W（組串標稱功率的 {y}%）被削掉。',
+      invalid: '先修正標紅的輸入框，才能看到結果。', ofLimit: '上限 {l}'
+    };
+  var TIPS_TW = {
+    kwp: '千瓦峰值：模組在標準測試條件（1000 W/m²、25°C）下的額定功率之和。實際輸出更低，這裡正午實測峰值是 31–33 kW。',
+    storage: '電池組能存的電量：51.2 V × 3,510 Ah ≈ 180 kWh。',
+    kva: 'kVA 是每臺逆變器能輸出的視在功率。6 臺 11 kVA 分別負責主輸出、充電、控制系統供電和熱備。',
+    meter: '來自逆變器的計量模組，包含 2025 年 4 月 app 開始按月記錄之前的發電，所以比月度柱子加起來要多。',
+    period: '上面所選時間段內，app 按月記錄的發電量之和。',
+    share: '用電佔比 = 當月光伏發電量 ÷ 不用光伏時的全站月用電（約 32,888 度）。',
+    co2: '估算減少的 CO₂ = 累計發電量 × 工具欄裡的排放因子。這是估算，不是實測。',
+    metric: '發電量是每月的度數；用電佔比是除以全站月用電後的比例；累計是從所選時間段開頭逐月加起來。',
+    factor: '電網排放因子：電網每發 1 度電排放的 CO₂（kg）。預設 0.57 接近中國近年的全國電網平均值。可以改成其他假設（0.1–1.5）。',
+    zones: '每個陣列分區是接在各自 MPPT 輸入上的一組組串。外側右 2026 年 5 月才接入，所以發電月份少。',
+    cells: '一層裡的 16 節電芯都應該接近平均電壓。幾十 mV 的壓差是正常的，偏離較多的電芯由 BMS 負責均衡。',
+    daily: '每日全站用電來自電力 app。綠色線是 7 月光伏的日均發電（4,025.9 度 ÷ 31），表示光伏大約能覆蓋一天的多少。',
+    mppt: '最大功率點跟蹤：逆變器上讓組串保持在最佳電壓和電流的輸入口。這裡每一路最高 500 V、5.5 kW。',
+    voc: '開路電壓：模組不接負載時的電壓。天冷時會升高，所以組串要按最低溫度來校核。',
+    s16: '16S2P 指每層 16 節串聯（標稱 51.2 V）、2 組並聯。4 層是 400Ah 電芯的 16S2P，1 層是 310Ah 電芯的 16S1P。',
+    bms: '電池管理系統：監測每節電芯的電壓和溫度，做均衡，出故障時斷開這一層。',
+    dcbus: '所有逆變器和每層電池都接在這條共用的直流母線上。',
+    zeroExport: '不向國家電網賣電。餘電在現場、農家和社區微網裡用掉；只有電池用完的夜裡才用市電。',
+    chk_n: '一個組串裡串聯的模組數量。',
+    chk_voc: '單塊模組在 25°C 下的開路電壓，看規格書。這裡的模組是 48 V。',
+    chk_pw: '單塊模組的額定功率。這裡是 700W。',
+    chk_tmin: '現場可能出現的最低溫度。溫度越低開路電壓越高，所以按這個算最壞情況。',
+    chk_beta: '溫度每變化 1°C 開路電壓變化的比例。這個值是負的：溫度下降時開路電壓上升。HJT 模組約 −0.24%/°C。',
+    chk_vmax: 'MPPT 輸入能安全跟蹤的最高組串電壓，這裡是 500 V。',
+    chk_pmax: '單路 MPPT 最多能轉換的功率，超出的部分會被削掉。這裡是 5.5 kW。'
+  };
+  Object.keys(TIPS).forEach(function (k) { TIPS[k][3] = TIPS_JA[k]; TIPS[k][4] = TIPS_TW[k]; });
+  function L() { return { 'zh-Hans': 'zh', 'zh-Hant': 'tw', ja: 'ja', fr: 'fr' }[root.getAttribute('lang')] || 'en'; }
   function t(k) { return STR[L()][k]; }
   function tpl(str, o) { return str.replace(/\{(\w+)\}/g, function (_, k) { return o[k]; }); }
   function fmt(n, d) { return Number(n).toLocaleString(L() === 'fr' ? 'fr-FR' : 'en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); }
   function num(v) { var d = String(v).split('.')[1]; return fmt(v, d ? d.length : 0); }
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
   function $(id) { return document.getElementById(id); }
-  function monthLabel(k) { var y = k.slice(0, 4), m = +k.slice(5); return zh() ? y + ' 年 ' + m + ' 月' : L() === 'fr' ? MON_FR[m - 1] + ' ' + y : MON[m - 1] + ' ' + y; }
-  function dayLabel(k) { var d = new Date(k + 'T00:00:00'), m = +k.slice(5, 7), dd = +k.slice(8); return zh() ? m + ' 月 ' + dd + ' 日（周' + WD_ZH[d.getDay()] + '）' : L() === 'fr' ? WD_FR[d.getDay()] + ' ' + dd + ' ' + MON_FR[m - 1] : WD_EN[d.getDay()] + ' ' + dd + ' ' + MON[m - 1]; }
+  function monthLabel(k) { var y = k.slice(0, 4), m = +k.slice(5); return L() === 'ja' ? y + '年' + m + '月' : cjk() ? y + ' 年 ' + m + ' 月' : L() === 'fr' ? MON_FR[m - 1] + ' ' + y : MON[m - 1] + ' ' + y; }
+  function dayLabel(k) { var d = new Date(k + 'T00:00:00'), m = +k.slice(5, 7), dd = +k.slice(8); return L() === 'ja' ? m + '月' + dd + '日（' + WD_JA[d.getDay()] + '）' : cjk() ? m + ' 月 ' + dd + ' 日（' + (L() === 'tw' ? '週' : '周') + WD_ZH[d.getDay()] + '）' : L() === 'fr' ? WD_FR[d.getDay()] + ' ' + dd + ' ' + MON_FR[m - 1] : WD_EN[d.getDay()] + ' ' + dd + ' ' + MON[m - 1]; }
   function niceStep(raw) { var p = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10)), f = raw / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
   function svgOpen(W, H, label) { return '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + label + '">'; }
   /* bar paths: square at the baseline, 4px rounded data end */
@@ -1129,7 +1330,7 @@
   function showInfo(btn) {
     var tip = TIPS[btn.getAttribute('data-tip')]; if (!tip) return;
     if (tipBtn && tipBtn !== btn) tipBtn.removeAttribute('aria-describedby');
-    tipBtn = btn; bubble.textContent = tip[{ en: 0, zh: 1, fr: 2 }[L()]] || tip[0]; bubble.hidden = false;
+    tipBtn = btn; bubble.textContent = tip[{ en: 0, zh: 1, fr: 2, ja: 3, tw: 4 }[L()]] || tip[0]; bubble.hidden = false;
     btn.setAttribute('aria-describedby', 'infoBubble');
     var r = btn.getBoundingClientRect(), bw = bubble.offsetWidth, bh = bubble.offsetHeight;
     var top = r.top - bh - 8; if (top < 8) top = r.bottom + 8;
@@ -1233,7 +1434,7 @@
     rows.forEach(function (r, i) {
       var mo = +r.k.slice(5);
       if (narrow && n > 9 && i % 2 && i !== sel) return;
-      s += '<text class="tick" x="' + cx(i) + '" y="' + (y(0) + 16) + '" text-anchor="middle">' + (narrow ? mo : (zh() ? mo + '月' : L() === 'fr' ? MON_FR[mo - 1] : MON[mo - 1])) + '</text>';
+      s += '<text class="tick" x="' + cx(i) + '" y="' + (y(0) + 16) + '" text-anchor="middle">' + (narrow ? mo : (cjk() ? mo + '月' : L() === 'fr' ? MON_FR[mo - 1] : MON[mo - 1])) + '</text>';
     });
     var years = {};
     rows.forEach(function (r, i) { var yk = r.k.slice(0, 4); if (!years[yk]) years[yk] = [i, i]; years[yk][1] = i; });
@@ -1291,10 +1492,10 @@
 
   /* --- Output by array --- */
   function zoneRows() { var z = ZONES.slice(); if (P.zoneSort === 'value') z.sort(function (a, b) { return b[3] - a[3]; }); return z; }
-  function zoneName(z) { return zh() ? z[2] : L() === 'fr' ? ZONE_FR[z[0]] : z[1]; }
+  function zoneName(z) { var m = { fr: ZONE_FR, ja: ZONE_JA, tw: ZONE_TW }[L()]; return m ? m[z[0]] : cjk() ? z[2] : z[1]; }
   function drawZones() {
     var el = $('zoneChart'); if (!el) return;
-    var rows = zoneRows(), W = Math.max(260, el.clientWidth), lw = zh() ? 58 : L() === 'fr' ? 118 : 88, vw = 56, row = 36, bh = 20, H = rows.length * row, pw = W - lw - vw, max = 8000;
+    var rows = zoneRows(), W = Math.max(260, el.clientWidth), lw = cjk() ? 58 : L() === 'fr' ? 118 : 88, vw = 56, row = 36, bh = 20, H = rows.length * row, pw = W - lw - vw, max = 8000;
     var s = svgOpen(W, H, t('zoneAria')) + '<line class="g base" x1="' + lw + '" x2="' + lw + '" y1="0" y2="' + H + '"/>';
     rows.forEach(function (z, i) {
       var yy = i * row + (row - bh) / 2, len = z[3] / max * pw, on = z[0] === P.zone;
@@ -1372,8 +1573,7 @@
       s += '<line class="g' + (tv ? '' : ' base') + '" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(tv) + '" y2="' + y(tv) + '"/>' +
            '<text class="tick" x="' + (m.l - 6) + '" y="' + (y(tv) + 4) + '" text-anchor="end">' + (tv >= 1000 ? (tv / 1000) + 'K' : tv) + '</text>';
     });
-    s += '<line class="ref" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(DAILY_AVG) + '" y2="' + y(DAILY_AVG) + '"/>' +
-         '<text class="ref-txt" x="' + (m.l + 6) + '" y="' + (y(DAILY_AVG) - 7) + '" text-anchor="start">' + tpl(t('avgDemand'), { v: fmt(DAILY_AVG, 0) }) + '</text>';
+    s += '<line class="ref" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(DAILY_AVG) + '" y2="' + y(DAILY_AVG) + '"/>';
     if (P.solarRef) s += '<line class="ref-solar" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(SOLAR_DAY) + '" y2="' + y(SOLAR_DAY) + '"/>' +
          '<text class="ref-solar-txt" x="' + (W - m.r) + '" y="' + (y(SOLAR_DAY) - 6) + '" text-anchor="end">' + tpl(t('solarAvg'), { v: fmt(SOLAR_DAY, 0) }) + '</text>';
     s += '<polyline class="line" points="' + DAILY.map(function (d, i) { return x(i) + ',' + y(d[1]); }).join(' ') + '"/>';
@@ -1382,6 +1582,8 @@
       s += '<circle class="dot" cx="' + x(i) + '" cy="' + y(d[1]) + '" r="4"/>';
       if (pw / (n - 1) >= 26 || i % 2 === 0) s += '<text class="tick" x="' + x(i) + '" y="' + (H - 12) + '" text-anchor="middle">' + (+d[0].slice(8)) + '</text>';
     });
+    /* drawn after the dots so its halo keeps it readable where the line crosses it */
+    s += '<text class="ref-txt" x="' + (m.l + 6) + '" y="' + (y(DAILY_AVG) - 7) + '" text-anchor="start">' + tpl(t('avgDemand'), { v: fmt(DAILY_AVG, 0) }) + '</text>';
     s += '<rect class="hit" x="' + (m.l - 8) + '" y="' + m.t + '" width="' + (pw + 16) + '" height="' + ph + '"/></svg><div class="tip"></div>';
     el.innerHTML = s;
     var svg = el.querySelector('svg'), tip = el.querySelector('.tip'), hit = el.querySelector('.hit'), cross = el.querySelector('.cross'), dots = el.querySelectorAll('.dot');
@@ -1484,12 +1686,12 @@
 })();
 /* ===== i18n ===== */
 var T={en:{'work.back':'← All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音乐','nav.about':'关于','nav.contact':'联系'},'zh-TW':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音樂','nav.about':'關於','nav.contact':'聯絡'},ja:{'work.back':'← すべての作品','nav.work':'作品','nav.music':'音楽','nav.about':'紹介','nav.contact':'連絡'},fr:{'work.back':'← Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'À propos','nav.contact':'Contact'}};
-var TITLE={en:'Solar + Storage for AI Compute — Yiyang Zhang',fr:'Solaire + stockage pour le calcul IA — Yiyang Zhang','zh-CN':'为 AI 算力供电的光伏储能电站 — Yiyang Zhang'};
+var TITLE={en:'Solar + Storage for AI Compute — Yiyang Zhang',fr:'Solaire + stockage pour le calcul IA — Yiyang Zhang','zh-CN':'为 AI 算力供电的光伏储能电站 — Yiyang Zhang','zh-TW':'為 AI 算力供電的光伏儲能電站 — Yiyang Zhang',ja:'AI コンピューティングのための太陽光 + 蓄電 — Yiyang Zhang'};
 function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});
-  /* long-form copy follows the root lang; only zh-CN has its own text, others fall back to English */
+  /* long-form copy follows the root lang: each language has its own blocks */
   document.documentElement.setAttribute('lang',l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l);
   document.title=TITLE[l]||TITLE.en;
-  document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);im.alt=l==='zh-CN'?im.getAttribute('data-alt-zh'):l==='fr'&&im.getAttribute('data-alt-fr')?im.getAttribute('data-alt-fr'):im.getAttribute('data-alt-en');});
+  document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];im.alt=(ak&&im.getAttribute('data-alt-'+ak))||im.getAttribute('data-alt-en');});
   if(window.solarRefresh)window.solarRefresh();
   try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});

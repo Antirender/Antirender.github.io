@@ -24,9 +24,9 @@
     </div>
     <nav class="about-nav" aria-label="Site">
       <a class="back" href="index.html" data-i18n="about.back">&larr; Back to Portfolio</a>
-      <a class="back" href="work.html">Work</a>
-      <a class="back" href="music.html">Music</a>
-      <a class="back" href="#resume">Resume</a>
+      <a class="back" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="back" href="music.html" data-i18n="nav.music">Music</a>
+      <a class="back" href="#resume" data-i18n="nav.resume">Resume</a>
     </nav>
 
     <!-- Persona hero moved to index.html — kept here for reference
@@ -214,6 +214,7 @@ if(printBtn)printBtn.addEventListener('click',function(){window.print();});
 /* ===== i18n ===== */
 var T={
 en:{
+'nav.work':'Work','nav.music':'Music','nav.resume':'Resume',
 'about.back':'\u2190 Back to Portfolio',
 'about.hero.tip':'Click a figure to switch persona',
 'about.who':'Who I Am',
@@ -231,6 +232,7 @@ en:{
 'about.contact':'Contact'
 },
 'zh-CN':{
+'nav.work':'作品','nav.music':'音乐','nav.resume':'简历',
 'about.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6',
 'about.hero.tip':'\u70b9\u51fb\u5934\u50cf\u5207\u6362\u4eba\u683c',
 'about.who':'\u6211\u662f\u8c01',
@@ -248,6 +250,7 @@ en:{
 'about.contact':'\u8054\u7cfb\u65b9\u5f0f'
 },
 'zh-TW':{
+'nav.work':'作品','nav.music':'音樂','nav.resume':'履歷',
 'about.back':'\u2190 \u8fd4\u56de\u4f5c\u54c1\u96c6',
 'about.hero.tip':'\u9ede\u64ca\u982d\u50cf\u5207\u63db\u4eba\u683c',
 'about.who':'\u6211\u662f\u8ab0',
@@ -265,6 +268,7 @@ en:{
 'about.contact':'\u806f\u7d61\u65b9\u5f0f'
 },
 ja:{
+'nav.work':'作品','nav.music':'音楽','nav.resume':'履歴書',
 'about.back':'\u2190 \u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u306b\u623b\u308b',
 'about.hero.tip':'\u30d5\u30a3\u30ae\u30e5\u30a2\u3092\u30af\u30ea\u30c3\u30af\u3057\u3066\u30da\u30eb\u30bd\u30ca\u5207\u66ff',
 'about.who':'\u79c1\u306b\u3064\u3044\u3066',
@@ -282,6 +286,7 @@ ja:{
 'about.contact':'\u9023\u7d61\u5148'
 },
 fr:{
+'nav.work':'Travaux','nav.music':'Musique','nav.resume':'CV',
 'about.back':'\u2190 Retour au portfolio',
 'about.hero.tip':'Cliquez sur une figure pour changer de persona',
 'about.who':'Qui suis-je',

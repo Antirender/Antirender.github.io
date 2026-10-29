@@ -8,6 +8,14 @@
   <link rel="icon" href="../favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+  </style>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
@@ -38,18 +46,22 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow">Case Study · Full-stack Prototype · 2026</span>
-      <h1>MoodPeek Pro — Visualizing Daily Emotion Through Time</h1>
-      <p>MoodPeek Pro is a structural upgrade from the original MoodPeek: it uses Day → Week → Month continuity to support habit formation instead of one-off logging. The calendar acts as the main entry point, Weekly Insight lives inside the Week Detail view, and the Dashboard gives you a quick-glance home — streak count, 7-day sparkline, and a shortcut to log today.</p>
+      <span class="eyebrow"><span data-lang="en">Case Study · Full-stack Prototype · 2026</span><span data-lang="zh">案例研究 · 全栈原型 · 2026</span><span data-lang="tw">案例研究 · 全棧原型 · 2026</span><span data-lang="ja">ケーススタディ · フルスタックプロトタイプ · 2026</span><span data-lang="fr">Étude de cas · Prototype full-stack · 2026</span></span>
+      <h1><span data-lang="en">MoodPeek Pro — Visualizing Daily Emotion Through Time</span><span data-lang="zh">MoodPeek Pro — 用时间维度呈现每日情绪</span><span data-lang="tw">MoodPeek Pro — 用時間維度呈現每日情緒</span><span data-lang="ja">MoodPeek Pro — 日々の感情を時間軸で可視化する</span><span data-lang="fr">MoodPeek Pro — Visualiser les émotions du quotidien dans le temps</span></h1>
+      <p data-lang="en">MoodPeek Pro is a structural upgrade from the original MoodPeek: it uses Day → Week → Month continuity to support habit formation instead of one-off logging. The calendar acts as the main entry point, Weekly Insight lives inside the Week Detail view, and the Dashboard gives you a quick-glance home — streak count, 7-day sparkline, and a shortcut to log today.</p>
+      <p data-lang="zh">MoodPeek Pro 是对初版 MoodPeek 的一次结构性升级：用“日 → 周 → 月”的连续性来支撑习惯养成，而不是一次性的记录。日历是主入口，每周洞察就放在周详情视图里，仪表盘则是一眼看全的首页 — 连续记录天数、7 天走势图，以及一键记录今天的入口。</p>
+      <p data-lang="tw">MoodPeek Pro 是對初版 MoodPeek 的一次結構性升級：用“日 → 周 → 月”的連續性來支撐習慣養成，而不是一次性的記錄。日曆是主入口，每週洞察就放在周詳情檢視裡，儀表盤則是一眼看全的首頁 — 連續記錄天數、7 天走勢圖，以及一鍵記錄今天的入口。</p>
+      <p data-lang="ja">MoodPeek Pro は、初代 MoodPeek を構造から作り直したアップグレード版です。単発の記録ではなく、日 → 週 → 月の連続性で習慣づくりを支えます。カレンダーがメインの入口、週間インサイトは週の詳細ビューの中、ダッシュボードはひと目で把握できるホーム画面 — 連続記録日数、7 日間のスパークライン、今日を記録するショートカットを備えています。</p>
+      <p data-lang="fr">MoodPeek Pro est une refonte structurelle du MoodPeek d’origine : il s’appuie sur la continuité Jour → Semaine → Mois pour ancrer une habitude plutôt qu’un enregistrement ponctuel. Le calendrier sert de point d’entrée principal, l’aperçu hebdomadaire se trouve dans la vue détaillée de la semaine, et le tableau de bord offre un accueil lisible d’un coup d’œil : série en cours, courbe sur 7 jours et raccourci pour noter la journée.</p>
       <div class="meta">
-        <span><strong>Role</strong> Full-stack prototype, UX architecture</span>
-        <span><strong>Tools</strong> React, JWT, iCal, Open-Meteo API</span>
-        <span><strong>Outcome</strong> Calendar 2.0, Dashboard, multi-user isolation</span>
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></strong> <span data-lang="en">Full-stack prototype, UX architecture</span><span data-lang="zh">全栈原型、UX 架构</span><span data-lang="tw">全棧原型、UX 架構</span><span data-lang="ja">フルスタックプロトタイプ、UX アーキテクチャ</span><span data-lang="fr">Prototype full-stack, architecture UX</span></span>
+        <span><strong><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></strong> React, JWT, iCal, Open-Meteo API</span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></strong> <span data-lang="en">Calendar 2.0, Dashboard, multi-user isolation</span><span data-lang="zh">日历 2.0、仪表盘、多用户隔离</span><span data-lang="tw">日曆 2.0、儀表盤、多使用者隔離</span><span data-lang="ja">カレンダー 2.0、ダッシュボード、マルチユーザー分離</span><span data-lang="fr">Calendrier 2.0, tableau de bord, isolation multi-utilisateur</span></span>
       </div>
     </div>
 
     <div class="version-bar">
-      <label for="ver">Demo:</label>
+      <label for="ver"><span data-lang="en">Demo:</span><span data-lang="zh">演示：</span><span data-lang="tw">演示：</span><span data-lang="ja">デモ：</span><span data-lang="fr">Démo :</span></label>
       <select id="ver">
         <option value="pro" selected>MoodPeek Pro — Calendar-centered habit system</option>
         <option value="v1">MoodPeek (guest mode) — Emotion + Weather correlation</option>
@@ -59,58 +71,121 @@
 
     <div class="content">
       <div class="tldr">
-        <h2>At a glance</h2>
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
         <dl>
-          <div><dt>Problem</dt><dd>Original MoodPeek focused on visualization; needed structure for habit tracking across multiple users.</dd></div>
-          <div><dt>Role</dt><dd>Full-stack prototype, UX architecture, multi-user system design</dd></div>
-          <div><dt>Tools</dt><dd>React, JWT authentication, iCal export, Open-Meteo API</dd></div>
-          <div><dt>Timeline</dt><dd>Structural upgrade from MoodPeek v1</dd></div>
-          <div><dt>Key Decisions</dt><dd>Calendar as main anchor, Dashboard quick-glance, inline Weekly Insight, self-reported (no AI inference)</dd></div>
-          <div><dt>Result</dt><dd>Calendar 2.0 with filtering, Dashboard with streak tracking, multi-user isolation, iCal export.</dd></div>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">Original MoodPeek focused on visualization; needed structure for habit tracking across multiple users.</span><span data-lang="zh">初版 MoodPeek 侧重可视化，缺少支撑多用户习惯追踪的结构。</span><span data-lang="tw">初版 MoodPeek 側重視覺化，缺少支撐多使用者習慣追蹤的結構。</span><span data-lang="ja">初代 MoodPeek は可視化が中心で、複数ユーザーの習慣トラッキングを支える構造が足りませんでした。</span><span data-lang="fr">Le MoodPeek d’origine misait sur la visualisation ; il lui manquait une structure pour suivre des habitudes avec plusieurs utilisateurs.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">Full-stack prototype, UX architecture, multi-user system design</span><span data-lang="zh">全栈原型、UX 架构、多用户系统设计</span><span data-lang="tw">全棧原型、UX 架構、多使用者系統設計</span><span data-lang="ja">フルスタックプロトタイプ、UX アーキテクチャ、マルチユーザーシステム設計</span><span data-lang="fr">Prototype full-stack, architecture UX, conception d’un système multi-utilisateur</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></dt><dd><span data-lang="en">React, JWT authentication, iCal export, Open-Meteo API</span><span data-lang="zh">React、JWT 认证、iCal 导出、Open-Meteo API</span><span data-lang="tw">React、JWT 認證、iCal 匯出、Open-Meteo API</span><span data-lang="ja">React、JWT 認証、iCal エクスポート、Open-Meteo API</span><span data-lang="fr">React, authentification JWT, export iCal, API Open-Meteo</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="tw">時間線</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">Structural upgrade from MoodPeek v1</span><span data-lang="zh">在 MoodPeek v1 基础上的结构性升级</span><span data-lang="tw">在 MoodPeek v1 基礎上的結構性升級</span><span data-lang="ja">MoodPeek v1 からの構造的なアップグレード</span><span data-lang="fr">Refonte structurelle de MoodPeek v1</span></dd></div>
+          <div><dt><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></dt><dd><span data-lang="en">Calendar as main anchor, Dashboard quick-glance, inline Weekly Insight, self-reported (no AI inference)</span><span data-lang="zh">日历作为主锚点、仪表盘一眼看全、每周洞察内嵌、由用户自行记录（不用 AI 推断）</span><span data-lang="tw">日曆作為主錨點、儀表盤一眼看全、每週洞察內嵌、由使用者自行記錄（不用 AI 推斷）</span><span data-lang="ja">カレンダーを軸に、ひと目でわかるダッシュボード、週間インサイトをインラインに、自己申告（AI による推測なし）</span><span data-lang="fr">Le calendrier comme ancrage, un tableau de bord lisible d’un coup d’œil, l’aperçu hebdomadaire intégré, une saisie déclarative (sans inférence par IA)</span></dd></div>
+          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">Calendar 2.0 with filtering, Dashboard with streak tracking, multi-user isolation, iCal export.</span><span data-lang="zh">带筛选的日历 2.0、带连续记录追踪的仪表盘、多用户隔离、iCal 导出。</span><span data-lang="tw">帶篩選的日曆 2.0、帶連續記錄追蹤的儀表盤、多使用者隔離、iCal 匯出。</span><span data-lang="ja">フィルター付きのカレンダー 2.0、連続記録を追えるダッシュボード、マルチユーザー分離、iCal エクスポート。</span><span data-lang="fr">Calendrier 2.0 avec filtres, tableau de bord avec suivi des séries, isolation multi-utilisateur, export iCal.</span></dd></div>
         </dl>
       </div>
 
-      <img class="cover-img" src="../image/moodpeek-preview.png" alt="MoodPeek Pro interface preview">
+      <img class="cover-img" src="../image/moodpeek-preview.png" alt="MoodPeek Pro interface preview" data-alt-zh="MoodPeek Pro 界面预览" data-alt-tw="MoodPeek Pro 介面預覽" data-alt-ja="MoodPeek Pro のインターフェース" data-alt-fr="Aperçu de l’interface de MoodPeek Pro">
 
       <div class="preview preview-tall" id="previewBox">
         <iframe src="https://moodpeek-pro.vercel.app" loading="lazy" title="MoodPeek Pro preview" sandbox="allow-same-origin allow-scripts allow-forms allow-popups"></iframe>
         <div class="preview-label">Live preview — MoodPeek Pro</div>
       </div>
 
-
-      <h2>Key Decisions</h2>
-      <ul>
+      <h2><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></h2>
+      <ul data-lang="en">
         <li><strong>Calendar is the anchor; weekly insight inline.</strong> Instead of scattering views across tabs, the calendar holds everything. Tap a day to see or edit; tap a week header to get the insight summary right there. Removed the standalone Weekly Report page — it was one screen too many.</li>
-        <li><strong>Dashboard as quick-glance home.</strong> Shows today's entry shortcut, this-week-at-a-glance, a 7-day sparkline, current streak, and quick nav links. The goal: see something useful in under 2 seconds, then decide whether to dig in.</li>
-        <li><strong>Preferences drive personalization.</strong> Default city auto-fills weather on each entry; theme (light / dark / system) syncs globally without a page refresh. Each user's settings are isolated via JWT.</li>
-        <li><strong>Keep it self-reported.</strong> No automatic mood inference or "mind-reading" features. The user decides what they felt and writes it down. Emotional agency matters more than algorithmic guessing.</li>
+        <li><strong>Dashboard as quick-glance home.</strong> Shows today’s entry shortcut, this-week-at-a-glance, a 7-day sparkline, current streak, and quick nav links. The goal: see something useful in under 2 seconds, then decide whether to dig in.</li>
+        <li><strong>Preferences drive personalization.</strong> Default city auto-fills weather on each entry; theme (light / dark / system) syncs globally without a page refresh. Each user’s settings are isolated via JWT.</li>
+        <li><strong>Keep it self-reported.</strong> No automatic mood inference or “mind-reading” features. The user decides what they felt and writes it down. Emotional agency matters more than algorithmic guessing.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>日历是锚点，每周洞察内嵌其中。</strong>不把视图分散到各个标签页，而是让日历承载一切：点某一天查看或编辑，点周标题就在原地看到洞察摘要。去掉了单独的周报页面 — 它是多余的一屏。</li>
+        <li><strong>仪表盘作为一眼看全的首页。</strong>展示今日记录入口、本周概览、7 天走势图、当前连续天数和快捷导航。目标是 2 秒内看到有用的信息，再决定要不要深入。</li>
+        <li><strong>偏好设置驱动个性化。</strong>默认城市会自动为每条记录填入天气；主题（浅色 / 深色 / 跟随系统）无需刷新即可全局同步。每位用户的设置通过 JWT 相互隔离。</li>
+        <li><strong>坚持由用户自己记录。</strong>不做自动情绪推断，也不做“读心”功能。感受是什么，由用户自己决定、自己写下。情绪上的自主权比算法猜测更重要。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>日曆是錨點，每週洞察內嵌其中。</strong>不把檢視分散到各個標籤頁，而是讓日曆承載一切：點某一天檢視或編輯，點周標題就在原地看到洞察摘要。去掉了單獨的週報頁面 — 它是多餘的一屏。</li>
+        <li><strong>儀表盤作為一眼看全的首頁。</strong>展示今日記錄入口、本週概覽、7 天走勢圖、當前連續天數和快捷導航。目標是 2 秒內看到有用的資訊，再決定要不要深入。</li>
+        <li><strong>偏好設定驅動個性化。</strong>預設城市會自動為每條記錄填入天氣；主題（淺色 / 深色 / 跟隨系統）無需重新整理即可全域性同步。每位使用者的設定透過 JWT 相互隔離。</li>
+        <li><strong>堅持由使用者自己記錄。</strong>不做自動情緒推斷，也不做“讀心”功能。感受是什麼，由使用者自己決定、自己寫下。情緒上的自主權比演算法猜測更重要。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>カレンダーを軸に、週間インサイトはその場に。</strong>ビューをタブに分散させず、カレンダーにすべてをまとめました。日をタップすれば閲覧・編集、週の見出しをタップすればその場でインサイトの要約が出ます。独立した週間レポート画面は削除しました — 1 画面多すぎたためです。</li>
+        <li><strong>ひと目で把握できるホームとしてのダッシュボード。</strong>今日の記録へのショートカット、今週の概要、7 日間のスパークライン、現在の連続記録、クイックナビを表示します。2 秒以内に役立つ情報が目に入り、そこから深掘りするかを決められるのが目標です。</li>
+        <li><strong>設定でパーソナライズ。</strong>既定の都市を設定すると、記録ごとに天気が自動入力されます。テーマ（ライト／ダーク／システム）はページを再読み込みせずに全体へ反映されます。各ユーザーの設定は JWT で分離されています。</li>
+        <li><strong>あくまで自己申告に。</strong>気分の自動推定や「心を読む」機能は入れていません。何を感じたかはユーザー自身が決めて書き留めます。アルゴリズムの推測より、感情の主体性を大切にしました。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Le calendrier comme ancrage, l’aperçu hebdomadaire intégré.</strong> Plutôt que de disperser les vues dans des onglets, le calendrier rassemble tout. Touchez un jour pour le consulter ou le modifier ; touchez l’en-tête d’une semaine pour voir le résumé sur place. La page de rapport hebdomadaire séparée a été supprimée : c’était un écran de trop.</li>
+        <li><strong>Le tableau de bord comme accueil en un coup d’œil.</strong> Il affiche le raccourci vers l’entrée du jour, la semaine en bref, une courbe sur 7 jours, la série en cours et des liens de navigation rapide. L’objectif : voir quelque chose d’utile en moins de 2 secondes, puis décider s’il faut creuser.</li>
+        <li><strong>Les préférences pilotent la personnalisation.</strong> La ville par défaut remplit automatiquement la météo de chaque entrée ; le thème (clair / sombre / système) se synchronise partout sans recharger la page. Les réglages de chaque utilisateur sont isolés grâce à JWT.</li>
+        <li><strong>Rester déclaratif.</strong> Pas d’inférence automatique de l’humeur ni de fonction qui « lit dans les pensées ». C’est l’utilisateur qui décide de ce qu’il a ressenti et qui l’écrit. L’autonomie émotionnelle compte plus que les suppositions d’un algorithme.</li>
       </ul>
 
-      <h2>Key Features</h2>
-      <ul>
+      <h2><span data-lang="en">Key Features</span><span data-lang="zh">主要功能</span><span data-lang="tw">主要功能</span><span data-lang="ja">主な機能</span><span data-lang="fr">Fonctionnalités clés</span></h2>
+      <ul data-lang="en">
         <li><strong>Calendar 2.0:</strong> Month-view grid with color-coded emotion cells. Click any day to view or edit. Filter by tag, city, or mood range to find patterns fast.</li>
         <li><strong>iCal export:</strong> Download your mood entries as .ics events — bring them into Apple Calendar, Google Calendar, or anything that speaks iCal.</li>
-        <li><strong>Login + "Already Signed In" smart routing:</strong> If your session is still valid, the app skips the login screen and drops you straight into the Dashboard.</li>
-        <li><strong>Multi-user isolation (JWT):</strong> Each account's data is separate. No cross-contamination between users, even on shared devices.</li>
+        <li><strong>Login + “Already Signed In” smart routing:</strong> If your session is still valid, the app skips the login screen and drops you straight into the Dashboard.</li>
+        <li><strong>Multi-user isolation (JWT):</strong> Each account’s data is separate. No cross-contamination between users, even on shared devices.</li>
         <li><strong>Dashboard:</strong> Today quick entry · This week at a glance · 7-day mood sparkline · Current streak · Shortcut tiles to Calendar, Preferences, and past weeks.</li>
         <li><strong>Preferences:</strong> Set your default city (auto-fills weather when logging); choose light / dark / system theme with instant global sync — no page reload needed.</li>
         <li><strong>Friendly 409:</strong> Try to log a second entry for the same day and you get a clear, human message instead of a cryptic error.</li>
       </ul>
+      <ul data-lang="zh">
+        <li><strong>日历 2.0：</strong>按月显示的网格，每格按情绪着色。点击任意一天即可查看或编辑。可按标签、城市或情绪范围筛选，快速找出规律。</li>
+        <li><strong>iCal 导出：</strong>把情绪记录下载为 .ics 事件，导入 Apple 日历、Google 日历或任何支持 iCal 的应用。</li>
+        <li><strong>登录与“已登录”智能跳转：</strong>如果会话仍然有效，应用会跳过登录页，直接进入仪表盘。</li>
+        <li><strong>多用户隔离（JWT）：</strong>每个账号的数据彼此独立，即使在共用设备上，用户之间的数据也不会混在一起。</li>
+        <li><strong>仪表盘：</strong>今日快速记录 · 本周概览 · 7 天情绪走势图 · 当前连续天数 · 通往日历、偏好设置和往周的快捷入口。</li>
+        <li><strong>偏好设置：</strong>设置默认城市（记录时自动填入天气）；选择浅色 / 深色 / 跟随系统主题，立即全局同步，无需刷新页面。</li>
+        <li><strong>友好的 409 提示：</strong>同一天想再记一条时，会看到清楚易懂的提示，而不是晦涩的报错。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>日曆 2.0：</strong>按月顯示的網格，每格按情緒著色。點選任意一天即可檢視或編輯。可按標籤、城市或情緒範圍篩選，快速找出規律。</li>
+        <li><strong>iCal 匯出：</strong>把情緒記錄下載為 .ics 事件，匯入 Apple 日曆、Google 日曆或任何支援 iCal 的應用。</li>
+        <li><strong>登入與“已登入”智慧跳轉：</strong>如果會話仍然有效，應用會跳過登入頁，直接進入儀表盤。</li>
+        <li><strong>多使用者隔離（JWT）：</strong>每個賬號的資料彼此獨立，即使在共用裝置上，使用者之間的資料也不會混在一起。</li>
+        <li><strong>儀表盤：</strong>今日快速記錄 · 本週概覽 · 7 天情緒走勢圖 · 當前連續天數 · 通往日曆、偏好設定和往周的快捷入口。</li>
+        <li><strong>偏好設定：</strong>設定預設城市（記錄時自動填入天氣）；選擇淺色 / 深色 / 跟隨系統主題，立即全域性同步，無需重新整理頁面。</li>
+        <li><strong>友好的 409 提示：</strong>同一天想再記一條時，會看到清楚易懂的提示，而不是晦澀的報錯。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>カレンダー 2.0：</strong>感情ごとに色分けされたマスの月表示グリッド。日をクリックすると閲覧・編集できます。タグ・都市・気分の範囲で絞り込み、パターンをすばやく見つけられます。</li>
+        <li><strong>iCal エクスポート：</strong>気分の記録を .ics イベントとしてダウンロードし、Apple カレンダーや Google カレンダーなど iCal 対応のアプリに取り込めます。</li>
+        <li><strong>ログインと「ログイン済み」スマートルーティング：</strong>セッションが有効なら、ログイン画面を飛ばしてそのままダッシュボードに移動します。</li>
+        <li><strong>マルチユーザー分離（JWT）：</strong>アカウントごとにデータは独立しています。共有端末でも、ユーザー間でデータが混ざることはありません。</li>
+        <li><strong>ダッシュボード：</strong>今日のクイック記録 · 今週の概要 · 7 日間の気分スパークライン · 現在の連続記録 · カレンダー、設定、過去の週へのショートカット。</li>
+        <li><strong>設定：</strong>既定の都市を設定（記録時に天気を自動入力）。ライト／ダーク／システムのテーマを選ぶと、ページを再読み込みせずに即座に全体へ反映されます。</li>
+        <li><strong>わかりやすい 409：</strong>同じ日に 2 件目を記録しようとすると、不可解なエラーではなく、はっきりした言葉のメッセージが表示されます。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Calendrier 2.0 :</strong> une grille mensuelle aux cases colorées selon l’émotion. Cliquez sur un jour pour le consulter ou le modifier. Filtrez par étiquette, ville ou plage d’humeur pour repérer vite des tendances.</li>
+        <li><strong>Export iCal :</strong> téléchargez vos entrées sous forme d’événements .ics et importez-les dans Apple Calendrier, Google Agenda ou toute application compatible iCal.</li>
+        <li><strong>Connexion et redirection « déjà connecté » :</strong> si votre session est encore valide, l’application saute l’écran de connexion et vous amène directement au tableau de bord.</li>
+        <li><strong>Isolation multi-utilisateur (JWT) :</strong> les données de chaque compte sont séparées. Aucun mélange entre utilisateurs, même sur un appareil partagé.</li>
+        <li><strong>Tableau de bord :</strong> saisie rapide du jour · la semaine en bref · courbe d’humeur sur 7 jours · série en cours · raccourcis vers le calendrier, les préférences et les semaines passées.</li>
+        <li><strong>Préférences :</strong> choisissez votre ville par défaut (la météo se remplit automatiquement) et un thème clair / sombre / système, synchronisé instantanément partout, sans rechargement.</li>
+        <li><strong>Un 409 bienveillant :</strong> si vous essayez d’ajouter une deuxième entrée pour le même jour, vous obtenez un message clair et humain plutôt qu’une erreur obscure.</li>
+      </ul>
 
-      <h2>About MoodPeek v1 (the original)</h2>
-      <p>The first version focused on making emotion data visible: it mapped mood entries against environmental context (weather via Open-Meteo, time of day) and rendered them as color-coded cards with dynamic gradients. Guest mode, no login required, purely visual. Think of v1 as "turn emotions into something you can see," while Pro is "build the daily structure so tracking actually sticks across multiple users."</p>
+      <h2><span data-lang="en">About MoodPeek v1 (the original)</span><span data-lang="zh">关于 MoodPeek v1（初版）</span><span data-lang="tw">關於 MoodPeek v1（初版）</span><span data-lang="ja">MoodPeek v1（初代）について</span><span data-lang="fr">À propos de MoodPeek v1 (l’original)</span></h2>
+      <p data-lang="en">The first version focused on making emotion data visible: it mapped mood entries against environmental context (weather via Open-Meteo, time of day) and rendered them as color-coded cards with dynamic gradients. Guest mode, no login required, purely visual. Think of v1 as “turn emotions into something you can see,” while Pro is “build the daily structure so tracking actually sticks across multiple users.”</p>
+      <p data-lang="zh">第一版的重点是让情绪数据看得见：它把情绪记录和环境因素（来自 Open-Meteo 的天气、一天中的时段）对应起来，渲染成带动态渐变的彩色卡片。访客模式、无需登录、纯可视化。可以把 v1 理解为“把情绪变成看得见的东西”，而 Pro 是“搭好每日结构，让多用户的记录真正坚持下去”。</p>
+      <p data-lang="tw">第一版的重點是讓情緒資料看得見：它把情緒記錄和環境因素（來自 Open-Meteo 的天氣、一天中的時段）對應起來，渲染成帶動態漸變的彩色卡片。訪客模式、無需登入、純視覺化。可以把 v1 理解為“把情緒變成看得見的東西”，而 Pro 是“搭好每日結構，讓多使用者的記錄真正堅持下去”。</p>
+      <p data-lang="ja">初代は感情データを目に見えるようにすることに重点を置いていました。気分の記録を環境の文脈（Open-Meteo の天気、時間帯）と結びつけ、動的なグラデーションの色分けカードとして表示します。ゲストモードでログイン不要、純粋にビジュアルなものです。v1 が「感情を見えるものにする」なら、Pro は「毎日の構造をつくり、複数のユーザーが記録を続けられるようにする」ものです。</p>
+      <p data-lang="fr">La première version cherchait à rendre les données émotionnelles visibles : elle reliait les entrées d’humeur au contexte (météo via Open-Meteo, moment de la journée) et les affichait sous forme de cartes colorées à dégradés dynamiques. Mode invité, sans connexion, purement visuel. La v1, c’est « transformer les émotions en quelque chose de visible » ; Pro, c’est « construire la structure quotidienne pour que le suivi tienne dans la durée, avec plusieurs utilisateurs ».</p>
 
-      <h2>Links</h2>
+      <h2><span data-lang="en">Links</span><span data-lang="zh">链接</span><span data-lang="tw">連結</span><span data-lang="ja">リンク</span><span data-lang="fr">Liens</span></h2>
       <div class="links">
-        <a href="https://moodpeek1.vercel.app/" target="_blank" rel="noopener">Open MoodPeek v1</a>
-        <a href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener">Open MoodPeek Pro</a>
+        <a href="https://moodpeek1.vercel.app/" target="_blank" rel="noopener"><span data-lang="en">Open MoodPeek v1</span><span data-lang="zh">打开 MoodPeek v1</span><span data-lang="tw">開啟 MoodPeek v1</span><span data-lang="ja">MoodPeek v1 を開く</span><span data-lang="fr">Ouvrir MoodPeek v1</span></a>
+        <a href="https://moodpeek-pro.vercel.app" target="_blank" rel="noopener"><span data-lang="en">Open MoodPeek Pro</span><span data-lang="zh">打开 MoodPeek Pro</span><span data-lang="tw">開啟 MoodPeek Pro</span><span data-lang="ja">MoodPeek Pro を開く</span><span data-lang="fr">Ouvrir MoodPeek Pro</span></a>
         <a href="https://github.com/Antirender/moodpeek-pro" target="_blank" rel="noopener">GitHub (MoodPeek Pro)</a>
       </div>
     </div>
 
     <nav class="pager" aria-label="Case studies">
-      <a class="prev" href="gsgc.html"><small>&larr; Previous</small><b>Green Sheridan Garden Club</b></a>
-      <a class="next" href="physical-computing.html"><small>Next &rarr;</small><b>Comfort Lamp</b></a>
+      <a class="prev" href="gsgc.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>Green Sheridan Garden Club</b></a>
+      <a class="next" href="physical-computing.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>Comfort Lamp</b></a>
     </nav>
     <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
   </div>
@@ -124,12 +199,23 @@
     pro:  { url: 'https://moodpeek-pro.vercel.app', label: 'MoodPeek Pro' },
     v1:   { url: 'https://moodpeek1.vercel.app/',   label: 'MoodPeek v1' }
   };
-  sel.addEventListener('change', function () {
-    var d = demoMap[this.value];
-    link.href = d.url; link.textContent = 'Open ' + d.label;
-    var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = d.url;
-    var lbl = preview.querySelector('.preview-label'); if (lbl) lbl.textContent = 'Live preview \u2014 ' + d.label;
-  });
+  var TXT = {
+    en: { open: 'Open {x}', live: 'Live preview \u2014 {x}', pro: 'MoodPeek Pro \u2014 Calendar-centered habit system', v1: 'MoodPeek (guest mode) \u2014 Emotion + Weather correlation' },
+    zh: { open: '打开 {x}', live: '实时预览 \u2014 {x}', pro: 'MoodPeek Pro \u2014 以日历为中心的习惯系统', v1: 'MoodPeek（访客模式）\u2014 情绪与天气关联' },
+    tw: { open: '開啟 {x}', live: '即時預覽 \u2014 {x}', pro: 'MoodPeek Pro \u2014 以日曆為中心的習慣系統', v1: 'MoodPeek（訪客模式）\u2014 情緒與天氣關聯' },
+    ja: { open: '{x} を開く', live: 'ライブプレビュー \u2014 {x}', pro: 'MoodPeek Pro \u2014 カレンダー中心の習慣システム', v1: 'MoodPeek（ゲストモード）\u2014 感情と天気の相関' },
+    fr: { open: 'Ouvrir {x}', live: 'Aperçu en direct \u2014 {x}', pro: 'MoodPeek Pro \u2014 système d\u2019habitudes centré sur le calendrier', v1: 'MoodPeek (mode invité) \u2014 corrélation émotion + météo' }
+  };
+  function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
+  function render(loadFrame) {
+    var t = TXT[lang()], d = demoMap[sel.value];
+    sel.options[0].textContent = t.pro; sel.options[1].textContent = t.v1;
+    link.href = d.url; link.textContent = t.open.replace('{x}', d.label);
+    var lbl = preview.querySelector('.preview-label'); if (lbl) lbl.textContent = t.live.replace('{x}', d.label);
+    if (loadFrame) { var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = d.url; }
+  }
+  sel.addEventListener('change', function () { render(true); });
+  window.demoRefresh = function () { render(false); };
 })();
 
 /* ===== Theme Toggle ===== */
@@ -143,7 +229,7 @@
 })();
 /* ===== i18n ===== */
 var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
-function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});try{localStorage.setItem('siteLang',l);}catch(_){}}
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);im.alt=(ak&&im.getAttribute('data-alt-'+ak))||im.getAttribute('data-alt-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>

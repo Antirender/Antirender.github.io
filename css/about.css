@@ -83,3 +83,6 @@
   #resume-full ul{margin:0 0 2px!important}
   #resume-full a{color:#000!important}
 }
+
+/* Tools sit top-right with breathing room (the page has no sticky site header) */
+.wrap > .site-tools{justify-content:flex-end;padding-top:1rem}
