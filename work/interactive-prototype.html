@@ -27,6 +27,14 @@
     .lb [hidden]{display:none}
     .lb-cap{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;max-width:80vw;text-align:center;line-height:1.5}
   </style>
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+  </style>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
@@ -57,150 +65,194 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow">Case Study · Interactive Media · 2025</span>
-      <h1>Interactive Prototype — Media, Motion &amp; the Body</h1>
-      <p>A three-module IXD exploration: turning hidden circuits into visible interaction language, using sound as input with visuals as feedback, and mapping real-world touch into real-time digital output.</p>
+      <span class="eyebrow"><span data-lang="en">Case Study · Interactive Media · 2025</span><span data-lang="zh">案例研究 · 互动媒体 · 2025</span><span data-lang="tw">案例研究 · 互動媒體 · 2025</span><span data-lang="ja">ケーススタディ · インタラクティブメディア · 2025</span><span data-lang="fr">Étude de cas · Médias interactifs · 2025</span></span>
+      <h1><span data-lang="en">Interactive Prototype — Media, Motion &amp; the Body</span><span data-lang="zh">交互原型 — 媒介、运动与身体</span><span data-lang="tw">互動原型 — 媒介、運動與身體</span><span data-lang="ja">インタラクティブプロトタイプ — メディア、モーション、身体</span><span data-lang="fr">Prototype interactif — médias, mouvement et corps</span></h1>
+      <p data-lang="en">A three-module IXD exploration: turning hidden circuits into visible interaction language, using sound as input with visuals as feedback, and mapping real-world touch into real-time digital output.</p>
+      <p data-lang="zh">分三个模块的交互设计（IXD）探索：把隐藏的电路变成看得见的交互语言；以声音为输入、视觉为反馈；把现实世界中的触摸映射为实时的数字输出。</p>
+      <p data-lang="tw">分三個模組的互動設計（IXD）探索：把隱藏的電路變成看得見的互動語言；以聲音為輸入、視覺為回饋；把現實世界中的觸控對應為即時的數位輸出。</p>
+      <p data-lang="ja">3 つのモジュールからなるインタラクションデザイン（IXD）の探求：隠れた回路を目に見えるインタラクションの言語に変えること、音を入力にして映像でフィードバックすること、そして現実世界のタッチをリアルタイムのデジタル出力に対応させること。</p>
+      <p data-lang="fr">Une exploration IXD en trois modules : rendre visibles les circuits cachés pour en faire un langage d’interaction, utiliser le son comme entrée et l’image comme retour, et traduire le toucher du monde réel en sortie numérique en temps réel.</p>
       <div class="meta">
-        <span><strong>Role</strong> Hardware + creative-coding prototyping</span>
-        <span><strong>Tools</strong> Copper tape, Makey Makey, p5.js, p5.sound, WebGL</span>
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></strong> <span data-lang="en">Hardware + creative-coding prototyping</span><span data-lang="zh">硬件 + 创意编程原型制作</span><span data-lang="tw">硬體 + 創意程式設計原型製作</span><span data-lang="ja">ハードウェア＋クリエイティブコーディングのプロトタイピング</span><span data-lang="fr">Prototypage matériel et creative coding</span></span>
+        <span><strong><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></strong> <span data-lang="en">Copper tape, Makey Makey, p5.js, p5.sound, WebGL</span><span data-lang="zh">铜箔胶带、Makey Makey、p5.js、p5.sound、WebGL</span><span data-lang="tw">銅箔膠帶、Makey Makey、p5.js、p5.sound、WebGL</span><span data-lang="ja">銅テープ、Makey Makey、p5.js、p5.sound、WebGL</span><span data-lang="fr">Ruban de cuivre, Makey Makey, p5.js, p5.sound, WebGL</span></span>
       </div>
     </div>
 
     <div class="version-bar">
-      <label for="ver">Module:</label>
+      <label for="ver"><span data-lang="en">Module:</span><span data-lang="zh">模块：</span><span data-lang="tw">模組：</span><span data-lang="ja">モジュール：</span><span data-lang="fr">Module :</span></label>
       <select id="ver">
-        <option value="p1">P1 — Circuits &amp; Formstorming</option>
-        <option value="p2">P2 — Sound &amp; Visualisation</option>
-        <option value="p3" selected>P3 — Touch-to-Digital</option>
+        <option value="p1" data-t-zh="P1 — 电路与形态风暴" data-t-tw="P1 — 電路與形態風暴" data-t-ja="P1 — 回路とフォームストーミング" data-t-fr="P1 — Circuits et formstorming">P1 — Circuits &amp; Formstorming</option>
+        <option value="p2" data-t-zh="P2 — 声音与可视化" data-t-tw="P2 — 聲音與視覺化" data-t-ja="P2 — 音とビジュアライゼーション" data-t-fr="P2 — Son et visualisation">P2 — Sound &amp; Visualisation</option>
+        <option value="p3" selected data-t-zh="P3 — 从触摸到数字" data-t-tw="P3 — 從觸控到數位" data-t-ja="P3 — タッチからデジタルへ" data-t-fr="P3 — Du toucher au numérique">P3 — Touch-to-Digital</option>
       </select>
       <a class="btn" id="openLink" href="../DESN22848P3/index.html" target="_blank" rel="noopener">Open P3</a>
     </div>
 
     <div class="content">
       <div class="tldr">
-        <h2>At a glance</h2>
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
         <dl>
-          <div><dt>Problem</dt><dd>How can hidden electronic circuits and invisible data (sound, touch) become expressive, visible interaction?</dd></div>
-          <div><dt>Role</dt><dd>Individual creative-coding and physical prototyping</dd></div>
-          <div><dt>Tools</dt><dd>Copper tape, conductive thread/fabric, LEDs, Makey Makey, p5.js, p5.sound, WebGL</dd></div>
-          <div><dt>Timeline</dt><dd>3 modules — circuits → sound-reactive visuals → touch-to-digital output</dd></div>
-          <div><dt>Key Decisions</dt><dd>Use real conductive materials for tactile input; p5.js for real-time visual feedback; Makey Makey as analog-to-digital bridge</dd></div>
-          <div><dt>Result</dt><dd>A drum machine driven by copper-foil touch pads, with 3D WebGL explosions reacting to each hit — combining physical craft with digital expression.</dd></div>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">How can hidden electronic circuits and invisible data (sound, touch) become expressive, visible interaction?</span><span data-lang="zh">隐藏的电子电路和看不见的数据（声音、触摸），怎样才能变成富有表现力、看得见的交互？</span><span data-lang="tw">隱藏的電子電路和看不見的資料（聲音、觸控），怎樣才能變成富有表現力、看得見的互動？</span><span data-lang="ja">隠れた電子回路や目に見えないデータ（音、タッチ）を、表現力のある目に見えるインタラクションにするには？</span><span data-lang="fr">Comment des circuits électroniques cachés et des données invisibles (son, toucher) peuvent-ils devenir une interaction expressive et visible ?</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">Individual creative-coding and physical prototyping</span><span data-lang="zh">独立完成创意编程和实体原型制作</span><span data-lang="tw">獨立完成創意程式設計和實體原型製作</span><span data-lang="ja">クリエイティブコーディングとフィジカルプロトタイピングを個人で担当</span><span data-lang="fr">Creative coding et prototypage physique en individuel</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></dt><dd><span data-lang="en">Copper tape, conductive thread/fabric, LEDs, Makey Makey, p5.js, p5.sound, WebGL</span><span data-lang="zh">铜箔胶带、导电线 / 导电布、LED、Makey Makey、p5.js、p5.sound、WebGL</span><span data-lang="tw">銅箔膠帶、導電線 / 導電布、LED、Makey Makey、p5.js、p5.sound、WebGL</span><span data-lang="ja">銅テープ、導電糸／導電布、LED、Makey Makey、p5.js、p5.sound、WebGL</span><span data-lang="fr">Ruban de cuivre, fil et tissu conducteurs, LED, Makey Makey, p5.js, p5.sound, WebGL</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="tw">時程</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">3 modules — circuits → sound-reactive visuals → touch-to-digital output</span><span data-lang="zh">3 个模块——电路 → 随声音变化的视觉 → 从触摸到数字输出</span><span data-lang="tw">3 個模組——電路 → 隨聲音變化的視覺 → 從觸控到數位輸出</span><span data-lang="ja">3 モジュール — 回路 → 音に反応するビジュアル → タッチからデジタル出力へ</span><span data-lang="fr">3 modules — circuits → visuels réactifs au son → du toucher à la sortie numérique</span></dd></div>
+          <div><dt><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></dt><dd><span data-lang="en">Use real conductive materials for tactile input; p5.js for real-time visual feedback; Makey Makey as analog-to-digital bridge</span><span data-lang="zh">用真实的导电材料做触觉输入；用 p5.js 做实时视觉反馈；用 Makey Makey 连接模拟与数字</span><span data-lang="tw">用真實的導電材料做觸覺輸入；用 p5.js 做即時視覺回饋；用 Makey Makey 連接類比與數位</span><span data-lang="ja">触覚的な入力には本物の導電素材を、リアルタイムの視覚フィードバックには p5.js を、アナログとデジタルの橋渡しには Makey Makey を使用</span><span data-lang="fr">De vrais matériaux conducteurs pour l’entrée tactile ; p5.js pour le retour visuel en temps réel ; Makey Makey comme pont entre analogique et numérique</span></dd></div>
+          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">A drum machine driven by copper-foil touch pads, with 3D WebGL explosions reacting to each hit — combining physical craft with digital expression.</span><span data-lang="zh">一台由铜箔触摸垫驱动的鼓机，每次敲击都会引发 3D WebGL 爆炸效果——把实体手工与数字表达结合在一起。</span><span data-lang="tw">一台由銅箔觸控墊驅動的鼓機，每次敲擊都會引發 3D WebGL 爆炸效果——把實體手工與數位表達結合在一起。</span><span data-lang="ja">銅箔のタッチパッドで動くドラムマシン。叩くたびに 3D WebGL の爆発が反応し、手仕事とデジタル表現を組み合わせています。</span><span data-lang="fr">Une boîte à rythmes pilotée par des pads en feuille de cuivre, avec des explosions 3D WebGL à chaque frappe : l’artisanat physique au service de l’expression numérique.</span></dd></div>
         </dl>
       </div>
 
-      <img class="cover-img" src="../DESN22848P3/images/final/happy.png" alt="Makey Makey drum kit — copper foil touch pads mapped to p5.js WebGL visuals">
+      <img class="cover-img" src="../DESN22848P3/images/final/happy.png" alt="Makey Makey drum kit — copper foil touch pads mapped to p5.js WebGL visuals" data-alt-zh="Makey Makey 鼓组——铜箔触摸垫对应 p5.js WebGL 视觉" data-alt-tw="Makey Makey 鼓組——銅箔觸控墊對應 p5.js WebGL 視覺" data-alt-ja="Makey Makey のドラムキット — 銅箔のタッチパッドを p5.js の WebGL ビジュアルに対応" data-alt-fr="Batterie Makey Makey — pads en feuille de cuivre reliés à des visuels WebGL p5.js">
 
 
       <!-- ===== MODULE 1 ===== -->
       <div class="phase">
-        <span class="phase-label phase-label--p1">Module 1 — Circuits &amp; Formstorming</span>
-        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Copper Tape, LEDs &amp; Conductive Materials</h2>
-        <p>Explored copper tape, conductive thread, and conductive fabric to build simple circuits. The goal: make the normally hidden wiring and connections visible, turning electronic circuits into a visual and interaction language.</p>
+        <span class="phase-label phase-label--p1"><span data-lang="en">Module 1 — Circuits &amp; Formstorming</span><span data-lang="zh">模块 1 — 电路与形态风暴</span><span data-lang="tw">模組 1 — 電路與形態風暴</span><span data-lang="ja">モジュール 1 — 回路とフォームストーミング</span><span data-lang="fr">Module 1 — Circuits et formstorming</span></span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem"><span data-lang="en">Copper Tape, LEDs &amp; Conductive Materials</span><span data-lang="zh">铜箔胶带、LED 与导电材料</span><span data-lang="tw">銅箔膠帶、LED 與導電材料</span><span data-lang="ja">銅テープ、LED、導電素材</span><span data-lang="fr">Ruban de cuivre, LED et matériaux conducteurs</span></h2>
+        <p data-lang="en">Explored copper tape, conductive thread, and conductive fabric to build simple circuits. The goal: make the normally hidden wiring and connections visible, turning electronic circuits into a visual and interaction language.</p>
+        <p data-lang="zh">用铜箔胶带、导电线和导电布搭建简单电路。目标是：让平时藏起来的走线和连接变得可见，把电子电路变成一种视觉语言和交互语言。</p>
+        <p data-lang="tw">用銅箔膠帶、導電線和導電布搭建簡單電路。目標是：讓平時藏起來的走線和連接變得可見，把電子電路變成一種視覺語言和互動語言。</p>
+        <p data-lang="ja">銅テープ、導電糸、導電布を使ってシンプルな回路をつくりました。目的は、ふだん隠れている配線や接続を見えるようにし、電子回路を視覚とインタラクションの言語に変えることです。</p>
+        <p data-lang="fr">Exploration du ruban de cuivre, du fil et du tissu conducteurs pour créer des circuits simples. Objectif : rendre visibles le câblage et les connexions habituellement cachés, et faire des circuits électroniques un langage visuel et d’interaction.</p>
 
-        <h3>Activity 1 — Copper Tape Circuits</h3>
+        <h3><span data-lang="en">Activity 1 — Copper Tape Circuits</span><span data-lang="zh">活动 1 — 铜箔胶带电路</span><span data-lang="tw">活動 1 — 銅箔膠帶電路</span><span data-lang="ja">アクティビティ 1 — 銅テープの回路</span><span data-lang="fr">Activité 1 — Circuits en ruban de cuivre</span></h3>
         <div class="img-grid">
-          <img src="../DESN22848/images/Activity1/001.jpeg" alt="Simple circuit with copper tape and LED sticker" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity1/005.jpeg" alt="Copper tape + conductive fabric LED circuit" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity1/007.jpeg" alt="LED stickers glowing in a heart circuit" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity1/011.jpeg" alt="LED as a glowing window in a house design" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity1/015.jpeg" alt="Christmas tree design with copper tape" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity1/021.jpeg" alt="Blender icon with copper tape and blue LED" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity1/023.jpeg" alt="Printing Pod design with LEDs off" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity1/024.jpeg" alt="Printing Pod design with LEDs on" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/001.jpeg" alt="Simple circuit with copper tape and LED sticker" data-alt-zh="用铜箔胶带和 LED 贴片做的简单电路" data-alt-tw="用銅箔膠帶和 LED 貼片做的簡單電路" data-alt-ja="銅テープと LED ステッカーによるシンプルな回路" data-alt-fr="Circuit simple en ruban de cuivre avec une LED autocollante" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/005.jpeg" alt="Copper tape + conductive fabric LED circuit" data-alt-zh="铜箔胶带 + 导电布的 LED 电路" data-alt-tw="銅箔膠帶 + 導電布的 LED 電路" data-alt-ja="銅テープと導電布による LED 回路" data-alt-fr="Circuit LED en ruban de cuivre et tissu conducteur" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/007.jpeg" alt="LED stickers glowing in a heart circuit" data-alt-zh="心形电路里发光的 LED 贴片" data-alt-tw="心形電路裡發光的 LED 貼片" data-alt-ja="ハート形の回路で光る LED ステッカー" data-alt-fr="LED autocollantes allumées dans un circuit en forme de cœur" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/011.jpeg" alt="LED as a glowing window in a house design" data-alt-zh="LED 化作房子图案里一扇亮着的窗" data-alt-tw="LED 化作房子圖案裡一扇亮著的窗" data-alt-ja="家のデザインの中で光る窓になった LED" data-alt-fr="Une LED comme fenêtre éclairée dans un dessin de maison" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/015.jpeg" alt="Christmas tree design with copper tape" data-alt-zh="用铜箔胶带做的圣诞树图案" data-alt-tw="用銅箔膠帶做的聖誕樹圖案" data-alt-ja="銅テープでつくったクリスマスツリーのデザイン" data-alt-fr="Sapin de Noël en ruban de cuivre" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/021.jpeg" alt="Blender icon with copper tape and blue LED" data-alt-zh="用铜箔胶带和蓝色 LED 做的 Blender 图标" data-alt-tw="用銅箔膠帶和藍色 LED 做的 Blender 圖示" data-alt-ja="銅テープと青い LED でつくった Blender のアイコン" data-alt-fr="Logo Blender en ruban de cuivre avec une LED bleue" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/023.jpeg" alt="Printing Pod design with LEDs off" data-alt-zh="Printing Pod 图案，LED 熄灭" data-alt-tw="Printing Pod 圖案，LED 熄滅" data-alt-ja="LED 消灯時の Printing Pod のデザイン" data-alt-fr="Motif Printing Pod, LED éteintes" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity1/024.jpeg" alt="Printing Pod design with LEDs on" data-alt-zh="Printing Pod 图案，LED 点亮" data-alt-tw="Printing Pod 圖案，LED 點亮" data-alt-ja="LED 点灯時の Printing Pod のデザイン" data-alt-fr="Motif Printing Pod, LED allumées" onclick="lb(this)">
         </div>
 
-        <h3>Activity 2 — Affordance-Based Interaction Patterns</h3>
+        <h3><span data-lang="en">Activity 2 — Affordance-Based Interaction Patterns</span><span data-lang="zh">活动 2 — 基于示能性的交互模式</span><span data-lang="tw">活動 2 — 基於示能性的互動模式</span><span data-lang="ja">アクティビティ 2 — アフォーダンスに基づくインタラクションのパターン</span><span data-lang="fr">Activité 2 — Schémas d’interaction fondés sur l’affordance</span></h3>
         <div class="img-grid">
-          <img src="../DESN22848/images/Activity2/001.jpeg" alt="Press a button to call security" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity2/003.jpeg" alt="Door handle can open a door" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity2/011.jpeg" alt="Press to get hand sanitizer" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity2/017.jpeg" alt="Hand flipping a light switch" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity2/022.jpeg" alt="LED placement on clothes using conductive material" onclick="lb(this)">
-          <img src="../DESN22848/images/Activity2/025.jpeg" alt="Three circuit design ideas with LEDs" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/001.jpeg" alt="Press a button to call security" data-alt-zh="按下按钮呼叫保安" data-alt-tw="按下按鈕呼叫警衛" data-alt-ja="ボタンを押して警備員を呼ぶ" data-alt-fr="Appuyer sur un bouton pour appeler la sécurité" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/003.jpeg" alt="Door handle can open a door" data-alt-zh="门把手可以开门" data-alt-tw="門把手可以開門" data-alt-ja="ドアノブでドアを開けられる" data-alt-fr="Une poignée permet d’ouvrir la porte" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/011.jpeg" alt="Press to get hand sanitizer" data-alt-zh="按压取免洗洗手液" data-alt-tw="按壓取免洗洗手液" data-alt-ja="押すと手指消毒液が出る" data-alt-fr="Appuyer pour obtenir du gel hydroalcoolique" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/017.jpeg" alt="Hand flipping a light switch" data-alt-zh="用手拨动电灯开关" data-alt-tw="用手撥動電燈開關" data-alt-ja="照明のスイッチを切り替える手" data-alt-fr="Une main actionne un interrupteur" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/022.jpeg" alt="LED placement on clothes using conductive material" data-alt-zh="用导电材料在衣服上布置 LED" data-alt-tw="用導電材料在衣服上佈置 LED" data-alt-ja="導電素材を使って服に LED を配置" data-alt-fr="Placement de LED sur un vêtement avec un matériau conducteur" onclick="lb(this)">
+          <img src="../DESN22848/images/Activity2/025.jpeg" alt="Three circuit design ideas with LEDs" data-alt-zh="三个带 LED 的电路设计构想" data-alt-tw="三個帶 LED 的電路設計構想" data-alt-ja="LED を使った 3 つの回路デザイン案" data-alt-fr="Trois idées de circuits avec des LED" onclick="lb(this)">
         </div>
 
-        <h3>Final — Wearable &amp; Non-Wearable Circuits</h3>
+        <h3><span data-lang="en">Final — Wearable &amp; Non-Wearable Circuits</span><span data-lang="zh">最终作品 — 可穿戴与不可穿戴电路</span><span data-lang="tw">最終作品 — 可穿戴與不可穿戴電路</span><span data-lang="ja">最終作品 — ウェアラブル／非ウェアラブルの回路</span><span data-lang="fr">Final — circuits portables et non portables</span></h3>
         <div class="final-gallery">
           <div>
-            <h4>Wearable: Smart Cycling Helmet</h4>
-            <p>Conductive wires integrated into the helmet. The buckle doubles as a switch — fastening it completes the circuit and activates the headlight automatically.</p>
-            <img src="../DESN22848/images/final/Wear.jpg" alt="Smart cycling helmet with automatic lighting system" onclick="lb(this)">
+            <h4><span data-lang="en">Wearable: Smart Cycling Helmet</span><span data-lang="zh">可穿戴：智能骑行头盔</span><span data-lang="tw">可穿戴：智慧自行車安全帽</span><span data-lang="ja">ウェアラブル：スマートサイクリングヘルメット</span><span data-lang="fr">Portable : casque de vélo intelligent</span></h4>
+            <p data-lang="en">Conductive wires integrated into the helmet. The buckle doubles as a switch — fastening it completes the circuit and activates the headlight automatically.</p>
+            <p data-lang="zh">导电线集成在头盔里。卡扣兼作开关——扣上卡扣就接通电路，头灯随之自动亮起。</p>
+            <p data-lang="tw">導電線整合在安全帽裡。卡扣兼作開關——扣上卡扣就接通電路，頭燈隨之自動亮起。</p>
+            <p data-lang="ja">ヘルメットに導電線を組み込みました。バックルがスイッチを兼ねていて、留めると回路がつながり、ヘッドライトが自動で点灯します。</p>
+            <p data-lang="fr">Des fils conducteurs intégrés au casque. La boucle sert d’interrupteur : en l’attachant, on ferme le circuit et le phare s’allume automatiquement.</p>
+            <img src="../DESN22848/images/final/Wear.jpg" alt="Smart cycling helmet with automatic lighting system" data-alt-zh="带自动照明系统的智能骑行头盔" data-alt-tw="帶自動照明系統的智慧自行車安全帽" data-alt-ja="自動点灯システムを備えたスマートサイクリングヘルメット" data-alt-fr="Casque de vélo intelligent à éclairage automatique" onclick="lb(this)">
           </div>
           <div>
-            <h4>Non-Wearable: Phone Holder Alert</h4>
-            <p>A phone holder with an integrated red-light alert. Placing the phone activates a visual reminder to reduce screen time — behavior modification through environmental cues.</p>
-            <img src="../DESN22848/images/final/NonWear.jpg" alt="Phone holder with red light feedback for behavior modification" onclick="lb(this)">
+            <h4><span data-lang="en">Non-Wearable: Phone Holder Alert</span><span data-lang="zh">不可穿戴：手机支架提醒</span><span data-lang="tw">不可穿戴：手機支架提醒</span><span data-lang="ja">非ウェアラブル：スマホスタンドのアラート</span><span data-lang="fr">Non portable : support de téléphone avertisseur</span></h4>
+            <p data-lang="en">A phone holder with an integrated red-light alert. Placing the phone activates a visual reminder to reduce screen time — behavior modification through environmental cues.</p>
+            <p data-lang="zh">一个内置红灯提醒的手机支架。把手机放上去，就会亮起视觉提醒，帮助减少屏幕使用时间——通过环境线索来改变行为。</p>
+            <p data-lang="tw">一個內建紅燈提醒的手機支架。把手機放上去，就會亮起視覺提醒，幫助減少螢幕使用時間——透過環境線索來改變行為。</p>
+            <p data-lang="ja">赤いライトのアラートを内蔵したスマホスタンド。スマートフォンを置くと視覚的なリマインダーが点灯し、画面を見る時間を減らすよう促します——環境からの手がかりによる行動変容です。</p>
+            <p data-lang="fr">Un support de téléphone avec une alerte lumineuse rouge intégrée. Poser le téléphone déclenche un rappel visuel pour réduire le temps d’écran : modifier un comportement par des signaux de l’environnement.</p>
+            <img src="../DESN22848/images/final/NonWear.jpg" alt="Phone holder with red light feedback for behavior modification" data-alt-zh="用红灯反馈来改变行为的手机支架" data-alt-tw="用紅燈回饋來改變行為的手機支架" data-alt-ja="行動変容のための赤いライトのフィードバックを備えたスマホスタンド" data-alt-fr="Support de téléphone à retour lumineux rouge pour modifier les habitudes" onclick="lb(this)">
           </div>
         </div>
       </div>
 
       <!-- ===== MODULE 2 ===== -->
       <div class="phase">
-        <span class="phase-label phase-label--p2">Module 2 — Sound &amp; Visualisation</span>
-        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Sound as Input, Visuals as Feedback</h2>
-        <p>Collected 25 sound recordings to build a personal sound library, then created 25 real-time sound visualizations in p5.js. The module culminated in an interactive audio-reactive web header.</p>
+        <span class="phase-label phase-label--p2"><span data-lang="en">Module 2 — Sound &amp; Visualisation</span><span data-lang="zh">模块 2 — 声音与可视化</span><span data-lang="tw">模組 2 — 聲音與視覺化</span><span data-lang="ja">モジュール 2 — 音とビジュアライゼーション</span><span data-lang="fr">Module 2 — Son et visualisation</span></span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem"><span data-lang="en">Sound as Input, Visuals as Feedback</span><span data-lang="zh">声音作为输入，视觉作为反馈</span><span data-lang="tw">聲音作為輸入，視覺作為回饋</span><span data-lang="ja">音を入力に、映像をフィードバックに</span><span data-lang="fr">Le son en entrée, l’image en retour</span></h2>
+        <p data-lang="en">Collected 25 sound recordings to build a personal sound library, then created 25 real-time sound visualizations in p5.js. The module culminated in an interactive audio-reactive web header.</p>
+        <p data-lang="zh">收集了 25 段录音，建立个人声音库，然后用 p5.js 做了 25 个实时声音可视化。这个模块最后完成了一个随声音变化的交互式网页头图。</p>
+        <p data-lang="tw">收集了 25 段錄音，建立個人聲音庫，然後用 p5.js 做了 25 個即時聲音視覺化。這個模組最後完成了一個隨聲音變化的互動式網頁頁首。</p>
+        <p data-lang="ja">25 の音を録音して個人のサウンドライブラリをつくり、p5.js で 25 のリアルタイム音声ビジュアライゼーションを制作。モジュールの締めくくりとして、音に反応するインタラクティブな Web ヘッダーをつくりました。</p>
+        <p data-lang="fr">Collecte de 25 enregistrements pour constituer une sonothèque personnelle, puis création de 25 visualisations sonores en temps réel avec p5.js. Le module aboutit à un en-tête web interactif réactif au son.</p>
 
-        <h3>Activity 1 — Sound Library (25 recordings)</h3>
-        <p>Ambient, environmental, synthesized, and recorded audio — from bicycle chains and subway sounds to synth arpeggios and boiling water.</p>
+        <h3><span data-lang="en">Activity 1 — Sound Library (25 recordings)</span><span data-lang="zh">活动 1 — 声音库（25 段录音）</span><span data-lang="tw">活動 1 — 聲音庫（25 段錄音）</span><span data-lang="ja">アクティビティ 1 — サウンドライブラリ（25 の録音）</span><span data-lang="fr">Activité 1 — Sonothèque (25 enregistrements)</span></h3>
+        <p data-lang="en">Ambient, environmental, synthesized, and recorded audio — from bicycle chains and subway sounds to synth arpeggios and boiling water.</p>
+        <p data-lang="zh">氛围声、环境声、合成音和实录音频——从自行车链条、地铁的声音，到合成器琶音和烧开水的声音。</p>
+        <p data-lang="tw">氛圍聲、環境聲、合成音和實錄音訊——從腳踏車鏈條、地鐵的聲音，到合成器琶音和燒開水的聲音。</p>
+        <p data-lang="ja">アンビエント、環境音、シンセサイザー、録音素材——自転車のチェーンや地下鉄の音から、シンセのアルペジオ、お湯が沸く音まで。</p>
+        <p data-lang="fr">Sons d’ambiance, environnementaux, synthétiques et enregistrés : de la chaîne de vélo et du métro aux arpèges de synthé et à l’eau qui bout.</p>
         <div class="img-grid">
-          <img src="../DESN22848P2/images/Activity1/001.jpeg" alt="Sound of a bicycle chain" onclick="lb(this)">
-          <img src="../DESN22848P2/images/Activity1/006.jpeg" alt="Keypad sound" onclick="lb(this)">
-          <img src="../DESN22848P2/images/Activity1/010.jpeg" alt="Sequence of synthesizers" onclick="lb(this)">
-          <img src="../DESN22848P2/images/Activity1/012.jpeg" alt="The subway pulls in" onclick="lb(this)">
-          <img src="../DESN22848P2/images/Activity1/020.jpeg" alt="Boil water sound" onclick="lb(this)">
-          <img src="../DESN22848P2/images/Activity1/025.jpeg" alt="Sounds of fries" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/001.jpeg" alt="Sound of a bicycle chain" data-alt-zh="自行车链条的声音" data-alt-tw="腳踏車鏈條的聲音" data-alt-ja="自転車のチェーンの音" data-alt-fr="Bruit d’une chaîne de vélo" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/006.jpeg" alt="Keypad sound" data-alt-zh="按键音" data-alt-tw="按鍵音" data-alt-ja="キーパッドの音" data-alt-fr="Son de clavier numérique" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/010.jpeg" alt="Sequence of synthesizers" data-alt-zh="合成器音序" data-alt-tw="合成器音序" data-alt-ja="シンセサイザーのシーケンス" data-alt-fr="Séquence de synthétiseurs" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/012.jpeg" alt="The subway pulls in" data-alt-zh="地铁进站" data-alt-tw="地鐵進站" data-alt-ja="地下鉄がホームに入ってくる" data-alt-fr="Le métro entre en station" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/020.jpeg" alt="Boil water sound" data-alt-zh="烧开水的声音" data-alt-tw="燒開水的聲音" data-alt-ja="お湯が沸く音" data-alt-fr="Bruit de l’eau qui bout" onclick="lb(this)">
+          <img src="../DESN22848P2/images/Activity1/025.jpeg" alt="Sounds of fries" data-alt-zh="炸薯条的声音" data-alt-tw="炸薯條的聲音" data-alt-ja="ポテトを揚げる音" data-alt-fr="Bruit de frites dans l’huile" onclick="lb(this)">
         </div>
 
-        <h3>Activity 2 — 25 Sound Visualizations (p5.js)</h3>
-        <p>Each sketch maps audio amplitude or frequency to visual output: waveforms, particle systems, 3D shapes, spectral analyzers, radial equalizers, and more. <a href="../DESN22848V1/index.html" target="_blank" rel="noopener">Try V1 live →</a></p>
+        <h3><span data-lang="en">Activity 2 — 25 Sound Visualizations (p5.js)</span><span data-lang="zh">活动 2 — 25 个声音可视化（p5.js）</span><span data-lang="tw">活動 2 — 25 個聲音視覺化（p5.js）</span><span data-lang="ja">アクティビティ 2 — 25 の音声ビジュアライゼーション（p5.js）</span><span data-lang="fr">Activité 2 — 25 visualisations sonores (p5.js)</span></h3>
+        <p data-lang="en">Each sketch maps audio amplitude or frequency to visual output: waveforms, particle systems, 3D shapes, spectral analyzers, radial equalizers, and more. <a href="../DESN22848V1/index.html" target="_blank" rel="noopener">Try V1 live →</a></p>
+        <p data-lang="zh">每个草图都把音频的振幅或频率映射为视觉输出：波形、粒子系统、3D 形体、频谱分析器、环形均衡器等等。<a href="../DESN22848V1/index.html" target="_blank" rel="noopener">在线试玩 V1 →</a></p>
+        <p data-lang="tw">每個草圖都把音訊的振幅或頻率對應為視覺輸出：波形、粒子系統、3D 形體、頻譜分析器、環形均衡器等等。<a href="../DESN22848V1/index.html" target="_blank" rel="noopener">線上試玩 V1 →</a></p>
+        <p data-lang="ja">どのスケッチも、音の振幅や周波数を映像に対応させています：波形、パーティクルシステム、3D 形状、スペクトラムアナライザー、円形イコライザーなど。<a href="../DESN22848V1/index.html" target="_blank" rel="noopener">V1 をライブで試す →</a></p>
+        <p data-lang="fr">Chaque sketch traduit l’amplitude ou la fréquence du son en image : formes d’onde, systèmes de particules, formes 3D, analyseurs de spectre, égaliseurs circulaires, etc. <a href="../DESN22848V1/index.html" target="_blank" rel="noopener">Essayer la V1 en direct →</a></p>
 
-        <h3>Final — Rainbow Bloom: Interactive Audio Web Header</h3>
-        <p>An audio-reactive header designed for a portfolio homepage. Sound drives colour and shape in real time. <a href="../DESN22848V2/index.html" target="_blank" rel="noopener">Try V2 live →</a></p>
+        <h3><span data-lang="en">Final — Rainbow Bloom: Interactive Audio Web Header</span><span data-lang="zh">最终作品 — Rainbow Bloom：交互式音频网页头图</span><span data-lang="tw">最終作品 — Rainbow Bloom：互動式音訊網頁頁首</span><span data-lang="ja">最終作品 — Rainbow Bloom：音に反応するインタラクティブ Web ヘッダー</span><span data-lang="fr">Final — Rainbow Bloom : en-tête web audio interactif</span></h3>
+        <p data-lang="en">An audio-reactive header designed for a portfolio homepage. Sound drives colour and shape in real time. <a href="../DESN22848V2/index.html" target="_blank" rel="noopener">Try V2 live →</a></p>
+        <p data-lang="zh">为作品集首页设计的头图，会随声音变化：声音实时驱动颜色和形状。<a href="../DESN22848V2/index.html" target="_blank" rel="noopener">在线试玩 V2 →</a></p>
+        <p data-lang="tw">為作品集首頁設計的頁首，會隨聲音變化：聲音即時驅動顏色和形狀。<a href="../DESN22848V2/index.html" target="_blank" rel="noopener">線上試玩 V2 →</a></p>
+        <p data-lang="ja">ポートフォリオのトップページ向けにデザインした、音に反応するヘッダー。音がリアルタイムで色と形を動かします。<a href="../DESN22848V2/index.html" target="_blank" rel="noopener">V2 をライブで試す →</a></p>
+        <p data-lang="fr">Un en-tête réactif au son, conçu pour la page d’accueil d’un portfolio. Le son pilote couleurs et formes en temps réel. <a href="../DESN22848V2/index.html" target="_blank" rel="noopener">Essayer la V2 en direct →</a></p>
         <div class="img-grid">
-          <img src="../DESN22848P2/images/final/Final screenshot.jpeg" alt="Rainbow Bloom — sound-reactive visual header" onclick="lb(this)">
+          <img src="../DESN22848P2/images/final/Final screenshot.jpeg" alt="Rainbow Bloom — sound-reactive visual header" data-alt-zh="Rainbow Bloom——随声音变化的视觉头图" data-alt-tw="Rainbow Bloom——隨聲音變化的視覺頁首" data-alt-ja="Rainbow Bloom — 音に反応するビジュアルヘッダー" data-alt-fr="Rainbow Bloom — en-tête visuel réactif au son" onclick="lb(this)">
         </div>
       </div>
 
       <!-- ===== MODULE 3 ===== -->
       <div class="phase">
-        <span class="phase-label phase-label--p3">Module 3 — Touch-to-Digital</span>
-        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Makey Makey &amp; Real-Time Digital Output</h2>
-        <p>Mapped analogue-world touch (copper foil, conductive materials, Makey Makey) into real-time p5.js visuals. Explored 50 experiments across two activities, then built a final drum machine.</p>
+        <span class="phase-label phase-label--p3"><span data-lang="en">Module 3 — Touch-to-Digital</span><span data-lang="zh">模块 3 — 从触摸到数字</span><span data-lang="tw">模組 3 — 從觸控到數位</span><span data-lang="ja">モジュール 3 — タッチからデジタルへ</span><span data-lang="fr">Module 3 — Du toucher au numérique</span></span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem"><span data-lang="en">Makey Makey &amp; Real-Time Digital Output</span><span data-lang="zh">Makey Makey 与实时数字输出</span><span data-lang="tw">Makey Makey 與即時數位輸出</span><span data-lang="ja">Makey Makey とリアルタイムのデジタル出力</span><span data-lang="fr">Makey Makey et sortie numérique en temps réel</span></h2>
+        <p data-lang="en">Mapped analogue-world touch (copper foil, conductive materials, Makey Makey) into real-time p5.js visuals. Explored 50 experiments across two activities, then built a final drum machine.</p>
+        <p data-lang="zh">把模拟世界里的触摸（铜箔、导电材料、Makey Makey）映射为实时的 p5.js 视觉。在两个活动中完成了 50 个实验，最后做出一台鼓机。</p>
+        <p data-lang="tw">把類比世界裡的觸控（銅箔、導電材料、Makey Makey）對應為即時的 p5.js 視覺。在兩個活動中完成了 50 個實驗，最後做出一台鼓機。</p>
+        <p data-lang="ja">アナログの世界のタッチ（銅箔、導電素材、Makey Makey）を、リアルタイムの p5.js ビジュアルに対応させました。2 つのアクティビティで 50 の実験を行い、最後にドラムマシンを制作しました。</p>
+        <p data-lang="fr">Traduction du toucher du monde analogique (feuille de cuivre, matériaux conducteurs, Makey Makey) en visuels p5.js en temps réel. 50 expériences réparties sur deux activités, puis une boîte à rythmes finale.</p>
 
-        <h3>Activity 1 — p5.js Experiments (25)</h3>
-        <p>Bouncing shapes, soundboards, 3D cubes, particle systems, mini-games — all driven by keyboard or Makey Makey input. <a href="../DESN22848V3/index.html" target="_blank" rel="noopener">Try V3 live →</a></p>
+        <h3><span data-lang="en">Activity 1 — p5.js Experiments (25)</span><span data-lang="zh">活动 1 — p5.js 实验（25 个）</span><span data-lang="tw">活動 1 — p5.js 實驗（25 個）</span><span data-lang="ja">アクティビティ 1 — p5.js の実験（25）</span><span data-lang="fr">Activité 1 — Expériences p5.js (25)</span></h3>
+        <p data-lang="en">Bouncing shapes, soundboards, 3D cubes, particle systems, mini-games — all driven by keyboard or Makey Makey input. <a href="../DESN22848V3/index.html" target="_blank" rel="noopener">Try V3 live →</a></p>
+        <p data-lang="zh">弹跳的形状、音效板、3D 立方体、粒子系统、小游戏——全部由键盘或 Makey Makey 输入驱动。<a href="../DESN22848V3/index.html" target="_blank" rel="noopener">在线试玩 V3 →</a></p>
+        <p data-lang="tw">彈跳的形狀、音效板、3D 立方體、粒子系統、小遊戲——全部由鍵盤或 Makey Makey 輸入驅動。<a href="../DESN22848V3/index.html" target="_blank" rel="noopener">線上試玩 V3 →</a></p>
+        <p data-lang="ja">跳ねる図形、サウンドボード、3D キューブ、パーティクルシステム、ミニゲーム——すべてキーボードか Makey Makey の入力で動きます。<a href="../DESN22848V3/index.html" target="_blank" rel="noopener">V3 をライブで試す →</a></p>
+        <p data-lang="fr">Formes rebondissantes, tables de sons, cubes 3D, systèmes de particules, mini-jeux : tout est piloté au clavier ou par Makey Makey. <a href="../DESN22848V3/index.html" target="_blank" rel="noopener">Essayer la V3 en direct →</a></p>
         <div class="img-grid">
-          <video src="../DESN22848P3/images/Activity1/001.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Bouncing shape reacting to keyboard input" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity1/003.mp4" width="1280" height="674" muted loop playsinline preload="metadata" aria-label="Interactive mini-game with player movement" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity1/008.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="3D rotating cube controlled by keyboard" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity1/010.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Piano-like experiment with sound keys" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity1/014.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Particle system with gravity controlled by arrow keys" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity1/015.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Makey Makey experiment with conductive materials" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/001.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Bouncing shape reacting to keyboard input" data-alt-zh="随键盘输入弹跳的形状" data-alt-tw="隨鍵盤輸入彈跳的形狀" data-alt-ja="キーボード入力に反応して跳ねる図形" data-alt-fr="Forme rebondissante qui réagit au clavier" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/003.mp4" width="1280" height="674" muted loop playsinline preload="metadata" aria-label="Interactive mini-game with player movement" data-alt-zh="可以移动角色的交互小游戏" data-alt-tw="可以移動角色的互動小遊戲" data-alt-ja="プレイヤーを動かせるインタラクティブなミニゲーム" data-alt-fr="Mini-jeu interactif avec déplacement du joueur" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/008.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="3D rotating cube controlled by keyboard" data-alt-zh="用键盘控制的 3D 旋转立方体" data-alt-tw="用鍵盤控制的 3D 旋轉立方體" data-alt-ja="キーボードで操作する回転する 3D キューブ" data-alt-fr="Cube 3D en rotation contrôlé au clavier" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/010.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Piano-like experiment with sound keys" data-alt-zh="用按键发声的类钢琴实验" data-alt-tw="用按鍵發聲的類鋼琴實驗" data-alt-ja="音が鳴るキーを使ったピアノ風の実験" data-alt-fr="Expérience façon piano avec des touches sonores" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/014.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Particle system with gravity controlled by arrow keys" data-alt-zh="用方向键控制重力的粒子系统" data-alt-tw="用方向鍵控制重力的粒子系統" data-alt-ja="矢印キーで重力を操作するパーティクルシステム" data-alt-fr="Système de particules dont la gravité se règle avec les flèches" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/015.mp4" width="1280" height="680" muted loop playsinline preload="metadata" aria-label="Makey Makey experiment with conductive materials" data-alt-zh="使用导电材料的 Makey Makey 实验" data-alt-tw="使用導電材料的 Makey Makey 實驗" data-alt-ja="導電素材を使った Makey Makey の実験" data-alt-fr="Expérience Makey Makey avec des matériaux conducteurs" onclick="lb(this)"></video>
         </div>
 
-        <h3>Activity 2 — More Experiments (25)</h3>
+        <h3><span data-lang="en">Activity 2 — More Experiments (25)</span><span data-lang="zh">活动 2 — 更多实验（25 个）</span><span data-lang="tw">活動 2 — 更多實驗（25 個）</span><span data-lang="ja">アクティビティ 2 — さらなる実験（25）</span><span data-lang="fr">Activité 2 — Autres expériences (25)</span></h3>
         <div class="img-grid">
-          <video src="../DESN22848P3/images/Activity2/001.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Bouncing shape reacting to keyboard input" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity2/005.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Interactive game with random shapes" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity2/012.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="3D bouncing ball simulation" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity2/016.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Reaction-based game using Makey Makey" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity2/019.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="3D shape responding to Makey Makey inputs" onclick="lb(this)"></video>
-          <video src="../DESN22848P3/images/Activity1/025.mp4" width="1280" height="750" muted loop playsinline preload="metadata" aria-label="Debugging and testing Makey Makey interactions" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/001.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Bouncing shape reacting to keyboard input" data-alt-zh="随键盘输入弹跳的形状" data-alt-tw="隨鍵盤輸入彈跳的形狀" data-alt-ja="キーボード入力に反応して跳ねる図形" data-alt-fr="Forme rebondissante qui réagit au clavier" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/005.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Interactive game with random shapes" data-alt-zh="随机形状的交互游戏" data-alt-tw="隨機形狀的互動遊戲" data-alt-ja="ランダムな図形が出てくるインタラクティブなゲーム" data-alt-fr="Jeu interactif avec des formes aléatoires" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/012.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="3D bouncing ball simulation" data-alt-zh="3D 弹球模拟" data-alt-tw="3D 彈球模擬" data-alt-ja="3D のバウンドするボールのシミュレーション" data-alt-fr="Simulation de balle rebondissante en 3D" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/016.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="Reaction-based game using Makey Makey" data-alt-zh="用 Makey Makey 玩的反应游戏" data-alt-tw="用 Makey Makey 玩的反應遊戲" data-alt-ja="Makey Makey を使った反射神経ゲーム" data-alt-fr="Jeu de réflexes avec Makey Makey" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity2/019.mp4" width="540" height="960" muted loop playsinline preload="metadata" aria-label="3D shape responding to Makey Makey inputs" data-alt-zh="响应 Makey Makey 输入的 3D 形体" data-alt-tw="回應 Makey Makey 輸入的 3D 形體" data-alt-ja="Makey Makey の入力に反応する 3D 形状" data-alt-fr="Forme 3D qui réagit aux entrées Makey Makey" onclick="lb(this)"></video>
+          <video src="../DESN22848P3/images/Activity1/025.mp4" width="1280" height="750" muted loop playsinline preload="metadata" aria-label="Debugging and testing Makey Makey interactions" data-alt-zh="调试和测试 Makey Makey 交互" data-alt-tw="除錯和測試 Makey Makey 互動" data-alt-ja="Makey Makey のインタラクションをデバッグ・テスト" data-alt-fr="Débogage et test des interactions Makey Makey" onclick="lb(this)"></video>
         </div>
 
-        <h3>Final — Makey Makey Drum Machine</h3>
-        <p>Copper foil pads wired through Makey Makey trigger drum sounds (kick, snare, hi-hat, clap, crash) and 3D WebGL explosions in p5.js. Each touch creates a unique colour burst and sphere pulse. <a href="../DESN22848V4/index.html" target="_blank" rel="noopener">Try V4 live →</a></p>
+        <h3><span data-lang="en">Final — Makey Makey Drum Machine</span><span data-lang="zh">最终作品 — Makey Makey 鼓机</span><span data-lang="tw">最終作品 — Makey Makey 鼓機</span><span data-lang="ja">最終作品 — Makey Makey のドラムマシン</span><span data-lang="fr">Final — boîte à rythmes Makey Makey</span></h3>
+        <p data-lang="en">Copper foil pads wired through Makey Makey trigger drum sounds (kick, snare, hi-hat, clap, crash) and 3D WebGL explosions in p5.js. Each touch creates a unique colour burst and sphere pulse. <a href="../DESN22848V4/index.html" target="_blank" rel="noopener">Try V4 live →</a></p>
+        <p data-lang="zh">铜箔触摸垫通过 Makey Makey 连接，触发鼓声（底鼓、军鼓、踩镲、拍手、吊镲）和 p5.js 中的 3D WebGL 爆炸效果。每次触摸都会迸发出独一无二的色彩和球体脉冲。<a href="../DESN22848V4/index.html" target="_blank" rel="noopener">在线试玩 V4 →</a></p>
+        <p data-lang="tw">銅箔觸控墊透過 Makey Makey 連接，觸發鼓聲（大鼓、小鼓、腳踏鈸、拍手、碎音鈸）和 p5.js 中的 3D WebGL 爆炸效果。每次觸控都會迸發出獨一無二的色彩和球體脈衝。<a href="../DESN22848V4/index.html" target="_blank" rel="noopener">線上試玩 V4 →</a></p>
+        <p data-lang="ja">Makey Makey につないだ銅箔パッドで、ドラムの音（キック、スネア、ハイハット、クラップ、クラッシュ）と p5.js の 3D WebGL の爆発を鳴らします。触れるたびに、そのときだけの色のはじけと球体の脈動が生まれます。<a href="../DESN22848V4/index.html" target="_blank" rel="noopener">V4 をライブで試す →</a></p>
+        <p data-lang="fr">Des pads en feuille de cuivre reliés au Makey Makey déclenchent des sons de batterie (grosse caisse, caisse claire, charleston, clap, crash) et des explosions 3D WebGL dans p5.js. Chaque contact produit une gerbe de couleurs et une pulsation de sphère uniques. <a href="../DESN22848V4/index.html" target="_blank" rel="noopener">Essayer la V4 en direct →</a></p>
         <div class="img-grid">
-          <img src="../DESN22848P3/images/final/happy.png" alt="Final drum kit with copper foil touch pads" onclick="lb(this)">
+          <img src="../DESN22848P3/images/final/happy.png" alt="Final drum kit with copper foil touch pads" data-alt-zh="带铜箔触摸垫的最终鼓组" data-alt-tw="帶銅箔觸控墊的最終鼓組" data-alt-ja="銅箔のタッチパッドを備えた最終的なドラムキット" data-alt-fr="Batterie finale avec pads tactiles en feuille de cuivre" onclick="lb(this)">
         </div>
       </div>
 
     </div>
 
     <nav class="pager" aria-label="Case studies">
-      <a class="prev" href="physical-computing.html"><small>&larr; Previous</small><b>Comfort Lamp</b></a>
-      <a class="next" href="solar.html"><small>Next &rarr;</small><b>Solar + Storage for AI Compute</b></a>
+      <a class="prev" href="physical-computing.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>Comfort Lamp</b></a>
+      <a class="next" href="solar.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>Solar + Storage for AI Compute</b></a>
     </nav>
     <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
   </div>
@@ -222,18 +274,29 @@
 
   <script>
 /* Module selector */
-var links = {
-  p1: '../DESN22848/index.html',
-  p2: '../DESN22848P2/index.html',
-  p3: '../DESN22848P3/index.html'
-};
-var labels = { p1: 'Open P1', p2: 'Open P2', p3: 'Open P3' };
-var sel = document.getElementById('ver');
-var btn = document.getElementById('openLink');
-sel.addEventListener('change', function () {
-  btn.href = links[sel.value];
-  btn.textContent = labels[sel.value];
-});
+(function () {
+  var sel = document.getElementById('ver');
+  var link = document.getElementById('openLink');
+  var preview = document.getElementById('previewBox');
+  var TXT = {
+    en: { open: 'Open {v}' },
+    zh: { open: '打开 {v}' },
+    tw: { open: '開啟 {v}' },
+    ja: { open: '{v} を開く' },
+    fr: { open: 'Ouvrir {v}' }
+  };
+  function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
+  function buildHref(v) { return { p1: '../DESN22848/index.html', p2: '../DESN22848P2/index.html', p3: '../DESN22848P3/index.html' }[v]; }
+  function render(loadFrame) {
+    var t = TXT[lang()], v = sel.value.toUpperCase(), href = buildHref(sel.value);
+    link.href = href; link.textContent = t.open.replace('{v}', v);
+    var label = preview && preview.querySelector('.preview-label');
+    if (label) label.textContent = t.live.replace('{v}', v) + (sel.selectedIndex === sel.options.length - 1 ? t.fin : '');
+    if (loadFrame && preview) { var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = href; }
+  }
+  sel.addEventListener('change', function () { render(true); });
+  window.demoRefresh = function () { render(false); };
+})();
 
 /* Lightbox */
 var lbEl = document.getElementById('lightbox');
@@ -274,7 +337,7 @@ document.addEventListener('keydown', function (e) { if (e.key === 'Escape') clos
 })();
 /* ===== i18n ===== */
 var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
-function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});try{localStorage.setItem('siteLang',l);}catch(_){}}
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>

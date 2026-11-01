@@ -28,6 +28,14 @@
     .lb [hidden]{display:none}
     .lb-cap{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);color:#fff;font-size:.85rem;max-width:80vw;text-align:center;line-height:1.5}
   </style>
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+  </style>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
@@ -58,205 +66,241 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow">Case Study · Physical Computing · 2025</span>
-      <h1>Physical Computing — Comfort Lamp</h1>
-      <p>A three-module journey from first Arduino blink to a sensor-driven ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states; a ProtoPie mobile UI replaces the LCD for richer feedback.</p>
+      <span class="eyebrow"><span data-lang="en">Case Study · Physical Computing · 2025</span><span data-lang="zh">案例研究 · 物理计算 · 2025</span><span data-lang="tw">案例研究 · 實體運算 · 2025</span><span data-lang="ja">ケーススタディ · フィジカルコンピューティング · 2025</span><span data-lang="fr">Étude de cas · Informatique physique · 2025</span></span>
+      <h1><span data-lang="en">Physical Computing — Comfort Lamp</span><span data-lang="zh">物理计算 — 舒适灯 Comfort Lamp</span><span data-lang="tw">實體運算 — 舒適燈 Comfort Lamp</span><span data-lang="ja">フィジカルコンピューティング — コンフォートランプ</span><span data-lang="fr">Informatique physique — la lampe de confort</span></h1>
+      <p data-lang="en">A three-module journey from first Arduino blink to a sensor-driven ambient lamp housed inside a 3D-printed architectural scene. Temperature, humidity, and light data map to tiered colour states; a ProtoPie mobile UI replaces the LCD for richer feedback.</p>
+      <p data-lang="zh">分三个模块，从第一次让 Arduino 点亮 LED，一路做到装在 3D 打印建筑场景里、由传感器驱动的氛围灯。温度、湿度和光照数据对应分级的颜色状态；ProtoPie 手机界面取代了 LCD，提供更丰富的反馈。</p>
+      <p data-lang="tw">分三個模組，從第一次讓 Arduino 點亮 LED，一路做到裝在 3D 列印建築場景裡、由感測器驅動的氛圍燈。溫度、濕度和光照資料對應分級的顏色狀態；ProtoPie 手機介面取代了 LCD，提供更豐富的回饋。</p>
+      <p data-lang="ja">初めての Arduino の L チカから、3D プリントした建築風のシーンに収めたセンサー駆動のアンビエントランプまで、3 つのモジュールにわたる取り組み。温度・湿度・明るさのデータを段階的な色の状態に対応させ、LCD の代わりに ProtoPie のモバイル UI でより豊かなフィードバックを返します。</p>
+      <p data-lang="fr">Un parcours en trois modules, du premier clignotement Arduino à une lampe d’ambiance pilotée par capteurs, logée dans une scène architecturale imprimée en 3D. Température, humidité et lumière se traduisent en paliers de couleur ; une interface mobile ProtoPie remplace l’écran LCD pour un retour plus riche.</p>
       <div class="meta">
-        <span><strong>Role</strong> Hardware + software prototyping</span>
-        <span><strong>Tools</strong> Arduino, DHT11, NeoPixel, Logic Pro, TouchDesigner, 3D printing</span>
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></strong> <span data-lang="en">Hardware + software prototyping</span><span data-lang="zh">硬件 + 软件原型制作</span><span data-lang="tw">硬體 + 軟體原型製作</span><span data-lang="ja">ハードウェア＋ソフトウェアのプロトタイピング</span><span data-lang="fr">Prototypage matériel et logiciel</span></span>
+        <span><strong><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></strong> <span data-lang="en">Arduino, DHT11, NeoPixel, Logic Pro, TouchDesigner, 3D printing</span><span data-lang="zh">Arduino、DHT11、NeoPixel、Logic Pro、TouchDesigner、3D 打印</span><span data-lang="tw">Arduino、DHT11、NeoPixel、Logic Pro、TouchDesigner、3D 列印</span><span data-lang="ja">Arduino、DHT11、NeoPixel、Logic Pro、TouchDesigner、3D プリント</span><span data-lang="fr">Arduino, DHT11, NeoPixel, Logic Pro, TouchDesigner, impression 3D</span></span>
       </div>
     </div>
 
     <div class="version-bar">
-      <label for="ver">Module:</label>
+      <label for="ver"><span data-lang="en">Module:</span><span data-lang="zh">模块：</span><span data-lang="tw">模組：</span><span data-lang="ja">モジュール：</span><span data-lang="fr">Module :</span></label>
       <select id="ver">
-        <option value="p1">P1 — Exploration &amp; Concept</option>
-        <option value="p2">P2 — Sensor Build &amp; Prototype</option>
-        <option value="p3" selected>P3 — 3D Housing &amp; Final</option>
+        <option value="p1" data-t-zh="P1 — 探索与概念" data-t-tw="P1 — 探索與概念" data-t-ja="P1 — 探索とコンセプト" data-t-fr="P1 — Exploration et concept">P1 — Exploration &amp; Concept</option>
+        <option value="p2" data-t-zh="P2 — 传感器搭建与原型" data-t-tw="P2 — 感測器搭建與原型" data-t-ja="P2 — センサーの製作とプロトタイプ" data-t-fr="P2 — Capteurs et prototype">P2 — Sensor Build &amp; Prototype</option>
+        <option value="p3" selected data-t-zh="P3 — 3D 外壳与最终版" data-t-tw="P3 — 3D 外殼與最終版" data-t-ja="P3 — 3D ハウジングと最終版" data-t-fr="P3 — Boîtier 3D et version finale">P3 — 3D Housing &amp; Final</option>
       </select>
       <a class="btn" id="openLink" href="../DESN30146P3/index.html" target="_blank" rel="noopener">Open P3</a>
     </div>
 
     <div class="content">
       <div class="tldr">
-        <h2>At a glance</h2>
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
         <dl>
-          <div><dt>Problem</dt><dd>People can't feel ambient temperature/humidity changes until discomfort — no calm visual cue.</dd></div>
-          <div><dt>Role</dt><dd>Individual hardware + software prototyping within a collaborative team</dd></div>
-          <div><dt>Tools</dt><dd>Arduino Uno, DHT11, NeoPixel RGB LEDs, LCD1602, 3D printer (Ultimaker), TouchDesigner, ProtoPie</dd></div>
-          <div><dt>Timeline</dt><dd>3 modules — exploration → working circuit → 3D-printed ambient object</dd></div>
-          <div><dt>Key Decisions</dt><dd>Tiered colour mapping with hysteresis; remove LCD, move UI to mobile; physical latching switch for clear on/off</dd></div>
-          <div><dt>Result</dt><dd>A finished ambient lamp that communicates comfort state through colour and glow, paired with a ProtoPie mobile dashboard.</dd></div>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">People can't feel ambient temperature/humidity changes until discomfort — no calm visual cue.</span><span data-lang="zh">人们往往要到觉得不舒服时，才察觉到环境温度 / 湿度的变化——缺少一种平静的视觉提示。</span><span data-lang="tw">人們往往要到覺得不舒服時，才察覺到環境溫度 / 濕度的變化——缺少一種平靜的視覺提示。</span><span data-lang="ja">人は不快に感じるまで、周囲の温度や湿度の変化に気づけません——穏やかな視覚的な手がかりがないのです。</span><span data-lang="fr">On ne remarque les changements de température ou d’humidité qu’une fois mal à l’aise : aucun signal visuel apaisé ne prévient.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">Individual hardware + software prototyping within a collaborative team</span><span data-lang="zh">在协作团队中独立负责硬件 + 软件原型制作</span><span data-lang="tw">在協作團隊中獨立負責硬體 + 軟體原型製作</span><span data-lang="ja">チームで協働しながら、ハードウェア＋ソフトウェアのプロトタイピングを個人で担当</span><span data-lang="fr">Prototypage matériel et logiciel individuel au sein d’une équipe</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></dt><dd><span data-lang="en">Arduino Uno, DHT11, NeoPixel RGB LEDs, LCD1602, 3D printer (Ultimaker), TouchDesigner, ProtoPie</span><span data-lang="zh">Arduino Uno、DHT11、NeoPixel RGB LED、LCD1602、3D 打印机（Ultimaker）、TouchDesigner、ProtoPie</span><span data-lang="tw">Arduino Uno、DHT11、NeoPixel RGB LED、LCD1602、3D 印表機（Ultimaker）、TouchDesigner、ProtoPie</span><span data-lang="ja">Arduino Uno、DHT11、NeoPixel RGB LED、LCD1602、3D プリンター（Ultimaker）、TouchDesigner、ProtoPie</span><span data-lang="fr">Arduino Uno, DHT11, LED RGB NeoPixel, LCD1602, imprimante 3D (Ultimaker), TouchDesigner, ProtoPie</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="tw">時程</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">3 modules — exploration → working circuit → 3D-printed ambient object</span><span data-lang="zh">3 个模块——探索 → 能用的电路 → 3D 打印的氛围物件</span><span data-lang="tw">3 個模組——探索 → 能用的電路 → 3D 列印的氛圍物件</span><span data-lang="ja">3 モジュール — 探索 → 動く回路 → 3D プリントのアンビエントオブジェクト</span><span data-lang="fr">3 modules — exploration → circuit fonctionnel → objet d’ambiance imprimé en 3D</span></dd></div>
+          <div><dt><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></dt><dd><span data-lang="en">Tiered colour mapping with hysteresis; remove LCD, move UI to mobile; physical latching switch for clear on/off</span><span data-lang="zh">带迟滞的分级颜色映射；去掉 LCD，把界面移到手机上；用实体自锁开关明确开 / 关</span><span data-lang="tw">帶遲滯的分級顏色對應；去掉 LCD，把介面移到手機上；用實體自鎖開關明確開 / 關</span><span data-lang="ja">ヒステリシス付きの段階的な色のマッピング、LCD を外して UI をスマートフォンへ移行、オン／オフがはっきりわかる物理的なラッチスイッチ</span><span data-lang="fr">Paliers de couleur avec hystérésis ; suppression du LCD, interface déplacée sur mobile ; interrupteur à verrouillage pour un marche/arrêt sans ambiguïté</span></dd></div>
+          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">A finished ambient lamp that communicates comfort state through colour and glow, paired with a ProtoPie mobile dashboard.</span><span data-lang="zh">一盏完成的氛围灯，用颜色和光晕传达舒适状态，并配有 ProtoPie 手机仪表盘。</span><span data-lang="tw">一盞完成的氛圍燈，用顏色和光暈傳達舒適狀態，並配有 ProtoPie 手機儀表板。</span><span data-lang="ja">色と光で快適さの状態を伝える完成したアンビエントランプと、ProtoPie のモバイルダッシュボード。</span><span data-lang="fr">Une lampe d’ambiance aboutie qui exprime le confort par la couleur et la lueur, associée à un tableau de bord mobile ProtoPie.</span></dd></div>
         </dl>
       </div>
 
-      <img class="cover-img" src="../DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp final prototype — 3D-printed staircase glowing green">
+      <img class="cover-img" src="../DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp final prototype — 3D-printed staircase glowing green" data-alt-zh="舒适灯最终原型——发出绿光的 3D 打印楼梯" data-alt-tw="舒適燈最終原型——發出綠光的 3D 列印樓梯" data-alt-ja="コンフォートランプの最終プロトタイプ — 緑に光る 3D プリントの階段" data-alt-fr="Prototype final de la lampe de confort — escalier imprimé en 3D éclairé en vert">
 
 
       <!-- ===== MODULE 1 ===== -->
       <div class="phase">
-        <span class="phase-label phase-label--p1">Module 1 — Exploration &amp; Concept</span>
-        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Arduino Basics &amp; Research</h2>
-        <p>Set up Arduino for the first time — Blink, LEDs, buttons. Explored TouchDesigner for data-driven visuals. Researched WGSN consumer trends (Solarpunk Futures, Nomadic Tech) and defined problem spaces and HMI statements.</p>
+        <span class="phase-label phase-label--p1"><span data-lang="en">Module 1 — Exploration &amp; Concept</span><span data-lang="zh">模块 1 — 探索与概念</span><span data-lang="tw">模組 1 — 探索與概念</span><span data-lang="ja">モジュール 1 — 探索とコンセプト</span><span data-lang="fr">Module 1 — Exploration et concept</span></span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem"><span data-lang="en">Arduino Basics &amp; Research</span><span data-lang="zh">Arduino 入门与调研</span><span data-lang="tw">Arduino 入門與研究</span><span data-lang="ja">Arduino の基礎とリサーチ</span><span data-lang="fr">Bases d’Arduino et recherche</span></h2>
+        <p data-lang="en">Set up Arduino for the first time — Blink, LEDs, buttons. Explored TouchDesigner for data-driven visuals. Researched WGSN consumer trends (Solarpunk Futures, Nomadic Tech) and defined problem spaces and HMI statements.</p>
+        <p data-lang="zh">第一次上手 Arduino——Blink、LED、按钮。尝试用 TouchDesigner 做数据驱动的视觉。研究了 WGSN 的消费趋势（Solarpunk Futures、Nomadic Tech），并定义了问题空间和人机交互（HMI）陈述。</p>
+        <p data-lang="tw">第一次上手 Arduino——Blink、LED、按鈕。嘗試用 TouchDesigner 做資料驅動的視覺。研究了 WGSN 的消費趨勢（Solarpunk Futures、Nomadic Tech），並定義了問題空間和人機互動（HMI）陳述。</p>
+        <p data-lang="ja">初めて Arduino をセットアップ——Blink、LED、ボタン。TouchDesigner でデータ駆動のビジュアルを試しました。WGSN の消費者トレンド（Solarpunk Futures、Nomadic Tech）を調べ、問題領域と HMI ステートメントを定義しました。</p>
+        <p data-lang="fr">Première prise en main d’Arduino : Blink, LED, boutons. Exploration de TouchDesigner pour des visuels pilotés par les données. Étude des tendances de consommation WGSN (Solarpunk Futures, Nomadic Tech), puis définition des espaces de problème et des énoncés IHM.</p>
 
-        <h3>Activity 1 — First Arduino Experiments</h3>
+        <h3><span data-lang="en">Activity 1 — First Arduino Experiments</span><span data-lang="zh">活动 1 — 第一次 Arduino 实验</span><span data-lang="tw">活動 1 — 第一次 Arduino 實驗</span><span data-lang="ja">アクティビティ 1 — 初めての Arduino 実験</span><span data-lang="fr">Activité 1 — Premières expériences Arduino</span></h3>
         <div class="img-grid">
-          <video src="../DESN30146P1/images/Activity1/001.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Connecting Arduino and uploading Blink sketch" onclick="lb(this)"></video>
-          <video src="../DESN30146P1/images/Activity1/002.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="External LED on pin 13 blinking" onclick="lb(this)"></video>
-          <video src="../DESN30146P1/images/Activity1/003.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Blue LED on breadboard blinking from program" onclick="lb(this)"></video>
-          <video src="../DESN30146P1/images/Activity1/004.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Multiple LEDs blinking together" onclick="lb(this)"></video>
-          <video src="../DESN30146P1/images/Activity1/005.mp4" width="600" height="338" muted loop playsinline preload="metadata" aria-label="Button press lights up LED" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/001.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Connecting Arduino and uploading Blink sketch" data-alt-zh="连接 Arduino 并上传 Blink 程序" data-alt-tw="連接 Arduino 並上傳 Blink 程式" data-alt-ja="Arduino を接続して Blink スケッチを書き込む" data-alt-fr="Connexion de l’Arduino et téléversement du sketch Blink" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/002.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="External LED on pin 13 blinking" data-alt-zh="接在 13 号引脚上的外接 LED 在闪烁" data-alt-tw="接在 13 號腳位上的外接 LED 在閃爍" data-alt-ja="13 番ピンにつないだ外付け LED が点滅" data-alt-fr="LED externe sur la broche 13 qui clignote" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/003.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Blue LED on breadboard blinking from program" data-alt-zh="面包板上的蓝色 LED 按程序闪烁" data-alt-tw="麵包板上的藍色 LED 按程式閃爍" data-alt-ja="ブレッドボード上の青い LED がプログラムで点滅" data-alt-fr="LED bleue sur la platine d’essai, clignotant selon le programme" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/004.mp4" width="800" height="600" muted loop playsinline preload="metadata" aria-label="Multiple LEDs blinking together" data-alt-zh="多个 LED 一起闪烁" data-alt-tw="多個 LED 一起閃爍" data-alt-ja="複数の LED が一緒に点滅" data-alt-fr="Plusieurs LED qui clignotent ensemble" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity1/005.mp4" width="600" height="338" muted loop playsinline preload="metadata" aria-label="Button press lights up LED" data-alt-zh="按下按钮点亮 LED" data-alt-tw="按下按鈕點亮 LED" data-alt-ja="ボタンを押すと LED が点灯" data-alt-fr="Un appui sur le bouton allume la LED" onclick="lb(this)"></video>
         </div>
 
-        <h3>Activity 2 — ProtoPie + Board Setup</h3>
+        <h3><span data-lang="en">Activity 2 — ProtoPie + Board Setup</span><span data-lang="zh">活动 2 — ProtoPie + 开发板设置</span><span data-lang="tw">活動 2 — ProtoPie + 開發板設定</span><span data-lang="ja">アクティビティ 2 — ProtoPie とボードのセットアップ</span><span data-lang="fr">Activité 2 — ProtoPie et configuration de la carte</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P1/images/Activity2/001.jpeg" alt="Connecting dev board to laptop" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity2/002.jpeg" alt="Arduino IDE code ready to upload" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity2/003.jpeg" alt="Testing on second laptop" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity2/004.jpeg" alt="Running uploaded program, checking outputs" onclick="lb(this)">
-          <video src="../DESN30146P1/images/Activity2/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Board running in real time" onclick="lb(this)"></video>
+          <img src="../DESN30146P1/images/Activity2/001.jpeg" alt="Connecting dev board to laptop" data-alt-zh="把开发板连接到笔记本电脑" data-alt-tw="把開發板連接到筆電" data-alt-ja="開発ボードをノートパソコンに接続" data-alt-fr="Connexion de la carte de développement à l’ordinateur portable" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity2/002.jpeg" alt="Arduino IDE code ready to upload" data-alt-zh="Arduino IDE 里准备上传的代码" data-alt-tw="Arduino IDE 裡準備上傳的程式碼" data-alt-ja="書き込み準備ができた Arduino IDE のコード" data-alt-fr="Code prêt à téléverser dans l’IDE Arduino" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity2/003.jpeg" alt="Testing on second laptop" data-alt-zh="在第二台笔记本电脑上测试" data-alt-tw="在第二台筆電上測試" data-alt-ja="2 台目のノートパソコンでテスト" data-alt-fr="Test sur un second ordinateur portable" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity2/004.jpeg" alt="Running uploaded program, checking outputs" data-alt-zh="运行已上传的程序，检查输出" data-alt-tw="執行已上傳的程式，檢查輸出" data-alt-ja="書き込んだプログラムを実行して出力を確認" data-alt-fr="Exécution du programme téléversé et vérification des sorties" onclick="lb(this)">
+          <video src="../DESN30146P1/images/Activity2/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Board running in real time" data-alt-zh="开发板实时运行中" data-alt-tw="開發板即時執行中" data-alt-ja="リアルタイムで動作するボード" data-alt-fr="La carte fonctionne en temps réel" onclick="lb(this)"></video>
         </div>
 
-        <h3>Activity 3 — Arduino → TouchDesigner</h3>
+        <h3><span data-lang="en">Activity 3 — Arduino → TouchDesigner</span><span data-lang="zh">活动 3 — Arduino → TouchDesigner</span><span data-lang="tw">活動 3 — Arduino → TouchDesigner</span><span data-lang="ja">アクティビティ 3 — Arduino → TouchDesigner</span><span data-lang="fr">Activité 3 — Arduino → TouchDesigner</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P1/images/Activity3/001.png" alt="Potentiometer serial data 0–100" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity3/002.png" alt="TouchDesigner blank project" onclick="lb(this)">
-          <img src="../DESN30146P1/images/Activity3/003.png" alt="Serial port error (monitor still open)" onclick="lb(this)">
-          <video src="../DESN30146P1/images/Activity3/004.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Instructor example: potentiometer → circle radius" onclick="lb(this)"></video>
-          <video src="../DESN30146P1/images/Activity3/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="My network: potentiometer controls circle size and hue" onclick="lb(this)"></video>
+          <img src="../DESN30146P1/images/Activity3/001.png" alt="Potentiometer serial data 0–100" data-alt-zh="电位器的串口数据 0–100" data-alt-tw="電位器的序列埠資料 0–100" data-alt-ja="ポテンショメーターのシリアルデータ 0–100" data-alt-fr="Données série du potentiomètre, de 0 à 100" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity3/002.png" alt="TouchDesigner blank project" data-alt-zh="TouchDesigner 空白项目" data-alt-tw="TouchDesigner 空白專案" data-alt-ja="TouchDesigner の空のプロジェクト" data-alt-fr="Projet TouchDesigner vierge" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Activity3/003.png" alt="Serial port error (monitor still open)" data-alt-zh="串口报错（串口监视器还开着）" data-alt-tw="序列埠錯誤（序列埠監視器還開著）" data-alt-ja="シリアルポートのエラー（シリアルモニタが開いたまま）" data-alt-fr="Erreur de port série (moniteur encore ouvert)" onclick="lb(this)">
+          <video src="../DESN30146P1/images/Activity3/004.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Instructor example: potentiometer → circle radius" data-alt-zh="老师的示例：电位器 → 圆的半径" data-alt-tw="老師的示例：電位器 → 圓的半徑" data-alt-ja="講師の例：ポテンショメーター → 円の半径" data-alt-fr="Exemple de l’enseignant : potentiomètre → rayon du cercle" onclick="lb(this)"></video>
+          <video src="../DESN30146P1/images/Activity3/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="My network: potentiometer controls circle size and hue" data-alt-zh="我的节点网络：电位器控制圆的大小和色相" data-alt-tw="我的節點網路：電位器控制圓的大小和色相" data-alt-ja="自作のネットワーク：ポテンショメーターで円の大きさと色相を操作" data-alt-fr="Mon réseau : le potentiomètre règle la taille et la teinte du cercle" onclick="lb(this)"></video>
         </div>
 
-        <h3>Concept Direction</h3>
-        <p>Chose the ART path — transforming sensor signals into generative visuals. Core idea: make energy states legible at a glance through calm colour/particle fields mapped to real data.</p>
+        <h3><span data-lang="en">Concept Direction</span><span data-lang="zh">概念方向</span><span data-lang="tw">概念方向</span><span data-lang="ja">コンセプトの方向性</span><span data-lang="fr">Orientation du concept</span></h3>
+        <p data-lang="en">Chose the ART path — transforming sensor signals into generative visuals. Core idea: make energy states legible at a glance through calm colour/particle fields mapped to real data.</p>
+        <p data-lang="zh">选择了 ART 方向——把传感器信号转化为生成式视觉。核心想法：把真实数据映射成平静的色彩 / 粒子场，让能量状态一眼就能看懂。</p>
+        <p data-lang="tw">選擇了 ART 方向——把感測器訊號轉化為生成式視覺。核心想法：把真實資料對應成平靜的色彩 / 粒子場，讓能量狀態一眼就能看懂。</p>
+        <p data-lang="ja">ART の方向を選択——センサーの信号をジェネレーティブなビジュアルに変換します。核となるアイデアは、実データに対応させた穏やかな色や粒子のフィールドで、エネルギーの状態をひと目でわかるようにすることです。</p>
+        <p data-lang="fr">Choix de la voie ART : transformer les signaux des capteurs en visuels génératifs. Idée centrale : rendre l’état énergétique lisible d’un coup d’œil grâce à des champs de couleurs et de particules apaisés, liés à des données réelles.</p>
         <div class="img-grid">
-          <img src="../DESN30146P1/images/Concept/001.png" alt="TouchDesigner prototype — solar energy mapped to colour and particle density" onclick="lb(this)">
+          <img src="../DESN30146P1/images/Concept/001.png" alt="TouchDesigner prototype — solar energy mapped to colour and particle density" data-alt-zh="TouchDesigner 原型——太阳能数据映射为颜色和粒子密度" data-alt-tw="TouchDesigner 原型——太陽能資料對應為顏色和粒子密度" data-alt-ja="TouchDesigner のプロトタイプ — 太陽エネルギーを色と粒子の密度に対応" data-alt-fr="Prototype TouchDesigner — énergie solaire traduite en couleur et en densité de particules" onclick="lb(this)">
         </div>
       </div>
 
       <!-- ===== MODULE 2 ===== -->
       <div class="phase">
-        <span class="phase-label phase-label--p2">Module 2 — Sensor Build &amp; Prototype</span>
-        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">DHT Sensor → LED → LCD Comfort Lamp</h2>
-        <p>Built the core circuit: DHT11 reads temperature &amp; humidity, Arduino maps values to four colour tiers (BLUE &lt; 16 °C, GREEN 16–26 °C, YELLOW 27–34 °C, RED ≥ 35 °C) with hysteresis. Added LCD1602 for live readout. Guerrilla prototyping sessions tested cardboard lamp housings.</p>
+        <span class="phase-label phase-label--p2"><span data-lang="en">Module 2 — Sensor Build &amp; Prototype</span><span data-lang="zh">模块 2 — 传感器搭建与原型</span><span data-lang="tw">模組 2 — 感測器搭建與原型</span><span data-lang="ja">モジュール 2 — センサーの製作とプロトタイプ</span><span data-lang="fr">Module 2 — Capteurs et prototype</span></span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem"><span data-lang="en">DHT Sensor → LED → LCD Comfort Lamp</span><span data-lang="zh">DHT 传感器 → LED → LCD 舒适灯</span><span data-lang="tw">DHT 感測器 → LED → LCD 舒適燈</span><span data-lang="ja">DHT センサー → LED → LCD のコンフォートランプ</span><span data-lang="fr">Capteur DHT → LED → LCD : la lampe de confort</span></h2>
+        <p data-lang="en">Built the core circuit: DHT11 reads temperature &amp; humidity, Arduino maps values to four colour tiers (BLUE &lt; 16 °C, GREEN 16–26 °C, YELLOW 27–34 °C, RED ≥ 35 °C) with hysteresis. Added LCD1602 for live readout. Guerrilla prototyping sessions tested cardboard lamp housings.</p>
+        <p data-lang="zh">搭建核心电路：DHT11 读取温度和湿度，Arduino 把数值映射到四个颜色档位（蓝色 &lt; 16 °C、绿色 16–26 °C、黄色 27–34 °C、红色 ≥ 35 °C），并加入迟滞。加了 LCD1602 实时显示读数。还通过几轮游击式原型测试了纸板灯罩。</p>
+        <p data-lang="tw">搭建核心電路：DHT11 讀取溫度和濕度，Arduino 把數值對應到四個顏色檔位（藍色 &lt; 16 °C、綠色 16–26 °C、黃色 27–34 °C、紅色 ≥ 35 °C），並加入遲滯。加了 LCD1602 即時顯示讀數。還透過幾輪遊擊式原型測試了紙板燈罩。</p>
+        <p data-lang="ja">コア回路を製作：DHT11 で温度と湿度を読み取り、Arduino がその値をヒステリシス付きで 4 段階の色（青 &lt; 16 °C、緑 16–26 °C、黄 27–34 °C、赤 ≥ 35 °C）に対応させます。LCD1602 を追加して数値をリアルタイム表示。ゲリラ・プロトタイピングで段ボールのランプハウジングを試しました。</p>
+        <p data-lang="fr">Construction du circuit principal : le DHT11 mesure température et humidité, l’Arduino répartit les valeurs en quatre paliers de couleur (BLEU &lt; 16 °C, VERT 16–26 °C, JAUNE 27–34 °C, ROUGE ≥ 35 °C) avec hystérésis. Ajout d’un LCD1602 pour l’affichage en direct. Des séances de prototypage rapide ont testé des boîtiers en carton.</p>
 
-        <h3>Guerrilla Prototyping I — Cardboard Stand</h3>
+        <h3><span data-lang="en">Guerrilla Prototyping I — Cardboard Stand</span><span data-lang="zh">游击式原型 I — 纸板支架</span><span data-lang="tw">遊擊式原型 I — 紙板支架</span><span data-lang="ja">ゲリラ・プロトタイピング I — 段ボールのスタンド</span><span data-lang="fr">Prototypage rapide I — support en carton</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P2/images/Activity1/001.jpg" alt="Cut cardboard parts — base, ribs, slot pieces" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/002.jpeg" alt="Measuring and layout" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/003.jpeg" alt="Assembly with hot glue" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/004.jpeg" alt="Prototype V1 — limited angle range" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/005.jpeg" alt="Prototype V2 — wider base, rear wedge" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/001.jpg" alt="Cut cardboard parts — base, ribs, slot pieces" data-alt-zh="裁好的纸板零件——底座、肋板、插槽件" data-alt-tw="裁好的紙板零件——底座、肋板、插槽件" data-alt-ja="カットした段ボールの部品 — 台座、リブ、差し込みパーツ" data-alt-fr="Pièces de carton découpées — base, nervures, pièces à encoches" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/002.jpeg" alt="Measuring and layout" data-alt-zh="测量与画线" data-alt-tw="測量與畫線" data-alt-ja="採寸とレイアウト" data-alt-fr="Mesures et traçage" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/003.jpeg" alt="Assembly with hot glue" data-alt-zh="用热熔胶组装" data-alt-tw="用熱熔膠組裝" data-alt-ja="ホットボンドで組み立て" data-alt-fr="Assemblage à la colle chaude" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/004.jpeg" alt="Prototype V1 — limited angle range" data-alt-zh="原型 V1——可调角度有限" data-alt-tw="原型 V1——可調角度有限" data-alt-ja="プロトタイプ V1 — 角度の調整範囲が狭い" data-alt-fr="Prototype V1 — amplitude d’angle limitée" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/005.jpeg" alt="Prototype V2 — wider base, rear wedge" data-alt-zh="原型 V2——更宽的底座，后部加楔块" data-alt-tw="原型 V2——更寬的底座，後部加楔塊" data-alt-ja="プロトタイプ V2 — 広い台座と背面のくさび" data-alt-fr="Prototype V2 — base élargie, cale arrière" onclick="lb(this)">
         </div>
 
-        <h3>DHT11 Sensor Exploration</h3>
+        <h3><span data-lang="en">DHT11 Sensor Exploration</span><span data-lang="zh">DHT11 传感器探索</span><span data-lang="tw">DHT11 感測器探索</span><span data-lang="ja">DHT11 センサーの検証</span><span data-lang="fr">Exploration du capteur DHT11</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P2/images/Activity1/006.jpg" alt="Cardboard prototype checking balance and internal volume" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/007.jpeg" alt="Arduino IDE DHT11 sketch" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/008.jpeg" alt="DHT11 wiring close-up" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/009.jpeg" alt="Serial Monitor streaming sensor data" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity1/010.jpeg" alt="Sensor mounted in temporary case" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/006.jpg" alt="Cardboard prototype checking balance and internal volume" data-alt-zh="用纸板原型检查平衡和内部空间" data-alt-tw="用紙板原型檢查平衡和內部空間" data-alt-ja="段ボールのプロトタイプでバランスと内部の容積を確認" data-alt-fr="Prototype en carton : vérification de l’équilibre et du volume intérieur" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/007.jpeg" alt="Arduino IDE DHT11 sketch" data-alt-zh="Arduino IDE 里的 DHT11 程序" data-alt-tw="Arduino IDE 裡的 DHT11 程式" data-alt-ja="Arduino IDE の DHT11 スケッチ" data-alt-fr="Sketch DHT11 dans l’IDE Arduino" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/008.jpeg" alt="DHT11 wiring close-up" data-alt-zh="DHT11 接线特写" data-alt-tw="DHT11 接線特寫" data-alt-ja="DHT11 の配線のクローズアップ" data-alt-fr="Gros plan sur le câblage du DHT11" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/009.jpeg" alt="Serial Monitor streaming sensor data" data-alt-zh="串口监视器持续输出传感器数据" data-alt-tw="序列埠監視器持續輸出感測器資料" data-alt-ja="センサーデータを流すシリアルモニタ" data-alt-fr="Le moniteur série affiche les données du capteur en continu" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity1/010.jpeg" alt="Sensor mounted in temporary case" data-alt-zh="装在临时外壳里的传感器" data-alt-tw="裝在臨時外殼裡的感測器" data-alt-ja="仮のケースに取り付けたセンサー" data-alt-fr="Capteur monté dans un boîtier provisoire" onclick="lb(this)">
         </div>
 
-        <h3>Iterating DHT Data → LED Signals</h3>
+        <h3><span data-lang="en">Iterating DHT Data → LED Signals</span><span data-lang="zh">迭代：DHT 数据 → LED 信号</span><span data-lang="tw">迭代：DHT 資料 → LED 訊號</span><span data-lang="ja">DHT データ → LED 信号の反復</span><span data-lang="fr">Itérations : données DHT → signaux LED</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P2/images/Activity2/006.jpeg" alt="Board selection and sensor choice" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity2/007.jpeg" alt="Breadboard layout — DHT wired" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity2/008.jpeg" alt="Wiring refinement — DATA/VCC/GND verified" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity2/009.png" alt="Arduino sketch with tiers and hysteresis" onclick="lb(this)">
-          <img src="../DESN30146P2/images/Activity2/010.jpeg" alt="End-to-end serial test — live T/H readings" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/006.jpeg" alt="Board selection and sensor choice" data-alt-zh="选择开发板和传感器" data-alt-tw="選擇開發板和感測器" data-alt-ja="ボードとセンサーの選定" data-alt-fr="Choix de la carte et du capteur" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/007.jpeg" alt="Breadboard layout — DHT wired" data-alt-zh="面包板布局——DHT 已接好" data-alt-tw="麵包板佈局——DHT 已接好" data-alt-ja="ブレッドボードのレイアウト — DHT を配線済み" data-alt-fr="Disposition sur platine d’essai — DHT câblé" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/008.jpeg" alt="Wiring refinement — DATA/VCC/GND verified" data-alt-zh="整理接线——DATA/VCC/GND 已核对" data-alt-tw="整理接線——DATA/VCC/GND 已核對" data-alt-ja="配線の見直し — DATA/VCC/GND を確認" data-alt-fr="Câblage affiné — DATA/VCC/GND vérifiés" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/009.png" alt="Arduino sketch with tiers and hysteresis" data-alt-zh="带档位和迟滞的 Arduino 程序" data-alt-tw="帶檔位和遲滯的 Arduino 程式" data-alt-ja="段階とヒステリシスを組み込んだ Arduino スケッチ" data-alt-fr="Sketch Arduino avec paliers et hystérésis" onclick="lb(this)">
+          <img src="../DESN30146P2/images/Activity2/010.jpeg" alt="End-to-end serial test — live T/H readings" data-alt-zh="端到端串口测试——实时温湿度读数" data-alt-tw="端到端序列埠測試——即時溫濕度讀數" data-alt-ja="エンドツーエンドのシリアルテスト — 温湿度のリアルタイム値" data-alt-fr="Test série de bout en bout — mesures T/H en direct" onclick="lb(this)">
         </div>
 
-        <h3>Action Research — Adding LCD1602</h3>
+        <h3><span data-lang="en">Action Research — Adding LCD1602</span><span data-lang="zh">行动研究 — 加入 LCD1602</span><span data-lang="tw">行動研究 — 加入 LCD1602</span><span data-lang="ja">アクションリサーチ — LCD1602 の追加</span><span data-lang="fr">Recherche-action — ajout d’un LCD1602</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P2/images/ActionResearch/001.png" alt="Arduino sketch — DHT, tier, LED, LCD" onclick="lb(this)">
-          <img src="../DESN30146P2/images/ActionResearch/002.jpeg" alt="Wiring full stack" onclick="lb(this)">
-          <img src="../DESN30146P2/images/ActionResearch/003.jpeg" alt="Breadboard refinement with POT for contrast" onclick="lb(this)">
-          <img src="../DESN30146P2/images/ActionResearch/004.jpeg" alt="LED cues live — tier colours" onclick="lb(this)">
-          <img src="../DESN30146P2/images/ActionResearch/005.jpeg" alt="LCD readout: T, H, and tier label" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/001.png" alt="Arduino sketch — DHT, tier, LED, LCD" data-alt-zh="Arduino 程序——DHT、档位、LED、LCD" data-alt-tw="Arduino 程式——DHT、檔位、LED、LCD" data-alt-ja="Arduino スケッチ — DHT、段階、LED、LCD" data-alt-fr="Sketch Arduino — DHT, paliers, LED, LCD" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/002.jpeg" alt="Wiring full stack" data-alt-zh="完整接线" data-alt-tw="完整接線" data-alt-ja="すべての部品を配線" data-alt-fr="Câblage complet" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/003.jpeg" alt="Breadboard refinement with POT for contrast" data-alt-zh="优化面包板，加电位器调对比度" data-alt-tw="改良麵包板，加電位器調對比度" data-alt-ja="コントラスト調整用のポテンショメーターを加えたブレッドボード" data-alt-fr="Platine affinée avec potentiomètre pour le contraste" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/004.jpeg" alt="LED cues live — tier colours" data-alt-zh="LED 实时提示——档位颜色" data-alt-tw="LED 即時提示——檔位顏色" data-alt-ja="LED によるリアルタイムの合図 — 段階ごとの色" data-alt-fr="Signaux LED en direct — couleurs des paliers" onclick="lb(this)">
+          <img src="../DESN30146P2/images/ActionResearch/005.jpeg" alt="LCD readout: T, H, and tier label" data-alt-zh="LCD 显示：温度、湿度和档位标签" data-alt-tw="LCD 顯示：溫度、濕度和檔位標籤" data-alt-ja="LCD の表示：温度、湿度、段階のラベル" data-alt-fr="Affichage LCD : T, H et nom du palier" onclick="lb(this)">
         </div>
 
-        <h3>P2 Prototype Result</h3>
+        <h3><span data-lang="en">P2 Prototype Result</span><span data-lang="zh">P2 原型成果</span><span data-lang="tw">P2 原型成果</span><span data-lang="ja">P2 プロトタイプの結果</span><span data-lang="fr">Résultat du prototype P2</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P2/images/final/001.jpeg" alt="Comfort Lamp v1 — Arduino, DHT, LCD showing GREEN tier" onclick="lb(this)">
+          <img src="../DESN30146P2/images/final/001.jpeg" alt="Comfort Lamp v1 — Arduino, DHT, LCD showing GREEN tier" data-alt-zh="舒适灯 v1——Arduino、DHT，LCD 显示绿色档位" data-alt-tw="舒適燈 v1——Arduino、DHT，LCD 顯示綠色檔位" data-alt-ja="コンフォートランプ v1 — Arduino、DHT、緑の段階を示す LCD" data-alt-fr="Lampe de confort v1 — Arduino, DHT, LCD affichant le palier VERT" onclick="lb(this)">
         </div>
       </div>
 
       <!-- ===== MODULE 3 ===== -->
       <div class="phase">
-        <span class="phase-label phase-label--p3">Module 3 — 3D Housing &amp; Final Prototype</span>
-        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">From Circuit to Ambient Object</h2>
-        <p>Evolved the comfort lamp into a finished ambient object. Researched and 3D-printed a staircase/arch housing, removed the LCD, added a light sensor and latching touch switch, and connected to a ProtoPie mobile UI for richer feedback.</p>
+        <span class="phase-label phase-label--p3"><span data-lang="en">Module 3 — 3D Housing &amp; Final Prototype</span><span data-lang="zh">模块 3 — 3D 外壳与最终原型</span><span data-lang="tw">模組 3 — 3D 外殼與最終原型</span><span data-lang="ja">モジュール 3 — 3D ハウジングと最終プロトタイプ</span><span data-lang="fr">Module 3 — Boîtier 3D et prototype final</span></span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem"><span data-lang="en">From Circuit to Ambient Object</span><span data-lang="zh">从电路到氛围物件</span><span data-lang="tw">從電路到氛圍物件</span><span data-lang="ja">回路からアンビエントオブジェクトへ</span><span data-lang="fr">Du circuit à l’objet d’ambiance</span></h2>
+        <p data-lang="en">Evolved the comfort lamp into a finished ambient object. Researched and 3D-printed a staircase/arch housing, removed the LCD, added a light sensor and latching touch switch, and connected to a ProtoPie mobile UI for richer feedback.</p>
+        <p data-lang="zh">把舒适灯发展成一件完整的氛围物件。调研并 3D 打印了楼梯 / 拱门造型的外壳，去掉 LCD，加入光线传感器和自锁触摸开关，并连接 ProtoPie 手机界面，提供更丰富的反馈。</p>
+        <p data-lang="tw">把舒適燈發展成一件完整的氛圍物件。研究並 3D 列印了樓梯 / 拱門造型的外殼，去掉 LCD，加入光線感測器和自鎖觸控開關，並連接 ProtoPie 手機介面，提供更豐富的回饋。</p>
+        <p data-lang="ja">コンフォートランプを完成したアンビエントオブジェクトへと発展させました。階段とアーチのハウジングをリサーチして 3D プリントし、LCD を外して光センサーとラッチ式タッチスイッチを追加。さらに ProtoPie のモバイル UI と連携させ、より豊かなフィードバックを実現しました。</p>
+        <p data-lang="fr">La lampe de confort devient un objet d’ambiance abouti. Recherche puis impression 3D d’un boîtier en escalier et arche, suppression du LCD, ajout d’un capteur de lumière et d’un interrupteur tactile à verrouillage, et liaison avec une interface mobile ProtoPie pour un retour plus riche.</p>
 
-        <h3>Workshop 1 — Bodystorming</h3>
-        <p>Role-played a clinic visit to study doctor–patient communication: eye contact, body language, tone, and digital tools for trust and comfort.</p>
+        <h3><span data-lang="en">Workshop 1 — Bodystorming</span><span data-lang="zh">工作坊 1 — 身体风暴</span><span data-lang="tw">工作坊 1 — 身體風暴</span><span data-lang="ja">ワークショップ 1 — ボディストーミング</span><span data-lang="fr">Atelier 1 — Bodystorming</span></h3>
+        <p data-lang="en">Role-played a clinic visit to study doctor–patient communication: eye contact, body language, tone, and digital tools for trust and comfort.</p>
+        <p data-lang="zh">通过角色扮演一次门诊就医，研究医生与患者之间的沟通：眼神交流、肢体语言、语气，以及有助于建立信任和安心感的数字工具。</p>
+        <p data-lang="tw">透過角色扮演一次門診就醫，研究醫生與患者之間的溝通：眼神交流、肢體語言、語氣，以及有助於建立信任和安心感的數位工具。</p>
+        <p data-lang="ja">診察の場面をロールプレイし、医師と患者のコミュニケーションを調べました：アイコンタクト、ボディランゲージ、話し方、そして信頼と安心感を支えるデジタルツール。</p>
+        <p data-lang="fr">Jeu de rôle d’une consultation pour étudier la communication médecin–patient : contact visuel, langage corporel, ton, et outils numériques au service de la confiance et du confort.</p>
         <div class="img-grid">
-          <img src="../DESN30146P3/images/Workshop1/1.jpeg" alt="Setting up the consultation role-play" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Workshop1/2.jpeg" alt="Doctor reads symptom checklist on phone" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Workshop1/3.jpeg" alt="Doctor leans in to talk to patient" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Workshop1/4.jpeg" alt="Patient describes chest pain" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Workshop1/5.jpeg" alt="Emergency scenario — patient faints" onclick="lb(this)">
-        </div>
-
-        <h3>Activity 1 — Enclosure Design &amp; 3D Printing</h3>
-        <p>Found a staircase/arch model on Thingiverse, modified it in CAD, and 3D-printed a housing for the Arduino and sensors.</p>
-        <div class="img-grid">
-          <img src="../DESN30146P3/images/Activity1/001.png" alt="Reference 3D model from Thingiverse" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity1/002.png" alt="First CAD modification — interior architecture" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity1/003.png" alt="Second CAD iteration — Arduino slot" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity1/004.jpeg" alt="3D printing in progress on Ultimaker" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity1/005.jpeg" alt="Finished 3D-printed housing" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/1.jpeg" alt="Setting up the consultation role-play" data-alt-zh="布置问诊角色扮演的场景" data-alt-tw="佈置問診角色扮演的場景" data-alt-ja="診察ロールプレイの準備" data-alt-fr="Mise en place du jeu de rôle de consultation" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/2.jpeg" alt="Doctor reads symptom checklist on phone" data-alt-zh="医生在手机上查看症状清单" data-alt-tw="醫生在手機上檢視症狀清單" data-alt-ja="医師がスマートフォンで症状のチェックリストを読む" data-alt-fr="Le médecin lit la liste des symptômes sur son téléphone" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/3.jpeg" alt="Doctor leans in to talk to patient" data-alt-zh="医生俯身和患者交谈" data-alt-tw="醫生俯身和患者交談" data-alt-ja="医師が身を乗り出して患者に話しかける" data-alt-fr="Le médecin se penche pour parler au patient" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/4.jpeg" alt="Patient describes chest pain" data-alt-zh="患者描述胸痛" data-alt-tw="患者描述胸痛" data-alt-ja="患者が胸の痛みを説明する" data-alt-fr="Le patient décrit une douleur thoracique" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Workshop1/5.jpeg" alt="Emergency scenario — patient faints" data-alt-zh="紧急情况——患者晕倒" data-alt-tw="緊急情況——患者暈倒" data-alt-ja="緊急の場面 — 患者が倒れる" data-alt-fr="Scénario d’urgence — le patient s’évanouit" onclick="lb(this)">
         </div>
 
-        <h3>Activity 2 — Electronics &amp; Lighting Integration</h3>
+        <h3><span data-lang="en">Activity 1 — Enclosure Design &amp; 3D Printing</span><span data-lang="zh">活动 1 — 外壳设计与 3D 打印</span><span data-lang="tw">活動 1 — 外殼設計與 3D 列印</span><span data-lang="ja">アクティビティ 1 — 筐体のデザインと 3D プリント</span><span data-lang="fr">Activité 1 — Conception du boîtier et impression 3D</span></h3>
+        <p data-lang="en">Found a staircase/arch model on Thingiverse, modified it in CAD, and 3D-printed a housing for the Arduino and sensors.</p>
+        <p data-lang="zh">在 Thingiverse 上找到一个楼梯 / 拱门模型，在 CAD 里修改后，3D 打印成装 Arduino 和传感器的外壳。</p>
+        <p data-lang="tw">在 Thingiverse 上找到一個樓梯 / 拱門模型，在 CAD 裡修改後，3D 列印成裝 Arduino 和感測器的外殼。</p>
+        <p data-lang="ja">Thingiverse で階段とアーチのモデルを見つけ、CAD で改造して、Arduino とセンサーを収めるハウジングを 3D プリントしました。</p>
+        <p data-lang="fr">Un modèle d’escalier et d’arche trouvé sur Thingiverse, modifié en CAO puis imprimé en 3D pour accueillir l’Arduino et les capteurs.</p>
         <div class="img-grid">
-          <img src="../DESN30146P3/images/Activity2/001.jpeg" alt="Testing RGB LED ring" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity2/002.jpeg" alt="Soldering longer wires to LED" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity2/003.jpeg" alt="Wired connector for NeoPixel strip" onclick="lb(this)">
-          <video src="../DESN30146P3/images/Activity2/004.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Breadboard test — full comfort-lamp logic" onclick="lb(this)"></video>
-          <video src="../DESN30146P3/images/Activity2/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="First test placing electronics in housing" onclick="lb(this)"></video>
-        </div>
-        <div class="img-grid">
-          <img src="../DESN30146P3/images/Activity2/006.jpeg" alt="Warm glow inside staircase housing" onclick="lb(this)">
-          <video src="../DESN30146P3/images/Activity2/007.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Adjusting LED ring position for light gradient" onclick="lb(this)"></video>
-          <img src="../DESN30146P3/images/Activity2/008.jpg" alt="Cool/green tier test" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity2/009.jpg" alt="Warm/orange tier test" onclick="lb(this)">
-          <img src="../DESN30146P3/images/Activity2/010.jpg" alt="Bright magenta tier test" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/001.png" alt="Reference 3D model from Thingiverse" data-alt-zh="来自 Thingiverse 的参考 3D 模型" data-alt-tw="來自 Thingiverse 的參考 3D 模型" data-alt-ja="Thingiverse の参考 3D モデル" data-alt-fr="Modèle 3D de référence issu de Thingiverse" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/002.png" alt="First CAD modification — interior architecture" data-alt-zh="第一次 CAD 修改——内部结构" data-alt-tw="第一次 CAD 修改——內部結構" data-alt-ja="1 回目の CAD 修正 — 内部の構造" data-alt-fr="Première modification CAO — architecture intérieure" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/003.png" alt="Second CAD iteration — Arduino slot" data-alt-zh="第二次 CAD 迭代——Arduino 卡槽" data-alt-tw="第二次 CAD 迭代——Arduino 卡槽" data-alt-ja="2 回目の CAD 修正 — Arduino 用のスロット" data-alt-fr="Deuxième itération CAO — logement pour l’Arduino" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/004.jpeg" alt="3D printing in progress on Ultimaker" data-alt-zh="Ultimaker 正在 3D 打印" data-alt-tw="Ultimaker 正在 3D 列印" data-alt-ja="Ultimaker で 3D プリント中" data-alt-fr="Impression 3D en cours sur Ultimaker" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity1/005.jpeg" alt="Finished 3D-printed housing" data-alt-zh="打印完成的 3D 外壳" data-alt-tw="列印完成的 3D 外殼" data-alt-ja="完成した 3D プリントのハウジング" data-alt-fr="Boîtier imprimé en 3D terminé" onclick="lb(this)">
         </div>
 
-        <h3>Additional Research — Sensors &amp; Switch</h3>
-        <p>Removed LCD, added light sensor for ambient brightness, tested a latching touch switch for clear on/off control.</p>
+        <h3><span data-lang="en">Activity 2 — Electronics &amp; Lighting Integration</span><span data-lang="zh">活动 2 — 电子元件与灯光整合</span><span data-lang="tw">活動 2 — 電子元件與燈光整合</span><span data-lang="ja">アクティビティ 2 — 電子部品と照明の統合</span><span data-lang="fr">Activité 2 — Intégration de l’électronique et de l’éclairage</span></h3>
         <div class="img-grid">
-          <img src="../DESN30146P3/images/AdditionalResearch/001.jpeg" alt="Breadboard without LCD — added light sensor" onclick="lb(this)">
-          <img src="../DESN30146P3/images/AdditionalResearch/002.jpeg" alt="Added latching touch switch" onclick="lb(this)">
-          <img src="../DESN30146P3/images/AdditionalResearch/003.jpeg" alt="Tidied circuit — RGB LED lit" onclick="lb(this)">
-          <img src="../DESN30146P3/images/AdditionalResearch/004.png" alt="Updated Arduino code for touch switch" onclick="lb(this)">
-          <video src="../DESN30146P3/images/AdditionalResearch/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Live test — LED responds to switch and sensors" onclick="lb(this)"></video>
+          <img src="../DESN30146P3/images/Activity2/001.jpeg" alt="Testing RGB LED ring" data-alt-zh="测试 RGB LED 灯环" data-alt-tw="測試 RGB LED 燈環" data-alt-ja="RGB LED リングのテスト" data-alt-fr="Test de l’anneau de LED RGB" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/002.jpeg" alt="Soldering longer wires to LED" data-alt-zh="给 LED 焊上更长的导线" data-alt-tw="給 LED 焊上更長的導線" data-alt-ja="LED に長めの配線をはんだ付け" data-alt-fr="Soudure de fils plus longs sur la LED" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/003.jpeg" alt="Wired connector for NeoPixel strip" data-alt-zh="给 NeoPixel 灯带接好连接线" data-alt-tw="給 NeoPixel 燈帶接好連接線" data-alt-ja="NeoPixel テープ用のコネクタを配線" data-alt-fr="Connecteur câblé pour le ruban NeoPixel" onclick="lb(this)">
+          <video src="../DESN30146P3/images/Activity2/004.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Breadboard test — full comfort-lamp logic" data-alt-zh="面包板测试——完整的舒适灯逻辑" data-alt-tw="麵包板測試——完整的舒適燈邏輯" data-alt-ja="ブレッドボードでのテスト — コンフォートランプの全ロジック" data-alt-fr="Test sur platine — logique complète de la lampe" onclick="lb(this)"></video>
+          <video src="../DESN30146P3/images/Activity2/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="First test placing electronics in housing" data-alt-zh="第一次把电子元件放进外壳测试" data-alt-tw="第一次把電子元件放進外殼測試" data-alt-ja="電子部品をハウジングに入れる最初のテスト" data-alt-fr="Premier essai de l’électronique dans le boîtier" onclick="lb(this)"></video>
         </div>
         <div class="img-grid">
-          <video src="../DESN30146P3/images/AdditionalResearch/006.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Touch switch and sensors test" onclick="lb(this)"></video>
-          <img src="../DESN30146P3/images/AdditionalResearch/007.jpeg" alt="Checking enclosure for electronics fit" onclick="lb(this)">
-          <img src="../DESN30146P3/images/AdditionalResearch/008.jpeg" alt="Circuit beside enclosure — testing cable reach" onclick="lb(this)">
-          <video src="../DESN30146P3/images/AdditionalResearch/009.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Interior glowing with external circuit" onclick="lb(this)"></video>
-          <img src="../DESN30146P3/images/AdditionalResearch/010.jpeg" alt="Red tier glow inside enclosure" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/006.jpeg" alt="Warm glow inside staircase housing" data-alt-zh="楼梯外壳里透出的暖光" data-alt-tw="樓梯外殼裡透出的暖光" data-alt-ja="階段のハウジングの中に灯る暖かな光" data-alt-fr="Lueur chaude à l’intérieur du boîtier en escalier" onclick="lb(this)">
+          <video src="../DESN30146P3/images/Activity2/007.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Adjusting LED ring position for light gradient" data-alt-zh="调整 LED 灯环位置，做出光线渐变" data-alt-tw="調整 LED 燈環位置，做出光線漸變" data-alt-ja="光のグラデーションを出すため LED リングの位置を調整" data-alt-fr="Réglage de la position de l’anneau LED pour le dégradé de lumière" onclick="lb(this)"></video>
+          <img src="../DESN30146P3/images/Activity2/008.jpg" alt="Cool/green tier test" data-alt-zh="冷色 / 绿色档位测试" data-alt-tw="冷色 / 綠色檔位測試" data-alt-ja="寒色／緑の段階のテスト" data-alt-fr="Test du palier froid / vert" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/009.jpg" alt="Warm/orange tier test" data-alt-zh="暖色 / 橙色档位测试" data-alt-tw="暖色 / 橙色檔位測試" data-alt-ja="暖色／オレンジの段階のテスト" data-alt-fr="Test du palier chaud / orange" onclick="lb(this)">
+          <img src="../DESN30146P3/images/Activity2/010.jpg" alt="Bright magenta tier test" data-alt-zh="亮品红色档位测试" data-alt-tw="亮品紅色檔位測試" data-alt-ja="明るいマゼンタの段階のテスト" data-alt-fr="Test du palier magenta vif" onclick="lb(this)">
+        </div>
+
+        <h3><span data-lang="en">Additional Research — Sensors &amp; Switch</span><span data-lang="zh">补充研究 — 传感器与开关</span><span data-lang="tw">補充研究 — 感測器與開關</span><span data-lang="ja">追加リサーチ — センサーとスイッチ</span><span data-lang="fr">Recherche complémentaire — capteurs et interrupteur</span></h3>
+        <p data-lang="en">Removed LCD, added light sensor for ambient brightness, tested a latching touch switch for clear on/off control.</p>
+        <p data-lang="zh">去掉 LCD，加入感应环境亮度的光线传感器，并测试了自锁触摸开关，让开 / 关更明确。</p>
+        <p data-lang="tw">去掉 LCD，加入感應環境亮度的光線感測器，並測試了自鎖觸控開關，讓開 / 關更明確。</p>
+        <p data-lang="ja">LCD を外し、周囲の明るさを測る光センサーを追加。オン／オフをはっきり操作できるラッチ式タッチスイッチを試しました。</p>
+        <p data-lang="fr">Suppression du LCD, ajout d’un capteur de luminosité ambiante et test d’un interrupteur tactile à verrouillage pour un marche/arrêt sans ambiguïté.</p>
+        <div class="img-grid">
+          <img src="../DESN30146P3/images/AdditionalResearch/001.jpeg" alt="Breadboard without LCD — added light sensor" data-alt-zh="去掉 LCD 的面包板——加了光线传感器" data-alt-tw="去掉 LCD 的麵包板——加了光線感測器" data-alt-ja="LCD を外したブレッドボード — 光センサーを追加" data-alt-fr="Platine sans LCD — capteur de lumière ajouté" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/002.jpeg" alt="Added latching touch switch" data-alt-zh="加入自锁触摸开关" data-alt-tw="加入自鎖觸控開關" data-alt-ja="ラッチ式タッチスイッチを追加" data-alt-fr="Ajout de l’interrupteur tactile à verrouillage" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/003.jpeg" alt="Tidied circuit — RGB LED lit" data-alt-zh="整理后的电路——RGB LED 已点亮" data-alt-tw="整理後的電路——RGB LED 已點亮" data-alt-ja="整理した回路 — RGB LED が点灯" data-alt-fr="Circuit rangé — LED RGB allumée" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/004.png" alt="Updated Arduino code for touch switch" data-alt-zh="为触摸开关更新的 Arduino 代码" data-alt-tw="為觸控開關更新的 Arduino 程式碼" data-alt-ja="タッチスイッチ用に更新した Arduino のコード" data-alt-fr="Code Arduino mis à jour pour l’interrupteur tactile" onclick="lb(this)">
+          <video src="../DESN30146P3/images/AdditionalResearch/005.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Live test — LED responds to switch and sensors" data-alt-zh="实时测试——LED 响应开关和传感器" data-alt-tw="即時測試——LED 回應開關和感測器" data-alt-ja="リアルタイムテスト — LED がスイッチとセンサーに反応" data-alt-fr="Test en direct — la LED réagit à l’interrupteur et aux capteurs" onclick="lb(this)"></video>
+        </div>
+        <div class="img-grid">
+          <video src="../DESN30146P3/images/AdditionalResearch/006.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Touch switch and sensors test" data-alt-zh="触摸开关与传感器测试" data-alt-tw="觸控開關與感測器測試" data-alt-ja="タッチスイッチとセンサーのテスト" data-alt-fr="Test de l’interrupteur tactile et des capteurs" onclick="lb(this)"></video>
+          <img src="../DESN30146P3/images/AdditionalResearch/007.jpeg" alt="Checking enclosure for electronics fit" data-alt-zh="检查外壳能否放下电子元件" data-alt-tw="檢查外殼能否放下電子元件" data-alt-ja="電子部品が筐体に収まるか確認" data-alt-fr="Vérification que l’électronique tient dans le boîtier" onclick="lb(this)">
+          <img src="../DESN30146P3/images/AdditionalResearch/008.jpeg" alt="Circuit beside enclosure — testing cable reach" data-alt-zh="电路放在外壳旁——测试线长够不够" data-alt-tw="電路放在外殼旁——測試線長夠不夠" data-alt-ja="筐体の横に置いた回路 — ケーブルの長さを確認" data-alt-fr="Circuit à côté du boîtier — test de la longueur des câbles" onclick="lb(this)">
+          <video src="../DESN30146P3/images/AdditionalResearch/009.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Interior glowing with external circuit" data-alt-zh="外接电路点亮外壳内部" data-alt-tw="外接電路點亮外殼內部" data-alt-ja="外部の回路で内部が光る" data-alt-fr="Intérieur éclairé par le circuit externe" onclick="lb(this)"></video>
+          <img src="../DESN30146P3/images/AdditionalResearch/010.jpeg" alt="Red tier glow inside enclosure" data-alt-zh="外壳内的红色档位光" data-alt-tw="外殼內的紅色檔位光" data-alt-ja="筐体の中で光る赤の段階" data-alt-fr="Lueur du palier rouge dans le boîtier" onclick="lb(this)">
         </div>
       </div>
 
       <!-- ===== FINAL ===== -->
       <div class="phase">
-        <span class="phase-label phase-label--p3">Final Prototype</span>
-        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem">Comfort Lamp — Finished Ambient Object</h2>
-        <p>The completed lamp uses tiered colour states driven by sensors, a latching touch switch for physical on/off, and a ProtoPie mobile UI that shows live data and sends commands back to the Arduino. The phone handles detailed information; the lamp communicates through colour and glow.</p>
+        <span class="phase-label phase-label--p3"><span data-lang="en">Final Prototype</span><span data-lang="zh">最终原型</span><span data-lang="tw">最終原型</span><span data-lang="ja">最終プロトタイプ</span><span data-lang="fr">Prototype final</span></span>
+        <h2 style="border:0;padding:0;margin:.25rem 0 .5rem"><span data-lang="en">Comfort Lamp — Finished Ambient Object</span><span data-lang="zh">舒适灯 — 完成的氛围物件</span><span data-lang="tw">舒適燈 — 完成的氛圍物件</span><span data-lang="ja">コンフォートランプ — 完成したアンビエントオブジェクト</span><span data-lang="fr">Lampe de confort — l’objet d’ambiance abouti</span></h2>
+        <p data-lang="en">The completed lamp uses tiered colour states driven by sensors, a latching touch switch for physical on/off, and a ProtoPie mobile UI that shows live data and sends commands back to the Arduino. The phone handles detailed information; the lamp communicates through colour and glow.</p>
+        <p data-lang="zh">完成后的灯由传感器驱动分级的颜色状态，用自锁触摸开关做实体开 / 关，再配上 ProtoPie 手机界面：既显示实时数据，也能把指令发回 Arduino。详细信息交给手机，灯本身只用颜色和光晕来表达。</p>
+        <p data-lang="tw">完成後的燈由感測器驅動分級的顏色狀態，用自鎖觸控開關做實體開 / 關，再配上 ProtoPie 手機介面：既顯示即時資料，也能把指令發回 Arduino。詳細資訊交給手機，燈本身只用顏色和光暈來表達。</p>
+        <p data-lang="ja">完成したランプは、センサーで切り替わる段階的な色の状態、物理的にオン／オフできるラッチ式タッチスイッチ、そしてリアルタイムのデータを表示し Arduino へコマンドを送り返す ProtoPie のモバイル UI で構成されています。詳しい情報はスマートフォンが担い、ランプは色と光だけで伝えます。</p>
+        <p data-lang="fr">La lampe finie combine des paliers de couleur pilotés par les capteurs, un interrupteur tactile à verrouillage pour le marche/arrêt physique et une interface mobile ProtoPie qui affiche les données en direct et renvoie des commandes à l’Arduino. Le téléphone porte le détail ; la lampe s’exprime par la couleur et la lueur.</p>
         <div class="final-gallery">
-          <img src="../DESN30146P3/images/final/001.jpeg" alt="Final prototype — staircase and archway lit with soft green glow" onclick="lb(this)">
-          <video src="../DESN30146P3/images/final/002.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Final prototype cycling through rainbow and tiered colours" onclick="lb(this)"></video>
+          <img src="../DESN30146P3/images/final/001.jpeg" alt="Final prototype — staircase and archway lit with soft green glow" data-alt-zh="最终原型——楼梯和拱门被柔和的绿光点亮" data-alt-tw="最終原型——樓梯和拱門被柔和的綠光點亮" data-alt-ja="最終プロトタイプ — やわらかな緑の光に照らされた階段とアーチ" data-alt-fr="Prototype final — escalier et arche baignés d’une douce lueur verte" onclick="lb(this)">
+          <video src="../DESN30146P3/images/final/002.mp4" width="800" height="450" muted loop playsinline preload="metadata" aria-label="Final prototype cycling through rainbow and tiered colours" data-alt-zh="最终原型在彩虹色和各档位颜色之间循环" data-alt-tw="最終原型在彩虹色和各檔位顏色之間循環" data-alt-ja="虹色と各段階の色を順に切り替える最終プロトタイプ" data-alt-fr="Prototype final passant par l’arc-en-ciel et les couleurs des paliers" onclick="lb(this)"></video>
         </div>
       </div>
 
     </div>
 
     <nav class="pager" aria-label="Case studies">
-      <a class="prev" href="moodpeek.html"><small>&larr; Previous</small><b>MoodPeek Pro</b></a>
-      <a class="next" href="interactive-prototype.html"><small>Next &rarr;</small><b>Media, Motion & the Body</b></a>
+      <a class="prev" href="moodpeek.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>MoodPeek Pro</b></a>
+      <a class="next" href="interactive-prototype.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>Media, Motion & the Body</b></a>
     </nav>
     <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
   </div>
@@ -280,13 +324,25 @@
 (function () {
   var sel = document.getElementById('ver');
   var link = document.getElementById('openLink');
-  var map = { p1: '../DESN30146P1/index.html', p2: '../DESN30146P2/index.html', p3: '../DESN30146P3/index.html' };
-  var labels = { p1: 'P1', p2: 'P2', p3: 'P3' };
-  sel.addEventListener('change', function () {
-    var v = this.value;
-    link.href = map[v];
-    link.textContent = 'Open ' + labels[v];
-  });
+  var preview = document.getElementById('previewBox');
+  var TXT = {
+    en: { open: 'Open {v}' },
+    zh: { open: '打开 {v}' },
+    tw: { open: '開啟 {v}' },
+    ja: { open: '{v} を開く' },
+    fr: { open: 'Ouvrir {v}' }
+  };
+  function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
+  function buildHref(v) { return { p1: '../DESN30146P1/index.html', p2: '../DESN30146P2/index.html', p3: '../DESN30146P3/index.html' }[v]; }
+  function render(loadFrame) {
+    var t = TXT[lang()], v = sel.value.toUpperCase(), href = buildHref(sel.value);
+    link.href = href; link.textContent = t.open.replace('{v}', v);
+    var label = preview && preview.querySelector('.preview-label');
+    if (label) label.textContent = t.live.replace('{v}', v) + (sel.selectedIndex === sel.options.length - 1 ? t.fin : '');
+    if (loadFrame && preview) { var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = href; }
+  }
+  sel.addEventListener('change', function () { render(true); });
+  window.demoRefresh = function () { render(false); };
 })();
 function lb(el) {
   var box = document.getElementById('lightbox');
@@ -323,7 +379,7 @@ if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)')
 })();
 /* ===== i18n ===== */
 var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
-function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});try{localStorage.setItem('siteLang',l);}catch(_){}}
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>

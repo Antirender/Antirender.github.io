@@ -8,6 +8,14 @@
   <link rel="icon" href="../favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+  </style>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
@@ -38,44 +46,48 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow">Case Study · UI Design · 2026</span>
+      <span class="eyebrow"><span data-lang="en">Case Study · UI Design · 2026</span><span data-lang="zh">案例研究 · UI 设计 · 2026</span><span data-lang="tw">案例研究 · UI 設計 · 2026</span><span data-lang="ja">ケーススタディ · UI デザイン · 2026</span><span data-lang="fr">Étude de cas · Design d’interface · 2026</span></span>
       <h1>GSGC — Green Sheridan Garden Club</h1>
-      <p>A responsive community hub that helps students find garden programs, sign up to volunteer, and track seasonal updates with minimal friction.</p>
+      <p data-lang="en">A responsive community hub that helps students find garden programs, sign up to volunteer, and track seasonal updates with minimal friction.</p>
+      <p data-lang="zh">一个响应式社区网站，帮助学生轻松找到花园活动、报名做志愿者，并随时了解季节动态。</p>
+      <p data-lang="tw">一個響應式社區網站，幫助學生輕鬆找到花園活動、報名做志工，並隨時了解季節動態。</p>
+      <p data-lang="ja">学生がガーデンのプログラムを見つけ、ボランティアに申し込み、季節ごとのお知らせを手間なく確認できるレスポンシブなコミュニティサイト。</p>
+      <p data-lang="fr">Un espace communautaire responsive qui aide les étudiants à trouver les activités du jardin, à s’inscrire comme bénévoles et à suivre les nouvelles de saison sans effort.</p>
       <div class="meta">
-        <span><strong>Role</strong> UI design, responsive layout</span>
-        <span><strong>Methods</strong> Iterative refinement, mobile-first</span>
-        <span><strong>Outcome</strong> 7 versions, improved scanability</span>
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></strong> <span data-lang="en">UI design, responsive layout</span><span data-lang="zh">UI 设计、响应式布局</span><span data-lang="tw">UI 設計、響應式佈局</span><span data-lang="ja">UI デザイン、レスポンシブレイアウト</span><span data-lang="fr">Design d’interface, mise en page responsive</span></span>
+        <span><strong><span data-lang="en">Methods</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">手法</span><span data-lang="fr">Méthodes</span></strong> <span data-lang="en">Iterative refinement, mobile-first</span><span data-lang="zh">迭代打磨、移动优先</span><span data-lang="tw">迭代打磨、行動優先</span><span data-lang="ja">反復的な改善、モバイルファースト</span><span data-lang="fr">Affinage itératif, mobile-first</span></span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></strong> <span data-lang="en">7 versions, improved scanability</span><span data-lang="zh">7 个版本，更易快速浏览</span><span data-lang="tw">7 個版本，更易快速瀏覽</span><span data-lang="ja">7 バージョン、流し読みしやすさが向上</span><span data-lang="fr">7 versions, lecture rapide facilitée</span></span>
       </div>
     </div>
 
     <div class="version-bar">
-      <label for="ver">Version:</label>
+      <label for="ver"><span data-lang="en">Version:</span><span data-lang="zh">版本：</span><span data-lang="tw">版本：</span><span data-lang="ja">バージョン：</span><span data-lang="fr">Version :</span></label>
       <select id="ver">
-        <option value="v1">v1 — Documentation</option>
-        <option value="v2">v2 — Wireframe 1</option>
-        <option value="v3">v3 — Wireframe 2</option>
-        <option value="v4">v4 — Wireframe 3</option>
-        <option value="v5">v5 — Finished 1</option>
-        <option value="v6">v6 — Finished 2</option>
-        <option value="v7" selected>v7 — Final</option>
+        <option value="v1" data-t-zh="v1 — 文档" data-t-tw="v1 — 文件" data-t-ja="v1 — ドキュメント" data-t-fr="v1 — Documentation">v1 — Documentation</option>
+        <option value="v2" data-t-zh="v2 — 线框图 1" data-t-tw="v2 — 線框圖 1" data-t-ja="v2 — ワイヤーフレーム 1" data-t-fr="v2 — Wireframe 1">v2 — Wireframe 1</option>
+        <option value="v3" data-t-zh="v3 — 线框图 2" data-t-tw="v3 — 線框圖 2" data-t-ja="v3 — ワイヤーフレーム 2" data-t-fr="v3 — Wireframe 2">v3 — Wireframe 2</option>
+        <option value="v4" data-t-zh="v4 — 线框图 3" data-t-tw="v4 — 線框圖 3" data-t-ja="v4 — ワイヤーフレーム 3" data-t-fr="v4 — Wireframe 3">v4 — Wireframe 3</option>
+        <option value="v5" data-t-zh="v5 — 成品 1" data-t-tw="v5 — 成品 1" data-t-ja="v5 — 完成版 1" data-t-fr="v5 — Version aboutie 1">v5 — Finished 1</option>
+        <option value="v6" data-t-zh="v6 — 成品 2" data-t-tw="v6 — 成品 2" data-t-ja="v6 — 完成版 2" data-t-fr="v6 — Version aboutie 2">v6 — Finished 2</option>
+        <option value="v7" selected data-t-zh="v7 — 最终版" data-t-tw="v7 — 最終版" data-t-ja="v7 — 最終版" data-t-fr="v7 — Version finale">v7 — Final</option>
       </select>
       <a class="btn" id="openLink" href="../GSGC/v7/index.html" target="_blank" rel="noopener">Open V7</a>
     </div>
 
     <div class="content">
       <div class="tldr">
-        <h2>At a glance</h2>
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
         <dl>
-          <div><dt>Problem</dt><dd>Garden Club needed a clear, lightweight site for announcements, membership info, and volunteer sign-ups.</dd></div>
-          <div><dt>Role</dt><dd>UI design, responsive layout design</dd></div>
-          <div><dt>Tools</dt><dd>HTML/CSS, mobile-first design</dd></div>
-          <div><dt>Timeline</dt><dd>7 versions with progressive refinement</dd></div>
-          <div><dt>Key Decisions</dt><dd>Navigation tabs (Programs / Events / Join), quick links block, compact content for on-campus browsing</dd></div>
-          <div><dt>Result</dt><dd>Improved readability and reduced time-to-action for volunteers.</dd></div>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">Garden Club needed a clear, lightweight site for announcements, membership info, and volunteer sign-ups.</span><span data-lang="zh">花园俱乐部需要一个清晰、轻量的网站，用来发布公告、介绍会员信息和招募志愿者。</span><span data-lang="tw">花園俱樂部需要一個清晰、輕量的網站，用來發布公告、介紹會員資訊和招募志工。</span><span data-lang="ja">ガーデンクラブには、お知らせ・会員情報・ボランティア募集のための、わかりやすく軽量なサイトが必要でした。</span><span data-lang="fr">Le club de jardinage avait besoin d’un site clair et léger pour ses annonces, les informations d’adhésion et les inscriptions de bénévoles.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">UI design, responsive layout design</span><span data-lang="zh">UI 设计、响应式布局设计</span><span data-lang="tw">UI 設計、響應式佈局設計</span><span data-lang="ja">UI デザイン、レスポンシブレイアウト設計</span><span data-lang="fr">Design d’interface, conception de mise en page responsive</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></dt><dd><span data-lang="en">HTML/CSS, mobile-first design</span><span data-lang="zh">HTML/CSS、移动优先设计</span><span data-lang="tw">HTML/CSS、行動優先設計</span><span data-lang="ja">HTML/CSS、モバイルファーストデザイン</span><span data-lang="fr">HTML/CSS, conception mobile-first</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="tw">時程</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">7 versions with progressive refinement</span><span data-lang="zh">7 个版本，逐步打磨</span><span data-lang="tw">7 個版本，逐步打磨</span><span data-lang="ja">段階的に磨き上げた 7 バージョン</span><span data-lang="fr">7 versions affinées progressivement</span></dd></div>
+          <div><dt><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></dt><dd><span data-lang="en">Navigation tabs (Programs / Events / Join), quick links block, compact content for on-campus browsing</span><span data-lang="zh">导航标签（活动项目 / 近期活动 / 加入）、快捷链接区、适合在校园里快速浏览的精简内容</span><span data-lang="tw">導覽標籤（活動項目 / 近期活動 / 加入）、快捷連結區、適合在校園裡快速瀏覽的精簡內容</span><span data-lang="ja">ナビゲーションタブ（プログラム / イベント / 参加）、クイックリンク欄、キャンパス内でさっと見られるコンパクトな内容</span><span data-lang="fr">Onglets de navigation (Programmes / Événements / Adhérer), bloc de liens rapides, contenu compact pour une consultation sur le campus</span></dd></div>
+          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">Improved readability and reduced time-to-action for volunteers.</span><span data-lang="zh">可读性提升，志愿者完成操作所需的时间缩短。</span><span data-lang="tw">可讀性提升，志工完成操作所需的時間縮短。</span><span data-lang="ja">読みやすさが向上し、ボランティアが行動に移るまでの時間が短くなりました。</span><span data-lang="fr">Meilleure lisibilité et passage à l’action plus rapide pour les bénévoles.</span></dd></div>
         </dl>
       </div>
 
-      <img class="cover-img" src="../image/gsgc-preview.png" alt="Green Sheridan Garden Club preview">
+      <img class="cover-img" src="../image/gsgc-preview.png" alt="Green Sheridan Garden Club preview" data-alt-zh="Green Sheridan Garden Club 网站预览" data-alt-tw="Green Sheridan Garden Club 網站預覽" data-alt-ja="Green Sheridan Garden Club のプレビュー" data-alt-fr="Aperçu du site Green Sheridan Garden Club">
 
       <div class="preview" id="previewBox">
         <iframe src="../GSGC/v7/index.html" loading="lazy" title="GSGC preview" sandbox="allow-same-origin allow-scripts"></iframe>
@@ -83,41 +95,109 @@
       </div>
 
 
-      <h2>Problem / Context</h2>
-      <p>The Garden Club needed a clear, lightweight site for announcements, membership info, and volunteer sign-ups. Prior versions were inconsistent and hard to scan on mobile.</p>
+      <h2><span data-lang="en">Problem / Context</span><span data-lang="zh">问题 / 背景</span><span data-lang="tw">問題 / 背景</span><span data-lang="ja">課題 / 背景</span><span data-lang="fr">Problème / Contexte</span></h2>
+      <p data-lang="en">The Garden Club needed a clear, lightweight site for announcements, membership info, and volunteer sign-ups. Prior versions were inconsistent and hard to scan on mobile.</p>
+      <p data-lang="zh">花园俱乐部需要一个清晰、轻量的网站，用来发布公告、介绍会员信息和招募志愿者。之前的版本风格不统一，在手机上也很难快速浏览。</p>
+      <p data-lang="tw">花園俱樂部需要一個清晰、輕量的網站，用來發布公告、介紹會員資訊和招募志工。之前的版本風格不統一，在手機上也很難快速瀏覽。</p>
+      <p data-lang="ja">ガーデンクラブには、お知らせ・会員情報・ボランティア募集のための、わかりやすく軽量なサイトが必要でした。以前のバージョンは統一感がなく、スマートフォンでは流し読みしにくいものでした。</p>
+      <p data-lang="fr">Le club de jardinage avait besoin d’un site clair et léger pour ses annonces, les informations d’adhésion et les inscriptions de bénévoles. Les versions précédentes manquaient de cohérence et se parcouraient mal sur mobile.</p>
 
-      <h2>Audience</h2>
-      <p>Students, staff, and local community members looking for garden events, volunteer schedules, and quick answers about how to join.</p>
+      <h2><span data-lang="en">Audience</span><span data-lang="zh">目标用户</span><span data-lang="tw">目標使用者</span><span data-lang="ja">対象ユーザー</span><span data-lang="fr">Public</span></h2>
+      <p data-lang="en">Students, staff, and local community members looking for garden events, volunteer schedules, and quick answers about how to join.</p>
+      <p data-lang="zh">学生、教职员工和周边社区居民——他们想找花园活动、查看志愿者排班，或者快速弄清楚怎么加入。</p>
+      <p data-lang="tw">學生、教職員工和周邊社區居民——他們想找花園活動、檢視志工排班，或者快速弄清楚怎麼加入。</p>
+      <p data-lang="ja">ガーデンのイベントやボランティアの予定を探したり、参加方法をすぐに知りたい学生、教職員、地域の人々。</p>
+      <p data-lang="fr">Étudiants, personnel et habitants du quartier qui cherchent les événements du jardin, le planning des bénévoles ou une réponse rapide sur la façon d’adhérer.</p>
 
-      <h2>Goals</h2>
-      <ul>
+      <h2><span data-lang="en">Goals</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目標</span><span data-lang="fr">Objectifs</span></h2>
+      <ul data-lang="en">
         <li>Make key actions obvious: Join, Volunteer, and View Events.</li>
         <li>Keep information scannable on small screens.</li>
         <li>Reduce navigation steps to reach program details.</li>
         <li>Show seasonal updates without overwhelming the homepage.</li>
       </ul>
+      <ul data-lang="zh">
+        <li>让关键操作一目了然：加入、做志愿者、查看活动。</li>
+        <li>在小屏幕上也能快速浏览信息。</li>
+        <li>减少进入活动详情所需的导航步骤。</li>
+        <li>展示季节动态，同时不让首页显得拥挤。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li>讓關鍵操作一目瞭然：加入、做志工、檢視活動。</li>
+        <li>在小螢幕上也能快速瀏覽資訊。</li>
+        <li>減少進入活動詳情所需的導覽步驟。</li>
+        <li>展示季節動態，同時不讓首頁顯得擁擠。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li>主要なアクション（参加・ボランティア・イベントを見る）をひと目でわかるようにする。</li>
+        <li>小さな画面でも情報を流し読みしやすく保つ。</li>
+        <li>プログラムの詳細にたどり着くまでの操作を減らす。</li>
+        <li>トップページを詰め込みすぎずに、季節ごとのお知らせを見せる。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li>Rendre évidentes les actions clés : adhérer, devenir bénévole, voir les événements.</li>
+        <li>Garder l’information facile à parcourir sur petit écran.</li>
+        <li>Réduire le nombre d’étapes pour atteindre le détail d’un programme.</li>
+        <li>Afficher les nouvelles de saison sans surcharger la page d’accueil.</li>
+      </ul>
 
-      <h2>Constraints</h2>
-      <p>Responsive layout, high readability, and simple navigation were mandatory. Content length had to stay compact to support quick on-campus browsing.</p>
+      <h2><span data-lang="en">Constraints</span><span data-lang="zh">限制条件</span><span data-lang="tw">限制條件</span><span data-lang="ja">制約</span><span data-lang="fr">Contraintes</span></h2>
+      <p data-lang="en">Responsive layout, high readability, and simple navigation were mandatory. Content length had to stay compact to support quick on-campus browsing.</p>
+      <p data-lang="zh">响应式布局、高可读性和简单的导航是硬性要求。内容篇幅也必须精简，方便在校园里快速浏览。</p>
+      <p data-lang="tw">響應式佈局、高可讀性和簡單的導覽是硬性要求。內容篇幅也必須精簡，方便在校園裡快速瀏覽。</p>
+      <p data-lang="ja">レスポンシブレイアウト、高い可読性、シンプルなナビゲーションは必須条件でした。キャンパス内でさっと見られるよう、内容の分量もコンパクトに抑える必要がありました。</p>
+      <p data-lang="fr">Mise en page responsive, grande lisibilité et navigation simple étaient obligatoires. Les contenus devaient rester courts pour une consultation rapide sur le campus.</p>
 
-      <h2>Design Decisions</h2>
-      <ul>
+      <h2><span data-lang="en">Design Decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">設計上の判断</span><span data-lang="fr">Choix de conception</span></h2>
+      <ul data-lang="en">
         <li>Navigation tabs for Programs, Events, and Join to reduce menu depth.</li>
         <li>Quick links block near the top for recurring tasks.</li>
         <li>Structured layout with short sections and clear typography.</li>
         <li>Consistent spacing and card-based groupings for visual rhythm.</li>
       </ul>
+      <ul data-lang="zh">
+        <li>用“活动项目”“近期活动”“加入”三个导航标签，减少菜单层级。</li>
+        <li>在页面顶部附近放置快捷链接区，方便处理常用事项。</li>
+        <li>结构化布局：短小的版块，清晰的字体排版。</li>
+        <li>统一的间距和卡片式分组，形成视觉节奏。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li>用“活動項目”“近期活動”“加入”三個導覽標籤，減少選單層級。</li>
+        <li>在頁面頂部附近放置快捷連結區，方便處理常用事項。</li>
+        <li>結構化佈局：短小的版塊，清晰的字型排版。</li>
+        <li>統一的間距和卡片式分組，形成視覺節奏。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li>「プログラム」「イベント」「参加」のナビゲーションタブでメニューの階層を浅くする。</li>
+        <li>よく使う操作のために、ページ上部にクイックリンク欄を配置。</li>
+        <li>短いセクションと明快なタイポグラフィによる構造的なレイアウト。</li>
+        <li>一貫した余白とカード単位のまとまりで、視覚的なリズムをつくる。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li>Onglets Programmes, Événements et Adhérer pour limiter la profondeur des menus.</li>
+        <li>Bloc de liens rapides en haut de page pour les tâches récurrentes.</li>
+        <li>Mise en page structurée, sections courtes et typographie claire.</li>
+        <li>Espacements cohérents et regroupements en cartes pour le rythme visuel.</li>
+      </ul>
 
-      <h2>Iteration / Versions (v1–v7)</h2>
-      <p>Each version tested a clearer hierarchy. Later iterations tightened spacing, improved the tab layout, and simplified the volunteer flow.</p>
+      <h2><span data-lang="en">Iteration / Versions (v1–v7)</span><span data-lang="zh">迭代 / 版本（v1–v7）</span><span data-lang="tw">迭代 / 版本（v1–v7）</span><span data-lang="ja">イテレーション / バージョン（v1–v7）</span><span data-lang="fr">Itérations / versions (v1–v7)</span></h2>
+      <p data-lang="en">Each version tested a clearer hierarchy. Later iterations tightened spacing, improved the tab layout, and simplified the volunteer flow.</p>
+      <p data-lang="zh">每个版本都在尝试更清晰的层级。后期的迭代收紧了间距、改进了标签布局，并简化了志愿者报名流程。</p>
+      <p data-lang="tw">每個版本都在嘗試更清晰的層級。後期的迭代收緊了間距、改進了標籤佈局，並簡化了志工報名流程。</p>
+      <p data-lang="ja">どのバージョンでも、より明確な階層構造を検証しました。後半のイテレーションでは余白を詰め、タブのレイアウトを改善し、ボランティア登録の流れをシンプルにしました。</p>
+      <p data-lang="fr">Chaque version testait une hiérarchie plus claire. Les itérations suivantes ont resserré les espacements, amélioré la disposition des onglets et simplifié le parcours bénévole.</p>
 
-      <h2>Outcome + Next Steps</h2>
-      <p>The v4–v7 structure improved readability and reduced time-to-action for volunteers. Next steps include a lightweight event filter and a simple newsletter signup.</p>
+      <h2><span data-lang="en">Outcome + Next Steps</span><span data-lang="zh">成果与下一步</span><span data-lang="tw">成果與下一步</span><span data-lang="ja">成果と次のステップ</span><span data-lang="fr">Résultats et suites</span></h2>
+      <p data-lang="en">The v4–v7 structure improved readability and reduced time-to-action for volunteers. Next steps include a lightweight event filter and a simple newsletter signup.</p>
+      <p data-lang="zh">v4–v7 的结构提升了可读性，也缩短了志愿者完成操作的时间。下一步计划加入轻量的活动筛选和简单的邮件订阅。</p>
+      <p data-lang="tw">v4–v7 的結構提升了可讀性，也縮短了志工完成操作的時間。下一步計劃加入輕量的活動篩選和簡單的電子報訂閱。</p>
+      <p data-lang="ja">v4–v7 の構成で読みやすさが向上し、ボランティアが行動に移るまでの時間も短くなりました。次のステップは、軽量なイベント絞り込み機能とシンプルなニュースレター登録の追加です。</p>
+      <p data-lang="fr">La structure des v4–v7 a amélioré la lisibilité et accéléré le passage à l’action des bénévoles. Prochaines étapes : un filtre d’événements léger et une inscription simple à la newsletter.</p>
     </div>
 
     <nav class="pager" aria-label="Case studies">
-      <a class="prev" href="snapchat.html"><small>&larr; Previous</small><b>Snapchat Data Transparency</b></a>
-      <a class="next" href="moodpeek.html"><small>Next &rarr;</small><b>MoodPeek Pro</b></a>
+      <a class="prev" href="snapchat.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>Snapchat Data Transparency</b></a>
+      <a class="next" href="moodpeek.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>MoodPeek Pro</b></a>
     </nav>
     <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
   </div>
@@ -135,13 +215,24 @@
   var sel = document.getElementById('ver');
   var link = document.getElementById('openLink');
   var preview = document.getElementById('previewBox');
+  var TXT = {
+    en: { open: 'Open {v}', live: 'Live preview \u2014 GSGC {v}', fin: ' (Final)' },
+    zh: { open: '打开 {v}', live: '实时预览 \u2014 GSGC {v}', fin: '（最终版）' },
+    tw: { open: '開啟 {v}', live: '即時預覽 \u2014 GSGC {v}', fin: '（最終版）' },
+    ja: { open: '{v} を開く', live: 'ライブプレビュー \u2014 GSGC {v}', fin: '（最終版）' },
+    fr: { open: 'Ouvrir {v}', live: 'Aperçu en direct \u2014 GSGC {v}', fin: ' (version finale)' }
+  };
+  function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
   function buildHref(v) { return '../GSGC/' + v + '/index.html'; }
-  sel.addEventListener('change', function () {
-    var href = buildHref(this.value);
-    link.href = href; link.textContent = 'Open ' + this.value.toUpperCase();
-    var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = href;
-    var label = preview.querySelector('.preview-label'); if (label) label.textContent = 'Live preview \u2014 GSGC ' + this.value.toUpperCase();
-  });
+  function render(loadFrame) {
+    var t = TXT[lang()], v = sel.value.toUpperCase(), href = buildHref(sel.value);
+    link.href = href; link.textContent = t.open.replace('{v}', v);
+    var label = preview && preview.querySelector('.preview-label');
+    if (label) label.textContent = t.live.replace('{v}', v) + (sel.selectedIndex === sel.options.length - 1 ? t.fin : '');
+    if (loadFrame && preview) { var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = href; }
+  }
+  sel.addEventListener('change', function () { render(true); });
+  window.demoRefresh = function () { render(false); };
 })();
 
 /* ===== Theme Toggle ===== */
@@ -155,7 +246,7 @@
 })();
 /* ===== i18n ===== */
 var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
-function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});try{localStorage.setItem('siteLang',l);}catch(_){}}
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>

@@ -8,6 +8,14 @@
   <link rel="icon" href="../favicon.ico"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+  </style>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
@@ -38,18 +46,22 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow">Case Study · UX/UI · 2025</span>
-      <h1>Learn Code — Building Pathways to Programming</h1>
-      <p>A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability. Fully responsive, no custom scroll regions.</p>
+      <span class="eyebrow"><span data-lang="en">Case Study · UX/UI · 2025</span><span data-lang="zh">案例研究 · UX/UI · 2025</span><span data-lang="tw">案例研究 · UX/UI · 2025</span><span data-lang="ja">ケーススタディ · UX/UI · 2025</span><span data-lang="fr">Étude de cas · UX/UI · 2025</span></span>
+      <h1><span data-lang="en">Learn Code — Building Pathways to Programming</span><span data-lang="zh">Learn Code — 铺一条通往编程的路</span><span data-lang="tw">Learn Code — 鋪一條通往程式設計的路</span><span data-lang="ja">Learn Code — プログラミングへの道筋をつくる</span><span data-lang="fr">Learn Code — tracer des chemins vers la programmation</span></h1>
+      <p data-lang="en">A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability. Fully responsive, no custom scroll regions.</p>
+      <p data-lang="zh">一款在浏览器里运行的学习应用，探索初学者如何浏览课程、如何接着上次的进度学下去。层级式导航配合统一的卡片，让内容更易快速浏览。完全响应式，没有自定义滚动区域。</p>
+      <p data-lang="tw">一款在瀏覽器裡執行的學習應用，探索初學者如何瀏覽課程、如何接著上次的進度學下去。層級式導覽配合統一的卡片，讓內容更易快速瀏覽。完全響應式，沒有自訂捲動區域。</p>
+      <p data-lang="ja">初心者がレッスンをどう探し、どう続きから再開するかを探るブラウザベースの学習アプリ。階層型ナビゲーションと統一されたカードで流し読みしやすくしています。完全レスポンシブで、独自のスクロール領域はありません。</p>
+      <p data-lang="fr">Une application d’apprentissage dans le navigateur qui explore comment les débutants parcourent et reprennent leurs leçons. Une navigation hiérarchique et des cartes cohérentes facilitent la lecture rapide. Entièrement responsive, sans zone de défilement personnalisée.</p>
       <div class="meta">
-        <span><strong>Role</strong> UX/UI design, prototyping</span>
-        <span><strong>Methods</strong> User interviews, iterative wireframing</span>
-        <span><strong>Outcome</strong> 7 versions (v10–v17), improved nav clarity</span>
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></strong> <span data-lang="en">UX/UI design, prototyping</span><span data-lang="zh">UX/UI 设计、原型制作</span><span data-lang="tw">UX/UI 設計、原型製作</span><span data-lang="ja">UX/UI デザイン、プロトタイピング</span><span data-lang="fr">Design UX/UI, prototypage</span></span>
+        <span><strong><span data-lang="en">Methods</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">手法</span><span data-lang="fr">Méthodes</span></strong> <span data-lang="en">User interviews, iterative wireframing</span><span data-lang="zh">用户访谈、迭代线框图</span><span data-lang="tw">使用者訪談、迭代線框圖</span><span data-lang="ja">ユーザーインタビュー、反復的なワイヤーフレーム作成</span><span data-lang="fr">Entretiens utilisateurs, wireframes itératifs</span></span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></strong> <span data-lang="en">7 versions (v10–v17), improved nav clarity</span><span data-lang="zh">7 个版本（v10–v17），导航更清晰</span><span data-lang="tw">7 個版本（v10–v17），導覽更清晰</span><span data-lang="ja">7 バージョン（v10–v17）、ナビゲーションがより明確に</span><span data-lang="fr">7 versions (v10–v17), navigation plus claire</span></span>
       </div>
     </div>
 
     <div class="version-bar">
-      <label for="ver">Version:</label>
+      <label for="ver"><span data-lang="en">Version:</span><span data-lang="zh">版本：</span><span data-lang="tw">版本：</span><span data-lang="ja">バージョン：</span><span data-lang="fr">Version :</span></label>
       <select id="ver">
         <option value="v10">v10</option>
         <option value="v11">v11</option>
@@ -57,26 +69,26 @@
         <option value="v13">v13</option>
         <option value="v14">v14</option>
         <option value="v16">v16</option>
-        <option value="v17" selected>v17 — Final</option>
+        <option value="v17" selected data-t-zh="v17 — 最终版" data-t-tw="v17 — 最終版" data-t-ja="v17 — 最終版" data-t-fr="v17 — Version finale">v17 — Final</option>
       </select>
       <a class="btn" id="openLink" href="../DESN18654V17/index.html" target="_blank" rel="noopener">Open V17</a>
-      <a class="btn btn-alt" id="appStoreLink" href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store Page</a>
+      <a class="btn btn-alt" id="appStoreLink" href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener"><span data-lang="en">App Store Page</span><span data-lang="zh">App Store 页面</span><span data-lang="tw">App Store 頁面</span><span data-lang="ja">App Store ページ</span><span data-lang="fr">Page App Store</span></a>
     </div>
 
     <div class="content">
       <div class="tldr">
-        <h2>At a glance</h2>
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
         <dl>
-          <div><dt>Problem</dt><dd>Beginners struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</dd></div>
-          <div><dt>Role</dt><dd>UX/UI design, prototyping, iterative wireframing</dd></div>
-          <div><dt>Tools</dt><dd>HTML/CSS, user testing, responsive design</dd></div>
-          <div><dt>Timeline</dt><dd>7 versions (v10–v17, skipping v15) with iterative refinement</dd></div>
-          <div><dt>Key Decisions</dt><dd>Card-based interface, hierarchical nav (Home → Course → Lesson), single-column mobile layout</dd></div>
-          <div><dt>Result</dt><dd>Improved confidence in navigation and lesson discovery; clearer pathways through content.</dd></div>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">Beginners struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</span><span data-lang="zh">初学者常被复杂的导航、不清晰的课程结构和不统一的视觉样式困扰。</span><span data-lang="tw">初學者常被複雜的導覽、不清晰的課程結構和不統一的視覺樣式困擾。</span><span data-lang="ja">初心者は、複雑なナビゲーション、わかりにくいレッスン構成、統一感のない見た目に苦労しています。</span><span data-lang="fr">Les débutants se heurtent à une navigation complexe, à des leçons mal structurées et à des repères visuels incohérents.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">UX/UI design, prototyping, iterative wireframing</span><span data-lang="zh">UX/UI 设计、原型制作、迭代线框图</span><span data-lang="tw">UX/UI 設計、原型製作、迭代線框圖</span><span data-lang="ja">UX/UI デザイン、プロトタイピング、反復的なワイヤーフレーム作成</span><span data-lang="fr">Design UX/UI, prototypage, wireframes itératifs</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></dt><dd><span data-lang="en">HTML/CSS, user testing, responsive design</span><span data-lang="zh">HTML/CSS、用户测试、响应式设计</span><span data-lang="tw">HTML/CSS、使用者測試、響應式設計</span><span data-lang="ja">HTML/CSS、ユーザーテスト、レスポンシブデザイン</span><span data-lang="fr">HTML/CSS, tests utilisateurs, design responsive</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="tw">時程</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">7 versions (v10–v17, skipping v15) with iterative refinement</span><span data-lang="zh">7 个版本（v10–v17，跳过 v15），持续迭代打磨</span><span data-lang="tw">7 個版本（v10–v17，跳過 v15），持續迭代打磨</span><span data-lang="ja">7 バージョン（v10–v17、v15 は欠番）で反復的に改善</span><span data-lang="fr">7 versions (v10–v17, sans v15) affinées par itérations</span></dd></div>
+          <div><dt><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></dt><dd><span data-lang="en">Card-based interface, hierarchical nav (Home → Course → Lesson), single-column mobile layout</span><span data-lang="zh">卡片式界面、层级导航（首页 → 课程 → 课时）、单栏手机布局</span><span data-lang="tw">卡片式介面、層級導覽（首頁 → 課程 → 單元）、單欄手機佈局</span><span data-lang="ja">カード型インターフェース、階層型ナビゲーション（ホーム → コース → レッスン）、1 カラムのモバイルレイアウト</span><span data-lang="fr">Interface en cartes, navigation hiérarchique (Accueil → Cours → Leçon), mise en page mobile sur une colonne</span></dd></div>
+          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">Improved confidence in navigation and lesson discovery; clearer pathways through content.</span><span data-lang="zh">用户在导航和寻找课时时更有把握，学习路径也更清晰。</span><span data-lang="tw">使用者在導覽和尋找單元時更有把握，學習路徑也更清晰。</span><span data-lang="ja">ナビゲーションやレッスン探しに自信が持てるようになり、コンテンツをたどる道筋も明確になりました。</span><span data-lang="fr">Plus d’assurance pour naviguer et trouver des leçons ; des parcours plus clairs dans le contenu.</span></dd></div>
         </dl>
       </div>
 
-      <img class="cover-img" src="../image/learn-code-app.png" alt="Learn Code App interface preview">
+      <img class="cover-img" src="../image/learn-code-app.png" alt="Learn Code App interface preview" data-alt-zh="Learn Code 应用界面预览" data-alt-tw="Learn Code 應用介面預覽" data-alt-ja="Learn Code アプリの画面プレビュー" data-alt-fr="Aperçu de l’interface de l’application Learn Code">
 
       <div class="preview" id="previewBox">
         <iframe src="../DESN18654V17/index.html" loading="lazy" title="Learn Code preview" sandbox="allow-same-origin allow-scripts"></iframe>
@@ -84,51 +96,151 @@
       </div>
 
 
-      <h2>Problem / Context</h2>
-      <p>Beginners learning to code often struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns. This project explored how to create an intuitive learning environment that reduces cognitive load while maintaining clear pathways through programming content.</p>
+      <h2><span data-lang="en">Problem / Context</span><span data-lang="zh">问题 / 背景</span><span data-lang="tw">問題 / 背景</span><span data-lang="ja">課題 / 背景</span><span data-lang="fr">Problème / Contexte</span></h2>
+      <p data-lang="en">Beginners learning to code often struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns. This project explored how to create an intuitive learning environment that reduces cognitive load while maintaining clear pathways through programming content.</p>
+      <p data-lang="zh">刚开始学编程的人，常常被复杂的导航、不清晰的课程结构和不统一的视觉样式困扰。这个项目探索的是：如何打造一个直观的学习环境，在降低认知负担的同时，让学习者始终清楚自己在哪、下一步去哪。</p>
+      <p data-lang="tw">剛開始學程式設計的人，常常被複雜的導覽、不清晰的課程結構和不統一的視覺樣式困擾。這個專案探索的是：如何打造一個直觀的學習環境，在降低認知負擔的同時，讓學習者始終清楚自己在哪、下一步去哪。</p>
+      <p data-lang="ja">プログラミングを学び始めた人は、複雑なナビゲーション、わかりにくいレッスン構成、統一感のない見た目に苦労しがちです。このプロジェクトでは、認知的な負担を減らしながら、プログラミングの内容をたどる道筋をはっきり保てる、直感的な学習環境のつくり方を探りました。</p>
+      <p data-lang="fr">Les débutants en programmation se heurtent souvent à une navigation complexe, à des leçons mal structurées et à des repères visuels incohérents. Ce projet explore comment créer un environnement d’apprentissage intuitif qui allège la charge cognitive tout en gardant des parcours clairs dans le contenu.</p>
 
-      <h2>Audience</h2>
-      <p>Adults and young learners new to programming, seeking structured lessons with clear progress tracking and easy navigation between topics and skill levels.</p>
+      <h2><span data-lang="en">Audience</span><span data-lang="zh">目标用户</span><span data-lang="tw">目標使用者</span><span data-lang="ja">対象ユーザー</span><span data-lang="fr">Public</span></h2>
+      <p data-lang="en">Adults and young learners new to programming, seeking structured lessons with clear progress tracking and easy navigation between topics and skill levels.</p>
+      <p data-lang="zh">刚接触编程的成年人和青少年——他们希望课程有条理、进度清晰可见，并且能在不同主题和难度之间轻松切换。</p>
+      <p data-lang="tw">剛接觸程式設計的成年人和青少年——他們希望課程有條理、進度清晰可見，並且能在不同主題和難度之間輕鬆切換。</p>
+      <p data-lang="ja">プログラミングを始めたばかりの大人や若い学習者。体系立ったレッスン、わかりやすい進捗表示、トピックやレベル間の移動のしやすさを求めています。</p>
+      <p data-lang="fr">Adultes et jeunes qui débutent en programmation, en quête de leçons structurées, d’un suivi de progression clair et d’une navigation simple entre sujets et niveaux.</p>
 
-      <h2>Goals</h2>
-      <ul>
+      <h2><span data-lang="en">Goals</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目標</span><span data-lang="fr">Objectifs</span></h2>
+      <ul data-lang="en">
         <li>Create a clear visual hierarchy that distinguishes courses, lessons, and content types.</li>
         <li>Enable quick scanning and resumption of lessons across devices.</li>
         <li>Maintain consistency in navigation patterns and card-based layouts.</li>
         <li>Eliminate scroll-jacking and custom scroll regions for better accessibility.</li>
         <li>Support seamless mobile-first responsive behavior.</li>
       </ul>
+      <ul data-lang="zh">
+        <li>建立清晰的视觉层级，区分课程、课时和不同类型的内容。</li>
+        <li>在不同设备上都能快速浏览课时，并接着上次的进度学。</li>
+        <li>保持导航方式和卡片布局的一致性。</li>
+        <li>去掉滚动劫持和自定义滚动区域，提升无障碍体验。</li>
+        <li>支持流畅的移动优先响应式表现。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li>建立清晰的視覺層級，區分課程、單元和不同類型的內容。</li>
+        <li>在不同裝置上都能快速瀏覽單元，並接著上次的進度學。</li>
+        <li>保持導覽方式和卡片佈局的一致性。</li>
+        <li>去掉捲動劫持和自訂捲動區域，提升無障礙體驗。</li>
+        <li>支援流暢的行動優先響應式表現。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li>コース、レッスン、コンテンツの種類を見分けられる明確な視覚的階層をつくる。</li>
+        <li>どの端末でもレッスンをすばやく見渡し、続きから再開できるようにする。</li>
+        <li>ナビゲーションのパターンとカードレイアウトの一貫性を保つ。</li>
+        <li>アクセシビリティ向上のため、スクロールジャックや独自のスクロール領域をなくす。</li>
+        <li>モバイルファーストでなめらかなレスポンシブ表示に対応する。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li>Créer une hiérarchie visuelle claire qui distingue cours, leçons et types de contenu.</li>
+        <li>Permettre de parcourir et reprendre rapidement les leçons sur tous les appareils.</li>
+        <li>Garder des schémas de navigation et des mises en page en cartes cohérents.</li>
+        <li>Supprimer le détournement du défilement et les zones de défilement personnalisées, pour une meilleure accessibilité.</li>
+        <li>Assurer un comportement responsive mobile-first sans accroc.</li>
+      </ul>
 
-      <h2>Constraints</h2>
-      <p>No backend or authentication system; fully static HTML/CSS prototype. All interactions must work without JavaScript frameworks, and navigation must feel natural on touch devices.</p>
+      <h2><span data-lang="en">Constraints</span><span data-lang="zh">限制条件</span><span data-lang="tw">限制條件</span><span data-lang="ja">制約</span><span data-lang="fr">Contraintes</span></h2>
+      <p data-lang="en">No backend or authentication system; fully static HTML/CSS prototype. All interactions must work without JavaScript frameworks, and navigation must feel natural on touch devices.</p>
+      <p data-lang="zh">没有后端，也没有登录系统；完全是静态的 HTML/CSS 原型。所有交互都必须在不依赖 JavaScript 框架的情况下运行，导航在触屏设备上也要用起来自然。</p>
+      <p data-lang="tw">沒有後端，也沒有登入系統；完全是靜態的 HTML/CSS 原型。所有互動都必須在不依賴 JavaScript 框架的情況下執行，導覽在觸控裝置上也要用起來自然。</p>
+      <p data-lang="ja">バックエンドや認証の仕組みはなく、完全に静的な HTML/CSS のプロトタイプです。すべてのインタラクションは JavaScript フレームワークなしで動き、タッチ端末でも自然に操作できるナビゲーションである必要がありました。</p>
+      <p data-lang="fr">Ni back-end ni authentification : un prototype HTML/CSS entièrement statique. Toutes les interactions devaient fonctionner sans framework JavaScript, et la navigation devait paraître naturelle sur écran tactile.</p>
 
-      <h2>Design Decisions</h2>
-      <ul>
+      <h2><span data-lang="en">Design Decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">設計上の判断</span><span data-lang="fr">Choix de conception</span></h2>
+      <ul data-lang="en">
         <li>Card-based interface with consistent spacing and visual weight across all screens.</li>
         <li>Hierarchical navigation: Home → Course → Lesson → Content, with clear back/up patterns.</li>
         <li>High-contrast typography and reduced color palette for focus and readability.</li>
         <li>Single-column mobile layout that stacks naturally without breakpoint complexity.</li>
         <li>Progress indicators and breadcrumb patterns to maintain context.</li>
       </ul>
+      <ul data-lang="zh">
+        <li>卡片式界面，所有页面的间距和视觉分量保持一致。</li>
+        <li>层级导航：首页 → 课程 → 课时 → 内容，返回和回到上一级的方式都很清楚。</li>
+        <li>高对比度的字体排版和精简的配色，帮助集中注意力、提升可读性。</li>
+        <li>单栏手机布局，内容自然堆叠，不需要复杂的断点。</li>
+        <li>用进度指示和面包屑导航帮助用户保持方位感。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li>卡片式介面，所有頁面的間距和視覺分量保持一致。</li>
+        <li>層級導覽：首頁 → 課程 → 單元 → 內容，返回和回到上一級的方式都很清楚。</li>
+        <li>高對比度的字型排版和精簡的配色，幫助集中注意力、提升可讀性。</li>
+        <li>單欄手機佈局，內容自然堆疊，不需要複雜的斷點。</li>
+        <li>用進度指示和麵包屑導覽幫助使用者保持方位感。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li>すべての画面で余白と視覚的な重みをそろえたカード型インターフェース。</li>
+        <li>階層型ナビゲーション：ホーム → コース → レッスン → コンテンツ。「戻る」「上の階層へ」の操作もわかりやすく。</li>
+        <li>集中しやすく読みやすいよう、高コントラストのタイポグラフィと色数を絞ったパレットを採用。</li>
+        <li>複雑なブレークポイントなしで自然に積み重なる、1 カラムのモバイルレイアウト。</li>
+        <li>進捗表示とパンくずリストで、いまどこにいるかを見失わないようにする。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li>Interface en cartes, avec des espacements et un poids visuel cohérents sur tous les écrans.</li>
+        <li>Navigation hiérarchique : Accueil → Cours → Leçon → Contenu, avec des retours clairs vers le niveau précédent.</li>
+        <li>Typographie à fort contraste et palette réduite pour la concentration et la lisibilité.</li>
+        <li>Mise en page mobile sur une colonne qui s’empile naturellement, sans points de rupture compliqués.</li>
+        <li>Indicateurs de progression et fil d’Ariane pour garder le contexte.</li>
+      </ul>
 
-      <h2>Iteration / Versions (v10–v17)</h2>
-      <p>Early versions (v10–v12) tested different navigation models and card sizes. Mid iterations (v13–v14, v16) refined spacing, typography scale, and interaction feedback. V17 is the final version with tightened mobile responsiveness and polished card hierarchy. A separate <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store presentation page</a> was created as a showcase for v17.</p>
+      <h2><span data-lang="en">Iteration / Versions (v10–v17)</span><span data-lang="zh">迭代 / 版本（v10–v17）</span><span data-lang="tw">迭代 / 版本（v10–v17）</span><span data-lang="ja">イテレーション / バージョン（v10–v17）</span><span data-lang="fr">Itérations / versions (v10–v17)</span></h2>
+      <p data-lang="en">Early versions (v10–v12) tested different navigation models and card sizes. Mid iterations (v13–v14, v16) refined spacing, typography scale, and interaction feedback. V17 is the final version with tightened mobile responsiveness and polished card hierarchy. A separate <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store presentation page</a> was created as a showcase for v17.</p>
+      <p data-lang="zh">早期版本（v10–v12）测试了不同的导航模型和卡片尺寸。中期迭代（v13–v14、v16）打磨了间距、字号层级和交互反馈。V17 是最终版，进一步收紧了手机上的响应式表现，并完善了卡片层级。另外还为 v17 单独制作了一个 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 展示页</a>。</p>
+      <p data-lang="tw">早期版本（v10–v12）測試了不同的導覽模型和卡片尺寸。中期迭代（v13–v14、v16）打磨了間距、字級層級和互動回饋。V17 是最終版，進一步收緊了手機上的響應式表現，並完善了卡片層級。另外還為 v17 單獨製作了一個 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 展示頁</a>。</p>
+      <p data-lang="ja">初期のバージョン（v10–v12）では、さまざまなナビゲーションモデルとカードサイズを検証しました。中盤のイテレーション（v13–v14、v16）では、余白、文字サイズの階層、インタラクションのフィードバックを調整。V17 は最終版で、モバイルでのレスポンシブ表示を引き締め、カードの階層を仕上げました。v17 を紹介するために、別途 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 紹介ページ</a>も制作しました。</p>
+      <p data-lang="fr">Les premières versions (v10–v12) testaient différents modèles de navigation et tailles de cartes. Les itérations intermédiaires (v13–v14, v16) ont affiné les espacements, l’échelle typographique et les retours d’interaction. La V17 est la version finale, avec un responsive mobile resserré et une hiérarchie de cartes peaufinée. Une <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">page de présentation App Store</a> distincte a été créée pour mettre la v17 en valeur.</p>
 
-      <h2>Testing &amp; Validation</h2>
-      <ul>
+      <h2><span data-lang="en">Testing &amp; Validation</span><span data-lang="zh">测试与验证</span><span data-lang="tw">測試與驗證</span><span data-lang="ja">テストと検証</span><span data-lang="fr">Tests et validation</span></h2>
+      <ul data-lang="en">
         <li>Tested with beginner users unfamiliar with coding platforms.</li>
         <li>Observed navigation patterns: users preferred visible "back" over hamburger menus.</li>
         <li>Verified touch target sizes and scroll behavior on mobile devices.</li>
         <li>Confirmed that lesson cards supported fast scanning and selection.</li>
       </ul>
+      <ul data-lang="zh">
+        <li>邀请不熟悉编程平台的初学者参与测试。</li>
+        <li>观察导航习惯：比起汉堡菜单，用户更喜欢看得见的“返回”。</li>
+        <li>在手机上检查了点击区域大小和滚动表现。</li>
+        <li>确认课时卡片便于快速浏览和选择。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li>邀請不熟悉程式設計平台的初學者參與測試。</li>
+        <li>觀察導覽習慣：比起漢堡選單，使用者更喜歡看得見的“返回”。</li>
+        <li>在手機上檢查了點選區域大小和捲動表現。</li>
+        <li>確認單元卡片便於快速瀏覽和選擇。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li>コーディング学習サービスに慣れていない初心者ユーザーでテスト。</li>
+        <li>ナビゲーションの使い方を観察：ユーザーはハンバーガーメニューより、目に見える「戻る」を好みました。</li>
+        <li>モバイル端末でタップ領域のサイズとスクロールの挙動を確認。</li>
+        <li>レッスンカードですばやく見渡して選べることを確認。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li>Tests avec des débutants peu familiers des plateformes de code.</li>
+        <li>Observation de la navigation : les utilisateurs préféraient un bouton « retour » visible au menu hamburger.</li>
+        <li>Vérification des zones tactiles et du défilement sur mobile.</li>
+        <li>Confirmation que les cartes de leçon permettent de parcourir et de choisir rapidement.</li>
+      </ul>
 
-      <h2>Outcome + Next Steps</h2>
-      <p>The v17 prototype demonstrates a scalable, accessible learning structure. Feedback indicated improved confidence in navigation and lesson discovery. Future work includes adding search/filter functionality, user accounts for progress tracking, and interactive code editors within lessons.</p>
+      <h2><span data-lang="en">Outcome + Next Steps</span><span data-lang="zh">成果与下一步</span><span data-lang="tw">成果與下一步</span><span data-lang="ja">成果と次のステップ</span><span data-lang="fr">Résultats et suites</span></h2>
+      <p data-lang="en">The v17 prototype demonstrates a scalable, accessible learning structure. Feedback indicated improved confidence in navigation and lesson discovery. Future work includes adding search/filter functionality, user accounts for progress tracking, and interactive code editors within lessons.</p>
+      <p data-lang="zh">v17 原型展示了一套可扩展、无障碍的学习结构。反馈显示，用户在导航和寻找课时时更有把握了。后续计划加入搜索 / 筛选功能、用于记录进度的用户账户，以及嵌在课时里的交互式代码编辑器。</p>
+      <p data-lang="tw">v17 原型展示了一套可擴充、無障礙的學習結構。回饋顯示，使用者在導覽和尋找單元時更有把握了。後續計劃加入搜尋 / 篩選功能、用於記錄進度的使用者帳戶，以及嵌在單元裡的互動式程式碼編輯器。</p>
+      <p data-lang="ja">v17 のプロトタイプは、拡張性がありアクセシブルな学習構造を示しています。フィードバックからは、ナビゲーションやレッスン探しへの自信が高まったことがわかりました。今後は、検索・絞り込み機能、進捗を記録するユーザーアカウント、レッスン内のインタラクティブなコードエディタを追加する予定です。</p>
+      <p data-lang="fr">Le prototype v17 démontre une structure d’apprentissage évolutive et accessible. Les retours montrent plus d’assurance pour naviguer et trouver des leçons. Suites prévues : recherche et filtres, comptes utilisateurs pour suivre sa progression et éditeurs de code interactifs dans les leçons.</p>
     </div>
 
     <nav class="pager" aria-label="Case studies">
-      <a class="prev" href="nightmare-escape.html"><small>&larr; Previous</small><b>梦魇逃亡 Nightmare Escape</b></a>
-      <a class="next" href="snapchat.html"><small>Next &rarr;</small><b>Snapchat Data Transparency</b></a>
+      <a class="prev" href="nightmare-escape.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>梦魇逃亡 Nightmare Escape</b></a>
+      <a class="next" href="snapchat.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>Snapchat Data Transparency</b></a>
     </nav>
     <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
   </div>
@@ -146,13 +258,24 @@
   var sel = document.getElementById('ver');
   var link = document.getElementById('openLink');
   var preview = document.getElementById('previewBox');
+  var TXT = {
+    en: { open: 'Open {v}', live: 'Live preview \u2014 Learn Code {v}', fin: ' (Final)' },
+    zh: { open: '打开 {v}', live: '实时预览 \u2014 Learn Code {v}', fin: '（最终版）' },
+    tw: { open: '開啟 {v}', live: '即時預覽 \u2014 Learn Code {v}', fin: '（最終版）' },
+    ja: { open: '{v} を開く', live: 'ライブプレビュー \u2014 Learn Code {v}', fin: '（最終版）' },
+    fr: { open: 'Ouvrir {v}', live: 'Aperçu en direct \u2014 Learn Code {v}', fin: ' (version finale)' }
+  };
+  function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
   function buildHref(v) { return '../DESN18654' + v.toUpperCase() + '/index.html'; }
-  sel.addEventListener('change', function () {
-    var href = buildHref(this.value);
-    link.href = href; link.textContent = 'Open ' + this.value.toUpperCase();
-    var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = href;
-    var label = preview.querySelector('.preview-label'); if (label) label.textContent = 'Live preview \u2014 Learn Code ' + this.value.toUpperCase();
-  });
+  function render(loadFrame) {
+    var t = TXT[lang()], v = sel.value.toUpperCase(), href = buildHref(sel.value);
+    link.href = href; link.textContent = t.open.replace('{v}', v);
+    var label = preview && preview.querySelector('.preview-label');
+    if (label) label.textContent = t.live.replace('{v}', v) + (sel.selectedIndex === sel.options.length - 1 ? t.fin : '');
+    if (loadFrame && preview) { var iframe = preview.querySelector('iframe'); if (iframe) iframe.src = href; }
+  }
+  sel.addEventListener('change', function () { render(true); });
+  window.demoRefresh = function () { render(false); };
 })();
 
 /* ===== Theme Toggle ===== */
@@ -166,7 +289,7 @@
 })();
 /* ===== i18n ===== */
 var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
-function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});try{localStorage.setItem('siteLang',l);}catch(_){}}
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>
