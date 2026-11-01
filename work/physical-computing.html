@@ -34,6 +34,9 @@
     html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
     html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
     html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    /* DE: a [data-lang="de"] twin replaces the English one; pages without German copy keep English */
+    html:not([lang="de"]) [data-lang="de"]{display:none!important}
+    html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
     .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
   </style>
 </head>
@@ -56,6 +59,7 @@
           <option value="zh-TW">繁中</option>
           <option value="ja">日本語</option>
           <option value="fr">FR</option>
+          <option value="de">DE</option>
         </select>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
       </div>
@@ -330,7 +334,8 @@
     zh: { open: '打开 {v}' },
     tw: { open: '開啟 {v}' },
     ja: { open: '{v} を開く' },
-    fr: { open: 'Ouvrir {v}' }
+    fr: { open: 'Ouvrir {v}' },
+    de: { open: '{v} öffnen' }
   };
   function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
   function buildHref(v) { return { p1: '../DESN30146P1/index.html', p2: '../DESN30146P2/index.html', p3: '../DESN30146P3/index.html' }[v]; }
@@ -378,8 +383,8 @@ if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)')
   try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
 })();
 /* ===== i18n ===== */
-var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'}};
-function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'},de:{'work.back':'← Alle Arbeiten','nav.work':'Arbeiten','nav.music':'Musik','nav.about':'Über mich','nav.contact':'Kontakt'}};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr',de:'de'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>

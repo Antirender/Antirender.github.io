@@ -14,6 +14,9 @@
     html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
     html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
     html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    /* DE: a [data-lang="de"] twin replaces the English one; pages without German copy keep English */
+    html:not([lang="de"]) [data-lang="de"]{display:none!important}
+    html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
     .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
 
     /* Hero video */
@@ -242,6 +245,7 @@
           <option value="zh-TW">繁中</option>
           <option value="ja">日本語</option>
           <option value="fr">FR</option>
+          <option value="de">DE</option>
         </select>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
       </div>
@@ -978,7 +982,7 @@
     </div>
 
     <nav class="pager" aria-label="Case studies">
-      <a class="prev" href="interactive-prototype.html"><small>&larr; Previous</small><b>Media, Motion &amp; the Body</b></a>
+      <a class="prev" href="typography.html"><small>&larr; Previous</small><b>Design &amp; Typography</b></a>
       <a class="next" href="nightmare-hub.html"><small>Next &rarr;</small><b>Trafalgar Labyrinth</b></a>
     </nav>
     <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
@@ -1693,13 +1697,13 @@
   try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
 })();
 /* ===== i18n ===== */
-var T={en:{'work.back':'← All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音乐','nav.about':'关于','nav.contact':'联系'},'zh-TW':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音樂','nav.about':'關於','nav.contact':'聯絡'},ja:{'work.back':'← すべての作品','nav.work':'作品','nav.music':'音楽','nav.about':'紹介','nav.contact':'連絡'},fr:{'work.back':'← Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'À propos','nav.contact':'Contact'}};
-var TITLE={en:'Solar + Storage for AI Compute — Yiyang Zhang',fr:'Solaire + stockage pour le calcul IA — Yiyang Zhang','zh-CN':'为 AI 算力供电的光伏储能电站 — Yiyang Zhang','zh-TW':'為 AI 算力供電的光伏儲能電站 — Yiyang Zhang',ja:'AI コンピューティングのための太陽光 + 蓄電 — Yiyang Zhang'};
+var T={en:{'work.back':'← All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音乐','nav.about':'关于','nav.contact':'联系'},'zh-TW':{'work.back':'← 全部作品','nav.work':'作品','nav.music':'音樂','nav.about':'關於','nav.contact':'聯絡'},ja:{'work.back':'← すべての作品','nav.work':'作品','nav.music':'音楽','nav.about':'紹介','nav.contact':'連絡'},fr:{'work.back':'← Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'À propos','nav.contact':'Contact'},de:{'work.back':'← Alle Arbeiten','nav.work':'Arbeiten','nav.music':'Musik','nav.about':'Über mich','nav.contact':'Kontakt'}};
+var TITLE={en:'Solar + Storage for AI Compute — Yiyang Zhang',fr:'Solaire + stockage pour le calcul IA — Yiyang Zhang','zh-CN':'为 AI 算力供电的光伏储能电站 — Yiyang Zhang','zh-TW':'為 AI 算力供電的光伏儲能電站 — Yiyang Zhang',ja:'AI コンピューティングのための太陽光 + 蓄電 — Yiyang Zhang',de:'Solar + Speicher für KI-Rechenleistung — Yiyang Zhang'};
 function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});
   /* long-form copy follows the root lang: each language has its own blocks */
   document.documentElement.setAttribute('lang',l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l);
   document.title=TITLE[l]||TITLE.en;
-  document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr'}[l];im.alt=(ak&&im.getAttribute('data-alt-'+ak))||im.getAttribute('data-alt-en');});
+  document.querySelectorAll('img[data-alt-zh]').forEach(function(im){if(!im.hasAttribute('data-alt-en'))im.setAttribute('data-alt-en',im.alt);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr',de:'de'}[l];im.alt=(ak&&im.getAttribute('data-alt-'+ak))||im.getAttribute('data-alt-en');});
   if(window.solarRefresh)window.solarRefresh();
   try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});

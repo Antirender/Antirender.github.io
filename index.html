@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip-link" href="#main-content" data-i18n="skip">Skip to content</a>
 
   <header class="site-header" id="siteHeader">
     <div class="wrap header-inner">
@@ -31,8 +31,9 @@
           <option value="zh-TW">繁中</option>
           <option value="ja">日本語</option>
           <option value="fr">FR</option>
+          <option value="de">DE</option>
         </select>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" data-i18n-alt="theme">☾</button>
       </div>
     </div>
   </header>
@@ -61,10 +62,10 @@
 
       <!-- Persona figures: click to switch between Yiyang (designer) and Antirender (music) -->
       <div class="hero-figures" id="heroFigures">
-        <button class="hero-fig hero-fig-primary" id="heroFigPrimary" type="button" aria-label="Switch identity">
+        <button class="hero-fig hero-fig-primary" id="heroFigPrimary" type="button" aria-label="Switch identity" data-i18n-alt="hero.switch">
           <img src="image/outer.png" alt="Yiyang Zhang" id="heroImgPrimary">
         </button>
-        <button class="hero-fig hero-fig-secondary" id="heroFigSecondary" type="button" aria-label="Switch identity">
+        <button class="hero-fig hero-fig-secondary" id="heroFigSecondary" type="button" aria-label="Switch identity" data-i18n-alt="hero.switch">
           <img src="image/inner.png" alt="Antirender" id="heroImgSecondary">
         </button>
         <span class="hero-tip" data-i18n="hero.tip" style="position:absolute;bottom:-1.6rem;left:0;white-space:nowrap">Click a figure to switch persona</span>
@@ -86,10 +87,10 @@
 
       <div class="card-grid reveal">
         <a class="card" href="work/solar.html">
-          <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img src="work/solar/card-800.webp" alt="Aerial view of the solar arrays on a farmhouse roof" loading="lazy"></picture></div>
+          <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img src="work/solar/card-800.webp" alt="Aerial view of the solar arrays on a farmhouse roof" data-i18n-alt="alt.solar" loading="lazy"></picture></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">Energy systems · Interactive data analysis</span>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="card.solar.cat">Energy systems · Interactive data analysis</span>
             <h3><span data-i18n="card.solar.h">Solar + Storage for AI Compute</span> <span class="year">(2024–26)</span></h3>
             <p data-i18n="card.solar.desc">A self-built 49 kWp / 180 kWh station on a rented farmhouse roof — powering AI pretraining and inference, sharing the surplus with the village, explored through interactive charts.</p>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
@@ -97,10 +98,10 @@
         </a>
 
         <a class="card" href="work/moodpeek.html">
-          <div class="card-media"><img src="image/moodpeek-preview.png" alt="MoodPeek Pro — calendar-first mood logging dashboard" loading="lazy"></div>
+          <div class="card-media"><img src="image/moodpeek-preview.png" alt="MoodPeek Pro — calendar-first mood logging dashboard" data-i18n-alt="alt.mood" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">Full-stack prototype · React · JWT</span>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="card.mood.cat">Full-stack prototype · React · JWT</span>
             <h3>MoodPeek Pro <span class="year">(2026)</span></h3>
             <p data-i18n="card.mood.desc">Calendar-first mood logging built on Day → Week → Month continuity, with multi-user accounts and iCal export.</p>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
@@ -108,22 +109,22 @@
         </a>
 
         <a class="card" href="work/snapchat.html">
-          <div class="card-media"><img src="image/snapchat-data.png" alt="Snapchat data transparency prototype — Collect, Process, Share, Control flow" loading="lazy"></div>
+          <div class="card-media"><img src="image/snapchat-data.png" alt="Snapchat data transparency prototype — Collect, Process, Share, Control flow" data-i18n-alt="alt.snap" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">UX research · Privacy · Progressive disclosure</span>
-            <h3>Snapchat Data Transparency <span class="year">(2025)</span></h3>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="card.snap.cat">UX research · Privacy · Progressive disclosure</span>
+            <h3><span data-i18n="t.snap">Snapchat Data Transparency</span> <span class="year">(2025)</span></h3>
             <p data-i18n="card.snap.desc">Making data collection legible: an interactive Collect → Process → Share → Control flow, iterated across seven wireframe versions.</p>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
 
         <a class="card" href="work/physical-computing.html">
-          <div class="card-media"><img src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp — 3D-printed staircase scene glowing green" loading="lazy"></div>
+          <div class="card-media"><img src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp — 3D-printed staircase scene glowing green" data-i18n-alt="alt.pc" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">Physical computing · Arduino · 3D printing</span>
-            <h3>Comfort Lamp <span class="year">(2025)</span></h3>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="card.physical.cat">Physical computing · Arduino · 3D printing</span>
+            <h3><span data-i18n="t.lamp">Comfort Lamp</span> <span class="year">(2025)</span></h3>
             <p data-i18n="card.physical.desc">A sensor-driven ambient lamp inside a 3D-printed scene. Temperature, humidity and light map to colour states; a ProtoPie mobile UI replaces the LCD.</p>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
@@ -136,28 +137,28 @@
         <li>
           <a class="row" href="work/learn-code.html">
             <span class="row-cat" data-i18n="row.case">Case study</span>
-            <span class="row-main"><span class="row-title">Learn Code — card-based learning app</span><p data-i18n="card.learn.desc">How beginners browse and resume coding lessons — a card-based, hierarchical learning app refined through user interviews.</p></span>
+            <span class="row-main"><span class="row-title" data-i18n="row.learn.t">Learn Code — card-based learning app</span><p data-i18n="card.learn.desc">How beginners browse and resume coding lessons — a card-based, hierarchical learning app refined through user interviews.</p></span>
             <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
           </a>
         </li>
         <li>
           <a class="row" href="work.html#client">
             <span class="row-cat" data-i18n="row.client">Client work</span>
-            <span class="row-main"><span class="row-title">Pinzuo Design (Nanjing) — corporate website</span><p data-i18n="row.client.desc">A real commercial brief: designed and built in three iterations for a faculty-led art &amp; design studio.</p></span>
+            <span class="row-main"><span class="row-title" data-i18n="row.client.t">Pinzuo Design (Nanjing) — corporate website</span><p data-i18n="row.client.desc">A real commercial brief: designed and built in three iterations for a faculty-led art &amp; design studio.</p></span>
             <span class="row-side"><span class="year">2025–26</span><span>&rarr;</span></span>
           </a>
         </li>
         <li>
           <a class="row" href="work/gsgc.html">
             <span class="row-cat" data-i18n="row.case">Case study</span>
-            <span class="row-main"><span class="row-title">Green Sheridan Garden Club — community site</span><p data-i18n="row.gsgc.desc">Mobile-first campus site: site map, personas and three wireframe rounds before the build.</p></span>
+            <span class="row-main"><span class="row-title" data-i18n="row.gsgc.t">Green Sheridan Garden Club — community site</span><p data-i18n="row.gsgc.desc">Mobile-first campus site: site map, personas and three wireframe rounds before the build.</p></span>
             <span class="row-side"><span class="year">2026</span><span>&rarr;</span></span>
           </a>
         </li>
         <li>
           <a class="row" href="work/interactive-prototype.html">
             <span class="row-cat" data-i18n="row.case">Case study</span>
-            <span class="row-main"><span class="row-title">Media, Motion &amp; the Body — interactive prototypes</span><p data-i18n="row.interactive.desc">Copper-tape circuits, p5.js sound visualisations and a Makey Makey drum machine.</p></span>
+            <span class="row-main"><span class="row-title" data-i18n="row.interactive.t">Media, Motion &amp; the Body — interactive prototypes</span><p data-i18n="row.interactive.desc">Copper-tape circuits, p5.js sound visualisations and a Makey Makey drum machine.</p></span>
             <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
           </a>
         </li>
@@ -170,7 +171,7 @@
     <div class="wrap">
       <div class="section-head section-head--row reveal">
         <div>
-          <span class="eyebrow">Antirender · Original music</span>
+          <span class="eyebrow" data-i18n="music.eyebrow">Antirender · Original music</span>
           <h2><span data-i18n="music.h2">Music,</span> <span class="dim" data-i18n="music.h2b">on the side.</span></h2>
           <p class="lede" data-i18n="music.lede">36 tracks across 7 self-released albums since 2019 — written, arranged and mixed in Logic Pro and Ableton Live.</p>
         </div>
@@ -180,7 +181,7 @@
         <div class="track-card">
           <span class="eyebrow" data-i18n="music.track">Original track</span>
           <h3>I'm fine if You're Mine</h3>
-          <span class="card-cat">Single · 2026 · 3:19</span>
+          <span class="card-cat"><span data-i18n="music.single">Single</span> · 2026 · 3:19</span>
           <iframe class="spotify" src="https://open.spotify.com/embed/track/6RBtBXukNVfRCsReW6CzhI?utm_source=generator&theme=0" loading="lazy" title="Spotify — I'm fine if You're Mine" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
         <div class="track-card">
@@ -242,7 +243,7 @@
         <li><a href="work.html" data-i18n="nav.work">Work</a></li>
         <li><a href="music.html" data-i18n="nav.music">Music</a></li>
         <li><a href="about.html" data-i18n="nav.about">About</a></li>
-        <li><a href="intro.html">Intro</a></li>
+        <li><a href="intro.html" data-i18n="foot.intro">Intro</a></li>
         <li><a href="#top" data-i18n="foot.top">Back to top</a></li>
       </ul>
       <p class="footer-legal"><a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">苏ICP备2024103495号</a></p>
@@ -253,110 +254,392 @@
 window.PAGE_T = {
 en: {
 'hero.tip':'Click a figure to switch persona',
-'ar.eyebrow':'Antirender \u00b7 Original music \u00b7 Since 2019',
-'ar.h1':'Antirender.','ar.h1b':'Music, experiments, and the rest.',
-'ar.lede':'The alter ego for the creative work that doesn\u2019t fit in a case study: 36 original tracks across 7 self-released albums, written, arranged and mixed in Logic Pro and Ableton Live.',
-'ar.cta1':'Listen to the music','ar.cta2':'Open on Spotify \u2197'
+'ar.eyebrow':'Antirender · Original music · Since 2019',
+'ar.h1':'Antirender.',
+'ar.h1b':'Music, experiments, and the rest.',
+'ar.lede':'The alter ego for the creative work that doesn’t fit in a case study: 36 original tracks across 7 self-released albums, written, arranged and mixed in Logic Pro and Ableton Live.',
+'ar.cta1':'Listen to the music',
+'ar.cta2':'Open on Spotify ↗'
 },
 'zh-CN': {
-'hero.tip':'\u70b9\u51fb\u4eba\u50cf\u5207\u6362\u8eab\u4efd',
-'ar.eyebrow':'Antirender \u00b7 \u539f\u521b\u97f3\u4e50 \u00b7 2019 \u5e74\u81f3\u4eca',
-'ar.h1':'Antirender\u3002','ar.h1b':'\u97f3\u4e50\u3001\u5b9e\u9a8c\uff0c\u548c\u5176\u4ed6\u3002',
-'ar.lede':'\u4e3a\u90a3\u4e9b\u653e\u4e0d\u8fdb\u6848\u4f8b\u7814\u7a76\u7684\u521b\u4f5c\u800c\u8bbe\u7684\u5206\u8eab\uff1a7 \u5f20\u81ea\u53d1\u4e13\u8f91\u300136 \u9996\u539f\u521b\u66f2\u76ee\uff0c\u5728 Logic Pro \u548c Ableton Live \u4e2d\u4f5c\u66f2\u3001\u7f16\u66f2\u3001\u6df7\u97f3\u3002',
-'ar.cta1':'\u542c\u97f3\u4e50','ar.cta2':'\u5728 Spotify \u6253\u5f00 \u2197',
+'hero.tip':'点击人像切换身份',
+'ar.eyebrow':'Antirender · 原创音乐 · 2019 年至今',
+'ar.h1':'Antirender。',
+'ar.h1b':'音乐、实验，和其他。',
+'ar.lede':'为那些放不进案例研究的创作而设的分身：7 张自发专辑、36 首原创曲目，在 Logic Pro 和 Ableton Live 中作曲、编曲、混音。',
+'ar.cta1':'听音乐',
+'ar.cta2':'在 Spotify 打开 ↗',
 'hero.eyebrow':'交互设计 · 谢尔丹学院 · 安大略省奥克维尔',
-'hero.h1':'交互设计师。','hero.h1b':'先做原型，始终记录。',
+'hero.h1':'交互设计师。',
+'hero.h1b':'先做原型，始终记录。',
 'hero.lede':'我研究、原型化并测试数字产品和实体装置，然后把有效的做法写下来，让下一版更好。业余时间以 Antirender 的名义发布原创音乐。',
-'hero.cta1':'查看精选作品','hero.cta2':'下载简历 (PDF)',
-'work.eyebrow':'精选作品','work.h2':'四个项目，','work.h2b':'展示我的工作方式。',
+'hero.cta1':'查看精选作品',
+'hero.cta2':'下载简历 (PDF)',
+'work.eyebrow':'精选作品',
+'work.h2':'四个项目，',
+'work.h2b':'展示我的工作方式。',
 'work.lede':'每个都是完整的案例研究：问题、版本、测试，以及因此改变了什么。',
-'work.all':'全部作品 →','card.read':'阅读案例 →',
+'work.all':'全部作品 →',
+'card.read':'阅读案例 →',
 'card.learn.desc':'初学者如何浏览和继续编程课程 — 一款基于卡片的层级式学习应用，通过用户访谈不断打磨。',
 'card.snap.desc':'让数据收集变得可读：收集 → 处理 → 共享 → 控制的交互流程，经历七个线框版本。',
 'card.physical.desc':'一盏内置于 3D 打印场景中的传感器氛围灯。温湿度和光照映射为颜色状态；ProtoPie 手机界面取代 LCD。',
-'card.solar.h':'为 AI 算力供电的光伏储能电站','card.solar.desc':'租用农家屋顶自建的 49 kWp / 180 kWh 电站：给 AI 预训练和推理供电，余电与村里共享，并用交互图表分析运行数据。',
+'card.solar.h':'为 AI 算力供电的光伏储能电站',
+'card.solar.desc':'租用农家屋顶自建的 49 kWp / 180 kWh 电站：给 AI 预训练和推理供电，余电与村里共享，并用交互图表分析运行数据。',
 'card.mood.desc':'以日历为中心的情绪记录，建立在日 → 周 → 月的连续性上，支持多用户账户和 iCal 导出。',
-'row.client':'客户项目','row.case':'案例研究',
+'row.client':'客户项目',
+'row.case':'案例研究',
 'row.client.desc':'真实商业需求：为高校教师主理的艺术设计工作室设计并开发，三次迭代。',
 'row.gsgc.desc':'移动优先的校园网站：站点地图、人物画像和三轮线框后再构建。',
 'row.interactive.desc':'铜箔电路、p5.js 声音可视化和 Makey Makey 鼓机。',
-'music.h2':'音乐，','music.h2b':'在一旁。',
+'music.h2':'音乐，',
+'music.h2b':'在一旁。',
 'music.lede':'2019 年至今 7 张自发专辑、 36 首曲目 — 在 Logic Pro 和 Ableton Live 中作曲、编曲、混音。',
-'music.all':'全部音乐 →','music.track':'原创曲目',
-'how.eyebrow':'工作方式','how.h2':'科班出身的设计师。','how.h2b':'习惯动手的建造者。',
-'how.1':'原型制作','how.1d':'从 Figma 到可运行的 HTML/CSS/JS 只需几天 — 每个项目都交付可点击的成果。',
-'how.2':'用户研究','how.2d':'访谈、可用性测试、决策记录，让迭代有证据支撑。',
-'how.3':'前端开发','how.3d':'响应式、可访问的页面；需要时使用 React 和认证。',
-'how.4':'物理计算','how.4d':'Arduino、传感器、NeoPixel、3D 打印外壳、ProtoPie 移动控制。',
-'how.5':'声音与视觉','how.5d':'声音响应的 p5.js 草图；以 Antirender 作曲与制作。',
-'how.6':'相机与无人机','how.6d':'2021 年至今的航拍、活动视频与后期。',
-'cta.h2':'一起做点真正好用的东西。','cta.p':'欢迎交互设计方向的实习、Co-op 与合作，也接受项目配乐与声音工作。',
-'cta.email':'发邮件','cta.resume':'完整简历'
+'music.all':'全部音乐 →',
+'music.track':'原创曲目',
+'how.eyebrow':'工作方式',
+'how.h2':'科班出身的设计师。',
+'how.h2b':'习惯动手的建造者。',
+'how.1':'原型制作',
+'how.1d':'从 Figma 到可运行的 HTML/CSS/JS 只需几天 — 每个项目都交付可点击的成果。',
+'how.2':'用户研究',
+'how.2d':'访谈、可用性测试、决策记录，让迭代有证据支撑。',
+'how.3':'前端开发',
+'how.3d':'响应式、可访问的页面；需要时使用 React 和认证。',
+'how.4':'物理计算',
+'how.4d':'Arduino、传感器、NeoPixel、3D 打印外壳、ProtoPie 移动控制。',
+'how.5':'声音与视觉',
+'how.5d':'声音响应的 p5.js 草图；以 Antirender 作曲与制作。',
+'how.6':'相机与无人机',
+'how.6d':'2021 年至今的航拍、活动视频与后期。',
+'cta.h2':'一起做点真正好用的东西。',
+'cta.p':'欢迎交互设计方向的实习、Co-op 与合作，也接受项目配乐与声音工作。',
+'cta.email':'发邮件',
+'cta.resume':'完整简历',
+'page.title':'Yiyang Zhang — 交互设计师',
+'card.eye':'案例研究',
+'t.snap':'Snapchat 数据透明',
+'t.lamp':'舒适灯',
+'card.solar.cat':'能源系统 · 交互式数据分析',
+'card.mood.cat':'全栈原型 · React · JWT',
+'card.snap.cat':'UX 研究 · 隐私 · 渐进式呈现',
+'card.physical.cat':'物理计算 · Arduino · 3D 打印',
+'row.learn.t':'Learn Code — 卡片式学习应用',
+'row.client.t':'品作设计（南京）— 企业官网',
+'row.gsgc.t':'Green Sheridan Garden Club — 社区网站',
+'row.interactive.t':'媒介、运动与身体 — 交互原型',
+'music.eyebrow':'Antirender · 原创音乐',
+'music.single':'单曲',
+'hero.switch':'切换身份',
+'foot.intro':'简介',
+'alt.solar':'农舍屋顶上光伏阵列的航拍',
+'alt.mood':'MoodPeek Pro — 以日历为中心的情绪记录仪表盘',
+'alt.snap':'Snapchat 数据透明原型 — 收集、处理、共享、控制流程',
+'alt.pc':'舒适灯 — 发出绿光的 3D 打印楼梯场景'
 },
 'zh-TW': {
-'hero.tip':'\u9ede\u64ca\u4eba\u50cf\u5207\u63db\u8eab\u4efd',
-'ar.eyebrow':'Antirender \u00b7 \u539f\u5275\u97f3\u6a02 \u00b7 2019 \u5e74\u81f3\u4eca',
-'ar.h1':'Antirender\u3002','ar.h1b':'\u97f3\u6a02\u3001\u5be6\u9a57\uff0c\u548c\u5176\u4ed6\u3002',
-'ar.cta1':'\u807d\u97f3\u6a02','ar.cta2':'\u5728 Spotify \u6253\u958b \u2197',
+'hero.tip':'點擊人像切換身份',
+'ar.eyebrow':'Antirender · 原創音樂 · 2019 年至今',
+'ar.h1':'Antirender。',
+'ar.h1b':'音樂、實驗，和其他。',
+'ar.cta1':'聽音樂',
+'ar.cta2':'在 Spotify 打開 ↗',
 'hero.eyebrow':'互動設計 · 謝爾丹學院 · 安大略省奧克維爾',
-'hero.h1':'互動設計師。','hero.h1b':'先做原型，始終記錄。',
+'hero.h1':'互動設計師。',
+'hero.h1b':'先做原型，始終記錄。',
 'hero.lede':'我研究、原型化並測試數位產品和實體裝置，然後把有效的做法寫下來，讓下一版更好。業餘時間以 Antirender 的名義發佈原創音樂。',
-'hero.cta1':'查看精選作品','hero.cta2':'下載簡歷 (PDF)',
-'work.eyebrow':'精選作品','work.h2':'四個專案，','work.h2b':'展示我的工作方式。',
+'hero.cta1':'查看精選作品',
+'hero.cta2':'下載簡歷 (PDF)',
+'work.eyebrow':'精選作品',
+'work.h2':'四個專案，',
+'work.h2b':'展示我的工作方式。',
 'work.lede':'每個都是完整的案例研究：問題、版本、測試，以及因此改變了什麼。',
-'work.all':'全部作品 →','card.read':'閱讀案例 →',
-'row.client':'客戶專案','row.case':'案例研究',
-'music.h2':'音樂，','music.h2b':'在一旁。',
+'work.all':'全部作品 →',
+'card.read':'閱讀案例 →',
+'row.client':'客戶專案',
+'row.case':'案例研究',
+'music.h2':'音樂，',
+'music.h2b':'在一旁。',
 'music.lede':'2019 年至今 7 張自發專輯、 36 首曲目 — 在 Logic Pro 和 Ableton Live 中作曲、編曲、混音。',
-'music.all':'全部音樂 →','music.track':'原創曲目',
-'how.eyebrow':'工作方式','how.h2':'科班出身的設計師。','how.h2b':'習慣動手的建造者。',
-'how.1':'原型製作','how.2':'用戶研究','how.3':'前端開發','how.4':'物理運算','how.5':'聲音與視覺','how.6':'相機與無人機',
-'cta.h2':'一起做點真正好用的東西。','cta.p':'歡迎互動設計方向的實習、Co-op 與合作，也接受專案配樂與聲音工作。',
-'cta.email':'寄信','cta.resume':'完整簡歷'
+'music.all':'全部音樂 →',
+'music.track':'原創曲目',
+'how.eyebrow':'工作方式',
+'how.h2':'科班出身的設計師。',
+'how.h2b':'習慣動手的建造者。',
+'how.1':'原型製作',
+'how.2':'用戶研究',
+'how.3':'前端開發',
+'how.4':'物理運算',
+'how.5':'聲音與視覺',
+'how.6':'相機與無人機',
+'cta.h2':'一起做點真正好用的東西。',
+'cta.p':'歡迎互動設計方向的實習、Co-op 與合作，也接受專案配樂與聲音工作。',
+'cta.email':'寄信',
+'cta.resume':'完整簡歷',
+'page.title':'Yiyang Zhang — 互動設計師',
+'card.eye':'案例研究',
+'t.snap':'Snapchat 資料透明',
+'t.lamp':'舒適燈',
+'card.solar.cat':'能源系統 · 互動式資料分析',
+'card.mood.cat':'全端原型 · React · JWT',
+'card.snap.cat':'UX 研究 · 隱私 · 漸進式呈現',
+'card.physical.cat':'實體運算 · Arduino · 3D 列印',
+'row.learn.t':'Learn Code — 卡片式學習應用',
+'row.client.t':'品作設計（南京）— 企業官網',
+'row.gsgc.t':'Green Sheridan Garden Club — 社區網站',
+'row.interactive.t':'媒介、運動與身體 — 互動原型',
+'music.eyebrow':'Antirender · 原創音樂',
+'music.single':'單曲',
+'hero.switch':'切換身份',
+'foot.intro':'簡介',
+'alt.solar':'農舍屋頂上光伏陣列的航拍',
+'alt.mood':'MoodPeek Pro — 以日曆為中心的情緒記錄儀表板',
+'alt.snap':'Snapchat 資料透明原型',
+'alt.pc':'舒適燈 — 發出綠光的 3D 列印樓梯場景',
+'ar.lede':'為那些放不進案例研究的創作而設的分身：7 張自發專輯、36 首原創曲目，在 Logic Pro 和 Ableton Live 中作曲、編曲、混音。',
+'card.learn.desc':'初學者如何瀏覽和繼續程式設計課程 — 一款基於卡片的層級式學習應用，透過使用者訪談不斷打磨。',
+'card.snap.desc':'讓資料收集變得可讀：收集 → 處理 → 共享 → 控制的互動流程，經歷七個線框版本。',
+'card.physical.desc':'一盞內建於 3D 列印場景中的感測器氛圍燈。溫濕度和光照對應為顏色狀態；ProtoPie 手機介面取代 LCD。',
+'card.solar.h':'為 AI 算力供電的光伏儲能電站',
+'card.solar.desc':'租用農家屋頂自建的 49 kWp / 180 kWh 電站：給 AI 預訓練和推理供電，餘電與村裡共享，並用互動圖表分析運轉資料。',
+'card.mood.desc':'以日曆為中心的情緒記錄，建立在日 → 週 → 月的連續性上，支援多使用者帳戶和 iCal 匯出。',
+'row.client.desc':'真實商業需求：為高校教師主理的藝術設計工作室設計並開發，三次迭代。',
+'row.gsgc.desc':'行動優先的校園網站：網站地圖、人物誌和三輪線框後再構建。',
+'row.interactive.desc':'銅箔電路、p5.js 聲音視覺化和 Makey Makey 鼓機。',
+'how.1d':'從 Figma 到可執行的 HTML/CSS/JS 只需幾天 — 每個專案都交付可點選的成果。',
+'how.2d':'訪談、可用性測試、決策記錄，讓迭代有證據支撐。',
+'how.3d':'響應式、無障礙的頁面；需要時使用 React 和認證。',
+'how.4d':'Arduino、感測器、NeoPixel、3D 列印外殼、ProtoPie 行動裝置控制。',
+'how.5d':'聲音響應的 p5.js 草圖；以 Antirender 作曲與製作。',
+'how.6d':'2021 年至今的航拍、活動影片與後期。'
 },
 ja: {
-'hero.tip':'\u30d5\u30a3\u30ae\u30e5\u30a2\u3092\u30af\u30ea\u30c3\u30af\u3057\u3066\u5207\u66ff',
-'ar.eyebrow':'Antirender \u00b7 \u30aa\u30ea\u30b8\u30ca\u30eb\u97f3\u697d \u00b7 2019\u5e74\u301c',
-'ar.h1':'Antirender\u3002','ar.h1b':'\u97f3\u697d\u3001\u5b9f\u9a13\u3001\u305d\u306e\u4ed6\u3002',
-'ar.cta1':'\u97f3\u697d\u3092\u8074\u304f','ar.cta2':'Spotify\u3067\u958b\u304f \u2197',
+'hero.tip':'フィギュアをクリックして切替',
+'ar.eyebrow':'Antirender · オリジナル音楽 · 2019年〜',
+'ar.h1':'Antirender。',
+'ar.h1b':'音楽、実験、その他。',
+'ar.cta1':'音楽を聴く',
+'ar.cta2':'Spotifyで開く ↗',
 'hero.eyebrow':'インタラクションデザイン · シェリダンカレッジ · オンタリオ',
-'hero.h1':'インタラクションデザイナー。','hero.h1b':'まずプロトタイプ、必ず記録。',
+'hero.h1':'インタラクションデザイナー。',
+'hero.h1b':'まずプロトタイプ、必ず記録。',
 'hero.lede':'デジタル製品と物理的なオブジェクトをリサーチ・試作・テストし、うまくいったことを記録して次のバージョンに活かします。Antirender 名義でオリジナル音楽も発表しています。',
-'hero.cta1':'代表作を見る','hero.cta2':'履歴書 (PDF)',
-'work.eyebrow':'代表作','work.h2':'4つのプロジェクトで','work.h2b':'働き方を示す。',
+'hero.cta1':'代表作を見る',
+'hero.cta2':'履歴書 (PDF)',
+'work.eyebrow':'代表作',
+'work.h2':'4つのプロジェクトで',
+'work.h2b':'働き方を示す。',
 'work.lede':'どれも完全なケーススタディ：課題、バージョン、テスト、そして何が変わったか。',
-'work.all':'すべての作品 →','card.read':'ケーススタディを読む →',
-'row.client':'クライアント','row.case':'ケーススタディ',
-'music.h2':'音楽も、','music.h2b':'ひとつの軸。',
+'work.all':'すべての作品 →',
+'card.read':'ケーススタディを読む →',
+'row.client':'クライアント',
+'row.case':'ケーススタディ',
+'music.h2':'音楽も、',
+'music.h2b':'ひとつの軸。',
 'music.lede':'2019年から 7枚のセルフリリースアルバムに36曲 — Logic Pro と Ableton Live で作曲・編曲・ミックス。',
-'music.all':'すべての音楽 →','music.track':'オリジナル曲',
-'how.eyebrow':'働き方','how.h2':'訓練されたデザイナー。','how.h2b':'手を動かすビルダー。',
-'how.1':'プロトタイピング','how.2':'リサーチ','how.3':'フロントエンド','how.4':'フィジカルコンピューティング','how.5':'サウンドとビジュアル','how.6':'カメラとドローン',
-'cta.h2':'ちゃんと動くものを、一緒に。','cta.p':'インタラクションデザインのインターン、Co-op、コラボを歓迎します。音楽・サウンド制作もご相談ください。',
-'cta.email':'メールする','cta.resume':'履歴書全文'
+'music.all':'すべての音楽 →',
+'music.track':'オリジナル曲',
+'how.eyebrow':'働き方',
+'how.h2':'訓練されたデザイナー。',
+'how.h2b':'手を動かすビルダー。',
+'how.1':'プロトタイピング',
+'how.2':'リサーチ',
+'how.3':'フロントエンド',
+'how.4':'フィジカルコンピューティング',
+'how.5':'サウンドとビジュアル',
+'how.6':'カメラとドローン',
+'cta.h2':'ちゃんと動くものを、一緒に。',
+'cta.p':'インタラクションデザインのインターン、Co-op、コラボを歓迎します。音楽・サウンド制作もご相談ください。',
+'cta.email':'メールする',
+'cta.resume':'履歴書全文',
+'page.title':'Yiyang Zhang — インタラクションデザイナー',
+'card.eye':'ケーススタディ',
+'t.snap':'Snapchat データ透明性',
+'t.lamp':'コンフォートランプ',
+'card.solar.cat':'エネルギーシステム · インタラクティブなデータ分析',
+'card.mood.cat':'フルスタックのプロトタイプ · React · JWT',
+'card.snap.cat':'UX リサーチ · プライバシー · 段階的開示',
+'card.physical.cat':'フィジカルコンピューティング · Arduino · 3D プリント',
+'row.learn.t':'Learn Code — カード型学習アプリ',
+'row.client.t':'品作設計（南京）— コーポレートサイト',
+'row.gsgc.t':'Green Sheridan Garden Club — コミュニティサイト',
+'row.interactive.t':'メディア、モーション、身体 — インタラクティブプロトタイプ',
+'music.eyebrow':'Antirender · オリジナル音楽',
+'music.single':'シングル',
+'hero.switch':'アイデンティティを切り替え',
+'foot.intro':'イントロ',
+'alt.solar':'農家の屋根に並ぶ太陽光パネルの空撮',
+'alt.mood':'MoodPeek Pro — カレンダー中心の気分記録ダッシュボード',
+'alt.snap':'Snapchat データ透明性のプロトタイプ — 収集・処理・共有・管理のフロー',
+'alt.pc':'コンフォートランプ — 緑に光る 3D プリントの階段の情景',
+'card.solar.h':'AI コンピューティングのための太陽光 + 蓄電',
+'card.solar.desc':'借りた農家の屋根に自分たちで建てた 49 kWp / 180 kWh の発電所。AI の事前学習と推論に電力を供給し、余剰は村と分け合い、インタラクティブなグラフで運用データを分析しています。',
+'card.mood.desc':'日 → 週 → 月の連続性に基づく、カレンダー中心の気分記録。マルチユーザーアカウントと iCal 書き出しに対応。',
+'card.snap.desc':'データ収集を読み取れるものに：収集 → 処理 → 共有 → 管理のインタラクティブなフローを、7 つのワイヤーフレーム版で反復。',
+'card.physical.desc':'3D プリントの情景に収めた、センサーで動くアンビエントランプ。温度・湿度・明るさを色の状態に対応させ、LCD の代わりに ProtoPie のモバイル UI を使う。',
+'card.learn.desc':'初心者がプログラミングのレッスンを探し、再開する方法 — ユーザーインタビューで磨いたカード型・階層型の学習アプリ。',
+'row.client.desc':'実際の商業案件：教員が主宰するアート＆デザインスタジオのために、3 回の改訂でデザインし構築しました。',
+'row.gsgc.desc':'モバイルファーストのキャンパスサイト：構築の前にサイトマップ、ペルソナ、3 回のワイヤーフレーム。',
+'row.interactive.desc':'銅テープの回路、p5.js のサウンドビジュアライゼーション、Makey Makey のドラムマシン。',
+'how.1d':'Figma から動く HTML/CSS/JS まで数日で — どのプロジェクトもクリックできる形で届けます。',
+'how.2d':'インタビュー、ユーザビリティテスト、判断の記録で、反復に根拠を持たせる。',
+'how.3d':'レスポンシブでアクセシブルなページ。必要なら React と認証も。',
+'how.4d':'Arduino、センサー、NeoPixel、3D プリントの筐体、ProtoPie によるモバイル操作。',
+'how.5d':'音に反応する p5.js のスケッチ。Antirender として作曲・制作。',
+'how.6d':'2021 年から空撮、イベント映像、ポストプロダクション。',
+'ar.lede':'ケーススタディに収まらない創作のための分身：Logic Pro と Ableton Live で作曲・編曲・ミックスした、7 枚のセルフリリースアルバムと 36 曲のオリジナル曲。'
 },
 fr: {
-'card.solar.h':'Solaire + stockage pour le calcul IA','card.solar.desc':'Une centrale de 49 kWc / 180 kWh construite de nos mains sur le toit loué d’une ferme : elle alimente le pré-entraînement et l’inférence d’IA, partage son surplus avec le village et s’explore à travers des graphiques interactifs.','card.learn.desc':'Comment des débutants parcourent et reprennent des leçons de code : une application d’apprentissage hiérarchique à base de cartes, affinée par des entretiens utilisateurs.','card.mood.desc':'Un journal d’humeur centré sur le calendrier, fondé sur la continuité Jour → Semaine → Mois, avec comptes multi-utilisateurs et export iCal.','card.physical.desc':'Une lampe d’ambiance pilotée par capteurs dans une scène imprimée en 3D. Température, humidité et lumière se traduisent en états de couleur ; une interface mobile ProtoPie remplace l’écran LCD.','card.snap.desc':'Rendre la collecte de données lisible : un parcours interactif Collecter → Traiter → Partager → Contrôler, itéré sur sept versions de maquettes.','how.1d':'De Figma à du HTML/CSS/JS fonctionnel en quelques jours : chaque projet aboutit à quelque chose de cliquable.','how.2d':'Entretiens, tests d’utilisabilité et décisions consignées, pour que chaque itération repose sur des preuves.','how.3d':'Des pages responsives et accessibles ; React et authentification quand le produit en a besoin.','how.4d':'Arduino, capteurs, NeoPixels, boîtiers imprimés en 3D, pilotage mobile avec ProtoPie.','how.5d':'Sketches p5.js réactifs au son ; composition et production musicale sous le nom d’Antirender.','how.6d':'Prises de vue aériennes, vidéo d’événements et post-production depuis 2021.','row.client.desc':'Un vrai brief commercial : conçu et développé en trois itérations pour un studio d’art et de design dirigé par des enseignants.','row.gsgc.desc':'Site de campus pensé d’abord pour le mobile : plan du site, personas et trois séries de maquettes avant le développement.','row.interactive.desc':'Circuits en ruban de cuivre, visualisations sonores p5.js et une boîte à rythmes Makey Makey.',
+'card.solar.h':'Solaire + stockage pour le calcul IA',
+'card.solar.desc':'Une centrale de 49 kWc / 180 kWh construite de nos mains sur le toit loué d’une ferme : elle alimente le pré-entraînement et l’inférence d’IA, partage son surplus avec le village et s’explore à travers des graphiques interactifs.',
+'card.learn.desc':'Comment des débutants parcourent et reprennent des leçons de code : une application d’apprentissage hiérarchique à base de cartes, affinée par des entretiens utilisateurs.',
+'card.mood.desc':'Un journal d’humeur centré sur le calendrier, fondé sur la continuité Jour → Semaine → Mois, avec comptes multi-utilisateurs et export iCal.',
+'card.physical.desc':'Une lampe d’ambiance pilotée par capteurs dans une scène imprimée en 3D. Température, humidité et lumière se traduisent en états de couleur ; une interface mobile ProtoPie remplace l’écran LCD.',
+'card.snap.desc':'Rendre la collecte de données lisible : un parcours interactif Collecter → Traiter → Partager → Contrôler, itéré sur sept versions de maquettes.',
+'how.1d':'De Figma à du HTML/CSS/JS fonctionnel en quelques jours : chaque projet aboutit à quelque chose de cliquable.',
+'how.2d':'Entretiens, tests d’utilisabilité et décisions consignées, pour que chaque itération repose sur des preuves.',
+'how.3d':'Des pages responsives et accessibles ; React et authentification quand le produit en a besoin.',
+'how.4d':'Arduino, capteurs, NeoPixels, boîtiers imprimés en 3D, pilotage mobile avec ProtoPie.',
+'how.5d':'Sketches p5.js réactifs au son ; composition et production musicale sous le nom d’Antirender.',
+'how.6d':'Prises de vue aériennes, vidéo d’événements et post-production depuis 2021.',
+'row.client.desc':'Un vrai brief commercial : conçu et développé en trois itérations pour un studio d’art et de design dirigé par des enseignants.',
+'row.gsgc.desc':'Site de campus pensé d’abord pour le mobile : plan du site, personas et trois séries de maquettes avant le développement.',
+'row.interactive.desc':'Circuits en ruban de cuivre, visualisations sonores p5.js et une boîte à rythmes Makey Makey.',
 'hero.tip':'Cliquez sur une figure pour changer de persona',
-'ar.eyebrow':'Antirender \u00b7 Musique originale \u00b7 Depuis 2019',
-'ar.h1':'Antirender.','ar.h1b':'Musique, exp\u00e9riences et le reste.',
-'ar.lede':'L\u2019alter ego pour le travail cr\u00e9atif qui ne rentre pas dans une \u00e9tude de cas : 36 morceaux originaux sur 7 albums autoproduits, compos\u00e9s, arrang\u00e9s et mix\u00e9s dans Logic Pro et Ableton Live.',
-'ar.cta1':'\u00c9couter la musique','ar.cta2':'Ouvrir sur Spotify \u2197',
+'ar.eyebrow':'Antirender · Musique originale · Depuis 2019',
+'ar.h1':'Antirender.',
+'ar.h1b':'Musique, expériences et le reste.',
+'ar.lede':'L’alter ego pour le travail créatif qui ne rentre pas dans une étude de cas : 36 morceaux originaux sur 7 albums autoproduits, composés, arrangés et mixés dans Logic Pro et Ableton Live.',
+'ar.cta1':'Écouter la musique',
+'ar.cta2':'Ouvrir sur Spotify ↗',
 'hero.eyebrow':'Design d’interaction · Sheridan College · Oakville, ON',
-'hero.h1':'Designer d’interaction.','hero.h1b':'Prototype d’abord, documentation toujours.',
+'hero.h1':'Designer d’interaction.',
+'hero.h1b':'Prototype d’abord, documentation toujours.',
 'hero.lede':'Je recherche, prototype et teste des produits numériques et des objets physiques — puis j’écris ce qui a fonctionné pour que la version suivante soit meilleure. À côté, je publie de la musique originale sous le nom Antirender.',
-'hero.cta1':'Voir les travaux','hero.cta2':'Télécharger le CV (PDF)',
-'work.eyebrow':'Travaux sélectionnés','work.h2':'Quatre projets','work.h2b':'qui montrent ma façon de travailler.',
+'hero.cta1':'Voir les travaux',
+'hero.cta2':'Télécharger le CV (PDF)',
+'work.eyebrow':'Travaux sélectionnés',
+'work.h2':'Quatre projets',
+'work.h2b':'qui montrent ma façon de travailler.',
 'work.lede':'Chacun est une étude de cas complète : le problème, les versions, les tests et ce qui a changé.',
-'work.all':'Tous les travaux →','card.read':'Lire l’étude de cas →',
-'row.client':'Client','row.case':'Étude de cas',
-'music.h2':'La musique,','music.h2b':'en parallèle.',
+'work.all':'Tous les travaux →',
+'card.read':'Lire l’étude de cas →',
+'row.client':'Client',
+'row.case':'Étude de cas',
+'music.h2':'La musique,',
+'music.h2b':'en parallèle.',
 'music.lede':'36 morceaux sur 7 albums autoproduits depuis 2019 — composés, arrangés et mixés dans Logic Pro et Ableton Live.',
-'music.all':'Toute la musique →','music.track':'Morceau original',
-'how.eyebrow':'Ma façon de travailler','how.h2':'Designer de formation.','how.h2b':'Constructeur par habitude.',
-'how.1':'Prototypage','how.2':'Recherche','how.3':'Front-end','how.4':'Informatique physique','how.5':'Son & visuels','how.6':'Caméra & drone',
-'cta.h2':'Construisons quelque chose qui fonctionne.','cta.p':'Ouvert aux stages, aux placements co-op et aux collaborations en design d’interaction — ainsi qu’au travail sonore pour les projets qui en ont besoin.',
-'cta.email':'M’écrire','cta.resume':'CV complet'
+'music.all':'Toute la musique →',
+'music.track':'Morceau original',
+'how.eyebrow':'Ma façon de travailler',
+'how.h2':'Designer de formation.',
+'how.h2b':'Constructeur par habitude.',
+'how.1':'Prototypage',
+'how.2':'Recherche',
+'how.3':'Front-end',
+'how.4':'Informatique physique',
+'how.5':'Son & visuels',
+'how.6':'Caméra & drone',
+'cta.h2':'Construisons quelque chose qui fonctionne.',
+'cta.p':'Ouvert aux stages, aux placements co-op et aux collaborations en design d’interaction — ainsi qu’au travail sonore pour les projets qui en ont besoin.',
+'cta.email':'M’écrire',
+'cta.resume':'CV complet',
+'page.title':'Yiyang Zhang — Designer d’interaction',
+'card.eye':'Étude de cas',
+'t.snap':'Transparence des données Snapchat',
+'t.lamp':'Lampe de confort',
+'card.solar.cat':'Systèmes énergétiques · Analyse de données interactive',
+'card.mood.cat':'Prototype full-stack · React · JWT',
+'card.snap.cat':'Recherche UX · Vie privée · Divulgation progressive',
+'card.physical.cat':'Informatique physique · Arduino · Impression 3D',
+'row.learn.t':'Learn Code — appli d’apprentissage à cartes',
+'row.client.t':'Pinzuo Design (Nankin) — site institutionnel',
+'row.gsgc.t':'Green Sheridan Garden Club — site communautaire',
+'row.interactive.t':'Médias, mouvement et corps — prototypes interactifs',
+'music.eyebrow':'Antirender · Musique originale',
+'music.single':'Single',
+'hero.switch':'Changer d’identité',
+'foot.intro':'Intro',
+'alt.solar':'Vue aérienne des panneaux solaires sur le toit d’une ferme',
+'alt.mood':'MoodPeek Pro — tableau de bord de suivi d’humeur centré sur le calendrier',
+'alt.snap':'Prototype de transparence des données Snapchat — parcours Collecter, Traiter, Partager, Contrôler',
+'alt.pc':'Lampe de confort — scène d’escalier imprimée en 3D, allumée en vert'
+},
+de: {
+'page.title':'Yiyang Zhang — Interaction Designer',
+'card.eye':'Fallstudie',
+'t.snap':'Snapchat-Datentransparenz',
+'t.lamp':'Wohlfühllampe',
+'card.solar.cat':'Energiesysteme · Interaktive Datenanalyse',
+'card.mood.cat':'Full-Stack-Prototyp · React · JWT',
+'card.snap.cat':'UX-Research · Datenschutz · Progressive Offenlegung',
+'card.physical.cat':'Physical Computing · Arduino · 3D-Druck',
+'row.learn.t':'Learn Code — kartenbasierte Lern-App',
+'row.client.t':'Pinzuo Design (Nanjing) — Unternehmenswebsite',
+'row.gsgc.t':'Green Sheridan Garden Club — Community-Website',
+'row.interactive.t':'Medien, Bewegung und Körper — interaktive Prototypen',
+'music.eyebrow':'Antirender · Eigene Musik',
+'music.single':'Single',
+'hero.switch':'Identität wechseln',
+'foot.intro':'Intro',
+'alt.solar':'Luftaufnahme der Solarmodule auf dem Dach eines Bauernhauses',
+'alt.mood':'MoodPeek Pro — kalenderzentriertes Dashboard für Stimmungseinträge',
+'alt.snap':'Prototyp zur Snapchat-Datentransparenz — Ablauf Erfassen, Verarbeiten, Teilen, Kontrollieren',
+'alt.pc':'Wohlfühllampe — grün leuchtende, 3D-gedruckte Treppenszene',
+'card.solar.h':'Solar + Speicher für KI-Rechenleistung',
+'card.solar.desc':'Eine selbst gebaute 49-kWp-/180-kWh-Anlage auf dem gemieteten Dach eines Bauernhauses — sie versorgt KI-Vortraining und -Inferenz, teilt den Überschuss mit dem Dorf und lässt sich in interaktiven Diagrammen erkunden.',
+'card.mood.desc':'Kalenderzentriertes Stimmungstagebuch mit durchgängiger Ansicht Tag → Woche → Monat, Mehrbenutzerkonten und iCal-Export.',
+'card.snap.desc':'Datenerfassung lesbar machen: ein interaktiver Ablauf Erfassen → Verarbeiten → Teilen → Kontrollieren, über sieben Wireframe-Versionen iteriert.',
+'card.physical.desc':'Eine sensorgesteuerte Stimmungslampe in einer 3D-gedruckten Szene. Temperatur, Luftfeuchte und Licht werden zu Farbzuständen; eine mobile ProtoPie-Oberfläche ersetzt das LCD.',
+'card.learn.desc':'Wie Einsteiger Programmierlektionen finden und fortsetzen — eine kartenbasierte, hierarchische Lern-App, verfeinert durch Nutzerinterviews.',
+'row.client.desc':'Ein echtes kommerzielles Briefing: in drei Iterationen gestaltet und gebaut für ein von Hochschullehrenden geführtes Kunst- und Designstudio.',
+'row.gsgc.desc':'Mobile-first-Campuswebsite: Sitemap, Personas und drei Wireframe-Runden vor dem Bau.',
+'row.interactive.desc':'Kupferband-Schaltungen, p5.js-Klangvisualisierungen und ein Makey-Makey-Drumcomputer.',
+'how.1d':'Von Figma zu funktionierendem HTML/CSS/JS in Tagen — jedes Projekt endet als etwas Anklickbares.',
+'how.2d':'Interviews, Usability-Tests und schriftlich festgehaltene Entscheidungen, damit jede Iteration auf Belegen beruht.',
+'how.3d':'Responsive, barrierearme Seiten; React und Authentifizierung, wenn das Produkt sie braucht.',
+'how.4d':'Arduino, Sensoren, NeoPixels, 3D-gedruckte Gehäuse, mobile Steuerung mit ProtoPie.',
+'how.5d':'Klangreaktive p5.js-Sketches; Komposition und Musikproduktion als Antirender.',
+'how.6d':'Luftaufnahmen, Eventvideos und Postproduktion seit 2021.',
+'hero.tip':'Auf eine Figur klicken, um die Persona zu wechseln',
+'ar.eyebrow':'Antirender · Eigene Musik · Seit 2019',
+'ar.lede':'Das Alter Ego für die kreative Arbeit, die in keine Fallstudie passt: 36 eigene Tracks auf 7 selbst veröffentlichten Alben, geschrieben, arrangiert und gemischt in Logic Pro und Ableton Live.',
+'ar.h1':'Antirender.',
+'ar.h1b':'Musik, Experimente und der Rest.',
+'ar.cta1':'Musik anhören',
+'ar.cta2':'Auf Spotify öffnen ↗',
+'hero.eyebrow':'Interaction Design · Sheridan College · Oakville, ON',
+'hero.h1':'Interaction Designer.',
+'hero.h1b':'Erst Prototypen, immer Dokumentation.',
+'hero.lede':'Ich recherchiere, prototype und teste digitale Produkte und physische Objekte — und schreibe auf, was funktioniert hat, damit die nächste Version besser wird. Nebenbei veröffentliche ich eigene Musik als Antirender.',
+'hero.cta1':'Ausgewählte Arbeiten ansehen',
+'hero.cta2':'Lebenslauf herunterladen (PDF)',
+'work.eyebrow':'Ausgewählte Arbeiten',
+'work.h2':'Vier Projekte,',
+'work.h2b':'die zeigen, wie ich arbeite.',
+'work.lede':'Jedes ist eine vollständige Fallstudie: das Problem, die Versionen, die Tests und was sich dadurch geändert hat.',
+'work.all':'Alle Arbeiten →',
+'card.read':'Fallstudie lesen →',
+'row.client':'Kundenarbeit',
+'row.case':'Fallstudie',
+'music.h2':'Musik,',
+'music.h2b':'nebenbei.',
+'music.lede':'36 Tracks auf 7 selbst veröffentlichten Alben seit 2019 — geschrieben, arrangiert und gemischt in Logic Pro und Ableton Live.',
+'music.all':'Alle Musik →',
+'music.track':'Eigener Track',
+'how.eyebrow':'Wie ich arbeite',
+'how.h2':'Designer von der Ausbildung her.',
+'how.h2b':'Macher aus Gewohnheit.',
+'how.1':'Prototyping',
+'how.2':'Research',
+'how.3':'Frontend',
+'how.4':'Physical Computing',
+'how.5':'Klang & Visuals',
+'how.6':'Kamera & Drohne',
+'cta.h2':'Lassen Sie uns etwas bauen, das funktioniert.',
+'cta.p':'Offen für Praktika, Co-op-Stellen und Kooperationen im Interaction Design — und für Musik und Sound bei Projekten, die das brauchen.',
+'cta.email':'Schreiben Sie mir',
+'cta.resume':'Vollständiger Lebenslauf'
 }
 };
   </script>

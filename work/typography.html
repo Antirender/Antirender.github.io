@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Design &amp; Typography — Yiyang Zhang</title>
+  <meta name="description" content="Design &amp; Typography case study — hand-drawn letterforms, a bilingual chocolate-wrapper grid study rebuilt in CSS Grid, and a website for type designer Rod McDonald."/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    /* DE: a [data-lang="de"] twin replaces the English one; pages without German copy keep English */
+    html:not([lang="de"]) [data-lang="de"]{display:none!important}
+    html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+    .phase-label--p1{background:#dbeafe;color:#1e40af}
+    .phase-label--p2{background:#fef3c7;color:#92400e}
+    .phase-label--p3{background:#d1fae5;color:#065f46}
+    .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1rem;margin:1rem 0 1.75rem;align-items:start}
+    .shots--wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+    .shots figure{margin:0}
+    .shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border)}
+    .shots figcaption{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.45}
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">Yiyang Zhang <small>Interaction Design</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
+          <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
+
+    <div class="project-hero">
+      <span class="eyebrow"><span data-lang="en">Case Study · Typography · 2025</span><span data-lang="zh">案例研究 · 字体排版 · 2025</span><span data-lang="tw">案例研究 · 字型排版 · 2025</span><span data-lang="ja">ケーススタディ · タイポグラフィ · 2025</span><span data-lang="fr">Étude de cas · Typographie · 2025</span></span>
+      <h1><span data-lang="en">Design &amp; Typography — from a broad-nib stroke to a type designer’s website</span><span data-lang="zh">设计与字体排版 — 从一笔宽头笔画，到一位字体设计师的网站</span><span data-lang="tw">設計與字型排版 — 從一筆寬頭筆畫，到一位字型設計師的網站</span><span data-lang="ja">デザインとタイポグラフィ — 平筆の一画から、書体デザイナーのウェブサイトまで</span><span data-lang="fr">Design et typographie — du trait de plume large au site d’un dessinateur de caractères</span></h1>
+      <p data-lang="en">Three projects in one 14-week course, each at a larger scale: drawing letters by hand and setting a paragraph for the screen; rebuilding a bilingual chocolate-bar wrapper as three typographic hierarchies, first in InDesign and then in CSS Grid; and researching Canadian type designer Rod McDonald and designing a website around his work. Every stage ended in code.</p>
+      <p data-lang="zh">一门 14 周课程里的三个项目，尺度一个比一个大：手绘字母，并为屏幕阅读设置一段正文；把一张英法双语的巧克力包装纸重排成三种字体层级，先在 InDesign 里做，再用 CSS Grid 重建；最后研究加拿大字体设计师 Rod McDonald，并围绕他的作品设计一个网站。每个阶段最后都落到代码上。</p>
+      <p data-lang="tw">一門 14 週課程裡的三個專案，尺度一個比一個大：手繪字母，並為螢幕閱讀設定一段正文；把一張英法雙語的巧克力包裝紙重排成三種字型層級，先在 InDesign 裡做，再用 CSS Grid 重建；最後研究加拿大字型設計師 Rod McDonald，並圍繞他的作品設計一個網站。每個階段最後都落到程式碼上。</p>
+      <p data-lang="ja">14 週間の授業で取り組んだ 3 つのプロジェクト。スケールは回を追って大きくなります。手で文字を描き、画面で読む段落を組む。英仏バイリンガルのチョコレートバーの包装を 3 通りの文字の階層に組み直し、まず InDesign で、次に CSS Grid で作る。そしてカナダの書体デザイナー Rod McDonald を調べ、その仕事を軸にウェブサイトをデザインする。どの段階も最後はコードで仕上げました。</p>
+      <p data-lang="fr">Trois projets dans un même cours de 14 semaines, chacun à plus grande échelle : dessiner des lettres à la main et composer un paragraphe pour l’écran ; recomposer l’emballage bilingue d’une barre chocolatée en trois hiérarchies typographiques, d’abord dans InDesign puis en CSS Grid ; enfin, étudier le dessinateur de caractères canadien Rod McDonald et concevoir un site autour de son travail. Chaque étape s’est terminée en code.</p>
+      <div class="meta">
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></strong> <span data-lang="en">Solo — lettering, layout, research, front-end</span><span data-lang="zh">独立完成 — 手写字母、版式、研究、前端</span><span data-lang="tw">獨立完成 — 手寫字母、版式、研究、前端</span><span data-lang="ja">個人制作 — レタリング、レイアウト、リサーチ、フロントエンド</span><span data-lang="fr">Seul — lettrage, mise en page, recherche, front-end</span></span>
+        <span><strong><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></strong> Illustrator, InDesign, HTML/CSS (Grid, Flexbox), @font-face</span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></strong> <span data-lang="en">3 projects · 22 live pages and variants</span><span data-lang="zh">3 个项目 · 22 个在线页面与变体</span><span data-lang="tw">3 個專案 · 22 個線上頁面與變體</span><span data-lang="ja">3 プロジェクト · 公開ページとバリエーション 22</span><span data-lang="fr">3 projets · 22 pages et variantes en ligne</span></span>
+      </div>
+    </div>
+
+    <div class="version-bar">
+      <label for="ver"><span data-lang="en">Version:</span><span data-lang="zh">版本：</span><span data-lang="tw">版本：</span><span data-lang="ja">バージョン：</span><span data-lang="fr">Version :</span></label>
+      <select id="ver">
+        <option value="../VDES15738P1/index.html" data-short="P1" data-t-zh="P1 — 字母与段落" data-t-tw="P1 — 字母與段落" data-t-ja="P1 — 字形と段落" data-t-fr="P1 — Lettres et paragraphe">P1 — Letterforms &amp; paragraph</option>
+        <option value="../VDES15738P2/index.html" data-short="P2" data-t-zh="P2 — 项目总览" data-t-tw="P2 — 專案總覽" data-t-ja="P2 — プロジェクトハブ" data-t-fr="P2 — Hub du projet">P2 — Project hub</option>
+        <option value="../VDES15738P2/reese12.html" data-short="P2 L1" data-t-zh="P2 — 版式 1（单字体、单字号）" data-t-tw="P2 — 版式 1（單字型、單字級）" data-t-ja="P2 — レイアウト 1（1 書体・1 サイズ）" data-t-fr="P2 — Mise en page 1 (une police, un corps)">P2 — Layout 1 (one face, one size)</option>
+        <option value="../VDES15738P2/reese8.html" data-short="P2 L2" data-t-zh="P2 — 版式 2（字重 + 斜体）" data-t-tw="P2 — 版式 2（字重 + 斜體）" data-t-ja="P2 — レイアウト 2（ウェイト + イタリック）" data-t-fr="P2 — Mise en page 2 (graisse + italique)">P2 — Layout 2 (weight + italic)</option>
+        <option value="../VDES15738P2/reese10.html" data-short="P2 L3" data-t-zh="P2 — 版式 3（完全对比）" data-t-tw="P2 — 版式 3（完全對比）" data-t-ja="P2 — レイアウト 3（フルコントラスト）" data-t-fr="P2 — Mise en page 3 (contraste complet)">P2 — Layout 3 (full contrast)</option>
+        <option value="../VDES15738P3V1/index.html" data-short="P3 V1" data-t-zh="P3 — 网站 V1" data-t-tw="P3 — 網站 V1" data-t-ja="P3 — ウェブサイト V1" data-t-fr="P3 — Site V1">P3 — Website V1</option>
+        <option value="../VDES15738P3V3/index.html" data-short="P3 V3" data-t-zh="P3 — 网站 V3" data-t-tw="P3 — 網站 V3" data-t-ja="P3 — ウェブサイト V3" data-t-fr="P3 — Site V3">P3 — Website V3</option>
+        <option value="../VDES15738P3V5/index.html" data-short="P3" selected data-t-zh="P3 — 网站（最终版）" data-t-tw="P3 — 網站（最終版）" data-t-ja="P3 — ウェブサイト（最終版）" data-t-fr="P3 — Site (version finale)">P3 — Website (final)</option>
+      </select>
+      <a class="btn" id="openLink" href="../VDES15738P3V5/index.html" target="_blank" rel="noopener">Open P3</a>
+    </div>
+
+    <div class="content">
+      <div class="preview" id="previewBox">
+        <iframe src="../VDES15738P3V5/index.html" loading="lazy" title="Typography project preview" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div class="preview-label">Live preview — P3 — Website (final)</div>
+      </div>
+
+      <div class="tldr">
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span></h2>
+        <dl>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span></dt><dd><span data-lang="en">Typography is the interface. The same decisions about form, spacing and hierarchy have to hold at the scale of a letter, a page and a whole site — and survive the move from print tools to the browser.</span><span data-lang="zh">字体排版本身就是界面。关于字形、间距和层级的同一套判断，要在一个字母、一页版面和一整个网站的尺度上都成立，还要经得起从印刷工具搬到浏览器的转换。</span><span data-lang="tw">字型排版本身就是介面。關於字形、間距和層級的同一套判斷，要在一個字母、一頁版面和一整個網站的尺度上都成立，還要經得起從印刷工具搬到瀏覽器的轉換。</span><span data-lang="ja">タイポグラフィはそれ自体がインターフェースです。形、間隔、階層についての同じ判断が、1 文字、1 ページ、サイト全体のどのスケールでも成り立ち、印刷用ツールからブラウザへ移しても崩れないことが求められます。</span><span data-lang="fr">La typographie est l’interface. Les mêmes choix de forme, d’espacement et de hiérarchie doivent tenir à l’échelle d’une lettre, d’une page et d’un site entier — et survivre au passage des outils d’impression au navigateur.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span></dt><dd><span data-lang="en">Solo coursework: hand lettering, paragraph and layout settings, three bilingual layouts, a research paper and every HTML/CSS build.</span><span data-lang="zh">独立完成的课程作业：手写字母、段落与版式设置、三套双语版式、一篇研究论文，以及全部 HTML/CSS 实现。</span><span data-lang="tw">獨立完成的課程作業：手寫字母、段落與版式設定、三套雙語版式、一篇研究論文，以及全部 HTML/CSS 實現。</span><span data-lang="ja">個人課題：手描きのレタリング、段落とレイアウトの設定、バイリンガルの 3 レイアウト、リサーチ論文、そしてすべての HTML/CSS 実装。</span><span data-lang="fr">Travail individuel : lettrage à la main, réglages de paragraphe et de mise en page, trois mises en page bilingues, un mémoire de recherche et toutes les intégrations HTML/CSS.</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span></dt><dd><span data-lang="en">Adobe Illustrator (brush-tool calligraphy), InDesign (7″ × 7″ layouts), HTML/CSS with Grid and Flexbox, @font-face, GSAP.</span><span data-lang="zh">Adobe Illustrator（画笔工具书法）、InDesign（7″ × 7″ 版式）、HTML/CSS（Grid 与 Flexbox）、@font-face、GSAP。</span><span data-lang="tw">Adobe Illustrator（畫筆工具書法）、InDesign（7″ × 7″ 版式）、HTML/CSS（Grid 與 Flexbox）、@font-face、GSAP。</span><span data-lang="ja">Adobe Illustrator（ブラシツールでのカリグラフィ）、InDesign（7″ × 7″ のレイアウト）、Grid と Flexbox を使った HTML/CSS、@font-face、GSAP。</span><span data-lang="fr">Adobe Illustrator (calligraphie à l’outil pinceau), InDesign (mises en page 7″ × 7″), HTML/CSS avec Grid et Flexbox, @font-face, GSAP.</span></dd></div>
+          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时程</span><span data-lang="tw">時程</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span></dt><dd><span data-lang="en">Winter 2025, 14 weeks · P1 Letterforms (30%) → P2 Grid layouts (35%) → P3 Designer website (35%)</span><span data-lang="zh">2025 年冬季学期，14 周 · P1 字母（30%）→ P2 网格版式（35%）→ P3 设计师网站（35%）</span><span data-lang="tw">2025 年冬季學期，14 週 · P1 字母（30%）→ P2 網格版式（35%）→ P3 設計師網站（35%）</span><span data-lang="ja">2025 年冬学期・14 週 · P1 字形（30%）→ P2 グリッドレイアウト（35%）→ P3 デザイナーのウェブサイト（35%）</span><span data-lang="fr">Hiver 2025, 14 semaines · P1 Lettres (30 %) → P2 Grilles (35 %) → P3 Site d’un créateur (35 %)</span></dd></div>
+          <div><dt><span data-lang="en">Key decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></dt><dd><span data-lang="en">Bitter for on-screen body text; hierarchy built from position and space before weight or colour; web layouts rebuilt on a real grid instead of copied from print.</span><span data-lang="zh">屏幕正文选用 Bitter；先用位置和留白建立层级，再考虑字重和颜色；网页版式在真正的网格上重建，而不是照搬印刷稿。</span><span data-lang="tw">螢幕正文選用 Bitter；先用位置和留白建立層級，再考慮字重和顏色；網頁版式在真正的網格上重建，而不是照搬印刷稿。</span><span data-lang="ja">画面の本文には Bitter。階層はウェイトや色より先に、位置と余白で組む。ウェブのレイアウトは印刷物をなぞらず、本物のグリッドの上で組み直す。</span><span data-lang="fr">Bitter pour le texte courant à l’écran ; une hiérarchie construite par la position et l’espace avant la graisse ou la couleur ; des mises en page web reconstruites sur une vraie grille plutôt que copiées de l’imprimé.</span></dd></div>
+          <div><dt><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></dt><dd><span data-lang="en">Three live projects with their full process: four worksheet rounds, four paragraph trials, twelve HTML layouts and six website variants.</span><span data-lang="zh">三个在线项目及完整过程：四轮字母练习、四次段落试排、十二个 HTML 版式和六个网站变体。</span><span data-lang="tw">三個線上專案及完整過程：四輪字母練習、四次段落試排、十二個 HTML 版式和六個網站變體。</span><span data-lang="ja">公開中の 3 プロジェクトと、その全プロセス：ワークシート 4 回、段落の試し組み 4 回、HTML レイアウト 12 種、ウェブサイトのバリエーション 6 種。</span><span data-lang="fr">Trois projets en ligne avec tout leur processus : quatre séries de planches, quatre essais de paragraphe, douze mises en page HTML et six variantes de site.</span></dd></div>
+        </dl>
+      </div>
+
+      <img class="cover-img" src="typography/p1-sheet-final.webp" alt="Final Hamburgefontsiv letterforms drawn with a broad-nib brush" data-alt-zh="用宽头笔刷写成的最终版 Hamburgefontsiv" data-alt-tw="用寬頭筆刷寫成的最終版 Hamburgefontsiv" data-alt-ja="平筆ブラシで描いた最終版の Hamburgefontsiv" data-alt-fr="Les lettres finales de « Hamburgefontsiv », tracées au pinceau à bec large">
+
+      <h2><span data-lang="en">Context</span><span data-lang="zh">背景</span><span data-lang="tw">背景</span><span data-lang="ja">背景</span><span data-lang="fr">Contexte</span></h2>
+      <p data-lang="en">VDES 15738 Design and Typography is a first-year course in Sheridan’s Bachelor of Interaction Design. Each brief asks for print-style craft first and then a coded version of it, so every decision has to survive the move from Illustrator or InDesign to the browser.</p>
+      <p data-lang="zh">VDES 15738 设计与字体排版是谢尔丹学院交互设计学士课程的一年级课程。每个任务都先要求做出印刷式的手艺，再做出它的代码版本，所以每一个判断都必须经得起从 Illustrator 或 InDesign 搬到浏览器的考验。</p>
+      <p data-lang="tw">VDES 15738 設計與字型排版是謝爾丹學院互動設計學士課程的一年級課程。每個任務都先要求做出印刷式的手藝，再做出它的程式碼版本，所以每一個判斷都必須經得起從 Illustrator 或 InDesign 搬到瀏覽器的考驗。</p>
+      <p data-lang="ja">VDES 15738 デザインとタイポグラフィは、シェリダン・カレッジのインタラクションデザイン学士課程 1 年次の授業です。どの課題もまず印刷物としての手仕事を求め、次にそれをコードで作ることを求めるので、あらゆる判断が Illustrator や InDesign からブラウザへの移行に耐えなければなりません。</p>
+      <p data-lang="fr">VDES 15738 Design et typographie est un cours de première année du baccalauréat en design d’interaction de Sheridan. Chaque brief demande d’abord un savoir-faire de type imprimé, puis sa version codée : chaque décision doit donc survivre au passage d’Illustrator ou d’InDesign au navigateur.</p>
+      <ul data-lang="en">
+        <li><strong>Course</strong> — VDES 15738 Design and Typography, Sheridan College, Winter 2025</li>
+        <li><strong>Briefs</strong> — P1 Letterform Construction, Classification and Use · P2 How Sweet It Is! Grid layout exercises · P3 Typography on the Web — Designer’s Website</li>
+        <li><strong>Constraints</strong> — P1: choose from six given typefaces; P2: a 7″ × 7″ square and three layouts with fixed rules; P3: embed at least one font with @font-face</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>课程</strong> — VDES 15738 设计与字体排版，谢尔丹学院，2025 年冬季</li>
+        <li><strong>任务</strong> — P1 字母的构造、分类与使用 · P2 甜蜜如斯！网格版式练习 · P3 网页上的字体排版 — 设计师网站</li>
+        <li><strong>限制</strong> — P1：只能从给定的六款字体中选；P2：7″ × 7″ 方形画面，三个版式各有固定规则；P3：至少用 @font-face 嵌入一款字体</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>課程</strong> — VDES 15738 設計與字型排版，謝爾丹學院，2025 年冬季</li>
+        <li><strong>任務</strong> — P1 字母的構造、分類與使用 · P2 甜蜜如斯！網格版式練習 · P3 網頁上的字型排版 — 設計師網站</li>
+        <li><strong>限制</strong> — P1：只能從給定的六款字型中選；P2：7″ × 7″ 方形畫面，三個版式各有固定規則；P3：至少用 @font-face 嵌入一款字型</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>授業</strong> — VDES 15738 デザインとタイポグラフィ、シェリダン・カレッジ、2025 年冬</li>
+        <li><strong>課題</strong> — P1 字形の構成・分類・使用 · P2 How Sweet It Is!（グリッドレイアウト演習）· P3 ウェブのタイポグラフィ — デザイナーのウェブサイト</li>
+        <li><strong>制約</strong> — P1：指定の 6 書体から選ぶ。P2：7″ × 7″ の正方形に、ルールの決まった 3 レイアウト。P3：@font-face で少なくとも 1 書体を埋め込む</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Cours</strong> — VDES 15738 Design et typographie, Sheridan College, hiver 2025</li>
+        <li><strong>Briefs</strong> — P1 Construction, classification et usage des lettres · P2 How Sweet It Is!, exercices de grille · P3 La typographie sur le web — site d’un créateur</li>
+        <li><strong>Contraintes</strong> — P1 : choisir parmi six polices imposées ; P2 : un carré de 7″ × 7″ et trois mises en page aux règles fixes ; P3 : intégrer au moins une police avec @font-face</li>
+      </ul>
+      <h2><span data-lang="en">The design problem</span><span data-lang="zh">设计问题</span><span data-lang="tw">設計問題</span><span data-lang="ja">デザインの課題</span><span data-lang="fr">Le problème de design</span></h2>
+      <p data-lang="en">How do you build a clear hierarchy with as little as possible — and keep it when the medium changes? Three tensions ran through the course:</p>
+      <p data-lang="zh">怎样用尽可能少的手段建立清晰的层级，并在媒介改变时保住它？整门课贯穿着三组张力：</p>
+      <p data-lang="tw">怎樣用儘可能少的手段建立清晰的層級，並在媒介改變時保住它？整門課貫穿著三組張力：</p>
+      <p data-lang="ja">できるだけ少ない手段で明快な階層をつくり、媒体が変わってもそれを保つにはどうするか。授業全体を通して、3 つの緊張関係がありました。</p>
+      <p data-lang="fr">Comment construire une hiérarchie claire avec le moins de moyens possible — et la conserver quand le support change ? Trois tensions ont traversé le cours :</p>
+      <ul data-lang="en">
+        <li><strong>Hand vs. system</strong> — letters drawn by hand still have to share a baseline, x-height, cap height and stroke angle, or the word falls apart.</li>
+        <li><strong>Constraint vs. hierarchy</strong> — Layout 1 allows one typeface, one size, 100% black. Primary, secondary and tertiary information must separate through position and space alone.</li>
+        <li><strong>Print vs. screen</strong> — every Illustrator or InDesign piece had to be rebuilt in HTML/CSS without losing its spacing, and the web versions had to reflow rather than freeze.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>手写与系统</strong> — 手绘的字母仍然必须共用基线、x 字高、大写字高和笔画角度，否则整个单词就会散掉。</li>
+        <li><strong>限制与层级</strong> — 版式 1 只允许一款字体、一个字号、100% 黑色。主要、次要和第三层信息只能靠位置和留白区分开。</li>
+        <li><strong>印刷与屏幕</strong> — 每件 Illustrator 或 InDesign 作品都要用 HTML/CSS 重建，且不能丢掉原有的间距；网页版还必须能自适应重排，而不是一张定格的图。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>手寫與系統</strong> — 手繪的字母仍然必須共用基線、x 字高、大寫字高和筆畫角度，否則整個單詞就會散掉。</li>
+        <li><strong>限制與層級</strong> — 版式 1 只允許一款字型、一個字級、100% 黑色。主要、次要和第三層資訊只能靠位置和留白區分開。</li>
+        <li><strong>印刷與螢幕</strong> — 每件 Illustrator 或 InDesign 作品都要用 HTML/CSS 重建，且不能丟掉原有的間距；網頁版還必須能自適應重排，而不是一張定格的圖。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>手と体系</strong> — 手で描いた文字でも、ベースライン、x ハイト、キャップハイト、ストロークの角度をそろえなければ、単語としてまとまりません。</li>
+        <li><strong>制約と階層</strong> — レイアウト 1 で使えるのは 1 書体、1 サイズ、黒 100% のみ。一次・二次・三次の情報を、位置と余白だけで分けなければなりません。</li>
+        <li><strong>印刷と画面</strong> — Illustrator や InDesign の作品はすべて、間隔を失わずに HTML/CSS で組み直す必要があり、ウェブ版は固まった絵ではなく、リフローできなければなりません。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>La main contre le système</strong> — des lettres dessinées à la main doivent quand même partager ligne de base, hauteur d’x, hauteur de capitale et angle de trait, sinon le mot se désagrège.</li>
+        <li><strong>Contrainte contre hiérarchie</strong> — la mise en page 1 n’autorise qu’une police, un corps, du noir à 100 %. Les informations principales, secondaires et tertiaires doivent se distinguer par la seule position et l’espace.</li>
+        <li><strong>Imprimé contre écran</strong> — chaque pièce Illustrator ou InDesign devait être reconstruite en HTML/CSS sans perdre ses espacements, et les versions web devaient se recomposer plutôt que se figer.</li>
+      </ul>
+      <div class="phase">
+        <span class="phase-label phase-label--p1"><span data-lang="en">P1 — Letterforms, paragraph &amp; classification</span><span data-lang="zh">P1 — 字母、段落与分类</span><span data-lang="tw">P1 — 字母、段落與分類</span><span data-lang="ja">P1 — 字形・段落・分類</span><span data-lang="fr">P1 — Lettres, paragraphe et classification</span></span>
+      <h3><span data-lang="en">Goal</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目的</span><span data-lang="fr">Objectif</span></h3>
+        <p data-lang="en">Construct letters by hand, set a long block of text for on-screen reading, and classify four letters by their anatomy.</p>
+        <p data-lang="zh">手工构造字母，为屏幕阅读设置一大段长文，并根据结构特征为四个字母分类。</p>
+        <p data-lang="tw">手工構造字母，為螢幕閱讀設定一大段長文，並根據結構特徵為四個字母分類。</p>
+        <p data-lang="ja">手で文字を組み立て、画面で読む長文を組み、4 つの文字を形の特徴から分類する。</p>
+        <p data-lang="fr">Construire des lettres à la main, composer un long texte pour la lecture à l’écran et classer quatre lettres d’après leur anatomie.</p>
+        <h3><span data-lang="en">Approach</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">アプローチ</span><span data-lang="fr">Démarche</span></h3>
+        <p data-lang="en">I drew the letterform worksheets with Illustrator’s brush tool set up like a broad-nib pen — H, a, m, b, u, r, g, e, f, o, n, t, s, i, v — repeating each letter until the strokes held the same angle and weight. The best forms were set as the word “Hamburgefontsiv”, with a rollover that labels the anatomy: ascender, x-height, bowl, ear, terminal and the rest.</p>
+        <p data-lang="zh">我用 Illustrator 的画笔工具模拟宽头笔完成字母练习表 —— H、a、m、b、u、r、g、e、f、o、n、t、s、i、v —— 每个字母反复书写，直到笔画的角度和粗细保持一致。最好的字形被排成单词“Hamburgefontsiv”，并加上鼠标悬停效果，标出各部位名称：上伸部、x 字高、字碗、字耳、收笔等。</p>
+        <p data-lang="tw">我用 Illustrator 的畫筆工具模擬寬頭筆完成字母練習表 —— H、a、m、b、u、r、g、e、f、o、n、t、s、i、v —— 每個字母反覆書寫，直到筆畫的角度和粗細保持一致。最好的字形被排成單詞“Hamburgefontsiv”，並加上滑鼠懸停效果，標出各部位名稱：上伸部、x 字高、字碗、字耳、收筆等。</p>
+        <p data-lang="ja">Illustrator のブラシツールを平筆のように設定してワークシートを描きました。H、a、m、b、u、r、g、e、f、o、n、t、s、i、v を、ストロークの角度と太さがそろうまで繰り返し、いちばん良い形で「Hamburgefontsiv」という単語を組み、アセンダー、x ハイト、ボウル、イヤー、ターミナルなどの部位名を表示するロールオーバーを付けました。</p>
+        <p data-lang="fr">J’ai tracé les planches de construction avec l’outil pinceau d’Illustrator réglé comme une plume à bec large — H, a, m, b, u, r, g, e, f, o, n, t, s, i, v —, en répétant chaque lettre jusqu’à ce que les traits gardent le même angle et la même graisse. Les meilleures formes composent le mot « Hamburgefontsiv », avec un survol qui nomme l’anatomie : ascendante, hauteur d’x, panse, oreille, terminaison, etc.</p>
+        <h3><span data-lang="en">Key decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></h3>
+        <ul data-lang="en">
+          <li><strong>Bitter for the paragraph.</strong> Of the six faces allowed, Abril Fatface and Kelly Slab are display faces and Georgia was tuned for an older generation of screens; Bitter is a slab serif drawn for screens, with sturdy serifs that hold up at body size.</li>
+          <li><strong>Settings chosen by reading, not by default.</strong> 1.18rem size, 1.66rem leading (about 1.4×), +0.01rem tracking, a 51rem measure and a 2.05rem first-line indent — tuned for a long news story read on a laptop.</li>
+          <li><strong>Classification from evidence.</strong> g, a, o and e were identified as transitional serif, slab serif, geometric sans and old-style serif, each with the features that decided it: axis, stroke contrast and serif shape.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>正文用 Bitter。</strong>在允许的六款字体里，Abril Fatface 和 Kelly Slab 是展示字体，Georgia 是为上一代屏幕调校的；Bitter 是专为屏幕绘制的粗衬线体，结实的衬线在正文字号下也站得住。</li>
+          <li><strong>参数靠阅读来定，而不是用默认值。</strong>字号 1.18rem、行距 1.66rem（约 1.4 倍）、字距 +0.01rem、行长 51rem、首行缩进 2.05rem —— 针对在笔记本电脑上读一篇长篇新闻而调校。</li>
+          <li><strong>分类要有依据。</strong>g、a、o、e 分别被判定为过渡衬线体、粗衬线体、几何无衬线体和旧式衬线体，每个都写明了决定性特征：轴线、笔画对比和衬线形状。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>正文用 Bitter。</strong>在允許的六款字型裡，Abril Fatface 和 Kelly Slab 是展示字型，Georgia 是為上一代螢幕調校的；Bitter 是專為螢幕繪製的粗襯線體，結實的襯線在正文字級下也站得住。</li>
+          <li><strong>引數靠閱讀來定，而不是用預設值。</strong>字級 1.18rem、行距 1.66rem（約 1.4 倍）、字距 +0.01rem、行長 51rem、首行縮排 2.05rem —— 針對在筆電上讀一篇長篇新聞而調校。</li>
+          <li><strong>分類要有依據。</strong>g、a、o、e 分別被判定為過渡襯線體、粗襯線體、幾何無襯線體和舊式襯線體，每個都寫明瞭決定性特徵：軸線、筆畫對比和襯線形狀。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>段落には Bitter。</strong>使える 6 書体のうち、Abril Fatface と Kelly Slab はディスプレイ書体で、Georgia はひと世代前の画面向けに調整された書体です。Bitter は画面用に描かれたスラブセリフで、しっかりしたセリフが本文サイズでも崩れません。</li>
+          <li><strong>数値は既定値ではなく、読んで決める。</strong>サイズ 1.18rem、行送り 1.66rem（約 1.4 倍）、字間 +0.01rem、行長 51rem、字下げ 2.05rem。ノートパソコンで長いニュース記事を読む前提で調整しました。</li>
+          <li><strong>分類は根拠から。</strong>g、a、o、e をそれぞれトランジショナル・セリフ、スラブセリフ、ジオメトリック・サンセリフ、オールドスタイル・セリフと判定し、決め手となった特徴（軸、ストロークのコントラスト、セリフの形）を添えました。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>Bitter pour le paragraphe.</strong> Parmi les six polices permises, Abril Fatface et Kelly Slab sont des caractères de titrage, et Georgia a été réglé pour une génération d’écrans plus ancienne ; Bitter est une égyptienne dessinée pour l’écran, aux empattements robustes qui tiennent en corps de texte.</li>
+          <li><strong>Des réglages choisis en lisant, pas par défaut.</strong> Corps 1,18rem, interlignage 1,66rem (environ 1,4×), approche +0,01rem, justification de 51rem et alinéa de 2,05rem — ajustés pour un long article lu sur un ordinateur portable.</li>
+          <li><strong>Une classification argumentée.</strong> g, a, o et e ont été identifiés comme réale, égyptienne, linéale géométrique et humane, chacun avec les traits décisifs : axe, contraste des pleins et déliés, forme des empattements.</li>
+        </ul>
+        <h3><span data-lang="en">Dead ends & cut features</span><span data-lang="zh">死胡同与砍掉的功能</span><span data-lang="tw">死胡同與砍掉的功能</span><span data-lang="ja">行き止まりと削った機能</span><span data-lang="fr">Impasses et fonctions abandonnées</span></h3>
+        <ul data-lang="en">
+          <li>Ubuntu at 1.05rem with −0.01rem tracking: legible, but cramped, and with no set measure the lines ran far too long.</li>
+          <li>Abril Fatface: its hairlines and heavy verticals sparkle in a headline but vibrate across a full paragraph.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li>Ubuntu，1.05rem，字距 −0.01rem：看得清，但太挤；而且没设行长，每行都拉得太长。</li>
+          <li>Abril Fatface：极细的发丝线和粗重的竖笔在标题里很出彩，放进整段正文就会晃眼。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li>Ubuntu，1.05rem，字距 −0.01rem：看得清，但太擠；而且沒設行長，每行都拉得太長。</li>
+          <li>Abril Fatface：極細的髮絲線和粗重的豎筆在標題裡很出彩，放進整段正文就會晃眼。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li>Ubuntu、1.05rem、字間 −0.01rem：読めるものの窮屈で、行長を決めていなかったため 1 行が長すぎました。</li>
+          <li>Abril Fatface：極細のヘアラインと太い縦画は見出しでは映えますが、段落全体ではちらつきます。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li>Ubuntu à 1,05rem avec une approche de −0,01rem : lisible mais serré, et sans justification fixée, les lignes étaient bien trop longues.</li>
+          <li>Abril Fatface : ses déliés très fins et ses fûts épais brillent dans un titre mais vibrent sur tout un paragraphe.</li>
+        </ul>
+        <h3><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></h3>
+        <p data-lang="en">A live page with the lettered word, its anatomy rollover, the final paragraph setting and the four classifications with their rationale.</p>
+        <p data-lang="zh">一个在线页面：手写单词、结构标注的悬停效果、最终的段落设置，以及四个字母的分类和理由。</p>
+        <p data-lang="tw">一個線上頁面：手寫單詞、結構標註的懸停效果、最終的段落設定，以及四個字母的分類和理由。</p>
+        <p data-lang="ja">描いた単語、部位名のロールオーバー、最終的な段落設定、4 文字の分類とその根拠をまとめた公開ページ。</p>
+        <p data-lang="fr">Une page en ligne avec le mot lettré, son survol anatomique, la composition finale du paragraphe et les quatre classifications argumentées.</p>
+        <div class="shots">
+          <figure><img src="typography/p1-sheet-1.webp" alt="Worksheet — H, a, m, b" data-alt-zh="练习表 — H、a、m、b" data-alt-tw="練習表 — H、a、m、b" data-alt-ja="ワークシート — H、a、m、b" data-alt-fr="Planche — H, a, m, b" loading="lazy"><figcaption><span data-lang="en">Worksheet — H, a, m, b</span><span data-lang="zh">练习表 — H、a、m、b</span><span data-lang="tw">練習表 — H、a、m、b</span><span data-lang="ja">ワークシート — H、a、m、b</span><span data-lang="fr">Planche — H, a, m, b</span></figcaption></figure>
+          <figure><img src="typography/p1-sheet-3.webp" alt="Worksheet — f, o, n, t, s" data-alt-zh="练习表 — f、o、n、t、s" data-alt-tw="練習表 — f、o、n、t、s" data-alt-ja="ワークシート — f、o、n、t、s" data-alt-fr="Planche — f, o, n, t, s" loading="lazy"><figcaption><span data-lang="en">Worksheet — f, o, n, t, s</span><span data-lang="zh">练习表 — f、o、n、t、s</span><span data-lang="tw">練習表 — f、o、n、t、s</span><span data-lang="ja">ワークシート — f、o、n、t、s</span><span data-lang="fr">Planche — f, o, n, t, s</span></figcaption></figure>
+          <figure><img src="typography/p1-anatomy.webp" alt="Anatomy labels for the rollover" data-alt-zh="悬停效果用的结构标注" data-alt-tw="懸停效果用的結構標註" data-alt-ja="ロールオーバー用の部位名" data-alt-fr="Légendes anatomiques du survol" loading="lazy"><figcaption><span data-lang="en">Anatomy labels for the rollover</span><span data-lang="zh">悬停效果用的结构标注</span><span data-lang="tw">懸停效果用的結構標註</span><span data-lang="ja">ロールオーバー用の部位名</span><span data-lang="fr">Légendes anatomiques du survol</span></figcaption></figure>
+        </div>
+        <div class="shots">
+          <figure><img src="typography/p1-trial-ubuntu.webp" alt="Trial — Ubuntu, 1.05rem" data-alt-zh="试排 — Ubuntu，1.05rem" data-alt-tw="試排 — Ubuntu，1.05rem" data-alt-ja="試し組み — Ubuntu、1.05rem" data-alt-fr="Essai — Ubuntu, 1,05rem" loading="lazy"><figcaption><span data-lang="en">Trial — Ubuntu, 1.05rem</span><span data-lang="zh">试排 — Ubuntu，1.05rem</span><span data-lang="tw">試排 — Ubuntu，1.05rem</span><span data-lang="ja">試し組み — Ubuntu、1.05rem</span><span data-lang="fr">Essai — Ubuntu, 1,05rem</span></figcaption></figure>
+          <figure><img src="typography/p1-trial-abril.webp" alt="Trial — Abril Fatface" data-alt-zh="试排 — Abril Fatface" data-alt-tw="試排 — Abril Fatface" data-alt-ja="試し組み — Abril Fatface" data-alt-fr="Essai — Abril Fatface" loading="lazy"><figcaption><span data-lang="en">Trial — Abril Fatface</span><span data-lang="zh">试排 — Abril Fatface</span><span data-lang="tw">試排 — Abril Fatface</span><span data-lang="ja">試し組み — Abril Fatface</span><span data-lang="fr">Essai — Abril Fatface</span></figcaption></figure>
+          <figure><img src="typography/p1-final.webp" alt="Final page — the Bitter setting" data-alt-zh="最终页面 — Bitter 的设置" data-alt-tw="最終頁面 — Bitter 的設定" data-alt-ja="最終ページ — Bitter の設定" data-alt-fr="Page finale — la composition en Bitter" loading="lazy"><figcaption><span data-lang="en">Final page — the Bitter setting</span><span data-lang="zh">最终页面 — Bitter 的设置</span><span data-lang="tw">最終頁面 — Bitter 的設定</span><span data-lang="ja">最終ページ — Bitter の設定</span><span data-lang="fr">Page finale — la composition en Bitter</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p2"><span data-lang="en">P2 — How sweet it is: grid layouts</span><span data-lang="zh">P2 — 甜蜜如斯：网格版式</span><span data-lang="tw">P2 — 甜蜜如斯：網格版式</span><span data-lang="ja">P2 — How Sweet It Is：グリッドレイアウト</span><span data-lang="fr">P2 — How Sweet It Is : mises en page sur grille</span></span>
+      <h3><span data-lang="en">Goal</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目的</span><span data-lang="fr">Objectif</span></h3>
+        <p data-lang="en">Take every word on a bilingual chocolate-bar wrapper and build three hierarchies from it — first in InDesign, then in CSS.</p>
+        <p data-lang="zh">把一张双语巧克力包装纸上的每一个字拿出来，建立三种层级 —— 先在 InDesign 里，再用 CSS。</p>
+        <p data-lang="tw">把一張雙語巧克力包裝紙上的每一個字拿出來，建立三種層級 —— 先在 InDesign 裡，再用 CSS。</p>
+        <p data-lang="ja">バイリンガルのチョコレートバーの包装にある言葉をすべて取り出し、3 通りの階層を組む。まず InDesign で、次に CSS で。</p>
+        <p data-lang="fr">Prendre chaque mot de l’emballage bilingue d’une barre chocolatée et en tirer trois hiérarchies — d’abord dans InDesign, puis en CSS.</p>
+        <h3><span data-lang="en">Approach</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">アプローチ</span><span data-lang="fr">Démarche</span></h3>
+        <p data-lang="en">I chose a Reese peanut-butter-cups wrapper, transcribed all of its English and French text, and analysed how the package ranks it. The brand name, product line and product photo are primary; the French name, the flavour line and the net weight are secondary; ingredients, nutrition facts, importer and contact details are tertiary. That ranking became the content plan for three 7″ × 7″ layouts, each with a different set of freedoms.</p>
+        <p data-lang="zh">我选了一张 Reese 花生酱杯的包装纸，把上面所有英文和法文抄录下来，并分析包装如何给信息排序：品牌名、产品名和产品图是第一层；法文名、口味描述和净含量是第二层；配料、营养成分、进口商和联系方式是第三层。这个排序成了三个 7″ × 7″ 版式的内容规划，每个版式允许的手段各不相同。</p>
+        <p data-lang="tw">我選了一張 Reese 花生醬杯的包裝紙，把上面所有英文和法文抄錄下來，並分析包裝如何給資訊排序：品牌名、產品名和產品圖是第一層；法文名、口味描述和淨含量是第二層；配料、營養成分、進口商和聯絡方式是第三層。這個排序成了三個 7″ × 7″ 版式的內容規劃，每個版式允許的手段各不相同。</p>
+        <p data-lang="ja">Reese のピーナッツバターカップの包装を選び、英語とフランス語の文字をすべて書き起こして、パッケージが情報をどう序列づけているかを分析しました。ブランド名、商品名、商品写真が一次。フランス語の商品名、味の説明、内容量が二次。原材料、栄養成分表示、輸入者、問い合わせ先が三次です。この序列が、使える手段の異なる 7″ × 7″ の 3 レイアウトのコンテンツ設計になりました。</p>
+        <p data-lang="fr">J’ai choisi l’emballage des coupes au beurre d’arachide Reese, transcrit tout son texte anglais et français, et analysé la façon dont l’emballage le hiérarchise. La marque, le nom du produit et la photo sont primaires ; le nom français, la ligne de saveur et le poids net sont secondaires ; ingrédients, valeur nutritive, importateur et coordonnées sont tertiaires. Ce classement est devenu le plan de contenu de trois mises en page de 7″ × 7″, chacune avec ses propres libertés.</p>
+        <h3><span data-lang="en">Key decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></h3>
+        <ul data-lang="en">
+          <li><strong>Layout 1 — one face, one size, 100% black.</strong> Helvetica only, so hierarchy came from grouping, alignment and white space: brand and weight on one line, the English and French product names paired in two columns, the nutrition table on its own column.</li>
+          <li><strong>Layout 2 — weight and stance.</strong> Same size, now with bold and italic. Bold carries the panel headings and key values; italic marks the product descriptions and the small print.</li>
+          <li><strong>Layout 3 — full contrast.</strong> Size, typeface and colour unlocked: a large orange “Reese” wordmark anchors the square, a serif sets the nutrition panel, a monospace face carries calories and weight, and colour separates the information groups.</li>
+          <li><strong>Rebuild, don’t screenshot.</strong> Each final was recreated with CSS Grid and Flexbox from the same text, so the web versions reflow instead of being pictures of the print.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>版式 1 —— 单一字体、单一字号、100% 黑。</strong>只用 Helvetica，所以层级只能来自分组、对齐和留白：品牌和净含量放在同一行，英法产品名分两栏并列，营养成分表独占一栏。</li>
+          <li><strong>版式 2 —— 字重与姿态。</strong>字号不变，加入粗体和斜体。粗体承担栏目标题和关键数值，斜体标出产品描述和小字。</li>
+          <li><strong>版式 3 —— 完全对比。</strong>字号、字体和颜色全部放开：一个大号橙色“Reese”字标压住整个方形画面，衬线体排营养成分表，等宽字体承载热量和重量，颜色把各组信息分开。</li>
+          <li><strong>重建，而不是截图。</strong>每个定稿都用 CSS Grid 和 Flexbox 以同样的文字重新搭建，所以网页版能自适应重排，而不是印刷稿的图片。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>版式 1 —— 單一字型、單一字級、100% 黑。</strong>只用 Helvetica，所以層級只能來自分組、對齊和留白：品牌和淨含量放在同一行，英法產品名分兩欄並列，營養成分表獨佔一欄。</li>
+          <li><strong>版式 2 —— 字重與姿態。</strong>字級不變，加入粗體和斜體。粗體承擔欄目標題和關鍵數值，斜體標出產品描述和小字。</li>
+          <li><strong>版式 3 —— 完全對比。</strong>字級、字型和顏色全部放開：一個大號橙色“Reese”字標壓住整個方形畫面，襯線體排營養成分表，等寬字型承載熱量和重量，顏色把各組資訊分開。</li>
+          <li><strong>重建，而不是截圖。</strong>每個定稿都用 CSS Grid 和 Flexbox 以同樣的文字重新搭建，所以網頁版能自適應重排，而不是印刷稿的圖片。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>レイアウト 1 —— 1 書体・1 サイズ・黒 100%。</strong>Helvetica だけなので、階層はグループ化、揃え、余白から生まれます。ブランド名と内容量を 1 行に、英語とフランス語の商品名を 2 段で並べ、栄養成分表は独立した段に置きました。</li>
+          <li><strong>レイアウト 2 —— ウェイトとスタンス。</strong>サイズは同じまま、太字とイタリックを加えました。太字は見出しと主要な数値を、イタリックは商品説明と細則を担います。</li>
+          <li><strong>レイアウト 3 —— フルコントラスト。</strong>サイズ、書体、色をすべて解禁。大きなオレンジの「Reese」のロゴタイプが正方形を支え、栄養成分表はセリフ体、カロリーと重量は等幅書体で、色が情報のグループを分けます。</li>
+          <li><strong>スクリーンショットではなく、組み直す。</strong>どの最終版も同じテキストから CSS Grid と Flexbox で作り直したので、ウェブ版は印刷物の画像ではなく、リフローします。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>Mise en page 1 — une police, un corps, noir à 100 %.</strong> Helvetica seule : la hiérarchie vient du regroupement, de l’alignement et du blanc — marque et poids sur une ligne, noms anglais et français côte à côte sur deux colonnes, tableau nutritionnel dans sa propre colonne.</li>
+          <li><strong>Mise en page 2 — graisse et inclinaison.</strong> Même corps, avec gras et italique. Le gras porte les titres de bloc et les valeurs clés ; l’italique signale les descriptions et les mentions en petit.</li>
+          <li><strong>Mise en page 3 — contraste complet.</strong> Corps, police et couleur libérés : un grand logotype « Reese » orange ancre le carré, un caractère à empattements compose le tableau nutritionnel, une police à chasse fixe porte calories et poids, et la couleur sépare les groupes d’information.</li>
+          <li><strong>Reconstruire, pas faire une capture.</strong> Chaque version finale a été recréée en CSS Grid et Flexbox à partir du même texte : les versions web se recomposent au lieu d’être des images de l’imprimé.</li>
+        </ul>
+        <h3><span data-lang="en">Dead ends & cut features</span><span data-lang="zh">死胡同与砍掉的功能</span><span data-lang="tw">死胡同與砍掉的功能</span><span data-lang="ja">行き止まりと削った機能</span><span data-lang="fr">Impasses et fonctions abandonnées</span></h3>
+        <ul data-lang="en">
+          <li>The first round of HTML layouts (Ver1) copied the InDesign positions too literally, and at other widths the columns collided. Ver2 rebuilt each one on a grid with defined tracks — twelve HTML layouts in total.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li>第一轮 HTML 版式（Ver1）照搬 InDesign 的位置太死板，换个宽度各栏就撞在一起。Ver2 把每个版式都重建在定义好轨道的网格上 —— 前后一共十二个 HTML 版式。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li>第一輪 HTML 版式（Ver1）照搬 InDesign 的位置太死板，換個寬度各欄就撞在一起。Ver2 把每個版式都重建在定義好軌道的網格上 —— 前後一共十二個 HTML 版式。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li>1 回目の HTML レイアウト（Ver1）は InDesign の位置をそのまま写しすぎて、幅が変わると段同士がぶつかりました。Ver2 では、トラックを定義したグリッドの上ですべて組み直しました。HTML レイアウトは合計 12 種です。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li>La première série de mises en page HTML (Ver1) reprenait trop littéralement les positions d’InDesign : à d’autres largeurs, les colonnes se percutaient. La Ver2 a tout reconstruit sur une grille aux pistes définies — douze mises en page HTML au total.</li>
+        </ul>
+        <h3><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></h3>
+        <p data-lang="en">A project hub linking the wrapper analysis, the bilingual transcription and all twelve HTML layouts, alongside the three InDesign finals.</p>
+        <p data-lang="zh">一个项目总览页，链接到包装分析、双语抄录和全部十二个 HTML 版式，另附三个 InDesign 定稿。</p>
+        <p data-lang="tw">一個專案總覽頁，連結到包裝分析、雙語抄錄和全部十二個 HTML 版式，另附三個 InDesign 定稿。</p>
+        <p data-lang="ja">包装の分析、バイリンガルの書き起こし、12 種の HTML レイアウトすべてにつながるプロジェクトハブと、InDesign の最終版 3 点。</p>
+        <p data-lang="fr">Un hub de projet reliant l’analyse de l’emballage, la transcription bilingue et les douze mises en page HTML, avec les trois versions finales InDesign.</p>
+        <div class="shots">
+          <figure><img src="typography/p2-wrapper.webp" alt="The Reese wrapper — the source text" data-alt-zh="Reese 包装纸 — 原始文字来源" data-alt-tw="Reese 包裝紙 — 原始文字來源" data-alt-ja="Reese の包装 — 元になったテキスト" data-alt-fr="L’emballage Reese — le texte source" loading="lazy"><figcaption><span data-lang="en">The Reese wrapper — the source text</span><span data-lang="zh">Reese 包装纸 — 原始文字来源</span><span data-lang="tw">Reese 包裝紙 — 原始文字來源</span><span data-lang="ja">Reese の包装 — 元になったテキスト</span><span data-lang="fr">L’emballage Reese — le texte source</span></figcaption></figure>
+          <figure><img src="typography/p2-layout1.webp" alt="Layout 1 — position and space only" data-alt-zh="版式 1 — 只靠位置和留白" data-alt-tw="版式 1 — 只靠位置和留白" data-alt-ja="レイアウト 1 — 位置と余白だけ" data-alt-fr="Mise en page 1 — position et espace seulement" loading="lazy"><figcaption><span data-lang="en">Layout 1 — position and space only</span><span data-lang="zh">版式 1 — 只靠位置和留白</span><span data-lang="tw">版式 1 — 只靠位置和留白</span><span data-lang="ja">レイアウト 1 — 位置と余白だけ</span><span data-lang="fr">Mise en page 1 — position et espace seulement</span></figcaption></figure>
+          <figure><img src="typography/p2-layout2.webp" alt="Layout 2 — weight and italic" data-alt-zh="版式 2 — 字重与斜体" data-alt-tw="版式 2 — 字重與斜體" data-alt-ja="レイアウト 2 — ウェイトとイタリック" data-alt-fr="Mise en page 2 — graisse et italique" loading="lazy"><figcaption><span data-lang="en">Layout 2 — weight and italic</span><span data-lang="zh">版式 2 — 字重与斜体</span><span data-lang="tw">版式 2 — 字重與斜體</span><span data-lang="ja">レイアウト 2 — ウェイトとイタリック</span><span data-lang="fr">Mise en page 2 — graisse et italique</span></figcaption></figure>
+          <figure><img src="typography/p2-layout3.webp" alt="Layout 3 — size, typeface and colour" data-alt-zh="版式 3 — 字号、字体与颜色" data-alt-tw="版式 3 — 字級、字型與顏色" data-alt-ja="レイアウト 3 — サイズ・書体・色" data-alt-fr="Mise en page 3 — corps, police et couleur" loading="lazy"><figcaption><span data-lang="en">Layout 3 — size, typeface and colour</span><span data-lang="zh">版式 3 — 字号、字体与颜色</span><span data-lang="tw">版式 3 — 字級、字型與顏色</span><span data-lang="ja">レイアウト 3 — サイズ・書体・色</span><span data-lang="fr">Mise en page 3 — corps, police et couleur</span></figcaption></figure>
+        </div>
+        <div class="shots">
+          <figure><img src="typography/p2-html-l1v1.webp" alt="HTML Layout 1, Ver1" data-alt-zh="HTML 版式 1，Ver1" data-alt-tw="HTML 版式 1，Ver1" data-alt-ja="HTML レイアウト 1、Ver1" data-alt-fr="Mise en page HTML 1, Ver1" loading="lazy"><figcaption><span data-lang="en">HTML Layout 1, Ver1</span><span data-lang="zh">HTML 版式 1，Ver1</span><span data-lang="tw">HTML 版式 1，Ver1</span><span data-lang="ja">HTML レイアウト 1、Ver1</span><span data-lang="fr">Mise en page HTML 1, Ver1</span></figcaption></figure>
+          <figure><img src="typography/p2-html-l1v2.webp" alt="HTML Layout 1, Ver2 — rebuilt on a grid" data-alt-zh="HTML 版式 1，Ver2 — 在网格上重建" data-alt-tw="HTML 版式 1，Ver2 — 在網格上重建" data-alt-ja="HTML レイアウト 1、Ver2 — グリッドで組み直し" data-alt-fr="Mise en page HTML 1, Ver2 — reconstruite sur une grille" loading="lazy"><figcaption><span data-lang="en">HTML Layout 1, Ver2 — rebuilt on a grid</span><span data-lang="zh">HTML 版式 1，Ver2 — 在网格上重建</span><span data-lang="tw">HTML 版式 1，Ver2 — 在網格上重建</span><span data-lang="ja">HTML レイアウト 1、Ver2 — グリッドで組み直し</span><span data-lang="fr">Mise en page HTML 1, Ver2 — reconstruite sur une grille</span></figcaption></figure>
+          <figure><img src="typography/p2-html-l3.webp" alt="HTML Layout 3" data-alt-zh="HTML 版式 3" data-alt-tw="HTML 版式 3" data-alt-ja="HTML レイアウト 3" data-alt-fr="Mise en page HTML 3" loading="lazy"><figcaption><span data-lang="en">HTML Layout 3</span><span data-lang="zh">HTML 版式 3</span><span data-lang="tw">HTML 版式 3</span><span data-lang="ja">HTML レイアウト 3</span><span data-lang="fr">Mise en page HTML 3</span></figcaption></figure>
+          <figure><img src="typography/p2-hub.webp" alt="Project hub" data-alt-zh="项目总览页" data-alt-tw="專案總覽頁" data-alt-ja="プロジェクトハブ" data-alt-fr="Hub du projet" loading="lazy"><figcaption><span data-lang="en">Project hub</span><span data-lang="zh">项目总览页</span><span data-lang="tw">專案總覽頁</span><span data-lang="ja">プロジェクトハブ</span><span data-lang="fr">Hub du projet</span></figcaption></figure>
+        </div>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p3"><span data-lang="en">P3 — A website for Rod McDonald</span><span data-lang="zh">P3 — 为 Rod McDonald 做的网站</span><span data-lang="tw">P3 — 為 Rod McDonald 做的網站</span><span data-lang="ja">P3 — Rod McDonald のためのウェブサイト</span><span data-lang="fr">P3 — Un site pour Rod McDonald</span></span>
+      <h3><span data-lang="en">Goal</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目的</span><span data-lang="fr">Objectif</span></h3>
+        <p data-lang="en">Research an influential typographer, write it up, and design a website that interprets their work, embedding at least one font with @font-face.</p>
+        <p data-lang="zh">研究一位有影响力的字体设计师，写成论文，再设计一个诠释其作品的网站，并至少用 @font-face 嵌入一款字体。</p>
+        <p data-lang="tw">研究一位有影響力的字型設計師，寫成論文，再設計一個詮釋其作品的網站，並至少用 @font-face 嵌入一款字型。</p>
+        <p data-lang="ja">影響力のあるタイポグラファーを調べて論文にまとめ、その仕事を解釈するウェブサイトをデザインする。少なくとも 1 書体を @font-face で埋め込むこと。</p>
+        <p data-lang="fr">Étudier un typographe influent, en faire un mémoire, puis concevoir un site qui interprète son travail en intégrant au moins une police avec @font-face.</p>
+        <h3><span data-lang="en">Approach</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">アプローチ</span><span data-lang="fr">Démarche</span></h3>
+        <p data-lang="en">I chose Rod McDonald, the Canadian type designer who taught at Sheridan, and wrote a 1,700-word paper on his work: the revival of Carl Dair’s Cartier as Cartier Book, Laurentian for Maclean’s — Canada’s first custom magazine typeface — Gibson for the GDC, and Classic Grotesque, which refines early grotesques such as Akzidenz-Grotesk and Monotype Grotesque. The paper became the site’s content, and the site went through six variants.</p>
+        <p data-lang="zh">我选了曾在谢尔丹任教的加拿大字体设计师 Rod McDonald，写了一篇 1,700 词的论文，梳理他的作品：把 Carl Dair 的 Cartier 复刻为 Cartier Book；为《Maclean’s》杂志设计的 Laurentian —— 加拿大第一款杂志定制字体；为加拿大平面设计师协会（GDC）设计的 Gibson；以及改良 Akzidenz-Grotesk、Monotype Grotesque 等早期怪诞体的 Classic Grotesque。论文成为网站的内容，网站前后做了六个变体。</p>
+        <p data-lang="tw">我選了曾在謝爾丹任教的加拿大字型設計師 Rod McDonald，寫了一篇 1,700 詞的論文，梳理他的作品：把 Carl Dair 的 Cartier 復刻為 Cartier Book；為《Maclean’s》雜誌設計的 Laurentian —— 加拿大第一款雜誌定製字型；為加拿大平面設計師協會（GDC）設計的 Gibson；以及改良 Akzidenz-Grotesk、Monotype Grotesque 等早期怪誕體的 Classic Grotesque。論文成為網站的內容，網站前後做了六個變體。</p>
+        <p data-lang="ja">シェリダンで教えていたカナダの書体デザイナー Rod McDonald を選び、その仕事について 1,700 語の論文を書きました。Carl Dair の Cartier を Cartier Book として復刻したこと、カナダ初の雑誌専用書体である Maclean’s 誌の Laurentian、GDC（カナダ・グラフィックデザイナー協会）のための Gibson、そして Akzidenz-Grotesk や Monotype Grotesque などの初期グロテスクを洗練させた Classic Grotesque。論文がサイトの中身になり、サイトは 6 つのバリエーションを経ました。</p>
+        <p data-lang="fr">J’ai choisi Rod McDonald, dessinateur de caractères canadien qui a enseigné à Sheridan, et rédigé un mémoire de 1 700 mots sur son travail : la reprise du Cartier de Carl Dair en Cartier Book, Laurentian pour Maclean’s — le premier caractère de magazine sur mesure au Canada —, Gibson pour la GDC, et Classic Grotesque, qui affine les premières grotesques comme l’Akzidenz-Grotesk et la Monotype Grotesque. Le mémoire est devenu le contenu du site, qui a connu six variantes.</p>
+        <h3><span data-lang="en">Key decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span></h3>
+        <ul data-lang="en">
+          <li><strong>Let the subject set the voice.</strong> A slab-serif heading face and, in the last two variants, an embedded display face (Oxanium, via @font-face) contrast with a quiet sans body — echoing McDonald’s mix of historical form and modern finish.</li>
+          <li><strong>From a long scroll to a reading grid.</strong> V1 was a single column. Later variants moved to two columns per section, with portraits and type specimens (Laurentian Condensed Bold, Regular, Italic) set as live text beside the argument.</li>
+          <li><strong>Navigation that mirrors the paper.</strong> Intro, Contribution, Influence, Typeface Analysis, Classic Grotesque, References — the menu is the paper’s outline, so the site reads as a document.</li>
+          <li><strong>Motion with restraint.</strong> A one-second fade per section and a GSAP drop-in for the title — nothing that competes with reading.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>让主题决定语气。</strong>粗衬线的标题字体，加上最后两个变体里通过 @font-face 嵌入的展示字体 Oxanium，与安静的无衬线正文形成对比 —— 呼应 McDonald 把历史字形与现代质感相结合的做法。</li>
+          <li><strong>从长滚动到阅读网格。</strong>V1 是单栏长页。后来的变体改成每节两栏，人物照片和字体样张（Laurentian Condensed Bold、Regular、Italic）以真实文字排在论述旁边。</li>
+          <li><strong>导航就是论文的提纲。</strong>简介、贡献、影响、字体分析、Classic Grotesque、参考文献 —— 菜单就是论文的目录，所以整个网站读起来像一份文献。</li>
+          <li><strong>克制的动效。</strong>每节一秒的淡入，标题用 GSAP 落下 —— 没有任何与阅读抢注意力的东西。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>讓主題決定語氣。</strong>粗襯線的標題字型，加上最後兩個變體裡透過 @font-face 嵌入的展示字型 Oxanium，與安靜的無襯線正文形成對比 —— 呼應 McDonald 把歷史字形與現代質感相結合的做法。</li>
+          <li><strong>從長捲動到閱讀網格。</strong>V1 是單欄長頁。後來的變體改成每節兩欄，人物照片和字型樣張（Laurentian Condensed Bold、Regular、Italic）以真實文字排在論述旁邊。</li>
+          <li><strong>導覽就是論文的提綱。</strong>簡介、貢獻、影響、字型分析、Classic Grotesque、參考文獻 —— 選單就是論文的目錄，所以整個網站讀起來像一份文獻。</li>
+          <li><strong>剋制的動效。</strong>每節一秒的淡入，標題用 GSAP 落下 —— 沒有任何與閱讀搶注意力的東西。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>題材に声を決めさせる。</strong>スラブセリフの見出しと、最後の 2 バリエーションでは @font-face で埋め込んだディスプレイ書体 Oxanium を、静かなサンセリフの本文と対比させました。歴史的な形と現代的な仕上げを組み合わせる McDonald の作風への呼応です。</li>
+          <li><strong>長いスクロールから、読むためのグリッドへ。</strong>V1 は 1 段組みでした。以降のバリエーションではセクションごとに 2 段組みにし、肖像と書体見本（Laurentian Condensed Bold、Regular、Italic）を、本文の横に実際のテキストとして置きました。</li>
+          <li><strong>論文をなぞるナビゲーション。</strong>Intro、Contribution、Influence、Typeface Analysis、Classic Grotesque、References。メニューが論文の章立てそのものなので、サイトが 1 つの文書として読めます。</li>
+          <li><strong>控えめなモーション。</strong>セクションごとに 1 秒のフェードイン、タイトルは GSAP で上から降りてくるだけ。読むことと競うものは置きません。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>Laisser le sujet donner le ton.</strong> Une égyptienne pour les titres et, dans les deux dernières variantes, une police de titrage intégrée (Oxanium, via @font-face) contrastent avec un texte courant en linéale discrète — en écho au mélange de forme historique et de finition moderne de McDonald.</li>
+          <li><strong>D’un long défilement à une grille de lecture.</strong> La V1 tenait sur une seule colonne. Les variantes suivantes passent à deux colonnes par section, avec portraits et spécimens (Laurentian Condensed Bold, Regular, Italic) composés en texte réel à côté de l’argument.</li>
+          <li><strong>Une navigation calquée sur le mémoire.</strong> Intro, Contribution, Influence, Analyse de caractère, Classic Grotesque, Références : le menu est le plan du mémoire, et le site se lit comme un document.</li>
+          <li><strong>Un mouvement mesuré.</strong> Un fondu d’une seconde par section et une entrée GSAP pour le titre — rien qui concurrence la lecture.</li>
+        </ul>
+        <h3><span data-lang="en">Dead ends & cut features</span><span data-lang="zh">死胡同与砍掉的功能</span><span data-lang="tw">死胡同與砍掉的功能</span><span data-lang="ja">行き止まりと削った機能</span><span data-lang="fr">Impasses et fonctions abandonnées</span></h3>
+        <ul data-lang="en">
+          <li>The first variant was a faithful single column: easy to read, but visually indistinguishable from the PDF. Colour bands and the two-column grid gave each section its own identity.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li>第一个变体是忠实的单栏：好读，但看起来和 PDF 没有区别。色带和两栏网格让每一节有了自己的面貌。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li>第一個變體是忠實的單欄：好讀，但看起來和 PDF 沒有區別。色帶和兩欄網格讓每一節有了自己的面貌。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li>最初のバリエーションは素直な 1 段組みで、読みやすいものの PDF と見た目が変わりませんでした。色の帯と 2 段組みのグリッドで、セクションごとの個性が生まれました。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li>La première variante était une colonne unique fidèle : facile à lire, mais visuellement identique au PDF. Les bandes de couleur et la grille à deux colonnes ont donné à chaque section sa propre identité.</li>
+        </ul>
+        <h3><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span></h3>
+        <p data-lang="en">A research paper with APA references and a six-variant website, the last of which is the final.</p>
+        <p data-lang="zh">一篇附 APA 参考文献的研究论文，以及一个有六个变体的网站，最后一个即定稿。</p>
+        <p data-lang="tw">一篇附 APA 參考文獻的研究論文，以及一個有六個變體的網站，最後一個即定稿。</p>
+        <p data-lang="ja">APA 形式の参考文献付きリサーチ論文と、6 バリエーションのウェブサイト（最後が最終版）。</p>
+        <p data-lang="fr">Un mémoire de recherche avec références APA et un site en six variantes, dont la dernière est la version finale.</p>
+        <div class="shots shots--wide">
+          <figure><img src="typography/p3-v1.webp" alt="V1 — a single column" data-alt-zh="V1 — 单栏" data-alt-tw="V1 — 單欄" data-alt-ja="V1 — 1 段組み" data-alt-fr="V1 — une seule colonne" loading="lazy"><figcaption><span data-lang="en">V1 — a single column</span><span data-lang="zh">V1 — 单栏</span><span data-lang="tw">V1 — 單欄</span><span data-lang="ja">V1 — 1 段組み</span><span data-lang="fr">V1 — une seule colonne</span></figcaption></figure>
+          <figure><img src="typography/p3-v5.webp" alt="Final — two-column grid with embedded display type" data-alt-zh="最终版 — 两栏网格与嵌入的展示字体" data-alt-tw="最終版 — 兩欄網格與嵌入的展示字型" data-alt-ja="最終版 — 2 段組みのグリッドと埋め込みのディスプレイ書体" data-alt-fr="Version finale — grille à deux colonnes et police de titrage intégrée" loading="lazy"><figcaption><span data-lang="en">Final — two-column grid with embedded display type</span><span data-lang="zh">最终版 — 两栏网格与嵌入的展示字体</span><span data-lang="tw">最終版 — 兩欄網格與嵌入的展示字型</span><span data-lang="ja">最終版 — 2 段組みのグリッドと埋め込みのディスプレイ書体</span><span data-lang="fr">Version finale — grille à deux colonnes et police de titrage intégrée</span></figcaption></figure>
+          <figure><img src="typography/p3-v5-long.webp" alt="Final — the full page structure" data-alt-zh="最终版 — 整页结构" data-alt-tw="最終版 — 整頁結構" data-alt-ja="最終版 — ページ全体の構成" data-alt-fr="Version finale — la structure complète de la page" loading="lazy"><figcaption><span data-lang="en">Final — the full page structure</span><span data-lang="zh">最终版 — 整页结构</span><span data-lang="tw">最終版 — 整頁結構</span><span data-lang="ja">最終版 — ページ全体の構成</span><span data-lang="fr">Version finale — la structure complète de la page</span></figcaption></figure>
+        </div>
+      </div>
+
+      <h2><span data-lang="en">What I learned</span><span data-lang="zh">收获</span><span data-lang="tw">收穫</span><span data-lang="ja">学んだこと</span><span data-lang="fr">Ce que j’en retiens</span></h2>
+      <ul data-lang="en">
+        <li><strong>Constraints reveal hierarchy.</strong> With one face and one size, position and space did most of the work; weight and colour then became additions, not crutches.</li>
+        <li><strong>Settings are decisions.</strong> Measure, leading and tracking changed readability more than the choice of typeface did.</li>
+        <li><strong>Rebuild in the target medium.</strong> Print layouts only translated to the web once they were rebuilt on a real grid instead of copied pixel by pixel.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>限制让层级现形。</strong>只有一款字体、一个字号时，位置和留白承担了大部分工作；之后字重和颜色就成了加分项，而不是拐杖。</li>
+        <li><strong>参数就是决策。</strong>行长、行距和字距对可读性的影响，比选哪款字体还大。</li>
+        <li><strong>在目标媒介里重建。</strong>印刷版式只有在真正的网格上重建，而不是逐像素照搬，才能成功转到网页上。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>限制讓層級現形。</strong>只有一款字型、一個字級時，位置和留白承擔了大部分工作；之後字重和顏色就成了加分項，而不是柺杖。</li>
+        <li><strong>引數就是決策。</strong>行長、行距和字距對可讀性的影響，比選哪款字型還大。</li>
+        <li><strong>在目標媒介裡重建。</strong>印刷版式只有在真正的網格上重建，而不是逐畫素照搬，才能成功轉到網頁上。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>制約が階層をあぶり出す。</strong>1 書体・1 サイズでは位置と余白がほとんどの仕事をし、ウェイトや色はその後に足すもの、頼るものではなくなりました。</li>
+        <li><strong>数値は判断である。</strong>行長、行送り、字間は、書体の選択以上に読みやすさを左右しました。</li>
+        <li><strong>目的の媒体で組み直す。</strong>印刷のレイアウトは、ピクセル単位で写すのではなく本物のグリッドで組み直して初めて、ウェブに移せました。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>La contrainte révèle la hiérarchie.</strong> Avec une police et un corps, la position et l’espace ont fait l’essentiel ; la graisse et la couleur sont ensuite devenues des ajouts, pas des béquilles.</li>
+        <li><strong>Les réglages sont des décisions.</strong> La justification, l’interlignage et l’approche ont changé la lisibilité davantage que le choix de la police.</li>
+        <li><strong>Reconstruire dans le support visé.</strong> Les mises en page imprimées ne sont passées au web qu’une fois reconstruites sur une vraie grille, au lieu d’être copiées pixel par pixel.</li>
+      </ul>
+      <h2><span data-lang="en">All versions</span><span data-lang="zh">全部版本</span><span data-lang="tw">全部版本</span><span data-lang="ja">全バージョン</span><span data-lang="fr">Toutes les versions</span></h2>
+      <ul class="links">
+        <li><a href="../VDES15738P1/index.html" target="_blank" rel="noopener"><span data-lang="en">P1 — Letterforms, paragraph &amp; classification</span><span data-lang="zh">P1 — 字母、段落与分类</span><span data-lang="tw">P1 — 字母、段落與分類</span><span data-lang="ja">P1 — 字形・段落・分類</span><span data-lang="fr">P1 — Lettres, paragraphe et classification</span> ↗</a></li>
+        <li><a href="../VDES15738P1/Process.pdf" target="_blank" rel="noopener"><span data-lang="en">P1 — Process (PDF)</span><span data-lang="zh">P1 — 过程稿（PDF）</span><span data-lang="tw">P1 — 過程稿（PDF）</span><span data-lang="ja">P1 — プロセス（PDF）</span><span data-lang="fr">P1 — Processus (PDF)</span> ↗</a></li>
+        <li><a href="../VDES15738P2/reese0.html" target="_blank" rel="noopener"><span data-lang="en">P2 — Part 1.0 wrapper analysis</span><span data-lang="zh">P2 — Part 1.0 包装分析</span><span data-lang="tw">P2 — Part 1.0 包裝分析</span><span data-lang="ja">P2 — Part 1.0 包装の分析</span><span data-lang="fr">P2 — Partie 1.0, analyse de l’emballage</span> ↗</a></li>
+        <li><a href="../VDES15738P2/reese1.html" target="_blank" rel="noopener"><span data-lang="en">P2 — Part 1.1 bilingual transcription</span><span data-lang="zh">P2 — Part 1.1 双语抄录</span><span data-lang="tw">P2 — Part 1.1 雙語抄錄</span><span data-lang="ja">P2 — Part 1.1 バイリンガルの書き起こし</span><span data-lang="fr">P2 — Partie 1.1, transcription bilingue</span> ↗</a></li>
+        <li><a href="../VDES15738P2/index.html" target="_blank" rel="noopener"><span data-lang="en">P2 — Hub with all twelve HTML layouts</span><span data-lang="zh">P2 — 总览页（全部十二个 HTML 版式）</span><span data-lang="tw">P2 — 總覽頁（全部十二個 HTML 版式）</span><span data-lang="ja">P2 — ハブ（HTML レイアウト 12 種すべて）</span><span data-lang="fr">P2 — Hub avec les douze mises en page HTML</span> ↗</a></li>
+        <li><a href="../VDES15738P3/index.html" target="_blank" rel="noopener"><span data-lang="en">P3 — Variant 1</span><span data-lang="zh">P3 — 变体 1</span><span data-lang="tw">P3 — 變體 1</span><span data-lang="ja">P3 — バリエーション 1</span><span data-lang="fr">P3 — Variante 1</span> ↗</a></li>
+        <li><a href="../VDES15738P3V1/index.html" target="_blank" rel="noopener"><span data-lang="en">P3 — Variant 2</span><span data-lang="zh">P3 — 变体 2</span><span data-lang="tw">P3 — 變體 2</span><span data-lang="ja">P3 — バリエーション 2</span><span data-lang="fr">P3 — Variante 2</span> ↗</a></li>
+        <li><a href="../VDES15738P3V2/index.html" target="_blank" rel="noopener"><span data-lang="en">P3 — Variant 3</span><span data-lang="zh">P3 — 变体 3</span><span data-lang="tw">P3 — 變體 3</span><span data-lang="ja">P3 — バリエーション 3</span><span data-lang="fr">P3 — Variante 3</span> ↗</a></li>
+        <li><a href="../VDES15738P3V3/index.html" target="_blank" rel="noopener"><span data-lang="en">P3 — Variant 4</span><span data-lang="zh">P3 — 变体 4</span><span data-lang="tw">P3 — 變體 4</span><span data-lang="ja">P3 — バリエーション 4</span><span data-lang="fr">P3 — Variante 4</span> ↗</a></li>
+        <li><a href="../VDES15738P3V4/index.html" target="_blank" rel="noopener"><span data-lang="en">P3 — Variant 5</span><span data-lang="zh">P3 — 变体 5</span><span data-lang="tw">P3 — 變體 5</span><span data-lang="ja">P3 — バリエーション 5</span><span data-lang="fr">P3 — Variante 5</span> ↗</a></li>
+        <li><a href="../VDES15738P3V5/index.html" target="_blank" rel="noopener"><span data-lang="en">P3 — Final</span><span data-lang="zh">P3 — 最终版</span><span data-lang="tw">P3 — 最終版</span><span data-lang="ja">P3 — 最終版</span><span data-lang="fr">P3 — Version finale</span> ↗</a></li>
+      </ul>
+      <h2><span data-lang="en">Credits</span><span data-lang="zh">致谢</span><span data-lang="tw">致謝</span><span data-lang="ja">クレジット</span><span data-lang="fr">Crédits</span></h2>
+      <p data-lang="en">VDES 15738 Design and Typography, Sheridan College, Winter 2025. Typeface history and images in P3 are cited in the paper (APA). The wrapper text belongs to Hershey Canada and was used for a class exercise.</p>
+      <p data-lang="zh">VDES 15738 设计与字体排版，谢尔丹学院，2025 年冬季。P3 中的字体史料与图片均已在论文中按 APA 格式注明出处。包装纸文字归 Hershey Canada 所有，仅用于课堂练习。</p>
+      <p data-lang="tw">VDES 15738 設計與字型排版，謝爾丹學院，2025 年冬季。P3 中的字型史料與圖片均已在論文中按 APA 格式註明出處。包裝紙文字歸 Hershey Canada 所有，僅用於課堂練習。</p>
+      <p data-lang="ja">VDES 15738 デザインとタイポグラフィ、シェリダン・カレッジ、2025 年冬。P3 の書体史と画像の出典は論文内に APA 形式で記載しています。包装の文字は Hershey Canada に帰属し、授業の演習として使用しました。</p>
+      <p data-lang="fr">VDES 15738 Design et typographie, Sheridan College, hiver 2025. L’histoire des caractères et les images du P3 sont citées dans le mémoire (APA). Le texte de l’emballage appartient à Hershey Canada et a servi d’exercice de cours.</p>
+    </div>
+
+    <nav class="pager" aria-label="Case studies">
+      <a class="prev" href="interactive-prototype.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span></small><b>Media, Motion &amp; the Body</b></a>
+      <a class="next" href="solar.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span></small><b>Solar + Storage for AI Compute</b></a>
+    </nav>
+    <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
+  </div>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>&copy; Yiyang Zhang</span>
+      <a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">苏ICP备2024103495号</a>
+    </div>
+  </footer>
+
+  <script>
+(function () {
+  var sel = document.getElementById('ver');
+  var link = document.getElementById('openLink');
+  var box = document.getElementById('previewBox');
+  var TXT = {
+    en: { open: 'Open {v}', live: 'Live preview \u2014 {v}' },
+    zh: { open: '打开 {v}', live: '实时预览 \u2014 {v}' },
+    tw: { open: '開啟 {v}', live: '即時預覽 \u2014 {v}' },
+    ja: { open: '{v} を開く', live: 'ライブプレビュー \u2014 {v}' },
+    fr: { open: 'Ouvrir {v}', live: 'Aperçu en direct \u2014 {v}' },
+    de: { open: '{v} öffnen', live: 'Live-Vorschau \u2014 {v}' }
+  };
+  function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
+  function render(load) {
+    var o = sel.options[sel.selectedIndex], t = TXT[lang()];
+    link.href = sel.value; link.textContent = t.open.replace('{v}', o.getAttribute('data-short'));
+    box.querySelector('.preview-label').textContent = t.live.replace('{v}', o.textContent);
+    if (load) box.querySelector('iframe').src = sel.value;
+  }
+  sel.addEventListener('change', function () { render(true); });
+  window.demoRefresh = function () { render(false); };
+})();
+
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;var btn=document.getElementById('themeToggle');var KEY='siteTheme';
+  function apply(t){root.setAttribute('data-theme',t);if(btn)btn.textContent=t==='dark'?'\u2600':'\u263E';try{localStorage.setItem(KEY,t);}catch(_){}}
+  var s;try{s=localStorage.getItem(KEY);}catch(_){}
+  if(s){apply(s);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn)btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+/* ===== i18n ===== */
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'},de:{'work.back':'← Alle Arbeiten','nav.work':'Arbeiten','nav.music':'Musik','nav.about':'Über mich','nav.contact':'Kontakt'}};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr',de:'de'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
+document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
+  </script>
+</body>
+</html>

@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip-link" href="#main-content" data-i18n="skip">Skip to content</a>
 
   <header class="site-header" id="siteHeader">
     <div class="wrap header-inner">
@@ -31,8 +31,9 @@
           <option value="zh-TW">繁中</option>
           <option value="ja">日本語</option>
           <option value="fr">FR</option>
+          <option value="de">DE</option>
         </select>
-        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" data-i18n-alt="theme">☾</button>
       </div>
     </div>
   </header>
@@ -69,9 +70,9 @@
       <div class="card-grid card-grid--3 reveal">
 
         <a class="card" href="work/solar.html" data-cat="energy">
-          <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img src="work/solar/card-800.webp" alt="Aerial view of the solar arrays" loading="lazy"></picture></div>
+          <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img src="work/solar/card-800.webp" alt="Aerial view of the solar arrays" data-i18n-alt="alt.solar" loading="lazy"></picture></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
             <span class="card-cat" data-i18n="w.solar.cat">Energy systems · Solar + storage</span>
             <h3><span data-i18n="w.solar.h">Solar + Storage for AI Compute</span> <span class="year">(2024–26)</span></h3>
             <p data-i18n="w.solar.p">A 49 kWp array and 180 kWh battery bank on a rented farmhouse roof in Nanjing — powering AI pretraining and inference, with the surplus shared with the farm and the village.</p>
@@ -81,9 +82,9 @@
         </a>
 
         <a class="card" href="work/nightmare-hub.html" data-cat="games physical">
-          <div class="card-media"><img src="work/nightmare-hub/card-800.webp" alt="Nightmare Escape key art: a golden thread through a Greek labyrinth" loading="lazy"></div>
+          <div class="card-media"><img src="work/nightmare-hub/card-800.webp" alt="Nightmare Escape key art: a golden thread through a Greek labyrinth" data-i18n-alt="alt.nh" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
             <span class="card-cat" data-i18n="w.nh.cat">Interactive narrative · Web + AR/VR</span>
             <h3>Trafalgar Labyrinth <span class="year">(2026)</span></h3>
             <p data-i18n="w.nh.p">A campus-wide escape game across web puzzles, a visual novel, poster AR, a WebXR room and an envelope hidden in the library — two modes, three endings. I led the team and built the hub.</p>
@@ -93,7 +94,7 @@
         </a>
 
         <a class="card" href="work/nightmare-escape.html" data-cat="games">
-          <div class="card-media"><img src="work/nightmare-escape/card-800.webp" alt="梦魇逃亡 title art: Chu-Ling lying in the grass at night" loading="lazy"></div>
+          <div class="card-media"><img src="work/nightmare-escape/card-800.webp" alt="梦魇逃亡 title art: Chu-Ling lying in the grass at night" data-i18n-alt="alt.ne" loading="lazy"></div>
           <div class="card-body">
             <span class="eyebrow" data-i18n="w.ne.eye">In development</span>
             <span class="card-cat" data-i18n="w.ne.cat">Visual novel · WebGAL · Steam</span>
@@ -105,73 +106,85 @@
         </a>
 
         <a class="card" href="work/learn-code.html" data-cat="ux">
-          <div class="card-media"><img src="image/learn-code-app.png" alt="Learn Code app interface" loading="lazy"></div>
+          <div class="card-media"><img src="image/learn-code-app.png" alt="Learn Code app interface" data-i18n-alt="alt.learn" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">UX/UI · Web app</span>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.learn.cat">UX/UI · Web app</span>
             <h3>Learn Code <span class="year">(2025)</span></h3>
-            <p>Card-based, hierarchical learning app for beginners. Seven tested versions (v10–v17) plus an App Store page.</p>
-            <div class="card-tags"><span>User interviews</span><span>Responsive</span><span>10 versions</span></div>
+            <p data-i18n="w.learn.p">Card-based, hierarchical learning app for beginners. Seven tested versions (v10–v17) plus an App Store page.</p>
+            <div class="card-tags"><span data-i18n="w.learn.t1">User interviews</span><span data-i18n="w.learn.t2">Responsive</span><span data-i18n="n.versions" data-i18n-v="10">10 versions</span></div>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
 
         <a class="card" href="work/snapchat.html" data-cat="ux">
-          <div class="card-media"><img src="image/snapchat-data.png" alt="Snapchat data transparency prototype" loading="lazy"></div>
+          <div class="card-media"><img src="image/snapchat-data.png" alt="Snapchat data transparency prototype" data-i18n-alt="alt.snap" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">UX research · Privacy</span>
-            <h3>Snapchat Data Transparency <span class="year">(2025)</span></h3>
-            <p>An interactive Collect → Process → Share → Control flow that makes data use legible. Seven wireframe versions.</p>
-            <div class="card-tags"><span>Progressive disclosure</span><span>Usability testing</span><span>8 versions</span></div>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.snap.cat">UX research · Privacy</span>
+            <h3><span data-i18n="t.snap">Snapchat Data Transparency</span> <span class="year">(2025)</span></h3>
+            <p data-i18n="w.snap.p">An interactive Collect → Process → Share → Control flow that makes data use legible. Seven wireframe versions.</p>
+            <div class="card-tags"><span data-i18n="w.snap.t1">Progressive disclosure</span><span data-i18n="w.snap.t2">Usability testing</span><span data-i18n="n.versions" data-i18n-v="8">8 versions</span></div>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
 
         <a class="card" href="work/gsgc.html" data-cat="ux">
-          <div class="card-media"><img src="image/gsgc-preview.png" alt="Green Sheridan Garden Club site" loading="lazy"></div>
+          <div class="card-media"><img src="image/gsgc-preview.png" alt="Green Sheridan Garden Club site" data-i18n-alt="alt.gsgc" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">UI design · Community site</span>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.gsgc.cat">UI design · Community site</span>
             <h3>Green Sheridan Garden Club <span class="year">(2026)</span></h3>
-            <p>Mobile-first campus site: site map, personas, three wireframe rounds, then three built versions.</p>
-            <div class="card-tags"><span>Mobile-first</span><span>IA</span><span>7 versions</span></div>
+            <p data-i18n="w.gsgc.p">Mobile-first campus site: site map, personas, three wireframe rounds, then three built versions.</p>
+            <div class="card-tags"><span data-i18n="w.gsgc.t1">Mobile-first</span><span data-i18n="w.gsgc.t2">IA</span><span data-i18n="n.versions" data-i18n-v="7">7 versions</span></div>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
 
         <a class="card" href="work/moodpeek.html" data-cat="ux">
-          <div class="card-media"><img src="image/moodpeek-preview.png" alt="MoodPeek Pro dashboard" loading="lazy"></div>
+          <div class="card-media"><img src="image/moodpeek-preview.png" alt="MoodPeek Pro dashboard" data-i18n-alt="alt.mood" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">Full-stack · React · JWT</span>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.mood.cat">Full-stack · React · JWT</span>
             <h3>MoodPeek Pro <span class="year">(2026)</span></h3>
-            <p>Calendar-first mood logging with Day → Week → Month continuity, multi-user accounts and iCal export.</p>
-            <div class="card-tags"><span>React</span><span>Auth</span><span>Live demo</span></div>
+            <p data-i18n="w.mood.p">Calendar-first mood logging with Day → Week → Month continuity, multi-user accounts and iCal export.</p>
+            <div class="card-tags"><span>React</span><span data-i18n="w.mood.t2">Auth</span><span data-i18n="w.mood.t3">Live demo</span></div>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
 
         <a class="card" href="work/physical-computing.html" data-cat="physical">
-          <div class="card-media"><img src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp prototype glowing green" loading="lazy"></div>
+          <div class="card-media"><img src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp prototype glowing green" data-i18n-alt="alt.pc" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">Physical computing · Arduino</span>
-            <h3>Comfort Lamp <span class="year">(2025)</span></h3>
-            <p>Sensor-driven ambient lamp in a 3D-printed scene. Temperature, humidity and light map to colour states; ProtoPie mobile UI.</p>
-            <div class="card-tags"><span>DHT11</span><span>NeoPixel</span><span>3 modules</span></div>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.pc.cat">Physical computing · Arduino</span>
+            <h3><span data-i18n="t.lamp">Comfort Lamp</span> <span class="year">(2025)</span></h3>
+            <p data-i18n="w.pc.p">Sensor-driven ambient lamp in a 3D-printed scene. Temperature, humidity and light map to colour states; ProtoPie mobile UI.</p>
+            <div class="card-tags"><span>DHT11</span><span>NeoPixel</span><span data-i18n="n.modules" data-i18n-v="3">3 modules</span></div>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
 
         <a class="card" href="work/interactive-prototype.html" data-cat="physical">
-          <div class="card-media"><img src="DESN22848P3/images/final/happy.png" alt="Colourful p5.js experiment" loading="lazy"></div>
+          <div class="card-media"><img src="DESN22848P3/images/final/happy.png" alt="Colourful p5.js experiment" data-i18n-alt="alt.ip" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow">Case Study</span>
-            <span class="card-cat">Interactive media · p5.js</span>
-            <h3>Media, Motion &amp; the Body <span class="year">(2025)</span></h3>
-            <p>Copper-tape circuits, p5.js sound visualisations and a Makey Makey drum machine — three modules on physical input and digital feedback.</p>
-            <div class="card-tags"><span>Makey Makey</span><span>WebGL</span><span>3 modules</span></div>
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.ip.cat">Interactive media · p5.js</span>
+            <h3><span data-i18n="t.mmb">Media, Motion &amp; the Body</span> <span class="year">(2025)</span></h3>
+            <p data-i18n="w.ip.p">Copper-tape circuits, p5.js sound visualisations and a Makey Makey drum machine — three modules on physical input and digital feedback.</p>
+            <div class="card-tags"><span>Makey Makey</span><span>WebGL</span><span data-i18n="n.modules" data-i18n-v="3">3 modules</span></div>
+            <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="card" href="work/typography.html" data-cat="type">
+          <div class="card-media"><img src="work/typography/card-800.webp" alt="Hand-lettered Hamburgefontsiv beside the Reese wrapper layout" data-i18n-alt="alt.typo" loading="lazy"></div>
+          <div class="card-body">
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.typo.cat">Typography · Layout · Web type</span>
+            <h3><span data-i18n="t.typo">Design &amp; Typography</span> <span class="year">(2025)</span></h3>
+            <p data-i18n="w.typo.p">Hand-drawn letterforms, a bilingual chocolate-wrapper grid study rebuilt in CSS Grid, and a website for type designer Rod McDonald — three projects, each ending in code.</p>
+            <div class="card-tags"><span data-i18n="w.typo.t1">Lettering</span><span>CSS Grid</span><span>@font-face</span></div>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -190,30 +203,30 @@
       </div>
       <div data-cat="client ux" class="reveal">
         <div class="section-head" style="margin-bottom:1.2rem">
-          <span class="eyebrow">Pinzuo Design (Nanjing) Co., Ltd. · 品作设计</span>
-          <h2 style="font-size:clamp(1.4rem,1.2rem + 1vw,1.9rem)">Corporate website — design &amp; development <span class="dim">(2025–26)</span></h2>
+          <span class="eyebrow" data-i18n="w.client.eye">Pinzuo Design (Nanjing) Co., Ltd. · 品作设计</span>
+          <h2 style="font-size:clamp(1.4rem,1.2rem + 1vw,1.9rem)"><span data-i18n="w.client.h">Corporate website — design &amp; development</span> <span class="dim">(2025–26)</span></h2>
           <p class="lede" data-i18n="w.client.desc">A faculty-led studio working across urban environment, landscape architecture, spatial design and public art. I designed and built the bilingual corporate site, refining brand expression, content hierarchy and presentation over three iterations.</p>
         </div>
         <div class="client-split">
           <div class="preview">
-            <iframe id="cwPreview" src="pinzuoV3/index.html" loading="lazy" title="Pinzuo Design — live preview" sandbox="allow-same-origin allow-scripts"></iframe>
-            <div class="preview-label" id="cwLabel">Live preview — V3 (Final)</div>
+            <iframe id="cwPreview" src="pinzuoV3/index.html" loading="lazy" title="Pinzuo Design — live preview" data-i18n-alt="w.client.iframe" sandbox="allow-same-origin allow-scripts"></iframe>
+            <div class="preview-label" id="cwLabel" data-i18n="cw.liveFinal" data-i18n-v="V3">Live preview — V3 (Final)</div>
           </div>
           <div class="version-list">
             <button class="version" type="button" data-src="pinzuo/index.html" data-label="V1">
-              <b>V1 — Foundation</b>
-              <span>Information architecture, visual identity and bilingual layout.</span>
-              <a href="pinzuo/index.html" target="_blank" rel="noopener">Open V1 ↗</a>
+              <b data-i18n="w.cw.1">V1 — Foundation</b>
+              <span data-i18n="w.cw.1d">Information architecture, visual identity and bilingual layout.</span>
+              <a href="pinzuo/index.html" target="_blank" rel="noopener" data-i18n="btn.open" data-i18n-v="V1">Open V1 ↗</a>
             </button>
             <button class="version" type="button" data-src="pinzuoV2/index.html" data-label="V2">
-              <b>V2 — Hierarchy</b>
-              <span>Navigation flow, section rhythm and content scanability.</span>
-              <a href="pinzuoV2/index.html" target="_blank" rel="noopener">Open V2 ↗</a>
+              <b data-i18n="w.cw.2">V2 — Hierarchy</b>
+              <span data-i18n="w.cw.2d">Navigation flow, section rhythm and content scanability.</span>
+              <a href="pinzuoV2/index.html" target="_blank" rel="noopener" data-i18n="btn.open" data-i18n-v="V2">Open V2 ↗</a>
             </button>
-            <button class="version active" type="button" data-src="pinzuoV3/index.html" data-label="V3 (Final)">
-              <b>V3 — Final</b>
-              <span>Finalised content, polished visuals, cross-disciplinary brand story.</span>
-              <a href="pinzuoV3/index.html" target="_blank" rel="noopener">Open V3 ↗</a>
+            <button class="version active" type="button" data-src="pinzuoV3/index.html" data-label="V3" data-final>
+              <b data-i18n="w.cw.3">V3 — Final</b>
+              <span data-i18n="w.cw.3d">Finalised content, polished visuals, cross-disciplinary brand story.</span>
+              <a href="pinzuoV3/index.html" target="_blank" rel="noopener" data-i18n="btn.open" data-i18n-v="V3">Open V3 ↗</a>
             </button>
           </div>
         </div>
@@ -235,15 +248,15 @@
         <span class="eyebrow" data-i18n="w.f.ux">UX &amp; Web</span>
         <ul class="row-list">
           <li class="row" data-cat="ux">
-            <span class="row-cat">Learning app</span>
+            <span class="row-cat" data-i18n="rc.learning">Learning app</span>
             <div class="row-main">
               <h4>Learn Code App</h4>
-              <p>Course → lesson → content hierarchy for beginner programmers. V8–V17 iterate navigation, card sizing and typography; V18 is the App Store page.</p>
+              <p data-i18n="a.learn.p">Course → lesson → content hierarchy for beginner programmers. V8–V17 iterate navigation, card sizing and typography; V18 is the App Store page.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="DESN18654V17/index.html" target="_blank" rel="noopener">Open V17 (final) ↗</a>
+                <a class="btn btn-sm" href="DESN18654V17/index.html" target="_blank" rel="noopener" data-i18n="btn.openFinal" data-i18n-v="V17">Open V17 (final) ↗</a>
                 <a class="btn-link" href="work/learn-code.html" data-i18n="row.case">Case study</a>
-                <details><summary>All versions (10)</summary><ul>
-                  <li><a href="DESN18654V8/index.html">V8</a></li><li><a href="DESN18654V9/index.html">V9</a></li><li><a href="DESN18654V10/index.html">V10</a></li><li><a href="DESN18654V11/index.html">V11</a></li><li><a href="DESN18654V12/index.html">V12</a></li><li><a href="DESN18654V13/index.html">V13</a></li><li><a href="DESN18654V14/index.html">V14</a></li><li><a href="DESN18654V16/index.html">V16</a></li><li><a href="DESN18654V17/index.html">V17 — Final</a></li><li><a href="DESN18654V18/App-Store.html">V18 — App Store page</a></li>
+                <details><summary data-i18n="sum.versions" data-i18n-v="10">All versions (10)</summary><ul>
+                  <li><a href="DESN18654V8/index.html">V8</a></li><li><a href="DESN18654V9/index.html">V9</a></li><li><a href="DESN18654V10/index.html">V10</a></li><li><a href="DESN18654V11/index.html">V11</a></li><li><a href="DESN18654V12/index.html">V12</a></li><li><a href="DESN18654V13/index.html">V13</a></li><li><a href="DESN18654V14/index.html">V14</a></li><li><a href="DESN18654V16/index.html">V16</a></li><li><a href="DESN18654V17/index.html" data-i18n="v.final" data-i18n-v="V17">V17 — Final</a></li><li><a href="DESN18654V18/App-Store.html" data-i18n="v.appstore" data-i18n-v="V18">V18 — App Store page</a></li>
                 </ul></details>
               </div>
             </div>
@@ -251,15 +264,15 @@
           </li>
 
           <li class="row" data-cat="ux">
-            <span class="row-cat">Privacy</span>
+            <span class="row-cat" data-i18n="rc.privacy">Privacy</span>
             <div class="row-main">
-              <h4>Snapchat Data Transparency</h4>
-              <p>Interactive explanation of how personal data is collected, processed, shared and controlled. Overview page plus seven wireframe-to-prototype versions.</p>
+              <h4 data-i18n="t.snap">Snapchat Data Transparency</h4>
+              <p data-i18n="a.snap.p">Interactive explanation of how personal data is collected, processed, shared and controlled. Overview page plus seven wireframe-to-prototype versions.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="DESN10799P3/index7.html" target="_blank" rel="noopener">Open V7 (final) ↗</a>
+                <a class="btn btn-sm" href="DESN10799P3/index7.html" target="_blank" rel="noopener" data-i18n="btn.openFinal" data-i18n-v="V7">Open V7 (final) ↗</a>
                 <a class="btn-link" href="work/snapchat.html" data-i18n="row.case">Case study</a>
-                <details><summary>All versions (8)</summary><ul>
-                  <li><a href="DESN10799/index.html">Overview</a></li><li><a href="DESN10799P3/index.html">V1</a></li><li><a href="DESN10799P3/index2.html">V2</a></li><li><a href="DESN10799P3/index3.html">V3</a></li><li><a href="DESN10799P3/index4.html">V4</a></li><li><a href="DESN10799P3/index5.html">V5</a></li><li><a href="DESN10799P3/index6.html">V6</a></li><li><a href="DESN10799P3/index7.html">V7 — Final</a></li>
+                <details><summary data-i18n="sum.versions" data-i18n-v="8">All versions (8)</summary><ul>
+                  <li><a href="DESN10799/index.html" data-i18n="v.overview">Overview</a></li><li><a href="DESN10799P3/index.html">V1</a></li><li><a href="DESN10799P3/index2.html">V2</a></li><li><a href="DESN10799P3/index3.html">V3</a></li><li><a href="DESN10799P3/index4.html">V4</a></li><li><a href="DESN10799P3/index5.html">V5</a></li><li><a href="DESN10799P3/index6.html">V6</a></li><li><a href="DESN10799P3/index7.html" data-i18n="v.final" data-i18n-v="V7">V7 — Final</a></li>
                 </ul></details>
               </div>
             </div>
@@ -267,21 +280,21 @@
           </li>
 
           <li class="row" data-cat="ux">
-            <span class="row-cat">Community site</span>
+            <span class="row-cat" data-i18n="rc.community">Community site</span>
             <div class="row-main">
               <h4>Green Sheridan Garden Club</h4>
-              <p>Documentation (site map, personas, user flow) → three wireframe rounds → three built versions of a mobile-first campus community site.</p>
+              <p data-i18n="a.gsgc.p">Documentation (site map, personas, user flow) → three wireframe rounds → three built versions of a mobile-first campus community site.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="GSGC/v7/index.html" target="_blank" rel="noopener">Open final ↗</a>
+                <a class="btn btn-sm" href="GSGC/v7/index.html" target="_blank" rel="noopener" data-i18n="btn.final">Open final ↗</a>
                 <a class="btn-link" href="work/gsgc.html" data-i18n="row.case">Case study</a>
-                <details><summary>All versions (7)</summary><ul>
-                  <li><a href="GSGC/v1/index.html">1A — Documentation</a><span>Site map, personas, content analysis, user flow</span></li>
-                  <li><a href="GSGC/v2/index.html">1B — Wireframe 1</a><span>Initial hierarchy and navigation</span></li>
-                  <li><a href="GSGC/v3/index.html">1B — Wireframe 2</a><span>Refined page organisation</span></li>
-                  <li><a href="GSGC/v4/index.html">1B — Wireframe 3</a><span>Complete structural wireframe</span></li>
-                  <li><a href="GSGC/v5/index.html">2 — Website 1</a><span>Fuller content and visual language</span></li>
-                  <li><a href="GSGC/v6/index.html">2 — Website 2</a><span>Refined content, visuals, interaction</span></li>
-                  <li><a href="GSGC/v7/index.html">2 — Final</a><span>Fully integrated presentation</span></li>
+                <details><summary data-i18n="sum.versions" data-i18n-v="7">All versions (7)</summary><ul>
+                  <li><a href="GSGC/v1/index.html" data-i18n="g.1">1A — Documentation</a><span data-i18n="g.1d">Site map, personas, content analysis, user flow</span></li>
+                  <li><a href="GSGC/v2/index.html" data-i18n="g.wf" data-i18n-v="1">1B — Wireframe 1</a><span data-i18n="g.2d">Initial hierarchy and navigation</span></li>
+                  <li><a href="GSGC/v3/index.html" data-i18n="g.wf" data-i18n-v="2">1B — Wireframe 2</a><span data-i18n="g.3d">Refined page organisation</span></li>
+                  <li><a href="GSGC/v4/index.html" data-i18n="g.wf" data-i18n-v="3">1B — Wireframe 3</a><span data-i18n="g.4d">Complete structural wireframe</span></li>
+                  <li><a href="GSGC/v5/index.html" data-i18n="g.site" data-i18n-v="1">2 — Website 1</a><span data-i18n="g.5d">Fuller content and visual language</span></li>
+                  <li><a href="GSGC/v6/index.html" data-i18n="g.site" data-i18n-v="2">2 — Website 2</a><span data-i18n="g.6d">Refined content, visuals, interaction</span></li>
+                  <li><a href="GSGC/v7/index.html" data-i18n="g.7">2 — Final</a><span data-i18n="g.7d">Fully integrated presentation</span></li>
                 </ul></details>
               </div>
             </div>
@@ -289,14 +302,14 @@
           </li>
 
           <li class="row" data-cat="ux">
-            <span class="row-cat">Human-centred data</span>
+            <span class="row-cat" data-i18n="rc.hcd">Human-centred data</span>
             <div class="row-main">
               <h4>Weather Advisor · Real Feel</h4>
-              <p>Re-translates raw forecasts into human-felt weather — Open-Meteo data combined with heat index, wind chill and similar formulas. Nine iterations plus a final build.</p>
+              <p data-i18n="a.weather.p">Re-translates raw forecasts into human-felt weather — Open-Meteo data combined with heat index, wind chill and similar formulas. Nine iterations plus a final build.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="DESN31927P1V2/index.html" target="_blank" rel="noopener">Open final ↗</a>
-                <details><summary>All versions (10)</summary><ul>
-                  <li><a href="DESN31927P1V2/index.html">Final</a></li><li><a href="DESN31927P1/DESN31927P1V1/index.html">V1</a></li><li><a href="DESN31927P1/DESN31927P1V2/index.html">V2</a></li><li><a href="DESN31927P1/DESN31927P1V3/index.html">V3</a></li><li><a href="DESN31927P1/DESN31927P1V4/index.html">V4</a></li><li><a href="DESN31927P1/DESN31927P1V5/index.html">V5</a></li><li><a href="DESN31927P1/DESN31927P1V6/index.html">V6</a></li><li><a href="DESN31927P1/DESN31927P1V7/index.html">V7</a></li><li><a href="DESN31927P1/DESN31927P1V8/index.html">V8</a></li><li><a href="DESN31927P1/DESN31927P1V9/index.html">V9</a></li>
+                <a class="btn btn-sm" href="DESN31927P1V2/index.html" target="_blank" rel="noopener" data-i18n="btn.final">Open final ↗</a>
+                <details><summary data-i18n="sum.versions" data-i18n-v="10">All versions (10)</summary><ul>
+                  <li><a href="DESN31927P1V2/index.html" data-i18n="v.finalOnly">Final</a></li><li><a href="DESN31927P1/DESN31927P1V1/index.html">V1</a></li><li><a href="DESN31927P1/DESN31927P1V2/index.html">V2</a></li><li><a href="DESN31927P1/DESN31927P1V3/index.html">V3</a></li><li><a href="DESN31927P1/DESN31927P1V4/index.html">V4</a></li><li><a href="DESN31927P1/DESN31927P1V5/index.html">V5</a></li><li><a href="DESN31927P1/DESN31927P1V6/index.html">V6</a></li><li><a href="DESN31927P1/DESN31927P1V7/index.html">V7</a></li><li><a href="DESN31927P1/DESN31927P1V8/index.html">V8</a></li><li><a href="DESN31927P1/DESN31927P1V9/index.html">V9</a></li>
                 </ul></details>
               </div>
             </div>
@@ -304,13 +317,13 @@
           </li>
 
           <li class="row" data-cat="ux">
-            <span class="row-cat">Everyday tool</span>
+            <span class="row-cat" data-i18n="rc.everyday">Everyday tool</span>
             <div class="row-main">
               <h4>Smart Sleep Tracker</h4>
-              <p>Better sleep/wake times, sleep-debt tracking, chronotype analysis and wind-down prep in one daily tool.</p>
+              <p data-i18n="a.sleep.p">Better sleep/wake times, sleep-debt tracking, chronotype analysis and wind-down prep in one daily tool.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="DESN18654V7/index.html" target="_blank" rel="noopener">Open V7 (latest) ↗</a>
-                <details><summary>All versions (4)</summary><ul>
+                <a class="btn btn-sm" href="DESN18654V7/index.html" target="_blank" rel="noopener" data-i18n="btn.openLatest" data-i18n-v="V7">Open V7 (latest) ↗</a>
+                <details><summary data-i18n="sum.versions" data-i18n-v="4">All versions (4)</summary><ul>
                   <li><a href="DESN18654V4/index.html">V4</a></li><li><a href="DESN18654V5/index.html">V5</a></li><li><a href="DESN18654V6/index.html">V6</a></li><li><a href="DESN18654V7/index.html">V7</a></li>
                 </ul></details>
               </div>
@@ -319,13 +332,13 @@
           </li>
 
           <li class="row" data-cat="ux">
-            <span class="row-cat">Everyday tool</span>
+            <span class="row-cat" data-i18n="rc.everyday">Everyday tool</span>
             <div class="row-main">
               <h4>QuickPick</h4>
-              <p>A lightweight random-decision tool for meals, drinks, desserts and entertainment when you can’t decide.</p>
+              <p data-i18n="a.quick.p">A lightweight random-decision tool for meals, drinks, desserts and entertainment when you can’t decide.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="DESN18654V3/index.html" target="_blank" rel="noopener">Open V3 (latest) ↗</a>
-                <details><summary>All versions (3)</summary><ul>
+                <a class="btn btn-sm" href="DESN18654V3/index.html" target="_blank" rel="noopener" data-i18n="btn.openLatest" data-i18n-v="V3">Open V3 (latest) ↗</a>
+                <details><summary data-i18n="sum.versions" data-i18n-v="3">All versions (3)</summary><ul>
                   <li><a href="DESN18654V1/index.html">V1</a></li><li><a href="DESN18654V2/index.html">V2</a></li><li><a href="DESN18654V3/index.html">V3</a></li>
                 </ul></details>
               </div>
@@ -340,17 +353,17 @@
         <span class="eyebrow" data-i18n="w.f.physical">Physical &amp; Interactive</span>
         <ul class="row-list">
           <li class="row" data-cat="physical">
-            <span class="row-cat">Physical computing</span>
+            <span class="row-cat" data-i18n="rc.pc">Physical computing</span>
             <div class="row-main">
-              <h4>Comfort Lamp</h4>
-              <p>From first Arduino blink to a finished ambient object: DHT11 sensor circuit, tiered LED colours, 3D-printed housing, ProtoPie mobile UI.</p>
+              <h4 data-i18n="t.lamp">Comfort Lamp</h4>
+              <p data-i18n="a.lamp.p">From first Arduino blink to a finished ambient object: DHT11 sensor circuit, tiered LED colours, 3D-printed housing, ProtoPie mobile UI.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="DESN30146P3/index.html" target="_blank" rel="noopener">Open P3 (final) ↗</a>
+                <a class="btn btn-sm" href="DESN30146P3/index.html" target="_blank" rel="noopener" data-i18n="btn.openFinal" data-i18n-v="P3">Open P3 (final) ↗</a>
                 <a class="btn-link" href="work/physical-computing.html" data-i18n="row.case">Case study</a>
-                <details><summary>All modules (3)</summary><ul>
-                  <li><a href="DESN30146P1/index.html">P1 — Exploration &amp; Concept</a><span>Arduino basics, TouchDesigner, WGSN research</span></li>
-                  <li><a href="DESN30146P2/index.html">P2 — Sensor Build</a><span>DHT11 circuit, tiered LED colours, LCD readout</span></li>
-                  <li><a href="DESN30146P3/index.html">P3 — 3D Housing &amp; Final</a><span>Printed enclosure, light sensor, touch switch, ProtoPie</span></li>
+                <details><summary data-i18n="sum.modules" data-i18n-v="3">All modules (3)</summary><ul>
+                  <li><a href="DESN30146P1/index.html" data-i18n="pc.m1">P1 — Exploration &amp; Concept</a><span data-i18n="pc.m1d">Arduino basics, TouchDesigner, WGSN research</span></li>
+                  <li><a href="DESN30146P2/index.html" data-i18n="pc.m2">P2 — Sensor Build</a><span data-i18n="pc.m2d">DHT11 circuit, tiered LED colours, LCD readout</span></li>
+                  <li><a href="DESN30146P3/index.html" data-i18n="pc.m3">P3 — 3D Housing &amp; Final</a><span data-i18n="pc.m3d">Printed enclosure, light sensor, touch switch, ProtoPie</span></li>
                 </ul></details>
               </div>
             </div>
@@ -358,21 +371,21 @@
           </li>
 
           <li class="row" data-cat="physical">
-            <span class="row-cat">Interactive media</span>
+            <span class="row-cat" data-i18n="rc.im">Interactive media</span>
             <div class="row-main">
-              <h4>Media, Motion &amp; the Body</h4>
-              <p>Copper-tape circuits and LEDs; a sound library with 25 p5.js visualisations; Makey Makey touch input driving 50 p5.js experiments and a WebGL drum machine.</p>
+              <h4 data-i18n="t.mmb">Media, Motion &amp; the Body</h4>
+              <p data-i18n="a.mmb.p">Copper-tape circuits and LEDs; a sound library with 25 p5.js visualisations; Makey Makey touch input driving 50 p5.js experiments and a WebGL drum machine.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="DESN22848P3/index.html" target="_blank" rel="noopener">Open P3 (final) ↗</a>
+                <a class="btn btn-sm" href="DESN22848P3/index.html" target="_blank" rel="noopener" data-i18n="btn.openFinal" data-i18n-v="P3">Open P3 (final) ↗</a>
                 <a class="btn-link" href="work/interactive-prototype.html" data-i18n="row.case">Case study</a>
-                <details><summary>All modules (3) + live versions (4)</summary><ul>
-                  <li><a href="DESN22848/index.html">P1 — Circuits &amp; Formstorming</a></li>
-                  <li><a href="DESN22848P2/index.html">P2 — Sound &amp; Visualisation</a></li>
-                  <li><a href="DESN22848P3/index.html">P3 — Touch-to-Digital</a></li>
-                  <li><a href="DESN22848V1/index.html">V1 — Sound Sketches</a></li>
-                  <li><a href="DESN22848V2/index.html">V2 — Rainbow Bloom Header</a></li>
-                  <li><a href="DESN22848V3/index.html">V3 — p5.js Experiments</a></li>
-                  <li><a href="DESN22848V4/index.html">V4 — Drum Machine</a></li>
+                <details><summary data-i18n="sum.mmb">All modules (3) + live versions (4)</summary><ul>
+                  <li><a href="DESN22848/index.html" data-i18n="ip.m1">P1 — Circuits &amp; Formstorming</a></li>
+                  <li><a href="DESN22848P2/index.html" data-i18n="ip.m2">P2 — Sound &amp; Visualisation</a></li>
+                  <li><a href="DESN22848P3/index.html" data-i18n="ip.m3">P3 — Touch-to-Digital</a></li>
+                  <li><a href="DESN22848V1/index.html" data-i18n="ip.v1">V1 — Sound Sketches</a></li>
+                  <li><a href="DESN22848V2/index.html" data-i18n="ip.v2">V2 — Rainbow Bloom Header</a></li>
+                  <li><a href="DESN22848V3/index.html" data-i18n="ip.v3">V3 — p5.js Experiments</a></li>
+                  <li><a href="DESN22848V4/index.html" data-i18n="ip.v4">V4 — Drum Machine</a></li>
                 </ul></details>
               </div>
             </div>
@@ -386,13 +399,13 @@
         <span class="eyebrow" data-i18n="w.f.games">Games &amp; Tools</span>
         <ul class="row-list">
           <li class="row" data-cat="games">
-            <span class="row-cat">Visual novel</span>
+            <span class="row-cat" data-i18n="rc.vn">Visual novel</span>
             <div class="row-main">
-              <h4>Visual Novel — WebGAL</h4>
-              <p>Interactive visual-novel prototypes built on the WebGAL engine. Iterations explore branching narrative, presentation and Chinese localisation.</p>
+              <h4 data-i18n="a.vn.h">Visual Novel — WebGAL</h4>
+              <p data-i18n="a.vn.p">Interactive visual-novel prototypes built on the WebGAL engine. Iterations explore branching narrative, presentation and Chinese localisation.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="g4v7/index.html" target="_blank" rel="noopener">Open V5 (latest) ↗</a>
-                <details><summary>All versions (5)</summary><ul>
+                <a class="btn btn-sm" href="g4v7/index.html" target="_blank" rel="noopener" data-i18n="btn.openLatest" data-i18n-v="V5">Open V5 (latest) ↗</a>
+                <details><summary data-i18n="sum.versions" data-i18n-v="5">All versions (5)</summary><ul>
                   <li><a href="g1/index.html">V1</a></li><li><a href="g2/index.html">V2</a></li><li><a href="g4v1/index.html">V3</a></li><li><a href="g4v3/index.html">V4 (中文)</a></li><li><a href="g4v7/index.html">V5</a></li>
                 </ul></details>
               </div>
@@ -400,41 +413,41 @@
             <span class="row-side"><span class="year">2022–26</span></span>
           </li>
           <li class="row" data-cat="games">
-            <span class="row-cat">Simulation</span>
+            <span class="row-cat" data-i18n="rc.sim">Simulation</span>
             <div class="row-main">
-              <h4>Fast Breeder Reactor Simulator</h4>
-              <p>Manage a reactor — breeding rate, coolant, fuel input and time scale — while random events push it toward meltdown.</p>
-              <div class="row-actions"><a class="btn btn-sm" href="g3/index.html" target="_blank" rel="noopener">Open simulator ↗</a></div>
+              <h4 data-i18n="a.fbr.h">Fast Breeder Reactor Simulator</h4>
+              <p data-i18n="a.fbr.p">Manage a reactor — breeding rate, coolant, fuel input and time scale — while random events push it toward meltdown.</p>
+              <div class="row-actions"><a class="btn btn-sm" href="g3/index.html" target="_blank" rel="noopener" data-i18n="btn.sim">Open simulator ↗</a></div>
             </div>
             <span class="row-side"><span class="year">2026</span></span>
           </li>
           <li class="row" data-cat="games">
-            <span class="row-cat">Educational</span>
+            <span class="row-cat" data-i18n="rc.edu">Educational</span>
             <div class="row-main">
-              <h4>Hand Surgery Quiz Portal</h4>
-              <p>Quiz / assessment tool with dark-light mode, custom typography and responsive layout.</p>
-              <div class="row-actions"><a class="btn btn-sm" href="DESN18654V15/index.html" target="_blank" rel="noopener">Open quiz ↗</a></div>
+              <h4 data-i18n="a.quiz.h">Hand Surgery Quiz Portal</h4>
+              <p data-i18n="a.quiz.p">Quiz / assessment tool with dark-light mode, custom typography and responsive layout.</p>
+              <div class="row-actions"><a class="btn btn-sm" href="DESN18654V15/index.html" target="_blank" rel="noopener" data-i18n="btn.quiz">Open quiz ↗</a></div>
             </div>
             <span class="row-side"><span class="year">2026</span></span>
           </li>
           <li class="row" data-cat="games">
-            <span class="row-cat">Calculators</span>
+            <span class="row-cat" data-i18n="rc.calc">Calculators</span>
             <div class="row-main">
-              <h4>Power · Rocket · Milk calculators</h4>
-              <p>Small utility sites: estimate device power consumption and cost, rocket parameters, and milk quantities.</p>
+              <h4 data-i18n="a.calc.h">Power · Rocket · Milk calculators</h4>
+              <p data-i18n="a.calc.p">Small utility sites: estimate device power consumption and cost, rocket parameters, and milk quantities.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="power-calculator/index.html" target="_blank" rel="noopener">Power ↗</a>
-                <a class="btn btn-sm btn-outline" href="Rocket-Calculator/index.html" target="_blank" rel="noopener">Rocket ↗</a>
-                <a class="btn btn-sm btn-outline" href="Milk/index.html" target="_blank" rel="noopener">Milk ↗</a>
+                <a class="btn btn-sm" href="power-calculator/index.html" target="_blank" rel="noopener" data-i18n="btn.power">Power ↗</a>
+                <a class="btn btn-sm btn-outline" href="Rocket-Calculator/index.html" target="_blank" rel="noopener" data-i18n="btn.rocket">Rocket ↗</a>
+                <a class="btn btn-sm btn-outline" href="Milk/index.html" target="_blank" rel="noopener" data-i18n="btn.milk">Milk ↗</a>
               </div>
             </div>
             <span class="row-side"><span class="year">2025</span></span>
           </li>
           <li class="row" data-cat="games">
-            <span class="row-cat">Experiments</span>
+            <span class="row-cat" data-i18n="rc.exp">Experiments</span>
             <div class="row-main">
-              <h4>Web experiments</h4>
-              <p>One-off pages: an interactive “Never Gonna Give You Up”, Lak-crest, and a text-based escape.</p>
+              <h4 data-i18n="a.exp.h">Web experiments</h4>
+              <p data-i18n="a.exp.p">One-off pages: an interactive “Never Gonna Give You Up”, Lak-crest, and a text-based escape.</p>
               <div class="row-actions">
                 <a class="btn-link" href="nevergonna/index.html" target="_blank" rel="noopener">Never Gonna Give You Up ↗</a>
                 <a class="btn-link" href="nevergonna/home.html" target="_blank" rel="noopener">…V2 ↗</a>
@@ -452,32 +465,33 @@
         <span class="eyebrow" data-i18n="w.f.type">Typography</span>
         <ul class="row-list">
           <li class="row" data-cat="type">
-            <span class="row-cat">Letterforms</span>
+            <span class="row-cat" data-i18n="rc.letter">Letterforms</span>
             <div class="row-main">
-              <h4>P1 — Letterform Construction, Classification and Use</h4>
-              <p>Letterform construction, paragraph typesetting and type-classification logic on the web.</p>
-              <div class="row-actions"><a class="btn btn-sm" href="VDES15738P1/index.html" target="_blank" rel="noopener">Open P1 ↗</a></div>
+              <h4 data-i18n="a.p1.h">P1 — Letterform Construction, Classification and Use</h4>
+              <p data-i18n="a.p1.p">Letterform construction, paragraph typesetting and type-classification logic on the web.</p>
+              <div class="row-actions"><a class="btn btn-sm" href="VDES15738P1/index.html" target="_blank" rel="noopener" data-i18n="btn.open" data-i18n-v="P1">Open P1 ↗</a><a class="btn-link" href="work/typography.html" data-i18n="row.case">Case study</a></div>
             </div>
             <span class="row-side"><span class="year">2025</span></span>
           </li>
           <li class="row" data-cat="type">
-            <span class="row-cat">Grid systems</span>
+            <span class="row-cat" data-i18n="rc.grid">Grid systems</span>
             <div class="row-main">
-              <h4>P2 — Grid Layout Exercises</h4>
-              <p>Packaging text and layout hierarchy built around grid systems and bilingual content.</p>
-              <div class="row-actions"><a class="btn btn-sm" href="VDES15738P2/index.html" target="_blank" rel="noopener">Open P2 ↗</a></div>
+              <h4 data-i18n="a.p2.h">P2 — Grid Layout Exercises</h4>
+              <p data-i18n="a.p2.p">Packaging text and layout hierarchy built around grid systems and bilingual content.</p>
+              <div class="row-actions"><a class="btn btn-sm" href="VDES15738P2/index.html" target="_blank" rel="noopener" data-i18n="btn.open" data-i18n-v="P2">Open P2 ↗</a><a class="btn-link" href="work/typography.html" data-i18n="row.case">Case study</a></div>
             </div>
             <span class="row-side"><span class="year">2025</span></span>
           </li>
           <li class="row" data-cat="type">
-            <span class="row-cat">Web typography</span>
+            <span class="row-cat" data-i18n="rc.webtype">Web typography</span>
             <div class="row-main">
-              <h4>P3 — Typography on the Web</h4>
-              <p>Designer research and typeface analysis translated into a web experience. Six variants.</p>
+              <h4 data-i18n="a.p3.h">P3 — Typography on the Web</h4>
+              <p data-i18n="a.p3.p">Designer research and typeface analysis translated into a web experience. Six variants.</p>
               <div class="row-actions">
-                <a class="btn btn-sm" href="VDES15738P3V5/index.html" target="_blank" rel="noopener">Open final ↗</a>
-                <details><summary>All variants (6)</summary><ul>
-                  <li><a href="VDES15738P3/index.html">Variant 1</a></li><li><a href="VDES15738P3V1/index.html">Variant 2</a></li><li><a href="VDES15738P3V2/index.html">Variant 3</a></li><li><a href="VDES15738P3V3/index.html">Variant 4</a></li><li><a href="VDES15738P3V4/index.html">Variant 5</a></li><li><a href="VDES15738P3V5/index.html">Final</a></li>
+                <a class="btn btn-sm" href="VDES15738P3V5/index.html" target="_blank" rel="noopener" data-i18n="btn.final">Open final ↗</a>
+                <a class="btn-link" href="work/typography.html" data-i18n="row.case">Case study</a>
+                <details><summary data-i18n="sum.variants" data-i18n-v="6">All variants (6)</summary><ul>
+                  <li><a href="VDES15738P3/index.html" data-i18n="v.variant" data-i18n-v="1">Variant 1</a></li><li><a href="VDES15738P3V1/index.html" data-i18n="v.variant" data-i18n-v="2">Variant 2</a></li><li><a href="VDES15738P3V2/index.html" data-i18n="v.variant" data-i18n-v="3">Variant 3</a></li><li><a href="VDES15738P3V3/index.html" data-i18n="v.variant" data-i18n-v="4">Variant 4</a></li><li><a href="VDES15738P3V4/index.html" data-i18n="v.variant" data-i18n-v="5">Variant 5</a></li><li><a href="VDES15738P3V5/index.html" data-i18n="v.finalOnly">Final</a></li>
                 </ul></details>
               </div>
             </div>
@@ -508,7 +522,7 @@
     <div class="wrap footer-inner">
       <span>© <span data-year></span> Yiyang Zhang</span>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
         <li><a href="music.html" data-i18n="nav.music">Music</a></li>
         <li><a href="about.html" data-i18n="nav.about">About</a></li>
         <li><a href="#top" data-i18n="foot.top">Back to top</a></li>
@@ -519,50 +533,869 @@
 
   <script>
 window.PAGE_T = {
-en: {},
+en: {
+'cw.live':'Live preview — {v}',
+'cw.liveFinal':'Live preview — {v} (Final)'
+},
 'zh-CN': {
-'w.nh.cat':'互动叙事 · 网页 + AR/VR','w.nh.p':'横跨网页谜题、视觉小说、海报 AR、WebXR 房间和图书馆里一封信的校园解谜游戏——两种模式、三个结局。我担任组长并开发了网页中枢。','w.nh.t1':'6 个平台','w.nh.t2':'2 种模式','w.nh.t3':'可试玩',
-'w.ne.eye':'开发中','w.ne.cat':'视觉小说 · WebGAL · Steam','w.ne.p':'我正在开发的选择驱动型心理惊悚视觉小说：八个章节、多个结局，开发过程中持续发布可试玩的网页版本。即将登陆 Steam。','w.ne.t1':'多结局','w.ne.t2':'即将推出','w.ne.foot':'查看项目 →',
+'w.nh.cat':'互动叙事 · 网页 + AR/VR',
+'w.nh.p':'横跨网页谜题、视觉小说、海报 AR、WebXR 房间和图书馆里一封信的校园解谜游戏——两种模式、三个结局。我担任组长并开发了网页中枢。',
+'w.nh.t1':'6 个平台',
+'w.nh.t2':'2 种模式',
+'w.nh.t3':'可试玩',
+'w.ne.eye':'开发中',
+'w.ne.cat':'视觉小说 · WebGAL · Steam',
+'w.ne.p':'我正在开发的选择驱动型心理惊悚视觉小说：八个章节、多个结局，开发过程中持续发布可试玩的网页版本。即将登陆 Steam。',
+'w.ne.t1':'多结局',
+'w.ne.t2':'即将推出',
+'w.ne.foot':'查看项目 →',
 'w.client.desc':'一家由高校教师主理的工作室，业务涵盖城市环境、景观建筑、空间设计和公共艺术。我设计并搭建了公司的中英双语官网，在三次迭代中不断打磨品牌表达、内容层级和呈现方式。',
-'w.f.energy':'能源','w.solar.cat':'能源系统 · 光伏 + 储能','w.solar.h':'为 AI 算力供电的光伏储能电站',
-'w.solar.p':'租用南京六合农家屋顶自建的 49 kWp 光伏和 180 kWh 储能，优先给 AI 预训练和推理供电，余电反哺农家和社区。','w.solar.tag':'余电共享',
-'w.eyebrow':'全部作品 · 按深度排序','w.h1':'从案例研究开始。','w.h1b':'归档保留每一个版本。',
+'w.f.energy':'能源',
+'w.solar.cat':'能源系统 · 光伏 + 储能',
+'w.solar.h':'为 AI 算力供电的光伏储能电站',
+'w.solar.p':'租用南京六合农家屋顶自建的 49 kWp 光伏和 180 kWh 储能，优先给 AI 预训练和推理供电，余电反哺农家和社区。',
+'w.solar.tag':'余电共享',
+'w.eyebrow':'全部作品 · 按深度排序',
+'w.h1':'从案例研究开始。',
+'w.h1b':'归档保留每一个版本。',
 'w.lede':'三个层级：带研究和测试的完整案例；真实需求的客户项目；以及归档 — 每个项目的每个版本，按类别分组。',
-'w.f.all':'全部','w.f.ux':'UX 与网页','w.f.physical':'实体与交互','w.f.games':'游戏与工具','w.f.type':'字体排版','w.f.client':'客户',
-'w.t1':'案例研究','w.t1.sub':'问题 → 版本 → 测试 → 结果','w.t2':'客户项目','w.t2.sub':'真实需求，三次迭代','w.t3':'归档','w.t3.sub':'每个版本，按类别',
-'card.read':'阅读案例 →','row.case':'案例研究',
-'w.cta.h2':'在找音乐？','w.cta.p':'原创曲目、专辑与创作过程在单独的页面。'
+'w.f.all':'全部',
+'w.f.ux':'UX 与网页',
+'w.f.physical':'实体与交互',
+'w.f.games':'游戏与工具',
+'w.f.type':'字体排版',
+'w.f.client':'客户',
+'w.t1':'案例研究',
+'w.t1.sub':'问题 → 版本 → 测试 → 结果',
+'w.t2':'客户项目',
+'w.t2.sub':'真实需求，三次迭代',
+'w.t3':'归档',
+'w.t3.sub':'每个版本，按类别',
+'card.read':'阅读案例 →',
+'row.case':'案例研究',
+'w.cta.h2':'在找音乐？',
+'w.cta.p':'原创曲目、专辑与创作过程在单独的页面。',
+'page.title':'作品 — Yiyang Zhang',
+'card.eye':'案例研究',
+'t.snap':'Snapchat 数据透明',
+'t.lamp':'舒适灯',
+'t.mmb':'媒介、运动与身体',
+'n.versions':'{v} 个版本',
+'n.modules':'{v} 个模块',
+'btn.open':'打开 {v} ↗',
+'btn.openFinal':'打开 {v}（最终版）↗',
+'btn.openLatest':'打开 {v}（最新）↗',
+'btn.final':'打开最终版 ↗',
+'btn.sim':'打开模拟器 ↗',
+'btn.quiz':'打开测验 ↗',
+'btn.power':'电力 ↗',
+'btn.rocket':'火箭 ↗',
+'btn.milk':'牛奶 ↗',
+'sum.versions':'全部版本（{v}）',
+'sum.modules':'全部模块（{v}）',
+'sum.variants':'全部变体（{v}）',
+'sum.mmb':'全部模块（3）+ 在线版本（4）',
+'v.final':'{v} — 最终版',
+'v.finalOnly':'最终版',
+'v.appstore':'{v} — App Store 页面',
+'v.overview':'概览',
+'v.variant':'变体 {v}',
+'w.learn.cat':'UX/UI · 网页应用',
+'w.learn.p':'面向初学者的卡片式层级学习应用。七个经过测试的版本（v10–v17），外加一个 App Store 页面。',
+'w.learn.t1':'用户访谈',
+'w.learn.t2':'响应式',
+'w.snap.cat':'UX 研究 · 隐私',
+'w.snap.p':'用收集 → 处理 → 共享 → 控制的交互流程，让数据的使用变得可读。七个线框版本。',
+'w.snap.t1':'渐进式呈现',
+'w.snap.t2':'可用性测试',
+'w.gsgc.cat':'UI 设计 · 社区网站',
+'w.gsgc.p':'移动优先的校园网站：站点地图、人物画像、三轮线框，然后是三个实际搭建的版本。',
+'w.gsgc.t1':'移动优先',
+'w.gsgc.t2':'信息架构',
+'w.mood.cat':'全栈 · React · JWT',
+'w.mood.p':'以日历为中心的情绪记录，日 → 周 → 月连续浏览，支持多用户账户和 iCal 导出。',
+'w.mood.t2':'登录认证',
+'w.mood.t3':'在线演示',
+'w.pc.cat':'物理计算 · Arduino',
+'w.pc.p':'放在 3D 打印场景里、由传感器驱动的氛围灯。温度、湿度和光照映射为颜色状态；配有 ProtoPie 手机界面。',
+'w.ip.cat':'交互媒体 · p5.js',
+'w.ip.p':'铜箔电路、p5.js 声音可视化和 Makey Makey 鼓机 — 三个关于实体输入与数字反馈的模块。',
+'alt.solar':'光伏阵列航拍',
+'alt.nh':'梦魇逃亡主视觉：穿过希腊迷宫的金线',
+'alt.ne':'梦魇逃亡标题图：夜里躺在草地上的 Chu-Ling',
+'alt.learn':'Learn Code 应用界面',
+'alt.snap':'Snapchat 数据透明原型',
+'alt.gsgc':'Green Sheridan Garden Club 网站',
+'alt.mood':'MoodPeek Pro 仪表盘',
+'alt.pc':'发出绿光的舒适灯原型',
+'alt.ip':'色彩丰富的 p5.js 实验',
+'w.client.eye':'品作设计（南京）有限公司',
+'w.client.h':'企业官网 — 设计与开发',
+'w.client.iframe':'品作设计 — 实时预览',
+'cw.live':'实时预览 — {v}',
+'cw.liveFinal':'实时预览 — {v}（最终版）',
+'w.cw.1':'V1 — 基础',
+'w.cw.1d':'信息架构、视觉识别与双语版式。',
+'w.cw.2':'V2 — 层级',
+'w.cw.2d':'导航流程、版块节奏与内容的易扫读性。',
+'w.cw.3':'V3 — 最终版',
+'w.cw.3d':'定稿内容、打磨后的视觉、跨学科的品牌叙事。',
+'rc.learning':'学习应用',
+'rc.privacy':'隐私',
+'rc.community':'社区网站',
+'rc.hcd':'以人为本的数据',
+'rc.everyday':'日常工具',
+'rc.pc':'物理计算',
+'rc.im':'交互媒体',
+'rc.vn':'视觉小说',
+'rc.sim':'模拟',
+'rc.edu':'教育',
+'rc.calc':'计算器',
+'rc.exp':'实验',
+'rc.letter':'字形',
+'rc.grid':'网格系统',
+'rc.webtype':'网页排版',
+'a.learn.p':'为编程初学者设计的课程 → 课时 → 内容层级。V8–V17 迭代导航、卡片尺寸和字体排版；V18 是 App Store 页面。',
+'a.snap.p':'以交互方式讲清个人数据如何被收集、处理、共享和控制。一个概览页，外加从线框到原型的七个版本。',
+'a.gsgc.p':'文档（站点地图、人物画像、用户流程）→ 三轮线框 → 移动优先的校园社区网站的三个搭建版本。',
+'a.weather.p':'把原始天气预报重新翻译成人体感受到的天气 — 将 Open-Meteo 数据与酷热指数、风寒指数等公式结合。九次迭代加一个最终版本。',
+'a.sleep.p':'更好的入睡/起床时间、睡眠负债追踪、时型分析和睡前放松准备，集中在一个日常工具里。',
+'a.quick.p':'一个轻量的随机决策工具，在你拿不定主意时帮你选餐食、饮品、甜点和娱乐。',
+'a.lamp.p':'从第一个 Arduino 闪灯到完成的氛围物件：DHT11 传感器电路、分级 LED 颜色、3D 打印外壳、ProtoPie 手机界面。',
+'a.mmb.p':'铜箔电路和 LED；一个含 25 个 p5.js 可视化的声音库；Makey Makey 触摸输入驱动 50 个 p5.js 实验和一台 WebGL 鼓机。',
+'a.vn.h':'视觉小说 — WebGAL',
+'a.vn.p':'基于 WebGAL 引擎的交互式视觉小说原型。各次迭代探索分支叙事、呈现方式和中文本地化。',
+'a.fbr.h':'快中子增殖反应堆模拟器',
+'a.fbr.p':'管理一座反应堆 — 增殖率、冷却剂、燃料投入和时间倍率 — 同时随机事件不断把它推向熔毁。',
+'a.quiz.h':'手外科测验平台',
+'a.quiz.p':'测验 / 评估工具，支持深浅色模式、自定义字体排版和响应式布局。',
+'a.calc.h':'电力 · 火箭 · 牛奶计算器',
+'a.calc.p':'几个小工具网站：估算设备耗电量和电费、火箭参数以及牛奶用量。',
+'a.exp.h':'网页实验',
+'a.exp.p':'一次性的小页面：可交互的《Never Gonna Give You Up》、Lak-crest，以及一个文字解谜逃脱。',
+'a.p1.h':'P1 — 字形的构造、分类与使用',
+'a.p1.p':'在网页上探索字形构造、段落排版和字体分类逻辑。',
+'a.p2.h':'P2 — 网格版式练习',
+'a.p2.p':'围绕网格系统和双语内容构建的包装文字与版式层级。',
+'a.p3.h':'P3 — 网页上的字体排版',
+'a.p3.p':'把对设计师的研究和字体分析转化为一个网页体验。六个变体。',
+'g.1':'1A — 文档',
+'g.wf':'1B — 线框图 {v}',
+'g.site':'2 — 网站 {v}',
+'g.7':'2 — 最终版',
+'g.1d':'站点地图、人物画像、内容分析、用户流程',
+'g.2d':'初始层级与导航',
+'g.3d':'优化后的页面组织',
+'g.4d':'完整的结构线框',
+'g.5d':'更完整的内容与视觉语言',
+'g.6d':'优化的内容、视觉与交互',
+'g.7d':'完全整合的呈现',
+'pc.m1':'P1 — 探索与概念',
+'pc.m1d':'Arduino 基础、TouchDesigner、WGSN 趋势研究',
+'pc.m2':'P2 — 传感器搭建',
+'pc.m2d':'DHT11 电路、分级 LED 颜色、LCD 读数',
+'pc.m3':'P3 — 3D 外壳与最终版',
+'pc.m3d':'打印外壳、光线传感器、触摸开关、ProtoPie',
+'ip.m1':'P1 — 电路与形态发散',
+'ip.m2':'P2 — 声音与可视化',
+'ip.m3':'P3 — 从触摸到数字',
+'ip.v1':'V1 — 声音草图',
+'ip.v2':'V2 — Rainbow Bloom 页眉',
+'ip.v3':'V3 — p5.js 实验',
+'ip.v4':'V4 — 鼓机',
+'alt.typo':'手写的 Hamburgefontsiv 与 Reese 包装版式',
+'w.typo.cat':'字体排版 · 版式 · 网页字体',
+'t.typo':'设计与字体排版',
+'w.typo.p':'手绘字母、一份用 CSS Grid 重建的双语巧克力包装网格练习，以及为字体设计师 Rod McDonald 做的网站 —— 三个项目，每个最后都落到代码上。',
+'w.typo.t1':'手写字母'
 },
 'zh-TW': {
-'w.nh.cat':'互動敘事 · 網頁 + AR/VR','w.nh.p':'橫跨網頁謎題、視覺小說、海報 AR、WebXR 房間和圖書館裡一封信的校園解謎遊戲——兩種模式、三個結局。我擔任組長並開發了網頁中樞。','w.nh.t1':'6 個平臺','w.nh.t2':'2 種模式','w.nh.t3':'可試玩',
-'w.ne.eye':'開發中','w.ne.cat':'視覺小說 · WebGAL · Steam','w.ne.p':'我正在開發的選擇驅動型心理驚悚視覺小說：八個章節、多個結局，開發過程中持續發布可試玩的網頁版本。即將登陸 Steam。','w.ne.t1':'多結局','w.ne.t2':'即將推出','w.ne.foot':'查看專案 →',
+'w.nh.cat':'互動敘事 · 網頁 + AR/VR',
+'w.nh.p':'橫跨網頁謎題、視覺小說、海報 AR、WebXR 房間和圖書館裡一封信的校園解謎遊戲——兩種模式、三個結局。我擔任組長並開發了網頁中樞。',
+'w.nh.t1':'6 個平台',
+'w.nh.t2':'2 種模式',
+'w.nh.t3':'可試玩',
+'w.ne.eye':'開發中',
+'w.ne.cat':'視覺小說 · WebGAL · Steam',
+'w.ne.p':'我正在開發的選擇驅動型心理驚悚視覺小說：八個章節、多個結局，開發過程中持續發布可試玩的網頁版本。即將登陸 Steam。',
+'w.ne.t1':'多結局',
+'w.ne.t2':'即將推出',
+'w.ne.foot':'查看專案 →',
 'w.f.energy':'能源',
-'w.eyebrow':'全部作品 · 按深度排序','w.h1':'從案例研究開始。','w.h1b':'歸檔保留每一個版本。',
-'w.f.all':'全部','w.f.ux':'UX 與網頁','w.f.physical':'實體與互動','w.f.games':'遊戲與工具','w.f.type':'字體排版','w.f.client':'客戶',
-'w.t1':'案例研究','w.t2':'客戶專案','w.t3':'歸檔','card.read':'閱讀案例 →','row.case':'案例研究',
-'w.cta.h2':'在找音樂？','w.cta.p':'原創曲目、專輯與創作過程在單獨的頁面。'
+'w.eyebrow':'全部作品 · 按深度排序',
+'w.h1':'從案例研究開始。',
+'w.h1b':'歸檔保留每一個版本。',
+'w.f.all':'全部',
+'w.f.ux':'UX 與網頁',
+'w.f.physical':'實體與互動',
+'w.f.games':'遊戲與工具',
+'w.f.type':'字體排版',
+'w.f.client':'客戶',
+'w.t1':'案例研究',
+'w.t2':'客戶專案',
+'w.t3':'歸檔',
+'card.read':'閱讀案例 →',
+'row.case':'案例研究',
+'w.cta.h2':'在找音樂？',
+'w.cta.p':'原創曲目、專輯與創作過程在單獨的頁面。',
+'page.title':'作品 — Yiyang Zhang',
+'card.eye':'案例研究',
+'t.snap':'Snapchat 資料透明',
+'t.lamp':'舒適燈',
+'t.mmb':'媒介、運動與身體',
+'n.versions':'{v} 個版本',
+'n.modules':'{v} 個模組',
+'btn.open':'開啟 {v} ↗',
+'btn.openFinal':'開啟 {v}（最終版）↗',
+'btn.openLatest':'開啟 {v}（最新）↗',
+'btn.final':'開啟最終版 ↗',
+'btn.sim':'開啟模擬器 ↗',
+'btn.quiz':'開啟測驗 ↗',
+'btn.power':'電力 ↗',
+'btn.rocket':'火箭 ↗',
+'btn.milk':'牛奶 ↗',
+'sum.versions':'全部版本（{v}）',
+'sum.modules':'全部模組（{v}）',
+'sum.variants':'全部變體（{v}）',
+'sum.mmb':'全部模組（3）+ 線上版本（4）',
+'v.final':'{v} — 最終版',
+'v.finalOnly':'最終版',
+'v.appstore':'{v} — App Store 頁面',
+'v.overview':'概覽',
+'v.variant':'變體 {v}',
+'w.t1.sub':'問題 → 版本 → 測試 → 結果',
+'w.t2.sub':'真實需求，三次迭代',
+'w.t3.sub':'每個版本，按類別',
+'w.solar.cat':'能源系統 · 光伏 + 儲能',
+'w.solar.h':'為 AI 算力供電的光伏儲能電站',
+'w.solar.tag':'餘電共享',
+'w.learn.cat':'UX/UI · 網頁應用',
+'w.learn.p':'面向初學者的卡片式層級學習應用。七個經過測試的版本（v10–v17），外加一個 App Store 頁面。',
+'w.learn.t1':'使用者訪談',
+'w.learn.t2':'響應式',
+'w.snap.cat':'UX 研究 · 隱私',
+'w.snap.p':'用收集 → 處理 → 共享 → 控制的互動流程，讓資料的使用變得可讀。七個線框版本。',
+'w.snap.t1':'漸進式呈現',
+'w.snap.t2':'可用性測試',
+'w.gsgc.cat':'UI 設計 · 社區網站',
+'w.gsgc.p':'行動優先的校園網站：網站地圖、人物誌、三輪線框，然後是三個實際搭建的版本。',
+'w.gsgc.t1':'行動優先',
+'w.gsgc.t2':'資訊架構',
+'w.mood.cat':'全端 · React · JWT',
+'w.mood.p':'以日曆為中心的情緒記錄，日 → 週 → 月連續瀏覽，支援多使用者帳戶和 iCal 匯出。',
+'w.mood.t2':'登入認證',
+'w.mood.t3':'線上演示',
+'w.pc.cat':'實體運算 · Arduino',
+'w.pc.p':'放在 3D 列印場景裡、由感測器驅動的氛圍燈。溫度、濕度和光照對應為顏色狀態；配有 ProtoPie 手機介面。',
+'w.ip.cat':'互動媒體 · p5.js',
+'w.ip.p':'銅箔電路、p5.js 聲音視覺化和 Makey Makey 鼓機 — 三個關於實體輸入與數位回饋的模組。',
+'alt.solar':'光伏陣列航拍',
+'alt.nh':'夢魘逃亡主視覺：穿過希臘迷宮的金線',
+'alt.ne':'夢魘逃亡標題圖：夜裡躺在草地上的 Chu-Ling',
+'alt.learn':'Learn Code 應用介面',
+'alt.snap':'Snapchat 資料透明原型',
+'alt.gsgc':'Green Sheridan Garden Club 網站',
+'alt.mood':'MoodPeek Pro 儀表板',
+'alt.pc':'發出綠光的舒適燈原型',
+'alt.ip':'色彩豐富的 p5.js 實驗',
+'w.client.eye':'品作設計（南京）有限公司',
+'w.client.h':'企業官網 — 設計與開發',
+'w.client.iframe':'品作設計 — 即時預覽',
+'cw.live':'即時預覽 — {v}',
+'cw.liveFinal':'即時預覽 — {v}（最終版）',
+'w.cw.1':'V1 — 基礎',
+'w.cw.1d':'資訊架構、視覺識別與雙語版式。',
+'w.cw.2':'V2 — 層級',
+'w.cw.2d':'導覽流程、版塊節奏與內容的易掃讀性。',
+'w.cw.3':'V3 — 最終版',
+'w.cw.3d':'定稿內容、打磨後的視覺、跨學科的品牌敘事。',
+'rc.learning':'學習應用',
+'rc.privacy':'隱私',
+'rc.community':'社區網站',
+'rc.hcd':'以人為本的資料',
+'rc.everyday':'日常工具',
+'rc.pc':'實體運算',
+'rc.im':'互動媒體',
+'rc.vn':'視覺小說',
+'rc.sim':'模擬',
+'rc.edu':'教育',
+'rc.calc':'計算器',
+'rc.exp':'實驗',
+'rc.letter':'字形',
+'rc.grid':'網格系統',
+'rc.webtype':'網頁排版',
+'a.learn.p':'為程式設計初學者設計的課程 → 單元 → 內容層級。V8–V17 迭代導覽、卡片尺寸和字型排版；V18 是 App Store 頁面。',
+'a.snap.p':'以互動方式講清個人資料如何被收集、處理、共享和控制。一個概覽頁，外加從線框到原型的七個版本。',
+'a.gsgc.p':'文件（網站地圖、人物誌、使用者流程）→ 三輪線框 → 行動優先的校園社區網站的三個搭建版本。',
+'a.weather.p':'把原始天氣預報重新翻譯成人體感受到的天氣 — 將 Open-Meteo 資料與酷熱指數、風寒指數等公式結合。九次迭代加一個最終版本。',
+'a.sleep.p':'更好的入睡/起床時間、睡眠負債追蹤、時型分析和睡前放鬆準備，集中在一個日常工具裡。',
+'a.quick.p':'一個輕量的隨機決策工具，在你拿不定主意時幫你選餐食、飲品、甜點和娛樂。',
+'a.lamp.p':'從第一個 Arduino 閃燈到完成的氛圍物件：DHT11 感測器電路、分級 LED 顏色、3D 列印外殼、ProtoPie 手機介面。',
+'a.mmb.p':'銅箔電路和 LED；一個含 25 個 p5.js 視覺化的聲音庫；Makey Makey 觸控輸入驅動 50 個 p5.js 實驗和一台 WebGL 鼓機。',
+'a.vn.h':'視覺小說 — WebGAL',
+'a.vn.p':'基於 WebGAL 引擎的互動式視覺小說原型。各次迭代探索分支敘事、呈現方式和中文在地化。',
+'a.fbr.h':'快中子增殖反應堆模擬器',
+'a.fbr.p':'管理一座反應堆 — 增殖率、冷卻劑、燃料投入和時間倍率 — 同時隨機事件不斷把它推向熔毀。',
+'a.quiz.h':'手外科測驗平台',
+'a.quiz.p':'測驗 / 評估工具，支援深淺色模式、自訂字型排版和響應式佈局。',
+'a.calc.h':'電力 · 火箭 · 牛奶計算器',
+'a.calc.p':'幾個小工具網站：估算裝置耗電量和電費、火箭參數以及牛奶用量。',
+'a.exp.h':'網頁實驗',
+'a.exp.p':'一次性的小頁面：可互動的《Never Gonna Give You Up》、Lak-crest，以及一個文字解謎逃脫。',
+'a.p1.h':'P1 — 字形的構造、分類與使用',
+'a.p1.p':'在網頁上探索字形構造、段落排版和字型分類邏輯。',
+'a.p2.h':'P2 — 網格版式練習',
+'a.p2.p':'圍繞網格系統和雙語內容構建的包裝文字與版式層級。',
+'a.p3.h':'P3 — 網頁上的字型排版',
+'a.p3.p':'把對設計師的研究和字型分析轉化為一個網頁體驗。六個變體。',
+'g.1':'1A — 文件',
+'g.wf':'1B — 線框圖 {v}',
+'g.site':'2 — 網站 {v}',
+'g.7':'2 — 最終版',
+'g.1d':'網站地圖、人物誌、內容分析、使用者��程',
+'g.2d':'初始層級與導覽',
+'g.3d':'改良後的頁面組織',
+'g.4d':'完整的結構線框',
+'g.5d':'更完整的內容與視覺語言',
+'g.6d':'改良的內容、視覺與互動',
+'g.7d':'完全整合的呈現',
+'pc.m1':'P1 — 探索與概念',
+'pc.m1d':'Arduino 基礎、TouchDesigner、WGSN 趨勢研究',
+'pc.m2':'P2 — 感測器搭建',
+'pc.m2d':'DHT11 電路、分級 LED 顏色、LCD 讀數',
+'pc.m3':'P3 — 3D 外殼與最終版',
+'pc.m3d':'列印外殼、光線感測器、觸控開關、ProtoPie',
+'ip.m1':'P1 — 電路與形態發散',
+'ip.m2':'P2 — 聲音與視覺化',
+'ip.m3':'P3 — 從觸控到數位',
+'ip.v1':'V1 — 聲音草圖',
+'ip.v2':'V2 — Rainbow Bloom 頁首',
+'ip.v3':'V3 — p5.js 實驗',
+'ip.v4':'V4 — 鼓機',
+'w.client.desc':'一家由高校教師主理的工作室，業務涵蓋城市環境、景觀建築、空間設計和公共藝術。我設計並搭建了公司的中英雙語官網，在三次迭代中不斷打磨品牌表達、內容層級和呈現方式。',
+'w.solar.p':'租用南京六合農家屋頂自建的 49 kWp 光伏和 180 kWh 儲能，優先給 AI 預訓練和推理供電，餘電反哺農家和社區。',
+'w.lede':'三個層級：帶研究和測試的完整案例；真實需求的客戶專案；以及歸檔 — 每個專案的每個版本，按類別分組。',
+'alt.typo':'手寫的 Hamburgefontsiv 與 Reese 包裝版式',
+'w.typo.cat':'字型排版 · 版式 · 網頁字型',
+'t.typo':'設計與字型排版',
+'w.typo.p':'手繪字母、一份用 CSS Grid 重建的雙語巧克力包裝網格練習，以及為字型設計師 Rod McDonald 做的網站 —— 三個專案，每個最後都落到程式碼上。',
+'w.typo.t1':'手寫字母'
 },
 ja: {
-'w.nh.cat':'インタラクティブ・ナラティブ · ウェブ + AR/VR','w.nh.p':'ウェブのパズル、ビジュアルノベル、ポスター AR、WebXR ルーム、図書館に隠された封筒をまたぐキャンパス脱出ゲーム——2 モード、3 エンディング。チームを率いてハブを開発しました。','w.nh.t1':'6 プラットフォーム','w.nh.t2':'2 モード','w.nh.t3':'プレイ可能',
-'w.ne.eye':'開発中','w.ne.cat':'ビジュアルノベル · WebGAL · Steam','w.ne.p':'開発中の、選択で分岐するサイコスリラー・ビジュアルノベル。全 8 章・マルチエンディングで、制作途中のウェブ版も遊べます。Steam で近日公開。','w.ne.t1':'マルチエンディング','w.ne.t2':'近日公開','w.ne.foot':'プロジェクトを見る →',
+'w.nh.cat':'インタラクティブ・ナラティブ · ウェブ + AR/VR',
+'w.nh.p':'ウェブのパズル、ビジュアルノベル、ポスター AR、WebXR ルーム、図書館に隠された封筒をまたぐキャンパス脱出ゲーム——2 モード、3 エンディング。チームを率いてハブを開発しました。',
+'w.nh.t1':'6 プラットフォーム',
+'w.nh.t2':'2 モード',
+'w.nh.t3':'プレイ可能',
+'w.ne.eye':'開発中',
+'w.ne.cat':'ビジュアルノベル · WebGAL · Steam',
+'w.ne.p':'開発中の、選択で分岐するサイコスリラー・ビジュアルノベル。全 8 章・マルチエンディングで、制作途中のウェブ版も遊べます。Steam で近日公開。',
+'w.ne.t1':'マルチエンディング',
+'w.ne.t2':'近日公開',
+'w.ne.foot':'プロジェクトを見る →',
 'w.f.energy':'エネルギー',
-'w.eyebrow':'すべての作品 · 深さ順','w.h1':'ケーススタディから。','w.h1b':'アーカイブには全バージョン。',
-'w.f.all':'すべて','w.f.ux':'UX・ウェブ','w.f.physical':'フィジカル・インタラクティブ','w.f.games':'ゲーム・ツール','w.f.type':'タイポグラフィ','w.f.client':'クライアント',
-'w.t1':'ケーススタディ','w.t2':'クライアントワーク','w.t3':'アーカイブ','card.read':'ケーススタディを読む →','row.case':'ケーススタディ',
-'w.cta.h2':'音楽をお探し？','w.cta.p':'オリジナル曲、ディスコグラフィ、制作過程は専用ページへ。'
+'w.eyebrow':'すべての作品 · 深さ順',
+'w.h1':'ケーススタディから。',
+'w.h1b':'アーカイブには全バージョン。',
+'w.f.all':'すべて',
+'w.f.ux':'UX・ウェブ',
+'w.f.physical':'フィジカル・インタラクティブ',
+'w.f.games':'ゲーム・ツール',
+'w.f.type':'タイポグラフィ',
+'w.f.client':'クライアント',
+'w.t1':'ケーススタディ',
+'w.t2':'クライアントワーク',
+'w.t3':'アーカイブ',
+'card.read':'ケーススタディを読む →',
+'row.case':'ケーススタディ',
+'w.cta.h2':'音楽をお探し？',
+'w.cta.p':'オリジナル曲、ディスコグラフィ、制作過程は専用ページへ。',
+'page.title':'作品 — Yiyang Zhang',
+'card.eye':'ケーススタディ',
+'t.snap':'Snapchat データ透明性',
+'t.lamp':'コンフォートランプ',
+'t.mmb':'メディア、モーション、身体',
+'n.versions':'{v} バージョン',
+'n.modules':'{v} モジュール',
+'btn.open':'{v} を開く ↗',
+'btn.openFinal':'{v}（最終版）を開く ↗',
+'btn.openLatest':'{v}（最新）を開く ↗',
+'btn.final':'最終版を開く ↗',
+'btn.sim':'シミュレーターを開く ↗',
+'btn.quiz':'クイズを開く ↗',
+'btn.power':'電力 ↗',
+'btn.rocket':'ロケット ↗',
+'btn.milk':'ミルク ↗',
+'sum.versions':'全バージョン（{v}）',
+'sum.modules':'全モジュール（{v}）',
+'sum.variants':'全バリエーション（{v}）',
+'sum.mmb':'全モジュール（3）+ 公開版（4）',
+'v.final':'{v} — 最終版',
+'v.finalOnly':'最終版',
+'v.appstore':'{v} — App Store ページ',
+'v.overview':'概要',
+'v.variant':'バリエーション {v}',
+'w.lede':'3 つの階層：リサーチとテストを含む完全なケーススタディ、実際の依頼に基づくクライアントワーク、そしてアーカイブ — 各プロジェクトの全バージョンをカテゴリー別にまとめています。',
+'w.t1.sub':'課題 → バージョン → テスト → 結果',
+'w.t2.sub':'実際の依頼、3 回の改訂',
+'w.t3.sub':'全バージョンをカテゴリー別に',
+'w.solar.cat':'エネルギーシステム · 太陽光 + 蓄電',
+'w.solar.h':'AI コンピューティングのための太陽光 + 蓄電',
+'w.solar.p':'南京の農家の屋根を借りて設置した 49 kWp のパネルと 180 kWh の蓄電池。AI の事前学習と推論に電力を供給し、余剰は農家と村に分けています。',
+'w.solar.tag':'余剰電力をシェア',
+'w.client.desc':'教員が主宰するスタジオで、都市環境、ランドスケープ、空間デザイン、パブリックアートを手がけています。バイリンガルのコーポレートサイトをデザイン・構築し、3 回の改訂でブランド表現、コンテンツの階層、見せ方を磨きました。',
+'w.learn.cat':'UX/UI · ウェブアプリ',
+'w.learn.p':'初心者向けのカード型・階層型学習アプリ。テスト済みの 7 バージョン（v10–v17）と App Store ページ。',
+'w.learn.t1':'ユーザーインタビュー',
+'w.learn.t2':'レスポンシブ',
+'w.snap.cat':'UX リサーチ · プライバシー',
+'w.snap.p':'収集 → 処理 → 共有 → 管理のインタラクティブなフローで、データの使われ方を読み取れるようにする。ワイヤーフレーム 7 バージョン。',
+'w.snap.t1':'段階的開示',
+'w.snap.t2':'ユーザビリティテスト',
+'w.gsgc.cat':'UI デザイン · コミュニティサイト',
+'w.gsgc.p':'モバイルファーストのキャンパスサイト：サイトマップ、ペルソナ、3 回のワイヤーフレームを経て、3 つの実装版へ。',
+'w.gsgc.t1':'モバイルファースト',
+'w.gsgc.t2':'情報設計',
+'w.mood.cat':'フルスタック · React · JWT',
+'w.mood.p':'カレンダー中心の気分記録。日 → 週 → 月の連続性、マルチユーザーアカウント、iCal 書き出しに対応。',
+'w.mood.t2':'認証',
+'w.mood.t3':'ライブデモ',
+'w.pc.cat':'フィジカルコンピューティング · Arduino',
+'w.pc.p':'3D プリントの情景に収めた、センサーで動くアンビエントランプ。温度・湿度・明るさを色の状態に対応させ、ProtoPie のモバイル UI を備える。',
+'w.ip.cat':'インタラクティブメディア · p5.js',
+'w.ip.p':'銅テープの回路、p5.js のサウンドビジュアライゼーション、Makey Makey のドラムマシン — フィジカルな入力とデジタルなフィードバックを扱う 3 つのモジュール。',
+'alt.solar':'太陽光パネルの空撮',
+'alt.nh':'梦魇逃亡のキービジュアル：ギリシャの迷宮を貫く金の糸',
+'alt.ne':'梦魇逃亡のタイトル画：夜の草むらに横たわる Chu-Ling',
+'alt.learn':'Learn Code アプリの画面',
+'alt.snap':'Snapchat データ透明性のプロトタイプ',
+'alt.gsgc':'Green Sheridan Garden Club のサイト',
+'alt.mood':'MoodPeek Pro のダッシュボード',
+'alt.pc':'緑に光るコンフォートランプの試作',
+'alt.ip':'カラフルな p5.js の実験',
+'w.client.eye':'品作設計（南京）有限公司 · Pinzuo Design',
+'w.client.h':'コーポレートサイト — デザインと開発',
+'w.client.iframe':'品作設計 — ライブプレビュー',
+'cw.live':'ライブプレビュー — {v}',
+'cw.liveFinal':'ライブプレビュー — {v}（最終版）',
+'w.cw.1':'V1 — 基盤',
+'w.cw.1d':'情報設計、ビジュアルアイデンティティ、バイリンガルのレイアウト。',
+'w.cw.2':'V2 — 階層',
+'w.cw.2d':'ナビゲーションの流れ、セクションのリズム、内容の拾い読みやすさ。',
+'w.cw.3':'V3 — 最終版',
+'w.cw.3d':'確定したコンテンツ、磨き上げたビジュアル、分野横断のブランドストーリー。',
+'rc.learning':'学習アプリ',
+'rc.privacy':'プライバシー',
+'rc.community':'コミュニティサイト',
+'rc.hcd':'人間中心のデータ',
+'rc.everyday':'日常ツール',
+'rc.pc':'フィジカルコンピューティング',
+'rc.im':'インタラクティブメディア',
+'rc.vn':'ビジュアルノベル',
+'rc.sim':'シミュレーション',
+'rc.edu':'教育',
+'rc.calc':'計算ツール',
+'rc.exp':'実験',
+'rc.letter':'字形',
+'rc.grid':'グリッドシステム',
+'rc.webtype':'ウェブタイポグラフィ',
+'a.learn.p':'プログラミング初心者のためのコース → レッスン → コンテンツの階層。V8–V17 でナビゲーション、カードのサイズ、タイポグラフィを改良し、V18 は App Store ページ。',
+'a.snap.p':'個人データがどう収集・処理・共有・管理されるかをインタラクティブに説明。概要ページと、ワイヤーフレームからプロトタイプまでの 7 バージョン。',
+'a.gsgc.p':'ドキュメント（サイトマップ、ペルソナ、ユーザーフロー）→ 3 回のワイヤーフレーム → モバイルファーストのキャンパスコミュニティサイトの 3 つの実装版。',
+'a.weather.p':'生の予報を、人が実際に感じる天気に訳し直す — Open-Meteo のデータに暑さ指数や風冷指数などの式を組み合わせる。9 回の反復と最終版。',
+'a.sleep.p':'より良い就寝・起床時刻、睡眠負債の記録、クロノタイプ分析、寝る前のクールダウンを、ひとつの日常ツールに。',
+'a.quick.p':'食事、飲み物、デザート、娯楽で迷ったときの、軽量なランダム決定ツール。',
+'a.lamp.p':'Arduino の最初の L チカから完成したアンビエントオブジェクトまで：DHT11 センサー回路、段階的な LED の色、3D プリントの筐体、ProtoPie のモバイル UI。',
+'a.mmb.p':'銅テープの回路と LED、25 の p5.js ビジュアライゼーションを持つサウンドライブラリ、Makey Makey のタッチ入力で動く 50 の p5.js 実験と WebGL ドラムマシン。',
+'a.vn.h':'ビジュアルノベル — WebGAL',
+'a.vn.p':'WebGAL エンジンで作ったインタラクティブなビジュアルノベルの試作。分岐する物語、演出、中国語ローカライズを反復で探っています。',
+'a.fbr.h':'高速増殖炉シミュレーター',
+'a.fbr.p':'増殖率、冷却材、燃料投入、時間倍率を管理しながら、メルトダウンへ追い込むランダムイベントに対処する。',
+'a.quiz.h':'手外科クイズポータル',
+'a.quiz.p':'ダーク／ライトモード、独自のタイポグラフィ、レスポンシブレイアウトを備えたクイズ・評価ツール。',
+'a.calc.h':'電力・ロケット・ミルク計算ツール',
+'a.calc.p':'小さなユーティリティサイト：機器の消費電力と電気代、ロケットのパラメーター、ミルクの量を見積もる。',
+'a.exp.h':'ウェブ実験',
+'a.exp.p':'単発のページ：インタラクティブな「Never Gonna Give You Up」、Lak-crest、テキストベースの脱出ゲーム。',
+'a.p1.h':'P1 — 字形の構成・分類・使用',
+'a.p1.p':'ウェブ上での字形の構成、段落組版、書体分類のロジック。',
+'a.p2.h':'P2 — グリッドレイアウト演習',
+'a.p2.p':'グリッドシステムとバイリンガルの内容を軸に組んだ、パッケージの文字とレイアウトの階層。',
+'a.p3.h':'P3 — ウェブのタイポグラフィ',
+'a.p3.p':'デザイナーの調査と書体分析をウェブ体験に落とし込む。6 つのバリエーション。',
+'g.1':'1A — ドキュメント',
+'g.wf':'1B — ワイヤーフレーム {v}',
+'g.site':'2 — ウェブサイト {v}',
+'g.7':'2 — 最終版',
+'g.1d':'サイトマップ、ペルソナ、コンテンツ分析、ユーザーフロー',
+'g.2d':'初期の階層とナビゲーション',
+'g.3d':'ページ構成の改良',
+'g.4d':'構造を網羅したワイヤーフレーム',
+'g.5d':'より充実したコンテンツとビジュアル言語',
+'g.6d':'内容、ビジュアル、インタラクションの改良',
+'g.7d':'すべてを統合した完成形',
+'pc.m1':'P1 — 探索とコンセプト',
+'pc.m1d':'Arduino の基礎、TouchDesigner、WGSN のリサーチ',
+'pc.m2':'P2 — センサーの製作',
+'pc.m2d':'DHT11 回路、段階的な LED の色、LCD 表示',
+'pc.m3':'P3 — 3D 筐体と完成版',
+'pc.m3d':'プリントした筐体、光センサー、タッチスイッチ、ProtoPie',
+'ip.m1':'P1 — 回路とフォームストーミング',
+'ip.m2':'P2 — サウンドとビジュアライゼーション',
+'ip.m3':'P3 — タッチからデジタルへ',
+'ip.v1':'V1 — サウンドスケッチ',
+'ip.v2':'V2 — Rainbow Bloom ヘッダー',
+'ip.v3':'V3 — p5.js の実験',
+'ip.v4':'V4 — ドラムマシン',
+'alt.typo':'手描きの Hamburgefontsiv と Reese の包装レイアウト',
+'w.typo.cat':'タイポグラフィ · レイアウト · ウェブフォント',
+'t.typo':'デザインとタイポグラフィ',
+'w.typo.p':'手描きの字形、CSS Grid で組み直したバイリンガルのチョコレート包装のグリッド演習、書体デザイナー Rod McDonald のためのウェブサイト。3 つのプロジェクトは、どれもコードで仕上げました。',
+'w.typo.t1':'レタリング'
 },
 fr: {
-'w.nh.cat':'Narration interactive · Web + RA/RV','w.nh.p':'Un jeu d’évasion à l’échelle du campus, entre énigmes web, visual novel, affiche en RA, salle WebXR et enveloppe cachée à la bibliothèque — deux modes, trois fins. J’ai dirigé l’équipe et développé le hub.','w.nh.t1':'6 plateformes','w.nh.t2':'2 modes','w.nh.t3':'Jouable',
-'w.ne.eye':'En développement','w.ne.cat':'Visual novel · WebGAL · Steam','w.ne.p':'Le visual novel de thriller psychologique piloté par les choix que je développe : huit chapitres, plusieurs fins et des versions web jouables en chemin. Bientôt sur Steam.','w.ne.t1':'Fins multiples','w.ne.t2':'Bientôt','w.ne.foot':'Voir le projet →',
+'w.nh.cat':'Narration interactive · Web + RA/RV',
+'w.nh.p':'Un jeu d’évasion à l’échelle du campus, entre énigmes web, visual novel, affiche en RA, salle WebXR et enveloppe cachée à la bibliothèque — deux modes, trois fins. J’ai dirigé l’équipe et développé le hub.',
+'w.nh.t1':'6 plateformes',
+'w.nh.t2':'2 modes',
+'w.nh.t3':'Jouable',
+'w.ne.eye':'En développement',
+'w.ne.cat':'Visual novel · WebGAL · Steam',
+'w.ne.p':'Le visual novel de thriller psychologique piloté par les choix que je développe : huit chapitres, plusieurs fins et des versions web jouables en chemin. Bientôt sur Steam.',
+'w.ne.t1':'Fins multiples',
+'w.ne.t2':'Bientôt',
+'w.ne.foot':'Voir le projet →',
 'w.client.desc':'Un studio dirigé par des enseignants, actif en environnement urbain, architecture du paysage, design d’espace et art public. J’ai conçu et développé le site bilingue de l’entreprise, en affinant l’expression de la marque, la hiérarchie des contenus et la présentation sur trois itérations.',
-'w.solar.cat':'Systèmes énergétiques · Solaire + stockage','w.solar.h':'Solaire + stockage pour le calcul IA','w.solar.p':'Un champ de 49 kWc et 180 kWh de batteries sur le toit loué d’une ferme à Nankin : il alimente le pré-entraînement et l’inférence d’IA, et le surplus est partagé avec la ferme et le village.','w.solar.tag':'Surplus partagé',
+'w.solar.cat':'Systèmes énergétiques · Solaire + stockage',
+'w.solar.h':'Solaire + stockage pour le calcul IA',
+'w.solar.p':'Un champ de 49 kWc et 180 kWh de batteries sur le toit loué d’une ferme à Nankin : il alimente le pré-entraînement et l’inférence d’IA, et le surplus est partagé avec la ferme et le village.',
+'w.solar.tag':'Surplus partagé',
 'w.f.energy':'Énergie',
-'w.eyebrow':'Tous les travaux · par profondeur','w.h1':'Commencez par les études de cas.','w.h1b':'L’archive garde chaque version.',
+'w.eyebrow':'Tous les travaux · par profondeur',
+'w.h1':'Commencez par les études de cas.',
+'w.h1b':'L’archive garde chaque version.',
 'w.lede':'Trois niveaux : des études de cas complètes avec recherche et tests ; un projet client sur un vrai brief ; et l’archive — chaque version de chaque projet, par catégorie.',
-'w.f.all':'Tout','w.f.ux':'UX & Web','w.f.physical':'Physique & interactif','w.f.games':'Jeux & outils','w.f.type':'Typographie','w.f.client':'Client',
-'w.t1':'Études de cas','w.t1.sub':'Problème → versions → tests → résultat','w.t2':'Travail client','w.t2.sub':'Un vrai brief, trois itérations','w.t3':'Archive','w.t3.sub':'Chaque version, par catégorie',
-'card.read':'Lire l’étude de cas →','row.case':'Étude de cas',
-'w.cta.h2':'Vous cherchez la musique ?','w.cta.p':'Morceaux originaux, discographie et processus ont leur propre page.'
+'w.f.all':'Tout',
+'w.f.ux':'UX & Web',
+'w.f.physical':'Physique & interactif',
+'w.f.games':'Jeux & outils',
+'w.f.type':'Typographie',
+'w.f.client':'Client',
+'w.t1':'Études de cas',
+'w.t1.sub':'Problème → versions → tests → résultat',
+'w.t2':'Travail client',
+'w.t2.sub':'Un vrai brief, trois itérations',
+'w.t3':'Archive',
+'w.t3.sub':'Chaque version, par catégorie',
+'card.read':'Lire l’étude de cas →',
+'row.case':'Étude de cas',
+'w.cta.h2':'Vous cherchez la musique ?',
+'w.cta.p':'Morceaux originaux, discographie et processus ont leur propre page.',
+'page.title':'Travaux — Yiyang Zhang',
+'card.eye':'Étude de cas',
+'t.snap':'Transparence des données Snapchat',
+'t.lamp':'Lampe de confort',
+'t.mmb':'Médias, mouvement et corps',
+'n.versions':'{v} versions',
+'n.modules':'{v} modules',
+'btn.open':'Ouvrir {v} ↗',
+'btn.openFinal':'Ouvrir {v} (finale) ↗',
+'btn.openLatest':'Ouvrir {v} (dernière) ↗',
+'btn.final':'Ouvrir la version finale ↗',
+'btn.sim':'Ouvrir le simulateur ↗',
+'btn.quiz':'Ouvrir le quiz ↗',
+'btn.power':'Énergie ↗',
+'btn.rocket':'Fusée ↗',
+'btn.milk':'Lait ↗',
+'sum.versions':'Toutes les versions ({v})',
+'sum.modules':'Tous les modules ({v})',
+'sum.variants':'Toutes les variantes ({v})',
+'sum.mmb':'Tous les modules (3) + versions en ligne (4)',
+'v.final':'{v} — Finale',
+'v.finalOnly':'Finale',
+'v.appstore':'{v} — Page App Store',
+'v.overview':'Vue d’ensemble',
+'v.variant':'Variante {v}',
+'w.learn.cat':'UX/UI · Application web',
+'w.learn.p':'Une application d’apprentissage hiérarchique à base de cartes pour débutants. Sept versions testées (v10–v17) et une page App Store.',
+'w.learn.t1':'Entretiens utilisateurs',
+'w.learn.t2':'Responsive',
+'w.snap.cat':'Recherche UX · Vie privée',
+'w.snap.p':'Un parcours interactif Collecter → Traiter → Partager → Contrôler qui rend lisible l’usage des données. Sept versions de maquettes.',
+'w.snap.t1':'Divulgation progressive',
+'w.snap.t2':'Tests d’utilisabilité',
+'w.gsgc.cat':'Design UI · Site communautaire',
+'w.gsgc.p':'Site de campus pensé d’abord pour le mobile : plan du site, personas, trois séries de maquettes, puis trois versions développées.',
+'w.gsgc.t1':'Mobile d’abord',
+'w.gsgc.t2':'Architecture de l’info',
+'w.mood.cat':'Full-stack · React · JWT',
+'w.mood.p':'Un journal d’humeur centré sur le calendrier, avec continuité Jour → Semaine → Mois, comptes multi-utilisateurs et export iCal.',
+'w.mood.t2':'Authentification',
+'w.mood.t3':'Démo en ligne',
+'w.pc.cat':'Informatique physique · Arduino',
+'w.pc.p':'Une lampe d’ambiance pilotée par capteurs dans une scène imprimée en 3D. Température, humidité et lumière deviennent des états de couleur ; interface mobile ProtoPie.',
+'w.ip.cat':'Médias interactifs · p5.js',
+'w.ip.p':'Circuits en ruban de cuivre, visualisations sonores p5.js et boîte à rythmes Makey Makey — trois modules sur l’entrée physique et le retour numérique.',
+'alt.solar':'Vue aérienne des champs solaires',
+'alt.nh':'Visuel de Nightmare Escape : un fil d’or à travers un labyrinthe grec',
+'alt.ne':'Visuel-titre de 梦魇逃亡 : Chu-Ling allongée dans l’herbe la nuit',
+'alt.learn':'Interface de l’application Learn Code',
+'alt.snap':'Prototype de transparence des données Snapchat',
+'alt.gsgc':'Site du Green Sheridan Garden Club',
+'alt.mood':'Tableau de bord MoodPeek Pro',
+'alt.pc':'Prototype de la lampe de confort, allumé en vert',
+'alt.ip':'Expérience p5.js colorée',
+'w.client.eye':'Pinzuo Design (Nankin) Co., Ltd. · 品作设计',
+'w.client.h':'Site institutionnel — design et développement',
+'w.client.iframe':'Pinzuo Design — aperçu en direct',
+'cw.live':'Aperçu en direct — {v}',
+'cw.liveFinal':'Aperçu en direct — {v} (finale)',
+'w.cw.1':'V1 — Fondations',
+'w.cw.1d':'Architecture de l’information, identité visuelle et mise en page bilingue.',
+'w.cw.2':'V2 — Hiérarchie',
+'w.cw.2d':'Parcours de navigation, rythme des sections et lisibilité en survol.',
+'w.cw.3':'V3 — Finale',
+'w.cw.3d':'Contenus finalisés, visuels peaufinés, récit de marque transdisciplinaire.',
+'rc.learning':'Appli d’apprentissage',
+'rc.privacy':'Vie privée',
+'rc.community':'Site communautaire',
+'rc.hcd':'Données centrées sur l’humain',
+'rc.everyday':'Outil du quotidien',
+'rc.pc':'Informatique physique',
+'rc.im':'Médias interactifs',
+'rc.vn':'Visual novel',
+'rc.sim':'Simulation',
+'rc.edu':'Éducatif',
+'rc.calc':'Calculateurs',
+'rc.exp':'Expériences',
+'rc.letter':'Formes de lettres',
+'rc.grid':'Systèmes de grille',
+'rc.webtype':'Typographie web',
+'a.learn.p':'Hiérarchie cours → leçon → contenu pour programmeurs débutants. V8–V17 font évoluer la navigation, la taille des cartes et la typographie ; V18 est la page App Store.',
+'a.snap.p':'Explication interactive de la façon dont les données personnelles sont collectées, traitées, partagées et contrôlées. Une page d’ensemble et sept versions, de la maquette au prototype.',
+'a.gsgc.p':'Documentation (plan du site, personas, parcours utilisateur) → trois séries de maquettes → trois versions développées d’un site communautaire de campus pensé pour le mobile.',
+'a.weather.p':'Retraduit les prévisions brutes en météo ressentie — données Open-Meteo combinées à l’indice de chaleur, au refroidissement éolien et à des formules similaires. Neuf itérations et une version finale.',
+'a.sleep.p':'De meilleures heures de coucher et de lever, le suivi de la dette de sommeil, l’analyse du chronotype et la préparation au coucher, dans un seul outil quotidien.',
+'a.quick.p':'Un petit outil de décision aléatoire pour les repas, boissons, desserts et loisirs quand on n’arrive pas à choisir.',
+'a.lamp.p':'Du premier clignotement Arduino à un objet d’ambiance abouti : circuit à capteur DHT11, couleurs de LED par paliers, boîtier imprimé en 3D, interface mobile ProtoPie.',
+'a.mmb.p':'Circuits en ruban de cuivre et LED ; une sonothèque avec 25 visualisations p5.js ; l’entrée tactile Makey Makey pilote 50 expériences p5.js et une boîte à rythmes WebGL.',
+'a.vn.h':'Visual novel — WebGAL',
+'a.vn.p':'Prototypes de visual novel interactifs sur le moteur WebGAL. Les itérations explorent la narration à embranchements, la mise en scène et la localisation en chinois.',
+'a.fbr.h':'Simulateur de surgénérateur rapide',
+'a.fbr.p':'Gérez un réacteur — taux de surgénération, caloporteur, apport de combustible et échelle de temps — pendant que des événements aléatoires le poussent vers la fusion.',
+'a.quiz.h':'Portail de quiz en chirurgie de la main',
+'a.quiz.p':'Outil de quiz et d’évaluation avec mode sombre/clair, typographie personnalisée et mise en page responsive.',
+'a.calc.h':'Calculateurs : énergie · fusée · lait',
+'a.calc.p':'Petits sites utilitaires : estimer la consommation et le coût électrique d’un appareil, les paramètres d’une fusée et des quantités de lait.',
+'a.exp.h':'Expériences web',
+'a.exp.p':'Pages ponctuelles : un « Never Gonna Give You Up » interactif, Lak-crest et une évasion textuelle.',
+'a.p1.h':'P1 — Construction, classification et usage des lettres',
+'a.p1.p':'Construction des lettres, composition de paragraphes et logique de classification typographique sur le web.',
+'a.p2.h':'P2 — Exercices de mise en page sur grille',
+'a.p2.p':'Textes d’emballage et hiérarchie de mise en page construits autour de grilles et de contenus bilingues.',
+'a.p3.h':'P3 — La typographie sur le web',
+'a.p3.p':'Recherche sur un designer et analyse de caractères traduites en expérience web. Six variantes.',
+'g.1':'1A — Documentation',
+'g.wf':'1B — Maquette {v}',
+'g.site':'2 — Site {v}',
+'g.7':'2 — Finale',
+'g.1d':'Plan du site, personas, analyse de contenu, parcours utilisateur',
+'g.2d':'Hiérarchie et navigation initiales',
+'g.3d':'Organisation des pages affinée',
+'g.4d':'Maquette structurelle complète',
+'g.5d':'Contenu plus complet et langage visuel',
+'g.6d':'Contenu, visuels et interactions affinés',
+'g.7d':'Présentation entièrement intégrée',
+'pc.m1':'P1 — Exploration et concept',
+'pc.m1d':'Bases d’Arduino, TouchDesigner, recherche WGSN',
+'pc.m2':'P2 — Montage des capteurs',
+'pc.m2d':'Circuit DHT11, couleurs de LED par paliers, affichage LCD',
+'pc.m3':'P3 — Boîtier 3D et version finale',
+'pc.m3d':'Boîtier imprimé, capteur de lumière, interrupteur tactile, ProtoPie',
+'ip.m1':'P1 — Circuits et formstorming',
+'ip.m2':'P2 — Son et visualisation',
+'ip.m3':'P3 — Du toucher au numérique',
+'ip.v1':'V1 — Esquisses sonores',
+'ip.v2':'V2 — En-tête Rainbow Bloom',
+'ip.v3':'V3 — Expériences p5.js',
+'ip.v4':'V4 — Boîte à rythmes',
+'alt.typo':'« Hamburgefontsiv » lettré à la main et la mise en page de l’emballage Reese',
+'w.typo.cat':'Typographie · Mise en page · Polices web',
+'t.typo':'Design et typographie',
+'w.typo.p':'Des lettres dessinées à la main, une étude de grille sur un emballage chocolaté bilingue reconstruite en CSS Grid, et un site pour le dessinateur de caractères Rod McDonald — trois projets, chacun terminé en code.',
+'w.typo.t1':'Lettrage'
+},
+de: {
+'page.title':'Arbeiten — Yiyang Zhang',
+'card.eye':'Fallstudie',
+'t.snap':'Snapchat-Datentransparenz',
+'t.lamp':'Wohlfühllampe',
+'t.mmb':'Medien, Bewegung und Körper',
+'n.versions':'{v} Versionen',
+'n.modules':'{v} Module',
+'btn.open':'{v} öffnen ↗',
+'btn.openFinal':'{v} (Endfassung) öffnen ↗',
+'btn.openLatest':'{v} (neueste) öffnen ↗',
+'btn.final':'Endfassung öffnen ↗',
+'btn.sim':'Simulator öffnen ↗',
+'btn.quiz':'Quiz öffnen ↗',
+'btn.power':'Strom ↗',
+'btn.rocket':'Rakete ↗',
+'btn.milk':'Milch ↗',
+'sum.versions':'Alle Versionen ({v})',
+'sum.modules':'Alle Module ({v})',
+'sum.variants':'Alle Varianten ({v})',
+'sum.mmb':'Alle Module (3) + Live-Versionen (4)',
+'v.final':'{v} — Endfassung',
+'v.finalOnly':'Endfassung',
+'v.appstore':'{v} — App-Store-Seite',
+'v.overview':'Überblick',
+'v.variant':'Variante {v}',
+'w.eyebrow':'Alle Arbeiten · nach Tiefe geordnet',
+'w.h1':'Beginnen Sie mit den Fallstudien.',
+'w.h1b':'Das Archiv bewahrt jede Version.',
+'w.lede':'Drei Ebenen: vollständige Fallstudien mit Recherche und Tests; Kundenarbeit nach einem echten Briefing; und das Archiv — jede Version jedes Projekts, nach Kategorie geordnet, damit Sie sehen, wie es entstanden ist.',
+'w.f.all':'Alle',
+'w.f.energy':'Energie',
+'w.f.ux':'UX & Web',
+'w.f.physical':'Physisch & interaktiv',
+'w.f.games':'Spiele & Tools',
+'w.f.type':'Typografie',
+'w.f.client':'Kundenarbeit',
+'w.t1':'Fallstudien',
+'w.t1.sub':'Problem → Versionen → Tests → Ergebnis',
+'w.t2':'Kundenarbeit',
+'w.t2.sub':'Ein echtes Briefing, drei Iterationen',
+'w.t3':'Archiv',
+'w.t3.sub':'Jede Version, nach Kategorie',
+'card.read':'Fallstudie lesen →',
+'row.case':'Fallstudie',
+'w.cta.h2':'Auf der Suche nach der Musik?',
+'w.cta.p':'Eigene Tracks, Diskografie und Arbeitsprozess haben eine eigene Seite.',
+'w.solar.cat':'Energiesysteme · Solar + Speicher',
+'w.solar.h':'Solar + Speicher für KI-Rechenleistung',
+'w.solar.p':'Eine 49-kWp-Anlage und 180 kWh Batteriespeicher auf dem gemieteten Dach eines Bauernhauses in Nanjing — sie versorgen KI-Vortraining und -Inferenz, der Überschuss geht an den Hof und das Dorf.',
+'w.solar.tag':'Geteilter Überschuss',
+'w.nh.cat':'Interaktives Erzählen · Web + AR/VR',
+'w.nh.p':'Ein campusweites Escape-Game aus Web-Rätseln, einer Visual Novel, Poster-AR, einem WebXR-Raum und einem in der Bibliothek versteckten Umschlag — zwei Modi, drei Enden. Ich habe das Team geleitet und den Hub gebaut.',
+'w.nh.t1':'6 Plattformen',
+'w.nh.t2':'2 Modi',
+'w.nh.t3':'Spielbar',
+'w.ne.eye':'In Entwicklung',
+'w.ne.cat':'Visual Novel · WebGAL · Steam',
+'w.ne.p':'Eine entscheidungsgetriebene Psychothriller-Visual-Novel, an der ich arbeite: acht Kapitel, mehrere Enden und spielbare Web-Builds unterwegs. Bald auf Steam.',
+'w.ne.t1':'Mehrere Enden',
+'w.ne.t2':'Demnächst',
+'w.ne.foot':'Zum Projekt →',
+'w.client.desc':'Ein von Hochschullehrenden geführtes Studio für Stadtraum, Landschaftsarchitektur, Raumgestaltung und Kunst im öffentlichen Raum. Ich habe die zweisprachige Unternehmenswebsite gestaltet und gebaut und dabei Markenauftritt, Inhaltshierarchie und Präsentation über drei Iterationen verfeinert.',
+'w.learn.cat':'UX/UI · Web-App',
+'w.learn.p':'Kartenbasierte, hierarchische Lern-App für Einsteiger. Sieben getestete Versionen (v10–v17) plus eine App-Store-Seite.',
+'w.learn.t1':'Nutzerinterviews',
+'w.learn.t2':'Responsiv',
+'w.snap.cat':'UX-Research · Datenschutz',
+'w.snap.p':'Ein interaktiver Ablauf Erfassen → Verarbeiten → Teilen → Kontrollieren, der Datennutzung nachvollziehbar macht. Sieben Wireframe-Versionen.',
+'w.snap.t1':'Progressive Offenlegung',
+'w.snap.t2':'Usability-Tests',
+'w.gsgc.cat':'UI-Design · Community-Website',
+'w.gsgc.p':'Mobile-first-Campuswebsite: Sitemap, Personas, drei Wireframe-Runden, dann drei gebaute Versionen.',
+'w.gsgc.t1':'Mobile-first',
+'w.gsgc.t2':'Informationsarchitektur',
+'w.mood.cat':'Full-Stack · React · JWT',
+'w.mood.p':'Kalenderzentriertes Stimmungstagebuch mit durchgängiger Ansicht Tag → Woche → Monat, Mehrbenutzerkonten und iCal-Export.',
+'w.mood.t2':'Authentifizierung',
+'w.mood.t3':'Live-Demo',
+'w.pc.cat':'Physical Computing · Arduino',
+'w.pc.p':'Sensorgesteuerte Stimmungslampe in einer 3D-gedruckten Szene. Temperatur, Luftfeuchte und Licht werden zu Farbzuständen; mobile Oberfläche in ProtoPie.',
+'w.ip.cat':'Interaktive Medien · p5.js',
+'w.ip.p':'Kupferband-Schaltungen, p5.js-Klangvisualisierungen und ein Makey-Makey-Drumcomputer — drei Module über physische Eingabe und digitales Feedback.',
+'alt.solar':'Luftaufnahme der Solaranlagen',
+'alt.nh':'Key Art von Nightmare Escape: ein goldener Faden durch ein griechisches Labyrinth',
+'alt.ne':'Titelbild von 梦魇逃亡: Chu-Ling liegt nachts im Gras',
+'alt.learn':'Oberfläche der Learn-Code-App',
+'alt.snap':'Prototyp zur Snapchat-Datentransparenz',
+'alt.gsgc':'Website des Green Sheridan Garden Club',
+'alt.mood':'MoodPeek-Pro-Dashboard',
+'alt.pc':'Prototyp der Wohlfühllampe, grün leuchtend',
+'alt.ip':'Farbenfrohes p5.js-Experiment',
+'w.client.eye':'Pinzuo Design (Nanjing) Co., Ltd. · 品作设计',
+'w.client.h':'Unternehmenswebsite — Design & Entwicklung',
+'w.client.iframe':'Pinzuo Design — Live-Vorschau',
+'cw.live':'Live-Vorschau — {v}',
+'cw.liveFinal':'Live-Vorschau — {v} (Endfassung)',
+'w.cw.1':'V1 — Grundlage',
+'w.cw.1d':'Informationsarchitektur, visuelle Identität und zweisprachiges Layout.',
+'w.cw.2':'V2 — Hierarchie',
+'w.cw.2d':'Navigationsfluss, Rhythmus der Abschnitte und Überfliegbarkeit der Inhalte.',
+'w.cw.3':'V3 — Endfassung',
+'w.cw.3d':'Finale Inhalte, ausgefeilte Visuals, interdisziplinäre Markengeschichte.',
+'rc.learning':'Lern-App',
+'rc.privacy':'Datenschutz',
+'rc.community':'Community-Website',
+'rc.hcd':'Menschzentrierte Daten',
+'rc.everyday':'Alltagswerkzeug',
+'rc.pc':'Physical Computing',
+'rc.im':'Interaktive Medien',
+'rc.vn':'Visual Novel',
+'rc.sim':'Simulation',
+'rc.edu':'Bildung',
+'rc.calc':'Rechner',
+'rc.exp':'Experimente',
+'rc.letter':'Buchstabenformen',
+'rc.grid':'Rastersysteme',
+'rc.webtype':'Webtypografie',
+'a.learn.p':'Hierarchie aus Kurs → Lektion → Inhalt für Programmieranfänger. V8–V17 verfeinern Navigation, Kartengröße und Typografie; V18 ist die App-Store-Seite.',
+'a.snap.p':'Interaktive Erklärung, wie persönliche Daten erfasst, verarbeitet, geteilt und kontrolliert werden. Eine Übersichtsseite plus sieben Versionen vom Wireframe zum Prototyp.',
+'a.gsgc.p':'Dokumentation (Sitemap, Personas, User Flow) → drei Wireframe-Runden → drei gebaute Versionen einer Mobile-first-Community-Website für den Campus.',
+'a.weather.p':'Übersetzt rohe Vorhersagen in gefühltes Wetter — Open-Meteo-Daten kombiniert mit Hitzeindex, Windchill und ähnlichen Formeln. Neun Iterationen plus eine finale Version.',
+'a.sleep.p':'Bessere Schlafens- und Aufstehzeiten, Schlafschuld-Tracking, Chronotyp-Analyse und Vorbereitung aufs Abschalten in einem täglichen Werkzeug.',
+'a.quick.p':'Ein schlankes Zufallsentscheidungs-Tool für Essen, Getränke, Desserts und Unterhaltung, wenn man sich nicht entscheiden kann.',
+'a.lamp.p':'Vom ersten Arduino-Blinken bis zum fertigen Stimmungsobjekt: DHT11-Sensorschaltung, gestufte LED-Farben, 3D-gedrucktes Gehäuse, mobile Oberfläche in ProtoPie.',
+'a.mmb.p':'Kupferband-Schaltungen und LEDs; eine Klangbibliothek mit 25 p5.js-Visualisierungen; Makey-Makey-Touch-Eingabe steuert 50 p5.js-Experimente und einen WebGL-Drumcomputer.',
+'a.vn.h':'Visual Novel — WebGAL',
+'a.vn.p':'Interaktive Visual-Novel-Prototypen auf der WebGAL-Engine. Die Iterationen erkunden verzweigtes Erzählen, Präsentation und chinesische Lokalisierung.',
+'a.fbr.h':'Simulator für Schnelle Brüter',
+'a.fbr.p':'Steuern Sie einen Reaktor — Brutrate, Kühlmittel, Brennstoffzufuhr und Zeitraffer — während Zufallsereignisse ihn Richtung Kernschmelze treiben.',
+'a.quiz.h':'Quiz-Portal Handchirurgie',
+'a.quiz.p':'Quiz- und Bewertungstool mit Dunkel-/Hellmodus, eigener Typografie und responsivem Layout.',
+'a.calc.h':'Rechner: Strom · Rakete · Milch',
+'a.calc.p':'Kleine Hilfsseiten: Stromverbrauch und -kosten von Geräten, Raketenparameter und Milchmengen abschätzen.',
+'a.exp.h':'Web-Experimente',
+'a.exp.p':'Einzelne Seiten: ein interaktives „Never Gonna Give You Up“, Lak-crest und ein textbasiertes Escape-Spiel.',
+'a.p1.h':'P1 — Aufbau, Klassifikation und Einsatz von Buchstabenformen',
+'a.p1.p':'Aufbau von Buchstabenformen, Absatzsatz und die Logik der Schriftklassifikation im Web.',
+'a.p2.h':'P2 — Übungen zum Rasterlayout',
+'a.p2.p':'Verpackungstexte und Layout-Hierarchie, aufgebaut auf Rastersystemen und zweisprachigen Inhalten.',
+'a.p3.h':'P3 — Typografie im Web',
+'a.p3.p':'Recherche zu einem Designer und Schriftanalyse, übersetzt in ein Web-Erlebnis. Sechs Varianten.',
+'g.1':'1A — Dokumentation',
+'g.wf':'1B — Wireframe {v}',
+'g.site':'2 — Website {v}',
+'g.7':'2 — Endfassung',
+'g.1d':'Sitemap, Personas, Inhaltsanalyse, User Flow',
+'g.2d':'Erste Hierarchie und Navigation',
+'g.3d':'Verfeinerte Seitenstruktur',
+'g.4d':'Vollständiges Struktur-Wireframe',
+'g.5d':'Mehr Inhalt und eine visuelle Sprache',
+'g.6d':'Verfeinerte Inhalte, Visuals, Interaktion',
+'g.7d':'Vollständig integrierte Präsentation',
+'pc.m1':'P1 — Erkundung & Konzept',
+'pc.m1d':'Arduino-Grundlagen, TouchDesigner, WGSN-Recherche',
+'pc.m2':'P2 — Sensoraufbau',
+'pc.m2d':'DHT11-Schaltung, gestufte LED-Farben, LCD-Anzeige',
+'pc.m3':'P3 — 3D-Gehäuse & Endfassung',
+'pc.m3d':'Gedrucktes Gehäuse, Lichtsensor, Touch-Schalter, ProtoPie',
+'ip.m1':'P1 — Schaltungen & Formstorming',
+'ip.m2':'P2 — Klang & Visualisierung',
+'ip.m3':'P3 — Vom Berühren zum Digitalen',
+'ip.v1':'V1 — Klangskizzen',
+'ip.v2':'V2 — Rainbow-Bloom-Header',
+'ip.v3':'V3 — p5.js-Experimente',
+'ip.v4':'V4 — Drumcomputer',
+'alt.typo':'Handgeschriebenes „Hamburgefontsiv“ neben dem Reese-Verpackungslayout',
+'w.typo.cat':'Typografie · Layout · Webschriften',
+'t.typo':'Design & Typografie',
+'w.typo.p':'Handgezeichnete Buchstaben, eine Rasterstudie zu einer zweisprachigen Schokoladenverpackung, neu gebaut mit CSS Grid, und eine Website für den Schriftgestalter Rod McDonald — drei Projekte, jedes endet im Code.',
+'w.typo.t1':'Lettering'
 }
 };
   </script>
