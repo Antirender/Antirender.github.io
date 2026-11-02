@@ -173,6 +173,8 @@ a.row:hover .row-thumb img{transform:scale(1.05)}
 .track-card h3{font-size:1.1rem;font-weight:750;line-height:1.25}
 .track-card .card-cat{margin-top:-.2rem}
 .track-card .spotify{height:152px;margin-top:.4rem}
+.art-credit{margin-top:1rem;font-size:.82rem;color:var(--muted)}
+.art-credit a{font-weight:600}
 /* Spotify facade: cover art + buttons; the player iframe loads on click (also works where Spotify is blocked) */
 .sp-facade{display:flex;align-items:center;gap:12px;height:152px;margin-top:.4rem;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--bg)}
 .sp-facade img{width:clamp(72px,34%,120px);height:auto;aspect-ratio:1;flex:none;border-radius:8px;object-fit:cover;background:var(--border)}

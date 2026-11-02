@@ -94,17 +94,17 @@
 
   /* ---- i18n ---- */
   var COMMON = {
-    en: { 'sp.play': 'Play here', 'sp.open': 'Open in Spotify ↗', 'sp.artist': 'Load the full catalogue', 'nav.work': 'Work', 'nav.music': 'Music', 'nav.about': 'About', 'nav.contact': 'Contact', 'nav.resume': 'Resume',
+    en: { 'art.credit': 'Cover art by ', 'art.name': 'TaTa (tataqwq233) ↗', 'sp.play': 'Play here', 'sp.open': 'Open in Spotify ↗', 'sp.artist': 'Load the full catalogue', 'nav.work': 'Work', 'nav.music': 'Music', 'nav.about': 'About', 'nav.contact': 'Contact', 'nav.resume': 'Resume',
           'nav.home': 'Home', 'foot.email': 'Email', 'foot.top': 'Back to top', 'skip': 'Skip to content', 'theme': 'Toggle dark mode' },
-    'zh-CN': { 'sp.play': '在此播放', 'sp.open': '在 Spotify 打开 ↗', 'sp.artist': '加载完整目录', 'nav.work': '作品', 'nav.music': '音乐', 'nav.about': '关于', 'nav.contact': '联系', 'nav.resume': '简历',
+    'zh-CN': { 'art.credit': '封面插画：', 'art.name': '塔塔（tataqwq233）↗', 'sp.play': '在此播放', 'sp.open': '在 Spotify 打开 ↗', 'sp.artist': '加载完整目录', 'nav.work': '作品', 'nav.music': '音乐', 'nav.about': '关于', 'nav.contact': '联系', 'nav.resume': '简历',
           'nav.home': '首页', 'foot.email': '邮箱', 'foot.top': '回到顶部', 'skip': '跳到正文', 'theme': '切换深色模式' },
-    'zh-TW': { 'sp.play': '在此播放', 'sp.open': '在 Spotify 開啟 ↗', 'sp.artist': '載入完整目錄', 'nav.work': '作品', 'nav.music': '音樂', 'nav.about': '關於', 'nav.contact': '聯絡', 'nav.resume': '簡歷',
+    'zh-TW': { 'art.credit': '封面插畫：', 'art.name': '塔塔（tataqwq233）↗', 'sp.play': '在此播放', 'sp.open': '在 Spotify 開啟 ↗', 'sp.artist': '載入完整目錄', 'nav.work': '作品', 'nav.music': '音樂', 'nav.about': '關於', 'nav.contact': '聯絡', 'nav.resume': '簡歷',
           'nav.home': '首頁', 'foot.email': '信箱', 'foot.top': '回到頂部', 'skip': '跳到正文', 'theme': '切換深色模式' },
-    ja: { 'sp.play': 'ここで再生', 'sp.open': 'Spotify で開く ↗', 'sp.artist': '全カタログを読み込む', 'nav.work': '作品', 'nav.music': '音楽', 'nav.about': '紹介', 'nav.contact': '連絡', 'nav.resume': '履歴書',
+    ja: { 'art.credit': 'ジャケットイラスト：', 'art.name': '塔塔（tataqwq233）↗', 'sp.play': 'ここで再生', 'sp.open': 'Spotify で開く ↗', 'sp.artist': '全カタログを読み込む', 'nav.work': '作品', 'nav.music': '音楽', 'nav.about': '紹介', 'nav.contact': '連絡', 'nav.resume': '履歴書',
           'nav.home': 'ホーム', 'foot.email': 'メール', 'foot.top': 'トップへ', 'skip': '本文へ移動', 'theme': 'ダークモード切替' },
-    fr: { 'sp.play': 'Écouter ici', 'sp.open': 'Ouvrir dans Spotify ↗', 'sp.artist': 'Charger le catalogue complet', 'nav.work': 'Travaux', 'nav.music': 'Musique', 'nav.about': 'À propos', 'nav.contact': 'Contact', 'nav.resume': 'CV',
+    fr: { 'art.credit': 'Pochettes illustrées par ', 'art.name': 'TaTa (tataqwq233) ↗', 'sp.play': 'Écouter ici', 'sp.open': 'Ouvrir dans Spotify ↗', 'sp.artist': 'Charger le catalogue complet', 'nav.work': 'Travaux', 'nav.music': 'Musique', 'nav.about': 'À propos', 'nav.contact': 'Contact', 'nav.resume': 'CV',
           'nav.home': 'Accueil', 'foot.email': 'Courriel', 'foot.top': 'Haut de page', 'skip': 'Aller au contenu', 'theme': 'Basculer le mode sombre' },
-    de: { 'sp.play': 'Hier abspielen', 'sp.open': 'In Spotify öffnen ↗', 'sp.artist': 'Gesamten Katalog laden', 'nav.work': 'Arbeiten', 'nav.music': 'Musik', 'nav.about': 'Über mich', 'nav.contact': 'Kontakt', 'nav.resume': 'Lebenslauf',
+    de: { 'art.credit': 'Cover-Illustrationen von ', 'art.name': 'TaTa (tataqwq233) ↗', 'sp.play': 'Hier abspielen', 'sp.open': 'In Spotify öffnen ↗', 'sp.artist': 'Gesamten Katalog laden', 'nav.work': 'Arbeiten', 'nav.music': 'Musik', 'nav.about': 'Über mich', 'nav.contact': 'Kontakt', 'nav.resume': 'Lebenslauf',
           'nav.home': 'Start', 'foot.email': 'E-Mail', 'foot.top': 'Nach oben', 'skip': 'Zum Inhalt springen', 'theme': 'Dunkelmodus umschalten' }
   };
   var TAGS = { 'zh-CN': 'zh-Hans', 'zh-TW': 'zh-Hant' };
