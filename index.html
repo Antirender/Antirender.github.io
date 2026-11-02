@@ -5,8 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yiyang Zhang — Interaction Designer</title>
   <meta name="description" content="Yiyang Zhang — Interaction Design student at Sheridan College. UX research, responsive web apps, physical computing, and original music as Antirender."/>
+  <link rel="canonical" href="https://antirender.github.io/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Yiyang Zhang"/>
+  <meta property="og:title" content="Yiyang Zhang — Interaction Designer"/>
+  <meta property="og:description" content="Yiyang Zhang — Interaction Design student at Sheridan College. UX research, responsive web apps, physical computing, and original music as Antirender."/>
+  <meta property="og:url" content="https://antirender.github.io/"/>
+  <meta property="og:image" content="https://antirender.github.io/image/og-home.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Yiyang Zhang","alternateName":"Antirender","url":"https://antirender.github.io/","jobTitle":"Interaction Designer","affiliation":{"@type":"CollegeOrUniversity","name":"Sheridan College"},"sameAs":["https://www.linkedin.com/in/yiyang-zhang-04aa21313/","https://github.com/Antirender","https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW"]}</script>
   <link rel="icon" href="favicon.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/inter/inter.css">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
@@ -63,10 +75,10 @@
       <!-- Persona figures: click to switch between Yiyang (designer) and Antirender (music) -->
       <div class="hero-figures" id="heroFigures">
         <button class="hero-fig hero-fig-primary" id="heroFigPrimary" type="button" aria-label="Switch identity" data-i18n-alt="hero.switch">
-          <img src="image/outer.png" alt="Yiyang Zhang" id="heroImgPrimary">
+          <img src="image/outer.webp" alt="Yiyang Zhang" id="heroImgPrimary" width="780" height="1040" fetchpriority="high">
         </button>
         <button class="hero-fig hero-fig-secondary" id="heroFigSecondary" type="button" aria-label="Switch identity" data-i18n-alt="hero.switch">
-          <img src="image/inner.png" alt="Antirender" id="heroImgSecondary">
+          <img src="image/inner.webp" alt="Antirender" id="heroImgSecondary" width="780" height="1040">
         </button>
         <span class="hero-tip" data-i18n="hero.tip" style="position:absolute;bottom:-1.6rem;left:0;white-space:nowrap">Click a figure to switch persona</span>
       </div>
@@ -86,8 +98,19 @@
       </div>
 
       <div class="card-grid reveal">
+        <a class="card" href="work/nightmare-hub.html">
+          <div class="card-media"><img width="800" height="500" src="work/nightmare-hub/card-800.webp" alt="Trafalgar Labyrinth key art: a golden thread through a Greek labyrinth" data-i18n-alt="alt.nh" loading="lazy"></div>
+          <div class="card-body">
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="card.nh.cat">Interactive narrative · Web + AR/VR</span>
+            <h3>Trafalgar Labyrinth <span class="year">(2026)</span></h3>
+            <p data-i18n="card.nh.desc">A campus-wide escape game across web puzzles, a visual novel, poster AR, a WebXR room and an envelope hidden in the library — two modes, three endings. I led the team and built the hub.</p>
+            <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
+          </div>
+        </a>
+
         <a class="card" href="work/solar.html">
-          <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img src="work/solar/card-800.webp" alt="Aerial view of the solar arrays on a farmhouse roof" data-i18n-alt="alt.solar" loading="lazy"></picture></div>
+          <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img width="800" height="500" src="work/solar/card-800.webp" alt="Aerial view of the solar arrays on a farmhouse roof" data-i18n-alt="alt.solar" loading="lazy"></picture></div>
           <div class="card-body">
             <span class="eyebrow" data-i18n="card.eye">Case Study</span>
             <span class="card-cat" data-i18n="card.solar.cat">Energy systems · Interactive data analysis</span>
@@ -98,7 +121,7 @@
         </a>
 
         <a class="card" href="work/moodpeek.html">
-          <div class="card-media"><img src="image/moodpeek-preview.png" alt="MoodPeek Pro — calendar-first mood logging dashboard" data-i18n-alt="alt.mood" loading="lazy"></div>
+          <div class="card-media"><img width="800" height="500" src="work/moodpeek/card-800.webp" srcset="work/moodpeek/card-800.webp 800w, work/moodpeek/card-1600.webp 1600w" sizes="(min-width: 821px) 540px, 100vw" alt="MoodPeek Pro — calendar-first mood logging dashboard" data-i18n-alt="alt.mood" loading="lazy"></div>
           <div class="card-body">
             <span class="eyebrow" data-i18n="card.eye">Case Study</span>
             <span class="card-cat" data-i18n="card.mood.cat">Full-stack prototype · React · JWT</span>
@@ -109,23 +132,12 @@
         </a>
 
         <a class="card" href="work/snapchat.html">
-          <div class="card-media"><img src="image/snapchat-data.png" alt="Snapchat data transparency prototype — Collect, Process, Share, Control flow" data-i18n-alt="alt.snap" loading="lazy"></div>
+          <div class="card-media"><img width="800" height="500" src="work/snapchat/card-800.webp" srcset="work/snapchat/card-800.webp 800w, work/snapchat/card-1600.webp 1600w" sizes="(min-width: 821px) 540px, 100vw" alt="Snapchat data transparency prototype — Collect, Process, Share, Control flow" data-i18n-alt="alt.snap" loading="lazy"></div>
           <div class="card-body">
             <span class="eyebrow" data-i18n="card.eye">Case Study</span>
             <span class="card-cat" data-i18n="card.snap.cat">UX research · Privacy · Progressive disclosure</span>
             <h3><span data-i18n="t.snap">Snapchat Data Transparency</span> <span class="year">(2025)</span></h3>
             <p data-i18n="card.snap.desc">Making data collection legible: an interactive Collect → Process → Share → Control flow, iterated across seven wireframe versions.</p>
-            <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
-          </div>
-        </a>
-
-        <a class="card" href="work/physical-computing.html">
-          <div class="card-media"><img src="DESN30146P3/images/final/001.jpeg" alt="Comfort Lamp — 3D-printed staircase scene glowing green" data-i18n-alt="alt.pc" loading="lazy"></div>
-          <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
-            <span class="card-cat" data-i18n="card.physical.cat">Physical computing · Arduino · 3D printing</span>
-            <h3><span data-i18n="t.lamp">Comfort Lamp</span> <span class="year">(2025)</span></h3>
-            <p data-i18n="card.physical.desc">A sensor-driven ambient lamp inside a 3D-printed scene. Temperature, humidity and light map to colour states; a ProtoPie mobile UI replaces the LCD.</p>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -138,6 +150,13 @@
           <a class="row" href="work/learn-code.html">
             <span class="row-cat" data-i18n="row.case">Case study</span>
             <span class="row-main"><span class="row-title" data-i18n="row.learn.t">Learn Code — card-based learning app</span><p data-i18n="card.learn.desc">How beginners browse and resume coding lessons — a card-based, hierarchical learning app refined through user interviews.</p></span>
+            <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
+          </a>
+        </li>
+        <li>
+          <a class="row" href="work/physical-computing.html">
+            <span class="row-cat" data-i18n="row.case">Case study</span>
+            <span class="row-main"><span class="row-title" data-i18n="row.lamp.t">Comfort Lamp — sensor-driven ambient lamp</span><p data-i18n="card.physical.desc">A sensor-driven ambient lamp inside a 3D-printed scene. Temperature, humidity and light map to colour states; a ProtoPie mobile UI replaces the LCD.</p></span>
             <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
           </a>
         </li>
@@ -162,6 +181,13 @@
             <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
           </a>
         </li>
+        <li>
+          <a class="row" href="work/typography.html">
+            <span class="row-cat" data-i18n="row.case">Case study</span>
+            <span class="row-main"><span class="row-title" data-i18n="row.typo.t">Type Studies — stroke, hierarchy, voice</span><p data-i18n="row.typo.desc">Hand-drawn letterforms, a bilingual wrapper grid rebuilt in CSS Grid, and a website for a type designer — three exercises, each ending in code.</p></span>
+            <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
+          </a>
+        </li>
       </ul>
     </div>
   </section>
@@ -182,19 +208,19 @@
           <span class="eyebrow" data-i18n="music.track">Original track</span>
           <h3>I'm fine if You're Mine</h3>
           <span class="card-cat"><span data-i18n="music.single">Single</span> · 2026 · 3:19</span>
-          <iframe class="spotify" src="https://open.spotify.com/embed/track/6RBtBXukNVfRCsReW6CzhI?utm_source=generator&theme=0" loading="lazy" title="Spotify — I'm fine if You're Mine" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          <div class="sp-facade"><img src="image/tracks/6RBtBXukNVfRCsReW6CzhI.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/6RBtBXukNVfRCsReW6CzhI?utm_source=generator&amp;theme=0" data-embed-title="Spotify — I'm fine if You're Mine"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/6RBtBXukNVfRCsReW6CzhI" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
         </div>
         <div class="track-card">
           <span class="eyebrow" data-i18n="music.track">Original track</span>
           <h3>Chase the Unknown</h3>
           <span class="card-cat">2024 · 4:07</span>
-          <iframe class="spotify" src="https://open.spotify.com/embed/track/2V5MOhPa6JYTVQf4XcUzUM?utm_source=generator&theme=0" loading="lazy" title="Spotify — Chase the Unknown" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          <div class="sp-facade"><img src="image/tracks/2V5MOhPa6JYTVQf4XcUzUM.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/2V5MOhPa6JYTVQf4XcUzUM?utm_source=generator&amp;theme=0" data-embed-title="Spotify — Chase the Unknown"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/2V5MOhPa6JYTVQf4XcUzUM" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
         </div>
         <div class="track-card">
           <span class="eyebrow" data-i18n="music.track">Original track</span>
           <h3>T.T</h3>
           <span class="card-cat">2024 · 3:17</span>
-          <iframe class="spotify" src="https://open.spotify.com/embed/track/1c75fmmHDbCGNg96YtraxE?utm_source=generator&theme=0" loading="lazy" title="Spotify — T.T" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          <div class="sp-facade"><img src="image/tracks/1c75fmmHDbCGNg96YtraxE.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/1c75fmmHDbCGNg96YtraxE?utm_source=generator&amp;theme=0" data-embed-title="Spotify — T.T"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/1c75fmmHDbCGNg96YtraxE" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
         </div>
       </div>
     </div>
@@ -333,6 +359,12 @@ en: {
 'hero.switch':'切换身份',
 'foot.intro':'简介',
 'alt.solar':'农舍屋顶上光伏阵列的航拍',
+'card.nh.cat':'互动叙事 · 网页 + AR/VR',
+'card.nh.desc':'横跨网页谜题、视觉小说、海报 AR、WebXR 房间和图书馆里一封信的校园解谜游戏——两种模式、三个结局。我担任组长并开发了网页中枢。',
+'alt.nh':'Trafalgar Labyrinth 主视觉：穿过希腊迷宫的金线',
+'row.lamp.t':'舒适灯 — 传感器驱动的氛围灯',
+'row.typo.t':'字体练习 — 笔触、层级、语气',
+'row.typo.desc':'手绘字母、用 CSS Grid 重建的双语包装网格，以及为字体设计师做的网站——三个练习，每个最后都落到代码上。',
 'alt.mood':'MoodPeek Pro — 以日历为中心的情绪记录仪表盘',
 'alt.snap':'Snapchat 数据透明原型 — 收集、处理、共享、控制流程',
 'alt.pc':'舒适灯 — 发出绿光的 3D 打印楼梯场景'
@@ -393,6 +425,12 @@ en: {
 'hero.switch':'切換身份',
 'foot.intro':'簡介',
 'alt.solar':'農舍屋頂上光伏陣列的航拍',
+'card.nh.cat':'互動敘事 · 網頁 + AR/VR',
+'card.nh.desc':'橫跨網頁謎題、視覺小說、海報 AR、WebXR 房間和圖書館裡一封信的校園解謎遊戲——兩種模式、三個結局。我擔任組長並開發了網頁中樞。',
+'alt.nh':'Trafalgar Labyrinth 主視覺：穿過希臘迷宮的金線',
+'row.lamp.t':'舒適燈 — 感測器驅動的氛圍燈',
+'row.typo.t':'字型練習 — 筆觸、層級、語氣',
+'row.typo.desc':'手繪字母、用 CSS Grid 重建的雙語包裝網格，以及為字型設計師做的網站——三個練習，每個最後都落到程式碼上。',
 'alt.mood':'MoodPeek Pro — 以日曆為中心的情緒記錄儀表板',
 'alt.snap':'Snapchat 資料透明原型',
 'alt.pc':'舒適燈 — 發出綠光的 3D 列印樓梯場景',
@@ -469,6 +507,12 @@ ja: {
 'hero.switch':'アイデンティティを切り替え',
 'foot.intro':'イントロ',
 'alt.solar':'農家の屋根に並ぶ太陽光パネルの空撮',
+'card.nh.cat':'インタラクティブ・ナラティブ · ウェブ + AR/VR',
+'card.nh.desc':'ウェブのパズル、ビジュアルノベル、ポスター AR、WebXR ルーム、図書館に隠された封筒をまたぐキャンパス脱出ゲーム——2 モード、3 エンディング。チームを率いてハブを開発しました。',
+'alt.nh':'Trafalgar Labyrinth のキービジュアル：ギリシャの迷宮を貫く金の糸',
+'row.lamp.t':'コンフォートランプ — センサーで動くアンビエントランプ',
+'row.typo.t':'タイポグラフィ・スタディ — ストローク、ヒエラルキー、ボイス',
+'row.typo.desc':'手描きの字形、CSS Grid で組み直したバイリンガル包装のグリッド、書体デザイナーのためのウェブサイト。3 つの練習は、どれもコードで仕上げました。',
 'alt.mood':'MoodPeek Pro — カレンダー中心の気分記録ダッシュボード',
 'alt.snap':'Snapchat データ透明性のプロトタイプ — 収集・処理・共有・管理のフロー',
 'alt.pc':'コンフォートランプ — 緑に光る 3D プリントの階段の情景',
@@ -561,6 +605,12 @@ fr: {
 'hero.switch':'Changer d’identité',
 'foot.intro':'Intro',
 'alt.solar':'Vue aérienne des panneaux solaires sur le toit d’une ferme',
+'card.nh.cat':'Narration interactive · Web + RA/RV',
+'card.nh.desc':'Un jeu d’évasion à l’échelle du campus, entre énigmes web, visual novel, affiche en RA, salle WebXR et enveloppe cachée à la bibliothèque — deux modes, trois fins. J’ai dirigé l’équipe et développé le hub.',
+'alt.nh':'Visuel de Trafalgar Labyrinth : un fil d’or à travers un labyrinthe grec',
+'row.lamp.t':'Lampe de confort — une lampe d’ambiance pilotée par capteurs',
+'row.typo.t':'Études typographiques — trait, hiérarchie, voix',
+'row.typo.desc':'Des lettres dessinées à la main, une grille d’emballage bilingue reconstruite en CSS Grid et un site pour un dessinateur de caractères — trois exercices, chacun terminé en code.',
 'alt.mood':'MoodPeek Pro — tableau de bord de suivi d’humeur centré sur le calendrier',
 'alt.snap':'Prototype de transparence des données Snapchat — parcours Collecter, Traiter, Partager, Contrôler',
 'alt.pc':'Lampe de confort — scène d’escalier imprimée en 3D, allumée en vert'
@@ -583,6 +633,12 @@ de: {
 'hero.switch':'Identität wechseln',
 'foot.intro':'Intro',
 'alt.solar':'Luftaufnahme der Solarmodule auf dem Dach eines Bauernhauses',
+'card.nh.cat':'Interaktives Erzählen · Web + AR/VR',
+'card.nh.desc':'Ein campusweites Escape-Game aus Web-Rätseln, einer Visual Novel, Poster-AR, einem WebXR-Raum und einem in der Bibliothek versteckten Umschlag — zwei Modi, drei Enden. Ich habe das Team geleitet und den Hub gebaut.',
+'alt.nh':'Key Art von Trafalgar Labyrinth: ein goldener Faden durch ein griechisches Labyrinth',
+'row.lamp.t':'Wohlfühllampe — sensorgesteuerte Stimmungslampe',
+'row.typo.t':'Typografische Studien — Strich, Hierarchie, Stimme',
+'row.typo.desc':'Handgezeichnete Buchstaben, ein zweisprachiges Verpackungsraster, neu gebaut mit CSS Grid, und eine Website für einen Schriftgestalter — drei Übungen, jede endet im Code.',
 'alt.mood':'MoodPeek Pro — kalenderzentriertes Dashboard für Stimmungseinträge',
 'alt.snap':'Prototyp zur Snapchat-Datentransparenz — Ablauf Erfassen, Verarbeiten, Teilen, Kontrollieren',
 'alt.pc':'Wohlfühllampe — grün leuchtende, 3D-gedruckte Treppenszene',
@@ -657,8 +713,8 @@ de: {
   if(!heroText||!figPrimary||!figSecondary)return;
   var cta1=document.getElementById('heroCta1'), cta2=document.getElementById('heroCta2');
   var identities={
-    outer:{img:'image/outer.png',alt:'Yiyang Zhang',prefix:'hero.',cta1:'#work',cta2:'image/Yiyang-Zhang-Resume.pdf',cta2dl:true},
-    inner:{img:'image/inner.png',alt:'Antirender',prefix:'ar.',cta1:'music.html',cta2:'https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW',cta2dl:false}
+    outer:{img:'image/outer.webp',alt:'Yiyang Zhang',prefix:'hero.',cta1:'#work',cta2:'image/Yiyang-Zhang-Resume.pdf',cta2dl:true},
+    inner:{img:'image/inner.webp',alt:'Antirender',prefix:'ar.',cta1:'music.html',cta2:'https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW',cta2dl:false}
   };
   var primaryId='outer', swapping=false;
   function secondaryId(){return primaryId==='outer'?'inner':'outer';}

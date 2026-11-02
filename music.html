@@ -5,8 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Music — Antirender</title>
   <meta name="description" content="Original music by Antirender (Yiyang Zhang) — 36 tracks across 7 self-released albums since 2019. Selected tracks, discography, and how each one is made."/>
+  <link rel="canonical" href="https://antirender.github.io/music.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Yiyang Zhang"/>
+  <meta property="og:title" content="Music — Antirender"/>
+  <meta property="og:description" content="Original music by Antirender (Yiyang Zhang) — 36 tracks across 7 self-released albums since 2019. Selected tracks, discography, and how each one is made."/>
+  <meta property="og:url" content="https://antirender.github.io/music.html"/>
+  <meta property="og:image" content="https://antirender.github.io/image/og-music.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="favicon.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/inter/inter.css">
   <link rel="stylesheet" href="css/site.css">
   <style>
     .track-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,22px)}
@@ -88,7 +99,7 @@
         <h2><span data-i18n="m.d.h2">Seven albums,</span> <span class="dim" data-i18n="m.d.h2b">live on every major platform.</span></h2>
         <p class="lede" data-i18n="m.d.lede">Every release is distributed worldwide — Spotify, Apple Music, Amazon Music, YouTube Music, TIDAL, Deezer, Pandora, iHeartRadio, TikTok, Instagram, NetEase Cloud Music and more. The full catalogue below comes straight from the Spotify artist page.</p>
       </div>
-      <iframe class="spotify artist-embed reveal" src="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&theme=0" loading="lazy" title="Spotify — Anti Render artist page" data-i18n-alt="m.d.iframe" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      <div class="sp-facade sp-facade--artist reveal"><img src="image/tracks/artist.webp" alt="" width="160" height="160" loading="lazy"><b>Anti Render</b><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&amp;theme=0" data-embed-title="Spotify — Anti Render"><span aria-hidden="true">▶</span> <span data-i18n="sp.artist">Load the full catalogue</span></button><a class="btn-link" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
     </div>
   </section>
 
@@ -198,7 +209,10 @@ var TRACKS = [
       '<span class="eyebrow" data-i18n="m.card.eye">Original track</span>' +
       '<h3>' + esc(t.title) + '</h3>' +
       '<span class="card-cat">' + note + '<span data-i18n-date="' + t.date.slice(0, 7) + '">' + m + ' ' + y + '</span> · ' + esc(t.len) + '</span>' +
-      '<iframe class="spotify" loading="lazy" title="Spotify — ' + esc(t.title) + '" src="https://open.spotify.com/embed/track/' + t.id + '?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>' +
+      '<div class="sp-facade"><img src="image/tracks/' + t.id + '.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions">' +
+      '<button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/' + t.id + '?utm_source=generator&amp;theme=0" data-embed-title="Spotify — ' + esc(t.title) + '">' +
+      '<span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button>' +
+      '<a class="btn-link" href="https://open.spotify.com/track/' + t.id + '" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>' +
       '</div>';
   }
   TRACKS.sort(function (a, b) { return b.date.localeCompare(a.date) || a.title.localeCompare(b.title); });

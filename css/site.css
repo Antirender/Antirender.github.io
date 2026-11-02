@@ -81,7 +81,7 @@ nav.primary a.active{color:var(--accent);background:var(--accent-soft)}
 .hero-tip{display:block;font-size:.78rem;color:var(--muted);font-weight:500;margin-top:.6rem}
 @media(max-width:820px){
   .hero-layout{grid-template-columns:1fr}
-  .hero-figures{height:clamp(220px,52vw,320px);width:100%;max-width:420px;order:-1;margin-bottom:2.4rem}
+  .hero-figures{height:clamp(200px,48vw,300px);width:100%;max-width:420px;margin:.6rem 0 2.2rem}
   .hero-fig-primary{left:0;height:100%}
   .hero-fig-secondary{left:52%;height:62%}
 }
@@ -167,6 +167,16 @@ a.row:hover .row-title{color:var(--accent)}
 .track-card h3{font-size:1.1rem;font-weight:750;line-height:1.25}
 .track-card .card-cat{margin-top:-.2rem}
 .track-card .spotify{height:152px;margin-top:.4rem}
+/* Spotify facade: cover art + buttons; the player iframe loads on click (also works where Spotify is blocked) */
+.sp-facade{display:flex;align-items:center;gap:12px;height:152px;margin-top:.4rem;padding:12px;border:1px solid var(--border);border-radius:12px;background:var(--bg)}
+.sp-facade img{width:clamp(72px,34%,120px);height:auto;aspect-ratio:1;flex:none;border-radius:8px;object-fit:cover;background:var(--border)}
+.sp-actions{display:flex;flex-direction:column;align-items:flex-start;gap:.6rem;min-width:0}
+.sp-actions .btn{white-space:nowrap}
+.sp-actions .btn-link{font-size:.82rem;line-height:1.3}
+.sp-facade--artist{height:380px;flex-direction:column;justify-content:center;gap:12px;text-align:center}
+.sp-facade--artist img{width:160px;border-radius:50%}
+.sp-facade--artist b{font-size:1.15rem;font-weight:750}
+.sp-facade--artist .sp-actions{align-items:center}
 
 /* ===== Preview embed (client work) ===== */
 .preview{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card)}

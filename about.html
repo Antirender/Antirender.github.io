@@ -5,8 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>About Yiyang — Yiyang Zhang</title>
   <meta name="description" content="The person behind the portfolio — two identities, one designer. Yiyang Zhang × Antirender."/>
+  <link rel="canonical" href="https://antirender.github.io/about.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Yiyang Zhang"/>
+  <meta property="og:title" content="About Yiyang — Yiyang Zhang"/>
+  <meta property="og:description" content="The person behind the portfolio — two identities, one designer. Yiyang Zhang × Antirender."/>
+  <meta property="og:url" content="https://antirender.github.io/about.html"/>
+  <meta property="og:image" content="https://antirender.github.io/image/og-home.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="icon" href="favicon.ico"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/inter/inter.css">
   <link rel="stylesheet" href="css/shared.css">
   <link rel="stylesheet" href="css/about.css">
 </head>
@@ -43,10 +54,10 @@
         </div>
         <div class="hero-figures" id="heroFigures">
           <div class="hero-fig hero-fig-primary" id="heroFigPrimary" role="button" tabindex="0" aria-label="Switch identity">
-            <img src="image/outer.png" alt="Yiyang Zhang" id="heroImgPrimary">
+            <img src="image/outer.webp" width="780" height="1040" alt="Yiyang Zhang" id="heroImgPrimary">
           </div>
           <div class="hero-fig hero-fig-secondary" id="heroFigSecondary" role="button" tabindex="0" aria-label="Switch identity">
-            <img src="image/inner.png" alt="Antirender" id="heroImgSecondary">
+            <img src="image/inner.webp" width="780" height="1040" alt="Antirender" id="heroImgSecondary">
           </div>
         </div>
       </div>
@@ -66,13 +77,13 @@
       <h2 data-i18n="about.two">Two Identities</h2>
       <div class="identity-grid">
         <div class="identity-card">
-          <img src="image/outer.png" alt="Yiyang Zhang" class="identity-img">
+          <img src="image/outer.webp" width="780" height="1040" alt="Yiyang Zhang" class="identity-img">
           <h3 data-i18n="about.yz.name">Yiyang Zhang</h3>
           <span class="identity-role" data-i18n="about.yz.role">Interaction Design</span>
           <p data-i18n="about.yz.desc">The designer. Prototyping, usability testing, clear documentation. Focused on real constraints, evidence-based iteration, and things that work in the hand.</p>
         </div>
         <div class="identity-card">
-          <img src="image/inner.png" alt="Antirender" class="identity-img">
+          <img src="image/inner.webp" width="780" height="1040" alt="Antirender" class="identity-img">
           <h3>Antirender</h3>
           <span class="identity-role" data-i18n="about.ar.role">Creative Alter Ego</span>
           <p data-i18n="about.ar.desc">Music, experiments, and the things that don’t fit neatly into a portfolio. 36 original tracks across 7 self-released albums, published on Spotify and streaming platforms.</p>
@@ -366,8 +377,8 @@ try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catc
   var heroText=document.querySelector('.hero-text');
   var swapping=false;
   var identities={
-    outer:{img:'image/outer.png',alt:'Yiyang Zhang',word:'YIYANG',label:'Interaction Design',title:'Yiyang Zhang',subtitle:'I design from the real \u2014 prototyping, testing, and iterating until the thing works.'},
-    inner:{img:'image/inner.png',alt:'Antirender',word:'ANTIRENDER',label:'Creative Alter Ego',title:'Antirender',subtitle:'Music, experiments, and the things that don\u2019t fit neatly into a portfolio.'}
+    outer:{img:'image/outer.webp',alt:'Yiyang Zhang',word:'YIYANG',label:'Interaction Design',title:'Yiyang Zhang',subtitle:'I design from the real \u2014 prototyping, testing, and iterating until the thing works.'},
+    inner:{img:'image/inner.webp',alt:'Antirender',word:'ANTIRENDER',label:'Creative Alter Ego',title:'Antirender',subtitle:'Music, experiments, and the things that don\u2019t fit neatly into a portfolio.'}
   };
   var primaryId='outer';
   function secondaryId(){return primaryId==='outer'?'inner':'outer';}
