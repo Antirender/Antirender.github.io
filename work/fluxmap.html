@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>FluxMap — Yiyang Zhang</title>
+  <meta name="description" content="FluxMap — a real-time news radar: three news APIs geocoded onto a deck.gl heatmap with linked trend, ranking and evidence views, a five-layer data fallback and a 60-second refresh."/>
+  <link rel="canonical" href="https://antirender.github.io/work/fluxmap.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="Yiyang Zhang"/>
+  <meta property="og:title" content="FluxMap — Yiyang Zhang"/>
+  <meta property="og:description" content="FluxMap — a real-time news radar: three news APIs geocoded onto a deck.gl heatmap with linked trend, ranking and evidence views, a five-layer data fallback and a 60-second refresh."/>
+  <meta property="og:url" content="https://antirender.github.io/work/fluxmap.html"/>
+  <meta property="og:image" content="https://antirender.github.io/work/fluxmap/og.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preload" href="../assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    /* DE: a [data-lang="de"] twin replaces the English one; pages without German copy keep English */
+    html:not([lang="de"]) [data-lang="de"]{display:none!important}
+    html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+    .phase-label--p1{background:#dbeafe;color:#1e40af}
+    .phase-label--p2{background:#fef3c7;color:#92400e}
+    .phase-label--p3{background:#d1fae5;color:#065f46}
+    .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1rem;margin:1rem 0 1.75rem;align-items:start}
+    .shots--wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+    .shots figure{margin:0}
+    .shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border)}
+    .shots figcaption{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.45}
+    .shots--narrow{max-width:540px;grid-template-columns:1fr}
+    .cmp{width:100%;border-collapse:collapse;margin:1rem 0 1.5rem;font-size:.92rem;line-height:1.5}
+    .cmp th,.cmp td{text-align:left;vertical-align:top;padding:.65rem .7rem;border-bottom:1px solid var(--border)}
+    .cmp th{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+    .cmp td:first-child{font-weight:700;white-space:nowrap}
+    @media(max-width:640px){
+      .cmp thead{display:none}
+      .cmp tr{display:block;padding:.7rem 0;border-bottom:1px solid var(--border)}
+      .cmp td{display:block;border:0;padding:.12rem 0}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">Yiyang Zhang <small>Interaction Design</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
+          <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
+
+    <div class="project-hero">
+      <span class="eyebrow"><span data-lang="en">Case Study · Data visualization · 2026</span><span data-lang="zh">案例研究 · 数据可视化 · 2026</span><span data-lang="tw">案例研究 · 資料視覺化 · 2026</span><span data-lang="ja">ケーススタディ · データビジュアライゼーション · 2026</span><span data-lang="fr">Étude de cas · Visualisation de données · 2026</span><span data-lang="de">Fallstudie · Datenvisualisierung · 2026</span></span>
+      <h1><span data-lang="en">FluxMap — a real-time news radar</span><span data-lang="zh">FluxMap — 实时新闻雷达</span><span data-lang="tw">FluxMap — 即時新聞雷達</span><span data-lang="ja">FluxMap — リアルタイム・ニュースレーダー</span><span data-lang="fr">FluxMap — un radar de l’actualité en temps réel</span><span data-lang="de">FluxMap — ein Echtzeit-Nachrichtenradar</span></h1>
+      <p data-lang="en">A live map of where the world’s news is happening. FluxMap pulls articles from three news APIs, places them on a deck.gl and MapLibre map as a heatmap, and links that map to a trend chart, a ranking of places and the articles themselves. It refreshes every 60 seconds and never goes blank when a source fails. I designed and built it end to end: research, data pipeline, serverless back end and interface.</p>
+      <p data-lang="zh">一张实时显示全球新闻发生地的地图。FluxMap 从三个新闻 API 抓取文章，用 deck.gl 和 MapLibre 把它们画成地图上的热力图，并把地图与趋势图、地点排行和文章本身联动起来。它每 60 秒自动刷新，任何一个数据源出故障，地图都不会变成空白。从调研、数据管线、无服务器后端到界面，全部由我独立设计和开发。</p>
+      <p data-lang="tw">一張即時顯示全球新聞發生地的地圖。FluxMap 從三個新聞 API 擷取文章，用 deck.gl 和 MapLibre 把它們畫成地圖上的熱力圖，並把地圖與趨勢圖、地點排行和文章本身連動起來。它每 60 秒自動重新整理，任何一個資料來源出故障，地圖都不會變成空白。從研究、資料管線、無伺服器後端到介面，全部由我獨立設計和開發。</p>
+      <p data-lang="ja">世界のニュースがどこで起きているかを示すライブマップ。FluxMap は 3 つのニュース API から記事を取得し、deck.gl と MapLibre の地図上にヒートマップとして描き、その地図をトレンドチャート、地点ランキング、そして記事そのものと連動させます。60 秒ごとに自動更新され、どのデータソースが落ちても地図が空になることはありません。リサーチ、データパイプライン、サーバーレスのバックエンド、インターフェースまで、すべて一人で設計・開発しました。</p>
+      <p data-lang="fr">Une carte en direct de l’endroit où se passe l’actualité mondiale. FluxMap récupère des articles auprès de trois API d’information, les place sous forme de carte de chaleur sur une carte deck.gl et MapLibre, et relie cette carte à une courbe de tendance, à un classement des lieux et aux articles eux-mêmes. Elle se met à jour toutes les 60 secondes et ne s’affiche jamais vide quand une source tombe en panne. Je l’ai conçue et développée de bout en bout : recherche, pipeline de données, back-end serverless et interface.</p>
+      <p data-lang="de">Eine Live-Karte, die zeigt, wo das Weltgeschehen gerade stattfindet. FluxMap holt Artikel aus drei Nachrichten-APIs, legt sie als Heatmap auf eine deck.gl- und MapLibre-Karte und verknüpft diese Karte mit einem Trenddiagramm, einer Rangliste der Orte und den Artikeln selbst. Sie aktualisiert sich alle 60 Sekunden und bleibt nie leer, wenn eine Quelle ausfällt. Ich habe sie von Anfang bis Ende entworfen und gebaut: Recherche, Datenpipeline, Serverless-Backend und Oberfläche.</p>
+      <div class="meta">
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></strong> <span data-lang="en">Solo — research, UX, data pipeline, front-end, deployment</span><span data-lang="zh">独立完成 — 调研、交互设计、数据管线、前端、部署</span><span data-lang="tw">獨立完成 — 研究、互動設計、資料管線、前端、部署</span><span data-lang="ja">個人制作 — リサーチ、UX、データパイプライン、フロントエンド、デプロイ</span><span data-lang="fr">Seul — recherche, UX, pipeline de données, front-end, déploiement</span><span data-lang="de">Allein — Recherche, UX, Datenpipeline, Frontend, Deployment</span></span>
+        <span><strong><span data-lang="en">Stack</span><span data-lang="zh">技术栈</span><span data-lang="tw">技術棧</span><span data-lang="ja">技術スタック</span><span data-lang="fr">Technologies</span><span data-lang="de">Tech-Stack</span></strong> React 19 · TypeScript · deck.gl · MapLibre · Zustand · Vercel</span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></strong> <span data-lang="en">Live on Vercel · 5-layer fallback · 4 linked views</span><span data-lang="zh">已上线 Vercel · 5 层数据回退 · 4 个联动视图</span><span data-lang="tw">已上線 Vercel · 5 層資料備援 · 4 個連動檢視</span><span data-lang="ja">Vercel で公開中 · 5 層のフォールバック · 4 つの連動ビュー</span><span data-lang="fr">En ligne sur Vercel · repli à 5 niveaux · 4 vues liées</span><span data-lang="de">Live auf Vercel · 5-stufiger Fallback · 4 verknüpfte Ansichten</span></span>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="https://fluxmap.vercel.app/explore" target="_blank" rel="noopener"><span data-lang="en">Open the live app ↗</span><span data-lang="zh">打开在线版 ↗</span><span data-lang="tw">開啟線上版 ↗</span><span data-lang="ja">ライブ版を開く ↗</span><span data-lang="fr">Ouvrir l’application ↗</span><span data-lang="de">Live-App öffnen ↗</span></a>
+      <a href="https://fluxmap.vercel.app/" target="_blank" rel="noopener"><span data-lang="en">Story mode ↗</span><span data-lang="zh">故事模式 ↗</span><span data-lang="tw">故事模式 ↗</span><span data-lang="ja">ストーリーモード ↗</span><span data-lang="fr">Mode récit ↗</span><span data-lang="de">Story-Modus ↗</span></a>
+      <a href="https://github.com/Antirender/FluxMap" target="_blank" rel="noopener"><span data-lang="en">Source code ↗</span><span data-lang="zh">源代码 ↗</span><span data-lang="tw">原始碼 ↗</span><span data-lang="ja">ソースコード ↗</span><span data-lang="fr">Code source ↗</span><span data-lang="de">Quellcode ↗</span></a>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="fluxmap/hero.webp" alt="FluxMap’s Explore dashboard: a news heatmap over a world map, with the volume trend and top locations beside it" data-alt-zh="FluxMap 的 Explore 仪表盘：世界地图上的新闻热力图，旁边是声量趋势和热门地点" data-alt-tw="FluxMap 的 Explore 儀表板：世界地圖上的新聞熱力圖，旁邊是聲量趨勢和熱門地點" data-alt-ja="FluxMap の Explore ダッシュボード：世界地図上のニュースのヒートマップと、その横のボリュームトレンドと上位の地点" data-alt-fr="Le tableau de bord Explore de FluxMap : une carte de chaleur de l’actualité sur une carte du monde, avec la tendance de volume et les lieux principaux à côté" data-alt-de="Das Explore-Dashboard von FluxMap: eine Nachrichten-Heatmap auf einer Weltkarte, daneben der Volumentrend und die wichtigsten Orte" width="1600" height="542">
+
+      <div class="tldr">
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span><span data-lang="de">Auf einen Blick</span></h2>
+        <dl>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span><span data-lang="de">Problem</span></dt><dd><span data-lang="en">News arrives as a firehose of text lists. Lists hide where attention is clustering and how it shifts over time, and most live dashboards break the moment their one data source does.</span><span data-lang="zh">新闻像消防水管一样以文字列表的形式涌来。列表看不出关注度在哪里聚集、又如何随时间变化；而大多数实时仪表盘，只要唯一的数据源一出问题就跟着崩溃。</span><span data-lang="tw">新聞像消防水管一樣以文字列表的形式湧來。列表看不出關注度在哪裡聚集、又如何隨時間變化；而大多數即時儀表板，只要唯一的資料來源一出問題就跟著當掉。</span><span data-lang="ja">ニュースは消防ホースのように、テキストのリストとして押し寄せます。リストでは注目がどこに集まり、時間とともにどう移るのかが見えません。しかも多くのライブダッシュボードは、頼っている唯一のデータソースが落ちた瞬間に止まってしまいます。</span><span data-lang="fr">L’actualité arrive comme une lance d’incendie de listes de texte. Les listes cachent où l’attention se concentre et comment elle évolue, et la plupart des tableaux de bord en direct cassent dès que leur unique source de données tombe.</span><span data-lang="de">Nachrichten kommen als Flut von Textlisten. Listen verbergen, wo sich die Aufmerksamkeit ballt und wie sie sich mit der Zeit verschiebt – und die meisten Live-Dashboards brechen zusammen, sobald ihre einzige Datenquelle ausfällt.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></dt><dd><span data-lang="en">Solo project: competitive analysis, personas, data pipeline, provider chain, serverless proxies, every view and interaction, and deployment.</span><span data-lang="zh">独立项目：竞品分析、用户画像、数据管线、数据源链、无服务器代理、所有视图与交互，以及部署。</span><span data-lang="tw">獨立專案：競品分析、人物誌、資料管線、資料來源鏈、無伺服器代理、所有檢視與互動，以及部署。</span><span data-lang="ja">個人プロジェクト：競合分析、ペルソナ、データパイプライン、プロバイダーチェーン、サーバーレスのプロキシ、すべてのビューとインタラクション、デプロイ。</span><span data-lang="fr">Projet individuel : analyse concurrentielle, personas, pipeline de données, chaîne de fournisseurs, proxys serverless, chaque vue et interaction, et déploiement.</span><span data-lang="de">Einzelprojekt: Wettbewerbsanalyse, Personas, Datenpipeline, Anbieterkette, Serverless-Proxys, alle Ansichten und Interaktionen sowie das Deployment.</span></dd></div>
+          <div><dt><span data-lang="en">Data</span><span data-lang="zh">数据</span><span data-lang="tw">資料</span><span data-lang="ja">データ</span><span data-lang="fr">Données</span><span data-lang="de">Daten</span></dt><dd><span data-lang="en">NewsData.io, The Guardian Open Platform and the GDELT Project, geocoded and aggregated in the browser and refreshed every 60 seconds.</span><span data-lang="zh">NewsData.io、The Guardian Open Platform 和 GDELT Project，在浏览器里完成地理编码与聚合，每 60 秒刷新一次。</span><span data-lang="tw">NewsData.io、The Guardian Open Platform 和 GDELT Project，在瀏覽器裡完成地理編碼與彙整，每 60 秒更新一次。</span><span data-lang="ja">NewsData.io、The Guardian Open Platform、GDELT Project。ブラウザ内でジオコーディングと集計を行い、60 秒ごとに更新。</span><span data-lang="fr">NewsData.io, The Guardian Open Platform et le projet GDELT, géocodés et agrégés dans le navigateur, actualisés toutes les 60 secondes.</span><span data-lang="de">NewsData.io, The Guardian Open Platform und das GDELT Project, im Browser geokodiert und aggregiert, alle 60 Sekunden aktualisiert.</span></dd></div>
+          <div><dt><span data-lang="en">Views</span><span data-lang="zh">视图</span><span data-lang="tw">檢視</span><span data-lang="ja">ビュー</span><span data-lang="fr">Vues</span><span data-lang="de">Ansichten</span></dt><dd><span data-lang="en">Heatmap with event dots, volume trend, top locations and article evidence, all driven by one shared state.</span><span data-lang="zh">热力图与事件点、声量趋势、热门地点和文章证据，全部由同一个共享状态驱动。</span><span data-lang="tw">熱力圖與事件點、聲量趨勢、熱門地點和文章證據，全部由同一個共享狀態驅動。</span><span data-lang="ja">イベントのドットを重ねたヒートマップ、ボリュームトレンド、上位の地点、記事のエビデンス。すべて 1 つの共有状態で動きます。</span><span data-lang="fr">Carte de chaleur avec points d’événements, tendance de volume, lieux principaux et articles sources, tous pilotés par un même état partagé.</span><span data-lang="de">Heatmap mit Ereignispunkten, Volumentrend, wichtigste Orte und Artikel als Belege – alles gesteuert von einem gemeinsamen Zustand.</span></dd></div>
+          <div><dt><span data-lang="en">Key decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span><span data-lang="de">Wichtige Entscheidungen</span></dt><dd><span data-lang="en">A five-layer provider chain so the map is never empty; a 60-second cadence tuned to free-tier limits; API keys kept server-side; keyword search that filters locally instead of calling the APIs again.</span><span data-lang="zh">五层数据源链，保证地图永远不空；按免费额度调出来的 60 秒刷新节奏；API 密钥只留在服务器端；关键词搜索在本地过滤，不再重新调用 API。</span><span data-lang="tw">五層資料來源鏈，確保地圖永遠不空；依免費額度調出來的 60 秒更新節奏；API 金鑰只留在伺服器端；關鍵字搜尋在本機篩選，不再重新呼叫 API。</span><span data-lang="ja">地図が決して空にならない 5 層のプロバイダーチェーン。無料枠の上限に合わせた 60 秒の更新間隔。API キーはサーバー側だけに置く。キーワード検索は API を呼び直さずにローカルで絞り込む。</span><span data-lang="fr">Une chaîne de fournisseurs à cinq niveaux pour que la carte ne soit jamais vide ; une cadence de 60 secondes calée sur les limites des offres gratuites ; des clés d’API gardées côté serveur ; une recherche par mot-clé qui filtre localement au lieu de rappeler les API.</span><span data-lang="de">Eine fünfstufige Anbieterkette, damit die Karte nie leer ist; ein 60-Sekunden-Takt, abgestimmt auf die Limits der Gratis-Tarife; API-Schlüssel bleiben auf dem Server; die Stichwortsuche filtert lokal, statt die APIs erneut aufzurufen.</span></dd></div>
+          <div><dt><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></dt><dd><span data-lang="en">A deployed app with three pages (Story, Explore, About), 8 topic channels, 5 time windows and about 4,000 lines of TypeScript, built over 11 commits.</span><span data-lang="zh">一个已上线的应用：三个页面（Story、Explore、About）、8 个主题频道、5 个时间窗口，约 4,000 行 TypeScript，共 11 次提交。</span><span data-lang="tw">一個已上線的應用：三個頁面（Story、Explore、About）、8 個主題頻道、5 個時間窗口，約 4,000 行 TypeScript，共 11 次提交。</span><span data-lang="ja">公開済みのアプリ：3 ページ（Story、Explore、About）、8 つのトピックチャンネル、5 つの時間幅、約 4,000 行の TypeScript、コミット 11 回。</span><span data-lang="fr">Une application en ligne avec trois pages (Story, Explore, About), 8 canaux thématiques, 5 fenêtres temporelles et environ 4 000 lignes de TypeScript, en 11 commits.</span><span data-lang="de">Eine veröffentlichte App mit drei Seiten (Story, Explore, About), 8 Themenkanälen, 5 Zeitfenstern und rund 4.000 Zeilen TypeScript in 11 Commits.</span></dd></div>
+        </dl>
+      </div>
+
+      <h2><span data-lang="en">Context</span><span data-lang="zh">背景</span><span data-lang="tw">背景</span><span data-lang="ja">背景</span><span data-lang="fr">Contexte</span><span data-lang="de">Kontext</span></h2>
+      <p data-lang="en">The brief was to build a visualization that stays alive: fed by a live source, updating on its own and open to the user’s intervention. I chose the hardest live stream I could think of: world news. Thousands of stories are published every hour, yet they reach us as headlines in a list, with no sense of where things are happening or how attention is moving.</p>
+      <p data-lang="zh">这个项目的要求是做一个“活着”的可视化：接入实时数据源，自己更新，同时允许用户介入。我选了自己能想到的最难的实时数据流——全球新闻。每小时都有成千上万篇报道发布，可它们到我们面前时只是一列标题，看不出事情发生在哪里，也看不出关注度在怎样流动。</p>
+      <p data-lang="tw">這個專案的要求是做一個「活著」的視覺化：接上即時資料來源，自己更新，同時允許使用者介入。我選了自己能想到最難的即時資料流——全球新聞。每小時都有成千上萬篇報導發布，可它們到我們面前時只是一列標題，看不出事情發生在哪裡，也看不出關注度如何流動。</p>
+      <p data-lang="ja">課題は「生きている」ビジュアライゼーションを作ること。ライブのデータソースにつながり、自分で更新され、ユーザーが介入できるものです。私は思いつく限りいちばん難しいライブストリーム、世界のニュースを選びました。毎時間何千もの記事が公開されているのに、私たちのもとにはリストの見出しとして届くだけで、どこで何が起きているのか、注目がどう動いているのかは見えません。</p>
+      <p data-lang="fr">Le brief : construire une visualisation vivante, alimentée par une source en direct, qui se met à jour seule et laisse l’utilisateur intervenir. J’ai choisi le flux le plus difficile que je connaisse : l’actualité mondiale. Des milliers d’articles paraissent chaque heure, mais ils nous arrivent sous forme de titres en liste, sans indication du lieu ni de la façon dont l’attention se déplace.</p>
+      <p data-lang="de">Die Aufgabe: eine Visualisierung bauen, die lebt – gespeist von einer Live-Quelle, die sich selbst aktualisiert und Eingriffe der Nutzer zulässt. Ich habe mir den schwierigsten Live-Strom ausgesucht, der mir einfiel: die Weltnachrichten. Jede Stunde erscheinen Tausende Meldungen, doch sie erreichen uns als Schlagzeilen in einer Liste, ohne Gefühl dafür, wo etwas passiert oder wie sich die Aufmerksamkeit bewegt.</p>
+      <p data-lang="en">FluxMap answers one question at a glance: where is the world’s news happening right now, and how is that changing?</p>
+      <p data-lang="zh">FluxMap 用一眼就能看懂的方式回答一个问题：此刻世界的新闻发生在哪里，又在怎样变化？</p>
+      <p data-lang="tw">FluxMap 用一眼就能看懂的方式回答一個問題：此刻世界的新聞發生在哪裡，又在如何變化？</p>
+      <p data-lang="ja">FluxMap が一目で答えるのは、ひとつの問いです。いま世界のニュースはどこで起きていて、それはどう変わっているのか？</p>
+      <p data-lang="fr">FluxMap répond d’un coup d’œil à une seule question : où se passe l’actualité mondiale en ce moment, et comment cela évolue-t-il ?</p>
+      <p data-lang="de">FluxMap beantwortet auf einen Blick eine einzige Frage: Wo findet das Weltgeschehen gerade statt – und wie verändert sich das?</p>
+      <h2><span data-lang="en">What already exists</span><span data-lang="zh">已有的产品</span><span data-lang="tw">已有的產品</span><span data-lang="ja">既存のプロダクト</span><span data-lang="fr">Ce qui existe déjà</span><span data-lang="de">Was es schon gibt</span></h2>
+      <p data-lang="en">I compared four products near this space to find what a map-first news tool could add.</p>
+      <p data-lang="zh">我比较了四个相近的产品，想找出一个以地图为核心的新闻工具还能补上什么。</p>
+      <p data-lang="tw">我比較了四個相近的產品，想找出一個以地圖為核心的新聞工具還能補上什麼。</p>
+      <p data-lang="ja">近い領域にある 4 つのプロダクトを比較し、地図を軸にしたニュースツールが何を加えられるかを探りました。</p>
+      <p data-lang="fr">J’ai comparé quatre produits proches pour voir ce qu’un outil d’actualité centré sur la carte pourrait apporter.</p>
+      <p data-lang="de">Ich habe vier Produkte aus diesem Umfeld verglichen, um herauszufinden, was ein kartenbasiertes Nachrichtenwerkzeug ergänzen kann.</p>
+      <table class="cmp">
+        <thead><tr><th><span data-lang="en">Product</span><span data-lang="zh">产品</span><span data-lang="tw">產品</span><span data-lang="ja">プロダクト</span><span data-lang="fr">Produit</span><span data-lang="de">Produkt</span></th><th><span data-lang="en">What it does</span><span data-lang="zh">做什么</span><span data-lang="tw">做什麼</span><span data-lang="ja">できること</span><span data-lang="fr">Ce qu’il fait</span><span data-lang="de">Was es macht</span></th><th><span data-lang="en">Gap</span><span data-lang="zh">不足</span><span data-lang="tw">不足</span><span data-lang="ja">足りない点</span><span data-lang="fr">Limite</span><span data-lang="de">Lücke</span></th></tr></thead>
+        <tbody>
+          <tr><td>Google News</td><td><span data-lang="en">Personalised headline aggregator</span><span data-lang="zh">个性化的新闻聚合</span><span data-lang="tw">個人化的新聞彙整</span><span data-lang="ja">パーソナライズされた見出しのアグリゲーター</span><span data-lang="fr">Agrégateur de titres personnalisé</span><span data-lang="de">Personalisierter Schlagzeilen-Aggregator</span></td><td><span data-lang="en">Text lists with no geographic dimension; you can’t see where the hotspots are.</span><span data-lang="zh">只有文字列表，没有地理维度，看不出热点在哪里。</span><span data-lang="tw">只有文字列表，沒有地理維度，看不出熱點在哪裡。</span><span data-lang="ja">テキストのリストだけで地理の次元がなく、ホットスポットの場所が見えない。</span><span data-lang="fr">Des listes de texte sans dimension géographique : impossible de voir où sont les points chauds.</span><span data-lang="de">Textlisten ohne geografische Dimension – man sieht nicht, wo die Brennpunkte liegen.</span></td></tr>
+          <tr><td>Liveuamap</td><td><span data-lang="en">Real-time map of conflicts and crises</span><span data-lang="zh">冲突与危机的实时地图</span><span data-lang="tw">衝突與危機的即時地圖</span><span data-lang="ja">紛争や危機のリアルタイム地図</span><span data-lang="fr">Carte en temps réel des conflits et des crises</span><span data-lang="de">Echtzeitkarte von Konflikten und Krisen</span></td><td><span data-lang="en">Focused on conflict, with ads and stability issues; says little about overall attention.</span><span data-lang="zh">过度聚焦冲突，还有广告和崩溃问题；反映不出整体的新闻关注度。</span><span data-lang="tw">過度聚焦衝突，還有廣告和當機問題；反映不出整體的新聞關注度。</span><span data-lang="ja">紛争に偏り、広告やクラッシュの問題もある。ニュース全体の注目度はほとんど分からない。</span><span data-lang="fr">Centré sur les conflits, avec des publicités et des plantages ; dit peu de l’attention globale.</span><span data-lang="de">Auf Konflikte fixiert, mit Werbung und Abstürzen; sagt wenig über die Gesamtaufmerksamkeit.</span></td></tr>
+          <tr><td>Google Trends</td><td><span data-lang="en">Popularity of search terms by region and time</span><span data-lang="zh">搜索词在不同地区和时间的热度</span><span data-lang="tw">搜尋詞在不同地區和時間的熱度</span><span data-lang="ja">地域・時期ごとの検索語の人気</span><span data-lang="fr">Popularité des recherches par région et dans le temps</span><span data-lang="de">Beliebtheit von Suchbegriffen nach Region und Zeit</span></td><td><span data-lang="en">Measures searches, not news; there is no way back to the reporting.</span><span data-lang="zh">衡量的是搜索兴趣而不是新闻本身，无法追溯到具体报道。</span><span data-lang="tw">衡量的是搜尋興趣而不是新聞本身，無法追溯到具體報導。</span><span data-lang="ja">測っているのは検索で、ニュースそのものではない。元の報道にはたどれない。</span><span data-lang="fr">Mesure des recherches, pas l’actualité ; impossible de remonter aux articles.</span><span data-lang="de">Misst Suchanfragen statt Nachrichten; kein Weg zurück zur Berichterstattung.</span></td></tr>
+          <tr><td>World Monitor</td><td><span data-lang="en">Open-source intelligence dashboard</span><span data-lang="zh">开源的全球情报仪表盘</span><span data-lang="tw">開源的全球情報儀表板</span><span data-lang="ja">オープンソースのインテリジェンス・ダッシュボード</span><span data-lang="fr">Tableau de bord de renseignement open source</span><span data-lang="de">Open-Source-Lagebild-Dashboard</span></td><td><span data-lang="en">Powerful but complex: hard to deploy and hard to read for non-experts.</span><span data-lang="zh">功能强大但复杂：部署门槛高，普通用户难以看懂。</span><span data-lang="tw">功能強大但複雜：部署門檻高，一般使用者難以看懂。</span><span data-lang="ja">高機能だが複雑。導入のハードルが高く、専門家でないと読み解きにくい。</span><span data-lang="fr">Puissant mais complexe : difficile à déployer et à lire pour un non-spécialiste.</span><span data-lang="de">Mächtig, aber komplex: schwer aufzusetzen und für Laien schwer zu lesen.</span></td></tr>
+        </tbody>
+      </table>
+      <p data-lang="en">The opportunity: one view that answers <em>where</em>, a second that answers <em>when</em>, and a path down to the actual articles — so a hotspot can be checked, not just admired. That became the four linked views.</p>
+      <p data-lang="zh">机会在于：一个视图回答“在哪里”，另一个回答“什么时候”，再加一条直通原文的路径，让热点能被核实，而不只是被围观。这就成了后来的四个联动视图。</p>
+      <p data-lang="tw">機會在於：一個檢視回答「在哪裡」，另一個回答「什麼時候」，再加一條直通原文的路徑，讓熱點能被核實，而不只是被圍觀。這就成了後來的四個連動檢視。</p>
+      <p data-lang="ja">狙いは、「どこで」に答えるビューと「いつ」に答えるビュー、そして実際の記事までたどれる道筋。ホットスポットを眺めるだけでなく、確かめられるようにすることです。これが 4 つの連動ビューになりました。</p>
+      <p data-lang="fr">L’occasion : une vue qui répond à <em>où</em>, une autre à <em>quand</em>, et un chemin jusqu’aux articles eux-mêmes, pour qu’un point chaud puisse être vérifié et pas seulement contemplé. C’est devenu les quatre vues liées.</p>
+      <p data-lang="de">Die Chance: eine Ansicht, die das <em>Wo</em> beantwortet, eine zweite für das <em>Wann</em> und ein Weg hinunter zu den eigentlichen Artikeln – damit man einen Brennpunkt überprüfen und nicht nur bestaunen kann. Daraus wurden die vier verknüpften Ansichten.</p>
+      <h2><span data-lang="en">Who it’s for</span><span data-lang="zh">为谁而做</span><span data-lang="tw">為誰而做</span><span data-lang="ja">誰のためのツールか</span><span data-lang="fr">Pour qui</span><span data-lang="de">Für wen</span></h2>
+      <p data-lang="en">Three personas set the bar for speed and depth.</p>
+      <p data-lang="zh">三个用户画像定下了速度和深度的标准。</p>
+      <p data-lang="tw">三個人物誌定下了速度和深度的標準。</p>
+      <p data-lang="ja">3 人のペルソナが、スピードと深さの基準を決めました。</p>
+      <p data-lang="fr">Trois personas ont fixé le niveau d’exigence en vitesse et en profondeur.</p>
+      <p data-lang="de">Drei Personas legten die Messlatte für Tempo und Tiefe fest.</p>
+      <ul data-lang="en">
+        <li><strong>Emma, a curious news reader</strong> — wants a quick overview without reading dozens of headlines.</li>
+        <li><strong>Jordan, a design student</strong> — wants to understand how data models and visual encoding produce the shapes on the map.</li>
+        <li><strong>Jane, an analyst or journalist</strong> — needs a lightweight radar to keep an eye on emerging clusters.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>Emma，好奇的新闻读者</strong> — 想快速了解全局，不想读几十条标题。</li>
+        <li><strong>Jordan，设计专业学生</strong> — 想弄懂数据模型和视觉编码是怎样在地图上形成这些形状的。</li>
+        <li><strong>Jane，分析师或记者</strong> — 需要一个轻量的“雷达”，盯住正在形成的热点。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>Emma，好奇的新聞讀者</strong> — 想快速掌握全局，不想讀幾十條標題。</li>
+        <li><strong>Jordan，設計系學生</strong> — 想弄懂資料模型和視覺編碼是怎樣在地圖上形成這些形狀的。</li>
+        <li><strong>Jane，分析師或記者</strong> — 需要一個輕量的「雷達」，盯住正在形成的熱點。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>Emma（好奇心旺盛なニュース読者）</strong> — 何十もの見出しを読まずに、ざっと全体をつかみたい。</li>
+        <li><strong>Jordan（デザインを学ぶ学生）</strong> — データモデルとビジュアルエンコーディングが地図上の形をどう生み出すのかを理解したい。</li>
+        <li><strong>Jane（アナリスト／記者）</strong> — 生まれつつあるクラスターを見張るための、軽い「レーダー」が必要。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Emma, lectrice curieuse</strong> — veut une vue d’ensemble rapide sans lire des dizaines de titres.</li>
+        <li><strong>Jordan, étudiant en design</strong> — veut comprendre comment les modèles de données et l’encodage visuel produisent les formes sur la carte.</li>
+        <li><strong>Jane, analyste ou journaliste</strong> — a besoin d’un « radar » léger pour surveiller les foyers émergents.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Emma, neugierige Nachrichtenleserin</strong> – will einen schnellen Überblick, ohne Dutzende Schlagzeilen zu lesen.</li>
+        <li><strong>Jordan, Designstudent</strong> – will verstehen, wie Datenmodelle und visuelle Kodierung die Formen auf der Karte erzeugen.</li>
+        <li><strong>Jane, Analystin oder Journalistin</strong> – braucht ein leichtes „Radar“, um entstehende Cluster im Blick zu behalten.</li>
+      </ul>
+      <div class="shots shots--wide">
+        <figure><img src="fluxmap/personas.webp" alt="Illustrated personas: Emma with her phone, Jordan with a laptop, Jane at a desktop" data-alt-zh="用户画像插图：拿着手机的 Emma、抱着笔记本电脑的 Jordan、坐在台式机前的 Jane" data-alt-tw="人物誌插圖：拿著手機的 Emma、抱著筆電的 Jordan、坐在桌機前的 Jane" data-alt-ja="ペルソナのイラスト：スマホを持つ Emma、ノート PC を抱えた Jordan、デスクトップに向かう Jane" data-alt-fr="Personas illustrés : Emma avec son téléphone, Jordan avec un ordinateur portable, Jane devant un ordinateur de bureau" data-alt-de="Illustrierte Personas: Emma mit ihrem Handy, Jordan mit Laptop, Jane am Desktop-Rechner" width="1600" height="355" loading="lazy"><figcaption><span data-lang="en">Illustrated personas: Emma with her phone, Jordan with a laptop, Jane at a desktop</span><span data-lang="zh">用户画像插图：拿着手机的 Emma、抱着笔记本电脑的 Jordan、坐在台式机前的 Jane</span><span data-lang="tw">人物誌插圖：拿著手機的 Emma、抱著筆電的 Jordan、坐在桌機前的 Jane</span><span data-lang="ja">ペルソナのイラスト：スマホを持つ Emma、ノート PC を抱えた Jordan、デスクトップに向かう Jane</span><span data-lang="fr">Personas illustrés : Emma avec son téléphone, Jordan avec un ordinateur portable, Jane devant un ordinateur de bureau</span><span data-lang="de">Illustrierte Personas: Emma mit ihrem Handy, Jordan mit Laptop, Jane am Desktop-Rechner</span></figcaption></figure>
+      </div>
+      <p data-lang="en">The setting shaped the layout: mostly a laptop or desktop, with short scanning sessions of 10–60 seconds and longer investigations of 3–10 minutes, often alongside news sites and social media, and sometimes projected in a studio critique.</p>
+      <p data-lang="zh">使用场景决定了布局：大多在笔记本或台式机上，有 10–60 秒的快速浏览，也有 3–10 分钟的深入调查；常和新闻网站、社交媒体一起开着，有时还会在课堂评图时投影出来。</p>
+      <p data-lang="tw">使用情境決定了版面：大多在筆電或桌機上，有 10–60 秒的快速瀏覽，也有 3–10 分鐘的深入調查；常和新聞網站、社群媒體一起開著，有時還會在課堂評圖時投影出來。</p>
+      <p data-lang="ja">使う場面がレイアウトを決めました。主にノート PC かデスクトップで、10〜60 秒のざっと見る使い方と、3〜10 分かけて調べる使い方がある。ニュースサイトや SNS と並べて開かれることが多く、講評の場でプロジェクターに映すこともあります。</p>
+      <p data-lang="fr">Le contexte d’usage a dicté la mise en page : surtout un ordinateur portable ou de bureau, avec de courtes séances de balayage de 10 à 60 secondes et des investigations plus longues de 3 à 10 minutes, souvent à côté de sites d’info et de réseaux sociaux, parfois projeté pendant une critique en atelier.</p>
+      <p data-lang="de">Der Nutzungskontext prägte das Layout: meist Laptop oder Desktop, kurze Überblicke von 10–60 Sekunden und längere Recherchen von 3–10 Minuten, oft neben Nachrichtenseiten und sozialen Medien – und manchmal per Beamer in einer Studio-Kritik.</p>
+      <h3><span data-lang="en">User stories and success criteria</span><span data-lang="zh">用户故事与成功标准</span><span data-lang="tw">使用者故事與成功標準</span><span data-lang="ja">ユーザーストーリーと成功基準</span><span data-lang="fr">Récits utilisateurs et critères de réussite</span><span data-lang="de">User Stories und Erfolgskriterien</span></h3>
+      <ul data-lang="en">
+        <li>“In under 10 seconds, show me where global attention is clustering.”</li>
+        <li>“Let me switch to a topic like Protest and see whether it’s local or global.”</li>
+        <li>“If a hotspot looks intense, let me check it against a short list of sources.”</li>
+        <li>“If a data source fails, still show me something useful — and tell me so.”</li>
+      </ul>
+      <ul data-lang="zh">
+        <li>“10 秒之内，告诉我全球的关注点聚集在哪里。”</li>
+        <li>“让我切换到 Protest 这样的主题，看看它是局部现象还是全球现象。”</li>
+        <li>“如果某个热点看起来很强烈，让我用一份简短的来源清单核实一下。”</li>
+        <li>“就算数据源挂了，也给我看点有用的东西，并且告诉我。”</li>
+      </ul>
+      <ul data-lang="tw">
+        <li>「10 秒之內，告訴我全球的關注點聚集在哪裡。」</li>
+        <li>「讓我切換到 Protest 這樣的主題，看看它是局部現象還是全球現象。」</li>
+        <li>「如果某個熱點看起來很強烈，讓我用一份簡短的來源清單核實一下。」</li>
+        <li>「就算資料來源掛了，也給我看點有用的東西，並且告訴我。」</li>
+      </ul>
+      <ul data-lang="ja">
+        <li>「10 秒以内に、世界の注目がどこに集まっているか見せてほしい」</li>
+        <li>「Protest のようなトピックに切り替えて、局地的なのか世界的なのか確かめたい」</li>
+        <li>「ホットスポットが強く見えたら、短い出典リストで確かめたい」</li>
+        <li>「データソースが落ちても、役に立つものを見せて、そのことを教えてほしい」</li>
+      </ul>
+      <ul data-lang="fr">
+        <li>« En moins de 10 secondes, montre-moi où se concentre l’attention mondiale. »</li>
+        <li>« Laisse-moi passer à un thème comme Protest et voir si c’est local ou mondial. »</li>
+        <li>« Si un point chaud paraît intense, laisse-moi le vérifier avec une courte liste de sources. »</li>
+        <li>« Si une source tombe, montre-moi quand même quelque chose d’utile — et dis-le-moi. »</li>
+      </ul>
+      <ul data-lang="de">
+        <li>„Zeig mir in weniger als 10 Sekunden, wo sich die weltweite Aufmerksamkeit ballt.“</li>
+        <li>„Lass mich zu einem Thema wie Protest wechseln und sehen, ob es lokal oder global ist.“</li>
+        <li>„Wenn ein Brennpunkt heftig aussieht, lass ihn mich anhand einer kurzen Quellenliste prüfen.“</li>
+        <li>„Wenn eine Datenquelle ausfällt, zeig mir trotzdem etwas Nützliches – und sag es mir.“</li>
+      </ul>
+      <p data-lang="en">Success meant: <em>where</em> answered at a glance; topic and time changed within 3 seconds; evidence links available even when an API fails; and data that stays current without a manual reload.</p>
+      <p data-lang="zh">成功的标准是：一眼就能回答“在哪里”；3 秒内切换主题和时间；即使 API 失败，证据链接依然可用；不用手动刷新，数据也始终是最新的。</p>
+      <p data-lang="tw">成功的標準是：一眼就能回答「在哪裡」；3 秒內切換主題和時間；即使 API 失敗，證據連結依然可用；不用手動重新整理，資料也始終是最新的。</p>
+      <p data-lang="ja">成功の条件は、「どこで」に一目で答えられること、3 秒以内にトピックと時間を切り替えられること、API が落ちても出典リンクが使えること、手動で再読み込みしなくてもデータが最新に保たれることです。</p>
+      <p data-lang="fr">Réussir voulait dire : répondre à <em>où</em> d’un coup d’œil ; changer de thème et de période en moins de 3 secondes ; garder les liens vers les sources même quand une API échoue ; et des données à jour sans rechargement manuel.</p>
+      <p data-lang="de">Erfolg hieß: das <em>Wo</em> auf einen Blick beantworten; Thema und Zeit in unter 3 Sekunden wechseln; Quellenlinks auch dann verfügbar, wenn eine API ausfällt; und Daten, die ohne manuelles Neuladen aktuell bleiben.</p>
+      <h2><span data-lang="en">Visual direction</span><span data-lang="zh">视觉方向</span><span data-lang="tw">視覺方向</span><span data-lang="ja">ビジュアルの方向性</span><span data-lang="fr">Direction visuelle</span><span data-lang="de">Visuelle Richtung</span></h2>
+      <p data-lang="en">The mood board collected density maps, glowing heat fields and dark cartographic interfaces. Two choices came out of it: a quiet CARTO basemap (Positron by day, Dark Matter by night) so the heat reads first, and four switchable heat palettes — Channel, Thermal, Green and Plasma — so the colour can follow the topic or the viewer’s preference.</p>
+      <p data-lang="zh">情绪板收集了密度地图、发光的热力场和深色的地图界面。从中定下两件事：用安静的 CARTO 底图（白天 Positron，夜间 Dark Matter），让热力先被看到；再提供四套可切换的热力配色——Channel、Thermal、Green 和 Plasma——让颜色可以跟着主题走，也可以按观看者的喜好来。</p>
+      <p data-lang="tw">情緒板收集了密度地圖、發光的熱力場和深色的地圖介面。從中定下兩件事：用安靜的 CARTO 底圖（白天 Positron，夜間 Dark Matter），讓熱力先被看到；再提供四套可切換的熱力配色——Channel、Thermal、Green 和 Plasma——讓顏色可以跟著主題走，也可以依觀看者的喜好來。</p>
+      <p data-lang="ja">ムードボードには、密度マップ、光るヒートフィールド、ダークな地図インターフェースを集めました。そこから決めたことは 2 つ。熱が真っ先に目に入るよう、控えめな CARTO のベースマップ（昼は Positron、夜は Dark Matter）を使うこと。そして色がトピックや見る人の好みに合わせられるよう、Channel、Thermal、Green、Plasma の 4 種類のヒートパレットを切り替えられるようにすることです。</p>
+      <p data-lang="fr">Le moodboard rassemblait des cartes de densité, des champs de chaleur lumineux et des interfaces cartographiques sombres. Deux choix en sont sortis : un fond de carte CARTO discret (Positron le jour, Dark Matter la nuit) pour que la chaleur se lise en premier, et quatre palettes interchangeables — Channel, Thermal, Green et Plasma — pour que la couleur suive le thème ou la préférence de chacun.</p>
+      <p data-lang="de">Das Moodboard sammelte Dichtekarten, leuchtende Wärmefelder und dunkle Kartenoberflächen. Daraus entstanden zwei Entscheidungen: eine ruhige CARTO-Basiskarte (tagsüber Positron, nachts Dark Matter), damit die Heatmap zuerst gelesen wird, und vier umschaltbare Farbpaletten – Channel, Thermal, Green und Plasma –, damit die Farbe dem Thema oder dem eigenen Geschmack folgen kann.</p>
+      <div class="shots shots--wide">
+        <figure><img src="fluxmap/mood.webp" alt="Mood board: density heatmaps, map interfaces and the four heat palettes" data-alt-zh="情绪板：密度热力图、地图界面，以及四套热力配色" data-alt-tw="情緒板：密度熱力圖、地圖介面，以及四套熱力配色" data-alt-ja="ムードボード：密度のヒートマップ、地図のインターフェース、4 種類のヒートパレット" data-alt-fr="Moodboard : cartes de chaleur de densité, interfaces cartographiques et les quatre palettes" data-alt-de="Moodboard: Dichte-Heatmaps, Kartenoberflächen und die vier Farbpaletten" width="1600" height="733" loading="lazy"><figcaption><span data-lang="en">Mood board: density heatmaps, map interfaces and the four heat palettes</span><span data-lang="zh">情绪板：密度热力图、地图界面，以及四套热力配色</span><span data-lang="tw">情緒板：密度熱力圖、地圖介面，以及四套熱力配色</span><span data-lang="ja">ムードボード：密度のヒートマップ、地図のインターフェース、4 種類のヒートパレット</span><span data-lang="fr">Moodboard : cartes de chaleur de densité, interfaces cartographiques et les quatre palettes</span><span data-lang="de">Moodboard: Dichte-Heatmaps, Kartenoberflächen und die vier Farbpaletten</span></figcaption></figure>
+      </div>
+      <h2><span data-lang="en">The data pipeline</span><span data-lang="zh">数据管线</span><span data-lang="tw">資料管線</span><span data-lang="ja">データパイプライン</span><span data-lang="fr">Le pipeline de données</span><span data-lang="de">Die Datenpipeline</span></h2>
+      <p data-lang="en">The system is four loosely coupled stages, so a source can be swapped, a cache tuned or a view added without touching the rest.</p>
+      <p data-lang="zh">整个系统分为四个松耦合的阶段，换一个数据源、调整一处缓存或新增一个视图，都不必改动其余部分。</p>
+      <p data-lang="tw">整個系統分為四個鬆耦合的階段，換一個資料來源、調整一處快取或新增一個檢視，都不必改動其餘部分。</p>
+      <p data-lang="ja">システムは疎結合の 4 段階でできていて、データソースの差し替え、キャッシュの調整、ビューの追加を、ほかに手を入れずに行えます。</p>
+      <p data-lang="fr">Le système se compose de quatre étapes faiblement couplées : on peut changer de source, régler un cache ou ajouter une vue sans toucher au reste.</p>
+      <p data-lang="de">Das System besteht aus vier lose gekoppelten Stufen – eine Quelle tauschen, einen Cache anpassen oder eine Ansicht ergänzen geht, ohne den Rest anzufassen.</p>
+      <div class="shots shots--wide">
+        <figure><img src="fluxmap/pipeline.webp" alt="Pipeline diagram: Collect, Transmit + Store, Clean + Transform, Present + Publish" data-alt-zh="管线示意图：采集、传输与存储、清洗与转换、呈现与发布" data-alt-tw="管線示意圖：擷取、傳輸與儲存、清理與轉換、呈現與發布" data-alt-ja="パイプライン図：収集、転送と保存、整形と変換、表示と公開" data-alt-fr="Schéma du pipeline : collecte, transmission et stockage, nettoyage et transformation, présentation et publication" data-alt-de="Pipeline-Diagramm: Sammeln, Übertragen und Speichern, Bereinigen und Umwandeln, Darstellen und Veröffentlichen" width="1600" height="678" loading="lazy"><figcaption><span data-lang="en">Pipeline diagram: Collect, Transmit + Store, Clean + Transform, Present + Publish</span><span data-lang="zh">管线示意图：采集、传输与存储、清洗与转换、呈现与发布</span><span data-lang="tw">管線示意圖：擷取、傳輸與儲存、清理與轉換、呈現與發布</span><span data-lang="ja">パイプライン図：収集、転送と保存、整形と変換、表示と公開</span><span data-lang="fr">Schéma du pipeline : collecte, transmission et stockage, nettoyage et transformation, présentation et publication</span><span data-lang="de">Pipeline-Diagramm: Sammeln, Übertragen und Speichern, Bereinigen und Umwandeln, Darstellen und Veröffentlichen</span></figcaption></figure>
+      </div>
+      <ul data-lang="en">
+        <li><strong>Collect.</strong> NewsData.io for breaking headlines, The Guardian’s Open Platform for quality journalism, and GDELT for geo-coded media mentions.</li>
+        <li><strong>Transmit + store.</strong> Four Vercel serverless functions proxy the APIs, so keys never reach the browser; responses are cached at the edge and in localStorage.</li>
+        <li><strong>Clean + transform.</strong> GDELT arrives geocoded. For NewsData and The Guardian I wrote a geocoder that reads each article’s country tags and scans the headline against a built-in dictionary of about 150 countries and cities. Articles are then binned into hotspots, ranked into top locations and bucketed by hour into a timeline.</li>
+        <li><strong>Present + publish.</strong> deck.gl draws the heatmap and dots over MapLibre; the trend, ranking and evidence panels all read from the same store.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>采集。</strong>NewsData.io 提供突发新闻，The Guardian 的 Open Platform 提供高质量报道，GDELT 提供带地理编码的媒体提及。</li>
+        <li><strong>传输与存储。</strong>四个 Vercel 无服务器函数代理这些 API，密钥永远不会到达浏览器；响应在边缘节点和 localStorage 中缓存。</li>
+        <li><strong>清洗与转换。</strong>GDELT 的数据自带地理编码。对 NewsData 和 The Guardian，我写了一个地理编码器：读取每篇文章的国家标签，再用内置的约 150 个国家和城市的词典扫描标题。之后把文章聚合成热点、排出热门地点，并按小时分桶生成时间线。</li>
+        <li><strong>呈现与发布。</strong>deck.gl 在 MapLibre 之上绘制热力图和点，趋势、排行和证据面板都读取同一个状态仓库。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>擷取。</strong>NewsData.io 提供突發新聞，The Guardian 的 Open Platform 提供高品質報導，GDELT 提供帶地理編碼的媒體提及。</li>
+        <li><strong>傳輸與儲存。</strong>四個 Vercel 無伺服器函式代理這些 API，金鑰永遠不會到達瀏覽器；回應在邊緣節點和 localStorage 中快取。</li>
+        <li><strong>清理與轉換。</strong>GDELT 的資料本身就帶地理編碼。對 NewsData 和 The Guardian，我寫了一個地理編碼器：讀取每篇文章的國家標籤，再用內建約 150 個國家和城市的詞典掃描標題。之後把文章彙整成熱點、排出熱門地點，並按小時分組產生時間軸。</li>
+        <li><strong>呈現與發布。</strong>deck.gl 在 MapLibre 之上繪製熱力圖和點，趨勢、排行和證據面板都讀取同一個狀態倉庫。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>収集。</strong>速報の見出しは NewsData.io、質の高い報道は The Guardian の Open Platform、ジオコード付きのメディア言及は GDELT から。</li>
+        <li><strong>転送と保存。</strong>4 つの Vercel サーバーレス関数が API を中継するので、キーがブラウザに届くことはありません。レスポンスはエッジと localStorage にキャッシュします。</li>
+        <li><strong>整形と変換。</strong>GDELT のデータは最初からジオコード済みです。NewsData と The Guardian には、記事の国タグを読み、約 150 の国と都市を収めた辞書で見出しを走査するジオコーダーを書きました。そのうえで記事をホットスポットにまとめ、上位の地点を順位づけし、1 時間ごとに集計してタイムラインにします。</li>
+        <li><strong>表示と公開。</strong>deck.gl が MapLibre の上にヒートマップとドットを描き、トレンド、ランキング、エビデンスのパネルはすべて同じストアから読み込みます。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Collecte.</strong> NewsData.io pour les dernières nouvelles, l’Open Platform du Guardian pour le journalisme de qualité, et GDELT pour les mentions médiatiques géocodées.</li>
+        <li><strong>Transmission et stockage.</strong> Quatre fonctions serverless Vercel servent de proxy aux API, si bien que les clés n’atteignent jamais le navigateur ; les réponses sont mises en cache en périphérie et dans le localStorage.</li>
+        <li><strong>Nettoyage et transformation.</strong> GDELT arrive déjà géocodé. Pour NewsData et le Guardian, j’ai écrit un géocodeur qui lit les pays associés à chaque article et parcourt le titre à l’aide d’un dictionnaire intégré d’environ 150 pays et villes. Les articles sont ensuite regroupés en points chauds, classés en lieux principaux et répartis par heure sur une chronologie.</li>
+        <li><strong>Présentation et publication.</strong> deck.gl dessine la carte de chaleur et les points au-dessus de MapLibre ; la tendance, le classement et les articles sources lisent tous le même store.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Sammeln.</strong> NewsData.io für Eilmeldungen, die Open Platform des Guardian für Qualitätsjournalismus und GDELT für geokodierte Medienerwähnungen.</li>
+        <li><strong>Übertragen und speichern.</strong> Vier Vercel-Serverless-Funktionen leiten die APIs weiter, sodass die Schlüssel nie den Browser erreichen; Antworten werden am Edge und im localStorage zwischengespeichert.</li>
+        <li><strong>Bereinigen und umwandeln.</strong> GDELT liefert bereits Geodaten. Für NewsData und den Guardian habe ich einen Geocoder geschrieben, der die Länder-Tags jedes Artikels liest und die Schlagzeile mit einem eingebauten Wörterbuch von rund 150 Ländern und Städten abgleicht. Danach werden die Artikel zu Brennpunkten gebündelt, zu den wichtigsten Orten gerankt und stundenweise zu einer Zeitleiste zusammengefasst.</li>
+        <li><strong>Darstellen und veröffentlichen.</strong> deck.gl zeichnet Heatmap und Punkte über MapLibre; Trend, Rangliste und Belegliste lesen alle aus demselben Store.</li>
+      </ul>
+      <h2><span data-lang="en">Never a blank map: the provider chain</span><span data-lang="zh">地图永不空白：数据源链</span><span data-lang="tw">地圖永不空白：資料來源鏈</span><span data-lang="ja">地図を空にしない：プロバイダーチェーン</span><span data-lang="fr">Jamais de carte vide : la chaîne de fournisseurs</span><span data-lang="de">Nie eine leere Karte: die Anbieterkette</span></h2>
+      <p data-lang="en">Live dashboards usually depend on one fragile endpoint. During testing every source failed at least once — rate limits, empty results, partial data, outright outages — and each failure looked different, so a simple “if API A fails, use API B” wasn’t enough. FluxMap resolves data through five layers; each takes over when the one above fails or returns too little.</p>
+      <p data-lang="zh">实时仪表盘通常依赖一个脆弱的接口。测试期间，每个数据源都至少挂过一次——限流、空结果、数据残缺、彻底宕机——而且每种故障的样子都不一样，所以简单的“A 接口挂了就用 B”远远不够。FluxMap 通过五层来获取数据，上一层失败或返回的数据太少时，下一层就接手。</p>
+      <p data-lang="tw">即時儀表板通常依賴一個脆弱的介面。測試期間，每個資料來源都至少掛過一次——限流、空結果、資料殘缺、完全停擺——而且每種故障的樣子都不一樣，所以簡單的「A 介面掛了就用 B」遠遠不夠。FluxMap 透過五層來取得資料，上一層失敗或回傳的資料太少時，下一層就接手。</p>
+      <p data-lang="ja">ライブダッシュボードはたいてい、壊れやすいひとつのエンドポイントに頼っています。テスト中、どのデータソースも少なくとも一度は落ちました。レート制限、空の結果、欠けたデータ、完全な停止。しかも失敗の形はそれぞれ違うので、「API A が落ちたら API B を使う」だけでは足りません。FluxMap は 5 つの層でデータを解決し、上の層が失敗するか、返すデータが少なすぎるときに次の層が引き継ぎます。</p>
+      <p data-lang="fr">Les tableaux de bord en direct dépendent en général d’un seul point d’accès fragile. Pendant les tests, chaque source a échoué au moins une fois — limites de requêtes, résultats vides, données partielles, pannes complètes — et chaque panne avait sa forme, si bien qu’un simple « si l’API A échoue, utiliser l’API B » ne suffisait pas. FluxMap obtient ses données par cinq niveaux ; chacun prend le relais quand celui du dessus échoue ou renvoie trop peu.</p>
+      <p data-lang="de">Live-Dashboards hängen meist an einem einzigen, anfälligen Endpunkt. Beim Testen ist jede Quelle mindestens einmal ausgefallen – Rate-Limits, leere Ergebnisse, unvollständige Daten, Totalausfälle –, und jeder Fehler sah anders aus. Ein simples „Wenn API A ausfällt, nimm API B“ reichte also nicht. FluxMap bezieht die Daten über fünf Stufen; jede übernimmt, wenn die darüberliegende ausfällt oder zu wenig liefert.</p>
+      <ul data-lang="en">
+        <li><strong>1 · NewsData.io</strong> — the primary live source (200 requests a day on the free tier).</li>
+        <li><strong>2 · The Guardian</strong> — the secondary live source, with a generous free tier.</li>
+        <li><strong>3 · GDELT</strong> — geo-native enrichment, called only when the first two fail.</li>
+        <li><strong>4 · localStorage cache</strong> — the last good result for each channel and time window, kept for 30 minutes.</li>
+        <li><strong>5 · Demo data</strong> — curated real articles bundled with the app, so the interface always works, even offline.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>1 · NewsData.io</strong> — 主要实时数据源（免费额度每天 200 次请求）。</li>
+        <li><strong>2 · The Guardian</strong> — 第二实时数据源，免费额度宽松。</li>
+        <li><strong>3 · GDELT</strong> — 原生带地理信息的补充来源，只有前两层都失败时才调用。</li>
+        <li><strong>4 · localStorage 缓存</strong> — 每个频道和时间窗口最近一次成功的结果，保留 30 分钟。</li>
+        <li><strong>5 · 演示数据</strong> — 随应用打包的一组精选真实文章，所以界面永远可用，离线也行。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>1 · NewsData.io</strong> — 主要即時資料來源（免費額度每天 200 次請求）。</li>
+        <li><strong>2 · The Guardian</strong> — 第二即時資料來源，免費額度寬鬆。</li>
+        <li><strong>3 · GDELT</strong> — 原生帶地理資訊的補充來源，只有前兩層都失敗時才呼叫。</li>
+        <li><strong>4 · localStorage 快取</strong> — 每個頻道和時間窗口最近一次成功的結果，保留 30 分鐘。</li>
+        <li><strong>5 · 示範資料</strong> — 隨應用程式打包的一組精選真實文章，所以介面永遠可用，離線也行。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>1 · NewsData.io</strong> — メインのライブソース（無料枠は 1 日 200 リクエスト）。</li>
+        <li><strong>2 · The Guardian</strong> — 2 番目のライブソース。無料枠に余裕がある。</li>
+        <li><strong>3 · GDELT</strong> — もともと位置情報を持つ補強用のソース。上の 2 つが失敗したときだけ呼ぶ。</li>
+        <li><strong>4 · localStorage のキャッシュ</strong> — チャンネルと時間幅ごとに、最後に成功した結果を 30 分間保持。</li>
+        <li><strong>5 · デモデータ</strong> — アプリに同梱した厳選の実記事。オフラインでもインターフェースは必ず動く。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>1 · NewsData.io</strong> — la source en direct principale (200 requêtes par jour en offre gratuite).</li>
+        <li><strong>2 · The Guardian</strong> — la source en direct secondaire, à l’offre gratuite généreuse.</li>
+        <li><strong>3 · GDELT</strong> — un enrichissement nativement géographique, appelé seulement si les deux premiers échouent.</li>
+        <li><strong>4 · Cache localStorage</strong> — le dernier bon résultat pour chaque canal et chaque fenêtre temporelle, conservé 30 minutes.</li>
+        <li><strong>5 · Données de démonstration</strong> — une sélection d’articles réels intégrée à l’application, pour que l’interface fonctionne toujours, même hors ligne.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>1 · NewsData.io</strong> – die wichtigste Live-Quelle (200 Anfragen pro Tag im Gratis-Tarif).</li>
+        <li><strong>2 · The Guardian</strong> – die zweite Live-Quelle mit großzügigem Gratis-Tarif.</li>
+        <li><strong>3 · GDELT</strong> – geonative Ergänzung, nur aufgerufen, wenn die ersten beiden ausfallen.</li>
+        <li><strong>4 · localStorage-Cache</strong> – das letzte gute Ergebnis pro Kanal und Zeitfenster, 30 Minuten lang aufbewahrt.</li>
+        <li><strong>5 · Demodaten</strong> – ausgewählte echte Artikel, mit der App ausgeliefert, damit die Oberfläche immer funktioniert, auch offline.</li>
+      </ul>
+      <div class="shots shots--narrow">
+        <figure><img src="fluxmap/chain.webp" alt="Five-layer fallback chain: NewsData.io, The Guardian, GDELT, localStorage cache and demo data, with the trigger for each hand-off" data-alt-zh="五层回退链：NewsData.io、The Guardian、GDELT、localStorage 缓存和演示数据，以及每一层的接手条件" data-alt-tw="五層備援鏈：NewsData.io、The Guardian、GDELT、localStorage 快取和示範資料，以及每一層的接手條件" data-alt-ja="5 層のフォールバックチェーン：NewsData.io、The Guardian、GDELT、localStorage のキャッシュ、デモデータと、それぞれの引き継ぎ条件" data-alt-fr="Chaîne de repli à cinq niveaux : NewsData.io, The Guardian, GDELT, cache localStorage et données de démonstration, avec le déclencheur de chaque relais" data-alt-de="Fünfstufige Fallback-Kette: NewsData.io, The Guardian, GDELT, localStorage-Cache und Demodaten, jeweils mit dem Auslöser der Übergabe" width="1000" height="1300" loading="lazy"><figcaption><span data-lang="en">Five-layer fallback chain: NewsData.io, The Guardian, GDELT, localStorage cache and demo data, with the trigger for each hand-off</span><span data-lang="zh">五层回退链：NewsData.io、The Guardian、GDELT、localStorage 缓存和演示数据，以及每一层的接手条件</span><span data-lang="tw">五層備援鏈：NewsData.io、The Guardian、GDELT、localStorage 快取和示範資料，以及每一層的接手條件</span><span data-lang="ja">5 層のフォールバックチェーン：NewsData.io、The Guardian、GDELT、localStorage のキャッシュ、デモデータと、それぞれの引き継ぎ条件</span><span data-lang="fr">Chaîne de repli à cinq niveaux : NewsData.io, The Guardian, GDELT, cache localStorage et données de démonstration, avec le déclencheur de chaque relais</span><span data-lang="de">Fünfstufige Fallback-Kette: NewsData.io, The Guardian, GDELT, localStorage-Cache und Demodaten, jeweils mit dem Auslöser der Übergabe</span></figcaption></figure>
+      </div>
+      <p data-lang="en">Automation never hides the source. A banner and the source switcher say whether the data is live, cached or demo, a “last updated” clock shows the cadence, and anyone can pin a specific source to skip the chain.</p>
+      <p data-lang="zh">自动化从不隐藏数据来源。横幅和数据源切换器会告诉用户当前数据是实时、缓存还是演示的，“最后更新”时钟显示刷新节奏，任何人都可以锁定某个数据源，跳过整条链。</p>
+      <p data-lang="tw">自動化從不隱藏資料來源。橫幅和資料來源切換器會告訴使用者目前資料是即時、快取還是示範的，「最後更新」時鐘顯示更新節奏，任何人都可以鎖定某個資料來源，略過整條鏈。</p>
+      <p data-lang="ja">自動化がソースを隠すことはありません。バナーとソース切り替えで、データがライブか、キャッシュか、デモかが分かり、「最終更新」の時計が更新のリズムを示します。特定のソースをピン留めしてチェーンを飛ばすこともできます。</p>
+      <p data-lang="fr">L’automatisation ne masque jamais la source. Un bandeau et le sélecteur de source indiquent si les données sont en direct, en cache ou de démonstration, une horloge « dernière mise à jour » montre la cadence, et chacun peut épingler une source précise pour contourner la chaîne.</p>
+      <p data-lang="de">Die Automatik versteckt die Quelle nie. Ein Banner und der Quellenschalter zeigen, ob die Daten live, aus dem Cache oder Demodaten sind, eine „Zuletzt aktualisiert“-Uhr zeigt den Takt, und jeder kann eine bestimmte Quelle anheften und die Kette überspringen.</p>
+      <h2><span data-lang="en">Staying current without hammering free APIs</span><span data-lang="zh">保持最新，又不把免费 API 打爆</span><span data-lang="tw">保持最新，又不把免費 API 打爆</span><span data-lang="ja">無料 API を叩きすぎずに最新を保つ</span><span data-lang="fr">Rester à jour sans épuiser les API gratuites</span><span data-lang="de">Aktuell bleiben, ohne Gratis-APIs zu überlasten</span></h2>
+      <p data-lang="en">Explore refreshes itself every 60 seconds: fast enough to feel alive, slow enough to stay inside free-tier limits — at 10 seconds the app would rate-limit itself into failure. Each request goes through the serverless proxy, is cached at Vercel’s edge (s-maxage=300, stale-while-revalidate=600) and saved to localStorage, so most refreshes never reach the source. Choosing a channel or pinning a source resets the timer and fetches immediately, and the neighbouring time windows are prefetched so switching feels instant.</p>
+      <p data-lang="zh">Explore 页每 60 秒自动刷新：够快，让人觉得它是活的；也够慢，不会超出免费额度——如果每 10 秒刷新一次，应用会被自己的请求限流到瘫痪。每个请求都经过无服务器代理，在 Vercel 边缘缓存（s-maxage=300、stale-while-revalidate=600），并存进 localStorage，所以大多数刷新根本不会打到数据源。切换频道或锁定数据源会重置计时器并立刻请求；相邻的时间窗口会被预取，切换起来几乎没有延迟。</p>
+      <p data-lang="tw">Explore 頁每 60 秒自動更新：夠快，讓人覺得它是活的；也夠慢，不會超出免費額度——如果每 10 秒更新一次，應用會被自己的請求限流到癱瘓。每個請求都經過無伺服器代理，在 Vercel 邊緣快取（s-maxage=300、stale-while-revalidate=600），並存進 localStorage，所以大多數更新根本不會打到資料來源。切換頻道或鎖定資料來源會重設計時器並立刻請求；相鄰的時間窗口會預先載入，切換起來幾乎沒有延遲。</p>
+      <p data-lang="ja">Explore は 60 秒ごとに自動で更新されます。生きていると感じられるほど速く、無料枠に収まるほど遅い間隔です。10 秒にすると、アプリは自分のリクエストでレート制限にかかって止まってしまいます。リクエストはすべてサーバーレスのプロキシを通り、Vercel のエッジ（s-maxage=300、stale-while-revalidate=600）にキャッシュされ、localStorage にも保存されるので、ほとんどの更新はデータソースまで届きません。チャンネルを選んだりソースをピン留めしたりするとタイマーがリセットされてすぐに取得し、隣の時間幅は先読みしておくので、切り替えは一瞬です。</p>
+      <p data-lang="fr">Explore se rafraîchit toutes les 60 secondes : assez vite pour paraître vivant, assez lentement pour rester dans les limites des offres gratuites — à 10 secondes, l’application se ferait elle-même bloquer. Chaque requête passe par le proxy serverless, est mise en cache en périphérie chez Vercel (s-maxage=300, stale-while-revalidate=600) et enregistrée dans le localStorage, si bien que la plupart des rafraîchissements n’atteignent jamais la source. Choisir un canal ou épingler une source remet le minuteur à zéro et lance la requête aussitôt, et les fenêtres temporelles voisines sont préchargées pour que le changement soit instantané.</p>
+      <p data-lang="de">Explore aktualisiert sich alle 60 Sekunden: schnell genug, um lebendig zu wirken, langsam genug, um in den Gratis-Limits zu bleiben – bei 10 Sekunden würde sich die App selbst ins Rate-Limit treiben. Jede Anfrage läuft über den Serverless-Proxy, wird am Edge von Vercel zwischengespeichert (s-maxage=300, stale-while-revalidate=600) und im localStorage abgelegt, sodass die meisten Aktualisierungen die Quelle gar nicht erreichen. Ein Kanalwechsel oder das Anheften einer Quelle setzt den Timer zurück und lädt sofort, und die benachbarten Zeitfenster werden vorab geladen, damit der Wechsel ohne Verzögerung klappt.</p>
+      <div class="shots shots--narrow">
+        <figure><img src="fluxmap/refresh.webp" alt="Refresh cycle: auto-refresh every 60 s, serverless proxy, edge cache, normalise and geocode, update the UI, localStorage" data-alt-zh="刷新循环：每 60 秒自动刷新、无服务器代理、边缘缓存、规范化与地理编码、更新界面、localStorage" data-alt-tw="更新循環：每 60 秒自動更新、無伺服器代理、邊緣快取、正規化與地理編碼、更新介面、localStorage" data-alt-ja="更新サイクル：60 秒ごとの自動更新、サーバーレスプロキシ、エッジキャッシュ、正規化とジオコーディング、UI の更新、localStorage" data-alt-fr="Cycle de rafraîchissement : rafraîchissement auto toutes les 60 s, proxy serverless, cache en périphérie, normalisation et géocodage, mise à jour de l’interface, localStorage" data-alt-de="Aktualisierungszyklus: Auto-Refresh alle 60 s, Serverless-Proxy, Edge-Cache, Normalisieren und Geokodieren, UI-Update, localStorage" width="1000" height="1038" loading="lazy"><figcaption><span data-lang="en">Refresh cycle: auto-refresh every 60 s, serverless proxy, edge cache, normalise and geocode, update the UI, localStorage</span><span data-lang="zh">刷新循环：每 60 秒自动刷新、无服务器代理、边缘缓存、规范化与地理编码、更新界面、localStorage</span><span data-lang="tw">更新循環：每 60 秒自動更新、無伺服器代理、邊緣快取、正規化與地理編碼、更新介面、localStorage</span><span data-lang="ja">更新サイクル：60 秒ごとの自動更新、サーバーレスプロキシ、エッジキャッシュ、正規化とジオコーディング、UI の更新、localStorage</span><span data-lang="fr">Cycle de rafraîchissement : rafraîchissement auto toutes les 60 s, proxy serverless, cache en périphérie, normalisation et géocodage, mise à jour de l’interface, localStorage</span><span data-lang="de">Aktualisierungszyklus: Auto-Refresh alle 60 s, Serverless-Proxy, Edge-Cache, Normalisieren und Geokodieren, UI-Update, localStorage</span></figcaption></figure>
+      </div>
+      <h2><span data-lang="en">Four linked views, one state</span><span data-lang="zh">四个联动视图，一个状态</span><span data-lang="tw">四個連動檢視，一個狀態</span><span data-lang="ja">4 つの連動ビュー、1 つの状態</span><span data-lang="fr">Quatre vues liées, un seul état</span><span data-lang="de">Vier verknüpfte Ansichten, ein Zustand</span></h2>
+      <p data-lang="en">Every control writes to one Zustand store and every view reads from it, so the map, the trend, the ranking and the articles always tell the same story.</p>
+      <p data-lang="zh">所有控件都写入同一个 Zustand 状态仓库，所有视图都从它读取，所以地图、趋势、排行和文章始终讲的是同一个故事。</p>
+      <p data-lang="tw">所有控制元件都寫入同一個 Zustand 狀態倉庫，所有檢視都從它讀取，所以地圖、趨勢、排行和文章始終講的是同一個故事。</p>
+      <p data-lang="ja">すべてのコントロールが 1 つの Zustand ストアに書き込み、すべてのビューがそこから読み込むので、地図、トレンド、ランキング、記事はいつも同じことを語ります。</p>
+      <p data-lang="fr">Chaque contrôle écrit dans un même store Zustand et chaque vue y lit, si bien que la carte, la tendance, le classement et les articles racontent toujours la même histoire.</p>
+      <p data-lang="de">Jedes Bedienelement schreibt in einen einzigen Zustand-Store, und jede Ansicht liest daraus – so erzählen Karte, Trend, Rangliste und Artikel immer dieselbe Geschichte.</p>
+      <div class="shots shots--wide">
+        <figure><img src="fluxmap/controls.webp" alt="Annotated Explore screen: topic channels, time windows, keyword search, source pin, layer controls and the click-through to evidence" data-alt-zh="带标注的 Explore 界面：主题频道、时间窗口、关键词搜索、数据源锁定、图层控制，以及点击查看证据" data-alt-tw="附標註的 Explore 介面：主題頻道、時間窗口、關鍵字搜尋、資料來源鎖定、圖層控制，以及點擊查看證據" data-alt-ja="注釈付きの Explore 画面：トピックチャンネル、時間幅、キーワード検索、ソースのピン留め、レイヤー設定、エビデンスへのクリック" data-alt-fr="Écran Explore annoté : canaux thématiques, fenêtres temporelles, recherche par mot-clé, source épinglée, réglages des calques et accès aux articles sources" data-alt-de="Annotierter Explore-Bildschirm: Themenkanäle, Zeitfenster, Stichwortsuche, angeheftete Quelle, Ebenen-Einstellungen und der Klick zu den Belegen" width="1600" height="673" loading="lazy"><figcaption><span data-lang="en">Annotated Explore screen: topic channels, time windows, keyword search, source pin, layer controls and the click-through to evidence</span><span data-lang="zh">带标注的 Explore 界面：主题频道、时间窗口、关键词搜索、数据源锁定、图层控制，以及点击查看证据</span><span data-lang="tw">附標註的 Explore 介面：主題頻道、時間窗口、關鍵字搜尋、資料來源鎖定、圖層控制，以及點擊查看證據</span><span data-lang="ja">注釈付きの Explore 画面：トピックチャンネル、時間幅、キーワード検索、ソースのピン留め、レイヤー設定、エビデンスへのクリック</span><span data-lang="fr">Écran Explore annoté : canaux thématiques, fenêtres temporelles, recherche par mot-clé, source épinglée, réglages des calques et accès aux articles sources</span><span data-lang="de">Annotierter Explore-Bildschirm: Themenkanäle, Zeitfenster, Stichwortsuche, angeheftete Quelle, Ebenen-Einstellungen und der Klick zu den Belegen</span></figcaption></figure>
+      </div>
+      <ul data-lang="en">
+        <li><strong>Topic channels.</strong> All News plus eight lenses — Protest, Wildfire, Earthquake, Flood, Cyber, Health, Economy and Elections — each a Boolean query such as “protest OR demonstration OR riot”.</li>
+        <li><strong>Time windows.</strong> 15 minutes to 7 days; short windows catch breaking events, long ones reveal sustained attention.</li>
+        <li><strong>Keyword search.</strong> Filters the current results locally, without another API call.</li>
+        <li><strong>Layer controls.</strong> Show or hide the heatmap and dots, tune radius and intensity, and switch palette.</li>
+        <li><strong>Evidence.</strong> Click a hotspot and the article list narrows to that place, with headline, source and link — the visualization is only as good as what it lets you verify.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>主题频道。</strong>All News 之外还有八个视角：Protest、Wildfire、Earthquake、Flood、Cyber、Health、Economy 和 Elections，每个都是一条布尔查询，例如“protest OR demonstration OR riot”。</li>
+        <li><strong>时间窗口。</strong>从 15 分钟到 7 天；短窗口抓住突发事件，长窗口显示持续的关注。</li>
+        <li><strong>关键词搜索。</strong>在本地过滤当前结果，不再发起新的 API 请求。</li>
+        <li><strong>图层控制。</strong>显示或隐藏热力图和点，调整半径和强度，切换配色。</li>
+        <li><strong>证据。</strong>点击一个热点，文章列表就会收窄到那个地点，显示标题、来源和链接——可视化的价值，取决于它能让你核实多少。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>主題頻道。</strong>All News 之外還有八個視角：Protest、Wildfire、Earthquake、Flood、Cyber、Health、Economy 和 Elections，每個都是一條布林查詢，例如「protest OR demonstration OR riot」。</li>
+        <li><strong>時間窗口。</strong>從 15 分鐘到 7 天；短窗口抓住突發事件，長窗口顯示持續的關注。</li>
+        <li><strong>關鍵字搜尋。</strong>在本機篩選目前結果，不再發出新的 API 請求。</li>
+        <li><strong>圖層控制。</strong>顯示或隱藏熱力圖和點，調整半徑和強度，切換配色。</li>
+        <li><strong>證據。</strong>點擊一個熱點，文章列表就會收窄到那個地點，顯示標題、來源和連結——視覺化的價值，取決於它能讓你核實多少。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>トピックチャンネル。</strong>All News に加えて、Protest、Wildfire、Earthquake、Flood、Cyber、Health、Economy、Elections の 8 つの切り口。それぞれ「protest OR demonstration OR riot」のようなブール検索です。</li>
+        <li><strong>時間幅。</strong>15 分から 7 日まで。短い幅は速報を、長い幅は続いている注目をとらえます。</li>
+        <li><strong>キーワード検索。</strong>API を呼び直さず、いまの結果をローカルで絞り込みます。</li>
+        <li><strong>レイヤー設定。</strong>ヒートマップとドットの表示切り替え、半径と強度の調整、パレットの変更。</li>
+        <li><strong>エビデンス。</strong>ホットスポットをクリックすると、記事リストがその場所に絞られ、見出し、出典、リンクが並びます。ビジュアライゼーションの価値は、何を確かめさせてくれるかで決まります。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Canaux thématiques.</strong> All News et huit angles — Protest, Wildfire, Earthquake, Flood, Cyber, Health, Economy et Elections —, chacun étant une requête booléenne comme « protest OR demonstration OR riot ».</li>
+        <li><strong>Fenêtres temporelles.</strong> De 15 minutes à 7 jours ; les fenêtres courtes saisissent l’événement, les longues révèlent l’attention qui dure.</li>
+        <li><strong>Recherche par mot-clé.</strong> Filtre localement les résultats affichés, sans nouvel appel d’API.</li>
+        <li><strong>Réglages des calques.</strong> Afficher ou masquer la carte de chaleur et les points, régler rayon et intensité, changer de palette.</li>
+        <li><strong>Sources.</strong> Cliquer sur un point chaud réduit la liste d’articles à ce lieu, avec titre, source et lien — une visualisation ne vaut que par ce qu’elle permet de vérifier.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Themenkanäle.</strong> All News plus acht Blickwinkel – Protest, Wildfire, Earthquake, Flood, Cyber, Health, Economy und Elections –, jeweils eine boolesche Abfrage wie „protest OR demonstration OR riot“.</li>
+        <li><strong>Zeitfenster.</strong> Von 15 Minuten bis 7 Tagen; kurze Fenster erfassen Eilmeldungen, lange zeigen anhaltende Aufmerksamkeit.</li>
+        <li><strong>Stichwortsuche.</strong> Filtert die aktuellen Ergebnisse lokal, ohne weiteren API-Aufruf.</li>
+        <li><strong>Ebenen-Einstellungen.</strong> Heatmap und Punkte ein- oder ausblenden, Radius und Intensität einstellen, Palette wechseln.</li>
+        <li><strong>Belege.</strong> Ein Klick auf einen Brennpunkt grenzt die Artikelliste auf diesen Ort ein, mit Schlagzeile, Quelle und Link – eine Visualisierung ist nur so gut wie das, was sie überprüfbar macht.</li>
+      </ul>
+      <div class="shots shots--wide">
+        <figure><img src="fluxmap/state-a.webp" alt="FluxMap in demo mode: world heatmap, volume trend, top locations and latest articles" data-alt-zh="FluxMap 的演示模式：世界热力图、声量趋势、热门地点和最新文章" data-alt-tw="FluxMap 的示範模式：世界熱力圖、聲量趨勢、熱門地點和最新文章" data-alt-ja="デモモードの FluxMap：世界のヒートマップ、ボリュームトレンド、上位の地点、最新の記事" data-alt-fr="FluxMap en mode démo : carte de chaleur mondiale, tendance de volume, lieux principaux et derniers articles" data-alt-de="FluxMap im Demomodus: Welt-Heatmap, Volumentrend, wichtigste Orte und neueste Artikel" width="1200" height="649" loading="lazy"><figcaption><span data-lang="en">Demo / offline: the full interface still works when every live API is down.</span><span data-lang="zh">演示 / 离线状态：所有实时 API 都不可用时，完整界面依然能用。</span><span data-lang="tw">示範 / 離線狀態：所有即時 API 都無法使用時，完整介面依然能用。</span><span data-lang="ja">デモ／オフライン：ライブ API がすべて落ちても、インターフェースはそのまま使える。</span><span data-lang="fr">Démo / hors ligne : l’interface complète fonctionne même quand toutes les API sont indisponibles.</span><span data-lang="de">Demo / offline: Die komplette Oberfläche funktioniert auch, wenn alle Live-APIs ausfallen.</span></figcaption></figure>
+        <figure><img src="fluxmap/state-b.webp" alt="FluxMap with The Guardian pinned on the Protest channel: red clusters over the US and Iran" data-alt-zh="FluxMap 锁定 The Guardian 并切到 Protest 频道：美国和伊朗上方出现红色热点" data-alt-tw="FluxMap 鎖定 The Guardian 並切到 Protest 頻道：美國和伊朗上方出現紅色熱點" data-alt-ja="The Guardian をピン留めし Protest チャンネルにした FluxMap：アメリカとイランに赤いクラスター" data-alt-fr="FluxMap avec The Guardian épinglé sur le canal Protest : des foyers rouges sur les États-Unis et l’Iran" data-alt-de="FluxMap mit angeheftetem Guardian im Kanal Protest: rote Cluster über den USA und dem Iran" width="1200" height="736" loading="lazy"><figcaption><span data-lang="en">The Guardian pinned on the Protest channel: new clusters, a new trend, new evidence.</span><span data-lang="zh">锁定 The Guardian、切到 Protest 频道：新的热点、新的趋势、新的证据。</span><span data-lang="tw">鎖定 The Guardian、切到 Protest 頻道：新的熱點、新的趨勢、新的證據。</span><span data-lang="ja">The Guardian をピン留めして Protest チャンネルへ：新しいクラスター、新しいトレンド、新しいエビデンス。</span><span data-lang="fr">The Guardian épinglé sur le canal Protest : nouveaux foyers, nouvelle tendance, nouvelles sources.</span><span data-lang="de">The Guardian angeheftet im Kanal Protest: neue Cluster, neuer Trend, neue Belege.</span></figcaption></figure>
+      </div>
+      <h2><span data-lang="en">Teaching people to read the map</span><span data-lang="zh">教用户读懂地图</span><span data-lang="tw">教使用者讀懂地圖</span><span data-lang="ja">地図の読み方を伝える</span><span data-lang="fr">Apprendre à lire la carte</span><span data-lang="de">Die Karte lesen lernen</span></h2>
+      <p data-lang="en">A news heatmap is easy to misread, so FluxMap teaches before it asks. The Story page is a seven-step scrollytelling tour built with react-scrollama — from “The Global Pulse” through “Voices of Dissent”, “Forces of Nature” and “Time Reveals Patterns” to “Digital Frontiers” — and each step switches channel and time window on a live map. Its data is bundled at build time, so the story plays even if every API is down. On Explore, a five-step tour introduces channels, time, the map, search and sources on the first visit, and the About page documents sources, methods and limitations.</p>
+      <p data-lang="zh">新闻热力图很容易被误读，所以 FluxMap 先教、再让人用。Story 页是用 react-scrollama 做的七步滚动叙事——从“The Global Pulse”、“Voices of Dissent”、“Forces of Nature”、“Time Reveals Patterns”一直到“Digital Frontiers”——每一步都会在地图上切换频道和时间窗口。它的数据在构建时就打包进来，所以即使所有 API 都挂了，故事照样能播放。在 Explore 页，首次访问会弹出五步引导，依次介绍频道、时间、地图、搜索和数据源；About 页则写明了数据来源、方法和局限。</p>
+      <p data-lang="tw">新聞熱力圖很容易被誤讀，所以 FluxMap 先教、再讓人用。Story 頁是用 react-scrollama 做的七步捲動敘事——從「The Global Pulse」、「Voices of Dissent」、「Forces of Nature」、「Time Reveals Patterns」一直到「Digital Frontiers」——每一步都會在地圖上切換頻道和時間窗口。它的資料在建置時就打包進來，所以即使所有 API 都掛了，故事照樣能播放。在 Explore 頁，首次造訪會跳出五步導覽，依序介紹頻道、時間、地圖、搜尋和資料來源；About 頁則寫明了資料來源、方法和限制。</p>
+      <p data-lang="ja">ニュースのヒートマップは誤読されやすいので、FluxMap は使ってもらう前に読み方を伝えます。Story ページは react-scrollama で作った 7 ステップのスクロールテリングで、「The Global Pulse」から「Voices of Dissent」「Forces of Nature」「Time Reveals Patterns」を経て「Digital Frontiers」へ。ステップごとに地図のチャンネルと時間幅が切り替わります。データはビルド時に同梱しているので、API がすべて落ちても物語は再生されます。Explore では初回訪問時に 5 ステップのツアーがチャンネル、時間、地図、検索、ソースを紹介し、About ページにはデータソース、方法、限界をまとめました。</p>
+      <p data-lang="fr">Une carte de chaleur de l’actualité se lit facilement de travers : FluxMap explique avant de demander. La page Story est une visite en sept étapes, en scrollytelling avec react-scrollama — de « The Global Pulse » à « Digital Frontiers », en passant par « Voices of Dissent », « Forces of Nature » et « Time Reveals Patterns » —, et chaque étape change de canal et de fenêtre temporelle sur la carte. Ses données sont intégrées au moment du build, donc le récit se joue même si toutes les API sont en panne. Sur Explore, une visite guidée en cinq étapes présente les canaux, le temps, la carte, la recherche et les sources lors de la première visite, et la page About documente les sources, les méthodes et les limites.</p>
+      <p data-lang="de">Eine Nachrichten-Heatmap ist leicht falsch zu lesen, also erklärt FluxMap, bevor es etwas verlangt. Die Story-Seite ist eine siebenstufige Scrollytelling-Tour mit react-scrollama – von „The Global Pulse“ über „Voices of Dissent“, „Forces of Nature“ und „Time Reveals Patterns“ bis zu „Digital Frontiers“ –, und jeder Schritt wechselt Kanal und Zeitfenster auf der Karte. Die Daten sind beim Build mitgeliefert, sodass die Geschichte auch dann läuft, wenn alle APIs ausfallen. Auf Explore stellt beim ersten Besuch eine fünfstufige Tour Kanäle, Zeit, Karte, Suche und Quellen vor, und die About-Seite dokumentiert Quellen, Methoden und Grenzen.</p>
+      <div class="shots shots--wide">
+        <figure><img src="fluxmap/day.webp" alt="Day theme: a laptop showing the Story page beside a grid of Story and Explore screens" data-alt-zh="日间主题：笔记本电脑上的 Story 页，旁边是一组 Story 与 Explore 界面" data-alt-tw="日間主題：筆電上的 Story 頁，旁邊是一組 Story 與 Explore 介面" data-alt-ja="昼のテーマ：Story ページを映すノート PC と、Story と Explore の画面の一覧" data-alt-fr="Thème clair : un ordinateur portable affichant la page Story, à côté d’une grille d’écrans Story et Explore" data-alt-de="Helles Design: ein Laptop mit der Story-Seite neben einem Raster aus Story- und Explore-Bildschirmen" width="1600" height="974" loading="lazy"><figcaption><span data-lang="en">Day theme: the Story steps and Explore screens.</span><span data-lang="zh">日间主题：Story 各步骤与 Explore 界面。</span><span data-lang="tw">日間主題：Story 各步驟與 Explore 介面。</span><span data-lang="ja">昼のテーマ：Story の各ステップと Explore の画面。</span><span data-lang="fr">Thème clair : les étapes de Story et les écrans d’Explore.</span><span data-lang="de">Helles Design: die Story-Schritte und Explore-Bildschirme.</span></figcaption></figure>
+        <figure><img src="fluxmap/night.webp" alt="Night theme: the same Story and Explore screens on the dark basemap" data-alt-zh="夜间主题：深色底图上的同一组 Story 与 Explore 界面" data-alt-tw="夜間主題：深色底圖上的同一組 Story 與 Explore 介面" data-alt-ja="夜のテーマ：ダークなベースマップ上の同じ Story と Explore の画面" data-alt-fr="Thème sombre : les mêmes écrans Story et Explore sur le fond de carte sombre" data-alt-de="Dunkles Design: dieselben Story- und Explore-Bildschirme auf der dunklen Basiskarte" width="1600" height="974" loading="lazy"><figcaption><span data-lang="en">Night theme across the same screens.</span><span data-lang="zh">夜间主题下的同一组界面。</span><span data-lang="tw">夜間主題下的同一組介面。</span><span data-lang="ja">同じ画面の夜のテーマ。</span><span data-lang="fr">Le thème sombre sur les mêmes écrans.</span><span data-lang="de">Das dunkle Design auf denselben Bildschirmen.</span></figcaption></figure>
+      </div>
+      <h2><span data-lang="en">Three versions</span><span data-lang="zh">三个版本</span><span data-lang="tw">三個版本</span><span data-lang="ja">3 つのバージョン</span><span data-lang="fr">Trois versions</span><span data-lang="de">Drei Versionen</span></h2>
+      <div class="phase">
+        <span class="phase-label phase-label--p1"><span data-lang="en">V1 — a working radar</span><span data-lang="zh">V1 — 能用的雷达</span><span data-lang="tw">V1 — 能用的雷達</span><span data-lang="ja">V1 — 動くレーダー</span><span data-lang="fr">V1 — un radar qui fonctionne</span><span data-lang="de">V1 — ein funktionierendes Radar</span></span>
+      <p data-lang="en">The first deployment ran GDELT through a serverless proxy with an LRU cache, a legend and tips. Testing exposed rough edges that I fixed in the same pass: GDELT sometimes returned “ERROR:” strings inside what should have been clean geo data, and they went straight onto the map; the trend chart pushed the ranking off-screen; there was no way back from a selected place; and the dates were unreadable. I filtered out the error responses, capped the chart height, added “↩ Overview” and “↩ Reset” buttons and formatted timestamps as “Feb 16, 5:15 PM”.</p>
+        <p data-lang="zh">第一次部署时，GDELT 通过带 LRU 缓存的无服务器代理接入，还有图例和提示。测试暴露了几处毛病，我在同一轮里修掉了：GDELT 有时会在本该干净的地理数据里夹带“ERROR:”字符串，直接被画到地图上；趋势图把排行挤出了屏幕；选中某个地点后没法退回；日期也看不懂。我过滤掉错误响应，限制了图表高度，加上“↩ Overview”和“↩ Reset”按钮，并把时间格式化成“Feb 16, 5:15 PM”这样的形式。</p>
+        <p data-lang="tw">第一次部署時，GDELT 透過帶 LRU 快取的無伺服器代理接入，還有圖例和提示。測試暴露了幾處毛病，我在同一輪裡修掉了：GDELT 有時會在本該乾淨的地理資料裡夾帶「ERROR:」字串，直接被畫到地圖上；趨勢圖把排行擠出了螢幕；選中某個地點後無法退回；日期也看不懂。我過濾掉錯誤回應，限制了圖表高度，加上「↩ Overview」和「↩ Reset」按鈕，並把時間格式化成「Feb 16, 5:15 PM」這樣的形式。</p>
+        <p data-lang="ja">最初のデプロイでは、LRU キャッシュ付きのサーバーレスプロキシで GDELT を通し、凡例とヒントも付けました。テストで粗が見つかり、同じタイミングで直しました。GDELT が、きれいな位置データのはずの中に「ERROR:」という文字列を混ぜて返すことがあり、それがそのまま地図に載ってしまう。トレンドチャートがランキングを画面の外に押し出す。選んだ場所から戻る手段がない。日付が読めない。エラーのレスポンスを除外し、チャートの高さに上限を設け、「↩ Overview」と「↩ Reset」ボタンを足し、タイムスタンプを「Feb 16, 5:15 PM」の形に整えました。</p>
+        <p data-lang="fr">Le premier déploiement faisait passer GDELT par un proxy serverless avec un cache LRU, une légende et des astuces. Les tests ont révélé des aspérités, corrigées dans la foulée : GDELT renvoyait parfois des chaînes « ERROR: » au milieu de données géographiques censées être propres, et elles arrivaient directement sur la carte ; la courbe de tendance poussait le classement hors de l’écran ; impossible de revenir en arrière après avoir choisi un lieu ; et les dates étaient illisibles. J’ai filtré les réponses en erreur, limité la hauteur du graphique, ajouté des boutons « ↩ Overview » et « ↩ Reset » et formaté les dates en « Feb 16, 5:15 PM ».</p>
+        <p data-lang="de">Das erste Deployment leitete GDELT über einen Serverless-Proxy mit LRU-Cache, dazu kamen Legende und Tipps. Die Tests zeigten Ecken und Kanten, die ich im selben Durchgang behoben habe: GDELT lieferte manchmal „ERROR:“-Zeichenketten mitten in eigentlich sauberen Geodaten, und die landeten direkt auf der Karte; das Trenddiagramm schob die Rangliste aus dem Bildschirm; von einem ausgewählten Ort gab es keinen Weg zurück; und die Datumsangaben waren unlesbar. Ich habe die Fehlerantworten herausgefiltert, die Diagrammhöhe begrenzt, die Schaltflächen „↩ Overview“ und „↩ Reset“ ergänzt und Zeitstempel als „Feb 16, 5:15 PM“ formatiert.</p>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p2"><span data-lang="en">V2 — failing gracefully</span><span data-lang="zh">V2 — 体面地失败</span><span data-lang="tw">V2 — 體面地失敗</span><span data-lang="ja">V2 — 上手に失敗する</span><span data-lang="fr">V2 — échouer avec élégance</span><span data-lang="de">V2 — würdevoll scheitern</span></span>
+      <p data-lang="en">Then GDELT started timing out. Rather than letting one stalled request freeze the page, I gave each request its own timeout, ran them with Promise.allSettled so one failure couldn’t block the others, and added loading states, error toasts and a demo-data fallback for full outages.</p>
+        <p data-lang="zh">接着 GDELT 开始超时。我没有让一个卡住的请求冻住整个页面，而是给每个请求单独设了超时，用 Promise.allSettled 并发执行，保证一个失败不会拖住其他请求；同时加上了加载状态、错误提示，以及在完全宕机时使用的演示数据回退。</p>
+        <p data-lang="tw">接著 GDELT 開始逾時。我沒有讓一個卡住的請求凍住整個頁面，而是給每個請求單獨設了逾時，用 Promise.allSettled 並行執行，確保一個失敗不會拖住其他請求；同時加上了載入狀態、錯誤提示，以及在完全停擺時使用的示範資料備援。</p>
+        <p data-lang="ja">次に GDELT がタイムアウトし始めました。止まったひとつのリクエストでページ全体が固まらないよう、リクエストごとにタイムアウトを設け、Promise.allSettled で並行して実行し、ひとつの失敗がほかをふさがないようにしました。あわせて、読み込み中の表示、エラーのトースト、完全停止時のデモデータへのフォールバックを加えました。</p>
+        <p data-lang="fr">Puis GDELT s’est mis à expirer. Plutôt que de laisser une requête bloquée figer la page, j’ai donné à chaque requête son propre délai, je les ai lancées avec Promise.allSettled pour qu’un échec ne bloque pas les autres, et j’ai ajouté des états de chargement, des messages d’erreur et un repli sur les données de démonstration en cas de panne totale.</p>
+        <p data-lang="de">Dann begann GDELT, in Timeouts zu laufen. Statt eine hängende Anfrage die ganze Seite einfrieren zu lassen, bekam jede Anfrage ein eigenes Timeout, alle liefen mit Promise.allSettled, damit ein Fehler die anderen nicht blockiert, und es kamen Ladezustände, Fehlermeldungen und ein Fallback auf Demodaten für Totalausfälle hinzu.</p>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p3"><span data-lang="en">V3 — the provider chain</span><span data-lang="zh">V3 — 数据源链</span><span data-lang="tw">V3 — 資料來源鏈</span><span data-lang="ja">V3 — プロバイダーチェーン</span><span data-lang="fr">V3 — la chaîne de fournisseurs</span><span data-lang="de">V3 — die Anbieterkette</span></span>
+      <p data-lang="en">GDELT alone was too fragile to be the primary source, so I rebuilt data access as the five-layer chain: NewsData.io first, The Guardian second, GDELT demoted to enrichment, then the cache and demo data. The same version added the source switcher, the onboarding tour, the static story data and the About page.</p>
+        <p data-lang="zh">单靠 GDELT 太脆弱，撑不起主数据源的角色，于是我把数据获取重构成五层链：NewsData.io 第一，The Guardian 第二，GDELT 降为补充来源，再往下是缓存和演示数据。同一版本还加入了数据源切换器、新手引导、静态的故事数据和 About 页。</p>
+        <p data-lang="tw">單靠 GDELT 太脆弱，撐不起主要資料來源的角色，於是我把資料取得重構成五層鏈：NewsData.io 第一，The Guardian 第二，GDELT 降為補充來源，再往下是快取和示範資料。同一版本還加入了資料來源切換器、新手導覽、靜態的故事資料和 About 頁。</p>
+        <p data-lang="ja">GDELT だけではメインのソースとして脆すぎたので、データ取得を 5 層のチェーンとして作り直しました。1 番目に NewsData.io、2 番目に The Guardian、GDELT は補強用に格下げし、その下にキャッシュとデモデータ。同じバージョンで、ソース切り替え、オンボーディングのツアー、静的なストーリーデータ、About ページも加えました。</p>
+        <p data-lang="fr">GDELT seul était trop fragile pour servir de source principale ; j’ai donc reconstruit l’accès aux données en chaîne à cinq niveaux : NewsData.io d’abord, The Guardian ensuite, GDELT relégué à l’enrichissement, puis le cache et les données de démonstration. La même version a ajouté le sélecteur de source, la visite guidée, les données statiques du récit et la page About.</p>
+        <p data-lang="de">GDELT allein war als Hauptquelle zu anfällig, also habe ich den Datenzugriff als fünfstufige Kette neu gebaut: zuerst NewsData.io, dann The Guardian, GDELT zur Ergänzung herabgestuft, darunter Cache und Demodaten. Dieselbe Version brachte den Quellenschalter, die Einführungstour, die statischen Story-Daten und die About-Seite.</p>
+      </div>
+
+      <h2><span data-lang="en">Reading it responsibly</span><span data-lang="zh">负责任地解读</span><span data-lang="tw">負責任地解讀</span><span data-lang="ja">責任をもって読むために</span><span data-lang="fr">La lire avec prudence</span><span data-lang="de">Verantwortungsvoll lesen</span></h2>
+      <ul data-lang="en">
+        <li><strong>Volume is not importance.</strong> A hotspot shows attention density, not how severe an event is.</li>
+        <li><strong>Mention is not location.</strong> Stories often cite a capital or a company headquarters rather than where something happened, which is why cyber attacks cluster in Washington, London and Seoul.</li>
+        <li><strong>Approximate geocoding.</strong> Outside GDELT, places come from country tags and a dictionary, so some dots are country centroids.</li>
+        <li><strong>Coverage bias.</strong> English-language and Western outlets are over-represented.</li>
+        <li><strong>Rate limits.</strong> Free tiers throttle, and that is exactly when the chain and the caches take over.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>声量不等于重要性。</strong>热点显示的是关注密度，而不是事件有多严重。</li>
+        <li><strong>提及地不等于发生地。</strong>报道常提到首都或公司总部，而不是事情真正发生的地方，所以网络攻击总是聚集在华盛顿、伦敦和首尔。</li>
+        <li><strong>地理编码是近似的。</strong>除 GDELT 之外，地点来自国家标签和词典，所以有些点只是国家的中心点。</li>
+        <li><strong>覆盖偏差。</strong>英语和西方媒体占比过高。</li>
+        <li><strong>请求限额。</strong>免费额度会限流，而那正是数据源链和缓存接手的时候。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>聲量不等於重要性。</strong>熱點顯示的是關注密度，而不是事件有多嚴重。</li>
+        <li><strong>提及地不等於發生地。</strong>報導常提到首都或公司總部，而不是事情真正發生的地方，所以網路攻擊總是聚集在華盛頓、倫敦和首爾。</li>
+        <li><strong>地理編碼是近似的。</strong>除 GDELT 之外，地點來自國家標籤和詞典，所以有些點只是國家的中心點。</li>
+        <li><strong>涵蓋偏差。</strong>英語和西方媒體占比過高。</li>
+        <li><strong>請求限額。</strong>免費額度會限流，而那正是資料來源鏈和快取接手的時候。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>量は重要度ではない。</strong>ホットスポットが示すのは注目の密度で、出来事の深刻さではありません。</li>
+        <li><strong>言及された場所は発生場所ではない。</strong>記事は実際の現場ではなく首都や企業の本社を挙げることが多く、だからサイバー攻撃はワシントン、ロンドン、ソウルに集まって見えます。</li>
+        <li><strong>ジオコーディングは近似。</strong>GDELT 以外では国タグと辞書から場所を決めるので、国の中心点に置かれたドットもあります。</li>
+        <li><strong>カバレッジの偏り。</strong>英語圏と西側のメディアが多く含まれています。</li>
+        <li><strong>レート制限。</strong>無料枠は制限がかかります。まさにそのとき、チェーンとキャッシュが引き継ぎます。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Le volume n’est pas l’importance.</strong> Un point chaud montre la densité d’attention, pas la gravité d’un événement.</li>
+        <li><strong>Mention n’est pas lieu.</strong> Les articles citent souvent une capitale ou un siège social plutôt que le lieu des faits, d’où les cyberattaques regroupées à Washington, Londres et Séoul.</li>
+        <li><strong>Géocodage approximatif.</strong> En dehors de GDELT, les lieux viennent des pays associés et d’un dictionnaire : certains points sont des centres de pays.</li>
+        <li><strong>Biais de couverture.</strong> Les médias anglophones et occidentaux sont surreprésentés.</li>
+        <li><strong>Limites de requêtes.</strong> Les offres gratuites brident le débit, et c’est précisément là que la chaîne et les caches prennent le relais.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Menge ist nicht Bedeutung.</strong> Ein Brennpunkt zeigt die Dichte der Aufmerksamkeit, nicht, wie schwer ein Ereignis wiegt.</li>
+        <li><strong>Erwähnung ist nicht Ort.</strong> Meldungen nennen oft eine Hauptstadt oder einen Firmensitz statt des eigentlichen Schauplatzes – deshalb ballen sich Cyberangriffe in Washington, London und Seoul.</li>
+        <li><strong>Ungefähre Geokodierung.</strong> Außerhalb von GDELT stammen die Orte aus Länder-Tags und einem Wörterbuch, manche Punkte sind daher Ländermittelpunkte.</li>
+        <li><strong>Abdeckungsverzerrung.</strong> Englischsprachige und westliche Medien sind überrepräsentiert.</li>
+        <li><strong>Rate-Limits.</strong> Gratis-Tarife drosseln – genau dann übernehmen Kette und Caches.</li>
+      </ul>
+      <p data-lang="en">FluxMap is a radar, not a truth machine. It is built to spark curiosity and send people to the sources, which is why the evidence list is part of the visualization.</p>
+      <p data-lang="zh">FluxMap 是雷达，不是真相机器。它的目的是激发好奇，再把人引向原始来源——这也是为什么证据列表本身就是可视化的一部分。</p>
+      <p data-lang="tw">FluxMap 是雷達，不是真相機器。它的目的是激發好奇，再把人引向原始來源——這也是為什麼證據列表本身就是視覺化的一部分。</p>
+      <p data-lang="ja">FluxMap はレーダーであって、真実を告げる機械ではありません。好奇心を呼び起こし、人を出典へ向かわせるためのものです。だからエビデンスのリストも、ビジュアライゼーションの一部なのです。</p>
+      <p data-lang="fr">FluxMap est un radar, pas une machine à vérité. Il est fait pour éveiller la curiosité et renvoyer vers les sources — c’est pourquoi la liste d’articles fait partie de la visualisation.</p>
+      <p data-lang="de">FluxMap ist ein Radar, keine Wahrheitsmaschine. Es soll Neugier wecken und zu den Quellen führen – deshalb gehört die Belegliste zur Visualisierung.</p>
+      <h2><span data-lang="en">How I used AI</span><span data-lang="zh">我如何使用 AI</span><span data-lang="tw">我如何使用 AI</span><span data-lang="ja">AI の使い方</span><span data-lang="fr">Comment j’ai utilisé l’IA</span><span data-lang="de">Wie ich KI eingesetzt habe</span></h2>
+      <p data-lang="en">I used Claude and ChatGPT as collaborators: to brainstorm dynamic-data topics, to compare interaction patterns from Apple’s visionOS, Material Design 2 and 3 and Microsoft’s Fluent Design, and to debug — the timeout handling and the Promise.allSettled fix came out of those sessions. The product decisions — the source order, the 60-second cadence, the linked views and how failures are shown — and the testing were mine, and every conversation is cited in the process deck.</p>
+      <p data-lang="zh">我把 Claude 和 ChatGPT 当作合作者：用它们发散动态数据的选题，对比苹果 visionOS、Material Design 2 与 3 以及微软 Fluent Design 的交互模式，也用来调试——超时处理和 Promise.allSettled 的修复就出自这些对话。产品层面的决定——数据源的顺序、60 秒的刷新节奏、联动视图、如何向用户呈现故障——以及测试都由我负责，每一段对话都在过程文档里注明了出处。</p>
+      <p data-lang="tw">我把 Claude 和 ChatGPT 當作合作者：用它們發想動態資料的題目，比較蘋果 visionOS、Material Design 2 與 3 以及微軟 Fluent Design 的互動模式，也用來除錯——逾時處理和 Promise.allSettled 的修正就出自這些對話。產品層面的決定——資料來源的順序、60 秒的更新節奏、連動檢視、如何向使用者呈現故障——以及測試都由我負責，每一段對話都在過程文件裡註明了出處。</p>
+      <p data-lang="ja">Claude と ChatGPT は協力者として使いました。動的データのテーマ出し、Apple の visionOS、Material Design 2・3、Microsoft の Fluent Design のインタラクションパターンの比較、そしてデバッグ。タイムアウト処理と Promise.allSettled での修正は、そのやりとりから生まれました。ソースの順序、60 秒の更新間隔、連動ビュー、失敗をどう見せるかといったプロダクトの判断とテストは私が行い、すべての会話はプロセス資料に出典として記載しています。</p>
+      <p data-lang="fr">J’ai utilisé Claude et ChatGPT comme collaborateurs : pour trouver des sujets de données dynamiques, comparer les modèles d’interaction de visionOS d’Apple, de Material Design 2 et 3 et de Fluent Design de Microsoft, et pour déboguer — la gestion des délais et la correction avec Promise.allSettled sont nées de ces échanges. Les décisions produit — l’ordre des sources, la cadence de 60 secondes, les vues liées, la façon de montrer les pannes — et les tests étaient les miens, et chaque conversation est citée dans le dossier de processus.</p>
+      <p data-lang="de">Claude und ChatGPT waren für mich Mitarbeiter: zum Sammeln von Themen für dynamische Daten, zum Vergleich der Interaktionsmuster von Apples visionOS, Material Design 2 und 3 und Microsofts Fluent Design und zum Debuggen – die Timeout-Behandlung und die Lösung mit Promise.allSettled entstanden in diesen Sitzungen. Die Produktentscheidungen – Reihenfolge der Quellen, 60-Sekunden-Takt, verknüpfte Ansichten, wie Ausfälle gezeigt werden – und die Tests lagen bei mir, und jedes Gespräch ist im Prozessdokument zitiert.</p>
+      <h2><span data-lang="en">What I learned</span><span data-lang="zh">收获</span><span data-lang="tw">收穫</span><span data-lang="ja">学んだこと</span><span data-lang="fr">Ce que j’en retiens</span><span data-lang="de">Was ich gelernt habe</span></h2>
+      <ul data-lang="en">
+        <li><strong>Design the failure states first.</strong> Every live source failed during testing, so the empty, cached and offline states needed as much design as the happy path.</li>
+        <li><strong>Transparency builds trust.</strong> Showing where the data came from, and when, made the cached and demo states feel honest rather than broken.</li>
+        <li><strong>Cadence is a design decision.</strong> The refresh interval trades liveliness against cost and the limits of free APIs; it isn’t a technical default.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>先设计故障状态。</strong>测试期间每个实时数据源都出过故障，所以空状态、缓存状态和离线状态，需要和正常流程一样认真地设计。</li>
+        <li><strong>透明带来信任。</strong>告诉用户数据从哪里来、什么时候更新的，缓存和演示状态就显得诚实，而不是坏掉了。</li>
+        <li><strong>刷新节奏是设计决策。</strong>刷新间隔是在“鲜活感”与成本、免费 API 限额之间做取舍，而不是一个技术默认值。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>先設計故障狀態。</strong>測試期間每個即時資料來源都出過故障，所以空狀態、快取狀態和離線狀態，需要和正常流程一樣認真地設計。</li>
+        <li><strong>透明帶來信任。</strong>告訴使用者資料從哪裡來、什麼時候更新的，快取和示範狀態就顯得誠實，而不是壞掉了。</li>
+        <li><strong>更新節奏是設計決策。</strong>更新間隔是在「鮮活感」與成本、免費 API 限額之間做取捨，而不是一個技術預設值。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>失敗の状態から設計する。</strong>テスト中にどのライブソースも落ちたので、空、キャッシュ、オフラインの状態にも、正常時と同じだけのデザインが必要でした。</li>
+        <li><strong>透明性が信頼をつくる。</strong>データの出どころと時刻を見せることで、キャッシュやデモの状態も、壊れているのではなく正直なものとして受け取られました。</li>
+        <li><strong>更新のリズムはデザインの判断。</strong>更新間隔は、生きている感じと、コストや無料 API の上限との兼ね合いで決めるもので、技術的な既定値ではありません。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Concevoir d’abord les états d’échec.</strong> Toutes les sources en direct sont tombées pendant les tests : les états vide, en cache et hors ligne méritaient autant de soin que le parcours idéal.</li>
+        <li><strong>La transparence crée la confiance.</strong> Montrer d’où viennent les données, et de quand, rendait les états en cache et de démonstration honnêtes plutôt que cassés.</li>
+        <li><strong>La cadence est une décision de design.</strong> L’intervalle de rafraîchissement arbitre entre vivacité, coût et limites des API gratuites ; ce n’est pas un réglage technique par défaut.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Zuerst die Fehlerzustände gestalten.</strong> Jede Live-Quelle fiel beim Testen aus – leere, gecachte und Offline-Zustände brauchten so viel Gestaltung wie der Normalfall.</li>
+        <li><strong>Transparenz schafft Vertrauen.</strong> Wer zeigt, woher und von wann die Daten stammen, lässt Cache- und Demozustände ehrlich statt kaputt wirken.</li>
+        <li><strong>Der Takt ist eine Gestaltungsentscheidung.</strong> Das Aktualisierungsintervall wägt Lebendigkeit gegen Kosten und die Grenzen der Gratis-APIs ab; es ist kein technischer Standardwert.</li>
+      </ul>
+      <p data-lang="en">Next, I would replace the dictionary geocoder with named-entity recognition, add non-English sources to reduce the coverage bias, and give the map a keyboard-accessible table view.</p>
+      <p data-lang="zh">下一步，我会用命名实体识别取代词典式的地理编码，加入非英语来源来减少覆盖偏差，并为地图提供一个可以用键盘操作的表格视图。</p>
+      <p data-lang="tw">下一步，我會用命名實體辨識取代詞典式的地理編碼，加入非英語來源來減少涵蓋偏差，並為地圖提供一個可以用鍵盤操作的表格檢視。</p>
+      <p data-lang="ja">次は、辞書ベースのジオコーダーを固有表現抽出に置き換え、英語以外のソースを加えてカバレッジの偏りを減らし、地図にキーボードで操作できる表形式のビューを用意したいと考えています。</p>
+      <p data-lang="fr">Ensuite, je remplacerais le géocodeur à dictionnaire par de la reconnaissance d’entités nommées, j’ajouterais des sources non anglophones pour réduire le biais de couverture, et je donnerais à la carte une vue en tableau accessible au clavier.</p>
+      <p data-lang="de">Als Nächstes würde ich den Wörterbuch-Geocoder durch Named-Entity-Recognition ersetzen, nicht englischsprachige Quellen ergänzen, um die Verzerrung zu verringern, und der Karte eine per Tastatur bedienbare Tabellenansicht geben.</p>
+      <h2><span data-lang="en">Credits</span><span data-lang="zh">致谢</span><span data-lang="tw">致謝</span><span data-lang="ja">クレジット</span><span data-lang="fr">Crédits</span><span data-lang="de">Credits</span></h2>
+      <p data-lang="en">Data: NewsData.io, The Guardian Open Platform and the GDELT Project. Basemap: © OpenStreetMap contributors, © CARTO. Built with React, TypeScript, Vite, deck.gl, MapLibre GL, Zustand, React Router and react-scrollama, hosted on Vercel.</p>
+      <p data-lang="zh">数据：NewsData.io、The Guardian Open Platform、GDELT Project。底图：© OpenStreetMap 贡献者、© CARTO。使用 React、TypeScript、Vite、deck.gl、MapLibre GL、Zustand、React Router 和 react-scrollama 构建，托管于 Vercel。</p>
+      <p data-lang="tw">資料：NewsData.io、The Guardian Open Platform、GDELT Project。底圖：© OpenStreetMap 貢獻者、© CARTO。使用 React、TypeScript、Vite、deck.gl、MapLibre GL、Zustand、React Router 和 react-scrollama 建置，託管於 Vercel。</p>
+      <p data-lang="ja">データ：NewsData.io、The Guardian Open Platform、GDELT Project。ベースマップ：© OpenStreetMap の貢献者、© CARTO。React、TypeScript、Vite、deck.gl、MapLibre GL、Zustand、React Router、react-scrollama で構築し、Vercel でホスティング。</p>
+      <p data-lang="fr">Données : NewsData.io, The Guardian Open Platform et le projet GDELT. Fond de carte : © contributeurs OpenStreetMap, © CARTO. Réalisé avec React, TypeScript, Vite, deck.gl, MapLibre GL, Zustand, React Router et react-scrollama, hébergé sur Vercel.</p>
+      <p data-lang="de">Daten: NewsData.io, The Guardian Open Platform und das GDELT Project. Basiskarte: © OpenStreetMap-Mitwirkende, © CARTO. Gebaut mit React, TypeScript, Vite, deck.gl, MapLibre GL, Zustand, React Router und react-scrollama, gehostet auf Vercel.</p>
+    </div>
+
+    <nav class="pager" aria-label="Case studies">
+      <a class="prev" href="nightmare-hub.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span><span data-lang="de">&larr; Zurück</span></small><b>Trafalgar Labyrinth</b></a>
+      <a class="next" href="farewind.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span><span data-lang="de">Weiter &rarr;</span></small><b>FareWind</b></a>
+    </nav>
+    <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
+  </div>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>&copy; Yiyang Zhang</span>
+      <a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">苏ICP备2024103495号</a>
+    </div>
+  </footer>
+
+  <script>
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;var btn=document.getElementById('themeToggle');var KEY='siteTheme';
+  function apply(t){root.setAttribute('data-theme',t);if(btn)btn.textContent=t==='dark'?'\u2600':'\u263E';try{localStorage.setItem(KEY,t);}catch(_){}}
+  var s;try{s=localStorage.getItem(KEY);}catch(_){}
+  if(s){apply(s);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn)btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+/* ===== i18n ===== */
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'},de:{'work.back':'← Alle Arbeiten','nav.work':'Arbeiten','nav.music':'Musik','nav.about':'Über mich','nav.contact':'Kontakt'}};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr',de:'de'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
+document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
+  </script>
+</body>
+</html>

@@ -104,6 +104,30 @@
           </div>
         </a>
 
+        <a class="card" href="work/fluxmap.html" data-cat="ux">
+          <div class="card-media"><img width="800" height="500" src="work/fluxmap/card-800.webp" srcset="work/fluxmap/card-800.webp 800w, work/fluxmap/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="FluxMap: a news heatmap over a world map with trend and top-location panels" data-i18n-alt="alt.flux" loading="lazy"></div>
+          <div class="card-body">
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.flux.cat">Data visualization · Real-time</span>
+            <h3>FluxMap <span class="year">(2026)</span></h3>
+            <p data-i18n="w.flux.p">A real-time news radar: three news APIs geocoded onto a deck.gl heatmap, linked to trend, ranking and article views — refreshing every 60 s, with a five-layer fallback so the map never goes blank.</p>
+            <div class="card-tags"><span data-i18n="w.flux.t1">Live data</span><span>deck.gl</span><span data-i18n="w.flux.t2">5-layer fallback</span></div>
+            <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="card" href="work/farewind.html" data-cat="ux">
+          <div class="card-media"><img width="800" height="500" src="work/farewind/card-800.webp" srcset="work/farewind/card-800.webp 800w, work/farewind/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="FareWind Route Insights: fare range, key numbers and a fare-over-time chart, shown in a browser and on a phone" data-i18n-alt="alt.fare" loading="lazy"></div>
+          <div class="card-body">
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.fare.cat">Data visualization · Personal analytics</span>
+            <h3>FareWind <span class="year">(2026)</span></h3>
+            <p data-i18n="w.fare.p">A privacy-first ride-fare timing tool: your logged rides become a price history per route, with a day × hour heatmap, trend chart, route map and rule-based advice on when to leave, wait or avoid.</p>
+            <div class="card-tags"><span data-i18n="w.fare.t1">Privacy-first</span><span>Recharts</span><span data-i18n="w.fare.t2">Rule-based advice</span></div>
+            <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
+          </div>
+        </a>
+
         <a class="card" href="work/nightmare-escape.html" data-cat="games">
           <div class="card-media"><img width="800" height="500" src="work/nightmare-escape/card-800.webp" alt="梦魇逃亡 title art: Chu-Ling lying in the grass at night" data-i18n-alt="alt.ne" loading="lazy"></div>
           <div class="card-body">
@@ -307,6 +331,34 @@
                   <li><a href="GSGC/v6/index.html" data-i18n="g.site" data-i18n-v="2">2 — Website 2</a><span data-i18n="g.6d">Refined content, visuals, interaction</span></li>
                   <li><a href="GSGC/v7/index.html" data-i18n="g.7">2 — Final</a><span data-i18n="g.7d">Fully integrated presentation</span></li>
                 </ul></details>
+              </div>
+            </div>
+            <span class="row-side"><span class="year">2026</span></span>
+          </li>
+
+          <li class="row" data-cat="ux">
+            <span class="row-cat" data-i18n="rc.dataviz">Data visualization</span>
+            <div class="row-main">
+              <h4>FluxMap</h4>
+              <p data-i18n="a.flux.p">Real-time news radar on deck.gl and MapLibre: a five-layer provider chain (NewsData.io → Guardian → GDELT → cache → demo), serverless API proxies, a 60-second refresh and four linked views.</p>
+              <div class="row-actions">
+                <a class="btn btn-sm" href="https://fluxmap.vercel.app/explore" target="_blank" rel="noopener" data-i18n="btn.liveApp">Open live app ↗</a>
+                <a class="btn-link" href="work/fluxmap.html" data-i18n="row.case">Case study</a>
+                <a class="btn-link" href="https://github.com/Antirender/FluxMap" target="_blank" rel="noopener">GitHub ↗</a>
+              </div>
+            </div>
+            <span class="row-side"><span class="year">2026</span></span>
+          </li>
+
+          <li class="row" data-cat="ux">
+            <span class="row-cat" data-i18n="rc.dataviz">Data visualization</span>
+            <div class="row-main">
+              <h4>FareWind</h4>
+              <p data-i18n="a.fare.p">Personal ride-fare timing: logged rides in localStorage, a stats bar, fare-over-time chart and day × hour heatmap in Recharts, OSRM road routes in Leaflet, and rule-based advice with estimated savings.</p>
+              <div class="row-actions">
+                <a class="btn btn-sm" href="https://farewind.vercel.app" target="_blank" rel="noopener" data-i18n="btn.liveApp">Open live app ↗</a>
+                <a class="btn-link" href="work/farewind.html" data-i18n="row.case">Case study</a>
+                <a class="btn-link" href="https://github.com/Antirender/farewind" target="_blank" rel="noopener">GitHub ↗</a>
               </div>
             </div>
             <span class="row-side"><span class="year">2026</span></span>
@@ -554,6 +606,20 @@ en: {
 'w.nh.t1':'6 个平台',
 'w.nh.t2':'2 种模式',
 'w.nh.t3':'可试玩',
+'w.flux.cat':'数据可视化 · 实时',
+'w.flux.p':'实时新闻雷达：三个新闻 API 经地理编码后画成 deck.gl 热力图，并与趋势、排行和文章视图联动——每 60 秒刷新一次，五层数据回退保证地图永不空白。',
+'w.flux.t1':'实时数据',
+'w.flux.t2':'5 层回退',
+'w.fare.cat':'数据可视化 · 个人分析',
+'w.fare.p':'隐私优先的打车时机工具：你记录的行程变成每条路线的价格历史，配合星期 × 小时热力图、走势图、路线地图，以及告诉你何时出发、等待或避开的规则建议。',
+'w.fare.t1':'隐私优先',
+'w.fare.t2':'规则建议',
+'alt.fare':'FareWind 路线分析页：价格区间、关键数字和票价走势图，分别显示在浏览器和手机上',
+'a.fare.p':'个人打车时机分析：行程存在 localStorage，Recharts 绘制统计条、票价走势和星期 × 小时热力图，Leaflet 显示 OSRM 道路路线，并给出附带估算节省金额的规则建议。',
+'alt.flux':'FluxMap：世界地图上的新闻热力图，配有趋势和热门地点面板',
+'rc.dataviz':'数据可视化',
+'a.flux.p':'基于 deck.gl 和 MapLibre 的实时新闻雷达：五层数据源链（NewsData.io → Guardian → GDELT → 缓存 → 演示）、无服务器 API 代理、60 秒刷新和四个联动视图。',
+'btn.liveApp':'打开在线版 ↗',
 'w.ne.eye':'开发中',
 'w.ne.cat':'视觉小说 · WebGAL · Steam',
 'w.ne.p':'我正在开发的选择驱动型心理惊悚视觉小说：八个章节、多个结局，开发过程中持续发布可试玩的网页版本。即将登陆 Steam。',
@@ -728,6 +794,20 @@ en: {
 'w.nh.t1':'6 個平台',
 'w.nh.t2':'2 種模式',
 'w.nh.t3':'可試玩',
+'w.flux.cat':'資料視覺化 · 即時',
+'w.flux.p':'即時新聞雷達：三個新聞 API 經地理編碼後畫成 deck.gl 熱力圖，並與趨勢、排行和文章檢視連動——每 60 秒更新一次，五層資料備援確保地圖永不空白。',
+'w.flux.t1':'即時資料',
+'w.flux.t2':'5 層備援',
+'w.fare.cat':'資料視覺化 · 個人分析',
+'w.fare.p':'隱私優先的叫車時機工具：你記錄的行程變成每條路線的價格歷史，搭配星期 × 小時熱力圖、走勢圖、路線地圖，以及告訴你何時出發、等待或避開的規則建議。',
+'w.fare.t1':'隱私優先',
+'w.fare.t2':'規則建議',
+'alt.fare':'FareWind 路線分析頁：價格區間、關鍵數字和車資走勢圖，分別顯示在瀏覽器和手機上',
+'a.fare.p':'個人叫車時機分析：行程存在 localStorage，Recharts 繪製統計條、車資走勢和星期 × 小時熱力圖，Leaflet 顯示 OSRM 道路路線，並給出附帶估算節省金額的規則建議。',
+'alt.flux':'FluxMap：世界地圖上的新聞熱力圖，搭配趨勢和熱門地點面板',
+'rc.dataviz':'資料視覺化',
+'a.flux.p':'基於 deck.gl 和 MapLibre 的即時新聞雷達：五層資料來源鏈（NewsData.io → Guardian → GDELT → 快取 → 示範）、無伺服器 API 代理、60 秒更新和四個連動檢視。',
+'btn.liveApp':'開啟線上版 ↗',
 'w.ne.eye':'開發中',
 'w.ne.cat':'視覺小說 · WebGAL · Steam',
 'w.ne.p':'我正在開發的選擇驅動型心理驚悚視覺小說：八個章節、多個結局，開發過程中持續發布可試玩的網頁版本。即將登陸 Steam。',
@@ -902,6 +982,20 @@ ja: {
 'w.nh.t1':'6 プラットフォーム',
 'w.nh.t2':'2 モード',
 'w.nh.t3':'プレイ可能',
+'w.flux.cat':'データビジュアライゼーション · リアルタイム',
+'w.flux.p':'リアルタイムのニュースレーダー。3 つのニュース API をジオコーディングして deck.gl のヒートマップに描き、トレンド、ランキング、記事のビューと連動。60 秒ごとに更新し、5 層のフォールバックで地図が空になることはありません。',
+'w.flux.t1':'ライブデータ',
+'w.flux.t2':'5 層フォールバック',
+'w.fare.cat':'データビジュアライゼーション · 個人分析',
+'w.fare.p':'プライバシー優先の配車タイミングツール。記録した乗車がルートごとの料金履歴になり、曜日 × 時間のヒートマップ、推移チャート、ルートマップ、そして今出るか・待つか・避けるかのルールベースの提案につながります。',
+'w.fare.t1':'プライバシー優先',
+'w.fare.t2':'ルールベースの提案',
+'alt.fare':'FareWind の Route Insights：料金の幅、主要な数字、料金推移チャートをブラウザとスマホで表示',
+'a.fare.p':'個人の配車タイミング分析。乗車は localStorage に保存し、Recharts で統計バー・料金推移・曜日 × 時間のヒートマップを、Leaflet で OSRM の道路ルートを表示。節約額の見積もり付きのルールベースの提案。',
+'alt.flux':'FluxMap：世界地図上のニュースのヒートマップと、トレンドと上位の地点のパネル',
+'rc.dataviz':'データビジュアライゼーション',
+'a.flux.p':'deck.gl と MapLibre によるリアルタイムのニュースレーダー。5 層のプロバイダーチェーン（NewsData.io → Guardian → GDELT → キャッシュ → デモ）、サーバーレスの API プロキシ、60 秒ごとの更新、4 つの連動ビュー。',
+'btn.liveApp':'ライブ版を開く ↗',
 'w.ne.eye':'開発中',
 'w.ne.cat':'ビジュアルノベル · WebGAL · Steam',
 'w.ne.p':'開発中の、選択で分岐するサイコスリラー・ビジュアルノベル。全 8 章・マルチエンディングで、制作途中のウェブ版も遊べます。Steam で近日公開。',
@@ -1076,6 +1170,20 @@ fr: {
 'w.nh.t1':'6 plateformes',
 'w.nh.t2':'2 modes',
 'w.nh.t3':'Jouable',
+'w.flux.cat':'Visualisation de données · Temps réel',
+'w.flux.p':'Un radar de l’actualité en temps réel : trois API d’information géocodées sur une carte de chaleur deck.gl, liée à la tendance, au classement et aux articles — actualisée toutes les 60 s, avec un repli à cinq niveaux pour que la carte ne soit jamais vide.',
+'w.flux.t1':'Données en direct',
+'w.flux.t2':'Repli à 5 niveaux',
+'w.fare.cat':'Visualisation de données · Analyse personnelle',
+'w.fare.p':'Un outil de timing pour les VTC, respectueux de la vie privée : les courses notées deviennent un historique de prix par trajet, avec carte de chaleur jour × heure, courbe, carte des trajets et conseils pour partir, attendre ou éviter.',
+'w.fare.t1':'Vie privée d’abord',
+'w.fare.t2':'Conseils à base de règles',
+'alt.fare':'Route Insights de FareWind : écart de prix, chiffres clés et courbe des prix, sur navigateur et sur téléphone',
+'a.fare.p':'Timing personnel des courses : trajets notés dans le localStorage, barre de stats, courbe des prix et carte de chaleur jour × heure avec Recharts, itinéraires OSRM dans Leaflet, et conseils à base de règles avec économies estimées.',
+'alt.flux':'FluxMap : une carte de chaleur de l’actualité sur une carte du monde, avec les panneaux de tendance et de lieux principaux',
+'rc.dataviz':'Visualisation de données',
+'a.flux.p':'Radar de l’actualité en temps réel sur deck.gl et MapLibre : chaîne de fournisseurs à cinq niveaux (NewsData.io → Guardian → GDELT → cache → démo), proxys d’API serverless, rafraîchissement toutes les 60 secondes et quatre vues liées.',
+'btn.liveApp':'Ouvrir l’application ↗',
 'w.ne.eye':'En développement',
 'w.ne.cat':'Visual novel · WebGAL · Steam',
 'w.ne.p':'Le visual novel de thriller psychologique piloté par les choix que je développe : huit chapitres, plusieurs fins et des versions web jouables en chemin. Bientôt sur Steam.',
@@ -1300,6 +1408,20 @@ de: {
 'w.nh.t1':'6 Plattformen',
 'w.nh.t2':'2 Modi',
 'w.nh.t3':'Spielbar',
+'w.flux.cat':'Datenvisualisierung · Echtzeit',
+'w.flux.p':'Ein Echtzeit-Nachrichtenradar: drei Nachrichten-APIs, geokodiert auf einer deck.gl-Heatmap, verknüpft mit Trend, Rangliste und Artikeln – alle 60 s aktualisiert, mit fünfstufigem Fallback, damit die Karte nie leer ist.',
+'w.flux.t1':'Live-Daten',
+'w.flux.t2':'5-stufiger Fallback',
+'w.fare.cat':'Datenvisualisierung · Persönliche Analyse',
+'w.fare.p':'Ein datenschutzfreundliches Timing-Tool für Fahrdienste: Eingetragene Fahrten werden zur Preisgeschichte pro Strecke, mit Heatmap Wochentag × Stunde, Verlaufsdiagramm, Streckenkarte und regelbasierten Tipps zum Losfahren, Warten oder Meiden.',
+'w.fare.t1':'Datenschutz zuerst',
+'w.fare.t2':'Regelbasierte Tipps',
+'alt.fare':'Route Insights von FareWind: Preisspanne, Kennzahlen und Preisverlauf im Browser und auf dem Handy',
+'a.fare.p':'Persönliches Fahrpreis-Timing: Fahrten im localStorage, Kennzahlenleiste, Preisverlauf und Heatmap Wochentag × Stunde mit Recharts, OSRM-Straßenrouten in Leaflet und regelbasierte Tipps mit geschätzter Ersparnis.',
+'alt.flux':'FluxMap: eine Nachrichten-Heatmap auf einer Weltkarte mit Trend- und Orte-Panels',
+'rc.dataviz':'Datenvisualisierung',
+'a.flux.p':'Echtzeit-Nachrichtenradar auf deck.gl und MapLibre: fünfstufige Anbieterkette (NewsData.io → Guardian → GDELT → Cache → Demo), Serverless-API-Proxys, 60-Sekunden-Takt und vier verknüpfte Ansichten.',
+'btn.liveApp':'Live-App öffnen ↗',
 'w.ne.eye':'In Entwicklung',
 'w.ne.cat':'Visual Novel · WebGAL · Steam',
 'w.ne.p':'Eine entscheidungsgetriebene Psychothriller-Visual-Novel, an der ich arbeite: acht Kapitel, mehrere Enden und spielbare Web-Builds unterwegs. Bald auf Steam.',
