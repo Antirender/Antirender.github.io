@@ -29,6 +29,11 @@
     html:not([lang="de"]) [data-lang="de"]{display:none!important}
     html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
     .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+    /* Section hierarchy: quiet "NN  Label" kicker, then a bold headline on its own line */
+    .content>h2::before{content:none}
+    .content>h2{counter-increment:none;border-top:0;padding-top:0;margin:.1rem 0 .85rem}
+    .sec-k{counter-increment:sec;max-width:var(--measure);margin:2.75rem 0 .35rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .sec-k::before{content:counter(sec,decimal-leading-zero);margin-right:.7rem}
   </style>
 </head>
 <body>
@@ -111,21 +116,24 @@
       </div>
 
 
-      <h2><span data-lang="en">Problem / Context</span><span data-lang="zh">问题 / 背景</span><span data-lang="tw">問題 / 背景</span><span data-lang="ja">課題 / 背景</span><span data-lang="fr">Problème / Contexte</span><span data-lang="de">Problem / Kontext</span></h2>
-      <p data-lang="en">Beginners learning to code often struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns. This project explored how to create an intuitive learning environment that reduces cognitive load while maintaining clear pathways through programming content.</p>
-      <p data-lang="zh">刚开始学编程的人，常常被复杂的导航、不清晰的课程结构和不统一的视觉样式困扰。这个项目探索的是：如何打造一个直观的学习环境，在降低认知负担的同时，让学习者始终清楚自己在哪、下一步去哪。</p>
-      <p data-lang="tw">剛開始學程式設計的人，常常被複雜的導覽、不清晰的課程結構和不統一的視覺樣式困擾。這個專案探索的是：如何打造一個直觀的學習環境，在降低認知負擔的同時，讓學習者始終清楚自己在哪、下一步去哪。</p>
-      <p data-lang="ja">プログラミングを学び始めた人は、複雑なナビゲーション、わかりにくいレッスン構成、統一感のない見た目に苦労しがちです。このプロジェクトでは、認知的な負担を減らしながら、プログラミングの内容をたどる道筋をはっきり保てる、直感的な学習環境のつくり方を探りました。</p>
-      <p data-lang="fr">Les débutants en programmation se heurtent souvent à une navigation complexe, à des leçons mal structurées et à des repères visuels incohérents. Ce projet explore comment créer un environnement d’apprentissage intuitif qui allège la charge cognitive tout en gardant des parcours clairs dans le contenu.</p><p data-lang="de">Wer programmieren lernt, kämpft oft mit komplexer Navigation, unklaren Lektionsstrukturen und uneinheitlichen visuellen Mustern. Dieses Projekt untersuchte, wie eine intuitive Lernumgebung entsteht, die die kognitive Last senkt und trotzdem klare Wege durch die Programmierinhalte bietet.</p>
+      <p class="sec-k"><span data-lang="en">Problem / Context</span><span data-lang="zh">问题 / 背景</span><span data-lang="tw">問題 / 背景</span><span data-lang="ja">課題 / 背景</span><span data-lang="fr">Problème / Contexte</span><span data-lang="de">Problem / Kontext</span></p>
+      <h2><span data-lang="en">Beginners learning to code often struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</span><span data-lang="zh">刚开始学编程的人，常常被复杂的导航、不清晰的课程结构和不统一的视觉样式困扰。</span><span data-lang="tw">剛開始學程式設計的人，常常被複雜的導覽、不清晰的課程結構和不統一的視覺樣式困擾。</span><span data-lang="ja">プログラミングを学び始めた人は、複雑なナビゲーション、わかりにくいレッスン構成、統一感のない見た目に苦労しがちです。</span><span data-lang="fr">Les débutants en programmation se heurtent souvent à une navigation complexe, à des leçons mal structurées et à des repères visuels incohérents.</span><span data-lang="de">Wer programmieren lernt, kämpft oft mit komplexer Navigation, unklaren Lektionsstrukturen und uneinheitlichen visuellen Mustern.</span></h2>
+      <p data-lang="en">The goal was a learning app that stays easy to move through, with a clear path from one topic to the next.</p>
+      <p data-lang="zh">目标是做一个用起来顺手的学习应用，让学习者始终清楚自己在哪、下一步该去哪。</p>
+      <p data-lang="tw">目標是做一個用起來順手的學習應用，讓學習者始終清楚自己在哪、下一步該去哪。</p>
+      <p data-lang="ja">目指したのは、迷わず使えて、次にどこへ進むかが常にはっきりしている学習アプリです。</p>
+      <p data-lang="fr">L’objectif : une application d’apprentissage simple à parcourir, avec un chemin clair d’un sujet au suivant.</p><p data-lang="de">Ziel war eine Lern-App, die leicht zu durchlaufen ist und einen klaren Weg von einem Thema zum nächsten bietet.</p>
 
-      <h2><span data-lang="en">Audience</span><span data-lang="zh">目标用户</span><span data-lang="tw">目標使用者</span><span data-lang="ja">対象ユーザー</span><span data-lang="fr">Public</span><span data-lang="de">Zielgruppe</span></h2>
+      <p class="sec-k"><span data-lang="en">Audience</span><span data-lang="zh">目标用户</span><span data-lang="tw">目標使用者</span><span data-lang="ja">対象ユーザー</span><span data-lang="fr">Public</span><span data-lang="de">Zielgruppe</span></p>
+      <h2><span data-lang="en">People new to programming who want structure and a clear sense of progress.</span><span data-lang="zh">刚接触编程、想要有条理的课程和清晰进度的人。</span><span data-lang="tw">剛接觸程式設計、想要有條理的課程和清晰進度的人。</span><span data-lang="ja">体系立った学習と、見える進捗を求めるプログラミング初心者。</span><span data-lang="fr">Des débutants en programmation en quête de structure et de progression claire.</span><span data-lang="de">Einsteiger, die Struktur und einen klaren Fortschritt suchen.</span></h2>
       <p data-lang="en">Adults and young learners new to programming, seeking structured lessons with clear progress tracking and easy navigation between topics and skill levels.</p>
       <p data-lang="zh">刚接触编程的成年人和青少年——他们希望课程有条理、进度清晰可见，并且能在不同主题和难度之间轻松切换。</p>
       <p data-lang="tw">剛接觸程式設計的成年人和青少年——他們希望課程有條理、進度清晰可見，並且能在不同主題和難度之間輕鬆切換。</p>
       <p data-lang="ja">プログラミングを始めたばかりの大人や若い学習者。体系立ったレッスン、わかりやすい進捗表示、トピックやレベル間の移動のしやすさを求めています。</p>
       <p data-lang="fr">Adultes et jeunes qui débutent en programmation, en quête de leçons structurées, d’un suivi de progression clair et d’une navigation simple entre sujets et niveaux.</p><p data-lang="de">Erwachsene und junge Lernende ohne Programmiererfahrung, die strukturierte Lektionen mit klarer Fortschrittsanzeige und einfacher Navigation zwischen Themen und Niveaus suchen.</p>
 
-      <h2><span data-lang="en">Goals</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目標</span><span data-lang="fr">Objectifs</span><span data-lang="de">Ziele</span></h2>
+      <p class="sec-k"><span data-lang="en">Goals</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目標</span><span data-lang="fr">Objectifs</span><span data-lang="de">Ziele</span></p>
+      <h2><span data-lang="en">A clear hierarchy, fast scanning, and consistent navigation on every device.</span><span data-lang="zh">清晰的层级、快速浏览，在各种设备上导航都一致。</span><span data-lang="tw">清晰的層級、快速瀏覽，在各種裝置上導覽都一致。</span><span data-lang="ja">明確な階層、すばやい流し読み、どの端末でも一貫したナビゲーション。</span><span data-lang="fr">Une hiérarchie claire, une lecture rapide et une navigation cohérente sur tous les appareils.</span><span data-lang="de">Eine klare Hierarchie, schnelles Überfliegen und einheitliche Navigation auf jedem Gerät.</span></h2>
       <ul data-lang="en">
         <li>Create a clear visual hierarchy that distinguishes courses, lessons, and content types.</li>
         <li>Enable quick scanning and resumption of lessons across devices.</li>
@@ -166,14 +174,16 @@
 <li>Kein Scroll-Jacking und keine eigenen Scrollbereiche – für bessere Barrierefreiheit.</li>
 <li>Nahtloses, responsives Verhalten nach dem Mobile-first-Prinzip.</li></ul>
 
-      <h2><span data-lang="en">Constraints</span><span data-lang="zh">限制条件</span><span data-lang="tw">限制條件</span><span data-lang="ja">制約</span><span data-lang="fr">Contraintes</span><span data-lang="de">Rahmenbedingungen</span></h2>
+      <p class="sec-k"><span data-lang="en">Constraints</span><span data-lang="zh">限制条件</span><span data-lang="tw">限制條件</span><span data-lang="ja">制約</span><span data-lang="fr">Contraintes</span><span data-lang="de">Rahmenbedingungen</span></p>
+      <h2><span data-lang="en">A static HTML/CSS prototype — no backend, no frameworks.</span><span data-lang="zh">一个静态的 HTML/CSS 原型——没有后端，也不用框架。</span><span data-lang="tw">一個靜態的 HTML/CSS 原型——沒有後端，也不用框架。</span><span data-lang="ja">静的な HTML/CSS のプロトタイプ。バックエンドもフレームワークもなし。</span><span data-lang="fr">Un prototype HTML/CSS statique — sans back-end ni framework.</span><span data-lang="de">Ein statischer HTML/CSS-Prototyp – ohne Backend, ohne Framework.</span></h2>
       <p data-lang="en">No backend or authentication system; fully static HTML/CSS prototype. All interactions must work without JavaScript frameworks, and navigation must feel natural on touch devices.</p>
       <p data-lang="zh">没有后端，也没有登录系统；完全是静态的 HTML/CSS 原型。所有交互都必须在不依赖 JavaScript 框架的情况下运行，导航在触屏设备上也要用起来自然。</p>
       <p data-lang="tw">沒有後端，也沒有登入系統；完全是靜態的 HTML/CSS 原型。所有互動都必須在不依賴 JavaScript 框架的情況下執行，導覽在觸控裝置上也要用起來自然。</p>
       <p data-lang="ja">バックエンドや認証の仕組みはなく、完全に静的な HTML/CSS のプロトタイプです。すべてのインタラクションは JavaScript フレームワークなしで動き、タッチ端末でも自然に操作できるナビゲーションである必要がありました。</p>
       <p data-lang="fr">Ni back-end ni authentification : un prototype HTML/CSS entièrement statique. Toutes les interactions devaient fonctionner sans framework JavaScript, et la navigation devait paraître naturelle sur écran tactile.</p><p data-lang="de">Kein Backend und keine Authentifizierung; ein rein statischer HTML/CSS-Prototyp. Alle Interaktionen mussten ohne JavaScript-Frameworks funktionieren, und die Navigation sollte sich auf Touch-Geräten natürlich anfühlen.</p>
 
-      <h2><span data-lang="en">Design Decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">設計上の判断</span><span data-lang="fr">Choix de conception</span><span data-lang="de">Designentscheidungen</span></h2>
+      <p class="sec-k"><span data-lang="en">Design Decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">設計上の判断</span><span data-lang="fr">Choix de conception</span><span data-lang="de">Designentscheidungen</span></p>
+      <h2><span data-lang="en">Card-based screens, hierarchical navigation, and a single-column mobile layout.</span><span data-lang="zh">卡片式界面、层级导航，以及单栏的手机布局。</span><span data-lang="tw">卡片式介面、層級導覽，以及單欄的手機佈局。</span><span data-lang="ja">カード型の画面、階層型ナビゲーション、1カラムのモバイルレイアウト。</span><span data-lang="fr">Des écrans en cartes, une navigation hiérarchique et une mise en page mobile sur une colonne.</span><span data-lang="de">Kartenbasierte Screens, hierarchische Navigation und ein einspaltiges Mobil-Layout.</span></h2>
       <ul data-lang="en">
         <li>Card-based interface with consistent spacing and visual weight across all screens.</li>
         <li>Hierarchical navigation: Home → Course → Lesson → Content, with clear back/up patterns.</li>
@@ -214,14 +224,16 @@
 <li>Ein einspaltiges Mobil-Layout, das sich ohne komplizierte Breakpoints natürlich stapelt.</li>
 <li>Fortschrittsanzeigen und Breadcrumbs, damit der Kontext erhalten bleibt.</li></ul>
 
-      <h2><span data-lang="en">Iteration / Versions (v10–v17)</span><span data-lang="zh">迭代 / 版本（v10–v17）</span><span data-lang="tw">迭代 / 版本（v10–v17）</span><span data-lang="ja">イテレーション / バージョン（v10–v17）</span><span data-lang="fr">Itérations / versions (v10–v17)</span><span data-lang="de">Iteration / Versionen (v10–v17)</span></h2>
+      <p class="sec-k"><span data-lang="en">Iteration / Versions (v10–v17)</span><span data-lang="zh">迭代 / 版本（v10–v17）</span><span data-lang="tw">迭代 / 版本（v10–v17）</span><span data-lang="ja">イテレーション / バージョン（v10–v17）</span><span data-lang="fr">Itérations / versions (v10–v17)</span><span data-lang="de">Iteration / Versionen (v10–v17)</span></p>
+      <h2><span data-lang="en">Seven versions (v10–v17), from navigation tests to a polished v17.</span><span data-lang="zh">七个版本（v10–v17），从导航测试一路打磨到 v17。</span><span data-lang="tw">七個版本（v10–v17），從導覽測試一路打磨到 v17。</span><span data-lang="ja">7 つのバージョン（v10–v17）。ナビゲーションの検証から、仕上げの v17 まで。</span><span data-lang="fr">Sept versions (v10–v17), des tests de navigation à une v17 peaufinée.</span><span data-lang="de">Sieben Versionen (v10–v17), von Navigationstests bis zur ausgefeilten v17.</span></h2>
       <p data-lang="en">Early versions (v10–v12) tested different navigation models and card sizes. Mid iterations (v13–v14, v16) refined spacing, typography scale, and interaction feedback. V17 is the final version with tightened mobile responsiveness and polished card hierarchy. A separate <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store presentation page</a> was created as a showcase for v17.</p>
       <p data-lang="zh">早期版本（v10–v12）测试了不同的导航模型和卡片尺寸。中期迭代（v13–v14、v16）打磨了间距、字号层级和交互反馈。V17 是最终版，进一步收紧了手机上的响应式表现，并完善了卡片层级。另外还为 v17 单独制作了一个 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 展示页</a>。</p>
       <p data-lang="tw">早期版本（v10–v12）測試了不同的導覽模型和卡片尺寸。中期迭代（v13–v14、v16）打磨了間距、字級層級和互動回饋。V17 是最終版，進一步收緊了手機上的響應式表現，並完善了卡片層級。另外還為 v17 單獨製作了一個 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 展示頁</a>。</p>
       <p data-lang="ja">初期のバージョン（v10–v12）では、さまざまなナビゲーションモデルとカードサイズを検証しました。中盤のイテレーション（v13–v14、v16）では、余白、文字サイズの階層、インタラクションのフィードバックを調整。V17 は最終版で、モバイルでのレスポンシブ表示を引き締め、カードの階層を仕上げました。v17 を紹介するために、別途 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 紹介ページ</a>も制作しました。</p>
       <p data-lang="fr">Les premières versions (v10–v12) testaient différents modèles de navigation et tailles de cartes. Les itérations intermédiaires (v13–v14, v16) ont affiné les espacements, l’échelle typographique et les retours d’interaction. La V17 est la version finale, avec un responsive mobile resserré et une hiérarchie de cartes peaufinée. Une <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">page de présentation App Store</a> distincte a été créée pour mettre la v17 en valeur.</p><p data-lang="de">Frühe Versionen (v10–v12) testeten verschiedene Navigationsmodelle und Kartengrößen. Mittlere Iterationen (v13–v14, v16) verfeinerten Abstände, Schriftgrößen und Interaktions-Feedback. V17 ist die finale Version mit strafferem mobilen Verhalten und ausgefeilter Kartenhierarchie. Eine eigene <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App-Store-Präsentationsseite</a> entstand als Schaufenster für v17.</p>
 
-      <h2><span data-lang="en">Testing &amp; Validation</span><span data-lang="zh">测试与验证</span><span data-lang="tw">測試與驗證</span><span data-lang="ja">テストと検証</span><span data-lang="fr">Tests et validation</span><span data-lang="de">Tests &amp; Validierung</span></h2>
+      <p class="sec-k"><span data-lang="en">Testing &amp; Validation</span><span data-lang="zh">测试与验证</span><span data-lang="tw">測試與驗證</span><span data-lang="ja">テストと検証</span><span data-lang="fr">Tests et validation</span><span data-lang="de">Tests &amp; Validierung</span></p>
+      <h2><span data-lang="en">Tested with beginners — a visible back button beat the hamburger menu.</span><span data-lang="zh">和初学者一起测试——看得见的“返回”比汉堡菜单更受欢迎。</span><span data-lang="tw">和初學者一起測試——看得見的「返回」比漢堡選單更受歡迎。</span><span data-lang="ja">初心者とテスト。目に見える「戻る」がハンバーガーメニューより好まれました。</span><span data-lang="fr">Testé avec des débutants — un bouton « retour » visible a battu le menu hamburger.</span><span data-lang="de">Mit Einsteigern getestet – ein sichtbarer „Zurück“-Button schlug das Hamburger-Menü.</span></h2>
       <ul data-lang="en">
         <li>Tested with beginner users unfamiliar with coding platforms.</li>
         <li>Observed navigation patterns: users preferred visible "back" over hamburger menus.</li>
@@ -256,7 +268,8 @@
 <li>Größe der Touch-Ziele und Scrollverhalten auf Mobilgeräten überprüft.</li>
 <li>Bestätigt, dass die Lektionskarten schnelles Überfliegen und Auswählen unterstützen.</li></ul>
 
-      <h2><span data-lang="en">Outcome + Next Steps</span><span data-lang="zh">成果与下一步</span><span data-lang="tw">成果與下一步</span><span data-lang="ja">成果と次のステップ</span><span data-lang="fr">Résultats et suites</span><span data-lang="de">Ergebnis + nächste Schritte</span></h2>
+      <p class="sec-k"><span data-lang="en">Outcome + Next Steps</span><span data-lang="zh">成果与下一步</span><span data-lang="tw">成果與下一步</span><span data-lang="ja">成果と次のステップ</span><span data-lang="fr">Résultats et suites</span><span data-lang="de">Ergebnis + nächste Schritte</span></p>
+      <h2><span data-lang="en">A clearer, more confident way through lessons — with search and accounts to come.</span><span data-lang="zh">用户在课程里更有把握、更顺畅——接下来还会加入搜索和账户。</span><span data-lang="tw">使用者在課程裡更有把握、更順暢——接下來還會加入搜尋和帳戶。</span><span data-lang="ja">レッスンを迷わず進めるように。次は検索やアカウントを追加予定。</span><span data-lang="fr">Un parcours plus clair et plus assuré dans les leçons — recherche et comptes à venir.</span><span data-lang="de">Ein klarerer, sichererer Weg durch die Lektionen – Suche und Konten folgen.</span></h2>
       <p data-lang="en">The v17 prototype demonstrates a scalable, accessible learning structure. Feedback indicated improved confidence in navigation and lesson discovery. Future work includes adding search/filter functionality, user accounts for progress tracking, and interactive code editors within lessons.</p>
       <p data-lang="zh">v17 原型展示了一套可扩展、无障碍的学习结构。反馈显示，用户在导航和寻找课时时更有把握了。后续计划加入搜索 / 筛选功能、用于记录进度的用户账户，以及嵌在课时里的交互式代码编辑器。</p>
       <p data-lang="tw">v17 原型展示了一套可擴充、無障礙的學習結構。回饋顯示，使用者在導覽和尋找單元時更有把握了。後續計劃加入搜尋 / 篩選功能、用於記錄進度的使用者帳戶，以及嵌在單元裡的互動式程式碼編輯器。</p>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Information Graphics — Yiyang Zhang</title>
+  <meta name="description" content="Information Graphics — 77 years of Toronto temperature records as a six-chart Tableau story about winter warming, and one 53.8 km bike ride turned into a sensory journey map of Vancouver."/>
+  <link rel="canonical" href="https://antirender.github.io/work/infoviz.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:site_name" content="Yiyang Zhang"/>
+  <meta property="og:title" content="Information Graphics — Yiyang Zhang"/>
+  <meta property="og:description" content="Information Graphics — 77 years of Toronto temperature records as a six-chart Tableau story about winter warming, and one 53.8 km bike ride turned into a sensory journey map of Vancouver."/>
+  <meta property="og:url" content="https://antirender.github.io/work/infoviz.html"/>
+  <meta property="og:image" content="https://antirender.github.io/work/infoviz/og.jpg"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="preload" href="../assets/fonts/inter/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/fonts/inter/inter.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Language blocks: one copy per language shows (EN / 简中 / 繁中 / 日本語 / FR) */
+    html:not([lang="zh-Hans"]) [data-lang="zh"], html:not([lang="zh-Hant"]) [data-lang="tw"],
+    html:not([lang="ja"]) [data-lang="ja"], html:not([lang="fr"]) [data-lang="fr"],
+    html[lang="zh-Hans"] [data-lang="en"], html[lang="zh-Hant"] [data-lang="en"],
+    html[lang="ja"] [data-lang="en"], html[lang="fr"] [data-lang="en"]{display:none!important}
+    /* DE: a [data-lang="de"] twin replaces the English one; pages without German copy keep English */
+    html:not([lang="de"]) [data-lang="de"]{display:none!important}
+    html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
+    .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
+    .phase-label--p1{background:#dbeafe;color:#1e40af}
+    .phase-label--p2{background:#fef3c7;color:#92400e}
+    .phase-label--p3{background:#d1fae5;color:#065f46}
+    .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1rem;margin:1rem 0 1.75rem;align-items:start}
+    .shots--wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+    .shots figure{margin:0}
+    .shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border)}
+    .shots figcaption{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.45}
+    .shots--narrow{max-width:540px;grid-template-columns:1fr}
+    .shots--phones{grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px}
+    .cmp{width:100%;border-collapse:collapse;margin:1rem 0 1.5rem;font-size:.92rem;line-height:1.5}
+    .cmp th,.cmp td{text-align:left;vertical-align:top;padding:.65rem .7rem;border-bottom:1px solid var(--border)}
+    .cmp th{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+    .cmp td:first-child{font-weight:700;white-space:nowrap}
+    @media(max-width:640px){
+      .cmp thead{display:none}
+      .cmp tr{display:block;padding:.7rem 0;border-bottom:1px solid var(--border)}
+      .cmp td{display:block;border:0;padding:.12rem 0}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">Yiyang Zhang <small>Interaction Design</small></a>
+      <nav class="primary" aria-label="Primary">
+        <ul>
+          <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
+          <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-tools">
+        <select class="lang-sel" aria-label="Language">
+          <option value="en">EN</option>
+          <option value="zh-CN">简中</option>
+          <option value="zh-TW">繁中</option>
+          <option value="ja">日本語</option>
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+        </select>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">☾</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
+
+    <div class="project-hero">
+      <span class="eyebrow"><span data-lang="en">Case Study · Information design · 2025</span><span data-lang="zh">案例研究 · 信息设计 · 2025</span><span data-lang="tw">案例研究 · 資訊設計 · 2025</span><span data-lang="ja">ケーススタディ · 情報デザイン · 2025</span><span data-lang="fr">Étude de cas · Design d’information · 2025</span><span data-lang="de">Fallstudie · Informationsdesign · 2025</span></span>
+      <h1><span data-lang="en">Information Graphics — Toronto’s warming winters and the pulse of Vancouver</span><span data-lang="zh">信息图表 — 多伦多变暖的冬天与温哥华的脉搏</span><span data-lang="tw">資訊圖表 — 多倫多變暖的冬天與溫哥華的脈搏</span><span data-lang="ja">インフォメーション・グラフィックス — 暖かくなるトロントの冬とバンクーバーの鼓動</span><span data-lang="fr">Infographies — les hivers de Toronto qui se réchauffent et le pouls de Vancouver</span><span data-lang="de">Informationsgrafiken — Torontos wärmer werdende Winter und der Puls von Vancouver</span></h1>
+      <p data-lang="en">Two information graphics built from very different data. The first turns 77 years of Toronto temperature records into a six-chart argument about local warming for city planners. The second turns one 53.8 km bike ride — heart rate, route, and what I heard, smelled and felt along the way — into a map of how Vancouver feels. Same discipline from opposite ends: statistical rigour in one, qualitative encoding in the other.</p>
+      <p data-lang="zh">两张数据来源截然不同的信息图。第一张把多伦多 77 年的气温记录，变成写给城市规划者的六图论证，说明本地正在变暖。第二张把一次 53.8 公里的骑行——心率、路线，以及一路上听到、闻到、感受到的东西——变成一张描绘温哥华“感觉”的地图。同一门手艺的两端：一边是统计上的严谨，一边是定性的视觉编码。</p>
+      <p data-lang="tw">兩張資料來源截然不同的資訊圖。第一張把多倫多 77 年的氣溫紀錄，變成寫給城市規劃者的六圖論證，說明本地正在變暖。第二張把一次 53.8 公里的騎行——心率、路線，以及一路上聽到、聞到、感受到的東西——變成一張描繪溫哥華「感覺」的地圖。同一門手藝的兩端：一邊是統計上的嚴謹，一邊是定性的視覺編碼。</p>
+      <p data-lang="ja">まったく異なるデータから作った 2 つのインフォメーション・グラフィックス。1 つ目は、トロントの 77 年分の気温記録を、都市計画の担当者に向けた「地元の温暖化」を示す 6 枚のチャートの論証に。2 つ目は、53.8 km の 1 回のサイクリング（心拍、ルート、途中で聞いたもの・匂い・感じたこと）を、バンクーバーの「感じ」を描く地図に。同じ技法の両端です。一方は統計的な厳密さ、もう一方は定性的なエンコーディング。</p>
+      <p data-lang="fr">Deux infographies tirées de données très différentes. La première transforme 77 ans de relevés de température à Toronto en un argument en six graphiques sur le réchauffement local, destiné aux urbanistes. La seconde transforme une seule sortie à vélo de 53,8 km — fréquence cardiaque, itinéraire, et ce que j’ai entendu, senti et ressenti en chemin — en une carte de ce que l’on ressent à Vancouver. Une même discipline, par ses deux extrémités : la rigueur statistique d’un côté, l’encodage qualitatif de l’autre.</p>
+      <p data-lang="de">Zwei Informationsgrafiken aus sehr unterschiedlichen Daten. Die erste macht aus 77 Jahren Temperaturaufzeichnungen in Toronto eine Argumentation in sechs Diagrammen über die lokale Erwärmung – für Stadtplaner. Die zweite macht aus einer einzigen Radtour von 53,8 km – Herzfrequenz, Route und das, was ich unterwegs gehört, gerochen und gefühlt habe – eine Karte davon, wie sich Vancouver anfühlt. Dieselbe Disziplin von zwei Enden: statistische Strenge auf der einen, qualitative Kodierung auf der anderen Seite.</p>
+      <div class="meta">
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></strong> <span data-lang="en">Solo — research, data cleaning, chart design, layout</span><span data-lang="zh">独立完成 — 研究、数据清洗、图表设计、版式</span><span data-lang="tw">獨立完成 — 研究、資料清理、圖表設計、版面</span><span data-lang="ja">個人制作 — リサーチ、データクリーニング、チャート設計、レイアウト</span><span data-lang="fr">Seul — recherche, nettoyage des données, conception des graphiques, mise en page</span><span data-lang="de">Allein — Recherche, Datenbereinigung, Diagrammgestaltung, Layout</span></span>
+        <span><strong><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span><span data-lang="de">Werkzeuge</span></strong> Tableau · Python (pandas) · Apple Health · GPX</span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></strong> <span data-lang="en">A six-chart Tableau story · a narrative ride map</span><span data-lang="zh">一组六图的 Tableau 叙事 · 一张叙事骑行地图</span><span data-lang="tw">一組六圖的 Tableau 敘事 · 一張敘事騎行地圖</span><span data-lang="ja">6 枚のチャートによる Tableau のストーリー · 物語のある走行マップ</span><span data-lang="fr">Un récit Tableau en six graphiques · une carte narrative de sortie à vélo</span><span data-lang="de">Eine Tableau-Geschichte in sechs Diagrammen · eine erzählende Tourenkarte</span></span>
+      </div>
+    </div>
+
+    <div class="content">
+      <img class="cover-img" src="infoviz/card-1600.webp" alt="The two graphics side by side: Toronto’s winter-warming scatter and the Pulse of Vancouver journey map" data-alt-zh="两张信息图并排：多伦多冬季变暖散点图与“温哥华的脉搏”旅程地图" data-alt-tw="兩張資訊圖並排：多倫多冬季變暖散佈圖與「溫哥華的脈搏」旅程地圖" data-alt-ja="2 つのグラフィックを並べて：トロントの冬の温暖化を示す散布図と「バンクーバーの鼓動」の旅の地図" data-alt-fr="Les deux infographies côte à côte : le nuage de points du réchauffement hivernal à Toronto et la carte de voyage du Pouls de Vancouver" data-alt-de="Beide Grafiken nebeneinander: das Streudiagramm zur Wintererwärmung in Toronto und die Reisekarte „Pulse of Vancouver“" width="1600" height="1000">
+
+      <div class="tldr">
+        <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span><span data-lang="de">Auf einen Blick</span></h2>
+        <dl>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span><span data-lang="de">Problem</span></dt><dd><span data-lang="en">Two briefs: make quantitative climate data persuasive to people who don’t read statistics, and make a personal experience readable as data.</span><span data-lang="zh">两个命题：让不懂统计的人也能被定量的气候数据说服；让一段个人经历能像数据一样被读懂。</span><span data-lang="tw">兩個命題：讓不懂統計的人也能被定量的氣候資料說服；讓一段個人經歷能像資料一樣被讀懂。</span><span data-lang="ja">2 つの課題：統計に慣れていない人にも定量的な気候データで納得してもらうこと。そして個人の体験をデータとして読めるようにすること。</span><span data-lang="fr">Deux sujets : rendre des données climatiques quantitatives convaincantes pour des gens qui ne lisent pas les statistiques, et rendre une expérience personnelle lisible comme des données.</span><span data-lang="de">Zwei Aufgaben: quantitative Klimadaten für Menschen überzeugend machen, die keine Statistik lesen, und eine persönliche Erfahrung als Daten lesbar machen.</span></dd></div>
+          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></dt><dd><span data-lang="en">Solo: data collection and cleaning, chart-type studies, Tableau dashboards, layout and the narrative map.</span><span data-lang="zh">独立完成：数据收集与清洗、图表类型研究、Tableau 仪表板、版式，以及叙事地图。</span><span data-lang="tw">獨立完成：資料蒐集與清理、圖表類型研究、Tableau 儀表板、版面，以及敘事地圖。</span><span data-lang="ja">個人制作：データの収集とクリーニング、チャート形式の検討、Tableau のダッシュボード、レイアウト、物語のある地図。</span><span data-lang="fr">Seul : collecte et nettoyage des données, études de types de graphiques, tableaux de bord Tableau, mise en page et carte narrative.</span><span data-lang="de">Allein: Datenerhebung und -bereinigung, Studien zu Diagrammtypen, Tableau-Dashboards, Layout und die erzählende Karte.</span></dd></div>
+          <div><dt><span data-lang="en">Data</span><span data-lang="zh">数据</span><span data-lang="tw">資料</span><span data-lang="ja">データ</span><span data-lang="fr">Données</span><span data-lang="de">Daten</span></dt><dd><span data-lang="en">Environment and Climate Change Canada monthly means for Toronto Pearson, 1937–2013 (918 months), plus hourly readings from September 2025; Apple Watch heart rate, a GPX route and field notes from one ride.</span><span data-lang="zh">加拿大环境与气候变化部的多伦多皮尔逊机场月均气温，1937–2013 年（918 个月），以及 2025 年 9 月的逐时数据；一次骑行的 Apple Watch 心率、GPX 路线和沿途笔记。</span><span data-lang="tw">加拿大環境與氣候變遷部的多倫多皮爾遜機場月均氣溫，1937–2013 年（918 個月），以及 2025 年 9 月的逐時資料；一次騎行的 Apple Watch 心率、GPX 路線和沿途筆記。</span><span data-lang="ja">カナダ環境・気候変動省によるトロント・ピアソン空港の月平均気温（1937〜2013 年、918 か月分）と 2025 年 9 月の毎時データ。1 回の走行の Apple Watch の心拍、GPX のルート、現地でのメモ。</span><span data-lang="fr">Moyennes mensuelles d’Environnement et Changement climatique Canada pour Toronto Pearson, 1937–2013 (918 mois), plus des relevés horaires de septembre 2025 ; fréquence cardiaque Apple Watch, trace GPX et notes de terrain d’une sortie.</span><span data-lang="de">Monatsmittel von Environment and Climate Change Canada für Toronto Pearson, 1937–2013 (918 Monate), dazu stündliche Werte aus September 2025; Herzfrequenz der Apple Watch, eine GPX-Route und Feldnotizen einer Tour.</span></dd></div>
+          <div><dt><span data-lang="en">Methods</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">手法</span><span data-lang="fr">Méthodes</span><span data-lang="de">Methoden</span></dt><dd><span data-lang="en">Anomaly against a 1937–1966 baseline, a 12-month rolling mean, decade box plots and seasonal trend lines; size, colour and arc encodings for sensory data.</span><span data-lang="zh">相对 1937–1966 年基线的距平、12 个月滚动平均、按年代的箱线图和季节趋势线；用大小、颜色和弧线编码感官数据。</span><span data-lang="tw">相對 1937–1966 年基準的距平、12 個月移動平均、依年代的箱形圖和季節趨勢線；用大小、顏色和弧線編碼感官資料。</span><span data-lang="ja">1937〜1966 年の基準値に対する偏差、12 か月移動平均、年代別の箱ひげ図、季節ごとのトレンドライン。感覚のデータには大きさ・色・弧のエンコーディング。</span><span data-lang="fr">Écart à une référence 1937–1966, moyenne mobile sur 12 mois, boîtes à moustaches par décennie et droites de tendance saisonnières ; encodages par taille, couleur et arcs pour les données sensorielles.</span><span data-lang="de">Abweichung von einer Basis 1937–1966, gleitender 12-Monats-Mittelwert, Boxplots nach Jahrzehnten und saisonale Trendlinien; Größe, Farbe und Bögen als Kodierung für Sinnesdaten.</span></dd></div>
+          <div><dt><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></dt><dd><span data-lang="en">A six-chart question-and-answer story with an hourly humidity extension, and a circular journey map with an encoding guide and journey statistics.</span><span data-lang="zh">一组以问答方式组织的六图叙事，外加逐时湿度的延伸研究；以及一张带编码说明和行程统计的环形旅程地图。</span><span data-lang="tw">一組以問答方式組織的六圖敘事，外加逐時濕度的延伸研究；以及一張帶編碼說明和行程統計的環形旅程地圖。</span><span data-lang="ja">問いと答えで構成した 6 枚のチャートのストーリーと、毎時の湿度を扱う延長調査。そして凡例と走行データ付きの円形の旅の地図。</span><span data-lang="fr">Un récit en six graphiques sous forme de questions-réponses, avec une extension horaire sur l’humidité, et une carte de voyage circulaire avec guide de lecture et statistiques du trajet.</span><span data-lang="de">Eine Geschichte aus sechs Diagrammen in Frage-und-Antwort-Form mit einer stündlichen Erweiterung zur Luftfeuchte und eine kreisförmige Reisekarte mit Legende und Tourstatistik.</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p1"><span data-lang="en">Part 1 — Quantitative data</span><span data-lang="zh">第一部分 — 定量数据</span><span data-lang="tw">第一部分 — 定量資料</span><span data-lang="ja">パート 1 — 定量データ</span><span data-lang="fr">Partie 1 — Données quantitatives</span><span data-lang="de">Teil 1 — Quantitative Daten</span></span>
+      <h2><span data-lang="en">Toronto 1937–2013: local evidence of global warming</span><span data-lang="zh">多伦多 1937–2013：全球变暖的本地证据</span><span data-lang="tw">多倫多 1937–2013：全球暖化的在地證據</span><span data-lang="ja">トロント 1937〜2013：地球温暖化の地元の証拠</span><span data-lang="fr">Toronto 1937–2013 : preuves locales du réchauffement climatique</span><span data-lang="de">Toronto 1937–2013: lokale Belege der Erderwärmung</span></h2>
+        <p data-lang="en">Has Toronto warmed significantly since 1937, and which months or seasons drive it? The aim was to connect the global climate story to evidence people can check about their own city.</p>
+        <p data-lang="zh">自 1937 年以来，多伦多是否显著变暖？是哪几个月、哪个季节在推动变暖？目标是把全球气候变化的叙事，和人们能在自己城市里核实的证据连接起来。</p>
+        <p data-lang="tw">自 1937 年以來，多倫多是否顯著變暖？是哪幾個月、哪個季節在推動變暖？目標是把全球氣候變遷的敘事，和人們能在自己城市裡核實的證據連接起來。</p>
+        <p data-lang="ja">1937 年以降、トロントは有意に暖かくなったのか。どの月、どの季節がそれを押し上げているのか。地球規模の気候の物語を、自分の街について確かめられる証拠につなげることが目的でした。</p>
+        <p data-lang="fr">Toronto s’est-elle nettement réchauffée depuis 1937, et quels mois ou quelles saisons en sont responsables ? L’objectif : relier le récit climatique mondial à des preuves que chacun peut vérifier sur sa propre ville.</p>
+        <p data-lang="de">Hat sich Toronto seit 1937 deutlich erwärmt, und welche Monate oder Jahreszeiten treiben das an? Ziel war, die globale Klimageschichte mit Belegen zu verbinden, die man für die eigene Stadt überprüfen kann.</p>
+        <h3><span data-lang="en">Audience</span><span data-lang="zh">受众</span><span data-lang="tw">受眾</span><span data-lang="ja">対象</span><span data-lang="fr">Public</span><span data-lang="de">Zielgruppe</span></h3>
+        <p data-lang="en">Municipal planners, sustainability officers and design students. They understand climate change but not anomalies or rolling averages, and they need fast, defensible answers — is winter warming, and which month most? — because the answer feeds snow-clearing schedules, salt budgets, heating forecasts and infrastructure planning.</p>
+        <p data-lang="zh">市政规划人员、可持续发展专员和设计专业的学生。他们了解气候变化，却不熟悉“距平”或“滚动平均”这类统计概念；他们需要快速、站得住脚的答案——冬天是否在变暖，哪个月最明显？——因为这个答案会影响扫雪排班、融雪盐预算、供暖预测和基础设施规划。</p>
+        <p data-lang="tw">市政規劃人員、永續發展專員和設計系學生。他們了解氣候變遷，卻不熟悉「距平」或「移動平均」這類統計概念；他們需要快速、站得住腳的答案——冬天是否在變暖，哪個月最明顯？——因為這個答案會影響剷雪排班、融雪鹽預算、供暖預測和基礎設施規劃。</p>
+        <p data-lang="ja">自治体の都市計画担当者、サステナビリティ担当者、デザインを学ぶ学生。気候変動は理解していても、偏差や移動平均には慣れていません。必要なのは、すばやく根拠のある答え（冬は暖かくなっているのか、いちばん顕著なのはどの月か）です。その答えが除雪のスケジュール、融雪剤の予算、暖房需要の予測、インフラ計画に使われるからです。</p>
+        <p data-lang="fr">Urbanistes municipaux, responsables du développement durable et étudiants en design. Ils comprennent le changement climatique mais pas les anomalies ni les moyennes mobiles, et il leur faut des réponses rapides et défendables — l’hiver se réchauffe-t-il, et quel mois surtout ? — car elles orientent le déneigement, les budgets de sel, les prévisions de chauffage et la planification des infrastructures.</p>
+        <p data-lang="de">Kommunale Planer, Nachhaltigkeitsbeauftragte und Designstudierende. Sie verstehen den Klimawandel, aber keine Anomalien oder gleitenden Mittelwerte, und brauchen schnelle, belastbare Antworten – wird der Winter wärmer, und welcher Monat am stärksten? –, denn davon hängen Räumpläne, Streusalzbudgets, Heizprognosen und Infrastrukturplanung ab.</p>
+        <h3><span data-lang="en">Data and method</span><span data-lang="zh">数据与方法</span><span data-lang="tw">資料與方法</span><span data-lang="ja">データと手法</span><span data-lang="fr">Données et méthode</span><span data-lang="de">Daten und Methode</span></h3>
+        <p data-lang="en">Monthly means from Environment and Climate Change Canada’s Toronto Lester B. Pearson station — 918 months from 1937 to 2013. In Python (pandas) I cleaned the CSV, computed a 1937–1966 baseline for each calendar month, and derived the anomaly and a 12-month rolling mean before building the views in Tableau.</p>
+        <p data-lang="zh">数据来自加拿大环境与气候变化部多伦多莱斯特·B·皮尔逊机场站的月均气温，1937 到 2013 年共 918 个月。我先用 Python（pandas）清洗 CSV，为每个月份计算 1937–1966 年的基线，再算出距平和 12 个月滚动平均，然后在 Tableau 里制作图表。</p>
+        <p data-lang="tw">資料來自加拿大環境與氣候變遷部多倫多萊斯特·B·皮爾遜機場站的月均氣溫，1937 到 2013 年共 918 個月。我先用 Python（pandas）清理 CSV，為每個月份計算 1937–1966 年的基準，再算出距平和 12 個月移動平均，然後在 Tableau 裡製作圖表。</p>
+        <p data-lang="ja">カナダ環境・気候変動省のトロント・レスター B. ピアソン空港観測所の月平均気温、1937〜2013 年の 918 か月分。Python（pandas）で CSV を整え、月ごとに 1937〜1966 年の基準値を計算し、偏差と 12 か月移動平均を出してから、Tableau でビューを作りました。</p>
+        <p data-lang="fr">Moyennes mensuelles de la station Toronto Lester B. Pearson d’Environnement et Changement climatique Canada — 918 mois de 1937 à 2013. En Python (pandas), j’ai nettoyé le CSV, calculé une référence 1937–1966 pour chaque mois, puis l’anomalie et une moyenne mobile sur 12 mois, avant de construire les vues dans Tableau.</p>
+        <p data-lang="de">Monatsmittel der Station Toronto Lester B. Pearson von Environment and Climate Change Canada – 918 Monate von 1937 bis 2013. In Python (pandas) habe ich die CSV bereinigt, für jeden Kalendermonat eine Basis 1937–1966 berechnet und daraus Anomalie und gleitenden 12-Monats-Mittelwert abgeleitet, bevor ich die Ansichten in Tableau gebaut habe.</p>
+        <h3><span data-lang="en">Choosing the chart</span><span data-lang="zh">选择图表</span><span data-lang="tw">選擇圖表</span><span data-lang="ja">チャートを選ぶ</span><span data-lang="fr">Choisir le graphique</span><span data-lang="de">Das Diagramm wählen</span></h3>
+        <p data-lang="en">I tried five forms before committing. A line chart shows trend but hides variability; an area chart confuses with overlap; a box-by-hour plot is too statistical for lay readers; a heat strip is compact but abstract. The scatter plot gave the best balance of truth to the data and clarity. Earlier 3D and radial experiments looked striking but made comparison harder, so I set them aside.</p>
+        <p data-lang="zh">定稿前我试了五种形式。折线图能显示趋势，却会掩盖波动；面积图的重叠让人困惑；按小时的箱线图对普通读者来说太统计化；热力条紧凑但抽象。散点图在“忠于数据”和“清晰”之间取得了最好的平衡。更早的 3D 和径向实验看起来很抢眼，却让比较变得更难，所以被我放弃了。</p>
+        <p data-lang="tw">定稿前我試了五種形式。折線圖能顯示趨勢，卻會掩蓋波動；面積圖的重疊讓人困惑；依小時的箱形圖對一般讀者來說太統計化；熱力條緊湊但抽象。散佈圖在「忠於資料」和「清晰」之間取得了最好的平衡。更早的 3D 和放射狀實驗看起來很搶眼，卻讓比較變得更難，所以被我放棄了。</p>
+        <p data-lang="ja">決める前に 5 つの形を試しました。折れ線はトレンドを示すがばらつきを隠す。面グラフは重なりが紛らわしい。時間別の箱ひげ図は一般の読み手には統計的すぎる。ヒートストリップはコンパクトだが抽象的。散布図が、データへの忠実さと分かりやすさのバランスでいちばん優れていました。それ以前の 3D や放射状の実験は目を引くものの比較を難しくしたので、見送りました。</p>
+        <p data-lang="fr">J’ai essayé cinq formes avant de trancher. La courbe montre la tendance mais masque la variabilité ; l’aire empilée embrouille par ses chevauchements ; la boîte à moustaches par heure est trop statistique pour le grand public ; la bande de chaleur est compacte mais abstraite. Le nuage de points offrait le meilleur équilibre entre fidélité aux données et clarté. Des essais antérieurs en 3D et en radial étaient spectaculaires mais compliquaient la comparaison ; je les ai écartés.</p>
+        <p data-lang="de">Vor der Entscheidung habe ich fünf Formen ausprobiert. Ein Liniendiagramm zeigt den Trend, verbirgt aber die Streuung; ein Flächendiagramm verwirrt durch Überlappungen; ein Boxplot nach Stunden ist für Laien zu statistisch; ein Heatstrip ist kompakt, aber abstrakt. Das Streudiagramm bot die beste Balance aus Datentreue und Klarheit. Frühere 3D- und Radial-Experimente wirkten spektakulär, erschwerten aber den Vergleich, also habe ich sie verworfen.</p>
+        <div class="shots shots--wide">
+          <figure><img src="infoviz/t-explore.webp" alt="Five chart types tested: line, area, box-by-hour, heat strip and scatter plot" data-alt-zh="测试过的五种图表：折线图、面积图、按小时箱线图、热力条和散点图" data-alt-tw="測試過的五種圖表：折線圖、面積圖、依小時箱形圖、熱力條和散佈圖" data-alt-ja="試した 5 種類のチャート：折れ線、面グラフ、時間別の箱ひげ図、ヒートストリップ、散布図" data-alt-fr="Cinq types de graphiques testés : courbe, aire, boîte par heure, bande de chaleur et nuage de points" data-alt-de="Fünf getestete Diagrammtypen: Linie, Fläche, Boxplot nach Stunde, Heatstrip und Streudiagramm" width="1600" height="340" loading="lazy"><figcaption><span data-lang="en">Five chart types tested: line, area, box-by-hour, heat strip and scatter plot</span><span data-lang="zh">测试过的五种图表：折线图、面积图、按小时箱线图、热力条和散点图</span><span data-lang="tw">測試過的五種圖表：折線圖、面積圖、依小時箱形圖、熱力條和散佈圖</span><span data-lang="ja">試した 5 種類のチャート：折れ線、面グラフ、時間別の箱ひげ図、ヒートストリップ、散布図</span><span data-lang="fr">Cinq types de graphiques testés : courbe, aire, boîte par heure, bande de chaleur et nuage de points</span><span data-lang="de">Fünf getestete Diagrammtypen: Linie, Fläche, Boxplot nach Stunde, Heatstrip und Streudiagramm</span></figcaption></figure>
+        </div>
+        <div class="shots shots--wide">
+          <figure><img src="infoviz/t-x3d.webp" alt="Set aside: a 3D scatter of temperature, humidity and wind" data-alt-zh="被放弃的方案：温度、湿度和风速的 3D 散点图" data-alt-tw="被放棄的方案：溫度、濕度和風速的 3D 散佈圖" data-alt-ja="見送った案：気温・湿度・風速の 3D 散布図" data-alt-fr="Écarté : un nuage 3D de température, d’humidité et de vent" data-alt-de="Verworfen: ein 3D-Streudiagramm aus Temperatur, Luftfeuchte und Wind" width="1102" height="880" loading="lazy"><figcaption><span data-lang="en">Set aside: a 3D scatter of temperature, humidity and wind</span><span data-lang="zh">被放弃的方案：温度、湿度和风速的 3D 散点图</span><span data-lang="tw">被放棄的方案：溫度、濕度和風速的 3D 散佈圖</span><span data-lang="ja">見送った案：気温・湿度・風速の 3D 散布図</span><span data-lang="fr">Écarté : un nuage 3D de température, d’humidité et de vent</span><span data-lang="de">Verworfen: ein 3D-Streudiagramm aus Temperatur, Luftfeuchte und Wind</span></figcaption></figure>
+          <figure><img src="infoviz/t-xradial.webp" alt="Set aside: a radial hour-by-day plot of temperature and humidity" data-alt-zh="被放弃的方案：按日与小时排列的温湿度径向图" data-alt-tw="被放棄的方案：依日與小時排列的溫濕度放射圖" data-alt-ja="見送った案：日と時間で並べた気温と湿度の放射状プロット" data-alt-fr="Écarté : un tracé radial heure × jour de la température et de l’humidité" data-alt-de="Verworfen: ein radiales Stunden-Tage-Diagramm zu Temperatur und Luftfeuchte" width="1481" height="994" loading="lazy"><figcaption><span data-lang="en">Set aside: a radial hour-by-day plot of temperature and humidity</span><span data-lang="zh">被放弃的方案：按日与小时排列的温湿度径向图</span><span data-lang="tw">被放棄的方案：依日與小時排列的溫濕度放射圖</span><span data-lang="ja">見送った案：日と時間で並べた気温と湿度の放射状プロット</span><span data-lang="fr">Écarté : un tracé radial heure × jour de la température et de l’humidité</span><span data-lang="de">Verworfen: ein radiales Stunden-Tage-Diagramm zu Temperatur und Luftfeuchte</span></figcaption></figure>
+        </div>
+        <h3><span data-lang="en">Design rules</span><span data-lang="zh">设计规则</span><span data-lang="tw">設計規則</span><span data-lang="ja">デザインのルール</span><span data-lang="fr">Règles de design</span><span data-lang="de">Gestaltungsregeln</span></h3>
+        <ul data-lang="en">
+          <li><strong>One y measure.</strong> Every chart plots the anomaly against the 1937–1966 baseline, so six views compare at a glance.</li>
+          <li><strong>y = 0 °C as an anchor,</strong> with a one-line subtitle that defines “temperature anomaly”.</li>
+          <li><strong>A question and a one-sentence answer</strong> as each chart’s title, guiding readers from pattern to inference.</li>
+          <li><strong>Honest emphasis:</strong> extremes labelled, a colour-blind-safe ColorBrewer palette, non-winter months muted where winter is the subject, and a method line (station, baseline, export) on every view.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>只用一个 y 轴度量。</strong>每张图都画相对 1937–1966 年基线的距平，六个视图一眼就能互相比较。</li>
+          <li><strong>以 y = 0 °C 为锚点，</strong>并用一行副标题解释什么是“气温距平”。</li>
+          <li><strong>每张图的标题都是一个问题加一句话的答案，</strong>引导读者从看到规律走到得出结论。</li>
+          <li><strong>诚实的强调：</strong>标出极端值；使用色盲友好的 ColorBrewer 配色；在讨论冬季时把非冬季月份调淡；每个视图都附一行方法说明（站点、基线、导出规格）。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>只用一個 y 軸度量。</strong>每張圖都畫相對 1937–1966 年基準的距平，六個檢視一眼就能互相比較。</li>
+          <li><strong>以 y = 0 °C 為錨點，</strong>並用一行副標題解釋什麼是「氣溫距平」。</li>
+          <li><strong>每張圖的標題都是一個問題加一句話的答案，</strong>引導讀者從看到規律走到得出結論。</li>
+          <li><strong>誠實的強調：</strong>標出極端值；使用色盲友善的 ColorBrewer 配色；在討論冬季時把非冬季月份調淡；每個檢視都附一行方法說明（站點、基準、匯出規格）。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>y の指標は 1 つ。</strong>すべてのチャートが 1937〜1966 年の基準に対する偏差を描くので、6 つのビューを一目で比べられます。</li>
+          <li><strong>y = 0 °C を基準線に</strong>し、「気温偏差」を 1 行の副題で定義。</li>
+          <li><strong>各チャートのタイトルは「問い」と「1 文の答え」。</strong>パターンを見ることから結論を導くことへと読み手を導きます。</li>
+          <li><strong>誠実な強調：</strong>極値にラベルを付け、色覚に配慮した ColorBrewer のパレットを使い、冬が主題のビューでは冬以外の月を抑え、すべてのビューに方法の 1 行（観測所、基準期間、書き出し）を添えました。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>Une seule mesure en ordonnée.</strong> Chaque graphique montre l’anomalie par rapport à la référence 1937–1966, si bien que les six vues se comparent d’un coup d’œil.</li>
+          <li><strong>y = 0 °C comme repère,</strong> avec un sous-titre d’une ligne qui définit l’« anomalie de température ».</li>
+          <li><strong>Une question et une réponse en une phrase</strong> en titre de chaque graphique, pour mener le lecteur du motif à la conclusion.</li>
+          <li><strong>Une mise en valeur honnête :</strong> extrêmes étiquetés, palette ColorBrewer adaptée aux daltoniens, mois hors hiver atténués quand l’hiver est le sujet, et une ligne de méthode (station, référence, export) sur chaque vue.</li>
+        </ul>
+        <ul data-lang="de">
+          <li><strong>Eine y-Größe.</strong> Jedes Diagramm zeigt die Anomalie gegenüber der Basis 1937–1966, sodass sich alle sechs Ansichten auf einen Blick vergleichen lassen.</li>
+          <li><strong>y = 0 °C als Anker,</strong> mit einem einzeiligen Untertitel, der „Temperaturanomalie“ erklärt.</li>
+          <li><strong>Eine Frage und eine Antwort in einem Satz</strong> als Titel jedes Diagramms, die vom Muster zur Schlussfolgerung führen.</li>
+          <li><strong>Ehrliche Betonung:</strong> Extremwerte beschriftet, eine farbenblindsichere ColorBrewer-Palette, Nicht-Wintermonate gedämpft, wo es um den Winter geht, und auf jeder Ansicht eine Methodenzeile (Station, Basis, Export).</li>
+        </ul>
+        <h3><span data-lang="en">The six-chart story</span><span data-lang="zh">六张图的叙事</span><span data-lang="tw">六張圖的敘事</span><span data-lang="ja">6 枚のチャートのストーリー</span><span data-lang="fr">Le récit en six graphiques</span><span data-lang="de">Die Geschichte in sechs Diagrammen</span></h3>
+        <div class="shots shots--wide">
+          <figure><img src="infoviz/t-matrix.webp" alt="Heat dot matrix: every month of every year from 1937 to 2013, blue for cool and red for warm anomalies" data-alt-zh="热度点阵：1937–2013 年每一年的每个月，蓝色代表偏冷、红色代表偏暖" data-alt-tw="熱度點陣：1937–2013 年每一年的每個月，藍色代表偏冷、紅色代表偏暖" data-alt-ja="ヒートドット・マトリクス：1937〜2013 年のすべての月。青は低め、赤は高めの偏差" data-alt-fr="Matrice de points : chaque mois de chaque année de 1937 à 2013, bleu pour les anomalies froides, rouge pour les chaudes" data-alt-de="Heat-Dot-Matrix: jeder Monat jedes Jahres von 1937 bis 2013, Blau für kühle, Rot für warme Anomalien" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">How have anomalies evolved across months and years? — Warm cells have multiplied since the 1980s.</span><span data-lang="zh">距平如何随月份和年份变化？——自 1980 年代以来，暖色格子明显增多。</span><span data-lang="tw">距平如何隨月份和年份變化？——自 1980 年代以來，暖色格子明顯增多。</span><span data-lang="ja">偏差は月と年でどう変わってきたか？——1980 年代以降、暖色のセルが急増。</span><span data-lang="fr">Comment les anomalies ont-elles évolué selon les mois et les années ? — Les cases chaudes se multiplient depuis les années 1980.</span><span data-lang="de">Wie haben sich die Anomalien über Monate und Jahre entwickelt? — Warme Zellen häufen sich seit den 1980ern.</span></figcaption></figure>
+          <figure><img src="infoviz/t-rolling.webp" alt="Monthly mean temperatures with a 12-month rolling average on top" data-alt-zh="月均气温，叠加 12 个月滚动平均线" data-alt-tw="月均氣溫，疊加 12 個月移動平均線" data-alt-ja="月平均気温に 12 か月移動平均を重ねたもの" data-alt-fr="Températures mensuelles moyennes avec une moyenne mobile sur 12 mois" data-alt-de="Monatsmittel mit darübergelegtem gleitendem 12-Monats-Mittelwert" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">Is there a trend beyond yearly swings? — The rolling mean rises persistently across the decades.</span><span data-lang="zh">在年度起伏之外，是否存在长期趋势？——滚动平均线在几十年间持续上升。</span><span data-lang="tw">在年度起伏之外，是否存在長期趨勢？——移動平均線在幾十年間持續上升。</span><span data-lang="ja">年ごとの上下を超えた傾向はあるか？——移動平均は数十年にわたって上がり続けている。</span><span data-lang="fr">Y a-t-il une tendance au-delà des fluctuations annuelles ? — La moyenne mobile monte de décennie en décennie.</span><span data-lang="de">Gibt es einen Trend jenseits der jährlichen Schwankungen? — Der gleitende Mittelwert steigt über die Jahrzehnte stetig.</span></figcaption></figure>
+          <figure><img src="infoviz/t-decades.webp" alt="Box plots of monthly anomalies for each decade" data-alt-zh="各年代月度距平的箱线图" data-alt-tw="各年代月度距平的箱形圖" data-alt-ja="年代ごとの月別偏差の箱ひげ図" data-alt-fr="Boîtes à moustaches des anomalies mensuelles par décennie" data-alt-de="Boxplots der Monatsanomalien je Jahrzehnt" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">How has the distribution shifted by decade? — Both the median and the lower quartile have moved up since the 1970s.</span><span data-lang="zh">分布在各年代如何移动？——自 1970 年代以来，中位数和下四分位数都在上移。</span><span data-lang="tw">分布在各年代如何移動？——自 1970 年代以來，中位數和下四分位數都在上移。</span><span data-lang="ja">分布は年代ごとにどう動いたか？——1970 年代以降、中央値も第 1 四分位も上がっている。</span><span data-lang="fr">Comment la distribution a-t-elle bougé par décennie ? — La médiane comme le premier quartile montent depuis les années 1970.</span><span data-lang="de">Wie hat sich die Verteilung je Jahrzehnt verschoben? — Median und unteres Quartil steigen seit den 1970ern.</span></figcaption></figure>
+          <figure><img src="infoviz/t-periods.webp" alt="Paired bars comparing 1937–1966 with 1984–2013 for each month, plus the change" data-alt-zh="每个月 1937–1966 年与 1984–2013 年的成对柱状对比，以及变化量" data-alt-tw="每個月 1937–1966 年與 1984–2013 年的成對長條對比，以及變化量" data-alt-ja="月ごとに 1937〜1966 年と 1984〜2013 年を比べた対の棒と、その差" data-alt-fr="Barres appariées comparant 1937–1966 et 1984–2013 pour chaque mois, avec l’écart" data-alt-de="Gepaarte Balken: 1937–1966 gegen 1984–2013 für jeden Monat, dazu die Veränderung" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">Which months warmed most between the early and recent periods? — Nearly all are warmer, winter most of all.</span><span data-lang="zh">早期与近期相比，哪些月份升温最多？——几乎每个月都更暖，冬季最明显。</span><span data-lang="tw">早期與近期相比，哪些月份升溫最多？——幾乎每個月都更暖，冬季最明顯。</span><span data-lang="ja">初期と近年で、どの月がいちばん暖かくなったか？——ほぼすべての月が暖かく、とりわけ冬。</span><span data-lang="fr">Quels mois se sont le plus réchauffés entre les deux périodes ? — Presque tous, et l’hiver plus que tout.</span><span data-lang="de">Welche Monate haben sich zwischen früher und heute am stärksten erwärmt? — Fast alle, der Winter am meisten.</span></figcaption></figure>
+          <figure><img src="infoviz/t-seasons.webp" alt="Scatter of monthly anomalies coloured by season, each with a fitted trend line" data-alt-zh="按季节着色的月度距平散点图，每个季节一条拟合趋势线" data-alt-tw="依季節著色的月度距平散佈圖，每個季節一條擬合趨勢線" data-alt-ja="季節ごとに色分けした月別偏差の散布図と、それぞれの近似トレンドライン" data-alt-fr="Nuage des anomalies mensuelles coloré par saison, chacune avec sa droite de tendance" data-alt-de="Streudiagramm der Monatsanomalien nach Jahreszeit eingefärbt, jeweils mit Trendlinie" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">Do all seasons warm? — All four slopes are positive; winter’s is the steepest, about twice summer’s.</span><span data-lang="zh">所有季节都在变暖吗？——四条斜率都是正的；冬季最陡，约为夏季的两倍。</span><span data-lang="tw">所有季節都在變暖嗎？——四條斜率都是正的；冬季最陡，約為夏季的兩倍。</span><span data-lang="ja">すべての季節が暖かくなっているか？——4 本の傾きはすべて正。冬がもっとも急で、夏のおよそ 2 倍。</span><span data-lang="fr">Toutes les saisons se réchauffent-elles ? — Les quatre pentes sont positives ; celle de l’hiver est la plus forte, environ le double de celle de l’été.</span><span data-lang="de">Erwärmen sich alle Jahreszeiten? — Alle vier Steigungen sind positiv; die des Winters ist am steilsten, etwa doppelt so steil wie im Sommer.</span></figcaption></figure>
+          <figure><img src="infoviz/t-winter.webp" alt="Winter-only scatter with a trend line for December, January and February and key takeaways" data-alt-zh="只看冬季的散点图：十二月、一月、二月各一条趋势线，并附关键结论" data-alt-tw="只看冬季的散佈圖：十二月、一月、二月各一條趨勢線，並附關鍵結論" data-alt-ja="冬だけの散布図。12 月・1 月・2 月それぞれのトレンドラインと要点" data-alt-fr="Nuage des seuls mois d’hiver avec une tendance pour décembre, janvier et février, et les points clés" data-alt-de="Winter-Streudiagramm mit Trendlinien für Dezember, Januar und Februar und den wichtigsten Erkenntnissen" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">Which winter month warmed most? — January, with February close behind.</span><span data-lang="zh">哪个冬季月份升温最多？——一月，二月紧随其后。</span><span data-lang="tw">哪個冬季月份升溫最多？——一月，二月緊隨其後。</span><span data-lang="ja">いちばん暖かくなった冬の月は？——1 月。2 月がそれに続く。</span><span data-lang="fr">Quel mois d’hiver s’est le plus réchauffé ? — Janvier, suivi de près par février.</span><span data-lang="de">Welcher Wintermonat hat sich am stärksten erwärmt? — Der Januar, dicht gefolgt vom Februar.</span></figcaption></figure>
+        </div>
+        <p data-lang="en">The final view answers the planners’ question directly. Winter warming accelerates after about 1980 and the curves bend upward; January warms fastest, February close behind, while December lags and still produces the deepest cold outliers (an anomaly of about −6.7 °C in 1989). Variability widens as well: by the 2010s some winter months sit more than 3 °C above the baseline, and January 2006 reached +6.55 °C. Milder winters, but also more freeze–thaw swings.</p>
+        <p data-lang="zh">最后一张图直接回答了规划者的问题。大约 1980 年之后，冬季升温加速，曲线向上弯折；一月升温最快，二月紧随其后，十二月则落后，而且仍会出现最极端的寒冷异常（1989 年的距平约为 −6.7 °C）。波动也在变大：到了 2010 年代，有些冬季月份比基线高出 3 °C 以上，2006 年一月更达到 +6.55 °C。冬天变温和了，但冻融交替也更频繁了。</p>
+        <p data-lang="tw">最後一張圖直接回答了規劃者的問題。大約 1980 年之後，冬季升溫加速，曲線向上彎折；一月升溫最快，二月緊隨其後，十二月則落後，而且仍會出現最極端的寒冷異常（1989 年的距平約為 −6.7 °C）。波動也在變大：到了 2010 年代，有些冬季月份比基準高出 3 °C 以上，2006 年一月更達到 +6.55 °C。冬天變溫和了，但凍融交替也更頻繁了。</p>
+        <p data-lang="ja">最後のビューが、計画担当者の問いにそのまま答えます。冬の温暖化は 1980 年ごろから加速し、曲線は上向きに曲がっています。1 月がもっとも速く、2 月がそれに続き、12 月は遅れつつ、いまも最も深い寒冷の外れ値を生みます（1989 年の偏差は約 −6.7 °C）。ばらつきも広がり、2010 年代には基準より 3 °C 以上高い冬の月が現れ、2006 年 1 月は +6.55 °C に達しました。冬は穏やかになる一方で、凍結と融解の繰り返しも増えています。</p>
+        <p data-lang="fr">La dernière vue répond directement à la question des urbanistes. Le réchauffement hivernal s’accélère vers 1980 et les courbes s’infléchissent vers le haut ; janvier se réchauffe le plus vite, février juste derrière, tandis que décembre est à la traîne et produit encore les écarts froids les plus marqués (une anomalie d’environ −6,7 °C en 1989). La variabilité augmente aussi : dans les années 2010, certains mois d’hiver dépassent la référence de plus de 3 °C, et janvier 2006 a atteint +6,55 °C. Des hivers plus doux, mais aussi davantage de cycles de gel et de dégel.</p>
+        <p data-lang="de">Die letzte Ansicht beantwortet die Frage der Planer direkt. Die Wintererwärmung beschleunigt sich um 1980, die Kurven biegen nach oben; der Januar erwärmt sich am schnellsten, der Februar dicht dahinter, während der Dezember nachhinkt und noch immer die stärksten Kälteausreißer liefert (eine Anomalie von etwa −6,7 °C im Jahr 1989). Auch die Streuung nimmt zu: In den 2010ern liegen manche Wintermonate mehr als 3 °C über der Basis, und der Januar 2006 erreichte +6,55 °C. Mildere Winter – aber auch mehr Frost-Tau-Wechsel.</p>
+        <h3><span data-lang="en">An hourly extension</span><span data-lang="zh">逐时的延伸研究</span><span data-lang="tw">逐時的延伸研究</span><span data-lang="ja">毎時データでの延長調査</span><span data-lang="fr">Une extension horaire</span><span data-lang="de">Eine stündliche Erweiterung</span></h3>
+        <p data-lang="en">To bring the history up to date, I added a study of September 2025 at the same station: temperature against relative humidity, each dot one hour coloured by time of day, plus hourly box plots and a 7-day moving average computed over a 168-hour window in Tableau. It shows how humidity changes how warm a day feels — the side of a warming climate people notice first.</p>
+        <p data-lang="zh">为了把历史接到当下，我加做了同一站点 2025 年 9 月的研究：温度对相对湿度的散点，每个点是一个小时，按一天中的时段着色；另外还有按小时的箱线图，以及在 Tableau 里用 168 小时窗口计算的 7 天移动平均。它说明了湿度如何改变一天的体感温度——这正是人们最先感受到的气候变暖的一面。</p>
+        <p data-lang="tw">為了把歷史接到當下，我加做了同一站點 2025 年 9 月的研究：溫度對相對濕度的散佈圖，每個點是一個小時，依一天中的時段著色；另外還有依小時的箱形圖，以及在 Tableau 裡用 168 小時視窗計算的 7 天移動平均。它說明了濕度如何改變一天的體感溫度——這正是人們最先感受到的氣候暖化的一面。</p>
+        <p data-lang="ja">歴史を現在につなぐため、同じ観測所の 2025 年 9 月の調査を加えました。気温と相対湿度の散布図で、1 つの点が 1 時間を表し、時間帯で色分けしています。あわせて時間別の箱ひげ図と、Tableau で 168 時間の窓から計算した 7 日移動平均も作りました。湿度が 1 日の体感温度をどう変えるか――人が最初に気づく温暖化の側面です。</p>
+        <p data-lang="fr">Pour rattacher l’historique au présent, j’ai ajouté une étude de septembre 2025 à la même station : température contre humidité relative, chaque point étant une heure colorée selon le moment de la journée, plus des boîtes à moustaches horaires et une moyenne mobile sur 7 jours calculée sur une fenêtre de 168 heures dans Tableau. Elle montre comment l’humidité change la chaleur ressentie — la face du réchauffement que l’on remarque en premier.</p>
+        <p data-lang="de">Um die Geschichte bis in die Gegenwart zu führen, kam eine Studie zum September 2025 an derselben Station hinzu: Temperatur gegen relative Luftfeuchte, jeder Punkt eine Stunde, nach Tageszeit eingefärbt, dazu stündliche Boxplots und ein gleitender 7-Tage-Mittelwert über ein 168-Stunden-Fenster in Tableau. Sie zeigt, wie Luftfeuchte verändert, wie warm sich ein Tag anfühlt – die Seite der Erwärmung, die man zuerst bemerkt.</p>
+        <div class="shots shots--wide">
+          <figure><img src="infoviz/t-humidity.webp" alt="Temperature against relative humidity at Toronto Pearson, September 2025, one dot per hour coloured by time of day" data-alt-zh="2025 年 9 月多伦多皮尔逊的温度与相对湿度，每点一小时，按时段着色" data-alt-tw="2025 年 9 月多倫多皮爾遜的溫度與相對濕度，每點一小時，依時段著色" data-alt-ja="2025 年 9 月のトロント・ピアソンの気温と相対湿度。1 時間 1 点、時間帯で色分け" data-alt-fr="Température contre humidité relative à Toronto Pearson, septembre 2025, un point par heure coloré selon le moment de la journée" data-alt-de="Temperatur gegen relative Luftfeuchte in Toronto Pearson, September 2025, ein Punkt pro Stunde, nach Tageszeit gefärbt" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">Temperature against relative humidity at Toronto Pearson, September 2025, one dot per hour coloured by time of day</span><span data-lang="zh">2025 年 9 月多伦多皮尔逊的温度与相对湿度，每点一小时，按时段着色</span><span data-lang="tw">2025 年 9 月多倫多皮爾遜的溫度與相對濕度，每點一小時，依時段著色</span><span data-lang="ja">2025 年 9 月のトロント・ピアソンの気温と相対湿度。1 時間 1 点、時間帯で色分け</span><span data-lang="fr">Température contre humidité relative à Toronto Pearson, septembre 2025, un point par heure coloré selon le moment de la journée</span><span data-lang="de">Temperatur gegen relative Luftfeuchte in Toronto Pearson, September 2025, ein Punkt pro Stunde, nach Tageszeit gefärbt</span></figcaption></figure>
+          <figure><img src="infoviz/t-hourly.webp" alt="Hourly temperature box plots for September 2025" data-alt-zh="2025 年 9 月按小时的温度箱线图" data-alt-tw="2025 年 9 月依小時的溫度箱形圖" data-alt-ja="2025 年 9 月の時間別の気温の箱ひげ図" data-alt-fr="Boîtes à moustaches horaires de la température, septembre 2025" data-alt-de="Stündliche Temperatur-Boxplots für September 2025" width="1600" height="900" loading="lazy"><figcaption><span data-lang="en">Hourly temperature box plots for September 2025</span><span data-lang="zh">2025 年 9 月按小时的温度箱线图</span><span data-lang="tw">2025 年 9 月依小時的溫度箱形圖</span><span data-lang="ja">2025 年 9 月の時間別の気温の箱ひげ図</span><span data-lang="fr">Boîtes à moustaches horaires de la température, septembre 2025</span><span data-lang="de">Stündliche Temperatur-Boxplots für September 2025</span></figcaption></figure>
+        </div>
+        <p data-lang="en"><strong>Why Tableau?</strong> It was the fastest route to a publication-quality, multi-view argument on one measure: calculated fields and table calculations, exact control of axes and reference lines, small multiples on shared scales, consistent annotations and reproducible 1920 × 1080 exports. Orange is built for machine-learning workflows, and Datawrapper’s templates couldn’t do faceted box plots with fitted trends and layered labels.</p>
+        <p data-lang="zh"><strong>为什么用 Tableau？</strong>要围绕一个度量做出出版级、多视图的论证，它是最快的路径：计算字段和表计算、对坐标轴和参考线的精确控制、共享刻度的小多图、一致的注释，以及可复现的 1920 × 1080 导出。Orange 是为机器学习流程设计的；Datawrapper 的模板做不了带拟合趋势的分面箱线图和多层标注。</p>
+        <p data-lang="tw"><strong>為什麼用 Tableau？</strong>要圍繞一個度量做出出版級、多檢視的論證，它是最快的路徑：計算欄位和表格計算、對座標軸和參考線的精確控制、共享刻度的小多圖、一致的註解，以及可重現的 1920 × 1080 匯出。Orange 是為機器學習流程設計的；Datawrapper 的範本做不了帶擬合趨勢的分面箱形圖和多層標註。</p>
+        <p data-lang="ja"><strong>なぜ Tableau か。</strong>1 つの指標をめぐる出版品質のマルチビューの論証に、いちばん早くたどり着けたからです。計算フィールドと表計算、軸と参照線の正確な制御、共通の目盛りでのスモールマルチプル、一貫した注釈、再現できる 1920 × 1080 の書き出し。Orange は機械学習のワークフロー向けで、Datawrapper のテンプレートでは、近似トレンド付きの分割箱ひげ図や重ねたラベルは作れませんでした。</p>
+        <p data-lang="fr"><strong>Pourquoi Tableau ?</strong> C’était le chemin le plus court vers un argument multi-vues de qualité publication autour d’une seule mesure : champs calculés et calculs de table, contrôle précis des axes et des lignes de référence, petits multiples à échelle partagée, annotations cohérentes et exports reproductibles en 1920 × 1080. Orange est pensé pour l’apprentissage automatique, et les modèles de Datawrapper ne permettaient pas des boîtes à moustaches à facettes avec tendances ajustées et étiquettes superposées.</p>
+        <p data-lang="de"><strong>Warum Tableau?</strong> Es war der schnellste Weg zu einer publikationsreifen Argumentation über mehrere Ansichten mit einer Größe: berechnete Felder und Tabellenberechnungen, genaue Kontrolle über Achsen und Referenzlinien, Small Multiples mit gemeinsamer Skala, einheitliche Anmerkungen und reproduzierbare Exporte in 1920 × 1080. Orange ist für Machine-Learning-Workflows gebaut, und die Vorlagen von Datawrapper konnten keine facettierten Boxplots mit Trendlinien und geschichteten Beschriftungen.</p>
+      </div>
+
+      <div class="phase">
+        <span class="phase-label phase-label--p2"><span data-lang="en">Part 2 — Experience as data</span><span data-lang="zh">第二部分 — 把经历当作数据</span><span data-lang="tw">第二部分 — 把經歷當作資料</span><span data-lang="ja">パート 2 — 体験をデータに</span><span data-lang="fr">Partie 2 — L’expérience comme donnée</span><span data-lang="de">Teil 2 — Erfahrung als Daten</span></span>
+      <h2><span data-lang="en">The Pulse of Vancouver: visualizing a ride</span><span data-lang="zh">温哥华的脉搏：把一次骑行可视化</span><span data-lang="tw">溫哥華的脈搏：把一次騎行視覺化</span><span data-lang="ja">バンクーバーの鼓動：1 回の走行を可視化する</span><span data-lang="fr">Le Pouls de Vancouver : visualiser une sortie à vélo</span><span data-lang="de">Der Puls von Vancouver: eine Radtour visualisieren</span></h2>
+        <p data-lang="en">The second brief was to visualize an experience. I chose a 53.8 km loop around Vancouver’s seawall and downtown core on August 9, 2024, and treated the bicycle as a stethoscope: instead of performance metrics, the graphic takes the city’s pulse through forest, sea, markets, old streets and sunset.</p>
+        <p data-lang="zh">第二个命题是把一段经历可视化。我选了 2024 年 8 月 9 日沿温哥华海堤和市中心骑行的一圈，全程 53.8 公里，并把自行车当作听诊器：这张图不讲运动表现，而是穿过森林、大海、市集、老街和日落，为这座城市“把脉”。</p>
+        <p data-lang="tw">第二個命題是把一段經歷視覺化。我選了 2024 年 8 月 9 日沿溫哥華海堤和市中心騎行的一圈，全程 53.8 公里，並把腳踏車當作聽診器：這張圖不講運動表現，而是穿過森林、大海、市集、老街和日落，為這座城市「把脈」。</p>
+        <p data-lang="ja">2 つ目の課題は体験の可視化でした。2024 年 8 月 9 日に走った、バンクーバーのシーウォールと中心部を巡る 53.8 km のループを選び、自転車を聴診器に見立てました。運動の成績ではなく、森、海、市場、古い街並み、夕日をたどって、街の脈を測るグラフィックです。</p>
+        <p data-lang="fr">Le second sujet consistait à visualiser une expérience. J’ai choisi une boucle de 53,8 km autour de la digue et du centre de Vancouver, le 9 août 2024, en traitant le vélo comme un stéthoscope : plutôt que des mesures de performance, l’infographie prend le pouls de la ville à travers la forêt, la mer, les marchés, les vieilles rues et le coucher du soleil.</p>
+        <p data-lang="de">Die zweite Aufgabe lautete, eine Erfahrung zu visualisieren. Ich wählte eine 53,8 km lange Runde um Vancouvers Seawall und die Innenstadt am 9. August 2024 und behandelte das Fahrrad als Stethoskop: Statt Leistungswerten misst die Grafik den Puls der Stadt – durch Wald, Meer, Märkte, alte Straßen und Sonnenuntergang.</p>
+        <h3><span data-lang="en">Collecting the data</span><span data-lang="zh">收集数据</span><span data-lang="tw">蒐集資料</span><span data-lang="ja">データを集める</span><span data-lang="fr">Collecter les données</span><span data-lang="de">Daten sammeln</span></h3>
+        <p data-lang="en">Heart rate and active energy came from my Apple Watch through an Apple Health export, the route from GPX logs, and the rest from field notes and photos of what I heard, smelled, saw and felt at each stop. The ride totals: 53.8 km, 276.8 m of climbing, an average heart rate of 133 bpm with a peak of 182, and 1,214 Cal of active energy.</p>
+        <p data-lang="zh">心率和活动能量来自我的 Apple Watch，通过 Apple 健康导出；路线来自 GPX 记录；其余的来自现场笔记和照片——在每一站听到、闻到、看到、感受到的东西。这次骑行的总数据是：53.8 公里、爬升 276.8 米、平均心率 133 bpm、最高 182，活动能量 1,214 千卡。</p>
+        <p data-lang="tw">心率和活動能量來自我的 Apple Watch，透過 Apple 健康匯出；路線來自 GPX 紀錄；其餘的來自現場筆記和照片——在每一站聽到、聞到、看到、感受到的東西。這次騎行的總資料是：53.8 公里、爬升 276.8 公尺、平均心率 133 bpm、最高 182，活動能量 1,214 大卡。</p>
+        <p data-lang="ja">心拍と消費エネルギーは Apple Watch から Apple ヘルスケアの書き出しで、ルートは GPX の記録から、残りは各地点で聞いたもの・匂い・見たもの・感じたことを書き留めたメモと写真から集めました。走行の合計は、53.8 km、獲得標高 276.8 m、平均心拍 133 bpm（最大 182）、アクティブエネルギー 1,214 kcal。</p>
+        <p data-lang="fr">La fréquence cardiaque et l’énergie active viennent de mon Apple Watch via un export Apple Santé, l’itinéraire de traces GPX, et le reste de notes de terrain et de photos de ce que j’ai entendu, senti, vu et ressenti à chaque arrêt. Bilan de la sortie : 53,8 km, 276,8 m de dénivelé positif, une fréquence cardiaque moyenne de 133 bpm avec un pic à 182, et 1 214 kcal d’énergie active.</p>
+        <p data-lang="de">Herzfrequenz und aktive Energie stammen aus meiner Apple Watch über einen Export aus Apple Health, die Route aus GPX-Aufzeichnungen und der Rest aus Feldnotizen und Fotos von dem, was ich an jedem Halt gehört, gerochen, gesehen und gefühlt habe. Die Tour in Zahlen: 53,8 km, 276,8 m Anstieg, durchschnittlich 133 bpm Herzfrequenz mit einem Spitzenwert von 182 und 1.214 kcal aktive Energie.</p>
+        <div class="shots shots--wide">
+          <figure><img src="infoviz/v-data.webp" alt="An Apple Watch heart-rate reading next to the Apple Health export file" data-alt-zh="Apple Watch 的心率读数，旁边是 Apple 健康的导出文件" data-alt-tw="Apple Watch 的心率讀數，旁邊是 Apple 健康的匯出檔案" data-alt-ja="Apple Watch の心拍の表示と、Apple ヘルスケアの書き出しファイル" data-alt-fr="Une mesure de fréquence cardiaque sur l’Apple Watch à côté du fichier d’export Apple Santé" data-alt-de="Eine Herzfrequenzanzeige der Apple Watch neben der Exportdatei aus Apple Health" width="1400" height="947" loading="lazy"><figcaption><span data-lang="en">An Apple Watch heart-rate reading next to the Apple Health export file</span><span data-lang="zh">Apple Watch 的心率读数，旁边是 Apple 健康的导出文件</span><span data-lang="tw">Apple Watch 的心率讀數，旁邊是 Apple 健康的匯出檔案</span><span data-lang="ja">Apple Watch の心拍の表示と、Apple ヘルスケアの書き出しファイル</span><span data-lang="fr">Une mesure de fréquence cardiaque sur l’Apple Watch à côté du fichier d’export Apple Santé</span><span data-lang="de">Eine Herzfrequenzanzeige der Apple Watch neben der Exportdatei aus Apple Health</span></figcaption></figure>
+          <figure><img src="infoviz/v-route.webp" alt="GPX routes plotted over Vancouver, looping through Stanley Park and downtown" data-alt-zh="画在温哥华地图上的 GPX 路线，绕经斯坦利公园和市中心" data-alt-tw="畫在溫哥華地圖上的 GPX 路線，繞經史丹利公園和市中心" data-alt-ja="バンクーバーの地図に描いた GPX のルート。スタンレーパークと中心部を巡る" data-alt-fr="Traces GPX sur Vancouver, en boucle par Stanley Park et le centre" data-alt-de="GPX-Routen über Vancouver, als Schleife durch den Stanley Park und die Innenstadt" width="1200" height="784" loading="lazy"><figcaption><span data-lang="en">GPX routes plotted over Vancouver, looping through Stanley Park and downtown</span><span data-lang="zh">画在温哥华地图上的 GPX 路线，绕经斯坦利公园和市中心</span><span data-lang="tw">畫在溫哥華地圖上的 GPX 路線，繞經史丹利公園和市中心</span><span data-lang="ja">バンクーバーの地図に描いた GPX のルート。スタンレーパークと中心部を巡る</span><span data-lang="fr">Traces GPX sur Vancouver, en boucle par Stanley Park et le centre</span><span data-lang="de">GPX-Routen über Vancouver, als Schleife durch den Stanley Park und die Innenstadt</span></figcaption></figure>
+        </div>
+        <h3><span data-lang="en">The encoding</span><span data-lang="zh">视觉编码</span><span data-lang="tw">視覺編碼</span><span data-lang="ja">エンコーディング</span><span data-lang="fr">L’encodage</span><span data-lang="de">Die Kodierung</span></h3>
+        <p data-lang="en">The graphic is a circular journey map in four segments, each a numbered hub: (1) Stanley Park — Forest &amp; Sea; (2) Granville Island &amp; Yaletown — Markets &amp; Docks; (3) Gastown &amp; Downtown — Weaving Through Time; (4) English Bay — Sunset Resolution. A looping path connects them from start to end, echoing the rhythm of the ride.</p>
+        <p data-lang="zh">整张图是一个分成四段的环形旅程地图，每段是一个编号的枢纽：(1) 斯坦利公园——森林与大海；(2) 格兰维尔岛与耶鲁镇——市集与码头；(3) 煤气镇与市中心——穿梭于时间；(4) 英吉利湾——日落时的收尾。一条环形路径从起点连到终点，呼应骑行的节奏。</p>
+        <p data-lang="tw">整張圖是一個分成四段的環形旅程地圖，每段是一個編號的樞紐：(1) 史丹利公園——森林與大海；(2) 格蘭維爾島與耶魯鎮——市集與碼頭；(3) 蓋斯鎮與市中心——穿梭於時間；(4) 英吉利灣——日落時的收尾。一條環形路徑從起點連到終點，呼應騎行的節奏。</p>
+        <p data-lang="ja">グラフィックは 4 つの区間に分けた円形の旅の地図で、それぞれが番号付きのハブです。(1) スタンレーパーク——森と海、(2) グランビルアイランドとイェールタウン——市場と波止場、(3) ギャスタウンと中心部——時をめぐる、(4) イングリッシュベイ——夕日の結び。スタートからゴールまでをループする道がつなぎ、走りのリズムを映します。</p>
+        <p data-lang="fr">L’infographie est une carte de voyage circulaire en quatre segments, chacun étant un pôle numéroté : (1) Stanley Park — forêt et mer ; (2) Granville Island et Yaletown — marchés et quais ; (3) Gastown et le centre — à travers le temps ; (4) English Bay — dénouement au coucher du soleil. Un chemin en boucle les relie du départ à l’arrivée, en écho au rythme de la sortie.</p>
+        <p data-lang="de">Die Grafik ist eine kreisförmige Reisekarte in vier Abschnitten, jeder ein nummerierter Knoten: (1) Stanley Park – Wald und Meer; (2) Granville Island und Yaletown – Märkte und Docks; (3) Gastown und Downtown – durch die Zeit; (4) English Bay – Ausklang im Sonnenuntergang. Ein Rundweg verbindet sie vom Start bis zum Ziel und greift den Rhythmus der Fahrt auf.</p>
+        <ul data-lang="en">
+          <li><strong>Circle size</strong> — time spent at a spot.</li>
+          <li><strong>Fill colour</strong> — the dominant sense: blue for sound (waves, tyres, the Steam Clock whistle), green for environment (forest air, sea breeze, views), orange for food and energy, pink for emotion (alert in traffic, calm at sunset).</li>
+          <li><strong>Arcs</strong> — effort: yellow for low, orange for medium, red for high. Stanley Park stays low to medium, Granville Island is stop-and-go, Gastown and Downtown are the peak, and English Bay winds down.</li>
+          <li><strong>Event markers</strong> — the moments worth retelling: the forest-to-ocean scent flip, the Granville Island food stop, the Steam Clock whistle, the English Bay sunset pause.</li>
+          <li><strong>An encoding guide and a Journey Statistics card</strong> keep the facts beside the story.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>圆的大小</strong> — 在某个地点停留的时间。</li>
+          <li><strong>填充色</strong> — 主导的感官：蓝色是声音（海浪、车胎、蒸汽钟的汽笛），绿色是环境（森林的空气、海风、景色），橙色是食物与能量，粉色是情绪（车流中的警觉、日落时的平静）。</li>
+          <li><strong>弧线</strong> — 体力强度：黄色低、橙色中、红色高。斯坦利公园在低到中之间，格兰维尔岛走走停停，煤气镇和市中心是最高峰，英吉利湾则逐渐放松。</li>
+          <li><strong>事件标记</strong> — 值得再讲一遍的时刻：从森林到海洋的气味转换、格兰维尔岛的美食停留、蒸汽钟的汽笛、英吉利湾看日落的停顿。</li>
+          <li><strong>编码说明和“行程统计”卡片</strong>把事实放在故事旁边。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>圓的大小</strong> — 在某個地點停留的時間。</li>
+          <li><strong>填充色</strong> — 主導的感官：藍色是聲音（海浪、車胎、蒸汽鐘的汽笛），綠色是環境（森林的空氣、海風、景色），橘色是食物與能量，粉色是情緒（車流中的警覺、日落時的平靜）。</li>
+          <li><strong>弧線</strong> — 體力強度：黃色低、橘色中、紅色高。史丹利公園在低到中之間，格蘭維爾島走走停停，蓋斯鎮和市中心是最高峰，英吉利灣則逐漸放鬆。</li>
+          <li><strong>事件標記</strong> — 值得再講一遍的時刻：從森林到海洋的氣味轉換、格蘭維爾島的美食停留、蒸汽鐘的汽笛、英吉利灣看日落的停頓。</li>
+          <li><strong>編碼說明和「行程統計」卡片</strong>把事實放在故事旁邊。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>円の大きさ</strong> — その場所で過ごした時間。</li>
+          <li><strong>塗りの色</strong> — 主な感覚。青は音（波、タイヤ、蒸気時計の汽笛）、緑は環境（森の空気、海風、眺め）、オレンジは食べものとエネルギー、ピンクは感情（車の流れの中の緊張、夕日の穏やかさ）。</li>
+          <li><strong>弧</strong> — 強度。黄色は低、オレンジは中、赤は高。スタンレーパークは低〜中、グランビルアイランドは止まっては進み、ギャスタウンと中心部がピーク、イングリッシュベイで落ち着いていきます。</li>
+          <li><strong>イベントマーカー</strong> — 語り直す価値のある瞬間。森から海へと匂いが切り替わるところ、グランビルアイランドでの食事休憩、蒸気時計の汽笛、イングリッシュベイで夕日を眺めたひととき。</li>
+          <li><strong>エンコーディングの凡例と「Journey Statistics」カード</strong>が、物語の隣に事実を置きます。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>Taille des cercles</strong> — temps passé à un endroit.</li>
+          <li><strong>Couleur de remplissage</strong> — le sens dominant : bleu pour le son (vagues, pneus, sifflet de la Steam Clock), vert pour l’environnement (air de la forêt, brise marine, panoramas), orange pour la nourriture et l’énergie, rose pour l’émotion (vigilance dans la circulation, calme au coucher du soleil).</li>
+          <li><strong>Arcs</strong> — l’effort : jaune pour faible, orange pour moyen, rouge pour élevé. Stanley Park reste entre faible et moyen, Granville Island avance par à-coups, Gastown et le centre forment le pic, et English Bay ramène au calme.</li>
+          <li><strong>Marqueurs d’événements</strong> — les moments qui méritent d’être racontés : le basculement des odeurs de la forêt à l’océan, la pause repas à Granville Island, le sifflet de la Steam Clock, l’arrêt au coucher du soleil à English Bay.</li>
+          <li><strong>Un guide de lecture et une carte « Journey Statistics »</strong> gardent les faits à côté du récit.</li>
+        </ul>
+        <ul data-lang="de">
+          <li><strong>Kreisgröße</strong> — Verweildauer an einem Ort.</li>
+          <li><strong>Füllfarbe</strong> — der vorherrschende Sinn: Blau für Klang (Wellen, Reifen, das Pfeifen der Steam Clock), Grün für Umgebung (Waldluft, Meeresbrise, Aussicht), Orange für Essen und Energie, Rosa für Gefühle (Wachsamkeit im Verkehr, Ruhe im Sonnenuntergang).</li>
+          <li><strong>Bögen</strong> — die Anstrengung: Gelb für niedrig, Orange für mittel, Rot für hoch. Der Stanley Park bleibt niedrig bis mittel, Granville Island ist Stop-and-go, Gastown und Downtown bilden die Spitze, und an der English Bay klingt es aus.</li>
+          <li><strong>Ereignismarken</strong> — die Momente, die man weitererzählt: der Duftwechsel vom Wald zum Ozean, die Essenspause auf Granville Island, das Pfeifen der Steam Clock, der Halt zum Sonnenuntergang an der English Bay.</li>
+          <li><strong>Eine Legende und eine Karte „Journey Statistics“</strong> halten die Fakten neben der Geschichte.</li>
+        </ul>
+        <div class="shots shots--wide">
+          <figure><img src="infoviz/v-poster.webp" alt="The Pulse of Vancouver: a circular journey map with four numbered hubs, sensory bubbles, intensity arcs, event markers, an encoding guide and journey statistics" data-alt-zh="温哥华的脉搏：带四个编号枢纽、感官气泡、强度弧线、事件标记、编码说明和行程统计的环形旅程地图" data-alt-tw="溫哥華的脈搏：帶四個編號樞紐、感官氣泡、強度弧線、事件標記、編碼說明和行程統計的環形旅程地圖" data-alt-ja="The Pulse of Vancouver：4 つの番号付きハブ、感覚のバブル、強度の弧、イベントマーカー、凡例、走行データのある円形の旅の地図" data-alt-fr="Le Pouls de Vancouver : une carte de voyage circulaire avec quatre pôles numérotés, des bulles sensorielles, des arcs d’intensité, des marqueurs, un guide de lecture et les statistiques du trajet" data-alt-de="Der Puls von Vancouver: eine kreisförmige Reisekarte mit vier nummerierten Knoten, Sinnesblasen, Intensitätsbögen, Ereignismarken, Legende und Tourstatistik" width="2000" height="1024" loading="lazy"><figcaption><span data-lang="en">The Pulse of Vancouver: a circular journey map with four numbered hubs, sensory bubbles, intensity arcs, event markers, an encoding guide and journey statistics</span><span data-lang="zh">温哥华的脉搏：带四个编号枢纽、感官气泡、强度弧线、事件标记、编码说明和行程统计的环形旅程地图</span><span data-lang="tw">溫哥華的脈搏：帶四個編號樞紐、感官氣泡、強度弧線、事件標記、編碼說明和行程統計的環形旅程地圖</span><span data-lang="ja">The Pulse of Vancouver：4 つの番号付きハブ、感覚のバブル、強度の弧、イベントマーカー、凡例、走行データのある円形の旅の地図</span><span data-lang="fr">Le Pouls de Vancouver : une carte de voyage circulaire avec quatre pôles numérotés, des bulles sensorielles, des arcs d’intensité, des marqueurs, un guide de lecture et les statistiques du trajet</span><span data-lang="de">Der Puls von Vancouver: eine kreisförmige Reisekarte mit vier nummerierten Knoten, Sinnesblasen, Intensitätsbögen, Ereignismarken, Legende und Tourstatistik</span></figcaption></figure>
+        </div>
+        <h3><span data-lang="en">What changed through critique</span><span data-lang="zh">评图带来的改变</span><span data-lang="tw">評圖帶來的改變</span><span data-lang="ja">講評で変わったこと</span><span data-lang="fr">Ce que la critique a changé</span><span data-lang="de">Was die Kritik verändert hat</span></h3>
+        <ul data-lang="en">
+          <li><strong>The heart-rate line went.</strong> My first version had a detailed heart-rate graph under the map. It looked tidy but was redundant — intensity was already on the map — and only I cared what my pulse was at minute 142. The real question for a reader is how hard the route feels, so the line became three Low / Medium / High zones drawn as arcs.</li>
+          <li><strong>The legend matched the marks.</strong> Early drafts used square swatches while the map used circles; aligning them made the whole system easier to read and more trustworthy.</li>
+          <li><strong>Fewer, sharper labels.</strong> I had far more sensory notes than the graphic could hold. Each bubble now carries one short, concrete phrase, and event markers mark only the real turning points.</li>
+        </ul>
+        <ul data-lang="zh">
+          <li><strong>心率折线被拿掉了。</strong>第一版在地图下面放了一张详细的心率图。它看起来很整齐，却是多余的——强度已经画在地图上了——而且只有我自己会在乎第 142 分钟的心率是多少。读者真正的问题是“这条路线骑起来有多累”，于是那条线变成了以弧线表示的低 / 中 / 高三个区间。</li>
+          <li><strong>图例与图形保持一致。</strong>早期草稿的图例用的是方块，而地图用的是圆；统一之后，整个系统更好读，也更可信。</li>
+          <li><strong>标签更少、更精准。</strong>我记下的感官笔记远远多于这张图能容纳的量。现在每个气泡只写一个简短、具体的短语，事件标记也只留给真正的转折点。</li>
+        </ul>
+        <ul data-lang="tw">
+          <li><strong>心率折線被拿掉了。</strong>第一版在地圖下面放了一張詳細的心率圖。它看起來很整齊，卻是多餘的——強度已經畫在地圖上了——而且只有我自己會在乎第 142 分鐘的心率是多少。讀者真正的問題是「這條路線騎起來有多累」，於是那條線變成了以弧線表示的低 / 中 / 高三個區間。</li>
+          <li><strong>圖例與圖形保持一致。</strong>早期草稿的圖例用的是方塊，而地圖用的是圓；統一之後，整個系統更好讀，也更可信。</li>
+          <li><strong>標籤更少、更精準。</strong>我記下的感官筆記遠遠多於這張圖能容納的量。現在每個氣泡只寫一個簡短、具體的短語，事件標記也只留給真正的轉折點。</li>
+        </ul>
+        <ul data-lang="ja">
+          <li><strong>心拍の折れ線をなくした。</strong>最初の版では、地図の下に詳しい心拍のグラフを置いていました。整って見えるものの冗長で（強度はすでに地図にある）、142 分目の心拍を気にするのは私だけです。読み手の本当の問いは「このルートはどれくらいきついか」なので、線は弧で描く低・中・高の 3 段階になりました。</li>
+          <li><strong>凡例を図形にそろえた。</strong>初期の案では、地図が円なのに凡例は四角でした。そろえたことで、仕組み全体が読みやすく、信頼できるものになりました。</li>
+          <li><strong>ラベルは少なく、鋭く。</strong>集めた感覚のメモは、グラフィックに収まる量をはるかに超えていました。いまはバブルごとに短く具体的な一言だけを置き、イベントマーカーは本当の転換点だけに使っています。</li>
+        </ul>
+        <ul data-lang="fr">
+          <li><strong>La courbe cardiaque a disparu.</strong> Ma première version plaçait un graphique détaillé de la fréquence cardiaque sous la carte. Il était propre mais redondant — l’intensité figurait déjà sur la carte — et j’étais le seul à me soucier de mon pouls à la 142e minute. La vraie question du lecteur, c’est la difficulté ressentie du parcours : la courbe est devenue trois zones faible / moyen / élevé, tracées en arcs.</li>
+          <li><strong>La légende a rejoint les formes.</strong> Les premières versions utilisaient des carrés alors que la carte était faite de cercles ; les aligner a rendu le système plus lisible et plus crédible.</li>
+          <li><strong>Moins d’étiquettes, plus précises.</strong> J’avais bien plus de notes sensorielles que l’infographie ne pouvait en porter. Chaque bulle porte désormais une seule expression courte et concrète, et les marqueurs ne signalent que les vrais tournants.</li>
+        </ul>
+        <ul data-lang="de">
+          <li><strong>Die Herzfrequenzkurve flog raus.</strong> Meine erste Version hatte unter der Karte ein detailliertes Herzfrequenzdiagramm. Es sah aufgeräumt aus, war aber redundant – die Intensität stand schon in der Karte –, und nur mich interessierte mein Puls in Minute 142. Die eigentliche Frage der Leser ist, wie anstrengend sich die Strecke anfühlt, also wurde die Kurve zu drei Zonen Niedrig / Mittel / Hoch, gezeichnet als Bögen.</li>
+          <li><strong>Die Legende passte sich den Formen an.</strong> Frühe Entwürfe nutzten Quadrate, die Karte aber Kreise; beides anzugleichen machte das System lesbarer und glaubwürdiger.</li>
+          <li><strong>Weniger, schärfere Beschriftungen.</strong> Ich hatte viel mehr Sinnesnotizen, als die Grafik tragen konnte. Jede Blase trägt jetzt eine kurze, konkrete Wendung, und Ereignismarken stehen nur an echten Wendepunkten.</li>
+        </ul>
+        <div class="shots shots--wide">
+          <figure><img src="infoviz/v-early.webp" alt="An early version with a detailed heart-rate line graph under the journey map" data-alt-zh="早期版本：旅程地图下方有一张详细的心率折线图" data-alt-tw="早期版本：旅程地圖下方有一張詳細的心率折線圖" data-alt-ja="初期の版：旅の地図の下に詳しい心拍の折れ線グラフ" data-alt-fr="Une première version avec une courbe détaillée de la fréquence cardiaque sous la carte" data-alt-de="Eine frühe Version mit detailliertem Herzfrequenz-Liniendiagramm unter der Reisekarte" width="1600" height="735" loading="lazy"><figcaption><span data-lang="en">Before: a heart-rate line that only I needed.</span><span data-lang="zh">修改前：一条只有我自己需要的心率线。</span><span data-lang="tw">修改前：一條只有我自己需要的心率線。</span><span data-lang="ja">前：自分にしか必要のない心拍の線。</span><span data-lang="fr">Avant : une courbe cardiaque utile à moi seul.</span><span data-lang="de">Vorher: eine Herzfrequenzkurve, die nur ich brauchte.</span></figcaption></figure>
+          <figure><img src="infoviz/v-circle.webp" alt="A later iteration of the four hubs with sensory bubbles and intensity arcs" data-alt-zh="后期迭代：四个枢纽，配感官气泡和强度弧线" data-alt-tw="後期迭代：四個樞紐，搭配感官氣泡和強度弧線" data-alt-ja="後半の反復：感覚のバブルと強度の弧を持つ 4 つのハブ" data-alt-fr="Une itération plus tardive des quatre pôles avec bulles sensorielles et arcs d’intensité" data-alt-de="Eine spätere Iteration der vier Knoten mit Sinnesblasen und Intensitätsbögen" width="1400" height="1059" loading="lazy"><figcaption><span data-lang="en">After: effort as arcs, senses as bubbles.</span><span data-lang="zh">修改后：体力用弧线，感官用气泡。</span><span data-lang="tw">修改後：體力用弧線，感官用氣泡。</span><span data-lang="ja">後：強度は弧で、感覚はバブルで。</span><span data-lang="fr">Après : l’effort en arcs, les sens en bulles.</span><span data-lang="de">Nachher: Anstrengung als Bögen, Sinne als Blasen.</span></figcaption></figure>
+        </div>
+        <p data-lang="en">The final piece borrows more from transit maps, story maps and medical diagrams than from bar charts. A chart doesn’t have to look like a chart to be honest about its data.</p>
+        <p data-lang="zh">最终的作品更多借鉴了交通线路图、故事地图和医学图解，而不是柱状图。一张图不必长得像“图表”，也可以对它的数据保持诚实。</p>
+        <p data-lang="tw">最終的作品更多借鏡了交通路線圖、故事地圖和醫學圖解，而不是長條圖。一張圖不必長得像「圖表」，也可以對它的資料保持誠實。</p>
+        <p data-lang="ja">最終作品は、棒グラフよりも路線図、ストーリーマップ、医療の図解から多くを借りています。データに誠実であるために、チャートがチャートらしい見た目である必要はありません。</p>
+        <p data-lang="fr">La pièce finale emprunte davantage aux plans de transport, aux cartes narratives et aux schémas médicaux qu’aux diagrammes en barres. Un graphique n’a pas besoin de ressembler à un graphique pour être honnête avec ses données.</p>
+        <p data-lang="de">Das fertige Stück leiht sich mehr bei Netzplänen, Story-Maps und medizinischen Diagrammen als bei Balkendiagrammen. Ein Diagramm muss nicht wie ein Diagramm aussehen, um seinen Daten treu zu sein.</p>
+      </div>
+
+      <h2><span data-lang="en">What I learned</span><span data-lang="zh">收获</span><span data-lang="tw">收穫</span><span data-lang="ja">学んだこと</span><span data-lang="fr">Ce que j’en retiens</span><span data-lang="de">Was ich gelernt habe</span></h2>
+      <ul data-lang="en">
+        <li><strong>One measure, many views.</strong> Committing to the anomaly against a baseline is what made six different charts comparable at a glance.</li>
+        <li><strong>Questions make titles.</strong> A question and a one-sentence answer on every chart turned a dashboard into an argument.</li>
+        <li><strong>Encode what the audience needs, not everything you have.</strong> Heart rate became three zones because riders ask how hard a route feels, not what the exact BPM was.</li>
+        <li><strong>Consistency builds trust.</strong> A legend that matches the marks, captions in one format and the same export size made both graphics feel credible.</li>
+      </ul>
+      <ul data-lang="zh">
+        <li><strong>一个度量，多种视图。</strong>坚持只用“相对基线的距平”，才让六张不同的图能一眼互相比较。</li>
+        <li><strong>问题就是标题。</strong>每张图都配一个问题和一句话的答案，把仪表板变成了一个论证。</li>
+        <li><strong>编码受众需要的，而不是你拥有的全部。</strong>心率变成了三个区间，因为骑手关心的是路线骑起来有多累，而不是精确的每分钟心跳数。</li>
+        <li><strong>一致性带来信任。</strong>和图形一致的图例、统一格式的说明文字、相同的导出尺寸，让两张图都显得可信。</li>
+      </ul>
+      <ul data-lang="tw">
+        <li><strong>一個度量，多種檢視。</strong>堅持只用「相對基準的距平」，才讓六張不同的圖能一眼互相比較。</li>
+        <li><strong>問題就是標題。</strong>每張圖都配一個問題和一句話的答案，把儀表板變成了一個論證。</li>
+        <li><strong>編碼受眾需要的，而不是你擁有的全部。</strong>心率變成了三個區間，因為騎士關心的是路線騎起來有多累，而不是精確的每分鐘心跳數。</li>
+        <li><strong>一致性帶來信任。</strong>和圖形一致的圖例、統一格式的說明文字、相同的匯出尺寸，讓兩張圖都顯得可信。</li>
+      </ul>
+      <ul data-lang="ja">
+        <li><strong>1 つの指標、多くのビュー。</strong>基準からの偏差に絞ったからこそ、6 つの異なるチャートを一目で比べられました。</li>
+        <li><strong>問いがタイトルになる。</strong>どのチャートにも問いと 1 文の答えを添えたことで、ダッシュボードが 1 つの論証になりました。</li>
+        <li><strong>持っているものすべてではなく、読み手に必要なものをエンコードする。</strong>心拍が 3 段階になったのは、走る人が知りたいのはルートのきつさであって、正確な BPM ではないからです。</li>
+        <li><strong>一貫性が信頼をつくる。</strong>図形にそろえた凡例、同じ形式のキャプション、同じ書き出しサイズが、どちらのグラフィックにも説得力を与えました。</li>
+      </ul>
+      <ul data-lang="fr">
+        <li><strong>Une mesure, plusieurs vues.</strong> S’en tenir à l’anomalie par rapport à une référence a rendu six graphiques différents comparables d’un coup d’œil.</li>
+        <li><strong>Les questions font les titres.</strong> Une question et une réponse en une phrase sur chaque graphique ont transformé un tableau de bord en argument.</li>
+        <li><strong>Encoder ce dont le public a besoin, pas tout ce qu’on a.</strong> La fréquence cardiaque est devenue trois zones, car les cyclistes demandent si un parcours est dur, pas le nombre exact de battements.</li>
+        <li><strong>La cohérence crée la confiance.</strong> Une légende fidèle aux formes, des légendes au même format et une taille d’export identique ont rendu les deux infographies crédibles.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Eine Größe, viele Ansichten.</strong> Erst die Festlegung auf die Anomalie gegenüber einer Basis machte sechs verschiedene Diagramme auf einen Blick vergleichbar.</li>
+        <li><strong>Fragen sind die besseren Titel.</strong> Eine Frage und eine Antwort in einem Satz auf jedem Diagramm machten aus einem Dashboard eine Argumentation.</li>
+        <li><strong>Kodieren, was das Publikum braucht – nicht alles, was man hat.</strong> Aus der Herzfrequenz wurden drei Zonen, weil Radfahrer wissen wollen, wie hart eine Strecke ist, nicht den genauen Puls.</li>
+        <li><strong>Konsistenz schafft Vertrauen.</strong> Eine Legende, die zu den Formen passt, Bildunterschriften im selben Format und dieselbe Exportgröße machten beide Grafiken glaubwürdig.</li>
+      </ul>
+      <p data-lang="en">Next, I would add confidence intervals to a December–February slopegraph and a suburban station to test the urban-heat-island effect, and turn the ride map into a template other riders could fill with their own data.</p>
+      <p data-lang="zh">下一步，我会给十二月到二月的斜率图加上置信区间，并加入一个郊区站点来检验城市热岛效应；同时把这张骑行地图做成模板，让其他骑手也能填入自己的数据。</p>
+      <p data-lang="tw">下一步，我會給十二月到二月的斜率圖加上信賴區間，並加入一個郊區站點來檢驗都市熱島效應；同時把這張騎行地圖做成範本，讓其他騎士也能填入自己的資料。</p>
+      <p data-lang="ja">次は、12〜2 月のスロープグラフに信頼区間を加え、郊外の観測所を足してヒートアイランド現象を確かめたい。そして走行マップを、ほかの人が自分のデータで埋められるテンプレートにしたいと考えています。</p>
+      <p data-lang="fr">Ensuite, j’ajouterais des intervalles de confiance à un graphique de pente décembre–février et une station de banlieue pour tester l’effet d’îlot de chaleur urbain, et je ferais de la carte de la sortie un modèle que d’autres cyclistes pourraient remplir avec leurs propres données.</p>
+      <p data-lang="de">Als Nächstes würde ich einem Slopegraph Dezember bis Februar Konfidenzintervalle und eine Vorortstation hinzufügen, um den städtischen Wärmeinsel-Effekt zu prüfen, und die Tourenkarte zu einer Vorlage machen, die andere mit ihren eigenen Daten füllen können.</p>
+      <h2><span data-lang="en">Credits</span><span data-lang="zh">致谢</span><span data-lang="tw">致謝</span><span data-lang="ja">クレジット</span><span data-lang="fr">Crédits</span><span data-lang="de">Credits</span></h2>
+      <p data-lang="en">Climate data: Environment and Climate Change Canada, historical climate data for Toronto Lester B. Pearson International Airport. References include Tufte, Munzner, Few and Cairo, and ColorBrewer for the palette. Ride data comes from my own Apple Watch and GPX logs.</p>
+      <p data-lang="zh">气候数据：加拿大环境与气候变化部，多伦多莱斯特·B·皮尔逊国际机场的历史气候数据。参考文献包括 Tufte、Munzner、Few 和 Cairo，配色参考 ColorBrewer。骑行数据来自我自己的 Apple Watch 和 GPX 记录。</p>
+      <p data-lang="tw">氣候資料：加拿大環境與氣候變遷部，多倫多萊斯特·B·皮爾遜國際機場的歷史氣候資料。參考文獻包括 Tufte、Munzner、Few 和 Cairo，配色參考 ColorBrewer。騎行資料來自我自己的 Apple Watch 和 GPX 紀錄。</p>
+      <p data-lang="ja">気候データ：カナダ環境・気候変動省、トロント・レスター B. ピアソン国際空港の過去の気候データ。参考文献は Tufte、Munzner、Few、Cairo など。配色は ColorBrewer を参照。走行データは自分の Apple Watch と GPX の記録です。</p>
+      <p data-lang="fr">Données climatiques : Environnement et Changement climatique Canada, données historiques de l’aéroport international Lester B. Pearson de Toronto. Références : Tufte, Munzner, Few et Cairo, et ColorBrewer pour la palette. Les données de la sortie viennent de ma propre Apple Watch et de mes traces GPX.</p>
+      <p data-lang="de">Klimadaten: Environment and Climate Change Canada, historische Klimadaten des Toronto Lester B. Pearson International Airport. Quellen u. a. Tufte, Munzner, Few und Cairo, ColorBrewer für die Palette. Die Tourdaten stammen aus meiner eigenen Apple Watch und meinen GPX-Aufzeichnungen.</p>
+    </div>
+
+    <nav class="pager" aria-label="Case studies">
+      <a class="prev" href="farewind.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span><span data-lang="de">&larr; Zurück</span></small><b>FareWind</b></a>
+      <a class="next" href="nightmare-escape.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span><span data-lang="de">Weiter &rarr;</span></small><b>梦魇逃亡 Nightmare Escape</b></a>
+    </nav>
+    <a class="pager-all" href="../work.html" data-i18n="work.back">&larr; All work</a>
+  </div>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span>&copy; Yiyang Zhang</span>
+      <a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">苏ICP备2024103495号</a>
+    </div>
+  </footer>
+
+  <script>
+/* ===== Theme Toggle ===== */
+(function(){
+  var root=document.documentElement;var btn=document.getElementById('themeToggle');var KEY='siteTheme';
+  function apply(t){root.setAttribute('data-theme',t);if(btn)btn.textContent=t==='dark'?'\u2600':'\u263E';try{localStorage.setItem(KEY,t);}catch(_){}}
+  var s;try{s=localStorage.getItem(KEY);}catch(_){}
+  if(s){apply(s);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){apply('dark');}
+  if(btn)btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+  try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
+})();
+/* ===== i18n ===== */
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'},de:{'work.back':'← Alle Arbeiten','nav.work':'Arbeiten','nav.music':'Musik','nav.about':'Über mich','nav.contact':'Kontakt'}};
+function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr',de:'de'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
+document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
+try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
+  </script>
+</body>
+</html>

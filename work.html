@@ -59,6 +59,7 @@
       <div class="chips" data-filter-group="#work-all" role="group" aria-label="Filter by category">
         <button class="chip active" type="button" data-filter="all" data-i18n="w.f.all">All</button>
         <button class="chip" type="button" data-filter="energy" data-i18n="w.f.energy">Energy</button>
+        <button class="chip" type="button" data-filter="data" data-i18n="w.f.data">Data viz</button>
         <button class="chip" type="button" data-filter="ux" data-i18n="w.f.ux">UX &amp; Web</button>
         <button class="chip" type="button" data-filter="physical" data-i18n="w.f.physical">Physical &amp; Interactive</button>
         <button class="chip" type="button" data-filter="games" data-i18n="w.f.games">Games &amp; Tools</button>
@@ -80,7 +81,7 @@
       </div>
       <div class="card-grid card-grid--3 reveal">
 
-        <a class="card" href="work/solar.html" data-cat="energy">
+        <a class="card" href="work/solar.html" data-cat="energy data">
           <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img width="800" height="500" src="work/solar/card-800.webp" alt="Aerial view of the solar arrays" data-i18n-alt="alt.solar" loading="lazy"></picture></div>
           <div class="card-body">
             <span class="eyebrow" data-i18n="card.eye">Case Study</span>
@@ -104,7 +105,7 @@
           </div>
         </a>
 
-        <a class="card" href="work/fluxmap.html" data-cat="ux">
+        <a class="card" href="work/fluxmap.html" data-cat="ux data">
           <div class="card-media"><img width="800" height="500" src="work/fluxmap/card-800.webp" srcset="work/fluxmap/card-800.webp 800w, work/fluxmap/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="FluxMap: a news heatmap over a world map with trend and top-location panels" data-i18n-alt="alt.flux" loading="lazy"></div>
           <div class="card-body">
             <span class="eyebrow" data-i18n="card.eye">Case Study</span>
@@ -116,7 +117,7 @@
           </div>
         </a>
 
-        <a class="card" href="work/farewind.html" data-cat="ux">
+        <a class="card" href="work/farewind.html" data-cat="ux data">
           <div class="card-media"><img width="800" height="500" src="work/farewind/card-800.webp" srcset="work/farewind/card-800.webp 800w, work/farewind/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="FareWind Route Insights: fare range, key numbers and a fare-over-time chart, shown in a browser and on a phone" data-i18n-alt="alt.fare" loading="lazy"></div>
           <div class="card-body">
             <span class="eyebrow" data-i18n="card.eye">Case Study</span>
@@ -124,6 +125,18 @@
             <h3>FareWind <span class="year">(2026)</span></h3>
             <p data-i18n="w.fare.p">A privacy-first ride-fare timing tool: your logged rides become a price history per route, with a day × hour heatmap, trend chart, route map and rule-based advice on when to leave, wait or avoid.</p>
             <div class="card-tags"><span data-i18n="w.fare.t1">Privacy-first</span><span>Recharts</span><span data-i18n="w.fare.t2">Rule-based advice</span></div>
+            <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="card" href="work/infoviz.html" data-cat="data">
+          <div class="card-media"><img width="800" height="500" src="work/infoviz/card-800.webp" srcset="work/infoviz/card-800.webp 800w, work/infoviz/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="Toronto’s winter-warming scatter beside the Pulse of Vancouver journey map" data-i18n-alt="alt.iv" loading="lazy"></div>
+          <div class="card-body">
+            <span class="eyebrow" data-i18n="card.eye">Case Study</span>
+            <span class="card-cat" data-i18n="w.iv.cat">Information design · Tableau</span>
+            <h3><span data-i18n="w.iv.h">Information Graphics</span> <span class="year">(2025)</span></h3>
+            <p data-i18n="w.iv.p">77 years of Toronto temperatures as a six-chart Tableau story on winter warming, and one 53.8 km bike ride turned into a sensory map of Vancouver.</p>
+            <div class="card-tags"><span>Tableau</span><span data-i18n="w.iv.t1">Climate data</span><span data-i18n="w.iv.t2">Narrative map</span></div>
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -336,7 +349,7 @@
             <span class="row-side"><span class="year">2026</span></span>
           </li>
 
-          <li class="row" data-cat="ux">
+          <li class="row" data-cat="ux data">
             <span class="row-cat" data-i18n="rc.dataviz">Data visualization</span>
             <div class="row-main">
               <h4>FluxMap</h4>
@@ -350,7 +363,7 @@
             <span class="row-side"><span class="year">2026</span></span>
           </li>
 
-          <li class="row" data-cat="ux">
+          <li class="row" data-cat="ux data">
             <span class="row-cat" data-i18n="rc.dataviz">Data visualization</span>
             <div class="row-main">
               <h4>FareWind</h4>
@@ -614,6 +627,13 @@ en: {
 'w.fare.p':'隐私优先的打车时机工具：你记录的行程变成每条路线的价格历史，配合星期 × 小时热力图、走势图、路线地图，以及告诉你何时出发、等待或避开的规则建议。',
 'w.fare.t1':'隐私优先',
 'w.fare.t2':'规则建议',
+'w.f.data':'数据可视化',
+'w.iv.cat':'信息设计 · Tableau',
+'w.iv.h':'信息图表',
+'w.iv.p':'把多伦多 77 年的气温做成关于冬季变暖的六图 Tableau 叙事，再把一次 53.8 公里的骑行变成温哥华的感官地图。',
+'w.iv.t1':'气候数据',
+'w.iv.t2':'叙事地图',
+'alt.iv':'多伦多冬季变暖散点图，旁边是“温哥华的脉搏”旅程地图',
 'alt.fare':'FareWind 路线分析页：价格区间、关键数字和票价走势图，分别显示在浏览器和手机上',
 'a.fare.p':'个人打车时机分析：行程存在 localStorage，Recharts 绘制统计条、票价走势和星期 × 小时热力图，Leaflet 显示 OSRM 道路路线，并给出附带估算节省金额的规则建议。',
 'alt.flux':'FluxMap：世界地图上的新闻热力图，配有趋势和热门地点面板',
@@ -802,6 +822,13 @@ en: {
 'w.fare.p':'隱私優先的叫車時機工具：你記錄的行程變成每條路線的價格歷史，搭配星期 × 小時熱力圖、走勢圖、路線地圖，以及告訴你何時出發、等待或避開的規則建議。',
 'w.fare.t1':'隱私優先',
 'w.fare.t2':'規則建議',
+'w.f.data':'資料視覺化',
+'w.iv.cat':'資訊設計 · Tableau',
+'w.iv.h':'資訊圖表',
+'w.iv.p':'把多倫多 77 年的氣溫做成關於冬季變暖的六圖 Tableau 敘事，再把一次 53.8 公里的騎行變成溫哥華的感官地圖。',
+'w.iv.t1':'氣候資料',
+'w.iv.t2':'敘事地圖',
+'alt.iv':'多倫多冬季變暖散佈圖，旁邊是「溫哥華的脈搏」旅程地圖',
 'alt.fare':'FareWind 路線分析頁：價格區間、關鍵數字和車資走勢圖，分別顯示在瀏覽器和手機上',
 'a.fare.p':'個人叫車時機分析：行程存在 localStorage，Recharts 繪製統計條、車資走勢和星期 × 小時熱力圖，Leaflet 顯示 OSRM 道路路線，並給出附帶估算節省金額的規則建議。',
 'alt.flux':'FluxMap：世界地圖上的新聞熱力圖，搭配趨勢和熱門地點面板',
@@ -990,6 +1017,13 @@ ja: {
 'w.fare.p':'プライバシー優先の配車タイミングツール。記録した乗車がルートごとの料金履歴になり、曜日 × 時間のヒートマップ、推移チャート、ルートマップ、そして今出るか・待つか・避けるかのルールベースの提案につながります。',
 'w.fare.t1':'プライバシー優先',
 'w.fare.t2':'ルールベースの提案',
+'w.f.data':'データ可視化',
+'w.iv.cat':'情報デザイン · Tableau',
+'w.iv.h':'インフォメーション・グラフィックス',
+'w.iv.p':'トロントの 77 年分の気温を、冬の温暖化をめぐる 6 枚の Tableau のストーリーに。53.8 km の 1 回の走行を、バンクーバーの感覚の地図に。',
+'w.iv.t1':'気候データ',
+'w.iv.t2':'物語のある地図',
+'alt.iv':'トロントの冬の温暖化を示す散布図と、その横の「バンクーバーの鼓動」の旅の地図',
 'alt.fare':'FareWind の Route Insights：料金の幅、主要な数字、料金推移チャートをブラウザとスマホで表示',
 'a.fare.p':'個人の配車タイミング分析。乗車は localStorage に保存し、Recharts で統計バー・料金推移・曜日 × 時間のヒートマップを、Leaflet で OSRM の道路ルートを表示。節約額の見積もり付きのルールベースの提案。',
 'alt.flux':'FluxMap：世界地図上のニュースのヒートマップと、トレンドと上位の地点のパネル',
@@ -1178,6 +1212,13 @@ fr: {
 'w.fare.p':'Un outil de timing pour les VTC, respectueux de la vie privée : les courses notées deviennent un historique de prix par trajet, avec carte de chaleur jour × heure, courbe, carte des trajets et conseils pour partir, attendre ou éviter.',
 'w.fare.t1':'Vie privée d’abord',
 'w.fare.t2':'Conseils à base de règles',
+'w.f.data':'Dataviz',
+'w.iv.cat':'Design d’information · Tableau',
+'w.iv.h':'Infographies',
+'w.iv.p':'77 ans de températures à Toronto en un récit Tableau de six graphiques sur le réchauffement hivernal, et une sortie à vélo de 53,8 km transformée en carte sensorielle de Vancouver.',
+'w.iv.t1':'Données climatiques',
+'w.iv.t2':'Carte narrative',
+'alt.iv':'Le nuage de points du réchauffement hivernal à Toronto à côté de la carte du Pouls de Vancouver',
 'alt.fare':'Route Insights de FareWind : écart de prix, chiffres clés et courbe des prix, sur navigateur et sur téléphone',
 'a.fare.p':'Timing personnel des courses : trajets notés dans le localStorage, barre de stats, courbe des prix et carte de chaleur jour × heure avec Recharts, itinéraires OSRM dans Leaflet, et conseils à base de règles avec économies estimées.',
 'alt.flux':'FluxMap : une carte de chaleur de l’actualité sur une carte du monde, avec les panneaux de tendance et de lieux principaux',
@@ -1416,6 +1457,13 @@ de: {
 'w.fare.p':'Ein datenschutzfreundliches Timing-Tool für Fahrdienste: Eingetragene Fahrten werden zur Preisgeschichte pro Strecke, mit Heatmap Wochentag × Stunde, Verlaufsdiagramm, Streckenkarte und regelbasierten Tipps zum Losfahren, Warten oder Meiden.',
 'w.fare.t1':'Datenschutz zuerst',
 'w.fare.t2':'Regelbasierte Tipps',
+'w.f.data':'Datenvisualisierung',
+'w.iv.cat':'Informationsdesign · Tableau',
+'w.iv.h':'Informationsgrafiken',
+'w.iv.p':'77 Jahre Temperaturen in Toronto als Tableau-Geschichte in sechs Diagrammen zur Wintererwärmung – und eine 53,8-km-Radtour als Sinneskarte von Vancouver.',
+'w.iv.t1':'Klimadaten',
+'w.iv.t2':'Erzählende Karte',
+'alt.iv':'Torontos Streudiagramm zur Wintererwärmung neben der Reisekarte „Pulse of Vancouver“',
 'alt.fare':'Route Insights von FareWind: Preisspanne, Kennzahlen und Preisverlauf im Browser und auf dem Handy',
 'a.fare.p':'Persönliches Fahrpreis-Timing: Fahrten im localStorage, Kennzahlenleiste, Preisverlauf und Heatmap Wochentag × Stunde mit Recharts, OSRM-Straßenrouten in Leaflet und regelbasierte Tipps mit geschätzter Ersparnis.',
 'alt.flux':'FluxMap: eine Nachrichten-Heatmap auf einer Weltkarte mit Trend- und Orte-Panels',
