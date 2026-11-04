@@ -4,12 +4,12 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Learn Code — Yiyang Zhang</title>
-  <meta name="description" content="A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability."/>
+  <meta name="description" content="CodeOnTheGo: a mobile web app for learning to code in short breaks. 20 lessons, quizzes you answer by tapping, typing or speaking. Research, UX and front-end code by Yiyang Zhang."/>
   <link rel="canonical" href="https://antirender.github.io/work/learn-code.html"/>
   <meta property="og:type" content="article"/>
   <meta property="og:site_name" content="Yiyang Zhang"/>
   <meta property="og:title" content="Learn Code — Yiyang Zhang"/>
-  <meta property="og:description" content="A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability."/>
+  <meta property="og:description" content="CodeOnTheGo: a mobile web app for learning to code in short breaks. 20 lessons, quizzes you answer by tapping, typing or speaking. Research, UX and front-end code by Yiyang Zhang."/>
   <meta property="og:url" content="https://antirender.github.io/work/learn-code.html"/>
   <meta property="og:image" content="https://antirender.github.io/work/learn-code/og.jpg"/>
   <meta property="og:image:width" content="1200"/>
@@ -29,11 +29,18 @@
     html:not([lang="de"]) [data-lang="de"]{display:none!important}
     html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
     .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
-    /* Section hierarchy: quiet "NN  Label" kicker, then a bold headline on its own line */
+    /* Section hierarchy: gray "NN  Label" kicker, then a bold headline on its own line */
     .content>h2::before{content:none}
-    .content>h2{counter-increment:none;border-top:0;padding-top:0;margin:.1rem 0 .85rem}
-    .sec-k{counter-increment:sec;max-width:var(--measure);margin:2.75rem 0 .35rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-    .sec-k::before{content:counter(sec,decimal-leading-zero);margin-right:.7rem}
+    .content>h2{counter-increment:none;border-top:0;padding-top:0;margin:.1rem 0 .85rem;max-width:var(--measure)}
+    .content .sec-k{counter-increment:sec;max-width:none;margin:2.75rem 0 .5rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .content .sec-k::before{content:counter(sec,decimal-leading-zero);margin-right:.7rem}
+    :root[data-theme="dark"] .content .sec-k{color:#8a98ad}
+    .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1rem;margin:1rem 0 1.75rem;align-items:start}
+    .shots--phones{grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px}
+    .shots figure{margin:0}
+    .shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border)}
+    .shots figcaption{font-size:.8rem;color:var(--muted);margin-top:.4rem;line-height:1.45}
+    .content .credits{font-size:.85rem;color:var(--muted);margin-top:2.5rem}
   </style>
 </head>
 <body>
@@ -66,17 +73,18 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow"><span data-lang="en">Case Study · UX/UI · 2025</span><span data-lang="zh">案例研究 · UX/UI · 2025</span><span data-lang="tw">案例研究 · UX/UI · 2025</span><span data-lang="ja">ケーススタディ · UX/UI · 2025</span><span data-lang="fr">Étude de cas · UX/UI · 2025</span><span data-lang="de">Fallstudie · UX/UI · 2025</span></span>
-      <h1><span data-lang="en">Learn Code — Building Pathways to Programming</span><span data-lang="zh">Learn Code — 铺一条通往编程的路</span><span data-lang="tw">Learn Code — 鋪一條通往程式設計的路</span><span data-lang="ja">Learn Code — プログラミングへの道筋をつくる</span><span data-lang="fr">Learn Code — tracer des chemins vers la programmation</span><span data-lang="de">Learn Code — Wege zum Programmieren bauen</span></h1>
-      <p data-lang="en">A browser-based learning app exploring how beginners browse and resume lessons. Hierarchical navigation with consistent cards improves scanability. Fully responsive, no custom scroll regions.</p>
-      <p data-lang="zh">一款在浏览器里运行的学习应用，探索初学者如何浏览课程、如何接着上次的进度学下去。层级式导航配合统一的卡片，让内容更易快速浏览。完全响应式，没有自定义滚动区域。</p>
-      <p data-lang="tw">一款在瀏覽器裡執行的學習應用，探索初學者如何瀏覽課程、如何接著上次的進度學下去。層級式導覽配合統一的卡片，讓內容更易快速瀏覽。完全響應式，沒有自訂捲動區域。</p>
-      <p data-lang="ja">初心者がレッスンをどう探し、どう続きから再開するかを探るブラウザベースの学習アプリ。階層型ナビゲーションと統一されたカードで流し読みしやすくしています。完全レスポンシブで、独自のスクロール領域はありません。</p>
-      <p data-lang="fr">Une application d’apprentissage dans le navigateur qui explore comment les débutants parcourent et reprennent leurs leçons. Une navigation hiérarchique et des cartes cohérentes facilitent la lecture rapide. Entièrement responsive, sans zone de défilement personnalisée.</p><p data-lang="de">Eine browserbasierte Lern-App, die untersucht, wie Einsteiger Lektionen durchstöbern und dort weitermachen, wo sie aufgehört haben. Eine hierarchische Navigation mit einheitlichen Karten macht die Inhalte leichter überfliegbar. Vollständig responsiv, ohne eigene Scrollbereiche.</p>
+      <span class="eyebrow"><span data-lang="en">Case Study · UX/UI and front-end · 2025</span><span data-lang="zh">案例研究 · UX/UI 与前端 · 2025</span><span data-lang="tw">案例研究 · UX/UI 與前端 · 2025</span><span data-lang="ja">ケーススタディ · UX/UI とフロントエンド · 2025</span><span data-lang="fr">Étude de cas · UX/UI et front-end · 2025</span><span data-lang="de">Fallstudie · UX/UI und Frontend · 2025</span></span>
+      <h1><span data-lang="en">Learn Code: coding lessons that fit into a short break</span><span data-lang="zh">Learn Code：利用碎片时间学编程的手机应用</span><span data-lang="tw">Learn Code：利用零碎時間學程式設計的手機應用</span><span data-lang="ja">Learn Code：短い休憩で学べるプログラミングアプリ</span><span data-lang="fr">Learn Code : des leçons de code qui tiennent dans une courte pause</span><span data-lang="de">Learn Code: Programmierlektionen für die kurze Pause</span></h1>
+      <p data-lang="en">CodeOnTheGo is a mobile web app I designed and coded for beginners who learn in short breaks. It has 20 lessons across HTML, CSS, JavaScript and JSON, and every quiz can be answered by tapping, typing or speaking.</p>
+      <p data-lang="zh">CodeOnTheGo 是我独立设计并开发的手机网页应用，给利用碎片时间学编程的初学者用。它有 20 节课，覆盖 HTML、CSS、JavaScript 和 JSON，每个小测验都可以点选、打字或用语音回答。</p>
+      <p data-lang="tw">CodeOnTheGo 是我獨立設計並開發的手機網頁應用，給利用零碎時間學程式設計的初學者用。它有 20 節課，覆蓋 HTML、CSS、JavaScript 和 JSON，每個小測驗都可以點選、打字或用語音回答。</p>
+      <p data-lang="ja">CodeOnTheGo は、短い休憩で学ぶ初心者のために、私がデザインしてコードを書いたモバイル Web アプリです。HTML、CSS、JavaScript、JSON の 20 レッスンがあり、どのクイズもタップ、入力、音声で答えられます。</p>
+      <p data-lang="fr">CodeOnTheGo est une application web mobile que j’ai conçue et codée pour les débutants qui apprennent pendant de courtes pauses. Elle propose 20 leçons sur HTML, CSS, JavaScript et JSON, et chaque quiz se répond en appuyant, en tapant ou à la voix.</p>
+      <p data-lang="de">CodeOnTheGo ist eine mobile Web-App, die ich für Einsteiger gestaltet und programmiert habe, die in kurzen Pausen lernen. Sie bietet 20 Lektionen zu HTML, CSS, JavaScript und JSON, und jedes Quiz lässt sich per Antippen, Tippen oder Sprache beantworten.</p>
       <div class="meta">
-        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></strong> <span data-lang="en">UX/UI design, prototyping</span><span data-lang="zh">UX/UI 设计、原型制作</span><span data-lang="tw">UX/UI 設計、原型製作</span><span data-lang="ja">UX/UI デザイン、プロトタイピング</span><span data-lang="fr">Design UX/UI, prototypage</span><span data-lang="de">UX/UI-Design, Prototyping</span></span>
-        <span><strong><span data-lang="en">Methods</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">手法</span><span data-lang="fr">Méthodes</span><span data-lang="de">Methoden</span></strong> <span data-lang="en">User interviews, iterative wireframing</span><span data-lang="zh">用户访谈、迭代线框图</span><span data-lang="tw">使用者訪談、迭代線框圖</span><span data-lang="ja">ユーザーインタビュー、反復的なワイヤーフレーム作成</span><span data-lang="fr">Entretiens utilisateurs, wireframes itératifs</span><span data-lang="de">Nutzerinterviews, iterative Wireframes</span></span>
-        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></strong> <span data-lang="en">7 versions (v10–v17, no v15), improved nav clarity</span><span data-lang="zh">7 个版本（v10–v17，无 v15），导航更清晰</span><span data-lang="tw">7 個版本（v10–v17，無 v15），導覽更清晰</span><span data-lang="ja">7 バージョン（v10–v17、v15 は欠番）、ナビゲーションがより明確に</span><span data-lang="fr">7 versions (v10–v17, sans v15), navigation plus claire</span><span data-lang="de">7 Versionen (v10–v17, ohne v15), klarere Navigation</span></span>
+        <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></strong> <span data-lang="en">Solo: research, UX/UI, front-end code</span><span data-lang="zh">独立完成：调研、UX/UI、前端代码</span><span data-lang="tw">獨立完成：研究、UX/UI、前端程式碼</span><span data-lang="ja">個人制作：リサーチ、UX/UI、フロントエンド</span><span data-lang="fr">Seul : recherche, UX/UI, code front-end</span><span data-lang="de">Allein: Recherche, UX/UI, Frontend-Code</span></span>
+        <span><strong><span data-lang="en">Methods</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">手法</span><span data-lang="fr">Méthodes</span><span data-lang="de">Methoden</span></strong> <span data-lang="en">Observation, personas, paper prototypes, user testing</span><span data-lang="zh">观察、人物画像、纸面原型、用户测试</span><span data-lang="tw">觀察、人物誌、紙面原型、使用者測試</span><span data-lang="ja">観察、ペルソナ、紙のプロトタイプ、ユーザーテスト</span><span data-lang="fr">Observation, personas, prototypes papier, tests utilisateurs</span><span data-lang="de">Beobachtung, Personas, Papierprototypen, Nutzertests</span></span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></strong> <span data-lang="en">Working app, 7 coded versions (v10–v17, no v15)</span><span data-lang="zh">能用的应用，7 个代码版本（v10–v17，无 v15）</span><span data-lang="tw">能用的應用，7 個程式碼版本（v10–v17，無 v15）</span><span data-lang="ja">動くアプリ、コード版 7 つ（v10〜v17、v15 は欠番）</span><span data-lang="fr">Application fonctionnelle, 7 versions codées (v10–v17, sans v15)</span><span data-lang="de">Funktionierende App, 7 programmierte Versionen (v10–v17, ohne v15)</span></span>
       </div>
     </div>
 
@@ -99,16 +107,13 @@
       <div class="tldr">
         <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span><span data-lang="de">Auf einen Blick</span></h2>
         <dl>
-          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span><span data-lang="de">Problem</span></dt><dd><span data-lang="en">Beginners struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</span><span data-lang="zh">初学者常被复杂的导航、不清晰的课程结构和不统一的视觉样式困扰。</span><span data-lang="tw">初學者常被複雜的導覽、不清晰的課程結構和不統一的視覺樣式困擾。</span><span data-lang="ja">初心者は、複雑なナビゲーション、わかりにくいレッスン構成、統一感のない見た目に苦労しています。</span><span data-lang="fr">Les débutants se heurtent à une navigation complexe, à des leçons mal structurées et à des repères visuels incohérents.</span><span data-lang="de">Einsteiger kämpfen mit komplexer Navigation, unklaren Lektionsstrukturen und uneinheitlichen visuellen Mustern.</span></dd></div>
-          <div><dt><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></dt><dd><span data-lang="en">UX/UI design, prototyping, iterative wireframing</span><span data-lang="zh">UX/UI 设计、原型制作、迭代线框图</span><span data-lang="tw">UX/UI 設計、原型製作、迭代線框圖</span><span data-lang="ja">UX/UI デザイン、プロトタイピング、反復的なワイヤーフレーム作成</span><span data-lang="fr">Design UX/UI, prototypage, wireframes itératifs</span><span data-lang="de">UX/UI-Design, Prototyping, iterative Wireframes</span></dd></div>
-          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span><span data-lang="de">Tools</span></dt><dd><span data-lang="en">HTML/CSS, user testing, responsive design</span><span data-lang="zh">HTML/CSS、用户测试、响应式设计</span><span data-lang="tw">HTML/CSS、使用者測試、響應式設計</span><span data-lang="ja">HTML/CSS、ユーザーテスト、レスポンシブデザイン</span><span data-lang="fr">HTML/CSS, tests utilisateurs, design responsive</span><span data-lang="de">HTML/CSS, Nutzertests, responsives Design</span></dd></div>
-          <div><dt><span data-lang="en">Timeline</span><span data-lang="zh">时间线</span><span data-lang="tw">時程</span><span data-lang="ja">タイムライン</span><span data-lang="fr">Calendrier</span><span data-lang="de">Zeitplan</span></dt><dd><span data-lang="en">7 versions (v10–v17, skipping v15) with iterative refinement</span><span data-lang="zh">7 个版本（v10–v17，跳过 v15），持续迭代打磨</span><span data-lang="tw">7 個版本（v10–v17，跳過 v15），持續迭代打磨</span><span data-lang="ja">7 バージョン（v10–v17、v15 は欠番）で反復的に改善</span><span data-lang="fr">7 versions (v10–v17, sans v15) affinées par itérations</span><span data-lang="de">7 Versionen (v10–v17, ohne v15) mit iterativer Verfeinerung</span></dd></div>
-          <div><dt><span data-lang="en">Key Decisions</span><span data-lang="zh">关键决策</span><span data-lang="tw">關鍵決策</span><span data-lang="ja">主な判断</span><span data-lang="fr">Décisions clés</span><span data-lang="de">Wichtige Entscheidungen</span></dt><dd><span data-lang="en">Card-based interface, hierarchical nav (Home → Course → Lesson), single-column mobile layout</span><span data-lang="zh">卡片式界面、层级导航（首页 → 课程 → 课时）、单栏手机布局</span><span data-lang="tw">卡片式介面、層級導覽（首頁 → 課程 → 單元）、單欄手機佈局</span><span data-lang="ja">カード型インターフェース、階層型ナビゲーション（ホーム → コース → レッスン）、1 カラムのモバイルレイアウト</span><span data-lang="fr">Interface en cartes, navigation hiérarchique (Accueil → Cours → Leçon), mise en page mobile sur une colonne</span><span data-lang="de">Kartenbasierte Oberfläche, hierarchische Navigation (Start → Kurs → Lektion), einspaltiges Mobil-Layout</span></dd></div>
-          <div><dt><span data-lang="en">Result</span><span data-lang="zh">结果</span><span data-lang="tw">結果</span><span data-lang="ja">結果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></dt><dd><span data-lang="en">Improved confidence in navigation and lesson discovery; clearer pathways through content.</span><span data-lang="zh">用户在导航和寻找课时时更有把握，学习路径也更清晰。</span><span data-lang="tw">使用者在導覽和尋找單元時更有把握，學習路徑也更清晰。</span><span data-lang="ja">ナビゲーションやレッスン探しに自信が持てるようになり、コンテンツをたどる道筋も明確になりました。</span><span data-lang="fr">Plus d’assurance pour naviguer et trouver des leçons ; des parcours plus clairs dans le contenu.</span><span data-lang="de">Mehr Sicherheit beim Navigieren und Finden von Lektionen; klarere Wege durch die Inhalte.</span></dd></div>
+          <div><dt><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span><span data-lang="de">Problem</span></dt><dd><span data-lang="en">Coding tutorials are long and dense, and typing on a phone is slow.</span><span data-lang="zh">编程教程又长又密，在手机上打字也很慢。</span><span data-lang="tw">程式設計教學又長又密，在手機上打字也很慢。</span><span data-lang="ja">プログラミングの教材は長くて情報が多く、スマホでの入力にも時間がかかります。</span><span data-lang="fr">Les tutoriels de code sont longs et denses, et taper sur un téléphone prend du temps.</span><span data-lang="de">Programmier-Tutorials sind lang und dicht, und Tippen auf dem Handy ist langsam.</span></dd></div>
+          <div><dt><span data-lang="en">What I built</span><span data-lang="zh">主要功能</span><span data-lang="tw">主要功能</span><span data-lang="ja">作ったもの</span><span data-lang="fr">Ce que j’ai créé</span><span data-lang="de">Was ich gebaut habe</span></dt><dd><span data-lang="en">20 lessons and 20 quizzes, voice answers, swipe navigation, dark mode and progress that saves itself.</span><span data-lang="zh">20 节课和 20 个小测验、语音回答、滑动切换、深色模式、自动保存进度。</span><span data-lang="tw">20 節課和 20 個小測驗、語音回答、滑動切換、深色模式、自動儲存進度。</span><span data-lang="ja">20 のレッスンと 20 のクイズ、音声回答、スワイプ操作、ダークモード、進捗の自動保存。</span><span data-lang="fr">20 leçons et 20 quiz, des réponses vocales, une navigation par balayage, un mode sombre et une progression enregistrée automatiquement.</span><span data-lang="de">20 Lektionen und 20 Quizze, Sprachantworten, Wischnavigation, Dunkelmodus und automatisch gespeicherter Fortschritt.</span></dd></div>
+          <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span><span data-lang="de">Werkzeuge</span></dt><dd><span data-lang="en">Figma, HTML, CSS, JavaScript, Hammer.js for swipe gestures, Web Speech API for voice answers</span><span data-lang="zh">Figma、HTML、CSS、JavaScript、Hammer.js（滑动手势）、Web Speech API（语音回答）</span><span data-lang="tw">Figma、HTML、CSS、JavaScript、Hammer.js（滑動手勢）、Web Speech API（語音回答）</span><span data-lang="ja">Figma、HTML、CSS、JavaScript、Hammer.js（スワイプ操作）、Web Speech API（音声回答）</span><span data-lang="fr">Figma, HTML, CSS, JavaScript, Hammer.js pour les gestes de balayage, Web Speech API pour les réponses vocales</span><span data-lang="de">Figma, HTML, CSS, JavaScript, Hammer.js für Wischgesten, Web Speech API für Sprachantworten</span></dd></div>
         </dl>
       </div>
 
-      <img class="cover-img" src="../image/learn-code-app.png" alt="Learn Code App interface preview" data-alt-zh="Learn Code 应用界面预览" data-alt-tw="Learn Code 應用介面預覽" data-alt-ja="Learn Code アプリの画面プレビュー" data-alt-fr="Aperçu de l’interface de l’application Learn Code" data-alt-de="Vorschau der Learn-Code-App">
+      <img class="cover-img" src="learn-code/card-1600.webp" alt="CodeOnTheGo in a desktop browser and on a phone" data-alt-zh="桌面浏览器和手机上的 CodeOnTheGo" data-alt-tw="桌面瀏覽器和手機上的 CodeOnTheGo" data-alt-ja="デスクトップのブラウザとスマホで表示した CodeOnTheGo" data-alt-fr="CodeOnTheGo dans un navigateur de bureau et sur un téléphone" data-alt-de="CodeOnTheGo im Desktop-Browser und auf dem Handy" width="1600" height="1000">
 
       <div class="preview" id="previewBox">
         <iframe src="../DESN18654V17/index.html" loading="lazy" title="Learn Code preview" sandbox="allow-same-origin allow-scripts"></iframe>
@@ -116,165 +121,172 @@
       </div>
 
 
-      <p class="sec-k"><span data-lang="en">Problem / Context</span><span data-lang="zh">问题 / 背景</span><span data-lang="tw">問題 / 背景</span><span data-lang="ja">課題 / 背景</span><span data-lang="fr">Problème / Contexte</span><span data-lang="de">Problem / Kontext</span></p>
-      <h2><span data-lang="en">Beginners learning to code often struggle with navigation complexity, unclear lesson structures, and inconsistent visual patterns.</span><span data-lang="zh">刚开始学编程的人，常常被复杂的导航、不清晰的课程结构和不统一的视觉样式困扰。</span><span data-lang="tw">剛開始學程式設計的人，常常被複雜的導覽、不清晰的課程結構和不統一的視覺樣式困擾。</span><span data-lang="ja">プログラミングを学び始めた人は、複雑なナビゲーション、わかりにくいレッスン構成、統一感のない見た目に苦労しがちです。</span><span data-lang="fr">Les débutants en programmation se heurtent souvent à une navigation complexe, à des leçons mal structurées et à des repères visuels incohérents.</span><span data-lang="de">Wer programmieren lernt, kämpft oft mit komplexer Navigation, unklaren Lektionsstrukturen und uneinheitlichen visuellen Mustern.</span></h2>
-      <p data-lang="en">The goal was a learning app that stays easy to move through, with a clear path from one topic to the next.</p>
-      <p data-lang="zh">目标是做一个用起来顺手的学习应用，让学习者始终清楚自己在哪、下一步该去哪。</p>
-      <p data-lang="tw">目標是做一個用起來順手的學習應用，讓學習者始終清楚自己在哪、下一步該去哪。</p>
-      <p data-lang="ja">目指したのは、迷わず使えて、次にどこへ進むかが常にはっきりしている学習アプリです。</p>
-      <p data-lang="fr">L’objectif : une application d’apprentissage simple à parcourir, avec un chemin clair d’un sujet au suivant.</p><p data-lang="de">Ziel war eine Lern-App, die leicht zu durchlaufen ist und einen klaren Weg von einem Thema zum nächsten bietet.</p>
+      <p class="sec-k"><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span><span data-lang="de">Problem</span></p>
+      <h2><span data-lang="en">Coding tutorials are too long and too dense to use on a phone.</span><span data-lang="zh">编程教程太长太密，在手机上很难学下去。</span><span data-lang="tw">程式設計教學太長太密，在手機上很難學下去。</span><span data-lang="ja">プログラミングの教材は長くて情報が多く、スマホでは続けにくい。</span><span data-lang="fr">Les tutoriels de code sont trop longs et trop denses pour un téléphone.</span><span data-lang="de">Programmier-Tutorials sind zu lang und zu dicht fürs Handy.</span></h2>
+      <p data-lang="en">The beginners I worked with felt overwhelmed by dense tutorials and wanted to study in short gaps during the day. My goal: one lesson should fit into a 15-minute break.</p>
+      <p data-lang="zh">和我一起测试的初学者觉得教程内容太密，想利用一天里的碎片时间学习。我的目标是：一节课能在 15 分钟的休息时间里学完。</p>
+      <p data-lang="tw">和我一起測試的初學者覺得教學內容太密，想利用一天裡的零碎時間學習。我的目標是：一節課能在 15 分鐘的休息時間裡學完。</p>
+      <p data-lang="ja">一緒にテストした初心者は、情報の多い教材に圧倒され、1 日のすき間時間に学びたいと考えていました。目標は、1 つのレッスンを 15 分の休憩で終えられるようにすることです。</p>
+      <p data-lang="fr">Les débutants avec qui j’ai travaillé se sentaient submergés par les tutoriels denses et voulaient apprendre dans les petits moments libres de la journée. Mon objectif : une leçon doit tenir dans une pause de 15 minutes.</p>
+      <p data-lang="de">Die Einsteiger, mit denen ich gearbeitet habe, fühlten sich von dichten Tutorials überfordert und wollten in kurzen Pausen lernen. Mein Ziel: Eine Lektion passt in eine 15-Minuten-Pause.</p>
 
-      <p class="sec-k"><span data-lang="en">Audience</span><span data-lang="zh">目标用户</span><span data-lang="tw">目標使用者</span><span data-lang="ja">対象ユーザー</span><span data-lang="fr">Public</span><span data-lang="de">Zielgruppe</span></p>
-      <h2><span data-lang="en">People new to programming who want structure and a clear sense of progress.</span><span data-lang="zh">刚接触编程、想要有条理的课程和清晰进度的人。</span><span data-lang="tw">剛接觸程式設計、想要有條理的課程和清晰進度的人。</span><span data-lang="ja">体系立った学習と、見える進捗を求めるプログラミング初心者。</span><span data-lang="fr">Des débutants en programmation en quête de structure et de progression claire.</span><span data-lang="de">Einsteiger, die Struktur und einen klaren Fortschritt suchen.</span></h2>
-      <p data-lang="en">Adults and young learners new to programming, seeking structured lessons with clear progress tracking and easy navigation between topics and skill levels.</p>
-      <p data-lang="zh">刚接触编程的成年人和青少年——他们希望课程有条理、进度清晰可见，并且能在不同主题和难度之间轻松切换。</p>
-      <p data-lang="tw">剛接觸程式設計的成年人和青少年——他們希望課程有條理、進度清晰可見，並且能在不同主題和難度之間輕鬆切換。</p>
-      <p data-lang="ja">プログラミングを始めたばかりの大人や若い学習者。体系立ったレッスン、わかりやすい進捗表示、トピックやレベル間の移動のしやすさを求めています。</p>
-      <p data-lang="fr">Adultes et jeunes qui débutent en programmation, en quête de leçons structurées, d’un suivi de progression clair et d’une navigation simple entre sujets et niveaux.</p><p data-lang="de">Erwachsene und junge Lernende ohne Programmiererfahrung, die strukturierte Lektionen mit klarer Fortschrittsanzeige und einfacher Navigation zwischen Themen und Niveaus suchen.</p>
-
-      <p class="sec-k"><span data-lang="en">Goals</span><span data-lang="zh">目标</span><span data-lang="tw">目標</span><span data-lang="ja">目標</span><span data-lang="fr">Objectifs</span><span data-lang="de">Ziele</span></p>
-      <h2><span data-lang="en">A clear hierarchy, fast scanning, and consistent navigation on every device.</span><span data-lang="zh">清晰的层级、快速浏览，在各种设备上导航都一致。</span><span data-lang="tw">清晰的層級、快速瀏覽，在各種裝置上導覽都一致。</span><span data-lang="ja">明確な階層、すばやい流し読み、どの端末でも一貫したナビゲーション。</span><span data-lang="fr">Une hiérarchie claire, une lecture rapide et une navigation cohérente sur tous les appareils.</span><span data-lang="de">Eine klare Hierarchie, schnelles Überfliegen und einheitliche Navigation auf jedem Gerät.</span></h2>
+      <p class="sec-k"><span data-lang="en">Users</span><span data-lang="zh">用户</span><span data-lang="tw">使用者</span><span data-lang="ja">ユーザー</span><span data-lang="fr">Utilisateurs</span><span data-lang="de">Nutzer</span></p>
+      <h2><span data-lang="en">I designed for two people who learn in short breaks.</span><span data-lang="zh">我为两位利用碎片时间学习的人做设计。</span><span data-lang="tw">我為兩位利用零碎時間學習的人做設計。</span><span data-lang="ja">すき間時間に学ぶ 2 人のためにデザインしました。</span><span data-lang="fr">J’ai conçu l’application pour deux personnes qui apprennent pendant leurs pauses.</span><span data-lang="de">Ich habe für zwei Menschen gestaltet, die in kurzen Pausen lernen.</span></h2>
       <ul data-lang="en">
-        <li>Create a clear visual hierarchy that distinguishes courses, lessons, and content types.</li>
-        <li>Enable quick scanning and resumption of lessons across devices.</li>
-        <li>Maintain consistency in navigation patterns and card-based layouts.</li>
-        <li>Eliminate scroll-jacking and custom scroll regions for better accessibility.</li>
-        <li>Support seamless mobile-first responsive behavior.</li>
+        <li><strong>Alex Chen, 29,</strong> is a former barista moving into front-end development. He uses any 15-minute window to practise and wants instant feedback.</li>
+        <li><strong>Jamie Zhang, 21,</strong> is a second-year digital arts student with limited coding experience. She learns on her subway commute, and visuals and fast interaction keep her engaged.</li>
       </ul>
       <ul data-lang="zh">
-        <li>建立清晰的视觉层级，区分课程、课时和不同类型的内容。</li>
-        <li>在不同设备上都能快速浏览课时，并接着上次的进度学。</li>
-        <li>保持导航方式和卡片布局的一致性。</li>
-        <li>去掉滚动劫持和自定义滚动区域，提升无障碍体验。</li>
-        <li>支持流畅的移动优先响应式表现。</li>
+        <li><strong>Alex Chen，29 岁，</strong>做过咖啡师，正在转行做前端开发。他抓住每个 15 分钟的空档练习，希望马上知道答案对错。</li>
+        <li><strong>Jamie Zhang，21 岁，</strong>数字艺术专业二年级学生，编程经验不多。她在地铁通勤时学习，图像和快速的互动能让她保持投入。</li>
       </ul>
       <ul data-lang="tw">
-        <li>建立清晰的視覺層級，區分課程、單元和不同類型的內容。</li>
-        <li>在不同裝置上都能快速瀏覽單元，並接著上次的進度學。</li>
-        <li>保持導覽方式和卡片佈局的一致性。</li>
-        <li>去掉捲動劫持和自訂捲動區域，提升無障礙體驗。</li>
-        <li>支援流暢的行動優先響應式表現。</li>
+        <li><strong>Alex Chen，29 歲，</strong>做過咖啡師，正在轉行做前端開發。他抓住每個 15 分鐘的空檔練習，希望馬上知道答案對錯。</li>
+        <li><strong>Jamie Zhang，21 歲，</strong>數位藝術專業二年級學生，程式設計經驗不多。她在地鐵通勤時學習，影象和快速的互動能讓她保持投入。</li>
       </ul>
       <ul data-lang="ja">
-        <li>コース、レッスン、コンテンツの種類を見分けられる明確な視覚的階層をつくる。</li>
-        <li>どの端末でもレッスンをすばやく見渡し、続きから再開できるようにする。</li>
-        <li>ナビゲーションのパターンとカードレイアウトの一貫性を保つ。</li>
-        <li>アクセシビリティ向上のため、スクロールジャックや独自のスクロール領域をなくす。</li>
-        <li>モバイルファーストでなめらかなレスポンシブ表示に対応する。</li>
+        <li><strong>Alex Chen（29 歳）</strong>は元バリスタで、フロントエンド開発への転身を目指しています。15 分のすき間があれば練習し、すぐに結果を知りたいと考えています。</li>
+        <li><strong>Jamie Zhang（21 歳）</strong>はデジタルアートを学ぶ 2 年生で、コーディングの経験はあまりありません。地下鉄の通勤中に学び、ビジュアルと素早い操作が集中を支えます。</li>
       </ul>
       <ul data-lang="fr">
-        <li>Créer une hiérarchie visuelle claire qui distingue cours, leçons et types de contenu.</li>
-        <li>Permettre de parcourir et reprendre rapidement les leçons sur tous les appareils.</li>
-        <li>Garder des schémas de navigation et des mises en page en cartes cohérents.</li>
-        <li>Supprimer le détournement du défilement et les zones de défilement personnalisées, pour une meilleure accessibilité.</li>
-        <li>Assurer un comportement responsive mobile-first sans accroc.</li>
-      </ul><ul data-lang="de"><li>Eine klare visuelle Hierarchie schaffen, die Kurse, Lektionen und Inhaltstypen unterscheidet.</li>
-<li>Lektionen auf allen Geräten schnell überfliegen und fortsetzen können.</li>
-<li>Navigationsmuster und kartenbasierte Layouts einheitlich halten.</li>
-<li>Kein Scroll-Jacking und keine eigenen Scrollbereiche – für bessere Barrierefreiheit.</li>
-<li>Nahtloses, responsives Verhalten nach dem Mobile-first-Prinzip.</li></ul>
+        <li><strong>Alex Chen, 29 ans,</strong> ancien barista, se reconvertit dans le développement front-end. Il profite de chaque créneau de 15 minutes pour s’entraîner et veut un retour immédiat.</li>
+        <li><strong>Jamie Zhang, 21 ans,</strong> étudiante en deuxième année d’arts numériques, a peu d’expérience en code. Elle apprend dans le métro, et les visuels et les interactions rapides l’aident à rester concentrée.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Alex Chen, 29,</strong> ehemaliger Barista, wechselt in die Frontend-Entwicklung. Er nutzt jedes 15-Minuten-Fenster zum Üben und will sofort Rückmeldung.</li>
+        <li><strong>Jamie Zhang, 21,</strong> studiert digitale Kunst im zweiten Jahr und hat wenig Programmiererfahrung. Sie lernt auf dem Weg in der U-Bahn, Bilder und schnelle Interaktion halten sie bei der Sache.</li>
+      </ul>
+      <div class="shots shots--wide">
+        <figure><img src="learn-code/persona-alex.webp" alt="Persona card for Alex Chen, a former barista: “I use any 15-minute window to squeeze in code practice.”" data-alt-zh="Alex Chen 的人物画像，前咖啡师：“I use any 15-minute window to squeeze in code practice.”" data-alt-tw="Alex Chen 的人物誌，前咖啡師：“I use any 15-minute window to squeeze in code practice.”" data-alt-ja="元バリスタ Alex Chen のペルソナ：「I use any 15-minute window to squeeze in code practice.」" data-alt-fr="Persona d’Alex Chen, ancien barista : « I use any 15-minute window to squeeze in code practice. »" data-alt-de="Persona von Alex Chen, ehemaliger Barista: „I use any 15-minute window to squeeze in code practice.“" width="1000" height="667" loading="lazy"><figcaption><span data-lang="en">Alex: learns in 15-minute breaks.</span><span data-lang="zh">Alex：利用 15 分钟的休息时间学习。</span><span data-lang="tw">Alex：利用 15 分鐘的休息時間學習。</span><span data-lang="ja">Alex：15 分の休憩で学ぶ。</span><span data-lang="fr">Alex : apprend pendant des pauses de 15 minutes.</span><span data-lang="de">Alex: lernt in 15-Minuten-Pausen.</span></figcaption></figure>
+        <figure><img src="learn-code/persona-jamie.webp" alt="Persona card for Jamie Zhang, a digital arts student: “I want to learn the basics of coding during my commute.”" data-alt-zh="Jamie Zhang 的人物画像，数字艺术学生：“I want to learn the basics of coding during my commute.”" data-alt-tw="Jamie Zhang 的人物誌，數位藝術學生：“I want to learn the basics of coding during my commute.”" data-alt-ja="デジタルアートを学ぶ Jamie Zhang のペルソナ：「I want to learn the basics of coding during my commute.」" data-alt-fr="Persona de Jamie Zhang, étudiante en arts numériques : « I want to learn the basics of coding during my commute. »" data-alt-de="Persona von Jamie Zhang, Studentin für digitale Kunst: „I want to learn the basics of coding during my commute.“" width="1000" height="667" loading="lazy"><figcaption><span data-lang="en">Jamie: learns on the commute.</span><span data-lang="zh">Jamie：在通勤路上学习。</span><span data-lang="tw">Jamie：在通勤路上學習。</span><span data-lang="ja">Jamie：通勤中に学ぶ。</span><span data-lang="fr">Jamie : apprend pendant ses trajets.</span><span data-lang="de">Jamie: lernt auf dem Arbeitsweg.</span></figcaption></figure>
+      </div>
 
-      <p class="sec-k"><span data-lang="en">Constraints</span><span data-lang="zh">限制条件</span><span data-lang="tw">限制條件</span><span data-lang="ja">制約</span><span data-lang="fr">Contraintes</span><span data-lang="de">Rahmenbedingungen</span></p>
-      <h2><span data-lang="en">A static HTML/CSS prototype — no backend, no frameworks.</span><span data-lang="zh">一个静态的 HTML/CSS 原型——没有后端，也不用框架。</span><span data-lang="tw">一個靜態的 HTML/CSS 原型——沒有後端，也不用框架。</span><span data-lang="ja">静的な HTML/CSS のプロトタイプ。バックエンドもフレームワークもなし。</span><span data-lang="fr">Un prototype HTML/CSS statique — sans back-end ni framework.</span><span data-lang="de">Ein statischer HTML/CSS-Prototyp – ohne Backend, ohne Framework.</span></h2>
-      <p data-lang="en">No backend or authentication system; fully static HTML/CSS prototype. All interactions must work without JavaScript frameworks, and navigation must feel natural on touch devices.</p>
-      <p data-lang="zh">没有后端，也没有登录系统；完全是静态的 HTML/CSS 原型。所有交互都必须在不依赖 JavaScript 框架的情况下运行，导航在触屏设备上也要用起来自然。</p>
-      <p data-lang="tw">沒有後端，也沒有登入系統；完全是靜態的 HTML/CSS 原型。所有互動都必須在不依賴 JavaScript 框架的情況下執行，導覽在觸控裝置上也要用起來自然。</p>
-      <p data-lang="ja">バックエンドや認証の仕組みはなく、完全に静的な HTML/CSS のプロトタイプです。すべてのインタラクションは JavaScript フレームワークなしで動き、タッチ端末でも自然に操作できるナビゲーションである必要がありました。</p>
-      <p data-lang="fr">Ni back-end ni authentification : un prototype HTML/CSS entièrement statique. Toutes les interactions devaient fonctionner sans framework JavaScript, et la navigation devait paraître naturelle sur écran tactile.</p><p data-lang="de">Kein Backend und keine Authentifizierung; ein rein statischer HTML/CSS-Prototyp. Alle Interaktionen mussten ohne JavaScript-Frameworks funktionieren, und die Navigation sollte sich auf Touch-Geräten natürlich anfühlen.</p>
-
-      <p class="sec-k"><span data-lang="en">Design Decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">設計上の判断</span><span data-lang="fr">Choix de conception</span><span data-lang="de">Designentscheidungen</span></p>
-      <h2><span data-lang="en">Card-based screens, hierarchical navigation, and a single-column mobile layout.</span><span data-lang="zh">卡片式界面、层级导航，以及单栏的手机布局。</span><span data-lang="tw">卡片式介面、層級導覽，以及單欄的手機佈局。</span><span data-lang="ja">カード型の画面、階層型ナビゲーション、1カラムのモバイルレイアウト。</span><span data-lang="fr">Des écrans en cartes, une navigation hiérarchique et une mise en page mobile sur une colonne.</span><span data-lang="de">Kartenbasierte Screens, hierarchische Navigation und ein einspaltiges Mobil-Layout.</span></h2>
+      <p class="sec-k"><span data-lang="en">Research</span><span data-lang="zh">调研</span><span data-lang="tw">研究</span><span data-lang="ja">リサーチ</span><span data-lang="fr">Recherche</span><span data-lang="de">Recherche</span></p>
+      <h2><span data-lang="en">People wanted short lessons and less typing.</span><span data-lang="zh">大家想要短课，也想少打字。</span><span data-lang="tw">大家想要短課，也想少打字。</span><span data-lang="ja">求められていたのは、短いレッスンと少ない入力でした。</span><span data-lang="fr">Les gens voulaient des leçons courtes et moins de saisie.</span><span data-lang="de">Gewünscht waren kurze Lektionen und weniger Tippen.</span></h2>
+      <p data-lang="en">I watched a student use their phone on transit and tested early ideas with 2 beginners. Two findings drove the design:</p>
+      <p data-lang="zh">我观察了一位学生在通勤时怎么用手机，又请 2 位初学者测试了早期想法。两个发现决定了设计：</p>
+      <p data-lang="tw">我觀察了一位學生在通勤時怎麼用手機，又請 2 位初學者測試了早期想法。兩個發現決定了設計：</p>
+      <p data-lang="ja">通勤中の学生のスマホの使い方を観察し、初心者 2 人に初期案を試してもらいました。2 つの発見がデザインを決めました。</p>
+      <p data-lang="fr">J’ai observé une personne étudiante utiliser son téléphone dans les transports et testé les premières idées avec 2 débutants. Deux constats ont guidé le design :</p>
+      <p data-lang="de">Ich habe beobachtet, wie eine studierende Person ihr Handy unterwegs nutzt, und frühe Ideen mit 2 Einsteigern getestet. Zwei Erkenntnisse prägten das Design:</p>
       <ul data-lang="en">
-        <li>Card-based interface with consistent spacing and visual weight across all screens.</li>
-        <li>Hierarchical navigation: Home → Course → Lesson → Content, with clear back/up patterns.</li>
-        <li>High-contrast typography and reduced color palette for focus and readability.</li>
-        <li>Single-column mobile layout that stacks naturally without breakpoint complexity.</li>
-        <li>Progress indicators and breadcrumb patterns to maintain context.</li>
+        <li><strong>Dense tutorials overwhelmed them,</strong> so each screen teaches one concept.</li>
+        <li><strong>Typing on a phone was a chore,</strong> so every quiz also takes taps and voice answers.</li>
       </ul>
       <ul data-lang="zh">
-        <li>卡片式界面，所有页面的间距和视觉分量保持一致。</li>
-        <li>层级导航：首页 → 课程 → 课时 → 内容，返回和回到上一级的方式都很清楚。</li>
-        <li>高对比度的字体排版和精简的配色，帮助集中注意力、提升可读性。</li>
-        <li>单栏手机布局，内容自然堆叠，不需要复杂的断点。</li>
-        <li>用进度指示和面包屑导航帮助用户保持方位感。</li>
+        <li><strong>内容太密会让人吃不消，</strong>所以每一屏只讲一个知识点。</li>
+        <li><strong>在手机上打字很麻烦，</strong>所以每个小测验都能点选，也能用语音回答。</li>
       </ul>
       <ul data-lang="tw">
-        <li>卡片式介面，所有頁面的間距和視覺分量保持一致。</li>
-        <li>層級導覽：首頁 → 課程 → 單元 → 內容，返回和回到上一級的方式都很清楚。</li>
-        <li>高對比度的字型排版和精簡的配色，幫助集中注意力、提升可讀性。</li>
-        <li>單欄手機佈局，內容自然堆疊，不需要複雜的斷點。</li>
-        <li>用進度指示和麵包屑導覽幫助使用者保持方位感。</li>
+        <li><strong>內容太密會讓人吃不消，</strong>所以每一屏只講一個知識點。</li>
+        <li><strong>在手機上打字很麻煩，</strong>所以每個小測驗都能點選，也能用語音回答。</li>
       </ul>
       <ul data-lang="ja">
-        <li>すべての画面で余白と視覚的な重みをそろえたカード型インターフェース。</li>
-        <li>階層型ナビゲーション：ホーム → コース → レッスン → コンテンツ。「戻る」「上の階層へ」の操作もわかりやすく。</li>
-        <li>集中しやすく読みやすいよう、高コントラストのタイポグラフィと色数を絞ったパレットを採用。</li>
-        <li>複雑なブレークポイントなしで自然に積み重なる、1 カラムのモバイルレイアウト。</li>
-        <li>進捗表示とパンくずリストで、いまどこにいるかを見失わないようにする。</li>
+        <li><strong>情報の多い教材は負担になる。</strong>そこで 1 画面に 1 つの概念だけを載せました。</li>
+        <li><strong>スマホでの入力は面倒。</strong>そこでどのクイズもタップと音声で答えられるようにしました。</li>
       </ul>
       <ul data-lang="fr">
-        <li>Interface en cartes, avec des espacements et un poids visuel cohérents sur tous les écrans.</li>
-        <li>Navigation hiérarchique : Accueil → Cours → Leçon → Contenu, avec des retours clairs vers le niveau précédent.</li>
-        <li>Typographie à fort contraste et palette réduite pour la concentration et la lisibilité.</li>
-        <li>Mise en page mobile sur une colonne qui s’empile naturellement, sans points de rupture compliqués.</li>
-        <li>Indicateurs de progression et fil d’Ariane pour garder le contexte.</li>
-      </ul><ul data-lang="de"><li>Kartenbasierte Oberfläche mit einheitlichen Abständen und gleichem visuellen Gewicht auf allen Screens.</li>
-<li>Hierarchische Navigation: Start → Kurs → Lektion → Inhalt, mit klaren Zurück- und Nach-oben-Mustern.</li>
-<li>Kontrastreiche Typografie und eine reduzierte Farbpalette für Fokus und Lesbarkeit.</li>
-<li>Ein einspaltiges Mobil-Layout, das sich ohne komplizierte Breakpoints natürlich stapelt.</li>
-<li>Fortschrittsanzeigen und Breadcrumbs, damit der Kontext erhalten bleibt.</li></ul>
+        <li><strong>Les tutoriels denses les submergeaient :</strong> chaque écran enseigne donc une seule notion.</li>
+        <li><strong>Taper sur un téléphone était une corvée :</strong> chaque quiz accepte donc aussi les appuis et la voix.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Dichte Tutorials überforderten sie,</strong> also vermittelt jeder Bildschirm genau ein Konzept.</li>
+        <li><strong>Tippen auf dem Handy war mühsam,</strong> also nimmt jedes Quiz auch Antippen und Sprache an.</li>
+      </ul>
 
-      <p class="sec-k"><span data-lang="en">Iteration / Versions (v10–v17)</span><span data-lang="zh">迭代 / 版本（v10–v17）</span><span data-lang="tw">迭代 / 版本（v10–v17）</span><span data-lang="ja">イテレーション / バージョン（v10–v17）</span><span data-lang="fr">Itérations / versions (v10–v17)</span><span data-lang="de">Iteration / Versionen (v10–v17)</span></p>
-      <h2><span data-lang="en">Seven versions (v10–v17), from navigation tests to a polished v17.</span><span data-lang="zh">七个版本（v10–v17），从导航测试一路打磨到 v17。</span><span data-lang="tw">七個版本（v10–v17），從導覽測試一路打磨到 v17。</span><span data-lang="ja">7 つのバージョン（v10–v17）。ナビゲーションの検証から、仕上げの v17 まで。</span><span data-lang="fr">Sept versions (v10–v17), des tests de navigation à une v17 peaufinée.</span><span data-lang="de">Sieben Versionen (v10–v17), von Navigationstests bis zur ausgefeilten v17.</span></h2>
-      <p data-lang="en">Early versions (v10–v12) tested different navigation models and card sizes. Mid iterations (v13–v14, v16) refined spacing, typography scale, and interaction feedback. V17 is the final version with tightened mobile responsiveness and polished card hierarchy. A separate <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store presentation page</a> was created as a showcase for v17.</p>
-      <p data-lang="zh">早期版本（v10–v12）测试了不同的导航模型和卡片尺寸。中期迭代（v13–v14、v16）打磨了间距、字号层级和交互反馈。V17 是最终版，进一步收紧了手机上的响应式表现，并完善了卡片层级。另外还为 v17 单独制作了一个 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 展示页</a>。</p>
-      <p data-lang="tw">早期版本（v10–v12）測試了不同的導覽模型和卡片尺寸。中期迭代（v13–v14、v16）打磨了間距、字級層級和互動回饋。V17 是最終版，進一步收緊了手機上的響應式表現，並完善了卡片層級。另外還為 v17 單獨製作了一個 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 展示頁</a>。</p>
-      <p data-lang="ja">初期のバージョン（v10–v12）では、さまざまなナビゲーションモデルとカードサイズを検証しました。中盤のイテレーション（v13–v14、v16）では、余白、文字サイズの階層、インタラクションのフィードバックを調整。V17 は最終版で、モバイルでのレスポンシブ表示を引き締め、カードの階層を仕上げました。v17 を紹介するために、別途 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 紹介ページ</a>も制作しました。</p>
-      <p data-lang="fr">Les premières versions (v10–v12) testaient différents modèles de navigation et tailles de cartes. Les itérations intermédiaires (v13–v14, v16) ont affiné les espacements, l’échelle typographique et les retours d’interaction. La V17 est la version finale, avec un responsive mobile resserré et une hiérarchie de cartes peaufinée. Une <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">page de présentation App Store</a> distincte a été créée pour mettre la v17 en valeur.</p><p data-lang="de">Frühe Versionen (v10–v12) testeten verschiedene Navigationsmodelle und Kartengrößen. Mittlere Iterationen (v13–v14, v16) verfeinerten Abstände, Schriftgrößen und Interaktions-Feedback. V17 ist die finale Version mit strafferem mobilen Verhalten und ausgefeilter Kartenhierarchie. Eine eigene <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App-Store-Präsentationsseite</a> entstand als Schaufenster für v17.</p>
-
-      <p class="sec-k"><span data-lang="en">Testing &amp; Validation</span><span data-lang="zh">测试与验证</span><span data-lang="tw">測試與驗證</span><span data-lang="ja">テストと検証</span><span data-lang="fr">Tests et validation</span><span data-lang="de">Tests &amp; Validierung</span></p>
-      <h2><span data-lang="en">Tested with beginners — a visible back button beat the hamburger menu.</span><span data-lang="zh">和初学者一起测试——看得见的“返回”比汉堡菜单更受欢迎。</span><span data-lang="tw">和初學者一起測試——看得見的「返回」比漢堡選單更受歡迎。</span><span data-lang="ja">初心者とテスト。目に見える「戻る」がハンバーガーメニューより好まれました。</span><span data-lang="fr">Testé avec des débutants — un bouton « retour » visible a battu le menu hamburger.</span><span data-lang="de">Mit Einsteigern getestet – ein sichtbarer „Zurück“-Button schlug das Hamburger-Menü.</span></h2>
+      <p class="sec-k"><span data-lang="en">Design decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">デザインの判断</span><span data-lang="fr">Décisions de design</span><span data-lang="de">Designentscheidungen</span></p>
+      <h2><span data-lang="en">One lesson per screen, instant feedback, three ways to answer.</span><span data-lang="zh">一屏一课，即时反馈，三种回答方式。</span><span data-lang="tw">一屏一課，即時回饋，三種回答方式。</span><span data-lang="ja">1 画面 1 レッスン、すぐ返るフィードバック、3 通りの答え方。</span><span data-lang="fr">Une leçon par écran, un retour immédiat, trois façons de répondre.</span><span data-lang="de">Eine Lektion pro Bildschirm, sofortiges Feedback, drei Antwortwege.</span></h2>
       <ul data-lang="en">
-        <li>Tested with beginner users unfamiliar with coding platforms.</li>
-        <li>Observed navigation patterns: users preferred visible "back" over hamburger menus.</li>
-        <li>Verified touch target sizes and scroll behavior on mobile devices.</li>
-        <li>Confirmed that lesson cards supported fast scanning and selection.</li>
+        <li><strong>One lesson, one screen.</strong> Large type and soft card borders. The quiz opens when you tap Start Quiz.</li>
+        <li><strong>Instant feedback.</strong> A green check or red cross with an encouraging message. The next lesson unlocks after a correct answer.</li>
+        <li><strong>Tap, type or speak.</strong> Every quiz has a Start Voice Input button, built with the Web Speech API.</li>
+        <li><strong>Progress saves itself.</strong> Lesson and quiz state stay in localStorage, so people pick up where they left off.</li>
+        <li><strong>Swipe between topics.</strong> Hammer.js moves people between HTML, CSS, JavaScript and JSON with one gesture.</li>
       </ul>
       <ul data-lang="zh">
-        <li>邀请不熟悉编程平台的初学者参与测试。</li>
-        <li>观察导航习惯：比起汉堡菜单，用户更喜欢看得见的“返回”。</li>
-        <li>在手机上检查了点击区域大小和滚动表现。</li>
-        <li>确认课时卡片便于快速浏览和选择。</li>
+        <li><strong>一屏一课。</strong>大字号、柔和的卡片边框。点 Start Quiz 后展开小测验。</li>
+        <li><strong>即时反馈。</strong>绿勾或红叉，加一句鼓励的话。答对后解锁下一节课。</li>
+        <li><strong>点选、打字或说话。</strong>每个小测验都有 Start Voice Input 按钮，用 Web Speech API 实现。</li>
+        <li><strong>进度自动保存。</strong>课程和小测验的状态存在 localStorage 里，下次打开接着学。</li>
+        <li><strong>滑动切换主题。</strong>用 Hammer.js 实现，一个手势就能在 HTML、CSS、JavaScript 和 JSON 之间切换。</li>
       </ul>
       <ul data-lang="tw">
-        <li>邀請不熟悉程式設計平台的初學者參與測試。</li>
-        <li>觀察導覽習慣：比起漢堡選單，使用者更喜歡看得見的“返回”。</li>
-        <li>在手機上檢查了點選區域大小和捲動表現。</li>
-        <li>確認單元卡片便於快速瀏覽和選擇。</li>
+        <li><strong>一屏一課。</strong>大字級、柔和的卡片邊框。點 Start Quiz 後展開小測驗。</li>
+        <li><strong>即時回饋。</strong>綠勾或紅叉，加一句鼓勵的話。答對後解鎖下一節課。</li>
+        <li><strong>點選、打字或說話。</strong>每個小測驗都有 Start Voice Input 按鈕，用 Web Speech API 實現。</li>
+        <li><strong>進度自動儲存。</strong>課程和小測驗的狀態存在 localStorage 裡，下次開啟接著學。</li>
+        <li><strong>滑動切換主題。</strong>用 Hammer.js 實現，一個手勢就能在 HTML、CSS、JavaScript 和 JSON 之間切換。</li>
       </ul>
       <ul data-lang="ja">
-        <li>コーディング学習サービスに慣れていない初心者ユーザーでテスト。</li>
-        <li>ナビゲーションの使い方を観察：ユーザーはハンバーガーメニューより、目に見える「戻る」を好みました。</li>
-        <li>モバイル端末でタップ領域のサイズとスクロールの挙動を確認。</li>
-        <li>レッスンカードですばやく見渡して選べることを確認。</li>
+        <li><strong>1 画面に 1 レッスン。</strong>大きな文字と柔らかなカードの枠線。クイズは Start Quiz を押すと開きます。</li>
+        <li><strong>すぐ返るフィードバック。</strong>緑のチェックか赤いバツに、励ましの一言。正解すると次のレッスンが開きます。</li>
+        <li><strong>タップ、入力、音声。</strong>どのクイズにも Web Speech API で作った Start Voice Input ボタンがあります。</li>
+        <li><strong>進捗は自動で保存。</strong>レッスンとクイズの状態を localStorage に残すので、続きから再開できます。</li>
+        <li><strong>スワイプでトピックを切り替え。</strong>Hammer.js を使い、HTML、CSS、JavaScript、JSON を 1 つのジェスチャーで移動できます。</li>
       </ul>
       <ul data-lang="fr">
-        <li>Tests avec des débutants peu familiers des plateformes de code.</li>
-        <li>Observation de la navigation : les utilisateurs préféraient un bouton « retour » visible au menu hamburger.</li>
-        <li>Vérification des zones tactiles et du défilement sur mobile.</li>
-        <li>Confirmation que les cartes de leçon permettent de parcourir et de choisir rapidement.</li>
-      </ul><ul data-lang="de"><li>Getestet mit Einsteigern, die keine Programmierplattformen kannten.</li>
-<li>Beobachtete Navigationsmuster: Ein sichtbarer „Zurück“-Button war beliebter als Hamburger-Menüs.</li>
-<li>Größe der Touch-Ziele und Scrollverhalten auf Mobilgeräten überprüft.</li>
-<li>Bestätigt, dass die Lektionskarten schnelles Überfliegen und Auswählen unterstützen.</li></ul>
+        <li><strong>Une leçon, un écran.</strong> Grands caractères et bordures douces. Le quiz s’ouvre quand on appuie sur Start Quiz.</li>
+        <li><strong>Retour immédiat.</strong> Une coche verte ou une croix rouge avec un mot d’encouragement. La leçon suivante se débloque après une bonne réponse.</li>
+        <li><strong>Appuyer, taper ou parler.</strong> Chaque quiz a un bouton Start Voice Input, construit avec la Web Speech API.</li>
+        <li><strong>La progression s’enregistre toute seule.</strong> L’état des leçons et des quiz reste dans le localStorage : on reprend là où on s’est arrêté.</li>
+        <li><strong>Balayer d’un sujet à l’autre.</strong> Avec Hammer.js, un geste suffit pour passer entre HTML, CSS, JavaScript et JSON.</li>
+      </ul>
+      <ul data-lang="de">
+        <li><strong>Eine Lektion, ein Bildschirm.</strong> Große Schrift und weiche Kartenränder. Das Quiz öffnet sich mit Start Quiz.</li>
+        <li><strong>Sofortiges Feedback.</strong> Ein grüner Haken oder ein rotes Kreuz mit einer aufmunternden Nachricht. Nach einer richtigen Antwort wird die nächste Lektion freigeschaltet.</li>
+        <li><strong>Antippen, tippen oder sprechen.</strong> Jedes Quiz hat einen Start-Voice-Input-Button, gebaut mit der Web Speech API.</li>
+        <li><strong>Der Fortschritt speichert sich selbst.</strong> Lektionen und Quizze bleiben im localStorage, man macht dort weiter, wo man aufgehört hat.</li>
+        <li><strong>Zwischen Themen wischen.</strong> Mit Hammer.js wechselt eine Geste zwischen HTML, CSS, JavaScript und JSON.</li>
+      </ul>
+      <div class="shots shots--wide">
+        <figure><img src="learn-code/flow.webp" alt="User flow chart from opening the app to unlocking the next lesson" data-alt-zh="从打开应用到解锁下一节课的用户流程图" data-alt-tw="從開啟應用到解鎖下一節課的使用者流程圖" data-alt-ja="アプリを開いてから次のレッスンを解放するまでのユーザーフロー図" data-alt-fr="Parcours utilisateur, de l’ouverture de l’application au déblocage de la leçon suivante" data-alt-de="User Flow vom Öffnen der App bis zum Freischalten der nächsten Lektion" width="1400" height="567" loading="lazy"><figcaption><span data-lang="en">User flow: pick a topic, read, answer, get feedback, save progress, unlock the next lesson.</span><span data-lang="zh">用户流程：选主题、读课程、回答、看反馈、保存进度、解锁下一节。</span><span data-lang="tw">使用者流程：選主題、讀課程、回答、看回饋、儲存進度、解鎖下一節。</span><span data-lang="ja">ユーザーフロー：トピックを選ぶ、読む、答える、フィードバックを見る、進捗を保存、次のレッスンを解放。</span><span data-lang="fr">Parcours : choisir un sujet, lire, répondre, voir le retour, enregistrer, débloquer la leçon suivante.</span><span data-lang="de">User Flow: Thema wählen, lesen, antworten, Feedback sehen, Fortschritt speichern, nächste Lektion freischalten.</span></figcaption></figure>
+        <figure><img src="learn-code/style.webp" alt="Style tile with the pink and purple palette, type samples, buttons and imagery" data-alt-zh="风格板：粉紫配色、字体样式、按钮和图片" data-alt-tw="風格板：粉紫配色、字型樣式、按鈕和圖片" data-alt-ja="スタイルタイル：ピンクと紫の配色、文字の見本、ボタン、画像" data-alt-fr="Planche de style : palette rose et violette, échantillons de texte, boutons et images" data-alt-de="Style Tile mit Pink-Lila-Palette, Schriftmustern, Buttons und Bildern" width="1400" height="555" loading="lazy"><figcaption><span data-lang="en">Style tile: a pink and purple palette to make code feel friendly.</span><span data-lang="zh">风格板：用粉紫配色，让代码显得亲切。</span><span data-lang="tw">風格板：用粉紫配色，讓程式碼顯得親切。</span><span data-lang="ja">スタイルタイル：ピンクと紫で、コードを親しみやすく。</span><span data-lang="fr">Planche de style : du rose et du violet pour rendre le code accueillant.</span><span data-lang="de">Style Tile: Pink und Lila machen Code freundlicher.</span></figcaption></figure>
+      </div>
 
-      <p class="sec-k"><span data-lang="en">Outcome + Next Steps</span><span data-lang="zh">成果与下一步</span><span data-lang="tw">成果與下一步</span><span data-lang="ja">成果と次のステップ</span><span data-lang="fr">Résultats et suites</span><span data-lang="de">Ergebnis + nächste Schritte</span></p>
-      <h2><span data-lang="en">A clearer, more confident way through lessons — with search and accounts to come.</span><span data-lang="zh">用户在课程里更有把握、更顺畅——接下来还会加入搜索和账户。</span><span data-lang="tw">使用者在課程裡更有把握、更順暢——接下來還會加入搜尋和帳戶。</span><span data-lang="ja">レッスンを迷わず進めるように。次は検索やアカウントを追加予定。</span><span data-lang="fr">Un parcours plus clair et plus assuré dans les leçons — recherche et comptes à venir.</span><span data-lang="de">Ein klarerer, sichererer Weg durch die Lektionen – Suche und Konten folgen.</span></h2>
-      <p data-lang="en">The v17 prototype demonstrates a scalable, accessible learning structure. Feedback indicated improved confidence in navigation and lesson discovery. Future work includes adding search/filter functionality, user accounts for progress tracking, and interactive code editors within lessons.</p>
-      <p data-lang="zh">v17 原型展示了一套可扩展、无障碍的学习结构。反馈显示，用户在导航和寻找课时时更有把握了。后续计划加入搜索 / 筛选功能、用于记录进度的用户账户，以及嵌在课时里的交互式代码编辑器。</p>
-      <p data-lang="tw">v17 原型展示了一套可擴充、無障礙的學習結構。回饋顯示，使用者在導覽和尋找單元時更有把握了。後續計劃加入搜尋 / 篩選功能、用於記錄進度的使用者帳戶，以及嵌在單元裡的互動式程式碼編輯器。</p>
-      <p data-lang="ja">v17 のプロトタイプは、拡張性がありアクセシブルな学習構造を示しています。フィードバックからは、ナビゲーションやレッスン探しへの自信が高まったことがわかりました。今後は、検索・絞り込み機能、進捗を記録するユーザーアカウント、レッスン内のインタラクティブなコードエディタを追加する予定です。</p>
-      <p data-lang="fr">Le prototype v17 démontre une structure d’apprentissage évolutive et accessible. Les retours montrent plus d’assurance pour naviguer et trouver des leçons. Suites prévues : recherche et filtres, comptes utilisateurs pour suivre sa progression et éditeurs de code interactifs dans les leçons.</p><p data-lang="de">Der Prototyp v17 zeigt eine skalierbare, barrierearme Lernstruktur. Das Feedback zeigte mehr Sicherheit beim Navigieren und beim Finden von Lektionen. Künftig kommen Suche und Filter, Nutzerkonten zur Fortschrittsverfolgung und interaktive Code-Editoren in den Lektionen hinzu.</p>
+      <p class="sec-k"><span data-lang="en">Process</span><span data-lang="zh">过程</span><span data-lang="tw">過程</span><span data-lang="ja">プロセス</span><span data-lang="fr">Processus</span><span data-lang="de">Prozess</span></p>
+      <h2><span data-lang="en">From paper sketches to seven coded versions.</span><span data-lang="zh">从纸面草图到七个代码版本。</span><span data-lang="tw">從紙面草圖到七個程式碼版本。</span><span data-lang="ja">紙のスケッチから、7 つのコード版へ。</span><span data-lang="fr">Des croquis papier à sept versions codées.</span><span data-lang="de">Von Papierskizzen zu sieben programmierten Versionen.</span></h2>
+      <p data-lang="en">I started with hand-drawn tabs and quiz blocks and tested them on paper. Testers asked for a reset button and dark mode, so I added both. Then I built mid- and high-fidelity prototypes and kept refining in code: v10–v12 tested navigation and card sizes; v13, v14 and v16 adjusted spacing, type and feedback; v17 finished the mobile layout.</p>
+      <p data-lang="zh">我先手绘标签页和测验模块，用纸面原型做测试。测试者提出要重置按钮和深色模式，我都加上了。之后做了中保真和高保真原型，再继续在代码里调整：v10–v12 测试导航和卡片尺寸；v13、v14 和 v16 调整间距、字体和反馈；v17 完成移动端布局。</p>
+      <p data-lang="tw">我先手繪標籤頁和測驗模組，用紙面原型做測試。測試者提出要重置按鈕和深色模式，我都加上了。之後做了中保真和高保真原型，再繼續在程式碼裡調整：v10–v12 測試導覽和卡片尺寸；v13、v14 和 v16 調整間距、字型和回饋；v17 完成行動裝置佈局。</p>
+      <p data-lang="ja">手描きのタブとクイズのブロックから始め、紙のプロトタイプでテストしました。テスターからリセットボタンとダークモードの要望があり、両方とも追加しました。その後、中・高忠実度のプロトタイプを作り、コードで調整を続けました。v10〜v12 でナビゲーションとカードの大きさを試し、v13、v14、v16 で余白、文字、フィードバックを調整し、v17 でモバイルのレイアウトを仕上げました。</p>
+      <p data-lang="fr">J’ai commencé par des onglets et des blocs de quiz dessinés à la main, testés sur papier. Les testeurs ont demandé un bouton de réinitialisation et un mode sombre : j’ai ajouté les deux. J’ai ensuite créé des prototypes moyenne et haute fidélité, puis affiné en code : v10–v12 pour tester la navigation et la taille des cartes ; v13, v14 et v16 pour ajuster les espacements, la typographie et les retours ; v17 pour finir la mise en page mobile.</p>
+      <p data-lang="de">Ich begann mit handgezeichneten Tabs und Quiz-Blöcken und testete sie auf Papier. Die Testpersonen wünschten sich einen Reset-Button und einen Dunkelmodus, also habe ich beides ergänzt. Danach baute ich Mid- und High-Fidelity-Prototypen und verfeinerte alles im Code: v10–v12 testeten Navigation und Kartengrößen; v13, v14 und v16 passten Abstände, Schrift und Feedback an; v17 schloss das mobile Layout ab.</p>
+      <div class="shots shots--wide">
+        <figure><img src="learn-code/sketch.webp" alt="Hand-drawn wireframes of the lesson and quiz screens" data-alt-zh="手绘的课程和测验页面线框图" data-alt-tw="手繪的課程和測驗頁面線框圖" data-alt-ja="レッスンとクイズの画面の手描きワイヤーフレーム" data-alt-fr="Maquettes dessinées à la main des écrans de leçon et de quiz" data-alt-de="Handgezeichnete Wireframes der Lektions- und Quiz-Bildschirme" width="1400" height="1022" loading="lazy"><figcaption><span data-lang="en">1. Paper sketch, before testing.</span><span data-lang="zh">1. 测试前的纸面草图。</span><span data-lang="tw">1. 測試前的紙面草圖。</span><span data-lang="ja">1. テスト前の紙のスケッチ。</span><span data-lang="fr">1. Croquis papier, avant les tests.</span><span data-lang="de">1. Papierskizze vor dem Test.</span></figcaption></figure>
+        <figure><img src="learn-code/lofi.webp" alt="Hand-drawn wireframes that now include Reset and Dark Mode buttons" data-alt-zh="手绘线框图，已加入 Reset 和 Dark Mode 按钮" data-alt-tw="手繪線框圖，已加入 Reset 和 Dark Mode 按鈕" data-alt-ja="Reset と Dark Mode のボタンを加えた手描きワイヤーフレーム" data-alt-fr="Maquettes dessinées à la main avec les boutons Reset et Dark Mode" data-alt-de="Handgezeichnete Wireframes mit Reset- und Dark-Mode-Button" width="1400" height="1003" loading="lazy"><figcaption><span data-lang="en">2. After testing: Reset and Dark Mode added.</span><span data-lang="zh">2. 测试后：加入 Reset 和 Dark Mode。</span><span data-lang="tw">2. 測試後：加入 Reset 和 Dark Mode。</span><span data-lang="ja">2. テスト後：Reset と Dark Mode を追加。</span><span data-lang="fr">2. Après les tests : Reset et Dark Mode ajoutés.</span><span data-lang="de">2. Nach dem Test: Reset und Dark Mode ergänzt.</span></figcaption></figure>
+        <figure><img src="learn-code/midfi.webp" alt="Mid-fidelity screens in light and dark themes" data-alt-zh="中保真界面，浅色和深色主题" data-alt-tw="中保真介面，淺色和深色主題" data-alt-ja="ライトとダークの中忠実度の画面" data-alt-fr="Écrans moyenne fidélité en thèmes clair et sombre" data-alt-de="Mid-Fidelity-Bildschirme in hellem und dunklem Design" width="1400" height="965" loading="lazy"><figcaption><span data-lang="en">3. Mid-fidelity: first colours, light and dark.</span><span data-lang="zh">3. 中保真：第一版配色，浅色和深色。</span><span data-lang="tw">3. 中保真：第一版配色，淺色和深色。</span><span data-lang="ja">3. 中忠実度：最初の配色、ライトとダーク。</span><span data-lang="fr">3. Moyenne fidélité : premières couleurs, clair et sombre.</span><span data-lang="de">3. Mid-Fidelity: erste Farben, hell und dunkel.</span></figcaption></figure>
+        <figure><img src="learn-code/hifi.webp" alt="High-fidelity screens with progress bar, lesson cards and a quiz" data-alt-zh="高保真界面：进度条、课程卡片和小测验" data-alt-tw="高保真介面：進度條、課程卡片和小測驗" data-alt-ja="高忠実度の画面：進捗バー、レッスンカード、クイズ" data-alt-fr="Écrans haute fidélité avec barre de progression, cartes de leçon et quiz" data-alt-de="High-Fidelity-Bildschirme mit Fortschrittsbalken, Lektionskarten und Quiz" width="1400" height="892" loading="lazy"><figcaption><span data-lang="en">4. High-fidelity: progress bar, lesson cards, quiz.</span><span data-lang="zh">4. 高保真：进度条、课程卡片、小测验。</span><span data-lang="tw">4. 高保真：進度條、課程卡片、小測驗。</span><span data-lang="ja">4. 高忠実度：進捗バー、レッスンカード、クイズ。</span><span data-lang="fr">4. Haute fidélité : barre de progression, cartes, quiz.</span><span data-lang="de">4. High-Fidelity: Fortschrittsbalken, Lektionskarten, Quiz.</span></figcaption></figure>
+      </div>
+
+      <p class="sec-k"><span data-lang="en">Final app</span><span data-lang="zh">最终成品</span><span data-lang="tw">最終成品</span><span data-lang="ja">完成したアプリ</span><span data-lang="fr">Application finale</span><span data-lang="de">Fertige App</span></p>
+      <h2><span data-lang="en">A working app with 20 lessons, 20 quizzes, voice answers and dark mode.</span><span data-lang="zh">一个能用的应用：20 节课、20 个小测验、语音回答和深色模式。</span><span data-lang="tw">一個能用的應用：20 節課、20 個小測驗、語音回答和深色模式。</span><span data-lang="ja">動くアプリ：20 レッスン、20 クイズ、音声回答、ダークモード。</span><span data-lang="fr">Une application fonctionnelle : 20 leçons, 20 quiz, réponses vocales et mode sombre.</span><span data-lang="de">Eine funktionierende App: 20 Lektionen, 20 Quizze, Sprachantworten und Dunkelmodus.</span></h2>
+      <p data-lang="en">I coded the final build as a single-page app in HTML, CSS and JavaScript. It covers four topics with five lessons each and runs on phones and desktops. I also designed an <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store product page</a> to present it.</p>
+      <p data-lang="zh">最终版是我用 HTML、CSS 和 JavaScript 写的单页应用，有四个主题，每个主题五节课，手机和电脑上都能用。我还设计了一个 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 产品页</a>来展示它。</p>
+      <p data-lang="tw">最終版是我用 HTML、CSS 和 JavaScript 寫的單頁應用，有四個主題，每個主題五節課，手機和電腦上都能用。我還設計了一個 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 產品頁</a>來展示它。</p>
+      <p data-lang="ja">最終版は HTML、CSS、JavaScript で書いたシングルページアプリで、4 つのトピックにそれぞれ 5 レッスンがあり、スマホでもパソコンでも使えます。紹介用の <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store プロダクトページ</a>もデザインしました。</p>
+      <p data-lang="fr">J’ai codé la version finale comme une application monopage en HTML, CSS et JavaScript. Elle couvre quatre sujets de cinq leçons chacun et fonctionne sur téléphone et sur ordinateur. J’ai aussi conçu une <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">page produit App Store</a> pour la présenter.</p>
+      <p data-lang="de">Die finale Version habe ich als Single-Page-App in HTML, CSS und JavaScript programmiert. Sie umfasst vier Themen mit je fünf Lektionen und läuft auf Handy und Desktop. Zur Präsentation habe ich außerdem eine <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App-Store-Produktseite</a> gestaltet.</p>
+      <div class="shots shots--phones">
+        <figure><img src="learn-code/phone-lesson.webp" alt="HTML Lesson 1 on a phone, with a progress bar and a Start Quiz button" data-alt-zh="手机上的 HTML 第 1 课，带进度条和 Start Quiz 按钮" data-alt-tw="手機上的 HTML 第 1 課，帶進度條和 Start Quiz 按鈕" data-alt-ja="スマホの HTML レッスン 1。進捗バーと Start Quiz ボタン付き" data-alt-fr="Leçon HTML 1 sur téléphone, avec barre de progression et bouton Start Quiz" data-alt-de="HTML-Lektion 1 auf dem Handy mit Fortschrittsbalken und Start-Quiz-Button" width="600" height="1298" loading="lazy"><figcaption><span data-lang="en">Lesson</span><span data-lang="zh">课程</span><span data-lang="tw">課程</span><span data-lang="ja">レッスン</span><span data-lang="fr">Leçon</span><span data-lang="de">Lektion</span></figcaption></figure>
+        <figure><img src="learn-code/phone-quiz.webp" alt="A quiz after a correct answer, with typed and voice answer options" data-alt-zh="答对后的小测验，还有打字和语音回答的选项" data-alt-tw="答對後的小測驗，還有打字和語音回答的選項" data-alt-ja="正解後のクイズ。入力と音声で答える選択肢も表示" data-alt-fr="Un quiz après une bonne réponse, avec les options de saisie et de voix" data-alt-de="Ein Quiz nach richtiger Antwort, mit Tipp- und Sprachoption" width="600" height="1298" loading="lazy"><figcaption><span data-lang="en">Quiz: tap, type or speak</span><span data-lang="zh">小测验：点选、打字或说话</span><span data-lang="tw">小測驗：點選、打字或說話</span><span data-lang="ja">クイズ：タップ、入力、音声</span><span data-lang="fr">Quiz : appuyer, taper ou parler</span><span data-lang="de">Quiz: antippen, tippen oder sprechen</span></figcaption></figure>
+        <figure><img src="learn-code/phone-dark.webp" alt="JavaScript Lesson 1 in dark mode on a phone" data-alt-zh="手机上深色模式的 JavaScript 第 1 课" data-alt-tw="手機上深色模式的 JavaScript 第 1 課" data-alt-ja="スマホのダークモードで表示した JavaScript レッスン 1" data-alt-fr="Leçon JavaScript 1 en mode sombre sur téléphone" data-alt-de="JavaScript-Lektion 1 im Dunkelmodus auf dem Handy" width="600" height="1298" loading="lazy"><figcaption><span data-lang="en">Dark mode</span><span data-lang="zh">深色模式</span><span data-lang="tw">深色模式</span><span data-lang="ja">ダークモード</span><span data-lang="fr">Mode sombre</span><span data-lang="de">Dunkelmodus</span></figcaption></figure>
+      </div>
+
+      <p class="sec-k"><span data-lang="en">Next steps</span><span data-lang="zh">下一步</span><span data-lang="tw">下一步</span><span data-lang="ja">次のステップ</span><span data-lang="fr">Prochaines étapes</span><span data-lang="de">Nächste Schritte</span></p>
+      <h2><span data-lang="en">Next: search, accounts and a code editor inside each lesson.</span><span data-lang="zh">下一步：搜索、账号，以及课程内的代码编辑器。</span><span data-lang="tw">下一步：搜尋、帳號，以及課程內的程式碼編輯器。</span><span data-lang="ja">次は、検索、アカウント、レッスン内のコードエディター。</span><span data-lang="fr">Ensuite : la recherche, les comptes et un éditeur de code dans chaque leçon.</span><span data-lang="de">Als Nächstes: Suche, Konten und ein Code-Editor in jeder Lektion.</span></h2>
+      <p data-lang="en">Accounts would let progress follow people across devices, and an editor would let them write real code. My testing so far is small, 2 beginners and 1 observed student, so I would also test with more people.</p>
+      <p data-lang="zh">账号能让进度跟着人走，编辑器能让用户写真正的代码。目前的测试规模还小，是 2 位初学者和 1 位被观察的学生，所以我还会找更多人来测试。</p>
+      <p data-lang="tw">帳號能讓進度跟著人走，編輯器能讓使用者寫真正的程式碼。目前的測試規模還小，是 2 位初學者和 1 位被觀察的學生，所以我還會找更多人來測試。</p>
+      <p data-lang="ja">アカウントがあれば進捗を端末をまたいで引き継げ、エディターがあれば実際にコードを書けます。これまでのテストは初心者 2 人と観察した学生 1 人と小規模なので、より多くの人でも試したいと考えています。</p>
+      <p data-lang="fr">Les comptes permettraient de retrouver sa progression sur tous ses appareils, et l’éditeur d’écrire du vrai code. Mes tests restent modestes, 2 débutants et 1 personne observée : je testerais aussi avec plus de monde.</p>
+      <p data-lang="de">Konten nehmen den Fortschritt über Geräte hinweg mit, und ein Editor erlaubt echten Code. Meine Tests sind bisher klein, 2 Einsteiger und 1 beobachtete Person, also würde ich auch mit mehr Menschen testen.</p>
+
+      <p class="credits" data-lang="en">Icons: Font Awesome. Images: Unsplash. Code adapted from W3Schools, MDN and Weekly Tutorials. ChatGPT and Grammarly helped proofread the project documentation.</p>
+      <p class="credits" data-lang="zh">图标：Font Awesome。图片：Unsplash。部分代码改编自 W3Schools、MDN 和 Weekly Tutorials。项目文档用 ChatGPT 和 Grammarly 校对过。</p>
+      <p class="credits" data-lang="tw">圖示：Font Awesome。圖片：Unsplash。部分程式碼改編自 W3Schools、MDN 和 Weekly Tutorials。專案文件用 ChatGPT 和 Grammarly 校對過。</p>
+      <p class="credits" data-lang="ja">アイコン：Font Awesome。画像：Unsplash。コードは W3Schools、MDN、Weekly Tutorials を参考に改変しました。プロジェクト資料の校正に ChatGPT と Grammarly を使いました。</p>
+      <p class="credits" data-lang="fr">Icônes : Font Awesome. Images : Unsplash. Code adapté de W3Schools, MDN et Weekly Tutorials. ChatGPT et Grammarly ont servi à relire la documentation du projet.</p>
+      <p class="credits" data-lang="de">Icons: Font Awesome. Bilder: Unsplash. Code angepasst von W3Schools, MDN und Weekly Tutorials. ChatGPT und Grammarly halfen beim Korrekturlesen der Projektdokumentation.</p>
     </div>
 
     <nav class="pager" aria-label="Case studies">
