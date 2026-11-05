@@ -5,7 +5,7 @@
 .hero-bg-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(5rem,16vw,14rem);font-variation-settings:"wght" 900;letter-spacing:-.04em;line-height:1;color:var(--ink);opacity:.04;white-space:nowrap;user-select:none;pointer-events:none;transition:opacity .4s}
 .hero-layout{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,4vw,48px);align-items:end}
 .hero-text{display:flex;flex-direction:column;gap:.6rem;padding-bottom:1rem}
-.hero-label{font-size:.875rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+.hero-label{font-size:.875rem;font-weight:700;color:var(--accent)}
 .hero-title{font-size:clamp(2rem,5vw,3rem);line-height:1.08;font-variation-settings:"wght" 800}
 .hero-subtitle{font-size:clamp(1rem,.95rem + .3vw,1.2rem);color:var(--sub);line-height:1.45}
 .hero-tip{font-size:.8rem;color:var(--muted);font-weight:500}
@@ -32,7 +32,7 @@
 .identity-card:hover{transform:translateY(-3px);box-shadow:0 8px 20px var(--shadow)}
 .identity-img{width:120px;height:auto;margin:0 auto 1rem;border-radius:12px}
 .identity-card h3{font-size:1.15rem;font-weight:700;margin:0 0 .2rem}
-.identity-role{display:inline-block;font-size:.8rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem}
+.identity-role{display:inline-block;font-size:.8rem;font-weight:700;color:var(--accent);margin-bottom:.5rem}
 .identity-card p{font-size:.9rem;color:var(--muted);margin:0;line-height:1.5;text-align:left}
 
 /* Music */
