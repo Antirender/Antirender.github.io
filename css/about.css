@@ -90,3 +90,36 @@
 .site-foot{border-top:1px solid var(--border);padding:1.25rem 0 1.75rem;font-size:.8rem;color:var(--muted)}
 .site-foot .wrap{display:flex;flex-wrap:wrap;gap:.3rem 1.25rem;justify-content:center}
 .site-foot a{color:var(--muted)} .site-foot a:hover{color:var(--accent)}
+
+/* Site header, same as the other pages */
+:root{--header-bg:rgba(255,255,255,.86);--accent-soft:rgba(37,99,235,.08)}
+:root[data-theme="dark"]{--header-bg:rgba(15,23,42,.86);--accent-soft:rgba(96,165,250,.12)}
+html{scroll-padding-top:5rem}
+.site-header{position:sticky;top:0;z-index:100;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.site-header .wrap{max-width:1120px;padding-left:clamp(16px,4vw,40px);padding-right:clamp(16px,4vw,40px)}
+.wrap > .site-tools{padding-top:0;justify-content:flex-start}
+.header-inner{display:flex;align-items:center;gap:1rem;min-height:60px}
+.brand{font-weight:800;letter-spacing:-.02em;color:var(--ink);font-size:1rem;white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--accent)}
+.brand small{color:var(--muted);font-weight:500;margin-left:.5rem;display:none}
+@media(min-width:720px){.brand small{display:inline}}
+nav.primary{margin-left:auto}
+nav.primary ul{display:flex;gap:.15rem;list-style:none}
+nav.primary a{display:inline-block;padding:.4rem .6rem;border-radius:8px;color:var(--sub);font-weight:600;font-size:.88rem}
+nav.primary a:hover{background:var(--card);color:var(--ink);text-decoration:none}
+nav.primary a.active{color:var(--accent);background:var(--accent-soft)}
+@media(max-width:640px){
+  .header-inner{flex-wrap:wrap;row-gap:0;gap:.5rem;padding-top:.35rem;padding-bottom:.35rem}
+  .brand{flex:1}
+  .site-tools{margin-left:auto}
+  nav.primary{order:3;flex-basis:100%;margin-left:0;margin-top:-.15rem;padding-bottom:.35rem}
+  nav.primary ul{justify-content:flex-start;flex-wrap:wrap;margin-left:-.45rem}
+  nav.primary a{padding:.35rem .45rem;font-size:.82rem}
+}
+
+/* Each identity card links to its own page */
+.identity-card{display:flex;flex-direction:column}
+.identity-role{align-self:center}
+.identity-link{margin-top:auto;padding-top:.8rem;align-self:flex-start;font-weight:700;font-size:.9rem}
+
+@media(max-width:400px){nav.primary a{padding:.35rem .34rem}nav.primary ul{gap:.05rem}}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-music-mode="paused">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -31,8 +31,9 @@
       <nav class="primary" aria-label="Primary">
         <ul>
           <li><a href="work.html" data-i18n="nav.work">Work</a></li>
-          <li><a href="music.html" data-i18n="nav.music">Music</a></li>
           <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="about.html#resume" data-i18n="nav.resume">Resume</a></li>
+          <li><a href="music.html" data-i18n="nav.music">Music</a></li>
           <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
@@ -56,7 +57,7 @@
   <section class="hero">
     <div class="wrap hero-layout">
       <div class="hero-text" id="heroText">
-        <span class="eyebrow" id="heroEyebrow" data-i18n="hero.eyebrow">Interaction Design · Sheridan College · Oakville, ON</span>
+        <!-- <span class="eyebrow" id="heroEyebrow" data-i18n="hero.eyebrow">Interaction Design · Sheridan College · Oakville, ON</span> -->
         <h1><span id="heroH1" data-i18n="hero.h1">Interaction designer.</span><br><span class="dim" id="heroH1b" data-i18n="hero.h1b">Prototypes first, documentation always.</span></h1>
         <p class="lede" id="heroLede" data-i18n="hero.lede">I research, prototype, and test digital products and physical objects — then write down what worked so the next version is better. On the side, I release original music as Antirender.</p>
         <div class="hero-actions">
@@ -64,8 +65,9 @@
           <a class="btn btn-outline" id="heroCta2" href="image/Yiyang-Zhang-Resume.pdf" download data-i18n="hero.cta2">Download resume (PDF)</a>
         </div>
         <ul class="hero-meta">
+          <li class="hero-place" data-i18n="hero.place">Sheridan College · Oakville, ON</li>
           <li><a href="mailto:antirender3@gmail.com">antirender3@gmail.com</a></li>
-          <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li>
+          <!-- <li><a href="mailto:zhyiyang@sheridancollege.ca">zhyiyang@sheridancollege.ca</a></li> -->
           <li><a href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a></li>
           <li><a href="https://github.com/Antirender" target="_blank" rel="noopener">GitHub</a></li>
           <li><a href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener">Spotify</a></li>
@@ -91,17 +93,17 @@
       <div class="section-head section-head--row reveal">
         <div>
           <!-- <span class="eyebrow" data-i18n="work.eyebrow">Selected Work</span> -->
-          <h2><span data-i18n="work.h2">Four projects</span> <span class="dim" data-i18n="work.h2b">that show how I work.</span></h2>
+          <h2><span data-i18n="work.h2">Five projects</span> <span class="dim" data-i18n="work.h2b">that show how I work.</span></h2>
           <p class="lede" data-i18n="work.lede">Each one is a full case study: the problem, the versions, the testing, and what changed because of it.</p>
         </div>
-        <a class="btn btn-outline" href="work.html" data-i18n="work.all">All work &rarr;</a>
+        <!-- moved below the list: <a class="btn btn-outline" href="work.html" data-i18n="work.all">All work &rarr;</a> -->
       </div>
 
       <div class="card-grid reveal">
         <a class="card" href="work/nightmare-hub.html">
           <div class="card-media"><img width="800" height="500" src="work/nightmare-hub/card-800.webp" alt="Trafalgar Labyrinth key art: a golden thread through a Greek labyrinth" data-i18n-alt="alt.nh" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="card.nh.cat">Interactive narrative · Web + AR/VR</span>
             <h3>Trafalgar Labyrinth <span class="year">(2026)</span></h3>
             <p data-i18n="card.nh.desc">A campus-wide escape game across web puzzles, a visual novel, poster AR, a WebXR room and an envelope hidden in the library — two modes, three endings. I led the team and built the hub.</p>
@@ -112,7 +114,7 @@
         <a class="card" href="work/solar.html">
           <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img width="800" height="500" src="work/solar/card-800.webp" alt="Aerial view of the solar arrays on a farmhouse roof" data-i18n-alt="alt.solar" loading="lazy"></picture></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="card.solar.cat">Energy systems · Interactive data analysis</span>
             <h3><span data-i18n="card.solar.h">Solar + Storage for AI Compute</span> <span class="year">(2024–26)</span></h3>
             <p data-i18n="card.solar.desc">A self-built 49 kWp / 180 kWh station on a rented farmhouse roof — powering AI pretraining and inference, sharing the surplus with the village, explored through interactive charts.</p>
@@ -123,7 +125,7 @@
         <a class="card" href="work/moodpeek.html">
           <div class="card-media"><img width="800" height="500" src="work/moodpeek/card-800.webp" srcset="work/moodpeek/card-800.webp 800w, work/moodpeek/card-1600.webp 1600w" sizes="(min-width: 821px) 540px, 100vw" alt="MoodPeek Pro — calendar-first mood logging dashboard" data-i18n-alt="alt.mood" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="card.mood.cat">Full-stack prototype · React · JWT</span>
             <h3>MoodPeek Pro <span class="year">(2026)</span></h3>
             <p data-i18n="card.mood.desc">Calendar-first mood logging built on Day → Week → Month continuity, with multi-user accounts and iCal export.</p>
@@ -134,7 +136,7 @@
         <a class="card" href="work/snapchat.html">
           <div class="card-media"><img width="800" height="500" src="work/snapchat/card-800.webp" srcset="work/snapchat/card-800.webp 800w, work/snapchat/card-1600.webp 1600w" sizes="(min-width: 821px) 540px, 100vw" alt="Snapchat data transparency prototype — Collect, Process, Share, Control flow" data-i18n-alt="alt.snap" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="card.snap.cat">UX research · Privacy · Progressive disclosure</span>
             <h3><span data-i18n="t.snap">Snapchat Data Transparency</span> <span class="year">(2025)</span></h3>
             <p data-i18n="card.snap.desc">Making data collection legible: an interactive Collect → Process → Share → Control flow, iterated across seven wireframe versions.</p>
@@ -182,7 +184,7 @@
         -->
         <li>
           <a class="row row--thumb" href="work/physical-computing.html">
-            <span class="row-cat" data-i18n="row.case">Case study</span>
+            <span class="row-cat" data-i18n="row.lamp.cat">Physical computing</span>
             <span class="row-main"><span class="row-title" data-i18n="row.lamp.t">Comfort Lamp — sensor-driven ambient lamp</span><p data-i18n="card.physical.desc">A sensor-driven ambient lamp inside a 3D-printed scene. Temperature, humidity and light map to colour states; a ProtoPie mobile UI replaces the LCD.</p></span>
             <span class="row-thumb"><img src="work/physical-computing/thumb-336.webp" alt="" width="168" height="105" loading="lazy"></span>
             <span class="row-side"><span class="year">2025</span><span>&rarr;</span></span>
@@ -223,41 +225,7 @@
         </li>
         -->
       </ul>
-    </div>
-  </section>
-
-  <!-- Music -->
-  <section class="section" id="music">
-    <div class="wrap">
-      <div class="section-head section-head--row reveal">
-        <div>
-          <span class="eyebrow" data-i18n="music.eyebrow">Antirender · Original music</span>
-          <h2><span data-i18n="music.h2">Music,</span> <span class="dim" data-i18n="music.h2b">on the side.</span></h2>
-          <p class="lede" data-i18n="music.lede">36 tracks across 7 self-released albums since 2019 — written, arranged and mixed in Logic Pro and Ableton Live.</p>
-        </div>
-        <a class="btn btn-outline" href="music.html" data-i18n="music.all">All music &rarr;</a>
-      </div>
-      <div class="card-grid card-grid--3 reveal">
-        <div class="track-card">
-          <span class="eyebrow" data-i18n="music.track">Original track</span>
-          <h3>I'm fine if You're Mine</h3>
-          <span class="card-cat"><span data-i18n="music.single">Single</span> · 2026 · 3:19</span>
-          <div class="sp-facade"><img src="image/tracks/6RBtBXukNVfRCsReW6CzhI.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/6RBtBXukNVfRCsReW6CzhI?utm_source=generator&amp;theme=0" data-embed-title="Spotify — I'm fine if You're Mine"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/6RBtBXukNVfRCsReW6CzhI" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
-        </div>
-        <div class="track-card">
-          <span class="eyebrow" data-i18n="music.track">Original track</span>
-          <h3>Chase the Unknown</h3>
-          <span class="card-cat">2024 · 4:07</span>
-          <div class="sp-facade"><img src="image/tracks/2V5MOhPa6JYTVQf4XcUzUM.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/2V5MOhPa6JYTVQf4XcUzUM?utm_source=generator&amp;theme=0" data-embed-title="Spotify — Chase the Unknown"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/2V5MOhPa6JYTVQf4XcUzUM" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
-        </div>
-        <div class="track-card">
-          <span class="eyebrow" data-i18n="music.track">Original track</span>
-          <h3>T.T</h3>
-          <span class="card-cat">2024 · 3:17</span>
-          <div class="sp-facade"><img src="image/tracks/1c75fmmHDbCGNg96YtraxE.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/1c75fmmHDbCGNg96YtraxE?utm_source=generator&amp;theme=0" data-embed-title="Spotify — T.T"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/1c75fmmHDbCGNg96YtraxE" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
-        </div>
-      </div>
-      <p class="art-credit"><span data-i18n="art.credit">Cover art by </span><a href="https://tataqwq233.carrd.co" target="_blank" rel="noopener" data-i18n="art.name">TaTa (tataqwq233) ↗</a></p>
+      <p class="section-more reveal"><a class="btn btn-outline" href="work.html" data-i18n="work.all">All work &rarr;</a></p>
     </div>
   </section>
 
@@ -265,7 +233,7 @@
   <section class="section" id="how">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow" data-i18n="how.eyebrow">How I work</span>
+        <!-- <span class="eyebrow" data-i18n="how.eyebrow">How I work</span> -->
         <h2><span data-i18n="how.h2">A designer by training.</span> <span class="dim" data-i18n="how.h2b">A builder by habit.</span></h2>
       </div>
       <ul class="pairs reveal">
@@ -279,11 +247,47 @@
     </div>
   </section>
 
+  <!-- Music -->
+  <section class="section" id="music">
+    <div class="wrap">
+      <div class="section-head section-head--row reveal">
+        <div>
+          <!-- <span class="eyebrow" data-i18n="music.eyebrow">Antirender · Original music</span> -->
+          <h2><span data-i18n="music.h2">Music,</span> <span class="dim" data-i18n="music.h2b">on the side.</span></h2>
+          <p class="lede" data-i18n="music.lede">36 tracks on 7 albums since 2019, self-released as Antirender.</p>
+        </div>
+        <!-- moved below the list: <a class="btn btn-outline" href="music.html" data-i18n="music.all">All music &rarr;</a> -->
+      </div>
+      <div class="card-grid card-grid--3 reveal">
+        <div class="track-card">
+          <!-- <span class="eyebrow" data-i18n="music.track">Original track</span> -->
+          <h3>I'm fine if You're Mine</h3>
+          <span class="card-cat"><span data-i18n="music.single">Single</span> · 2026 · 3:19</span>
+          <div class="sp-facade"><img src="image/tracks/6RBtBXukNVfRCsReW6CzhI.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/6RBtBXukNVfRCsReW6CzhI?utm_source=generator&amp;theme=0" data-embed-title="Spotify — I'm fine if You're Mine"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/6RBtBXukNVfRCsReW6CzhI" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
+        </div>
+        <div class="track-card">
+          <!-- <span class="eyebrow" data-i18n="music.track">Original track</span> -->
+          <h3>Chase the Unknown</h3>
+          <span class="card-cat">2024 · 4:07</span>
+          <div class="sp-facade"><img src="image/tracks/2V5MOhPa6JYTVQf4XcUzUM.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/2V5MOhPa6JYTVQf4XcUzUM?utm_source=generator&amp;theme=0" data-embed-title="Spotify — Chase the Unknown"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/2V5MOhPa6JYTVQf4XcUzUM" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
+        </div>
+        <div class="track-card">
+          <!-- <span class="eyebrow" data-i18n="music.track">Original track</span> -->
+          <h3>T.T</h3>
+          <span class="card-cat">2024 · 3:17</span>
+          <div class="sp-facade"><img src="image/tracks/1c75fmmHDbCGNg96YtraxE.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/track/1c75fmmHDbCGNg96YtraxE?utm_source=generator&amp;theme=0" data-embed-title="Spotify — T.T"><span aria-hidden="true">▶</span> <span data-i18n="sp.play">Play here</span></button><a class="btn-link" href="https://open.spotify.com/track/1c75fmmHDbCGNg96YtraxE" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
+        </div>
+      </div>
+      <p class="art-credit"><span data-i18n="art.credit">Cover art by </span><a href="https://tataqwq233.carrd.co" target="_blank" rel="noopener" data-i18n="art.name">TaTa (tataqwq233) ↗</a></p>
+      <p class="section-more reveal"><a class="btn btn-outline" href="music.html" data-i18n="music.all">All music &rarr;</a></p>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section class="section" id="contact">
     <div class="wrap">
       <div class="cta reveal">
-        <span class="eyebrow" data-i18n="nav.contact">Contact</span>
+        <!-- <span class="eyebrow" data-i18n="nav.contact">Contact</span> -->
         <h2 data-i18n="cta.h2">Let’s build something that works.</h2>
         <p data-i18n="cta.p">Open to internships, co-op placements and collaborations in interaction design — and to scoring or sound work for projects that need it.</p>
         <div class="hero-actions">
@@ -314,6 +318,7 @@
   <script>
 window.PAGE_T = {
 en: {
+'ar.place':'Sheridan College · Oakville, ON',
 'hero.tip':'Click a figure to switch persona',
 'ar.eyebrow':'Antirender · Original music · Since 2019',
 'ar.h1':'Antirender.',
@@ -323,6 +328,9 @@ en: {
 'ar.cta2':'Open on Spotify ↗'
 },
 'zh-CN': {
+'hero.place':'谢尔丹学院 · 安大略省奥克维尔',
+'ar.place':'谢尔丹学院 · 安大略省奥克维尔',
+'row.lamp.cat':'物理计算',
 'hero.tip':'点击人像切换身份',
 'ar.eyebrow':'Antirender · 原创音乐 · 2019 年至今',
 'ar.h1':'Antirender。',
@@ -337,7 +345,7 @@ en: {
 'hero.cta1':'查看精选作品',
 'hero.cta2':'下载简历 (PDF)',
 'work.eyebrow':'精选作品',
-'work.h2':'四个项目，',
+'work.h2':'五个项目，',
 'work.h2b':'展示我的工作方式。',
 'work.lede':'每个都是完整的案例研究：问题、版本、测试，以及因此改变了什么。',
 'work.all':'全部作品 →',
@@ -355,7 +363,7 @@ en: {
 'row.interactive.desc':'铜箔电路、p5.js 声音可视化和 Makey Makey 鼓机。',
 'music.h2':'音乐，',
 'music.h2b':'在一旁。',
-'music.lede':'2019 年至今 7 张自发专辑、 36 首曲目 — 在 Logic Pro 和 Ableton Live 中作曲、编曲、混音。',
+'music.lede':'自 2019 年以来，以 Antirender 的名义自主发行 7 张专辑、36 首曲目。',
 'music.all':'全部音乐 →',
 'music.track':'原创曲目',
 'how.eyebrow':'工作方式',
@@ -411,6 +419,9 @@ en: {
 'alt.pc':'舒适灯 — 发出绿光的 3D 打印楼梯场景'
 },
 'zh-TW': {
+'hero.place':'謝爾丹學院 · 安大略省奧克維爾',
+'ar.place':'謝爾丹學院 · 安大略省奧克維爾',
+'row.lamp.cat':'實體運算',
 'hero.tip':'點擊人像切換身份',
 'ar.eyebrow':'Antirender · 原創音樂 · 2019 年至今',
 'ar.h1':'Antirender。',
@@ -422,9 +433,9 @@ en: {
 'hero.h1b':'先做原型，始終記錄。',
 'hero.lede':'我研究、原型化並測試數位產品和實體裝置，然後把有效的做法寫下來，讓下一版更好。業餘時間以 Antirender 的名義發佈原創音樂。',
 'hero.cta1':'查看精選作品',
-'hero.cta2':'下載簡歷 (PDF)',
+'hero.cta2':'下載履歷 (PDF)',
 'work.eyebrow':'精選作品',
-'work.h2':'四個專案，',
+'work.h2':'五個專案，',
 'work.h2b':'展示我的工作方式。',
 'work.lede':'每個都是完整的案例研究：問題、版本、測試，以及因此改變了什麼。',
 'work.all':'全部作品 →',
@@ -433,7 +444,7 @@ en: {
 'row.case':'案例研究',
 'music.h2':'音樂，',
 'music.h2b':'在一旁。',
-'music.lede':'2019 年至今 7 張自發專輯、 36 首曲目 — 在 Logic Pro 和 Ableton Live 中作曲、編曲、混音。',
+'music.lede':'自 2019 年以來，以 Antirender 的名義自主發行 7 張專輯、36 首曲目。',
 'music.all':'全部音樂 →',
 'music.track':'原創曲目',
 'how.eyebrow':'工作方式',
@@ -448,7 +459,7 @@ en: {
 'cta.h2':'一起做點真正好用的東西。',
 'cta.p':'歡迎互動設計方向的實習、Co-op 與合作，也接受專案配樂與聲音工作。',
 'cta.email':'寄信',
-'cta.resume':'完整簡歷',
+'cta.resume':'完整履歷',
 'page.title':'Yiyang Zhang — 互動設計師',
 'card.eye':'案例研究',
 't.snap':'Snapchat 資料透明',
@@ -499,6 +510,9 @@ en: {
 'how.6d':'2021 年至今的航拍、活動影片與後期。'
 },
 ja: {
+'hero.place':'シェリダンカレッジ · オンタリオ',
+'ar.place':'シェリダンカレッジ · オンタリオ',
+'row.lamp.cat':'フィジカルコンピューティング',
 'hero.tip':'フィギュアをクリックして切替',
 'ar.eyebrow':'Antirender · オリジナル音楽 · 2019年〜',
 'ar.h1':'Antirender。',
@@ -512,7 +526,7 @@ ja: {
 'hero.cta1':'代表作を見る',
 'hero.cta2':'履歴書 (PDF)',
 'work.eyebrow':'代表作',
-'work.h2':'4つのプロジェクトで',
+'work.h2':'5つのプロジェクトで',
 'work.h2b':'働き方を示す。',
 'work.lede':'どれも完全なケーススタディ：課題、バージョン、テスト、そして何が変わったか。',
 'work.all':'すべての作品 →',
@@ -521,7 +535,7 @@ ja: {
 'row.case':'ケーススタディ',
 'music.h2':'音楽も、',
 'music.h2b':'ひとつの軸。',
-'music.lede':'2019年から 7枚のセルフリリースアルバムに36曲 — Logic Pro と Ableton Live で作曲・編曲・ミックス。',
+'music.lede':'2019年から Antirender として7枚のアルバム、36曲をセルフリリース。',
 'music.all':'すべての音楽 →',
 'music.track':'オリジナル曲',
 'how.eyebrow':'働き方',
@@ -587,6 +601,9 @@ ja: {
 'ar.lede':'ケーススタディに収まらない創作のための分身：Logic Pro と Ableton Live で作曲・編曲・ミックスした、7 枚のセルフリリースアルバムと 36 曲のオリジナル曲。'
 },
 fr: {
+'hero.place':'Sheridan College · Oakville, ON',
+'ar.place':'Sheridan College · Oakville, ON',
+'row.lamp.cat':'Informatique physique',
 'card.solar.h':'Solaire + stockage pour le calcul IA',
 'card.solar.desc':'Une centrale de 49 kWc / 180 kWh construite de nos mains sur le toit loué d’une ferme : elle alimente le pré-entraînement et l’inférence d’IA, partage son surplus avec le village et s’explore à travers des graphiques interactifs.',
 'card.learn.desc':'Comment des débutants parcourent et reprennent des leçons de code : une application d’apprentissage hiérarchique à base de cartes, affinée par des entretiens utilisateurs.',
@@ -616,7 +633,7 @@ fr: {
 'hero.cta1':'Voir les travaux',
 'hero.cta2':'Télécharger le CV (PDF)',
 'work.eyebrow':'Travaux sélectionnés',
-'work.h2':'Quatre projets',
+'work.h2':'Cinq projets',
 'work.h2b':'qui montrent ma façon de travailler.',
 'work.lede':'Chacun est une étude de cas complète : le problème, les versions, les tests et ce qui a changé.',
 'work.all':'Tous les travaux →',
@@ -625,7 +642,7 @@ fr: {
 'row.case':'Étude de cas',
 'music.h2':'La musique,',
 'music.h2b':'en parallèle.',
-'music.lede':'36 morceaux sur 7 albums autoproduits depuis 2019 — composés, arrangés et mixés dans Logic Pro et Ableton Live.',
+'music.lede':'36 morceaux sur 7 albums depuis 2019, autoproduits sous le nom d’Antirender.',
 'music.all':'Toute la musique →',
 'music.track':'Morceau original',
 'how.eyebrow':'Ma façon de travailler',
@@ -675,6 +692,9 @@ fr: {
 'alt.pc':'Lampe de confort — scène d’escalier imprimée en 3D, allumée en vert'
 },
 de: {
+'hero.place':'Sheridan College · Oakville, ON',
+'ar.place':'Sheridan College · Oakville, ON',
+'row.lamp.cat':'Physical Computing',
 'page.title':'Yiyang Zhang — Interaction Designer',
 'card.eye':'Fallstudie',
 't.snap':'Snapchat-Datentransparenz',
@@ -736,7 +756,7 @@ de: {
 'hero.cta1':'Ausgewählte Arbeiten ansehen',
 'hero.cta2':'Lebenslauf herunterladen (PDF)',
 'work.eyebrow':'Ausgewählte Arbeiten',
-'work.h2':'Vier Projekte,',
+'work.h2':'Fünf Projekte,',
 'work.h2b':'die zeigen, wie ich arbeite.',
 'work.lede':'Jedes ist eine vollständige Fallstudie: das Problem, die Versionen, die Tests und was sich dadurch geändert hat.',
 'work.all':'Alle Arbeiten →',
@@ -745,7 +765,7 @@ de: {
 'row.case':'Fallstudie',
 'music.h2':'Musik,',
 'music.h2b':'nebenbei.',
-'music.lede':'36 Tracks auf 7 selbst veröffentlichten Alben seit 2019 — geschrieben, arrangiert und gemischt in Logic Pro und Ableton Live.',
+'music.lede':'36 Tracks auf 7 Alben seit 2019, selbst veröffentlicht als Antirender.',
 'music.all':'Alle Musik →',
 'music.track':'Eigener Track',
 'how.eyebrow':'Wie ich arbeite',
@@ -764,7 +784,16 @@ de: {
 }
 };
   </script>
+  <aside class="music-player" id="siteMusicPlayer" aria-label="Dear Deer player">
+    <img src="image/tracks/artist.webp" alt="Dear Deer cover art" width="56" height="56">
+    <div class="music-player__info"><strong>Dear Deer</strong><span data-music-status>Paused</span></div>
+    <button class="music-player__toggle" type="button" data-music-toggle aria-label="Play Dear Deer">&gt;</button>
+    <a class="music-player__cover-link" href="https://open.spotify.com/search/dear%20deer" target="_blank" rel="noopener" aria-label="Find Dear Deer on Spotify">Spotify</a>
+    <button class="music-player__close" type="button" data-music-close aria-label="Hide music player">&times;</button>
+    <audio preload="metadata" src="assets/audio/DearDeer.m4a"></audio>
+  </aside>
   <script src="assets/site.js"></script>
+  <script src="assets/music-player.js"></script>
   <script>
 /* ===== Persona swap (moved from about.html) =====
    Text keys are swapped between the "hero.*" (designer) and "ar.*" (Antirender) i18n prefixes,

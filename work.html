@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-music-mode="autoplay">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -30,8 +30,9 @@
       <nav class="primary" aria-label="Primary">
         <ul>
           <li><a href="work.html" class="active" data-i18n="nav.work">Work</a></li>
-          <li><a href="music.html" data-i18n="nav.music">Music</a></li>
           <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="about.html#resume" data-i18n="nav.resume">Resume</a></li>
+          <li><a href="music.html" data-i18n="nav.music">Music</a></li>
           <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
@@ -53,9 +54,9 @@
 
   <section class="hero hero--compact">
     <div class="wrap">
-      <span class="eyebrow" data-i18n="w.eyebrow">All work · ordered by depth</span>
+      <!-- <span class="eyebrow" data-i18n="w.eyebrow">All work · ordered by depth</span> -->
       <h1><span data-i18n="w.h1">Start with the case studies.</span><br><span class="dim" data-i18n="w.h1b">The archive keeps every version.</span></h1>
-      <p class="lede" data-i18n="w.lede">Three levels: full case studies with research and testing; client work on a real brief; and the archive — every version of every project, grouped by category, so you can see how each one got there.</p>
+      <!-- <p class="lede" data-i18n="w.lede">Three levels: full case studies with research and testing; client work on a real brief; and the archive — every version of every project, grouped by category, so you can see how each one got there.</p> -->
       <div class="chips" data-filter-group="#work-all" role="group" aria-label="Filter by category">
         <button class="chip active" type="button" data-filter="all" data-i18n="w.f.all">All</button>
         <button class="chip" type="button" data-filter="energy" data-i18n="w.f.energy">Energy</button>
@@ -84,11 +85,11 @@
         <a class="card" href="work/solar.html" data-cat="energy data">
           <div class="card-media"><picture><source type="image/avif" srcset="work/solar/card-800.avif"><img width="800" height="500" src="work/solar/card-800.webp" alt="Aerial view of the solar arrays" data-i18n-alt="alt.solar" loading="lazy"></picture></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.solar.cat">Energy systems · Solar + storage</span>
             <h3><span data-i18n="w.solar.h">Solar + Storage for AI Compute</span> <span class="year">(2024–26)</span></h3>
             <p data-i18n="w.solar.p">A 49 kWp array and 180 kWh battery bank on a rented farmhouse roof in Nanjing — powering AI pretraining and inference, with the surplus shared with the farm and the village.</p>
-            <div class="card-tags"><span>49 kWp</span><span>180 kWh LFP</span><span data-i18n="w.solar.tag">Shared surplus</span></div>
+            <!-- <div class="card-tags"><span>49 kWp</span><span>180 kWh LFP</span><span data-i18n="w.solar.tag">Shared surplus</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -96,11 +97,11 @@
         <a class="card" href="work/nightmare-hub.html" data-cat="games physical">
           <div class="card-media"><img width="800" height="500" src="work/nightmare-hub/card-800.webp" alt="Nightmare Escape key art: a golden thread through a Greek labyrinth" data-i18n-alt="alt.nh" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.nh.cat">Interactive narrative · Web + AR/VR</span>
             <h3>Trafalgar Labyrinth <span class="year">(2026)</span></h3>
             <p data-i18n="w.nh.p">A campus-wide escape game across web puzzles, a visual novel, poster AR, a WebXR room and an envelope hidden in the library — two modes, three endings. I led the team and built the hub.</p>
-            <div class="card-tags"><span data-i18n="w.nh.t1">6 platforms</span><span data-i18n="w.nh.t2">2 modes</span><span data-i18n="w.nh.t3">Playable</span></div>
+            <!-- <div class="card-tags"><span data-i18n="w.nh.t1">6 platforms</span><span data-i18n="w.nh.t2">2 modes</span><span data-i18n="w.nh.t3">Playable</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -108,11 +109,11 @@
         <a class="card" href="work/fluxmap.html" data-cat="ux data">
           <div class="card-media"><img width="800" height="500" src="work/fluxmap/card-800.webp" srcset="work/fluxmap/card-800.webp 800w, work/fluxmap/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="FluxMap: a news heatmap over a world map with trend and top-location panels" data-i18n-alt="alt.flux" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.flux.cat">Data visualization · Real-time</span>
             <h3>FluxMap <span class="year">(2026)</span></h3>
             <p data-i18n="w.flux.p">A real-time news radar: three news APIs geocoded onto a deck.gl heatmap, linked to trend, ranking and article views — refreshing every 60 s, with a five-layer fallback so the map never goes blank.</p>
-            <div class="card-tags"><span data-i18n="w.flux.t1">Live data</span><span>deck.gl</span><span data-i18n="w.flux.t2">5-layer fallback</span></div>
+            <!-- <div class="card-tags"><span data-i18n="w.flux.t1">Live data</span><span>deck.gl</span><span data-i18n="w.flux.t2">5-layer fallback</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -120,11 +121,11 @@
         <a class="card" href="work/farewind.html" data-cat="ux data">
           <div class="card-media"><img width="800" height="500" src="work/farewind/card-800.webp" srcset="work/farewind/card-800.webp 800w, work/farewind/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="FareWind Route Insights: fare range, key numbers and a fare-over-time chart, shown in a browser and on a phone" data-i18n-alt="alt.fare" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.fare.cat">Data visualization · Personal analytics</span>
             <h3>FareWind <span class="year">(2026)</span></h3>
             <p data-i18n="w.fare.p">A privacy-first ride-fare timing tool: your logged rides become a price history per route, with a day × hour heatmap, trend chart, route map and rule-based advice on when to leave, wait or avoid.</p>
-            <div class="card-tags"><span data-i18n="w.fare.t1">Privacy-first</span><span>Recharts</span><span data-i18n="w.fare.t2">Rule-based advice</span></div>
+            <!-- <div class="card-tags"><span data-i18n="w.fare.t1">Privacy-first</span><span>Recharts</span><span data-i18n="w.fare.t2">Rule-based advice</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -132,11 +133,11 @@
         <a class="card" href="work/infoviz.html" data-cat="data">
           <div class="card-media"><img width="800" height="500" src="work/infoviz/card-800.webp" srcset="work/infoviz/card-800.webp 800w, work/infoviz/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="Toronto’s winter-warming scatter beside the Pulse of Vancouver journey map" data-i18n-alt="alt.iv" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.iv.cat">Information design · Tableau</span>
             <h3><span data-i18n="w.iv.h">Information Graphics</span> <span class="year">(2025)</span></h3>
             <p data-i18n="w.iv.p">77 years of Toronto temperatures as a six-chart Tableau story on winter warming, and one 53.8 km bike ride turned into a sensory map of Vancouver.</p>
-            <div class="card-tags"><span>Tableau</span><span data-i18n="w.iv.t1">Climate data</span><span data-i18n="w.iv.t2">Narrative map</span></div>
+            <!-- <div class="card-tags"><span>Tableau</span><span data-i18n="w.iv.t1">Climate data</span><span data-i18n="w.iv.t2">Narrative map</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -148,7 +149,7 @@
             <span class="card-cat" data-i18n="w.ne.cat">Visual novel · WebGAL · Steam</span>
             <h3>梦魇逃亡 Nightmare Escape</h3>
             <p data-i18n="w.ne.p">A choice-driven psychological-thriller visual novel I’m developing: eight chapters, multiple endings, and playable web builds along the way. Coming soon on Steam.</p>
-            <div class="card-tags"><span data-i18n="w.ne.t1">Multiple endings</span><span>WebGAL</span><span data-i18n="w.ne.t2">Coming soon</span><span data-i18n="w.ne.t3">Art by TaTa</span></div>
+            <div class="card-tags"><span data-i18n="w.ne.t3">Art by TaTa</span></div><!-- <div class="card-tags"><span data-i18n="w.ne.t1">Multiple endings</span><span>WebGAL</span><span data-i18n="w.ne.t2">Coming soon</span><span data-i18n="w.ne.t3">Art by TaTa</span></div> -->
             <span class="card-foot" data-i18n="w.ne.foot">See the project &rarr;</span>
           </div>
         </a>
@@ -156,11 +157,11 @@
         <a class="card" href="work/learn-code.html" data-cat="ux">
           <div class="card-media"><img width="800" height="500" src="work/learn-code/card-800.webp" srcset="work/learn-code/card-800.webp 800w, work/learn-code/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="Learn Code app interface" data-i18n-alt="alt.learn" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.learn.cat">UX/UI · Web app</span>
             <h3>Learn Code <span class="year">(2025)</span></h3>
             <p data-i18n="w.learn.p">Card-based, hierarchical learning app for beginners. Seven tested versions (v10–v17, no v15) plus an App Store page.</p>
-            <div class="card-tags"><span data-i18n="w.learn.t1">User interviews</span><span data-i18n="w.learn.t2">Responsive</span><span data-i18n="n.versions" data-i18n-v="7">7 versions</span></div>
+            <!-- <div class="card-tags"><span data-i18n="w.learn.t1">User interviews</span><span data-i18n="w.learn.t2">Responsive</span><span data-i18n="n.versions" data-i18n-v="7">7 versions</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -168,11 +169,11 @@
         <a class="card" href="work/snapchat.html" data-cat="ux">
           <div class="card-media"><img width="800" height="500" src="work/snapchat/card-800.webp" srcset="work/snapchat/card-800.webp 800w, work/snapchat/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="Snapchat data transparency prototype" data-i18n-alt="alt.snap" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.snap.cat">UX research · Privacy</span>
             <h3><span data-i18n="t.snap">Snapchat Data Transparency</span> <span class="year">(2025)</span></h3>
             <p data-i18n="w.snap.p">An interactive Collect → Process → Share → Control flow that makes data use legible. Seven wireframe versions.</p>
-            <div class="card-tags"><span data-i18n="w.snap.t1">Progressive disclosure</span><span data-i18n="w.snap.t2">Usability testing</span><span data-i18n="n.versions" data-i18n-v="7">7 versions</span></div>
+            <!-- <div class="card-tags"><span data-i18n="w.snap.t1">Progressive disclosure</span><span data-i18n="w.snap.t2">Usability testing</span><span data-i18n="n.versions" data-i18n-v="7">7 versions</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -180,11 +181,11 @@
         <a class="card" href="work/gsgc.html" data-cat="ux">
           <div class="card-media"><img width="800" height="500" src="work/gsgc/card-800.webp" srcset="work/gsgc/card-800.webp 800w, work/gsgc/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="Green Sheridan Garden Club site" data-i18n-alt="alt.gsgc" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.gsgc.cat">UI design · Community site</span>
             <h3>Green Sheridan Garden Club <span class="year">(2026)</span></h3>
             <p data-i18n="w.gsgc.p">Mobile-first campus site: site map, personas, three wireframe rounds, then three built versions.</p>
-            <div class="card-tags"><span data-i18n="w.gsgc.t1">Mobile-first</span><span data-i18n="w.gsgc.t2">IA</span><span data-i18n="n.versions" data-i18n-v="7">7 versions</span></div>
+            <!-- <div class="card-tags"><span data-i18n="w.gsgc.t1">Mobile-first</span><span data-i18n="w.gsgc.t2">IA</span><span data-i18n="n.versions" data-i18n-v="7">7 versions</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -192,11 +193,11 @@
         <a class="card" href="work/moodpeek.html" data-cat="ux">
           <div class="card-media"><img width="800" height="500" src="work/moodpeek/card-800.webp" srcset="work/moodpeek/card-800.webp 800w, work/moodpeek/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="MoodPeek Pro dashboard" data-i18n-alt="alt.mood" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.mood.cat">Full-stack · React · JWT</span>
             <h3>MoodPeek Pro <span class="year">(2026)</span></h3>
             <p data-i18n="w.mood.p">Calendar-first mood logging with Day → Week → Month continuity, multi-user accounts and iCal export.</p>
-            <div class="card-tags"><span>React</span><span data-i18n="w.mood.t2">Auth</span><span data-i18n="w.mood.t3">Live demo</span></div>
+            <!-- <div class="card-tags"><span>React</span><span data-i18n="w.mood.t2">Auth</span><span data-i18n="w.mood.t3">Live demo</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -204,11 +205,11 @@
         <a class="card" href="work/physical-computing.html" data-cat="physical">
           <div class="card-media"><img width="800" height="500" src="work/physical-computing/card-800.webp" srcset="work/physical-computing/card-800.webp 800w, work/physical-computing/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="Comfort Lamp prototype glowing green" data-i18n-alt="alt.pc" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.pc.cat">Physical computing · Arduino</span>
             <h3><span data-i18n="t.lamp">Comfort Lamp</span> <span class="year">(2025)</span></h3>
             <p data-i18n="w.pc.p">Sensor-driven ambient lamp in a 3D-printed scene. Temperature, humidity and light map to colour states; ProtoPie mobile UI.</p>
-            <div class="card-tags"><span>DHT11</span><span>NeoPixel</span><span data-i18n="n.modules" data-i18n-v="3">3 modules</span></div>
+            <!-- <div class="card-tags"><span>DHT11</span><span>NeoPixel</span><span data-i18n="n.modules" data-i18n-v="3">3 modules</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -216,11 +217,11 @@
         <a class="card" href="work/interactive-prototype.html" data-cat="physical">
           <div class="card-media"><img width="800" height="500" src="work/interactive-prototype/card-800.webp" srcset="work/interactive-prototype/card-800.webp 800w, work/interactive-prototype/card-1600.webp 1600w" sizes="(min-width: 1001px) 360px, (min-width: 641px) 50vw, 100vw" alt="Colourful p5.js experiment" data-i18n-alt="alt.ip" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.ip.cat">Interactive media · p5.js</span>
             <h3><span data-i18n="t.mmb">Media, Motion &amp; the Body</span> <span class="year">(2025)</span></h3>
             <p data-i18n="w.ip.p">Copper-tape circuits, p5.js sound visualisations and a Makey Makey drum machine — three modules on physical input and digital feedback.</p>
-            <div class="card-tags"><span>Makey Makey</span><span>WebGL</span><span data-i18n="n.modules" data-i18n-v="3">3 modules</span></div>
+            <!-- <div class="card-tags"><span>Makey Makey</span><span>WebGL</span><span data-i18n="n.modules" data-i18n-v="3">3 modules</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -228,11 +229,11 @@
         <a class="card" href="work/typography.html" data-cat="type">
           <div class="card-media"><img width="800" height="500" src="work/typography/card-800.webp" alt="Hand-lettered Hamburgefontsiv beside the Reese wrapper layout" data-i18n-alt="alt.typo" loading="lazy"></div>
           <div class="card-body">
-            <span class="eyebrow" data-i18n="card.eye">Case study</span>
+            <!-- <span class="eyebrow" data-i18n="card.eye">Case study</span> -->
             <span class="card-cat" data-i18n="w.typo.cat">Typography · Layout · Web type</span>
             <h3><span data-i18n="t.typo">Type Studies</span> <span class="year">(2025)</span></h3>
             <p data-i18n="w.typo.p">Hand-drawn letterforms, a bilingual chocolate-wrapper grid study rebuilt in CSS Grid, and a website for type designer Rod McDonald — three exercises, each ending in code.</p>
-            <div class="card-tags"><span data-i18n="w.typo.t1">Lettering</span><span>CSS Grid</span><span>@font-face</span></div>
+            <!-- <div class="card-tags"><span data-i18n="w.typo.t1">Lettering</span><span>CSS Grid</span><span>@font-face</span></div> -->
             <span class="card-foot" data-i18n="card.read">Read case study &rarr;</span>
           </div>
         </a>
@@ -584,10 +585,10 @@
   <section class="section section--tight">
     <div class="wrap">
       <div class="cta reveal">
-        <span class="eyebrow">Antirender</span>
-        <h2 data-i18n="w.cta.h2">Looking for the music?</h2>
-        <p data-i18n="w.cta.p">Original tracks, discography and process live on their own page.</p>
-        <div class="hero-actions"><a class="btn" href="music.html" data-i18n="nav.music">Music</a><a class="btn btn-outline" href="index.html#contact" data-i18n="nav.contact">Contact</a></div>
+        <!-- <span class="eyebrow">Antirender</span> -->
+        <h2 data-i18n="w.cta.h2">Let’s build something that works.</h2>
+        <p data-i18n="w.cta.p">Open to internships, co-op placements and collaborations in interaction design.</p>
+        <div class="hero-actions"><a class="btn" href="mailto:antirender3@gmail.com" data-i18n="cta.email">Email me</a><a class="btn btn-outline" href="https://www.linkedin.com/in/yiyang-zhang-04aa21313/" target="_blank" rel="noopener">LinkedIn</a><a class="btn btn-outline" href="about.html#resume" data-i18n="cta.resume">Full resume</a></div>
       </div>
     </div>
   </section>
@@ -614,6 +615,8 @@ en: {
 'cw.liveFinal':'Live preview — {v} (Final)'
 },
 'zh-CN': {
+'cta.email':'发邮件',
+'cta.resume':'完整简历',
 'w.nh.cat':'互动叙事 · 网页 + AR/VR',
 'w.nh.p':'横跨网页谜题、视觉小说、海报 AR、WebXR 房间和图书馆里一封信的校园解谜游戏——两种模式、三个结局。我担任组长并开发了网页中枢。',
 'w.nh.t1':'6 个平台',
@@ -671,8 +674,8 @@ en: {
 'w.t3.sub':'每个版本，按类别',
 'card.read':'阅读案例 →',
 'row.case':'案例研究',
-'w.cta.h2':'在找音乐？',
-'w.cta.p':'原创曲目、专辑与创作过程在单独的页面。',
+'w.cta.h2':'一起做点真正好用的东西。',
+'w.cta.p':'欢迎交互设计方向的实习、Co-op 与合作。',
 'page.title':'作品 — Yiyang Zhang',
 'card.eye':'案例研究',
 't.snap':'Snapchat 数据透明',
@@ -809,6 +812,8 @@ en: {
 'btn.go':'打开 ↗'
 },
 'zh-TW': {
+'cta.email':'寄信',
+'cta.resume':'完整履歷',
 'w.nh.cat':'互動敘事 · 網頁 + AR/VR',
 'w.nh.p':'橫跨網頁謎題、視覺小說、海報 AR、WebXR 房間和圖書館裡一封信的校園解謎遊戲——兩種模式、三個結局。我擔任組長並開發了網頁中樞。',
 'w.nh.t1':'6 個平台',
@@ -857,8 +862,8 @@ en: {
 'w.t3':'歸檔',
 'card.read':'閱讀案例 →',
 'row.case':'案例研究',
-'w.cta.h2':'在找音樂？',
-'w.cta.p':'原創曲目、專輯與創作過程在單獨的頁面。',
+'w.cta.h2':'一起做點真正好用的東西。',
+'w.cta.p':'歡迎互動設計方向的實習、Co-op 與合作。',
 'page.title':'作品 — Yiyang Zhang',
 'card.eye':'案例研究',
 't.snap':'Snapchat 資料透明',
@@ -1004,6 +1009,8 @@ en: {
 'btn.go':'開啟 ↗'
 },
 ja: {
+'cta.email':'メールする',
+'cta.resume':'履歴書全文',
 'w.nh.cat':'インタラクティブ・ナラティブ · ウェブ + AR/VR',
 'w.nh.p':'ウェブのパズル、ビジュアルノベル、ポスター AR、WebXR ルーム、図書館に隠された封筒をまたぐキャンパス脱出ゲーム——2 モード、3 エンディング。チームを率いてハブを開発しました。',
 'w.nh.t1':'6 プラットフォーム',
@@ -1052,8 +1059,8 @@ ja: {
 'w.t3':'アーカイブ',
 'card.read':'ケーススタディを読む →',
 'row.case':'ケーススタディ',
-'w.cta.h2':'音楽をお探し？',
-'w.cta.p':'オリジナル曲、ディスコグラフィ、制作過程は専用ページへ。',
+'w.cta.h2':'ちゃんと動くものを、一緒に。',
+'w.cta.p':'インタラクションデザインのインターン、Co-op、コラボを歓迎します。',
 'page.title':'作品 — Yiyang Zhang',
 'card.eye':'ケーススタディ',
 't.snap':'Snapchat データ透明性',
@@ -1199,6 +1206,8 @@ ja: {
 'btn.go':'開く ↗'
 },
 fr: {
+'cta.email':'M’écrire',
+'cta.resume':'CV complet',
 'w.nh.cat':'Narration interactive · Web + RA/RV',
 'w.nh.p':'Un jeu d’évasion à l’échelle du campus, entre énigmes web, visual novel, affiche en RA, salle WebXR et enveloppe cachée à la bibliothèque — deux modes, trois fins. J’ai dirigé l’équipe et développé le hub.',
 'w.nh.t1':'6 plateformes',
@@ -1256,8 +1265,8 @@ fr: {
 'w.t3.sub':'Chaque version, par catégorie',
 'card.read':'Lire l’étude de cas →',
 'row.case':'Étude de cas',
-'w.cta.h2':'Vous cherchez la musique ?',
-'w.cta.p':'Morceaux originaux, discographie et processus ont leur propre page.',
+'w.cta.h2':'Construisons quelque chose qui fonctionne.',
+'w.cta.p':'Ouvert aux stages, aux placements co-op et aux collaborations en design d’interaction.',
 'page.title':'Travaux — Yiyang Zhang',
 'card.eye':'Étude de cas',
 't.snap':'Transparence des données Snapchat',
@@ -1394,6 +1403,8 @@ fr: {
 'btn.go':'Ouvrir ↗'
 },
 de: {
+'cta.email':'Schreiben Sie mir',
+'cta.resume':'Vollständiger Lebenslauf',
 'page.title':'Arbeiten — Yiyang Zhang',
 'card.eye':'Fallstudie',
 't.snap':'Snapchat-Datentransparenz',
@@ -1438,8 +1449,8 @@ de: {
 'w.t3.sub':'Jede Version, nach Kategorie',
 'card.read':'Fallstudie lesen →',
 'row.case':'Fallstudie',
-'w.cta.h2':'Auf der Suche nach der Musik?',
-'w.cta.p':'Eigene Tracks, Diskografie und Arbeitsprozess haben eine eigene Seite.',
+'w.cta.h2':'Lassen Sie uns etwas bauen, das funktioniert.',
+'w.cta.p':'Offen für Praktika, Co-op-Stellen und Kooperationen im Interaction Design.',
 'w.solar.cat':'Energiesysteme · Solar + Speicher',
 'w.solar.h':'Solar + Speicher für KI-Rechenleistung',
 'w.solar.p':'Eine 49-kWp-Anlage und 180 kWh Batteriespeicher auf dem gemieteten Dach eines Bauernhauses in Nanjing — sie versorgen KI-Vortraining und -Inferenz, der Überschuss geht an den Hof und das Dorf.',
@@ -1590,6 +1601,15 @@ de: {
 }
 };
   </script>
+  <aside class="music-player" id="siteMusicPlayer" aria-label="Dear Deer player">
+    <img src="image/tracks/artist.webp" alt="Dear Deer cover art" width="56" height="56">
+    <div class="music-player__info"><strong>Dear Deer</strong><span data-music-status>Paused</span></div>
+    <button class="music-player__toggle" type="button" data-music-toggle aria-label="Play Dear Deer">&gt;</button>
+    <a class="music-player__cover-link" href="https://open.spotify.com/search/dear%20deer" target="_blank" rel="noopener" aria-label="Find Dear Deer on Spotify">Spotify</a>
+    <button class="music-player__close" type="button" data-music-close aria-label="Hide music player">&times;</button>
+    <audio preload="metadata" src="assets/audio/DearDeer.m4a"></audio>
+  </aside>
   <script src="assets/site.js"></script>
+  <script src="assets/music-player.js"></script>
 </body>
 </html>

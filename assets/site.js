@@ -6,7 +6,14 @@
   /* ---- Theme ---- */
   var KEY = 'siteTheme';
   var btn = document.getElementById('themeToggle');
-  function applyTheme(t) {
+  function applyTheme(t, animate) {
+    var duration = Math.round(80 + Math.random() * 190);
+    if (animate) {
+      root.style.setProperty('--theme-duration', duration + 'ms');
+      root.classList.add('theme-transition');
+      clearTimeout(root._themeTransitionTimer);
+      root._themeTransitionTimer = setTimeout(function () { root.classList.remove('theme-transition'); }, duration);
+    }
     root.setAttribute('data-theme', t);
     if (btn) btn.textContent = t === 'dark' ? '☀' : '☾';
     try { localStorage.setItem(KEY, t); } catch (_) {}
@@ -14,7 +21,7 @@
   var saved; try { saved = localStorage.getItem(KEY); } catch (_) {}
   if (saved) applyTheme(saved);
   else if (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches) applyTheme('dark');
-  if (btn) btn.addEventListener('click', function () { applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
+  if (btn) btn.addEventListener('click', function () { applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true); });
 
   /* ---- Year ---- */
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
@@ -98,7 +105,7 @@
           'nav.home': 'Home', 'foot.email': 'Email', 'foot.top': 'Back to top', 'skip': 'Skip to content', 'theme': 'Toggle dark mode' },
     'zh-CN': { 'art.credit': '封面插画：', 'art.name': '塔塔（tataqwq233）↗', 'sp.play': '在此播放', 'sp.open': '在 Spotify 打开 ↗', 'sp.artist': '加载完整目录', 'nav.work': '作品', 'nav.music': '音乐', 'nav.about': '关于', 'nav.contact': '联系', 'nav.resume': '简历',
           'nav.home': '首页', 'foot.email': '邮箱', 'foot.top': '回到顶部', 'skip': '跳到正文', 'theme': '切换深色模式' },
-    'zh-TW': { 'art.credit': '封面插畫：', 'art.name': '塔塔（tataqwq233）↗', 'sp.play': '在此播放', 'sp.open': '在 Spotify 開啟 ↗', 'sp.artist': '載入完整目錄', 'nav.work': '作品', 'nav.music': '音樂', 'nav.about': '關於', 'nav.contact': '聯絡', 'nav.resume': '簡歷',
+    'zh-TW': { 'art.credit': '封面插畫：', 'art.name': '塔塔（tataqwq233）↗', 'sp.play': '在此播放', 'sp.open': '在 Spotify 開啟 ↗', 'sp.artist': '載入完整目錄', 'nav.work': '作品', 'nav.music': '音樂', 'nav.about': '關於', 'nav.contact': '聯絡', 'nav.resume': '履歷',
           'nav.home': '首頁', 'foot.email': '信箱', 'foot.top': '回到頂部', 'skip': '跳到正文', 'theme': '切換深色模式' },
     ja: { 'art.credit': 'ジャケットイラスト：', 'art.name': '塔塔（tataqwq233）↗', 'sp.play': 'ここで再生', 'sp.open': 'Spotify で開く ↗', 'sp.artist': '全カタログを読み込む', 'nav.work': '作品', 'nav.music': '音楽', 'nav.about': '紹介', 'nav.contact': '連絡', 'nav.resume': '履歴書',
           'nav.home': 'ホーム', 'foot.email': 'メール', 'foot.top': 'トップへ', 'skip': '本文へ移動', 'theme': 'ダークモード切替' },

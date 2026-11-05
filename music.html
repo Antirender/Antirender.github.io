@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-music-mode="autoplay">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -37,8 +37,9 @@
       <nav class="primary" aria-label="Primary">
         <ul>
           <li><a href="work.html" data-i18n="nav.work">Work</a></li>
-          <li><a href="music.html" class="active" data-i18n="nav.music">Music</a></li>
           <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="about.html#resume" data-i18n="nav.resume">Resume</a></li>
+          <li><a href="music.html" class="active" data-i18n="nav.music">Music</a></li>
           <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
@@ -60,12 +61,12 @@
 
   <section class="hero hero--compact">
     <div class="wrap">
-      <span class="eyebrow" data-i18n="m.eyebrow">Antirender · Original music</span>
+      <!-- <span class="eyebrow" data-i18n="m.eyebrow">Antirender · Original music</span> -->
       <h1><span data-i18n="m.h1">Original music,</span><br><span class="dim" data-i18n="m.h1b">in many forms.</span></h1>
-      <p class="lede" data-i18n="m.lede">Since 2019 I’ve written, arranged and mixed every track myself — chord progressions and melodies first, then layered instruments and structure in Logic Pro and Ableton Live, through to release on Spotify.</p>
+      <p class="lede" data-i18n="m.lede">I write, arrange and mix every track myself and release them as Antirender.</p>
       <div class="hero-actions">
-        <a class="btn" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener" data-i18n="m.open">Open on Spotify ↗</a>
-        <a class="btn btn-outline" href="#tracks" data-i18n="m.listen">Listen to selected tracks</a>
+        <a class="btn" href="#tracks" data-i18n="m.listen">Listen to selected tracks</a>
+        <a class="btn btn-outline" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener" data-i18n="m.open">Open on Spotify ↗</a>
       </div>
       <div class="stats">
         <div><b>36</b><span data-i18n="m.s1">Original tracks</span></div>
@@ -80,9 +81,9 @@
     <div class="wrap">
       <div class="section-head section-head--row reveal">
         <div>
-          <span class="eyebrow" data-i18n="m.t.eyebrow">Selected tracks</span>
+          <!-- <span class="eyebrow" data-i18n="m.t.eyebrow">Selected tracks</span> -->
           <h2><span data-i18n="m.t.h2">Start here.</span> <span class="dim" data-i18n="m.t.h2b">Ten tracks across five years.</span></h2>
-          <p class="lede" data-i18n="m.t.lede">The most-played tracks from each release, newest first. Press play on any card — nothing to install.</p>
+          <p class="lede" data-i18n="m.t.lede">The most-played tracks from each release, newest first.</p>
         </div>
       </div>
       <div class="chips" id="yearChips" role="group" aria-label="Filter by year" style="margin:0 0 1.4rem"></div>
@@ -96,9 +97,9 @@
   <section class="section" id="discography">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow" data-i18n="m.d.eyebrow">Discography</span>
+        <!-- <span class="eyebrow" data-i18n="m.d.eyebrow">Discography</span> -->
         <h2><span data-i18n="m.d.h2">Seven albums,</span> <span class="dim" data-i18n="m.d.h2b">live on every major platform.</span></h2>
-        <p class="lede" data-i18n="m.d.lede">Every release is distributed worldwide — Spotify, Apple Music, Amazon Music, YouTube Music, TIDAL, Deezer, Pandora, iHeartRadio, TikTok, Instagram, NetEase Cloud Music and more. The full catalogue below comes straight from the Spotify artist page.</p>
+        <p class="lede" data-i18n="m.d.lede">On Spotify, Apple Music, YouTube Music, TIDAL, NetEase Cloud Music and more.</p>
       </div>
       <div class="sp-facade sp-facade--artist reveal"><img src="image/tracks/artist.webp" alt="" width="160" height="160" loading="lazy"><b>Anti Render</b><div class="sp-actions"><button class="btn btn-sm" type="button" data-embed="https://open.spotify.com/embed/artist/6IjMPyKB4LeW2H3cSgZLmW?utm_source=generator&amp;theme=0" data-embed-title="Spotify — Anti Render"><span aria-hidden="true">▶</span> <span data-i18n="sp.artist">Load the full catalogue</span></button><a class="btn-link" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener" data-i18n="sp.open">Open in Spotify ↗</a></div></div>
     </div>
@@ -110,10 +111,10 @@
       <div class="split reveal">
         <img src="image/logic_cap.png" alt="Logic Pro arrangement — pads, arps, bass, keys and melody layers across a multi-track session" data-i18n-alt="m.p.alt" loading="lazy">
         <div>
-          <span class="eyebrow" data-i18n="m.p.eyebrow">Process</span>
+          <!-- <span class="eyebrow" data-i18n="m.p.eyebrow">Process</span> -->
           <h2 style="font-size:clamp(1.5rem,1.2rem + 1.4vw,2.2rem);margin-bottom:.8rem"><span data-i18n="m.p.h2">Written from scratch,</span> <span class="dim" data-i18n="m.p.h2b">finished end to end.</span></h2>
-          <p data-i18n="m.p.p1">Every track starts as a chord progression and a melody. From there I layer and structure the instruments — pads, arps, bass, keys, drums — until the arrangement carries the idea on its own.</p>
-          <p data-i18n="m.p.p2">Mixing and basic mastering happen in the same session, so what you hear on Spotify is the same decision chain from the first sketch to the export.</p>
+          <!-- <p data-i18n="m.p.p1">Every track starts as a chord progression and a melody. From there I layer and structure the instruments — pads, arps, bass, keys, drums — until the arrangement carries the idea on its own.</p> -->
+          <!-- <p data-i18n="m.p.p2">Mixing and basic mastering happen in the same session, so what you hear on Spotify is the same decision chain from the first sketch to the export.</p> -->
           <ul class="pairs" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:1.4rem">
             <li><b data-i18n="m.p.1">Compose</b><span data-i18n="m.p.1d">Harmony and melody first; the hook has to work on one instrument.</span></li>
             <li><b data-i18n="m.p.2">Arrange</b><span data-i18n="m.p.2d">Layered instruments, sections and transitions in Logic Pro.</span></li>
@@ -129,7 +130,7 @@
   <section class="section" id="sound-design">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow" data-i18n="m.x.eyebrow">Where sound meets design</span>
+        <!-- <span class="eyebrow" data-i18n="m.x.eyebrow">Where sound meets design</span> -->
         <h2><span data-i18n="m.x.h2">The same ear,</span> <span class="dim" data-i18n="m.x.h2b">in interaction work.</span></h2>
       </div>
       <ul class="row-list reveal">
@@ -154,12 +155,12 @@
   <section class="section section--tight">
     <div class="wrap">
       <div class="cta reveal">
-        <span class="eyebrow" data-i18n="nav.contact">Contact</span>
+        <!-- <span class="eyebrow" data-i18n="nav.contact">Contact</span> -->
         <h2 data-i18n="m.cta.h2">Need a cue, a theme, or a sound for a project?</h2>
         <p data-i18n="m.cta.p">I write original music for student films, interaction demos and games — send a brief and a reference.</p>
         <div class="hero-actions">
           <a class="btn" href="mailto:antirender3@gmail.com?subject=Music%20for%20a%20project" data-i18n="cta.email">Email me</a>
-          <a class="btn btn-outline" href="https://open.spotify.com/artist/6IjMPyKB4LeW2H3cSgZLmW" target="_blank" rel="noopener">Spotify ↗</a>
+          <a class="btn btn-outline" href="work.html" data-i18n="m.cta.work">See my design work &rarr;</a>
         </div>
       </div>
     </div>
@@ -207,7 +208,7 @@ var TRACKS = [
     var y = t.date.slice(0, 4), m = MONTHS[parseInt(t.date.slice(5, 7), 10) - 1];
     var note = t.note ? '<span' + (NOTES[t.note] ? ' data-i18n="' + NOTES[t.note] + '"' : '') + '>' + esc(t.note) + '</span> · ' : '';
     return '<div class="track-card" data-cat="' + y + '">' +
-      '<span class="eyebrow" data-i18n="m.card.eye">Original track</span>' +
+      /* '<span class="eyebrow" data-i18n="m.card.eye">Original track</span>' + */
       '<h3>' + esc(t.title) + '</h3>' +
       '<span class="card-cat">' + note + '<span data-i18n-date="' + t.date.slice(0, 7) + '">' + m + ' ' + y + '</span> · ' + esc(t.len) + '</span>' +
       '<div class="sp-facade"><img src="image/tracks/' + t.id + '.webp" alt="" width="120" height="120" loading="lazy"><div class="sp-actions">' +
@@ -234,11 +235,12 @@ en: {
 
 },
 'zh-CN': {
+'m.cta.work':'看看设计作品 →',
 'm.x.1':'收集来的声音素材库驱动生成式视觉，最终做成可交互的 Rainbow Bloom 页眉。',
 'm.eyebrow':'Antirender · 原创音乐',
 'm.h1':'原创音乐，',
 'm.h1b':'多种形态。',
-'m.lede':'从 2019 年起，每一首都由我独立作曲、编曲与混音 — 先写和弦与旋律，再在 Logic Pro 和 Ableton Live 中叠加乐器与结构，直至在 Spotify 发布。',
+'m.lede':'每一首都由我独立作曲、编曲与混音，以 Antirender 的名义发行。',
 'm.open':'在 Spotify 打开 ↗',
 'm.listen':'听精选曲目',
 'm.s1':'原创曲目',
@@ -247,11 +249,11 @@ en: {
 'm.t.eyebrow':'精选曲目',
 'm.t.h2':'从这里开始。',
 'm.t.h2b':'五年十首。',
-'m.t.lede':'每次发行中播放最多的曲目，最新在前。点击任意卡片播放，无需安装。',
+'m.t.lede':'每次发行中播放最多的曲目，最新在前。',
 'm.d.eyebrow':'全部作品',
 'm.d.h2':'七张专辑，',
 'm.d.h2b':'全球各大平台均已上线。',
-'m.d.lede':'每一首作品都已发行到全球平台 — Spotify、Apple Music、Amazon Music、YouTube Music、TIDAL、Deezer、Pandora、iHeartRadio、TikTok、Instagram、网易云音乐等。下面的完整目录直接来自 Spotify 艺人页面。',
+'m.d.lede':'Spotify、Apple Music、YouTube Music、TIDAL、网易云音乐等平台都能听到。',
 'm.p.eyebrow':'创作过程',
 'm.p.h2':'从零开始写，',
 'm.p.h2b':'到完整成品。',
@@ -284,7 +286,8 @@ en: {
 'm.x.2':'导电触摸垫触发用 p5.js 打造的 WebGL 鼓机。'
 },
 'zh-TW': {
-'m.d.lede':'每一首作品都已發行到全球平台 — Spotify、Apple Music、Amazon Music、YouTube Music、TIDAL、Deezer、Pandora、iHeartRadio、TikTok、Instagram、網易雲音樂等。下面的完整目錄直接來自 Spotify 藝人頁面。',
+'m.cta.work':'看看設計作品 →',
+'m.d.lede':'Spotify、Apple Music、YouTube Music、TIDAL、網易雲音樂等平台都聽得到。',
 'm.eyebrow':'Antirender · 原創音樂',
 'm.h1':'原創音樂，',
 'm.h1b':'多種形態。',
@@ -324,8 +327,8 @@ en: {
 'm.x.2':'導電觸控墊觸發用 p5.js 打造的 WebGL 鼓機。',
 'm.p.p1':'每首曲子都從一段和絃和一條旋律開始。然後疊加與組織樂器 — pad、琶音、貝斯、鍵盤、鼓 — 直到編曲自己能承載想法。',
 'm.x.1':'收集來的聲音素材庫驅動生成式視覺，最終做成可互動的 Rainbow Bloom 頁首。',
-'m.lede':'從 2019 年起，每一首都由我獨立作曲、編曲與混音 — 先寫和絃與旋律，再在 Logic Pro 和 Ableton Live 中疊加樂器與結構，直至在 Spotify 發布。',
-'m.t.lede':'每次發行中播放最多的曲目，最新在前。點選任意卡片播放，無需安裝。',
+'m.lede':'每一首都由我獨立作曲、編曲與混音，以 Antirender 的名義發行。',
+'m.t.lede':'每次發行中播放最多的曲目，最新在前。',
 'm.p.p2':'混音和基礎母帶在同一個工程裡完成，所以你在 Spotify 聽到的，就是從第一個草稿到匯出的同一條決策鏈。',
 'm.p.1d':'先和聲後旋律；主題必須在單一樂器上也成立。',
 'm.p.2d':'在 Logic Pro 中疊加樂器、段落與過渡。',
@@ -334,7 +337,8 @@ en: {
 'm.cta.p':'我為學生短片、互動演示和遊戲寫原創音樂 — 發來需求和參考即可。'
 },
 ja: {
-'m.d.lede':'すべての作品を世界中に配信しています — Spotify、Apple Music、Amazon Music、YouTube Music、TIDAL、Deezer、Pandora、iHeartRadio、TikTok、Instagram、NetEase Cloud Music など。下のカタログは Spotify のアーティストページから直接表示しています。',
+'m.cta.work':'デザイン作品を見る →',
+'m.d.lede':'Spotify、Apple Music、YouTube Music、TIDAL、NetEase Cloud Music などで配信中。',
 'm.eyebrow':'Antirender · オリジナル音楽',
 'm.h1':'オリジナル音楽を、',
 'm.h1b':'さまざまな形で。',
@@ -372,8 +376,8 @@ ja: {
 'm.x.t1':'サウンドとビジュアライゼーション — 音に反応する 25 のスケッチ',
 'm.x.t2':'ドラムマシン — タッチをデジタルに変える楽器',
 'm.x.2':'導電性のタッチパッドで、p5.js で作った WebGL ドラムマシンを鳴らす。',
-'m.lede':'2019 年から、すべての曲を自分で作曲・編曲・ミックスしています — まずコード進行とメロディを書き、Logic Pro と Ableton Live で楽器と構成を重ね、Spotify でのリリースまで。',
-'m.t.lede':'各リリースで最も再生された曲を新しい順に。カードの再生ボタンを押すだけ、インストール不要。',
+'m.lede':'すべての曲を自分で作曲・編曲・ミックスし、Antirender としてリリースしています。',
+'m.t.lede':'各リリースで最も再生された曲を新しい順に。',
 'm.p.p1':'どの曲もコード進行とメロディから始まります。そこからパッド、アルペジオ、ベース、キー、ドラムと楽器を重ねて組み立て、アレンジだけでアイデアが伝わるまで仕上げます。',
 'm.p.p2':'ミックスと簡単なマスタリングも同じセッションで行うので、Spotify で聴ける音は最初のスケッチから書き出しまで一続きの判断の結果です。',
 'm.p.1d':'まずハーモニーとメロディ。フックはひとつの楽器でも成立しなければならない。',
@@ -384,6 +388,7 @@ ja: {
 'm.cta.p':'学生映画、インタラクションのデモ、ゲームのためにオリジナル音楽を書いています — 依頼内容とリファレンスを送ってください。'
 },
 fr: {
+'m.cta.work':'Voir mes travaux de design →',
 'm.x.1':'Une bibliothèque de sons collectés pilote des visuels génératifs, jusqu’à l’en-tête interactif Rainbow Bloom.',
 'm.p.1d':'L’harmonie et la mélodie d’abord ; l’accroche doit tenir sur un seul instrument.',
 'm.p.2d':'Instruments en couches, sections et transitions dans Logic Pro.',
@@ -394,7 +399,7 @@ fr: {
 'm.eyebrow':'Antirender · Musique originale',
 'm.h1':'Musique originale,',
 'm.h1b':'sous toutes ses formes.',
-'m.lede':'Depuis 2019, j’écris, arrange et mixe chaque morceau moi-même — accords et mélodie d’abord, puis instruments et structure dans Logic Pro et Ableton Live, jusqu’à la sortie sur Spotify.',
+'m.lede':'J’écris, j’arrange et je mixe chaque morceau moi-même, puis je les publie sous le nom d’Antirender.',
 'm.open':'Ouvrir sur Spotify ↗',
 'm.listen':'Écouter la sélection',
 'm.s1':'Morceaux originaux',
@@ -403,11 +408,11 @@ fr: {
 'm.t.eyebrow':'Sélection',
 'm.t.h2':'Commencez ici.',
 'm.t.h2b':'Dix morceaux sur cinq ans.',
-'m.t.lede':'Les morceaux les plus écoutés de chaque sortie, du plus récent au plus ancien. Appuyez sur lecture — rien à installer.',
+'m.t.lede':'Les morceaux les plus écoutés de chaque sortie, du plus récent au plus ancien.',
 'm.d.eyebrow':'Discographie',
 'm.d.h2':'Sept albums,',
 'm.d.h2b':'sur toutes les grandes plateformes.',
-'m.d.lede':'Chaque sortie est distribuée dans le monde entier — Spotify, Apple Music, Amazon Music, YouTube Music, TIDAL, Deezer, Pandora, iHeartRadio, TikTok, Instagram, NetEase Cloud Music et bien d’autres. Le catalogue complet ci-dessous vient directement de la page artiste Spotify.',
+'m.d.lede':'Sur Spotify, Apple Music, YouTube Music, TIDAL, NetEase Cloud Music et d’autres.',
 'm.p.eyebrow':'Processus',
 'm.p.h2':'Écrit de zéro,',
 'm.p.h2b':'fini de bout en bout.',
@@ -434,6 +439,7 @@ fr: {
 'm.x.2':'Des pastilles tactiles conductrices déclenchent une boîte à rythmes WebGL construite en p5.js.'
 },
 de: {
+'m.cta.work':'Design-Arbeiten ansehen →',
 'page.title':'Musik — Antirender',
 'm.all':'Alle',
 'm.card.eye':'Eigener Track',
@@ -448,7 +454,7 @@ de: {
 'm.eyebrow':'Antirender · Eigene Musik',
 'm.h1':'Eigene Musik,',
 'm.h1b':'in vielen Formen.',
-'m.lede':'Seit 2019 schreibe, arrangiere und mische ich jeden Track selbst — zuerst Akkordfolgen und Melodien, dann Instrumente und Struktur in Logic Pro und Ableton Live, bis zur Veröffentlichung auf Spotify.',
+'m.lede':'Ich schreibe, arrangiere und mische jeden Track selbst und veröffentliche sie als Antirender.',
 'm.open':'Auf Spotify öffnen ↗',
 'm.listen':'Ausgewählte Tracks anhören',
 'm.s1':'Eigene Tracks',
@@ -457,11 +463,11 @@ de: {
 'm.t.eyebrow':'Ausgewählte Tracks',
 'm.t.h2':'Hier anfangen.',
 'm.t.h2b':'Zehn Tracks aus fünf Jahren.',
-'m.t.lede':'Die meistgehörten Tracks jeder Veröffentlichung, die neuesten zuerst. Auf einer Karte auf Play drücken — nichts zu installieren.',
+'m.t.lede':'Die meistgehörten Tracks jeder Veröffentlichung, die neuesten zuerst.',
 'm.d.eyebrow':'Diskografie',
 'm.d.h2':'Sieben Alben,',
 'm.d.h2b':'auf allen großen Plattformen.',
-'m.d.lede':'Jede Veröffentlichung ist weltweit verfügbar — Spotify, Apple Music, Amazon Music, YouTube Music, TIDAL, Deezer, Pandora, iHeartRadio, TikTok, Instagram, NetEase Cloud Music und mehr. Der vollständige Katalog unten kommt direkt von der Spotify-Künstlerseite.',
+'m.d.lede':'Auf Spotify, Apple Music, YouTube Music, TIDAL, NetEase Cloud Music und weiteren Plattformen.',
 'm.p.eyebrow':'Prozess',
 'm.p.h2':'Von Grund auf geschrieben,',
 'm.p.h2b':'von Anfang bis Ende fertiggestellt.',
@@ -485,6 +491,15 @@ de: {
 }
 };
   </script>
+  <aside class="music-player" id="siteMusicPlayer" aria-label="Dear Deer player">
+    <img src="image/tracks/artist.webp" alt="Dear Deer cover art" width="56" height="56">
+    <div class="music-player__info"><strong>Dear Deer</strong><span data-music-status>Paused</span></div>
+    <button class="music-player__toggle" type="button" data-music-toggle aria-label="Play Dear Deer">&gt;</button>
+    <a class="music-player__cover-link" href="https://open.spotify.com/search/dear%20deer" target="_blank" rel="noopener" aria-label="Find Dear Deer on Spotify">Spotify</a>
+    <button class="music-player__close" type="button" data-music-close aria-label="Hide music player">&times;</button>
+    <audio preload="metadata" src="assets/audio/DearDeer.m4a"></audio>
+  </aside>
   <script src="assets/site.js"></script>
+  <script src="assets/music-player.js"></script>
 </body>
 </html>

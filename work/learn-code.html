@@ -50,8 +50,9 @@
       <nav class="primary" aria-label="Primary">
         <ul>
           <li><a href="../work.html" class="active" data-i18n="nav.work">Work</a></li>
-          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
           <li><a href="../about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="../about.html#resume" data-i18n="nav.resume">Resume</a></li>
+          <li><a href="../music.html" data-i18n="nav.music">Music</a></li>
           <li><a href="../index.html#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
@@ -73,7 +74,7 @@
     <a class="back" href="../work.html" data-i18n="work.back">&larr; All work</a>
 
     <div class="project-hero">
-      <span class="eyebrow"><span data-lang="en">Case study · UX/UI and front-end · 2025</span><span data-lang="zh">案例研究 · UX/UI 与前端 · 2025</span><span data-lang="tw">案例研究 · UX/UI 與前端 · 2025</span><span data-lang="ja">ケーススタディ · UX/UI とフロントエンド · 2025</span><span data-lang="fr">Étude de cas · UX/UI et front-end · 2025</span><span data-lang="de">Fallstudie · UX/UI und Frontend · 2025</span></span>
+      <span class="eyebrow"><span data-lang="en">UX/UI and front-end · 2025</span><span data-lang="zh">UX/UI 与前端 · 2025</span><span data-lang="tw">UX/UI 與前端 · 2025</span><span data-lang="ja">UX/UI とフロントエンド · 2025</span><span data-lang="fr">UX/UI et front-end · 2025</span><span data-lang="de">UX/UI und Frontend · 2025</span></span>
       <h1><span data-lang="en">Learn Code: coding lessons that fit into a short break</span><span data-lang="zh">Learn Code：利用碎片时间学编程的手机应用</span><span data-lang="tw">Learn Code：利用零碎時間學程式設計的手機應用</span><span data-lang="ja">Learn Code：短い休憩で学べるプログラミングアプリ</span><span data-lang="fr">Learn Code : des leçons de code qui tiennent dans une courte pause</span><span data-lang="de">Learn Code: Programmierlektionen für die kurze Pause</span></h1>
       <p data-lang="en">CodeOnTheGo is a mobile web app I designed and coded for beginners who learn in short breaks. It has 20 lessons across HTML, CSS, JavaScript and JSON, and every quiz can be answered by tapping, typing or speaking.</p>
       <p data-lang="zh">CodeOnTheGo 是我独立设计并开发的手机网页应用，给利用碎片时间学编程的初学者用。它有 20 节课，覆盖 HTML、CSS、JavaScript 和 JSON，每个小测验都可以点选、打字或用语音回答。</p>
@@ -289,6 +290,12 @@
       <p class="credits" data-lang="de">Icons: Font Awesome. Bilder: Unsplash. Code angepasst von W3Schools, MDN und Weekly Tutorials. ChatGPT und Grammarly halfen beim Korrekturlesen der Projektdokumentation.</p>
     </div>
 
+    <aside class="end-cta">
+      <p><span data-lang="en">Want to talk about this project?</span><span data-lang="zh">想聊聊这个项目？</span><span data-lang="tw">想聊聊這個專案？</span><span data-lang="ja">このプロジェクトについて話しませんか？</span><span data-lang="fr">Envie d’en parler ?</span><span data-lang="de">Möchten Sie darüber sprechen?</span></p>
+      <a class="end-cta-main" href="mailto:antirender3@gmail.com"><span data-lang="en">Email me</span><span data-lang="zh">发邮件</span><span data-lang="tw">寄信</span><span data-lang="ja">メールする</span><span data-lang="fr">M’écrire</span><span data-lang="de">Schreiben Sie mir</span></a>
+      <a class="end-cta-alt" href="../about.html#resume"><span data-lang="en">Resume</span><span data-lang="zh">简历</span><span data-lang="tw">履歷</span><span data-lang="ja">履歴書</span><span data-lang="fr">CV</span><span data-lang="de">Lebenslauf</span></a>
+    </aside>
+
     <nav class="pager" aria-label="Case studies">
       <a class="prev" href="nightmare-escape.html"><small><span data-lang="en">&larr; Previous</span><span data-lang="zh">&larr; 上一篇</span><span data-lang="tw">&larr; 上一篇</span><span data-lang="ja">&larr; 前へ</span><span data-lang="fr">&larr; Précédent</span><span data-lang="de">&larr; Zurück</span></small><b>梦魇逃亡 Nightmare Escape</b></a>
       <a class="next" href="snapchat.html"><small><span data-lang="en">Next &rarr;</span><span data-lang="zh">下一篇 &rarr;</span><span data-lang="tw">下一篇 &rarr;</span><span data-lang="ja">次へ &rarr;</span><span data-lang="fr">Suivant &rarr;</span><span data-lang="de">Weiter &rarr;</span></small><b>Snapchat Data Transparency</b></a>
@@ -340,10 +347,11 @@
   try{window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',function(e){if(!localStorage.getItem(KEY))apply(e.matches?'dark':'light');});}catch(_){}
 })();
 /* ===== i18n ===== */
-var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact'},de:{'work.back':'← Alle Arbeiten','nav.work':'Arbeiten','nav.music':'Musik','nav.about':'Über mich','nav.contact':'Kontakt'}};
+var T={en:{'work.back':'\u2190 All work','nav.work':'Work','nav.music':'Music','nav.about':'About','nav.contact':'Contact','nav.resume':'Resume'},'zh-CN':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u4e50','nav.about':'\u5173\u4e8e','nav.contact':'\u8054\u7cfb','nav.resume':'\u7b80\u5386'},'zh-TW':{'work.back':'\u2190 \u5168\u90e8\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u6a02','nav.about':'\u95dc\u65bc','nav.contact':'\u806f\u7d61','nav.resume':'\u5c65\u6b77'},ja:{'work.back':'\u2190 \u3059\u3079\u3066\u306e\u4f5c\u54c1','nav.work':'\u4f5c\u54c1','nav.music':'\u97f3\u697d','nav.about':'\u7d39\u4ecb','nav.contact':'\u9023\u7d61','nav.resume':'\u5c65\u6b74\u66f8'},fr:{'work.back':'\u2190 Tous les travaux','nav.work':'Travaux','nav.music':'Musique','nav.about':'\u00c0 propos','nav.contact':'Contact','nav.resume':'CV'},de:{'work.back':'← Alle Arbeiten','nav.work':'Arbeiten','nav.music':'Musik','nav.about':'Über mich','nav.contact':'Kontakt','nav.resume':'Lebenslauf'}};
 function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(d[k]!=null)el.textContent=d[k];else if(T.en[k]!=null)el.textContent=T.en[k];});document.querySelectorAll('.lang-sel').forEach(function(s){s.value=l;});var tag=l==='zh-CN'?'zh-Hans':l==='zh-TW'?'zh-Hant':l;document.documentElement.setAttribute('lang',tag);var ak={'zh-CN':'zh','zh-TW':'tw',ja:'ja',fr:'fr',de:'de'}[l];document.querySelectorAll('[data-alt-zh]').forEach(function(el){var a=el.tagName==='IMG'?'alt':'aria-label';if(!el.hasAttribute('data-alt-en'))el.setAttribute('data-alt-en',el.getAttribute(a));el.setAttribute(a,(ak&&el.getAttribute('data-alt-'+ak))||el.getAttribute('data-alt-en'));});document.querySelectorAll('[data-t-zh]').forEach(function(el){if(!el.hasAttribute('data-t-en'))el.setAttribute('data-t-en',el.textContent);el.textContent=(ak&&el.getAttribute('data-t-'+ak))||el.getAttribute('data-t-en');});if(window.demoRefresh)window.demoRefresh();try{localStorage.setItem('siteLang',l);}catch(_){}}
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>
+<script>(function(){var r=document.documentElement,b=document.getElementById('themeToggle');if(!b)return;b.addEventListener('click',function(){var d=Math.round(80+Math.random()*190);r.style.setProperty('--theme-duration',d+'ms');r.classList.add('theme-transition');clearTimeout(r._themeTransitionTimer);r._themeTransitionTimer=setTimeout(function(){r.classList.remove('theme-transition');},d);},true);})();</script>
 </body>
 </html>

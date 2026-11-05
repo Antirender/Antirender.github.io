@@ -12,6 +12,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
 body{font-family:"Inter",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;font-size:clamp(1rem,.94rem + .3vw,1.0625rem)}
+html.theme-transition,html.theme-transition body,html.theme-transition body *{transition-property:background-color,color,border-color,box-shadow,fill,stroke;transition-duration:var(--theme-duration);transition-timing-function:ease}
 a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 img{max-width:100%;height:auto;display:block}
 button{font:inherit;color:inherit}
@@ -108,6 +109,15 @@ nav.primary a.active{color:var(--accent);background:var(--accent-soft)}
 .phase h2::before{content:none!important}
 
 /* ===== Pager: previous / next case study ===== */
+/* End of a case study: how to get in touch */
+.end-cta{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:1.5rem 0;border-top:1px solid var(--border)}
+.end-cta p{margin:0 auto 0 0;padding-right:1rem;font-weight:700;color:var(--ink)}
+.end-cta a{display:inline-block;padding:.5rem 1rem;border-radius:8px;font-weight:700;font-size:.9rem;border:1px solid var(--ink)}
+.end-cta a:hover{text-decoration:none;border-color:var(--accent)}
+.end-cta-main{background:var(--ink);color:var(--bg)}
+.end-cta-main:hover{background:var(--accent);color:#fff}
+.end-cta-alt{background:transparent;color:var(--ink)}
+.end-cta-alt:hover{color:var(--accent)}
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1.5rem 0 2.5rem;border-top:1px solid var(--border)}
 .pager a{display:flex;flex-direction:column;gap:.2rem;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:12px;background:var(--card);color:var(--ink);transition:border-color .15s,transform .15s}
 .pager a:hover{text-decoration:none;border-color:var(--accent);transform:translateY(-2px)}
@@ -128,7 +138,7 @@ nav.primary a.active{color:var(--accent);background:var(--accent-soft)}
   .brand{flex:1}
   .site-tools{margin-left:auto}
   nav.primary{order:3;flex-basis:100%;margin-left:0;margin-top:-.15rem;padding-bottom:.35rem}
-  nav.primary ul{justify-content:flex-start;margin-left:-.45rem}
+  nav.primary ul{justify-content:flex-start;flex-wrap:wrap;margin-left:-.45rem}
 }
 
 /* ===== Accessibility ===== */
@@ -140,3 +150,5 @@ nav.primary a.active{color:var(--accent);background:var(--accent-soft)}
   .version-bar{position:static}
   .preview iframe{height:340px}
 }
+
+@media(max-width:400px){nav.primary a{padding:.35rem .34rem}nav.primary ul{gap:.05rem}}
