@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Learn Code — Yiyang Zhang</title>
+  <title>Learn Code | Yiyang Zhang</title>
   <meta name="description" content="CodeOnTheGo: a mobile web app for learning to code in short breaks. 20 lessons, quizzes you answer by tapping, typing or speaking. Research, UX and front-end code by Yiyang Zhang."/>
   <link rel="canonical" href="https://antirender.github.io/work/learn-code.html"/>
   <meta property="og:type" content="article"/>
   <meta property="og:site_name" content="Yiyang Zhang"/>
-  <meta property="og:title" content="Learn Code — Yiyang Zhang"/>
+  <meta property="og:title" content="Learn Code | Yiyang Zhang"/>
   <meta property="og:description" content="CodeOnTheGo: a mobile web app for learning to code in short breaks. 20 lessons, quizzes you answer by tapping, typing or speaking. Research, UX and front-end code by Yiyang Zhang."/>
   <meta property="og:url" content="https://antirender.github.io/work/learn-code.html"/>
   <meta property="og:image" content="https://antirender.github.io/work/learn-code/og.jpg"/>
@@ -29,12 +29,20 @@
     html:not([lang="de"]) [data-lang="de"]{display:none!important}
     html[lang="de"] [data-lang="en"]:has(~ [data-lang="de"]){display:none!important}
     .project-hero .meta span span{display:inline;padding:0;background:none;border:0;border-radius:0}
-    /* Section hierarchy: gray "NN  Label" kicker, then a bold headline on its own line */
+    /* Each section opens with one headline that states its point */
     .content>h2::before{content:none}
-    .content>h2{counter-increment:none;border-top:0;padding-top:0;margin:.1rem 0 .85rem;max-width:var(--measure)}
-    .content .sec-k{counter-increment:sec;max-width:none;margin:2.75rem 0 .5rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.85rem;font-weight:700;color:var(--muted)}
-    .content .sec-k::before{content:counter(sec,decimal-leading-zero);margin-right:.7rem}
-    :root[data-theme="dark"] .content .sec-k{color:#8a98ad}
+    .content>h2{counter-increment:none;max-width:var(--measure);margin:2.75rem 0 .85rem;padding-top:1.75rem;border-top:1px solid var(--border)}
+    .content>.cover-img + h2{margin-top:1.5rem;padding-top:0;border-top:0}
+    .project-hero .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media(max-width:560px){.project-hero .meta{grid-template-columns:1fr}}
+    /* Open the app sits under the intro; the version picker sits with the live preview */
+    .app-links{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.25rem 0 1.5rem}
+    .app-links a{display:inline-block;padding:.5rem .95rem;border:1px solid var(--ink);border-radius:8px;font-weight:700;font-size:.875rem}
+    .app-links a:hover{text-decoration:none;background:var(--accent);border-color:var(--accent);color:#fff}
+    .app-links .app-main{background:var(--ink);color:var(--bg)}
+    .app-links .app-alt{background:transparent;color:var(--ink)}
+    .content .version-bar{position:static;margin-top:1.25rem;border-top:1px solid var(--border)}
+    .content .version-bar + .preview{margin-top:0}
     .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1rem;margin:1rem 0 1.75rem;align-items:start}
     .shots--phones{grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px}
     .shots figure{margin:0}
@@ -85,26 +93,18 @@
       <div class="meta">
         <span><strong><span data-lang="en">Role</span><span data-lang="zh">角色</span><span data-lang="tw">角色</span><span data-lang="ja">役割</span><span data-lang="fr">Rôle</span><span data-lang="de">Rolle</span></strong> <span data-lang="en">Solo: research, UX/UI, front-end code</span><span data-lang="zh">独立完成：调研、UX/UI、前端代码</span><span data-lang="tw">獨立完成：研究、UX/UI、前端程式碼</span><span data-lang="ja">個人制作：リサーチ、UX/UI、フロントエンド</span><span data-lang="fr">Seul : recherche, UX/UI, code front-end</span><span data-lang="de">Allein: Recherche, UX/UI, Frontend-Code</span></span>
         <span><strong><span data-lang="en">Methods</span><span data-lang="zh">方法</span><span data-lang="tw">方法</span><span data-lang="ja">手法</span><span data-lang="fr">Méthodes</span><span data-lang="de">Methoden</span></strong> <span data-lang="en">Observation, personas, paper prototypes, user testing</span><span data-lang="zh">观察、人物画像、纸面原型、用户测试</span><span data-lang="tw">觀察、人物誌、紙面原型、使用者測試</span><span data-lang="ja">観察、ペルソナ、紙のプロトタイプ、ユーザーテスト</span><span data-lang="fr">Observation, personas, prototypes papier, tests utilisateurs</span><span data-lang="de">Beobachtung, Personas, Papierprototypen, Nutzertests</span></span>
-        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></strong> <span data-lang="en">Working app, 7 coded versions (v10–v17, no v15)</span><span data-lang="zh">能用的应用，7 个代码版本（v10–v17，无 v15）</span><span data-lang="tw">能用的應用，7 個程式碼版本（v10–v17，無 v15）</span><span data-lang="ja">動くアプリ、コード版 7 つ（v10〜v17、v15 は欠番）</span><span data-lang="fr">Application fonctionnelle, 7 versions codées (v10–v17, sans v15)</span><span data-lang="de">Funktionierende App, 7 programmierte Versionen (v10–v17, ohne v15)</span></span>
+        <span><strong><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span><span data-lang="de">Werkzeuge</span></strong> <span data-lang="en">Figma, HTML, CSS, JavaScript, Hammer.js, Web Speech API</span><span data-lang="zh">Figma、HTML、CSS、JavaScript、Hammer.js、Web Speech API</span><span data-lang="tw">Figma、HTML、CSS、JavaScript、Hammer.js、Web Speech API</span><span data-lang="ja">Figma、HTML、CSS、JavaScript、Hammer.js、Web Speech API</span><span data-lang="fr">Figma, HTML, CSS, JavaScript, Hammer.js, Web Speech API</span><span data-lang="de">Figma, HTML, CSS, JavaScript, Hammer.js, Web Speech API</span></span>
+        <span><strong><span data-lang="en">Outcome</span><span data-lang="zh">成果</span><span data-lang="tw">成果</span><span data-lang="ja">成果</span><span data-lang="fr">Résultat</span><span data-lang="de">Ergebnis</span></strong> <span data-lang="en">Working app, 7 coded versions</span><span data-lang="zh">能用的应用，7 个代码版本</span><span data-lang="tw">能用的應用，7 個程式碼版本</span><span data-lang="ja">コード版 7 つの動くアプリ</span><span data-lang="fr">Application fonctionnelle, 7 versions codées</span><span data-lang="de">Funktionierende App, 7 programmierte Versionen</span></span>
       </div>
     </div>
 
-    <div class="version-bar">
-      <label for="ver"><span data-lang="en">Version:</span><span data-lang="zh">版本：</span><span data-lang="tw">版本：</span><span data-lang="ja">バージョン：</span><span data-lang="fr">Version :</span><span data-lang="de">Version:</span></label>
-      <select id="ver">
-        <option value="v10">v10</option>
-        <option value="v11">v11</option>
-        <option value="v12">v12</option>
-        <option value="v13">v13</option>
-        <option value="v14">v14</option>
-        <option value="v16">v16</option>
-        <option value="v17" selected data-t-zh="v17 — 最终版" data-t-tw="v17 — 最終版" data-t-ja="v17 — 最終版" data-t-fr="v17 — Version finale" data-t-de="v17 — Endfassung">v17 — Final</option>
-      </select>
-      <a class="btn" id="openLink" href="../DESN18654V17/index.html" target="_blank" rel="noopener">Open V17</a>
-      <a class="btn btn-alt" id="appStoreLink" href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener"><span data-lang="en">App Store Page</span><span data-lang="zh">App Store 页面</span><span data-lang="tw">App Store 頁面</span><span data-lang="ja">App Store ページ</span><span data-lang="fr">Page App Store</span><span data-lang="de">App-Store-Seite</span></a>
+    <div class="app-links">
+      <a class="app-main" href="../DESN18654V17/index.html" target="_blank" rel="noopener"><span data-lang="en">Open the app ↗</span><span data-lang="zh">打开应用 ↗</span><span data-lang="tw">開啟應用 ↗</span><span data-lang="ja">アプリを開く ↗</span><span data-lang="fr">Ouvrir l’application ↗</span><span data-lang="de">App öffnen ↗</span></a>
+      <a class="app-alt" id="appStoreLink" href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener"><span data-lang="en">App Store Page</span><span data-lang="zh">App Store 页面</span><span data-lang="tw">App Store 頁面</span><span data-lang="ja">App Store ページ</span><span data-lang="fr">Page App Store</span><span data-lang="de">App-Store-Seite</span> ↗</a>
     </div>
 
     <div class="content">
+      <!-- "At a glance" repeated the section headlines; tools moved to the strip above
       <div class="tldr">
         <h2><span data-lang="en">At a glance</span><span data-lang="zh">一览</span><span data-lang="tw">一覽</span><span data-lang="ja">概要</span><span data-lang="fr">En bref</span><span data-lang="de">Auf einen Blick</span></h2>
         <dl>
@@ -113,16 +113,13 @@
           <div><dt><span data-lang="en">Tools</span><span data-lang="zh">工具</span><span data-lang="tw">工具</span><span data-lang="ja">ツール</span><span data-lang="fr">Outils</span><span data-lang="de">Werkzeuge</span></dt><dd><span data-lang="en">Figma, HTML, CSS, JavaScript, Hammer.js for swipe gestures, Web Speech API for voice answers</span><span data-lang="zh">Figma、HTML、CSS、JavaScript、Hammer.js（滑动手势）、Web Speech API（语音回答）</span><span data-lang="tw">Figma、HTML、CSS、JavaScript、Hammer.js（滑動手勢）、Web Speech API（語音回答）</span><span data-lang="ja">Figma、HTML、CSS、JavaScript、Hammer.js（スワイプ操作）、Web Speech API（音声回答）</span><span data-lang="fr">Figma, HTML, CSS, JavaScript, Hammer.js pour les gestes de balayage, Web Speech API pour les réponses vocales</span><span data-lang="de">Figma, HTML, CSS, JavaScript, Hammer.js für Wischgesten, Web Speech API für Sprachantworten</span></dd></div>
         </dl>
       </div>
+      -->
 
       <img class="cover-img" src="learn-code/card-1600.webp" alt="CodeOnTheGo in a desktop browser and on a phone" data-alt-zh="桌面浏览器和手机上的 CodeOnTheGo" data-alt-tw="桌面瀏覽器和手機上的 CodeOnTheGo" data-alt-ja="デスクトップのブラウザとスマホで表示した CodeOnTheGo" data-alt-fr="CodeOnTheGo dans un navigateur de bureau et sur un téléphone" data-alt-de="CodeOnTheGo im Desktop-Browser und auf dem Handy" width="1600" height="1000">
 
-      <div class="preview" id="previewBox">
-        <iframe src="../DESN18654V17/index.html" loading="lazy" title="Learn Code preview" sandbox="allow-same-origin allow-scripts"></iframe>
-        <div class="preview-label">Live preview — Learn Code V17 (Final)</div>
-      </div>
 
 
-      <p class="sec-k"><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span><span data-lang="de">Problem</span></p>
+      <!-- <p class="sec-k"><span data-lang="en">Problem</span><span data-lang="zh">问题</span><span data-lang="tw">問題</span><span data-lang="ja">課題</span><span data-lang="fr">Problème</span><span data-lang="de">Problem</span></p> -->
       <h2><span data-lang="en">Coding tutorials are too long and too dense to use on a phone.</span><span data-lang="zh">编程教程太长太密，在手机上很难学下去。</span><span data-lang="tw">程式設計教學太長太密，在手機上很難學下去。</span><span data-lang="ja">プログラミングの教材は長くて情報が多く、スマホでは続けにくい。</span><span data-lang="fr">Les tutoriels de code sont trop longs et trop denses pour un téléphone.</span><span data-lang="de">Programmier-Tutorials sind zu lang und zu dicht fürs Handy.</span></h2>
       <p data-lang="en">The beginners I worked with felt overwhelmed by dense tutorials and wanted to study in short gaps during the day. My goal: one lesson should fit into a 15-minute break.</p>
       <p data-lang="zh">和我一起测试的初学者觉得教程内容太密，想利用一天里的碎片时间学习。我的目标是：一节课能在 15 分钟的休息时间里学完。</p>
@@ -131,7 +128,7 @@
       <p data-lang="fr">Les débutants avec qui j’ai travaillé se sentaient submergés par les tutoriels denses et voulaient apprendre dans les petits moments libres de la journée. Mon objectif : une leçon doit tenir dans une pause de 15 minutes.</p>
       <p data-lang="de">Die Einsteiger, mit denen ich gearbeitet habe, fühlten sich von dichten Tutorials überfordert und wollten in kurzen Pausen lernen. Mein Ziel: Eine Lektion passt in eine 15-Minuten-Pause.</p>
 
-      <p class="sec-k"><span data-lang="en">Users</span><span data-lang="zh">用户</span><span data-lang="tw">使用者</span><span data-lang="ja">ユーザー</span><span data-lang="fr">Utilisateurs</span><span data-lang="de">Nutzer</span></p>
+      <!-- <p class="sec-k"><span data-lang="en">Users</span><span data-lang="zh">用户</span><span data-lang="tw">使用者</span><span data-lang="ja">ユーザー</span><span data-lang="fr">Utilisateurs</span><span data-lang="de">Nutzer</span></p> -->
       <h2><span data-lang="en">I designed for two people who learn in short breaks.</span><span data-lang="zh">我为两位利用碎片时间学习的人做设计。</span><span data-lang="tw">我為兩位利用零碎時間學習的人做設計。</span><span data-lang="ja">すき間時間に学ぶ 2 人のためにデザインしました。</span><span data-lang="fr">J’ai conçu l’application pour deux personnes qui apprennent pendant leurs pauses.</span><span data-lang="de">Ich habe für zwei Menschen gestaltet, die in kurzen Pausen lernen.</span></h2>
       <ul data-lang="en">
         <li><strong>Alex Chen, 29,</strong> is a former barista moving into front-end development. He uses any 15-minute window to practise and wants instant feedback.</li>
@@ -162,14 +159,14 @@
         <figure><img src="learn-code/persona-jamie.webp" alt="Persona card for Jamie Zhang, a digital arts student: “I want to learn the basics of coding during my commute.”" data-alt-zh="Jamie Zhang 的人物画像，数字艺术学生：“I want to learn the basics of coding during my commute.”" data-alt-tw="Jamie Zhang 的人物誌，數位藝術學生：“I want to learn the basics of coding during my commute.”" data-alt-ja="デジタルアートを学ぶ Jamie Zhang のペルソナ：「I want to learn the basics of coding during my commute.」" data-alt-fr="Persona de Jamie Zhang, étudiante en arts numériques : « I want to learn the basics of coding during my commute. »" data-alt-de="Persona von Jamie Zhang, Studentin für digitale Kunst: „I want to learn the basics of coding during my commute.“" width="1000" height="667" loading="lazy"><figcaption><span data-lang="en">Jamie: learns on the commute.</span><span data-lang="zh">Jamie：在通勤路上学习。</span><span data-lang="tw">Jamie：在通勤路上學習。</span><span data-lang="ja">Jamie：通勤中に学ぶ。</span><span data-lang="fr">Jamie : apprend pendant ses trajets.</span><span data-lang="de">Jamie: lernt auf dem Arbeitsweg.</span></figcaption></figure>
       </div>
 
-      <p class="sec-k"><span data-lang="en">Research</span><span data-lang="zh">调研</span><span data-lang="tw">研究</span><span data-lang="ja">リサーチ</span><span data-lang="fr">Recherche</span><span data-lang="de">Recherche</span></p>
+      <!-- <p class="sec-k"><span data-lang="en">Research</span><span data-lang="zh">调研</span><span data-lang="tw">研究</span><span data-lang="ja">リサーチ</span><span data-lang="fr">Recherche</span><span data-lang="de">Recherche</span></p> -->
       <h2><span data-lang="en">People wanted short lessons and less typing.</span><span data-lang="zh">大家想要短课，也想少打字。</span><span data-lang="tw">大家想要短課，也想少打字。</span><span data-lang="ja">求められていたのは、短いレッスンと少ない入力でした。</span><span data-lang="fr">Les gens voulaient des leçons courtes et moins de saisie.</span><span data-lang="de">Gewünscht waren kurze Lektionen und weniger Tippen.</span></h2>
-      <p data-lang="en">I watched a student use their phone on transit and tested early ideas with 2 beginners. Two findings drove the design:</p>
-      <p data-lang="zh">我观察了一位学生在通勤时怎么用手机，又请 2 位初学者测试了早期想法。两个发现决定了设计：</p>
-      <p data-lang="tw">我觀察了一位學生在通勤時怎麼用手機，又請 2 位初學者測試了早期想法。兩個發現決定了設計：</p>
-      <p data-lang="ja">通勤中の学生のスマホの使い方を観察し、初心者 2 人に初期案を試してもらいました。2 つの発見がデザインを決めました。</p>
-      <p data-lang="fr">J’ai observé une personne étudiante utiliser son téléphone dans les transports et testé les premières idées avec 2 débutants. Deux constats ont guidé le design :</p>
-      <p data-lang="de">Ich habe beobachtet, wie eine studierende Person ihr Handy unterwegs nutzt, und frühe Ideen mit 2 Einsteigern getestet. Zwei Erkenntnisse prägten das Design:</p>
+      <p data-lang="en">I watched a student use their phone on transit and tested early ideas with 2 beginners.</p>
+      <p data-lang="zh">我观察了一位学生在通勤时怎么用手机，又请 2 位初学者测试了早期想法。</p>
+      <p data-lang="tw">我觀察了一位學生在通勤時怎麼用手機，又請 2 位初學者測試了早期想法。</p>
+      <p data-lang="ja">通勤中の学生のスマホの使い方を観察し、初心者 2 人に初期案を試してもらいました。</p>
+      <p data-lang="fr">J’ai observé une personne étudiante utiliser son téléphone dans les transports et testé les premières idées avec 2 débutants.</p>
+      <p data-lang="de">Ich habe beobachtet, wie eine studierende Person ihr Handy unterwegs nutzt, und frühe Ideen mit 2 Einsteigern getestet.</p>
       <ul data-lang="en">
         <li><strong>Dense tutorials overwhelmed them,</strong> so each screen teaches one concept.</li>
         <li><strong>Typing on a phone was a chore,</strong> so every quiz also takes taps and voice answers.</li>
@@ -195,7 +192,7 @@
         <li><strong>Tippen auf dem Handy war mühsam,</strong> also nimmt jedes Quiz auch Antippen und Sprache an.</li>
       </ul>
 
-      <p class="sec-k"><span data-lang="en">Design decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">デザインの判断</span><span data-lang="fr">Décisions de design</span><span data-lang="de">Designentscheidungen</span></p>
+      <!-- <p class="sec-k"><span data-lang="en">Design decisions</span><span data-lang="zh">设计决策</span><span data-lang="tw">設計決策</span><span data-lang="ja">デザインの判断</span><span data-lang="fr">Décisions de design</span><span data-lang="de">Designentscheidungen</span></p> -->
       <h2><span data-lang="en">One lesson per screen, instant feedback, three ways to answer.</span><span data-lang="zh">一屏一课，即时反馈，三种回答方式。</span><span data-lang="tw">一屏一課，即時回饋，三種回答方式。</span><span data-lang="ja">1 画面 1 レッスン、すぐ返るフィードバック、3 通りの答え方。</span><span data-lang="fr">Une leçon par écran, un retour immédiat, trois façons de répondre.</span><span data-lang="de">Eine Lektion pro Bildschirm, sofortiges Feedback, drei Antwortwege.</span></h2>
       <ul data-lang="en">
         <li><strong>One lesson, one screen.</strong> Large type and soft card borders. The quiz opens when you tap Start Quiz.</li>
@@ -244,14 +241,14 @@
         <figure><img src="learn-code/style.webp" alt="Style tile with the pink and purple palette, type samples, buttons and imagery" data-alt-zh="风格板：粉紫配色、字体样式、按钮和图片" data-alt-tw="風格板：粉紫配色、字型樣式、按鈕和圖片" data-alt-ja="スタイルタイル：ピンクと紫の配色、文字の見本、ボタン、画像" data-alt-fr="Planche de style : palette rose et violette, échantillons de texte, boutons et images" data-alt-de="Style Tile mit Pink-Lila-Palette, Schriftmustern, Buttons und Bildern" width="1400" height="555" loading="lazy"><figcaption><span data-lang="en">Style tile: a pink and purple palette to make code feel friendly.</span><span data-lang="zh">风格板：用粉紫配色，让代码显得亲切。</span><span data-lang="tw">風格板：用粉紫配色，讓程式碼顯得親切。</span><span data-lang="ja">スタイルタイル：ピンクと紫で、コードを親しみやすく。</span><span data-lang="fr">Planche de style : du rose et du violet pour rendre le code accueillant.</span><span data-lang="de">Style Tile: Pink und Lila machen Code freundlicher.</span></figcaption></figure>
       </div>
 
-      <p class="sec-k"><span data-lang="en">Process</span><span data-lang="zh">过程</span><span data-lang="tw">過程</span><span data-lang="ja">プロセス</span><span data-lang="fr">Processus</span><span data-lang="de">Prozess</span></p>
-      <h2><span data-lang="en">From paper sketches to seven coded versions.</span><span data-lang="zh">从纸面草图到七个代码版本。</span><span data-lang="tw">從紙面草圖到七個程式碼版本。</span><span data-lang="ja">紙のスケッチから、7 つのコード版へ。</span><span data-lang="fr">Des croquis papier à sept versions codées.</span><span data-lang="de">Von Papierskizzen zu sieben programmierten Versionen.</span></h2>
-      <p data-lang="en">I started with hand-drawn tabs and quiz blocks and tested them on paper. Testers asked for a reset button and dark mode, so I added both. Then I built mid- and high-fidelity prototypes and kept refining in code: v10–v12 tested navigation and card sizes; v13, v14 and v16 adjusted spacing, type and feedback; v17 finished the mobile layout.</p>
-      <p data-lang="zh">我先手绘标签页和测验模块，用纸面原型做测试。测试者提出要重置按钮和深色模式，我都加上了。之后做了中保真和高保真原型，再继续在代码里调整：v10–v12 测试导航和卡片尺寸；v13、v14 和 v16 调整间距、字体和反馈；v17 完成移动端布局。</p>
-      <p data-lang="tw">我先手繪標籤頁和測驗模組，用紙面原型做測試。測試者提出要重置按鈕和深色模式，我都加上了。之後做了中保真和高保真原型，再繼續在程式碼裡調整：v10–v12 測試導覽和卡片尺寸；v13、v14 和 v16 調整間距、字型和回饋；v17 完成行動裝置佈局。</p>
+      <!-- <p class="sec-k"><span data-lang="en">Process</span><span data-lang="zh">过程</span><span data-lang="tw">過程</span><span data-lang="ja">プロセス</span><span data-lang="fr">Processus</span><span data-lang="de">Prozess</span></p> -->
+      <h2><span data-lang="en">Paper tests added Reset and Dark Mode. Seven coded versions followed.</span><span data-lang="zh">纸面测试加入了重置和深色模式，之后写了 7 个代码版本。</span><span data-lang="tw">紙面測試加入了重置和深色模式，之後寫了 7 個程式碼版本。</span><span data-lang="ja">紙のテストでリセットとダークモードを追加し、その後コードで 7 バージョン作りました。</span><span data-lang="fr">Les tests sur papier ont ajouté la réinitialisation et le mode sombre, puis sept versions codées ont suivi.</span><span data-lang="de">Papiertests brachten Reset und Dunkelmodus, danach folgten sieben programmierte Versionen.</span></h2>
+      <p data-lang="en">I started with hand-drawn tabs and quiz blocks and tested them on paper. Testers asked for a reset button and dark mode, so I added both. Then I built mid- and high-fidelity prototypes and kept refining in code: v10 to v12 tested navigation and card sizes; v13, v14 and v16 adjusted spacing, type and feedback; v17 finished the mobile layout.</p>
+      <p data-lang="zh">我先手绘标签页和测验模块，用纸面原型做测试。测试者提出要重置按钮和深色模式，我都加上了。之后做了中保真和高保真原型，再继续在代码里调整：v10 到 v12 测试导航和卡片尺寸；v13、v14 和 v16 调整间距、字体和反馈；v17 完成移动端布局。</p>
+      <p data-lang="tw">我先手繪標籤頁和測驗模組，用紙面原型做測試。測試者提出要重置按鈕和深色模式，我都加上了。之後做了中保真和高保真原型，再繼續在程式碼裡調整：v10 到 v12 測試導覽和卡片尺寸；v13、v14 和 v16 調整間距、字型和回饋；v17 完成行動裝置佈局。</p>
       <p data-lang="ja">手描きのタブとクイズのブロックから始め、紙のプロトタイプでテストしました。テスターからリセットボタンとダークモードの要望があり、両方とも追加しました。その後、中・高忠実度のプロトタイプを作り、コードで調整を続けました。v10〜v12 でナビゲーションとカードの大きさを試し、v13、v14、v16 で余白、文字、フィードバックを調整し、v17 でモバイルのレイアウトを仕上げました。</p>
-      <p data-lang="fr">J’ai commencé par des onglets et des blocs de quiz dessinés à la main, testés sur papier. Les testeurs ont demandé un bouton de réinitialisation et un mode sombre : j’ai ajouté les deux. J’ai ensuite créé des prototypes moyenne et haute fidélité, puis affiné en code : v10–v12 pour tester la navigation et la taille des cartes ; v13, v14 et v16 pour ajuster les espacements, la typographie et les retours ; v17 pour finir la mise en page mobile.</p>
-      <p data-lang="de">Ich begann mit handgezeichneten Tabs und Quiz-Blöcken und testete sie auf Papier. Die Testpersonen wünschten sich einen Reset-Button und einen Dunkelmodus, also habe ich beides ergänzt. Danach baute ich Mid- und High-Fidelity-Prototypen und verfeinerte alles im Code: v10–v12 testeten Navigation und Kartengrößen; v13, v14 und v16 passten Abstände, Schrift und Feedback an; v17 schloss das mobile Layout ab.</p>
+      <p data-lang="fr">J’ai commencé par des onglets et des blocs de quiz dessinés à la main, testés sur papier. Les testeurs ont demandé un bouton de réinitialisation et un mode sombre : j’ai ajouté les deux. J’ai ensuite créé des prototypes moyenne et haute fidélité, puis affiné en code : v10 à v12 pour tester la navigation et la taille des cartes ; v13, v14 et v16 pour ajuster les espacements, la typographie et les retours ; v17 pour finir la mise en page mobile.</p>
+      <p data-lang="de">Ich begann mit handgezeichneten Tabs und Quiz-Blöcken und testete sie auf Papier. Die Testpersonen wünschten sich einen Reset-Button und einen Dunkelmodus, also habe ich beides ergänzt. Danach baute ich Mid- und High-Fidelity-Prototypen und verfeinerte alles im Code: v10 bis v12 testeten Navigation und Kartengrößen; v13, v14 und v16 passten Abstände, Schrift und Feedback an; v17 schloss das mobile Layout ab.</p>
       <div class="shots shots--wide">
         <figure><img src="learn-code/sketch.webp" alt="Hand-drawn wireframes of the lesson and quiz screens" data-alt-zh="手绘的课程和测验页面线框图" data-alt-tw="手繪的課程和測驗頁面線框圖" data-alt-ja="レッスンとクイズの画面の手描きワイヤーフレーム" data-alt-fr="Maquettes dessinées à la main des écrans de leçon et de quiz" data-alt-de="Handgezeichnete Wireframes der Lektions- und Quiz-Bildschirme" width="1400" height="1022" loading="lazy"><figcaption><span data-lang="en">1. Paper sketch, before testing.</span><span data-lang="zh">1. 测试前的纸面草图。</span><span data-lang="tw">1. 測試前的紙面草圖。</span><span data-lang="ja">1. テスト前の紙のスケッチ。</span><span data-lang="fr">1. Croquis papier, avant les tests.</span><span data-lang="de">1. Papierskizze vor dem Test.</span></figcaption></figure>
         <figure><img src="learn-code/lofi.webp" alt="Hand-drawn wireframes that now include Reset and Dark Mode buttons" data-alt-zh="手绘线框图，已加入 Reset 和 Dark Mode 按钮" data-alt-tw="手繪線框圖，已加入 Reset 和 Dark Mode 按鈕" data-alt-ja="Reset と Dark Mode のボタンを加えた手描きワイヤーフレーム" data-alt-fr="Maquettes dessinées à la main avec les boutons Reset et Dark Mode" data-alt-de="Handgezeichnete Wireframes mit Reset- und Dark-Mode-Button" width="1400" height="1003" loading="lazy"><figcaption><span data-lang="en">2. After testing: Reset and Dark Mode added.</span><span data-lang="zh">2. 测试后：加入 Reset 和 Dark Mode。</span><span data-lang="tw">2. 測試後：加入 Reset 和 Dark Mode。</span><span data-lang="ja">2. テスト後：Reset と Dark Mode を追加。</span><span data-lang="fr">2. Après les tests : Reset et Dark Mode ajoutés.</span><span data-lang="de">2. Nach dem Test: Reset und Dark Mode ergänzt.</span></figcaption></figure>
@@ -259,7 +256,7 @@
         <figure><img src="learn-code/hifi.webp" alt="High-fidelity screens with progress bar, lesson cards and a quiz" data-alt-zh="高保真界面：进度条、课程卡片和小测验" data-alt-tw="高保真介面：進度條、課程卡片和小測驗" data-alt-ja="高忠実度の画面：進捗バー、レッスンカード、クイズ" data-alt-fr="Écrans haute fidélité avec barre de progression, cartes de leçon et quiz" data-alt-de="High-Fidelity-Bildschirme mit Fortschrittsbalken, Lektionskarten und Quiz" width="1400" height="892" loading="lazy"><figcaption><span data-lang="en">4. High-fidelity: progress bar, lesson cards, quiz.</span><span data-lang="zh">4. 高保真：进度条、课程卡片、小测验。</span><span data-lang="tw">4. 高保真：進度條、課程卡片、小測驗。</span><span data-lang="ja">4. 高忠実度：進捗バー、レッスンカード、クイズ。</span><span data-lang="fr">4. Haute fidélité : barre de progression, cartes, quiz.</span><span data-lang="de">4. High-Fidelity: Fortschrittsbalken, Lektionskarten, Quiz.</span></figcaption></figure>
       </div>
 
-      <p class="sec-k"><span data-lang="en">Final app</span><span data-lang="zh">最终成品</span><span data-lang="tw">最終成品</span><span data-lang="ja">完成したアプリ</span><span data-lang="fr">Application finale</span><span data-lang="de">Fertige App</span></p>
+      <!-- <p class="sec-k"><span data-lang="en">Final app</span><span data-lang="zh">最终成品</span><span data-lang="tw">最終成品</span><span data-lang="ja">完成したアプリ</span><span data-lang="fr">Application finale</span><span data-lang="de">Fertige App</span></p> -->
       <h2><span data-lang="en">A working app with 20 lessons, 20 quizzes, voice answers and dark mode.</span><span data-lang="zh">一个能用的应用：20 节课、20 个小测验、语音回答和深色模式。</span><span data-lang="tw">一個能用的應用：20 節課、20 個小測驗、語音回答和深色模式。</span><span data-lang="ja">動くアプリ：20 レッスン、20 クイズ、音声回答、ダークモード。</span><span data-lang="fr">Une application fonctionnelle : 20 leçons, 20 quiz, réponses vocales et mode sombre.</span><span data-lang="de">Eine funktionierende App: 20 Lektionen, 20 Quizze, Sprachantworten und Dunkelmodus.</span></h2>
       <p data-lang="en">I coded the final build as a single-page app in HTML, CSS and JavaScript. It covers four topics with five lessons each and runs on phones and desktops. I also designed an <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store product page</a> to present it.</p>
       <p data-lang="zh">最终版是我用 HTML、CSS 和 JavaScript 写的单页应用，有四个主题，每个主题五节课，手机和电脑上都能用。我还设计了一个 <a href="../DESN18654V18/App-Store.html" target="_blank" rel="noopener">App Store 产品页</a>来展示它。</p>
@@ -272,8 +269,25 @@
         <figure><img src="learn-code/phone-quiz.webp" alt="A quiz after a correct answer, with typed and voice answer options" data-alt-zh="答对后的小测验，还有打字和语音回答的选项" data-alt-tw="答對後的小測驗，還有打字和語音回答的選項" data-alt-ja="正解後のクイズ。入力と音声で答える選択肢も表示" data-alt-fr="Un quiz après une bonne réponse, avec les options de saisie et de voix" data-alt-de="Ein Quiz nach richtiger Antwort, mit Tipp- und Sprachoption" width="600" height="1298" loading="lazy"><figcaption><span data-lang="en">Quiz: tap, type or speak</span><span data-lang="zh">小测验：点选、打字或说话</span><span data-lang="tw">小測驗：點選、打字或說話</span><span data-lang="ja">クイズ：タップ、入力、音声</span><span data-lang="fr">Quiz : appuyer, taper ou parler</span><span data-lang="de">Quiz: antippen, tippen oder sprechen</span></figcaption></figure>
         <figure><img src="learn-code/phone-dark.webp" alt="JavaScript Lesson 1 in dark mode on a phone" data-alt-zh="手机上深色模式的 JavaScript 第 1 课" data-alt-tw="手機上深色模式的 JavaScript 第 1 課" data-alt-ja="スマホのダークモードで表示した JavaScript レッスン 1" data-alt-fr="Leçon JavaScript 1 en mode sombre sur téléphone" data-alt-de="JavaScript-Lektion 1 im Dunkelmodus auf dem Handy" width="600" height="1298" loading="lazy"><figcaption><span data-lang="en">Dark mode</span><span data-lang="zh">深色模式</span><span data-lang="tw">深色模式</span><span data-lang="ja">ダークモード</span><span data-lang="fr">Mode sombre</span><span data-lang="de">Dunkelmodus</span></figcaption></figure>
       </div>
+      <div class="version-bar">
+        <label for="ver"><span data-lang="en">Version:</span><span data-lang="zh">版本：</span><span data-lang="tw">版本：</span><span data-lang="ja">バージョン：</span><span data-lang="fr">Version :</span><span data-lang="de">Version:</span></label>
+        <select id="ver">
+          <option value="v10">v10</option>
+          <option value="v11">v11</option>
+          <option value="v12">v12</option>
+          <option value="v13">v13</option>
+          <option value="v14">v14</option>
+          <option value="v16">v16</option>
+          <option value="v17" selected data-t-zh="v17（最终版）" data-t-tw="v17（最終版）" data-t-ja="v17（最終版）" data-t-fr="v17 (version finale)" data-t-de="v17 (Endfassung)">v17 (Final)</option>
+        </select>
+        <a class="btn" id="openLink" href="../DESN18654V17/index.html" target="_blank" rel="noopener">Open V17</a>
+      </div>
+      <div class="preview" id="previewBox">
+        <iframe src="../DESN18654V17/index.html" loading="lazy" title="Learn Code preview" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div class="preview-label">Live preview: Learn Code V17 (Final)</div>
+      </div>
 
-      <p class="sec-k"><span data-lang="en">Next steps</span><span data-lang="zh">下一步</span><span data-lang="tw">下一步</span><span data-lang="ja">次のステップ</span><span data-lang="fr">Prochaines étapes</span><span data-lang="de">Nächste Schritte</span></p>
+      <!-- <p class="sec-k"><span data-lang="en">Next steps</span><span data-lang="zh">下一步</span><span data-lang="tw">下一步</span><span data-lang="ja">次のステップ</span><span data-lang="fr">Prochaines étapes</span><span data-lang="de">Nächste Schritte</span></p> -->
       <h2><span data-lang="en">Next: search, accounts and a code editor inside each lesson.</span><span data-lang="zh">下一步：搜索、账号，以及课程内的代码编辑器。</span><span data-lang="tw">下一步：搜尋、帳號，以及課程內的程式碼編輯器。</span><span data-lang="ja">次は、検索、アカウント、レッスン内のコードエディター。</span><span data-lang="fr">Ensuite : la recherche, les comptes et un éditeur de code dans chaque leçon.</span><span data-lang="de">Als Nächstes: Suche, Konten und ein Code-Editor in jeder Lektion.</span></h2>
       <p data-lang="en">Accounts would let progress follow people across devices, and an editor would let them write real code. My testing so far is small, 2 beginners and 1 observed student, so I would also test with more people.</p>
       <p data-lang="zh">账号能让进度跟着人走，编辑器能让用户写真正的代码。目前的测试规模还小，是 2 位初学者和 1 位被观察的学生，所以我还会找更多人来测试。</p>
@@ -317,12 +331,12 @@
   var link = document.getElementById('openLink');
   var preview = document.getElementById('previewBox');
   var TXT = {
-    en: { open: 'Open {v}', live: 'Live preview \u2014 Learn Code {v}', fin: ' (Final)' },
-    zh: { open: '打开 {v}', live: '实时预览 \u2014 Learn Code {v}', fin: '（最终版）' },
-    tw: { open: '開啟 {v}', live: '即時預覽 \u2014 Learn Code {v}', fin: '（最終版）' },
-    ja: { open: '{v} を開く', live: 'ライブプレビュー \u2014 Learn Code {v}', fin: '（最終版）' },
-    fr: { open: 'Ouvrir {v}', live: 'Aperçu en direct \u2014 Learn Code {v}', fin: ' (version finale)' },
-    de: { open: '{v} öffnen', live: 'Live-Vorschau \u2014 Learn Code {v}', fin: ' (Endfassung)' }
+    en: { open: 'Open {v}', live: 'Live preview: Learn Code {v}', fin: ' (Final)' },
+    zh: { open: '打开 {v}', live: '实时预览：Learn Code {v}', fin: '（最终版）' },
+    tw: { open: '開啟 {v}', live: '即時預覽：Learn Code {v}', fin: '（最終版）' },
+    ja: { open: '{v} を開く', live: 'ライブプレビュー：Learn Code {v}', fin: '（最終版）' },
+    fr: { open: 'Ouvrir {v}', live: 'Aperçu en direct : Learn Code {v}', fin: ' (version finale)' },
+    de: { open: '{v} öffnen', live: 'Live-Vorschau: Learn Code {v}', fin: ' (Endfassung)' }
   };
   function lang() { var l = document.documentElement.getAttribute('lang'); return l === 'zh-Hans' ? 'zh' : l === 'zh-Hant' ? 'tw' : TXT[l] ? l : 'en'; }
   function buildHref(v) { return '../DESN18654' + v.toUpperCase() + '/index.html'; }
