@@ -6,14 +6,7 @@
   /* ---- Theme ---- */
   var KEY = 'siteTheme';
   var btn = document.getElementById('themeToggle');
-  function applyTheme(t, animate) {
-    var duration = Math.round(80 + Math.random() * 190);
-    if (animate) {
-      root.style.setProperty('--theme-duration', duration + 'ms');
-      root.classList.add('theme-transition');
-      clearTimeout(root._themeTransitionTimer);
-      root._themeTransitionTimer = setTimeout(function () { root.classList.remove('theme-transition'); }, duration);
-    }
+  function applyTheme(t) {
     root.setAttribute('data-theme', t);
     if (btn) btn.textContent = t === 'dark' ? '☀' : '☾';
     try { localStorage.setItem(KEY, t); } catch (_) {}
@@ -21,7 +14,7 @@
   var saved; try { saved = localStorage.getItem(KEY); } catch (_) {}
   if (saved) applyTheme(saved);
   else if (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches) applyTheme('dark');
-  if (btn) btn.addEventListener('click', function () { applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true); });
+  if (btn) btn.addEventListener('click', function () { applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
 
   /* ---- Year ---- */
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });

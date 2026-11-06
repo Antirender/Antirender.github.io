@@ -279,6 +279,6 @@ function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>
-<script>(function(){var r=document.documentElement,b=document.getElementById('themeToggle');if(!b)return;b.addEventListener('click',function(){var d=Math.round(80+Math.random()*190);r.style.setProperty('--theme-duration',d+'ms');r.classList.add('theme-transition');clearTimeout(r._themeTransitionTimer);r._themeTransitionTimer=setTimeout(function(){r.classList.remove('theme-transition');},d);},true);})();</script>
+<script src="../assets/theme-fade.js"></script>
 </body>
 </html>

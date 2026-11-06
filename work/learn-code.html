@@ -33,6 +33,9 @@
     .content>h2::before{content:none}
     .content>h2{counter-increment:none;max-width:var(--measure);margin:2.75rem 0 .85rem;padding-top:1.75rem;border-top:1px solid var(--border)}
     .content>.cover-img + h2{margin-top:1.5rem;padding-top:0;border-top:0}
+    /* No bullet points */
+    .content ul{list-style:none;padding-left:0}
+    .content li{margin:.6rem 0}
     .project-hero .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
     @media(max-width:560px){.project-hero .meta{grid-template-columns:1fr}}
     /* Open the app sits under the intro; the version picker sits with the live preview */
@@ -366,6 +369,6 @@ function applyLang(l){var d=T[l]||T.en;document.querySelectorAll('[data-i18n]').
 document.querySelectorAll('.lang-sel').forEach(function(s){s.addEventListener('change',function(){applyLang(s.value);});});
 try{var _sl=localStorage.getItem('siteLang');if(_sl&&T[_sl])applyLang(_sl);}catch(_){}
   </script>
-<script>(function(){var r=document.documentElement,b=document.getElementById('themeToggle');if(!b)return;b.addEventListener('click',function(){var d=Math.round(80+Math.random()*190);r.style.setProperty('--theme-duration',d+'ms');r.classList.add('theme-transition');clearTimeout(r._themeTransitionTimer);r._themeTransitionTimer=setTimeout(function(){r.classList.remove('theme-transition');},d);},true);})();</script>
+<script src="../assets/theme-fade.js"></script>
 </body>
 </html>
