@@ -175,7 +175,7 @@ html:has(.chapter-nav){scroll-behavior:smooth}
 .content .chapter-title::before{content:none}
 .content .chapter:first-child .chapter-title{margin-top:1.75rem;padding-top:0;border-top:0}
 .content .chapter-lede{font-size:clamp(1.05rem,1rem + .35vw,1.22rem);line-height:1.55;color:var(--ink);margin:0 0 1.25rem}
-.content .chapter h3{font-size:1.14rem;line-height:1.4;margin:2.1rem 0 .5rem;max-width:var(--measure)}
+.content .chapter>h3{font-size:1.14rem;line-height:1.4;margin:2.1rem 0 .5rem;max-width:var(--measure)}
 /* Numbered part cards */
 .content ol.parts{list-style:none;counter-reset:part;padding:0;margin:0;display:grid;gap:.5rem}
 .content ol.parts li{counter-increment:part;display:grid;grid-template-columns:1.75rem 1fr;column-gap:.6rem;margin:0;padding:.6rem .8rem;border:1px solid var(--border);border-radius:10px;background:var(--card);max-width:none}

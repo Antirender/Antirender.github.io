@@ -65,22 +65,36 @@ nav.primary a.active{color:var(--accent);background:var(--accent-soft)}
 .music-player.is-playing .mp-icon{opacity:0}
 .mp-disc:hover .mp-icon,.mp-disc:focus-visible .mp-icon{opacity:1}
 @keyframes mp-spin{to{transform:rotate(360deg)}}
-.music-player.is-open,.music-player:has(:focus-visible){padding-left:20px;background:var(--ink);box-shadow:0 12px 28px var(--shadow)}
-.music-player.is-open .mp-panel,.music-player:has(:focus-visible) .mp-panel{max-width:240px;opacity:1;margin-right:.9rem}
-.music-player.is-open .mp-controls,.music-player:has(:focus-visible) .mp-controls{max-width:130px;opacity:1;margin-right:.6rem}
+.mp-next{display:grid;place-items:center;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:transparent;color:inherit;cursor:pointer;opacity:.75}
+.mp-next:hover{opacity:1}
+.mp-next svg{width:15px;height:15px}
+.mp-vol{display:flex;align-items:center;gap:.3rem;opacity:.85}
+.mp-vol svg{width:15px;height:15px;flex:none}
+.mp-vol input{width:78px;margin:0;accent-color:var(--bg);cursor:pointer}
+.mp-cancel{display:none;padding:.3rem .65rem;border:1px solid color-mix(in srgb,var(--bg),transparent 40%);border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:.72rem;font-weight:700;cursor:pointer}
+.mp-cancel:hover{background:var(--bg);color:var(--ink)}
+/* Countdown before autoplay, or waiting for the first tap: only "Don't play" and close */
+.music-player.is-asking .mp-cancel{display:inline-block}
+.music-player.is-asking .mp-next,.music-player.is-asking .mp-vol,.music-player.is-asking .mp-link,.music-player.is-asking .mp-time{display:none}
+.music-player.is-fresh .mp-cancel{display:inline-block}
+.music-player.is-fresh .mp-next,.music-player.is-fresh .mp-vol,.music-player.is-fresh .mp-link{display:none}
+.music-player.no-volume .mp-vol{display:none}
+.music-player.is-open,.music-player.is-notice,.music-player:has(:focus-visible){padding-left:20px;background:var(--ink);box-shadow:0 12px 28px var(--shadow)}
+.music-player.is-open .mp-panel,.music-player.is-notice .mp-panel,.music-player:has(:focus-visible) .mp-panel{max-width:240px;opacity:1;margin-right:.9rem}
+.music-player.is-open .mp-controls,.music-player.is-notice .mp-controls,.music-player:has(:focus-visible) .mp-controls{max-width:300px;opacity:1;margin-right:.6rem}
 @media(hover:hover){
   .music-player:hover{padding-left:20px;background:var(--ink);box-shadow:0 12px 28px var(--shadow)}
   .music-player:hover .mp-panel{max-width:240px;opacity:1;margin-right:.9rem}
-  .music-player:hover .mp-controls{max-width:130px;opacity:1;margin-right:.6rem}
+  .music-player:hover .mp-controls{max-width:300px;opacity:1;margin-right:.6rem}
 }
 body:has(.music-player) footer{padding-bottom:calc(clamp(24px,4vw,40px) + 64px)}
 @media(max-width:640px){
   .music-player{right:12px;bottom:12px;height:56px}
   .mp-disc{width:56px;height:56px}
-  .music-player.is-open,.music-player:has(:focus-visible){padding-left:14px}
-  .music-player.is-open .mp-panel{max-width:220px;margin-right:.5rem}
-  .music-player.is-open .mp-controls{max-width:40px;margin-right:.2rem}
-  .mp-link{display:none}
+  .music-player.is-open,.music-player.is-notice,.music-player:has(:focus-visible){padding-left:14px}
+  .music-player.is-open .mp-panel,.music-player.is-notice .mp-panel{max-width:190px;margin-right:.5rem}
+  .music-player.is-open .mp-controls,.music-player.is-notice .mp-controls{max-width:130px;margin-right:.2rem}
+  .mp-link,.mp-vol{display:none}
 }
 @media(prefers-reduced-motion:reduce){.mp-disc img{animation:none!important}}
 @media print{.music-player{display:none}}
