@@ -28,16 +28,15 @@
     play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg>',
     pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
     next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 5.5v13l9-6.5zM16 5h2.5v14H16z"/></svg>',
-    close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>',
     volume: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9.5h4l5-4v13l-5-4H4z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16 9a4 4 0 0 1 0 6"/></svg>'
   };
   var TEXT = {
-    en: { playing: 'Now playing', paused: 'Paused', startsIn: 'Music starts in {n}', afterTap: 'Starts 3 s after your first tap', dontPlay: 'Don’t play', stop: 'Stop', play: 'Play {t}', pause: 'Pause {t}', next: 'Next song', volume: 'Volume', hide: 'Hide player', spotify: 'Open {t} on Spotify', region: 'Music player' },
-    'zh-CN': { playing: '正在播放', paused: '已暂停', startsIn: '{n} 秒后开始播放音乐', afterTap: '首次点击后 3 秒开始播放', dontPlay: '不播放', stop: '停止', play: '播放 {t}', pause: '暂停 {t}', next: '下一首', volume: '音量', hide: '隐藏播放器', spotify: '在 Spotify 打开 {t}', region: '音乐播放器' },
-    'zh-TW': { playing: '正在播放', paused: '已暫停', startsIn: '{n} 秒後開始播放音樂', afterTap: '首次點擊後 3 秒開始播放', dontPlay: '不播放', stop: '停止', play: '播放 {t}', pause: '暫停 {t}', next: '下一首', volume: '音量', hide: '隱藏播放器', spotify: '在 Spotify 開啟 {t}', region: '音樂播放器' },
-    ja: { playing: '再生中', paused: '一時停止中', startsIn: '{n} 秒後に音楽が流れます', afterTap: '最初のタップから 3 秒後に再生', dontPlay: '再生しない', stop: '停止', play: '{t} を再生', pause: '{t} を一時停止', next: '次の曲', volume: '音量', hide: 'プレーヤーを隠す', spotify: 'Spotify で {t} を開く', region: '音楽プレーヤー' },
-    fr: { playing: 'En lecture', paused: 'En pause', startsIn: 'Musique dans {n} s', afterTap: 'Démarre 3 s après votre premier clic', dontPlay: 'Ne pas lire', stop: 'Arrêter', play: 'Lire {t}', pause: 'Mettre {t} en pause', next: 'Morceau suivant', volume: 'Volume', hide: 'Masquer le lecteur', spotify: 'Ouvrir {t} sur Spotify', region: 'Lecteur de musique' },
-    de: { playing: 'Läuft gerade', paused: 'Pausiert', startsIn: 'Musik startet in {n} s', afterTap: 'Startet 3 s nach dem ersten Tippen', dontPlay: 'Nicht abspielen', stop: 'Stopp', play: '{t} abspielen', pause: '{t} pausieren', next: 'Nächster Song', volume: 'Lautstärke', hide: 'Player ausblenden', spotify: '{t} auf Spotify öffnen', region: 'Musikplayer' }
+    en: { playing: 'Now playing', paused: 'Paused', startsIn: 'Music starts in {n}', afterTap: 'Starts 3 s after your first tap', dontPlay: 'Don’t play', stop: 'Stop', play: 'Play {t}', pause: 'Pause {t}', next: 'Next song', volume: 'Volume', spotify: 'Open {t} on Spotify', region: 'Music player' },
+    'zh-CN': { playing: '正在播放', paused: '已暂停', startsIn: '{n} 秒后开始播放音乐', afterTap: '首次点击后 3 秒开始播放', dontPlay: '不播放', stop: '停止', play: '播放 {t}', pause: '暂停 {t}', next: '下一首', volume: '音量', spotify: '在 Spotify 打开 {t}', region: '音乐播放器' },
+    'zh-TW': { playing: '正在播放', paused: '已暫停', startsIn: '{n} 秒後開始播放音樂', afterTap: '首次點擊後 3 秒開始播放', dontPlay: '不播放', stop: '停止', play: '播放 {t}', pause: '暫停 {t}', next: '下一首', volume: '音量', spotify: '在 Spotify 開啟 {t}', region: '音樂播放器' },
+    ja: { playing: '再生中', paused: '一時停止中', startsIn: '{n} 秒後に音楽が流れます', afterTap: '最初のタップから 3 秒後に再生', dontPlay: '再生しない', stop: '停止', play: '{t} を再生', pause: '{t} を一時停止', next: '次の曲', volume: '音量', spotify: 'Spotify で {t} を開く', region: '音楽プレーヤー' },
+    fr: { playing: 'En lecture', paused: 'En pause', startsIn: 'Musique dans {n} s', afterTap: 'Démarre 3 s après votre premier clic', dontPlay: 'Ne pas lire', stop: 'Arrêter', play: 'Lire {t}', pause: 'Mettre {t} en pause', next: 'Morceau suivant', volume: 'Volume', spotify: 'Ouvrir {t} sur Spotify', region: 'Lecteur de musique' },
+    de: { playing: 'Läuft gerade', paused: 'Pausiert', startsIn: 'Musik startet in {n} s', afterTap: 'Startet 3 s nach dem ersten Tippen', dontPlay: 'Nicht abspielen', stop: 'Stopp', play: '{t} abspielen', pause: '{t} pausieren', next: 'Nächster Song', volume: 'Lautstärke', spotify: '{t} auf Spotify öffnen', region: 'Musikplayer' }
   };
 
   /* Loudness level 0..1 to amplitude: 10^(10*log2(p)/20) = p^(log2(10)/2), about p^1.66 */
@@ -47,8 +46,6 @@
   /* { i: song, t: seconds, on: was playing when the last page closed, off: paused by the listener, hidden: closed by the listener } */
   var saved = read();
   function save() { try { sessionStorage.setItem(KEY, JSON.stringify(saved)); } catch (_) {} }
-  if (saved.hidden) return;
-
   var level = DEFAULT_LEVEL;
   try { var stored = parseFloat(localStorage.getItem(LEVEL_KEY)); if (stored >= 0 && stored <= 1) level = stored; } catch (_) {}
 
@@ -69,7 +66,6 @@
       '<button class="mp-next" type="button">' + ICON.next + '</button>' +
       '<label class="mp-vol">' + ICON.volume + '<input type="range" min="0" max="100" step="1"></label>' +
       '<a class="mp-link" target="_blank" rel="noopener">Spotify ↗</a>' +
-      '<button class="mp-hide" type="button">' + ICON.close + '</button>' +
     '</div>' +
     '<button class="mp-disc" type="button"><img alt="" width="120" height="120"><span class="mp-icon"></span></button>' +
     '<audio></audio>';
@@ -85,7 +81,6 @@
   var cancelBtn = root.querySelector('.mp-cancel');
   var nextBtn = root.querySelector('.mp-next');
   var slider = root.querySelector('.mp-vol input');
-  var hideBtn = root.querySelector('.mp-hide');
   var link = root.querySelector('.mp-link');
   var select = document.querySelector('.lang-sel');
 
@@ -136,7 +131,6 @@
     cancelBtn.textContent = asking ? t.dontPlay : t.stop;
     nextBtn.setAttribute('aria-label', t.next);
     slider.setAttribute('aria-label', t.volume);
-    hideBtn.setAttribute('aria-label', t.hide);
     link.setAttribute('aria-label', fill(t.spotify, tr));
     renderTime();
   }
@@ -287,12 +281,6 @@
     try { localStorage.setItem(LEVEL_KEY, String(level)); } catch (_) {}
     if (!fadeFrame && canVolume) audio.volume = gainFor(level);
   });
-  hideBtn.addEventListener('click', function () {
-    listenerPause();
-    saved.hidden = true;
-    save();
-    root.remove();
-  });
   /* A Spotify track on the page would play over this one. */
   document.addEventListener('click', function (e) {
     if (e.target.closest && e.target.closest('[data-embed]')) listenerPause();
@@ -339,7 +327,6 @@
   window.addEventListener('pageshow', function (e) {
     if (!e.persisted) return;
     saved = read();
-    if (saved.hidden) { audio.pause(); root.remove(); return; }
     if (saved.t) audio.currentTime = saved.t;
     if (mode === 'autoplay') autoStart(); else audio.pause();
     render();
