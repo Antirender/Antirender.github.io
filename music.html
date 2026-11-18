@@ -82,7 +82,7 @@
       <div class="section-head section-head--row reveal">
         <div>
           <!-- <span class="eyebrow" data-i18n="m.t.eyebrow">Selected tracks</span> -->
-          <h2><span data-i18n="m.t.h2">Start here.</span> <span class="dim" data-i18n="m.t.h2b">Ten tracks across five years.</span></h2>
+          <h2><span data-i18n="m.t.h2">Start here.</span> <span class="dim" data-i18n="m.t.h2b">Fifteen tracks across five years.</span></h2>
           <p class="lede" data-i18n="m.t.lede">The most-played tracks from each release, newest first.</p>
         </div>
       </div>
@@ -185,7 +185,9 @@
 /* ===== Track list — add a line here to add a card =====
    id: Spotify track id · title · date (YYYY-MM-DD) · length · note (optional; 'Latest release' and 'Album track' are translated) */
 var TRACKS = [
-  { id: '6RBtBXukNVfRCsReW6CzhI', title: "I'm fine if You're Mine", date: '2026-01-12', len: '3:19', note: 'Latest release' },
+  { id: '6lwfu8koKFhQXWRrKs7wYO', title: 'September Oath',           date: '2026-10-13', len: '3:48', note: 'Latest release' },
+  { id: '1x9cwZclgWFJTPFpwgvHFd', title: 'Dear Deer',                date: '2026-02-12', len: '3:23' },
+  { id: '6RBtBXukNVfRCsReW6CzhI', title: "I'm fine if You're Mine", date: '2026-01-12', len: '3:19' },
   { id: '2V5MOhPa6JYTVQf4XcUzUM', title: 'Chase the Unknown',        date: '2024-11-16', len: '4:07' },
   { id: '1c75fmmHDbCGNg96YtraxE', title: 'T.T',                      date: '2024-03-08', len: '3:17' },
   { id: '6mYugzbSgDzqYHSj7dk0r2', title: 'Normal punch',             date: '2023-07-26', len: '3:37', note: 'Album track' },
@@ -193,8 +195,11 @@ var TRACKS = [
   { id: '4qlSmJOe2I6TxBUDw8zzmv', title: 'Void simulator',           date: '2023-07-26', len: '3:45', note: 'Album track' },
   { id: '6TBrw2BP09X3qgLQdhJg7n', title: 'Love in ice',              date: '2023-07-26', len: '3:44', note: 'Album track' },
   { id: '4mlNgOk2kQS432XDkopyCA', title: 'Return to reason',         date: '2022-02-10', len: '3:41' },
+  { id: '20dmqFfkKWhzsQS1G9VeGw', title: 'Brain Wall',               date: '2022-02-10', len: '5:40', note: 'Album track' },
+  { id: '4BNqkC1pOYKu6hGPsPZhsV', title: 'Glass Heart',              date: '2022-02-10', len: '4:36', note: 'Album track' },
   { id: '3eyVw8blyZOA2VnAHIGFMT', title: 'Made for Fire',            date: '2021-10-07', len: '4:02', note: 'Album track' },
-  { id: '5kDhf8RWqXGpy8DEkQvioU', title: 'Ground Ensemble',          date: '2021-10-07', len: '4:02', note: 'Album track' }
+  { id: '5kDhf8RWqXGpy8DEkQvioU', title: 'Ground Ensemble',          date: '2021-10-07', len: '4:02', note: 'Album track' },
+  { id: '5xrvkfstqZ9YFsX2xRq5a1', title: 'Sensor Hot',               date: '2021-10-07', len: '3:54', note: 'Album track' }
 ];
 
 (function () {
@@ -248,7 +253,7 @@ en: {
 'm.s3':'创作与制作',
 'm.t.eyebrow':'精选曲目',
 'm.t.h2':'从这里开始。',
-'m.t.h2b':'五年十首。',
+'m.t.h2b':'五年十五首。',
 'm.t.lede':'每次发行中播放最多的曲目，最新在前。',
 'm.d.eyebrow':'全部作品',
 'm.d.h2':'七张专辑，',
@@ -298,7 +303,7 @@ en: {
 'm.s3':'創作與製作',
 'm.t.eyebrow':'精選曲目',
 'm.t.h2':'從這裡開始。',
-'m.t.h2b':'五年十首。',
+'m.t.h2b':'五年十五首。',
 'm.d.eyebrow':'全部作品',
 'm.d.h2':'七張專輯，',
 'm.d.h2b':'全球各大平台皆已上架。',
@@ -349,7 +354,7 @@ ja: {
 'm.s3':'作曲・制作',
 'm.t.eyebrow':'選曲',
 'm.t.h2':'まずはここから。',
-'m.t.h2b':'5年間の10曲。',
+'m.t.h2b':'5年間の15曲。',
 'm.d.eyebrow':'ディスコグラフィ',
 'm.d.h2':'7枚のアルバム、',
 'm.d.h2b':'世界中の主要プラットフォームで配信中。',
@@ -407,7 +412,7 @@ fr: {
 'm.s3':'Composition & production',
 'm.t.eyebrow':'Sélection',
 'm.t.h2':'Commencez ici.',
-'m.t.h2b':'Dix morceaux sur cinq ans.',
+'m.t.h2b':'Quinze morceaux sur cinq ans.',
 'm.t.lede':'Les morceaux les plus écoutés de chaque sortie, du plus récent au plus ancien.',
 'm.d.eyebrow':'Discographie',
 'm.d.h2':'Sept albums,',
@@ -462,7 +467,7 @@ de: {
 'm.s3':'Schreiben & Produzieren',
 'm.t.eyebrow':'Ausgewählte Tracks',
 'm.t.h2':'Hier anfangen.',
-'m.t.h2b':'Zehn Tracks aus fünf Jahren.',
+'m.t.h2b':'Fünfzehn Tracks aus fünf Jahren.',
 'm.t.lede':'Die meistgehörten Tracks jeder Veröffentlichung, die neuesten zuerst.',
 'm.d.eyebrow':'Diskografie',
 'm.d.h2':'Sieben Alben,',

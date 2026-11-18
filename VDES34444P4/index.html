@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trafalgar Labyrinth — Case Study · VDES 34444</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
+  <style>
+    /* ── Case-Study scoped styles (cs- prefix) ── */
+
+    /* Archive filter bar */
+    .cs-filters { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+    .cs-filter-btn {
+      font-family: var(--mono); font-size: .7rem; letter-spacing: .08em;
+      text-transform: uppercase; padding: .4rem 1rem; background: transparent;
+      border: 1px solid var(--border); color: var(--muted); border-radius: var(--radius);
+      cursor: pointer; transition: all .25s;
+    }
+    .cs-filter-btn:hover { border-color: var(--cyan); color: var(--text); }
+    .cs-filter-btn.active { background: rgba(0,229,255,.08); border-color: var(--cyan); color: var(--cyan); }
+
+    /* Archive grid */
+    .cs-archive-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .cs-archive-item { transition: opacity .3s, transform .3s; }
+    .cs-archive-item.hidden { display: none; }
+    .cs-archive-thumb {
+      width: 100%; aspect-ratio: 16/10; background: var(--bg-alt);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: .8rem; display: flex;
+      align-items: center; justify-content: center; position: relative;
+    }
+    .cs-archive-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .cs-archive-thumb .cs-placeholder-label {
+      font-family: var(--mono); font-size: .7rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .1em; text-align: center; padding: .5rem;
+    }
+    .cs-archive-caption { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+    .cs-archive-caption strong { color: var(--text); font-weight: 600; }
+    .cs-archive-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .5rem; }
+    .cs-archive-tag {
+      font-family: var(--mono); font-size: .6rem; letter-spacing: .06em;
+      padding: .15rem .5rem; border: 1px solid var(--border); border-radius: 20px;
+      color: var(--muted); text-transform: uppercase;
+    }
+
+    /* Prompt / output case study blocks */
+    .cs-prompt-block {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem;
+    }
+    .cs-prompt-label {
+      font-family: var(--mono); font-size: .65rem; letter-spacing: .1em;
+      text-transform: uppercase; margin-bottom: .5rem;
+    }
+    .cs-prompt-label--input { color: var(--cyan); }
+    .cs-prompt-label--output { color: var(--purple); }
+    .cs-prompt-label--verdict { color: var(--red); }
+    .cs-prompt-text {
+      font-size: .85rem; color: var(--muted); line-height: 1.7;
+      font-style: italic; border-left: 2px solid var(--border);
+      padding-left: 1rem; margin-bottom: .8rem;
+    }
+    .cs-prompt-text:last-child { margin-bottom: 0; }
+
+    /* Metadata grid */
+    .cs-meta-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-bottom: 2rem;
+    }
+    .cs-meta-item { padding: 1rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius); }
+    .cs-meta-label {
+      font-family: var(--mono); font-size: .65rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: .3rem;
+    }
+    .cs-meta-value { font-size: .95rem; color: var(--text); font-weight: 500; }
+
+    /* Supporting files list */
+    .cs-file-list { max-width: 700px; margin: 0 auto; }
+    .cs-file-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.5rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      margin-bottom: .5rem; transition: border-color .25s;
+    }
+    .cs-file-item:hover { border-color: var(--cyan); }
+    .cs-file-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .cs-file-name { font-weight: 500; font-size: .9rem; color: var(--text); }
+    .cs-file-desc { font-size: .75rem; color: var(--muted); }
+
+    /* Route diagram (reused from nmec.html) */
+    .cs-route-wrap {
+      background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px; overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+    .cs-route-svg { width: 100%; min-width: 1000px; height: 700px; display: block; }
+    .cs-route-svg text { font-family: var(--font); }
+
+    /* Platform layout images */
+    .cs-platform-imgs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .cs-platform-imgs figure {
+      margin: 0; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .cs-platform-imgs img { width: 100%; display: block; }
+    .cs-platform-imgs figcaption {
+      padding: .6rem 1rem; font-size: .75rem; color: var(--muted);
+      font-family: var(--mono); letter-spacing: .04em;
+    }
+    @media (max-width: 800px) {
+      .cs-platform-imgs { grid-template-columns: 1fr; }
+    }
+
+    /* Accordion body images — constrain tall/wide images */
+    .accordion-body figure img,
+    .accordion-body .card img {
+      width: 100%; height: auto; max-height: 340px;
+      object-fit: cover; display: block;
+    }
+
+    /* ── Platform Grid View ── */
+    .cs-view-toggle {
+      display: flex; gap: .5rem; justify-content: flex-end; margin-bottom: 1.2rem;
+    }
+    .cs-view-btn {
+      font-family: var(--mono); font-size: .72rem; letter-spacing: .06em;
+      padding: .35rem .9rem; border-radius: 20px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); cursor: pointer; transition: all .25s;
+    }
+    .cs-view-btn:hover { border-color: var(--cyan); color: var(--text); }
+    .cs-view-btn--active { border-color: var(--cyan); color: var(--cyan); background: rgba(0,210,211,.06); }
+
+    .cs-platform-grid {
+      display: flex; flex-wrap: wrap; gap: 1.2rem;
+    }
+    .cs-plat-card {
+      flex: 1 1 calc(33.333% - 1.2rem); min-width: 260px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .cs-plat-card:hover { border-color: var(--cyan); box-shadow: 0 0 16px rgba(0,210,211,.08); }
+    .cs-plat-card__head {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem;
+    }
+    .cs-plat-card__num { font-family: var(--mono); font-size: .75rem; color: var(--cyan); }
+    .cs-plat-card__tag {
+      font-family: var(--mono); font-size: .55rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: .15rem .5rem; border: 1px solid var(--border); border-radius: 20px;
+    }
+    .cs-plat-card__title { font-size: 1rem; font-weight: 600; margin-bottom: .5rem; }
+    .cs-plat-card__desc { font-size: .82rem; color: var(--muted); line-height: 1.6; margin-bottom: .8rem; }
+    .cs-plat-card__imgs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .5rem;
+    }
+    .cs-plat-card__imgs img {
+      width: 100%; height: 120px; object-fit: cover;
+      border-radius: calc(var(--radius) - 4px); border: 1px solid var(--border);
+    }
+    @media (max-width: 800px) {
+      .cs-plat-card { flex: 1 1 100%; }
+      .cs-plat-card__imgs img { height: 100px; }
+    }
+
+    /* ── Lightbox Modal ── */
+    .cs-lightbox {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.88); backdrop-filter: blur(8px);
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s;
+    }
+    .cs-lightbox.active { opacity: 1; pointer-events: auto; }
+
+    .cs-lightbox__img {
+      max-width: 85vw; max-height: 85vh;
+      object-fit: contain; border-radius: var(--radius);
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+      transition: transform .25s, opacity .25s;
+    }
+    .cs-lightbox.active .cs-lightbox__img {
+      transform: scale(1); opacity: 1;
+    }
+
+    .cs-lightbox__caption {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono); font-size: .75rem; color: rgba(255,255,255,.6);
+      letter-spacing: .04em; text-align: center; max-width: 60vw;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .cs-lightbox__close {
+      position: absolute; top: 1.2rem; right: 1.5rem;
+      font-size: 1.6rem; color: rgba(255,255,255,.5);
+      background: none; border: none; cursor: pointer;
+      transition: color .2s; line-height: 1;
+    }
+    .cs-lightbox__close:hover { color: #fff; }
+
+    .cs-lightbox__counter {
+      position: absolute; top: 1.4rem; left: 50%; transform: translateX(-50%);
+      font-family: var(--mono); font-size: .7rem; color: rgba(255,255,255,.4);
+      letter-spacing: .06em;
+    }
+
+    .cs-lightbox__nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 1.8rem; color: rgba(255,255,255,.4);
+      background: none; border: none; cursor: pointer;
+      padding: 1rem; transition: color .2s;
+    }
+    .cs-lightbox__nav:hover { color: #fff; }
+    .cs-lightbox__nav--prev { left: .8rem; }
+    .cs-lightbox__nav--next { right: .8rem; }
+
+    /* Vertical progress bar (right side) */
+    .cs-lightbox__progress {
+      position: absolute; top: 50%; right: 1.2rem; transform: translateY(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .cs-lightbox__dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,.2); transition: all .25s; cursor: pointer;
+    }
+    .cs-lightbox__dot.active {
+      background: var(--cyan); box-shadow: 0 0 6px var(--cyan);
+      width: 8px; height: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .cs-lightbox__nav--prev { left: .2rem; font-size: 1.4rem; }
+      .cs-lightbox__nav--next { right: .2rem; font-size: 1.4rem; }
+      .cs-lightbox__progress { right: .4rem; }
+      .cs-lightbox__img { max-width: 95vw; max-height: 80vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="nav" id="nav">
+    <div class="nav__brand" data-glitch="CASE STUDY">TRAFALGAR LABYRINTH</div>
+    <div class="nav__right">
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#overview">Context</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#interaction-points">Interaction</a></li>
+        <li><a href="#route">Route</a></li>
+        <li><a href="#ai-narrative">AI &amp; Narrative</a></li>
+        <li><a href="#ai-team">Management &amp; Team</a></li>
+        <li><a href="#archive">Archive</a></li>
+        <li><a href="#supporting">Files</a></li>
+      </ul>
+      <button class="nav__theme-toggle" id="themeToggle" aria-label="Switch to dark mode">&#127769;</button>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== 1. HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero__glitch-overlay"></div>
+    <div class="hero__content">
+      <p class="hero__label">Case Study &middot; Process Documentation</p>
+      <h1 class="hero__title" data-glitch="Trafalgar Labyrinth">Trafalgar Labyrinth</h1>
+      <p class="hero__subtitle">Case Study</p>
+      <p class="hero__meta">VDES 34444 &middot; Interactive Narrative &middot; Sheridan College &middot; Winter 2026</p>
+      <p class="hero__team">Yiyang &middot; Andrew &middot; Henry &middot; AI</p>
+      <p style="max-width:600px; margin:1.2rem auto 2rem; font-size:.95rem; color:var(--muted); line-height:1.7;">A cross-medium interactive narrative spanning web, AR, VR, and physical space, developed over 14 weeks by a team of three designers + AI.</p>
+      <a href="#overview" class="hero__cta">Read the Process &darr;</a>
+    </div>
+    <div class="hero__scanlines"></div>
+  </section>
+
+  <!-- ===================== 2. CONTEXT / OVERVIEW ===================== -->
+  <section class="section" id="overview">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Context">Context</h2>
+
+      <div class="cs-meta-grid">
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Course</div>
+          <div class="cs-meta-value">VDES 34444 &mdash; Interactive Narrative</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Program</div>
+          <div class="cs-meta-value">Bachelor of Interaction Design, Sheridan</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Term</div>
+          <div class="cs-meta-value">Winter 2026 (14 weeks)</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Team</div>
+          <div class="cs-meta-value">Yiyang, Andrew, Henry + AI</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Platforms</div>
+          <div class="cs-meta-value">Web Hub &middot; AR &middot; VR &middot; Physical &middot; WebGAL</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Tools</div>
+          <div class="cs-meta-value">HTML/CSS/JS &middot; <a href="https://docs.zap.works/mattercraft/" target="_blank" rel="noopener" style="color:var(--cyan);">Zappar Mattercraft</a> &middot; A-Frame &middot; WebGAL &middot; Claude &middot; So-VITS-SVC</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Client</div>
+          <div class="cs-meta-value">Steve H</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Deliverables</div>
+          <div class="cs-meta-value">P1 Narrative &middot; P2 Mapping &middot; P3 Cognitive Walkthrough</div>
+        </div>
+        <div class="cs-meta-item">
+          <div class="cs-meta-label">Constraints</div>
+          <div class="cs-meta-value">Low/no budget &middot; Sheridan print services (B&amp;W &amp; color) &middot; Phone-first &middot; 15-min session cap &middot; AI used sparingly (AI-taxes) &middot; Zappar AI credits unused</div>
+        </div>
+      </div>
+
+      <p class="lead center">The Trafalgar Labyrinth is a trans-media interactive narrative that turns Sheridan&rsquo;s campus network into a digital maze. Players see an on-campus poster about a Greek game, scan the QR code, and enter the web hub &mdash; becoming Theos, a player recruited by ARI to help secure compromised areas in the network before the Minotaur system spreads. Every platform is a space <em>within</em> the labyrinth &mdash; designed to disorient. Players are pulled across media and made to feel genuinely lost, yet the underlying architecture always moves them toward the exit. The maze is the disguise; the progression is the design.</p>
+
+      <div class="card-grid card-grid--3">
+        <div class="card card--cyan">
+          <div class="card__icon">&#9881;</div>
+          <h3 class="card__title">What We Built</h3>
+          <p>A hub-and-spoke experience across 6 platforms: a web game hub with puzzle locks, a WebGAL visual novel, an AR poster overlay, a VR escape room, physical campus artifacts, and three distinct endings. Players enter the digital network through the web hub to help ARI secure compromised areas within Sheridan&rsquo;s network &mdash; collecting fragments of the password &ldquo;THREAD&rdquo; to defeat the Minotaur system and escape the labyrinth.</p>
+        </div>
+        <div class="card card--purple">
+          <div class="card__icon">&#9654;</div>
+          <h3 class="card__title">Why This Approach</h3>
+          <p>The Theseus &amp; Minotaur myth gave us a clear antagonist, guide, and goal. But more importantly, it justified every platform as a distinct corridor inside the maze. A maze <em>aims to confuse</em> &mdash; so each platform introduces new rules, new media, and new disorientation, while the system beneath always moves the player toward exit. The experience is designed to mesh technology, art, and storytelling into a single seamless illusion: Sheridan&rsquo;s own network, hacked.</p>
+        </div>
+        <div class="card card--red">
+          <div class="card__icon">&#10038;</div>
+          <h3 class="card__title">What This Document Covers</h3>
+          <p>The design decisions, dead ends, AI integration, testing insights, and process reflection from concept through to final deployment. A reader who has never played the game should understand our methodology from this page alone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 3. PROBLEM ===================== -->
+  <section class="section section--dark" id="problem">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Design Problem">The Design Problem</h2>
+      <div class="split">
+        <div class="split__text">
+          <p class="lead" style="font-size:1.3rem; font-weight:600; color:var(--white);">How do we design a narrative that survives across four disconnected media without losing coherence — and keeps a campus audience engaged for 15 minutes?</p>
+          <p>Students scroll past posters daily. Traditional interactive fiction stays inside one browser tab. We identified two core tensions that shaped every subsequent decision:</p>
+          <div class="card-grid card-grid--2" style="margin-top:1.5rem;">
+            <div class="card card--red-border">
+              <strong>Attention</strong> — The entry poster was designed as a contrast to the bright, attention-grabbing posters already fighting for student notice on campus. The Greek-themed poster was kept minimal and iconography-heavy &mdash; leading the audience&rsquo;s gaze from the title to the figure, then the coliseum, and finally the entry method (QR code). The network-error poster below it intentionally reads as real campus signage. Players scanning posters create visible &ldquo;digital play&rdquo; moments &mdash; others seeing someone interact with the air may become curious and try the experience themselves. ARI, the physical helper model, stays behind the scenes as both a digital and physical presence from start to end, providing help through the web hub panel &mdash; and is revealed physically to players who reach the true ending.
+            </div>
+            <div class="card card--red-border">
+              <strong>Coherence</strong> — Spreading a story across web, VR, AR, and physical objects risks fragmentation. The narrative needed a single unifying mechanic (collecting fragments of the password &ldquo;THREAD&rdquo;) that ties every touchpoint together.
+            </div>
+          </div>
+          <div class="card-grid card-grid--2" style="margin-top:1rem;">
+            <div class="card card--red-border">
+              <strong>Accessibility</strong> — Sheridan Trafalgar campus students are the core audience because they have existing campus knowledge and are more likely to complete the game due to technology-savviness. AR/VR reliability varies across student devices, so the architecture degrades gracefully &mdash; no player is blocked by a glitch in one medium. Physical environments were chosen where IoT devices are prevalent (to support ARI&rsquo;s &ldquo;omnipresent&rdquo; lore), where spaces feel spooky or utility-like (to create secret spaces within the network metaphor), and where student traffic is high (J-wing, library, artist alleyway, AA building) to maximize visibility.
+            </div>
+            <div class="card card--red-border">
+              <strong>Scope</strong> &mdash; The scope was intentionally kept large because of the natural complications of blending a linear String of Pearls story structure with a Hub &amp; Spoke layer on top. This is complicated further by the requirement for successful transitions across all media platforms &mdash; each hand-off between web, physical, AR, and VR had to feel seamless within the narrative fiction.
+            </div>
+          </div>
+        </div>
+        <div class="split__visual">
+          <div class="card-grid card-grid--2">
+            <figure style="margin:0;">
+              <img src="img/hub-entry-poster.jpg" alt="Greek mythology Ariadne entry poster with QR code — the primary entry point" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);">
+              <figcaption class="muted" style="font-size:.75rem; margin-top:.5rem; text-align:center;">Greek Entry Poster &mdash; the intended first scan</figcaption>
+            </figure>
+            <figure style="margin:0;">
+              <img src="img/network-error-poster.jpg" alt="Disguised network-error campus poster blended with real campus signage" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);">
+              <figcaption class="muted" style="font-size:.75rem; margin-top:.5rem; text-align:center;">Network-Error Poster &mdash; blended into campus, placed below</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 4. PROCESS (Tabbed P1/P2/P3) ===================== -->
+  <section class="section" id="process">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Process">Process &amp; Methodology</h2>
+      <p class="lead center">Three formal deliverables, each building on the last. The tabs below document how we got there — not just what we made.</p>
+
+      <div class="tabs">
+        <button class="tabs__btn tabs__btn--active" data-tab="p1">P1 &mdash; Narrative</button>
+        <button class="tabs__btn" data-tab="p2">P2 &mdash; Mapping</button>
+        <button class="tabs__btn" data-tab="p3">P3 &mdash; Walkthrough</button>
+      </div>
+
+      <!-- ── P1: Development of an Interactive Narrative ── -->
+      <div class="tabs__panel tabs__panel--active" id="tab-p1">
+        <h3 class="subsection-title">Goal</h3>
+        <p class="lead">Develop the interactive narrative itself: concept, characters, branching logic, art direction, and a working prototype hub.</p>
+
+        <h3 class="subsection-title">Approach</h3>
+        <p>We started with a broad brief: build a trans-media narrative. Early brainstorms explored escape rooms, scavenger hunts, and ARGs. We settled on the Theseus myth because it gave us a clear antagonist (Minotaur), guide (Ariadne/ARI), and goal (escape the labyrinth) — a structure that naturally maps to puzzle-based gameplay.</p>
+        <p>Each team member prototyped their assigned platform in parallel: Yiyang on the web hub and WebGAL integration, Andrew on VR and physical artifacts. Henry contributed early-stage lore research and story concept development. Weekly syncs ensured the narrative thread remained consistent as each corridor took shape.</p>
+
+        <h3 class="subsection-title">Key Decisions</h3>
+        <div class="card-grid card-grid--2">
+          <div class="card card--glass">
+            <h4>Dual-Mode System</h4>
+            <p>We designed two narrative structures: <strong>Normal Mode</strong> (String of Pearls — linear progression, AR/VR optional) and <strong>Hard Mode</strong> (Hub &amp; Spoke — all 6 nodes from start, everything mandatory). This came from realising one structure couldn&rsquo;t serve both casual and invested players.</p>
+          </div>
+          <div class="card card--glass">
+            <h4>Modular Platform Architecture</h4>
+            <p>AR/VR experiences on a phone require user knowledge and technological familiarity. To avoid players getting stuck on a specific AR/VR node, we used a Hub &amp; Spoke structure to complement the explorative experience &mdash; players can always go back and take another route. The result: linear storytelling through the basic web hub puzzles, explorative play with optional AR/VR (all routed to the common exit), and a hard mode requiring every node. The narrative structure itself changes because of this modular design, giving the game design flexibility.</p>
+            <p style="margin-top:.6rem;">Reliability was addressed through web integration: AR/VR is accessed via QR codes or direct links from the hub, not as standalone Unity builds. Web-based AR/VR caters around the web hub as a focal point &mdash; consistent with the hub/spoke and string of pearls narrative structure rather than requiring a separate access pattern.</p>
+          </div>
+          <div class="card card--glass">
+            <h4>Art Direction: Corporate vs. Corrupted</h4>
+            <p>The visual identity is built on the contrast between <strong>corporate cleanliness</strong> (Sheridan&rsquo;s institutional aesthetic) and <strong>corrupted hacking</strong> (the Minotaur system&rsquo;s interference). The web hub reads as a clean portal being destabilized by glitch effects, distorted text, and hostile system messages &mdash; not literal graffiti. The VR room contains a graffiti bottle as a subtle environmental detail, but the WebGAL and web hub remain visually &ldquo;clean&rdquo; with corruption expressed through interface corruption rather than surface decoration. The narrative is about a system <em>being hacked</em>, so the corruption is digital, not physical.</p>
+          </div>
+          <div class="card card--glass">
+            <h4>Character System</h4>
+            <p>The player is nameless by design (any student can self-insert). The antagonist is a system, not a person — glitches, misdirected links, and hostile messages <em>are</em> the Minotaur. ARI is a counter-system whose calm tone players learn to trust as a navigation tool.</p>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Dead Ends &amp; Killed Features</h3>
+        <div class="card-grid card-grid--2">
+          <div class="card card--red-border">
+            <strong>Killed: Real-time multiplayer puzzle</strong> &mdash; Yiyang and Henry prototyped a puzzle requiring two players to scan AR markers simultaneously. The prototype was technically impressive and worked well in testing, but it was logistically impossible on a campus where players encounter the experience alone.
+          </div>
+          <div class="card card--red-border">
+            <strong>Killed: AI-voiced ARI on the web hub</strong> &mdash; We originally added both voice and text ARI features to the web hub, spending two weeks trying to get So-VITS-SVC to produce consistent dialogue. The voice quality was uncanny in a bad way, so we switched the web hub to text-only ARI &mdash; which felt more &ldquo;system-like&rdquo; and reinforced the digital aesthetic. Notably, the physical ARI installation does still use voice, where the embodied context makes it feel natural rather than uncanny.
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Outcome</h3>
+        <p>A working web hub prototype with three puzzles, entry/exit code logic, a lore page, and the ARI guidance system. The dual-mode architecture was defined but only Normal Mode was playable at P1 deadline.</p>
+
+        <h3 class="subsection-title">Visual Artifacts</h3>
+        <div class="card-grid card-grid--3">
+          <div class="card card--glass">
+            <img src="img/platform1_web_hub.jpg" alt="Early concept sketch of the labyrinth web hub layout">
+            <p class="muted" style="margin-top:.5rem;">Early hub wireframe sketch</p>
+          </div>
+          <div class="card card--glass">
+            <img src="img/process-ui-color-palette.jpg" alt="Color palette exploration showing institutional blue to glitch red gradient">
+            <p class="muted" style="margin-top:.5rem;">Color palette exploration</p>
+          </div>
+          <div class="card card--glass">
+            <img src="img/process-main-progress-webhub.jpg" alt="First working prototype of the puzzle hub interface">
+            <p class="muted" style="margin-top:.5rem;">Hub prototype — first build</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── P2: Mapping the Interactive Experience ── -->
+      <div class="tabs__panel" id="tab-p2">
+        <h3 class="subsection-title">Goal</h3>
+        <p class="lead">Map the entire interactive experience: every node, every branch, every platform transition, every possible ending. The P2 deliverable was the architectural blueprint.</p>
+
+        <h3 class="subsection-title">Approach</h3>
+        <p>We mapped every player path across all platforms using a node-based system. Each node has an ID, type (web/ar/vr/physical/rabbit), hint text, and a list of nodes it unlocks. This data structure lives in <code>config.js</code> and drives the actual game logic — the map isn&rsquo;t just documentation, it&rsquo;s the source of truth.</p>
+        <p>We built two complete node maps (Normal and Hard Mode) and tested them against paper prototypes before committing to code.</p>
+
+        <h3 class="subsection-title">Key Decisions</h3>
+        <div class="card-grid card-grid--2">
+          <div class="card card--glass">
+            <h4>Two Structures, Not One Hybrid</h4>
+            <p>We chose to build two clean, separate structures rather than fuse them. Normal Mode is a pure String of Pearls (Entry &rarr; P1 &rarr; P2 &rarr; P3 &rarr; Exit) with AR/VR branching off after P1 as optional shortcuts. Hard Mode is a pure Hub &amp; Spoke: entry unlocks all 6 fragment nodes simultaneously with no dependencies between them. Keeping them pure made each mode predictable to test and balance.</p>
+          </div>
+          <div class="card card--glass">
+            <h4>Config-Driven Architecture</h4>
+            <p>All node data, codes, and puzzle answers live in a single <code>config.js</code> file. As long as the content that needs to be consistent remains consistent across the different modes, we could swap structures, adjust difficulty, and rebalance without touching game logic &mdash; a decision that saved us dozens of hours during testing iterations.</p>
+          </div>
+          <div class="card card--glass">
+            <h4>XR as Shortcut, Not Gate</h4>
+            <p>The XR experiences were designed to provide the exit password as a reward for completing a harder interaction. The digital puzzles on the web hub are straightforward choice-based challenges; the AR/VR experiences are more demanding, but the result players get is faster &mdash; a fuller answer rather than one fragment at a time.</p>
+            <p style="margin-top:.6rem;">There are 4 components across AR and VR, placed to provide options to players. If a player chooses to take on the AR/VR challenge, they receive a fuller clue along with a different kind of experience (WebXR). Players who find them skip ahead; players who miss them still finish through web puzzles. Both function as shortcuts, not gates &mdash; AR/VR is required by the rubric, but the architecture ensures no single node blocks progression.</p>
+            <p style="margin-top:.6rem;">The AR/VR platforms themselves are not unreliable &mdash; it is the design thinking around possible user errors that makes the experience unpredictable. This was mitigated with simple games and additional instructions, without spoon-feeding players, since player agency is a core theme and the game design emphasises explorative experience. A secondary consideration was technical glitches from phone settings that could halt AR/VR access. This was minimised with settings information, though players are already prompted by Zappar&rsquo;s own notifications. We assumed players have modern devices since WebXR runs on older mobile devices regardless of Apple or Android &mdash; the experience is smoother on newer devices and particularly Apple devices.</p>
+          </div>
+          <div class="card card--glass">
+            <h4>Three Endings by Design</h4>
+            <p>We designed three endings (Won, Observed, Thread Weaver) so the final choice carries weight. These outcomes depend on the player&rsquo;s choices and their efficiency in navigating the labyrinth, giving the audience a sense of consequence and ownership over their journey.</p>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Dead Ends &amp; Killed Features</h3>
+        <div class="card-grid card-grid--2">
+          <div class="card card--red-border">
+            <strong>Killed: Dynamic difficulty scaling</strong> — We prototyped a system where puzzle difficulty adjusted based on player speed. It made the experience unpredictable and impossible to test consistently. Replaced with the cleaner dual-mode system.
+          </div>
+          <div class="card card--red-border">
+            <strong>Killed: YouTube as external media platform</strong> &mdash; Bridging the experience from the web hub to an external platform like YouTube would have been easy. However, due to the lore and storytelling requirements, it was found to not be necessary for gameplay or narrative progression. Instead, video was embedded directly on the web hub &mdash; bringing the &ldquo;different media platform&rdquo; experience to the hub itself rather than sending players away from it.
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Outcome</h3>
+        <p>Complete node maps for both modes, a working config-driven architecture, and paper prototype validation. The route structure was stable enough to begin full implementation.</p>
+
+        <h3 class="subsection-title">Visual Artifacts</h3>
+        <div class="card-grid card-grid--3">
+          <div class="card card--glass">
+            <img src="img/platform1_web_hub_map_nodes.jpg" alt="Node map diagram showing all player paths in Normal Mode">
+            <p class="muted" style="margin-top:.5rem;">Normal Mode node map</p>
+          </div>
+          <div class="card card--glass">
+            <img src="img/HardMode.png" alt="Hard Mode Hub &amp; Spoke route map showing all 6 fragment nodes">
+            <p class="muted" style="margin-top:.5rem;">Hard Mode route map</p>
+          </div>
+          <div class="card card--glass">
+            <img src="img/narrative_structure_twist_deadends.jpg" alt="Narrative structure diagram showing twists, turns, and dead-end paths">
+            <p class="muted" style="margin-top:.5rem;">Narrative structure &amp; dead-end mapping</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── P3: Cognitive Walkthrough ── -->
+      <div class="tabs__panel" id="tab-p3">
+        <h3 class="subsection-title">Goal</h3>
+        <p class="lead">Conduct a cognitive walkthrough of the complete experience and iterate based on findings. P3 was about breaking our own work and fixing what broke.</p>
+
+        <h3 class="subsection-title">Approach</h3>
+        <p>Four rounds of in-person user testing on the Trafalgar campus. We observed testers in real time &mdash; watching where they paused, where they got lost, where they left. Every change below came from watching real players struggle, not guessing. The Web Hub and visual novel were tested separately because each medium reveals different problems.</p>
+
+        <h3 class="subsection-title">Key Decisions (driven by testing)</h3>
+        <div class="card-grid card-grid--2">
+          <div class="card card--numbered" data-num="1">
+            <h4>Added a User Guide</h4>
+            <p><strong>Problem:</strong> Testers didn&rsquo;t understand the objective. They scanned the QR code then froze. <strong>Solution:</strong> An onboarding guide that explains the premise and mechanics without spoiling the story. <strong>Why:</strong> We assumed the narrative would self-explain — it didn&rsquo;t.</p>
+          </div>
+          <div class="card card--numbered" data-num="2">
+            <h4>Added Progress &amp; Route Map</h4>
+            <p><strong>Problem:</strong> Players lost track of which fragments they had. <strong>Solution:</strong> A visible progress indicator and route map. <strong>Why:</strong> In a non-linear experience, spatial awareness is everything. Without it, exploration feels like wandering.</p>
+          </div>
+          <div class="card card--numbered" data-num="3">
+            <h4>Import &amp; Export Progress</h4>
+            <p><strong>Problem:</strong> The 15-minute estimate was optimistic; some needed to leave and return. <strong>Solution:</strong> Save/load progress via code export. <strong>Why:</strong> Respecting player time is a design principle, not a convenience feature.</p>
+          </div>
+          <div class="card card--numbered" data-num="4">
+            <h4>Added End Page</h4>
+            <p><strong>Problem:</strong> Entering the password just&hellip; ended. Players felt abrupt and unsatisfied. <strong>Solution:</strong> A dedicated ending screen with narrative closure and a recap. <strong>Why:</strong> The emotional payoff is the entire point — cutting it short undermined every puzzle they&rsquo;d solved.</p>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Platform-Specific Testing Findings</h3>
+        <div class="card-grid card-grid--2" style="margin-bottom:2rem;">
+          <div class="card card--glass">
+            <strong>AR Testing</strong>
+            <ul style="font-size:.85rem; color:var(--muted); margin:.5rem 0 0; padding-left:1.2rem; line-height:1.7;">
+              <li>Instructions for scanning AR markers needed to be clearer</li>
+              <li>AR touch selection required aiming due to how the web AR works</li>
+              <li>Content sizing had to fit the user&rsquo;s phone while fitting into the surrounding environment</li>
+              <li>Environment needed enough space for users to interact with the marker and perform tasks</li>
+              <li>Engagement factor was short &mdash; need more depth in AR interactions</li>
+            </ul>
+          </div>
+          <div class="card card--glass">
+            <strong>VR Testing</strong>
+            <ul style="font-size:.85rem; color:var(--muted); margin:.5rem 0 0; padding-left:1.2rem; line-height:1.7;">
+              <li>Clearer instructions needed for what to do in VR</li>
+              <li>Game was too easy &mdash; only ~10 seconds, should be longer to hold attention</li>
+              <li>Content sizing needs to surround the user in interactive mode or be contained on mobile</li>
+              <li>Item sizing within the VR room needs purpose relative to mobile user&rsquo;s eye level</li>
+              <li>Environment lighting and alignment with the physical space needed tuning</li>
+              <li>Engagement present for first 1&ndash;2 trials only &mdash; things must work on the first try</li>
+            </ul>
+          </div>
+          <div class="card card--glass">
+            <strong>Physical Artifact Testing</strong>
+            <ul style="font-size:.85rem; color:var(--muted); margin:.5rem 0 0; padding-left:1.2rem; line-height:1.7;">
+              <li>Markers and posters were taken down in some areas (hallways, study desks, vending machines, library)</li>
+              <li>Physical artifacts had to be placed in areas that stayed put for at least 3&ndash;4 days</li>
+              <li>Consistent monitoring of artifacts during live testing with entry poster</li>
+              <li>Library and campus hours limited game availability &mdash; redundancy in clue options added for accessibility</li>
+            </ul>
+          </div>
+          <div class="card card--glass">
+            <strong>ARI Physical Robot Testing</strong>
+            <ul style="font-size:.85rem; color:var(--muted); margin:.5rem 0 0; padding-left:1.2rem; line-height:1.7;">
+              <li>Accuracy of help responses tested</li>
+              <li>Responsiveness to input voices evaluated</li>
+              <li>Integration within actual gameplay verified</li>
+              <li>Digital accompanying component needed to stay in sync with physical ARI</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Dead Ends &amp; Killed Features</h3>
+        <div class="card-grid card-grid--2">
+          <div class="card card--red-border">
+            <strong>Killed: Timer-based stress mechanic</strong> &mdash; We added a countdown that reduced puzzle time on wrong answers. Testers found it punishing rather than exciting. Replaced with subtle Heat meter UI changes that convey pressure without penalizing.
+          </div>
+          <div class="card card--red-border">
+            <strong>Killed: Full ARI chatbot</strong> &mdash; We prototyped a free-text chatbot for ARI. Players typed irrelevant things or tried to break it. Replaced with structured quick-action buttons that give useful hints without the conversational overhead.
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Outcome</h3>
+        <p>A tested, iterated, deployable experience. The four testing-driven changes above transformed a confusing prototype into a clean, guided journey. User feedback shifted from &ldquo;I don&rsquo;t know what to do&rdquo; to &ldquo;I want to play again on Hard Mode.&rdquo;</p>
+
+        <h3 class="subsection-title">Key Takeaways</h3>
+        <div class="card-grid card-grid--3">
+          <div class="card card--cyan">
+            <div class="card__icon">&#128270;</div>
+            <h3 class="card__title">Test Early, Test In-Person</h3>
+            <p>Remote surveys would have missed the confusion we observed firsthand. Watching someone freeze at the entry screen was more useful than 50 survey responses saying &ldquo;it was fine.&rdquo;</p>
+          </div>
+          <div class="card card--purple">
+            <div class="card__icon">&#128736;</div>
+            <h3 class="card__title">Design for Failure Gracefully</h3>
+            <p>AR/VR is required by the rubric, so the challenge was anticipating user errors and device issues rather than removing the platforms. Simple game mechanics, clear instructions, and settings guidance reduced unpredictability without undermining player agency. When VR did crash on a tester&rsquo;s phone, the web hub backbone ensured the experience still reached a valid ending.</p>
+          </div>
+          <div class="card card--red">
+            <div class="card__icon">&#9889;</div>
+            <h3 class="card__title">Know When &amp; When Not to Use AI</h3>
+            <p>AI was not useful for video editing &mdash; what we needed could be done manually in less time. Debugging with AI was also slow in some cases, so manual debugging was used alongside it. Where AI genuinely helped was asset generation: rapid 3D model ideation (Minotaur test model, maze environment tests, Greek/cybernetic hybrid models) gave us visual direction that would have taken days to sketch by hand.</p>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Visual Artifacts</h3>
+        <div class="card-grid card-grid--3">
+          <div class="card card--glass">
+            <img src="img/user_testing_feedback.jpg" alt="User testing and feedback documentation showing 4 key changes from testing">
+            <p class="muted" style="margin-top:.5rem;">User testing &amp; feedback</p>
+          </div>
+          <div class="card card--glass">
+            <img src="img/setting_updates.jpg" alt="Setting updates showing game environment settings used across the experience">
+            <p class="muted" style="margin-top:.5rem;">Setting updates</p>
+          </div>
+          <div class="card card--glass">
+            <img src="img/narrative_integration_platforms.jpg" alt="Narrative integration and platforms update showing engagement and narrative-driven design">
+            <p class="muted" style="margin-top:.5rem;">Narrative integration &amp; platforms update</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== INTERACTION POINTS (FigJam) ===================== -->
+  <section class="section section--dark" id="interaction-points">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Interaction Points">Interaction Points &mdash; AR / VR</h2>
+      <p class="lead center">Every space in the game is a representation of a digital environment hacked by ARI to communicate with players. The board below maps every interaction point across AR and VR platforms.</p>
+
+      <!-- Row 1: 3-column concept cards -->
+      <div class="card-grid card-grid--3" style="margin-bottom:2rem;">
+        <div class="card card--glass">
+          <h4>ARI&rsquo;s Distributed Access Points</h4>
+          <p>Because the campus system is compromised, ARI actively seeks player help by making access points discoverable in many locations. ARI&rsquo;s influence extends around the school &mdash; physical artifacts placed on campus are manifestations of a digital entity reaching into physical space. The magic is in the unknown origin: how did a digital being place these objects?</p>
+        </div>
+        <div class="card card--glass">
+          <h4>Prior Players &amp; the Stakes</h4>
+          <p>One aspect of ARI&rsquo;s system works by having players help place artifacts for <em>future</em> players. The prior players have been eliminated, abandoned, or lost in the maze &mdash; it&rsquo;s up to the new players to secure the system and exit safely. This layered history gives every access point narrative weight.</p>
+        </div>
+        <div class="card card--glass">
+          <h4>Shortcut: Guess &ldquo;THREAD&rdquo;</h4>
+          <p>Players can guess the exit password <strong>THREAD</strong> at any time, bypassing puzzles and platform nodes entirely. Game difficulty influences exit conditions &mdash; Hard Mode requires all fragments, while Normal Mode rewards clever shortcuts.</p>
+        </div>
+      </div>
+
+      <!-- Row 2: ARI Physical Form + Digital web hub + Physical interactions -->
+      <div class="card-grid card-grid--3" style="margin-bottom:2rem;">
+        <div class="card card--glass">
+          <h4>ARI&rsquo;s Physical Form</h4>
+          <p>ARI is a digital being who implores students for help. If players complete the full experience, ARI&rsquo;s physical form is revealed at the end &mdash; a reward that closes the loop between the digital labyrinth and the physical campus.</p>
+        </div>
+        <div class="card card--glass">
+          <h4>Digital Web Hub</h4>
+          <p>Digital novel through <strong>webGAL</strong>.</p>
+          <figure style="margin:.8rem 0 0; overflow:hidden; border-radius:var(--radius);">
+            <img src="img/platform1_web_hub.jpg" alt="Digital web hub and webGAL interface" style="width:100%; display:block; border-radius:var(--radius); border:1px solid var(--border);">
+          </figure>
+        </div>
+        <div class="card card--glass" style="display:flex; flex-direction:column; gap:1rem;">
+          <!-- Empty placeholder to balance grid -->
+        </div>
+      </div>
+
+      <!-- Row 3: Physical interaction cards -->
+      <div class="card-grid card-grid--2" style="margin-bottom:2rem;">
+        <div class="card card--glass">
+          <h4>Physical Interaction</h4>
+          <p><strong>Envelope in library interaction</strong></p>
+          <p>Player is hinted to go to the library to find the envelope that was placed by ARI with the help of prior players.</p>
+        </div>
+        <div class="card card--glass">
+          <h4>Physical Interaction</h4>
+          <p><strong>Finding and scanning the associated posters and QR codes on campus.</strong></p>
+          <p>Digital web hub space to physical campus space connection, through web network Sheridan posters.</p>
+        </div>
+      </div>
+
+      <!-- Rabbit Holes -->
+      <h3 class="subsection-title">Rabbit Holes</h3>
+      <p class="lead">Participants can interact with content that provides further lore and next-steps.</p>
+
+      <div class="card-grid card-grid--3" style="margin-bottom:2rem;">
+        <div class="card card--glass">
+          <h4>R1 &mdash; Entry (QR Code)</h4>
+          <ul style="font-size:.85rem; color:var(--muted); margin:0; padding-left:1.2rem; line-height:1.7;">
+            <li>Players are rooted in a physically safe space</li>
+            <li>Campus items like the marker poster, QR&rsquo;s, navigation</li>
+            <li>Use of a mysterious digital world linkable through further clue</li>
+          </ul>
+        </div>
+        <div class="card card--glass">
+          <h4>R2 &mdash; Webpage (WebGAL, Web)</h4>
+          <ul style="font-size:.85rem; color:var(--muted); margin:0; padding-left:1.2rem; line-height:1.7;">
+            <li>Lore / information</li>
+            <li>Use of nested creation</li>
+            <li>Rabbit holes and storytelling</li>
+            <li>Hints for game</li>
+          </ul>
+        </div>
+        <div class="card card--glass">
+          <h4>R3 &mdash; Clues (<s>YT Video</s>)</h4>
+          <ul style="font-size:.85rem; color:var(--muted); margin:0; padding-left:1.2rem; line-height:1.7;">
+            <li>Due to media / location</li>
+            <li>e.g. NPC content filmed and uploaded to links</li>
+            <li>From suspicious digital world</li>
+          </ul>
+        </div>
+        <div class="card card--glass">
+          <h4>R4 &mdash; Clues (Spline / AR)</h4>
+          <ul style="font-size:.85rem; color:var(--muted); margin:0; padding-left:1.2rem; line-height:1.7;">
+            <li>Clue / Puzzle resolves fragment creation</li>
+            <li>Digital scenes</li>
+          </ul>
+        </div>
+        <div class="card card--glass">
+          <h4>R5 &mdash; Physical Clues</h4>
+          <ul style="font-size:.85rem; color:var(--muted); margin:0; padding-left:1.2rem; line-height:1.7;">
+            <li>Poster / map / sticker or scannable QR</li>
+            <li>Related to campus wavers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="position:relative; width:100%; padding-top:60%; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--bg-alt);">
+        <iframe
+          src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fboard%2Fch4MgtWSkztGxF6tb5iT70%2Finteract_Point%3Fnode-id%3D1-2%26t%3DlpSNn58tjD4Bt66t-4"
+          allowfullscreen
+          style="position:absolute; inset:0; width:100%; height:100%; border:none;"
+          loading="lazy"
+          title="FigJam Interaction Points Board"
+        ></iframe>
+      </div>
+
+      <p style="text-align:center; margin-top:1rem; font-size:.85rem; color:var(--muted);">
+        Can&rsquo;t see the embed?
+        <a href="https://www.figma.com/board/ch4MgtWSkztGxF6tb5iT70/interact_Point?node-id=1-2&t=lpSNn58tjD4Bt66t-4" target="_blank" rel="noopener" style="color:var(--cyan);">Open in Figma &#8599;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 5. ROUTE STRUCTURE ===================== -->
+  <section class="section section--dark" id="route">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Route Structure">Route &amp; Platform Architecture</h2>
+      <p class="lead center">The experience uses a dual-mode route system. Below: the platform layout showing how players move between media, and the hub-and-spoke route diagram showing the node structure.</p>
+
+      <h3 class="subsection-title">Platform Layout</h3>
+      <p class="lead">These diagrams map the full player journey from physical poster scan through all puzzle nodes to the three exit endings. The main flow shows how platforms hand off to each other; the endgame detail shows the final branching.</p>
+      <div class="cs-platform-imgs">
+        <figure>
+          <img src="img/platforms_layout_main_flow.jpg" alt="Platform layout showing the main player flow from physical poster through web hub, puzzle nodes, AR experience, VR experience, and physical artifact collection leading to the endgame phase">
+          <figcaption>Main Flow — Poster → Hub → Puzzle Nodes → Endgame</figcaption>
+        </figure>
+        <figure>
+          <img src="img/platforms_layout_endgame_exits.jpg" alt="Platform layout showing the endgame phase with multi-choice puzzles, exit code entry, and three exit paths leading to Ending A, B, and C">
+          <figcaption>Endgame Phase — Password Entry → Three Exits</figcaption>
+        </figure>
+      </div>
+
+      <h3 class="subsection-title">Hub-and-Spoke Node Diagram</h3>
+      <p class="lead">The SVG below illustrates the <strong>Hard Mode</strong> hub-and-spoke structure: all six fragment nodes radiate from a central hub, and the exit requires collecting all six fragments spelling &ldquo;T H R E A D&rdquo;.</p>
+      <div class="cs-route-wrap">
+        <svg class="cs-route-svg" viewBox="0 0 1100 750" role="img" aria-label="Hub-based route map showing all fragment nodes, password entry, shortcut paths, and three endings">
+          <defs><pattern id="gridCS" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(128,128,180,.08)" stroke-width="0.6"/></pattern></defs>
+          <rect width="100%" height="100%" fill="url(#gridCS)"/>
+
+          <!-- ── Connections (behind nodes) ── -->
+          <path d="M 550 66 L 550 100" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".4"/>
+          <!-- Password → Node 2.a (vertical center) -->
+          <path d="M 550 140 L 550 170" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".3"/>
+          <!-- Node 2.a → Node 2 (vertical center) -->
+          <path d="M 550 215 L 550 248" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".3"/>
+          <!-- Password → Node 1 (left diagonal, starts from left edge of Password) -->
+          <path d="M 440 130 L 300 248" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".3"/>
+          <!-- Password → Node 3 (right diagonal, starts from right edge of Password) -->
+          <path d="M 660 130 L 810 248" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".3"/>
+          <!-- Row 1 → Row 2 -->
+          <path d="M 200 298 L 200 348" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".25"/>
+          <path d="M 550 298 L 550 348" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".25"/>
+          <path d="M 910 298 L 910 348" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".25"/>
+          <!-- Row 2 → Collector -->
+          <path d="M 200 398 L 400 458" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".22"/>
+          <path d="M 550 398 L 550 458" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".22"/>
+          <path d="M 910 398 L 700 458" stroke="var(--muted)" stroke-width="2" fill="none" opacity=".22"/>
+          <!-- Collector → Exit (red) -->
+          <path d="M 550 513 L 550 548" stroke="var(--red)" stroke-width="2.5" fill="none" opacity=".6"/>
+          <!-- Exit → Endings (red) -->
+          <path d="M 550 588 L 280 638" stroke="var(--red)" stroke-width="2" fill="none" opacity=".4"/>
+          <path d="M 550 588 L 550 638" stroke="var(--red)" stroke-width="2" fill="none" opacity=".4"/>
+          <path d="M 550 588 L 820 638" stroke="var(--red)" stroke-width="2" fill="none" opacity=".4"/>
+
+          <!-- ── Shortcut lines (cyan) ── -->
+          <!-- ShortCut → Password (curved to avoid crossing nodes) -->
+          <path d="M 5 440 Q 5 120 440 120" stroke="var(--cyan)" stroke-width="2.5" fill="none" opacity=".5"/>
+          <!-- ShortCut → Fragments collector -->
+          <path d="M 295 475 L 400 478" stroke="var(--cyan)" stroke-width="2.5" fill="none" opacity=".5"/>
+
+          <!-- ══════ NODES ══════ -->
+          <!-- HUB circle -->
+          <circle cx="550" cy="48" r="18" fill="var(--surface)" stroke="var(--red)" stroke-width="2"/>
+          <text x="550" y="54" text-anchor="middle" fill="var(--text)" font-size="12" font-weight="500">HUB</text>
+
+          <!-- Password + Counters -->
+          <rect x="440" y="100" width="220" height="40" rx="10" fill="var(--surface)" stroke="var(--red)" stroke-width="2" opacity=".7"/>
+          <text x="550" y="125" text-anchor="middle" fill="var(--text)" font-size="13">Password + Counters</text>
+
+          <!-- Node 2.a (centered between Password and Row 1) -->
+          <rect x="390" y="170" width="320" height="45" rx="8" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5" opacity=".7"/>
+          <text x="550" y="188" text-anchor="middle" fill="var(--text)" font-size="10" font-weight="500">Node 2.a &mdash; Fragment &ldquo;Building location&rdquo;</text>
+          <text x="550" y="204" text-anchor="middle" fill="var(--muted)" font-size="8">VR space reveal of location to find the next fragment node</text>
+
+          <!-- Row 1 Nodes -->
+          <rect x="100" y="248" width="200" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".7"/>
+          <text x="200" y="268" text-anchor="middle" fill="var(--text)" font-size="11.5" font-weight="500">Node 1 &mdash; Fragment &ldquo;T&rdquo;</text>
+          <text x="200" y="286" text-anchor="middle" fill="var(--cyan)" font-size="9.5">First Correction</text>
+
+          <rect x="400" y="248" width="300" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".7"/>
+          <text x="550" y="268" text-anchor="middle" fill="var(--text)" font-size="10" font-weight="500">Node 2 The &lsquo;dagger marker&rsquo; scan activity for &lsquo;H&rsquo;</text>
+          <text x="550" y="286" text-anchor="middle" fill="var(--cyan)" font-size="8.5">AR Reveal</text>
+
+          <rect x="810" y="248" width="200" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".7"/>
+          <text x="910" y="268" text-anchor="middle" fill="var(--text)" font-size="11.5" font-weight="500">Node 3 &mdash; Fragment &ldquo;R&rdquo;</text>
+          <text x="910" y="286" text-anchor="middle" fill="var(--cyan)" font-size="9.5">Policy Logic</text>
+
+          <!-- Row 2 Nodes -->
+          <rect x="100" y="348" width="200" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".6"/>
+          <text x="200" y="368" text-anchor="middle" fill="var(--text)" font-size="11.5" font-weight="500">Node 4 &mdash; Fragment &ldquo;E&rdquo;</text>
+          <text x="200" y="386" text-anchor="middle" fill="var(--cyan)" font-size="9.5">Map Posts</text>
+
+          <rect x="380" y="348" width="340" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".6"/>
+          <text x="550" y="368" text-anchor="middle" fill="var(--text)" font-size="10" font-weight="500">Node 5 T_READ is the clue given upon successful solve</text>
+          <text x="550" y="386" text-anchor="middle" fill="var(--cyan)" font-size="8.5">VR Control Room</text>
+
+          <rect x="810" y="348" width="200" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".6"/>
+          <text x="910" y="368" text-anchor="middle" fill="var(--text)" font-size="11.5" font-weight="500">Node 6 &mdash; Fragment &ldquo;D&rdquo;</text>
+          <text x="910" y="386" text-anchor="middle" fill="var(--cyan)" font-size="9.5">Final Reframe</text>
+
+          <!-- Node ShortCut (lower left) -->
+          <rect x="5" y="430" width="290" height="80" rx="8" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5" opacity=".7"/>
+          <text x="150" y="449" text-anchor="middle" fill="var(--text)" font-size="10" font-weight="600">Node ShortCut</text>
+          <text x="150" y="465" text-anchor="middle" fill="var(--muted)" font-size="8.5">Option A : Fragment &ldquo;Vr room space&rdquo;</text>
+          <text x="150" y="479" text-anchor="middle" fill="var(--muted)" font-size="8.5">Option B : Fragment &ldquo;Greek flame room&rdquo;</text>
+          <text x="150" y="493" text-anchor="middle" fill="var(--muted)" font-size="7.5">VR space that provides &ldquo;T_READ&rdquo; upon successful solving</text>
+
+          <!-- Fragment collector -->
+          <rect x="390" y="458" width="320" height="55" rx="12" fill="var(--surface)" stroke="var(--red)" stroke-width="2.5" opacity=".7"/>
+          <text x="550" y="480" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="500">Fragments 6/6 &rarr; &ldquo;T H R E A D&rdquo;</text>
+          <text x="550" y="499" text-anchor="middle" fill="var(--cyan)" font-size="9.5">Return to Hub (Thread / Heat updated)</text>
+
+          <!-- Exit Terminal -->
+          <rect x="445" y="548" width="210" height="40" rx="12" fill="var(--surface)" stroke="var(--red)" stroke-width="2.5"/>
+          <text x="550" y="574" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="500">Enter Exit Password</text>
+
+          <!-- Endings -->
+          <rect x="190" y="638" width="180" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".7"/>
+          <text x="280" y="659" text-anchor="middle" fill="var(--text)" font-size="11.5" font-weight="500">Ending A &mdash; &ldquo;Won&rdquo;</text>
+          <text x="280" y="676" text-anchor="middle" fill="var(--cyan)" font-size="9.5">Compliance Exit</text>
+
+          <rect x="460" y="638" width="180" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".7"/>
+          <text x="550" y="659" text-anchor="middle" fill="var(--text)" font-size="11.5" font-weight="500">Ending B &mdash; &ldquo;Observed&rdquo;</text>
+          <text x="550" y="676" text-anchor="middle" fill="var(--cyan)" font-size="9.5">Exit with a Shadow</text>
+
+          <rect x="730" y="638" width="180" height="50" rx="10" fill="var(--surface)" stroke="var(--muted)" stroke-width="2" opacity=".7"/>
+          <text x="820" y="659" text-anchor="middle" fill="var(--text)" font-size="11.5" font-weight="500">Ending C &mdash; &ldquo;Thread Weaver&rdquo;</text>
+          <text x="820" y="676" text-anchor="middle" fill="var(--cyan)" font-size="9.5">True End</text>
+        </svg>
+      </div>
+
+      <h3 class="subsection-title">Platform Architecture Breakdown</h3>
+      <p class="lead">Each platform as a modular node. In <strong>Normal Mode</strong>, players can finish without touching VR or AR (3 web puzzles are the complete path). In <strong>Hard Mode</strong>, AR and VR are mandatory &mdash; all 6 fragments must be collected.</p>
+
+      <!-- View Toggle -->
+      <div class="cs-view-toggle">
+        <button class="cs-view-btn cs-view-btn--active" data-view="grid" aria-label="Grid view">&#9638; Grid</button>
+        <button class="cs-view-btn" data-view="accordion" aria-label="Accordion view">&#9776; Accordion</button>
+      </div>
+
+      <!-- ── GRID VIEW (default) ── -->
+      <div class="cs-platform-grid" id="platformGrid">
+        <div class="cs-plat-card">
+          <div class="cs-plat-card__head">
+            <span class="cs-plat-card__num">01</span>
+            <span class="cs-plat-card__tag">Primary</span>
+          </div>
+          <h4 class="cs-plat-card__title">Web Game Hub</h4>
+          <p class="cs-plat-card__desc">The central nervous system — a single-page hub so players always return to one familiar interface.</p>
+          <div class="cs-plat-card__imgs">
+            <img src="img/hub1.png" alt="Web hub interface overview">
+            <img src="img/hub2.png" alt="Web hub puzzle node screen">
+          </div>
+        </div>
+        <div class="cs-plat-card">
+          <div class="cs-plat-card__head">
+            <span class="cs-plat-card__num">02</span>
+            <span class="cs-plat-card__tag">Lore</span>
+          </div>
+          <h4 class="cs-plat-card__title">Digital Novel (WebGAL)</h4>
+          <p class="cs-plat-card__desc">A visual novel layer for deep storytelling without slowing puzzle-focused players.</p>
+          <div class="cs-plat-card__imgs">
+            <img src="img/webgal1.png" alt="WebGAL branching choice">
+            <img src="img/webgal2.png" alt="WebGAL dialogue scene">
+          </div>
+        </div>
+        <div class="cs-plat-card">
+          <div class="cs-plat-card__head">
+            <span class="cs-plat-card__num">03</span>
+            <span class="cs-plat-card__tag">Tangible</span>
+          </div>
+          <h4 class="cs-plat-card__title">Physical Artifacts</h4>
+          <p class="cs-plat-card__desc">Three physical elements bridging campus and digital space — posters (QR + AR markers) as gateways, ARI Helper model, and a hidden envelope with fragment clues.</p>
+          <div class="cs-plat-card__imgs">
+            <img src="img/ARI Helper.png" alt="Physical ARI helper model">
+            <img src="img/physical-envelope-detail.jpeg" alt="Envelope detail showing handwritten clue">
+          </div>
+        </div>
+        <div class="cs-plat-card">
+          <div class="cs-plat-card__head">
+            <span class="cs-plat-card__num">04</span>
+            <span class="cs-plat-card__tag">Immersive</span>
+          </div>
+          <h4 class="cs-plat-card__title">VR Space</h4>
+          <p class="cs-plat-card__desc">A nightmare maze-room where participants search hotspots to collect story fragments and password pieces. The Minotaur was frozen within the VR space &mdash; a result of ARI creating a safe zone inside the compromised network for the player. Headsets can optionally be used (a benefit of WebXR); the experience also runs on mobile phone screens.</p>
+          <div class="cs-plat-card__imgs">
+            <img src="img/vr-mini-game-screenshot.png" alt="VR classroom escape screenshot">
+            <img src="img/vr-mini-game-screenshot2.png" alt="VR mini-game puzzle interaction">
+          </div>
+        </div>
+        <div class="cs-plat-card">
+          <div class="cs-plat-card__head">
+            <span class="cs-plat-card__num">05</span>
+            <span class="cs-plat-card__tag">Augmented</span>
+          </div>
+          <h4 class="cs-plat-card__title">AR Overlay</h4>
+          <p class="cs-plat-card__desc">Scan the marker poster to reveal <strong>t_read</strong> — the shortcut clue. (Older map used &ldquo;Letter A&rdquo;; the updated AR layer maps to the shortcut path.)</p>
+          <div class="cs-plat-card__imgs">
+            <img src="img/platform5_6_vr_ar.jpg" alt="AR overlay shortcut clue reveal">
+            <img src="img/AR Overlay2.png" alt="AR overlay marker detection">
+          </div>
+        </div>
+        <div class="cs-plat-card">
+          <div class="cs-plat-card__head">
+            <span class="cs-plat-card__num">06</span>
+            <span class="cs-plat-card__tag">Final</span>
+          </div>
+          <h4 class="cs-plat-card__title">Endgame Phase</h4>
+          <p class="cs-plat-card__desc">Three exit routes lead to different endings — the player decides <em>how</em> they leave.</p>
+          <div class="cs-plat-card__imgs">
+            <img src="img/Endgame Phase1.png" alt="Endgame exit code entry screen">
+            <img src="img/Endgame Phase2.png" alt="Endgame ending selection">
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ACCORDION VIEW (toggle) ── -->
+      <div class="platform-accordion" id="platformAccordion" style="display:none;">
+        <div class="accordion-item accordion-item--open">
+          <button class="accordion-header">
+            <span class="accordion-header__num">01</span>
+            <span class="accordion-header__title">Web Game Hub</span>
+            <span class="accordion-header__tag">Primary</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>The central nervous system. A single-page hub structure so players always return to one familiar interface — reducing disorientation while preserving the feeling of exploring a network.</p>
+            <ul>
+              <li>Code entry gates progression — mimicking a login/security prompt</li>
+              <li>Progressive stage unlocking keeps pacing tight</li>
+              <li>Click-choice puzzles with hints steer toward correct answers</li>
+              <li>Optional story nodes reward exploration without blocking the critical path</li>
+            </ul>
+            <div class="card-grid card-grid--2" style="margin-top:1rem;">
+              <figure style="margin:0;"><img src="img/hub1.png" alt="Web hub interface overview" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">Hub — Main Interface</figcaption></figure>
+              <figure style="margin:0;"><img src="img/hub2.png" alt="Web hub puzzle node screen" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">Hub — Puzzle Node</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">02</span>
+            <span class="accordion-header__title">Digital Novel (WebGAL)</span>
+            <span class="accordion-header__tag">Lore</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>A visual novel layer for deep storytelling. The hub&rsquo;s puzzle-first design didn&rsquo;t have room for longer narrative sequences — WebGAL delivers these without slowing puzzle-focused players.</p>
+            <div class="card-grid card-grid--2" style="margin-top:1rem;">
+              <figure style="margin:0;"><img src="img/webgal1.png" alt="WebGAL visual novel branching choice" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">WebGAL — Branching Choice</figcaption></figure>
+              <figure style="margin:0;"><img src="img/webgal2.png" alt="WebGAL visual novel dialogue screen" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">WebGAL — Dialogue Scene</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">03</span>
+            <span class="accordion-header__title">Physical Artifacts</span>
+            <span class="accordion-header__tag">Tangible</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>Three physical elements bridging campus and digital space. Posters (QR + AR markers) act as primary gateways and hotspot anchors. The ARI Helper model made the in-game guide tangible. The hidden envelope — found in the library — rewarded real-world exploration with a handwritten clue from ARI.</p>
+            <div class="card-grid card-grid--2" style="margin-top:1rem;">
+              <figure style="margin:0;"><img src="img/ARI Helper.png" alt="Physical ARI helper model" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">ARI Helper — Physical Model</figcaption></figure>
+              <figure style="margin:0;"><img src="img/physical-envelope-detail.jpeg" alt="Envelope detail showing handwritten clue" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">Envelope — Hidden Clue</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">04</span>
+            <span class="accordion-header__title">VR Space</span>
+            <span class="accordion-header__tag">Immersive</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>A nightmare maze-room where participants search hotspots to collect story fragments and password pieces. The Minotaur was frozen &mdash; ARI created a safe zone inside the compromised network for the player. Headsets can optionally be used (a WebXR benefit); the experience also runs on mobile screens. VR rewards skilled play with fuller password fragments &mdash; a shortcut, never a gate.</p>
+            <div class="card-grid card-grid--2" style="margin-top:1rem;">
+              <figure style="margin:0;"><img src="img/vr-mini-game-screenshot.png" alt="VR mini-game classroom escape screenshot" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">VR Classroom Escape — Overview</figcaption></figure>
+              <figure style="margin:0;"><img src="img/vr-mini-game-screenshot2.png" alt="VR mini-game puzzle interaction" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">VR Classroom Escape — Puzzle</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">05</span>
+            <span class="accordion-header__title">AR Overlay</span>
+            <span class="accordion-header__tag">Augmented</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>Scan the marker poster to reveal <strong>t_read</strong> — the shortcut clue for the Node ShortCut path. The older map used &ldquo;Letter A&rdquo;; the updated poster scan maps to the shortcut option. Intentionally non-critical — a delight moment, not a gate.</p>
+            <div class="card-grid card-grid--2" style="margin-top:1rem;">
+              <figure style="margin:0;"><img src="img/platform5_6_vr_ar.jpg" alt="AR overlay shortcut clue t_read reveal" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">AR Overlay — t_read Clue</figcaption></figure>
+              <figure style="margin:0;"><img src="img/AR Overlay2.png" alt="AR overlay marker detection" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">AR Overlay — Marker Detection</figcaption></figure>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">06</span>
+            <span class="accordion-header__title">Endgame Phase</span>
+            <span class="accordion-header__tag">Final</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <p>After collecting all fragments, three exit routes lead to different endings. Multiple exits so the final choice still carries weight — the player decides <em>how</em> they leave.</p>
+            <div class="endgame-exits">
+              <div class="exit-badge">Exit A &mdash; Won</div>
+              <div class="exit-badge">Exit B &mdash; Observed</div>
+              <div class="exit-badge">Exit C &mdash; Thread Weaver</div>
+            </div>
+            <div class="card-grid card-grid--2" style="margin-top:1rem;">
+              <figure style="margin:0;"><img src="img/Endgame Phase1.png" alt="Endgame phase exit code entry screen" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">Endgame — Exit Code Entry</figcaption></figure>
+              <figure style="margin:0;"><img src="img/Endgame Phase2.png" alt="Endgame phase ending selection" style="width:100%; border-radius:var(--radius); border:1px solid var(--border);"><figcaption class="muted" style="font-size:.75rem; margin-top:.4rem; text-align:center;">Endgame — Ending Selection</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Platform Reference Table ── -->
+      <h3 class="subsection-title" style="margin-top:2.5rem;">Platform Reference</h3>
+      <div style="overflow-x:auto; margin-bottom:1.5rem;">
+        <table style="width:100%; border-collapse:collapse; font-size:.85rem;">
+          <thead>
+            <tr style="border-bottom:2px solid var(--cyan);">
+              <th style="padding:.6rem 1rem; text-align:left; font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); white-space:nowrap;">Category</th>
+              <th style="padding:.6rem 1rem; text-align:left; font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); white-space:nowrap;">Platform</th>
+              <th style="padding:.6rem 1rem; text-align:left; font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan);">Narrative Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:.6rem 1rem; color:var(--muted); white-space:nowrap;">VR (1)</td>
+              <td style="padding:.6rem 1rem; color:var(--text);">WebXR / A-Frame &lsquo;Nightmare Room&rsquo;</td>
+              <td style="padding:.6rem 1rem; color:var(--muted);">Hotspot search for fragments and password pieces</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,.02);">
+              <td style="padding:.6rem 1rem; color:var(--muted); white-space:nowrap;">AR (1)</td>
+              <td style="padding:.6rem 1rem; color:var(--text);">WebAR (MindAR/AR.js) poster scan</td>
+              <td style="padding:.6rem 1rem; color:var(--muted);">Thread hints, warnings, and misdirection overlays</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:.6rem 1rem; color:var(--muted); white-space:nowrap;">Digital (1/3)</td>
+              <td style="padding:.6rem 1rem; color:var(--text);">Hub website (map + progress + code entry)</td>
+              <td style="padding:.6rem 1rem; color:var(--muted);">Entry + progress backbone (single source of truth)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,.02);">
+              <td style="padding:.6rem 1rem; color:var(--muted); white-space:nowrap;">Digital (2/3)</td>
+              <td style="padding:.6rem 1rem; color:var(--text);">WebGAL chapter pages</td>
+              <td style="padding:.6rem 1rem; color:var(--muted);">Core narrative text and branching fragments</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:.6rem 1rem; color:var(--muted); white-space:nowrap;">Digital (3/3)</td>
+              <td style="padding:.6rem 1rem; color:var(--text);">Character social / chatbot channel</td>
+              <td style="padding:.6rem 1rem; color:var(--muted);">Diegetic clues + red herrings (optional rabbit-holes)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,.02);">
+              <td style="padding:.6rem 1rem; color:var(--muted); white-space:nowrap;">Physical (1/3)</td>
+              <td style="padding:.6rem 1rem; color:var(--text);">Posters (QR + AR markers)</td>
+              <td style="padding:.6rem 1rem; color:var(--muted);">Primary gateway and hotspot anchors</td>
+            </tr>
+            <tr>
+              <td style="padding:.6rem 1rem; color:var(--muted); white-space:nowrap;">Physical (2/2)</td>
+              <td style="padding:.6rem 1rem; color:var(--text);">Hidden envelope / card / &lsquo;thread token&rsquo;</td>
+              <td style="padding:.6rem 1rem; color:var(--muted);">Tangible reward with fragment/puzzle piece</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 6. AI IN THE NARRATIVE PROCESS ===================== -->
+  <section class="section" id="ai-narrative">
+    <div class="container">
+      <h2 class="section__title" data-glitch="AI & Narrative">AI in the Narrative Process</h2>
+      <p class="lead center">AI was a collaborator with limits. Below are actual prompt&rarr;output case studies showing what we kept, what we rejected, and why. Models used: Claude Opus 4.6 (via Claude Code), ChatGPT-4o, So-VITS-SVC.</p>
+
+      <div class="platform-accordion">
+        <div class="accordion-item accordion-item--open">
+          <button class="accordion-header">
+            <span class="accordion-header__num">01</span>
+            <span class="accordion-header__title">Lore Writing — ARI Dialogue Generation</span>
+            <span class="accordion-header__tag">Claude</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <div class="cs-prompt-block">
+              <div class="cs-prompt-label cs-prompt-label--input">Prompt (Claude Opus 4.6)</div>
+              <p class="cs-prompt-text">&ldquo;Write 10 short ambient lines for ARI, a guidance AI inside a labyrinth that feels like a campus network. ARI should be calm, precise, and slightly ominous. Each line should be under 15 words. The tone is institutional, not friendly.&rdquo;</p>
+              <div class="cs-prompt-label cs-prompt-label--output">Output (selected)</div>
+              <p class="cs-prompt-text">&ldquo;ARI: I exist to reduce uncertainty.&rdquo; / &ldquo;ARI: The thread helps — until imitated.&rdquo; / &ldquo;ARI: Pattern consistency beats spectacle. Trust the quiet signal.&rdquo;</p>
+              <div class="cs-prompt-label cs-prompt-label--verdict">Verdict</div>
+              <p class="cs-prompt-text"><strong>Kept 7 of 10.</strong> Rejected three that sounded too friendly (&ldquo;I&rsquo;m here for you&rdquo;) — ARI should feel like a system, not a companion. The kept lines now live in <code>config.js</code> as the <code>ariLines</code> array.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">02</span>
+            <span class="accordion-header__title">Art Direction — Concept Image Generation</span>
+            <span class="accordion-header__tag">ChatGPT-4o</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <div class="cs-prompt-block">
+              <div class="cs-prompt-label cs-prompt-label--input">Prompt</div>
+              <p class="cs-prompt-text">&ldquo;Generate a dark cyberpunk campus hallway with glitch artifacts, fluorescent lighting, and a faint red grid overlay. The aesthetic should be institutional-horror, not sci-fi. Think: a Sheridan College hallway after hours, corrupted.&rdquo;</p>
+              <div class="cs-prompt-label cs-prompt-label--output">Output</div>
+              <p class="cs-prompt-text">Generated 4 variants. Two were too sci-fi (neon, floating holograms). Two captured the &ldquo;institutional gone wrong&rdquo; feeling we needed.</p>
+              <div class="cs-prompt-label cs-prompt-label--verdict">Verdict</div>
+              <p class="cs-prompt-text"><strong>Used as mood board reference only.</strong> The AI images informed our color choices but were too generic for direct use. We hand-built all final assets using the palette they suggested.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">03</span>
+            <span class="accordion-header__title">Voice — ARI Character Voice (So-VITS-SVC)</span>
+            <span class="accordion-header__tag">Killed</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <div class="cs-prompt-block">
+              <div class="cs-prompt-label cs-prompt-label--input">Approach</div>
+              <p class="cs-prompt-text">Trained So-VITS-SVC on a calm, synthetic voice dataset. Goal: give ARI an audible presence in the WebGAL visual novel scenes.</p>
+              <div class="cs-prompt-label cs-prompt-label--output">Result</div>
+              <p class="cs-prompt-text">The voice had an uncanny quality — almost human but wrong enough to feel unsettling in a way that undermined ARI&rsquo;s role as a trustworthy guide. Two weeks of prompt refinement and retraining yielded diminishing returns.</p>
+              <div class="cs-prompt-label cs-prompt-label--verdict">Verdict</div>
+              <p class="cs-prompt-text"><strong>Killed.</strong> Switched to text-only ARI. The text-only format actually reinforced ARI&rsquo;s identity as a system rather than a character — an accidental improvement that came from a failed AI experiment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">04</span>
+            <span class="accordion-header__title">Code — Decision-Tree Logic &amp; Debug</span>
+            <span class="accordion-header__tag">Claude</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <div class="cs-prompt-block">
+              <div class="cs-prompt-label cs-prompt-label--input">Use Case</div>
+              <p class="cs-prompt-text">Used Claude Code for: validating if/else branching logic across the dual-mode system, debugging state management in the hub, and reviewing the config-driven node architecture for edge cases.</p>
+              <div class="cs-prompt-label cs-prompt-label--output">Result</div>
+              <p class="cs-prompt-text">Claude caught three state-leak bugs where fragment counters persisted across mode switches. Also suggested the <code>requiredFragments</code> config key that simplified the entire mode-switching logic.</p>
+              <div class="cs-prompt-label cs-prompt-label--verdict">Verdict</div>
+              <p class="cs-prompt-text"><strong>Kept and integrated.</strong> AI was most valuable for code review and logic validation — tasks where precision matters more than creativity.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span class="accordion-header__num">05</span>
+            <span class="accordion-header__title">Video — Clue Overlay Editing</span>
+            <span class="accordion-header__tag">AI-assisted</span>
+            <span class="accordion-header__arrow">&#9660;</span>
+          </button>
+          <div class="accordion-body">
+            <div class="cs-prompt-block">
+              <div class="cs-prompt-label cs-prompt-label--input">Use Case</div>
+              <p class="cs-prompt-text">Used AI tools to add glitch overlays and hidden clue markers to existing campus footage for use as video backgrounds in WebGAL visual novel scenes. The footage was shot on phones; AI handled the post-processing effects.</p>
+              <div class="cs-prompt-label cs-prompt-label--verdict">Verdict</div>
+              <p class="cs-prompt-text"><strong>Kept.</strong> This was AI at its best: automating tedious, well-defined post-processing work. Manual glitch effects would have taken 3&times; as long for the same result.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-reflection">
+        <blockquote>
+          &ldquo;AI was seldom used because of its uncertain behaviour. The energy spent ensuring a prompt was well-crafted often exceeded the cost of building manually. Through this process, we learned to discern between AI-able tasks and tasks that required our own hands. We were overall successful in creating and chaining different experiences together without AI — and that itself was a lesson in knowing when <em>not</em> to automate.&rdquo;
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 7. AI AS TEAM MEMBER ===================== -->
+  <section class="section section--dark" id="ai-team">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Management &amp; Team">Project Management &amp; Team</h2>
+      <p class="lead center">AI wasn&rsquo;t a tool we picked up and put down — it had a defined role in the group structure, like any other collaborator.</p>
+
+      <div class="card-grid card-grid--2">
+        <div class="card card--character" data-accent="var(--cyan)">
+          <div class="card__badge card__badge--cyan">Lead &middot; Web Hub &middot; WebGAL &middot; Visuals &middot; UI/UX</div>
+          <h3 class="card__title">Yiyang</h3>
+          <p>Web Hub development, WebGAL visual novel integration, UI/UX design, art direction (graffiti hallways, corrupted campus visuals, atmospheric backgrounds), dialogue and narrative copy, decision-tree logic, and overall project coordination. Responsible for connecting every platform into a cohesive player journey and maintaining the visual identity across all deliverables.</p>
+        </div>
+        <div class="card card--character" data-accent="var(--white)">
+          <div class="card__badge">AR/VR &middot; Physical &middot; UX</div>
+          <h3 class="card__title">Andrew</h3>
+          <p>VR space construction, 3D environment design, and physical artifact fabrication. Owned the immersive shortcut pathway and ensured the VR puzzle rewarded exploration with meaningful narrative fragments.</p>
+        </div>
+        <div class="card card--character" data-accent="var(--white)">
+          <div class="card__badge">Lore &middot; Research &middot; Docs</div>
+          <h3 class="card__title">Henry</h3>
+          <p>Contributed to lore research and story concept development in the early stages of the project. Responsible for presentation and documentation design, including slides, process documentation, and the cognitive walkthrough report.</p>
+        </div>
+        <div class="card card--character" data-accent="var(--red)">
+          <div class="card__badge card__badge--red">AI &middot; Collaborator</div>
+          <h3 class="card__title">AI (Claude / GPT / So-VITS)</h3>
+          <p>Used to quicken prototyping and structuring — humans reviewed the majority of the code and its implementation. AI contributed some graphics for WebGAL scenes and poster assets; all outputs were reviewed and verified by the team. No post-production assistance from AI. It was least effective when creative judgment was needed — several AI-generated outputs were rejected because they didn&rsquo;t match the project&rsquo;s tone.</p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">AI&rsquo;s Role in the Group Structure</h3>
+      <div class="card-grid card-grid--3">
+        <div class="card card--glass">
+          <h3 class="card__title">Code Review Standups</h3>
+          <p>Human reviewed the majority of the code and its implementation. AI was used for rapid prototyping and structuring — helping scaffold logic faster, not replacing human judgment. No post-production assistance from AI. All outputs were verified and checked by human before use.</p>
+        </div>
+        <div class="card card--glass">
+          <h3 class="card__title">Asset Generation Pipeline</h3>
+          <p>AI generated concept images and lore drafts that we iterated on. The pipeline: AI draft &rarr; human edit &rarr; team review &rarr; approve/reject. Roughly 40% of AI drafts were rejected for tone or quality reasons.</p>
+        </div>
+        <div class="card card--glass">
+          <h3 class="card__title">Decision-Making Input</h3>
+          <p>We consulted AI when stuck on design decisions (e.g., &ldquo;should the timer punish or just pressure?&rdquo;). AI provided options and trade-off analysis. The final decision was always human. AI was an advisor, never a decider.</p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">How We Collaborated</h3>
+      <div class="split">
+        <div class="split__text">
+          <p>Project management ran through <strong>Teams</strong> (file sharing, link archives, test records) and <strong>WeChat</strong> (fast decision-making, translation). User testing was always conducted in person to observe real reactions rather than rely on surveys.</p>
+          <p>We chose this split because each member could own a platform end-to-end, while Yiyang coordinated the hub that stitched them together. AI was integrated into the workflow — not as a separate phase, but as an ongoing collaborator with defined boundaries.</p>
+        </div>
+        <div class="split__visual">
+          <div class="mgmt-badges">
+            <div class="mgmt-badge">
+              <span class="mgmt-badge__icon">&#128172;</span>
+              <span>Teams &mdash; File sharing &amp; records</span>
+            </div>
+            <div class="mgmt-badge">
+              <span class="mgmt-badge__icon">&#128241;</span>
+              <span>WeChat &mdash; Quick decisions &amp; translation</span>
+            </div>
+            <div class="mgmt-badge">
+              <span class="mgmt-badge__icon">&#128101;</span>
+              <span>In-person &mdash; Testing &amp; observation</span>
+            </div>
+            <div class="mgmt-badge">
+              <span class="mgmt-badge__icon">&#129302;</span>
+              <span>AI &mdash; Code review, lore drafts, post-production</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">Project Timeline &mdash; Gantt Chart</h3>
+      <p class="lead">14-week schedule with P1&ndash;P4 milestones, weekly task assignments, and dependency tracking.</p>
+      <div style="position:relative; width:100%; padding-top:56%; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--bg-alt);">
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/1mCcb_2vVgQISNPHP03XsY4ViC1uN2n-mj2_rxFfeuYQ/edit?pli=1&amp;gid=1676616&amp;single=true&amp;widget=true&amp;headers=false#gid=1676616"
+          allowfullscreen
+          style="position:absolute; inset:0; width:100%; height:100%; border:none;"
+          loading="lazy"
+          title="Project Gantt Chart / Timeline"
+        ></iframe>
+      </div>
+      <p style="text-align:center; margin-top:1rem; font-size:.85rem; color:var(--muted);">
+        Can&rsquo;t see the embed?
+        <a href="https://docs.google.com/spreadsheets/d/1mCcb_2vVgQISNPHP03XsY4ViC1uN2n-mj2_rxFfeuYQ/edit?pli=1&amp;gid=1676616#gid=1676616" target="_blank" rel="noopener" style="color:var(--cyan);">Open in Google Sheets &#8599;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== 8. ASSET ARCHIVE ===================== -->
+  <section class="section" id="archive">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Archive">Asset Archive</h2>
+      <p class="lead center">Every visual artifact from the project, filterable by deliverable and type. Each asset is captioned with origin and date.</p>
+
+      <div class="cs-filters" role="toolbar" aria-label="Filter archive by project or type">
+        <button class="cs-filter-btn active" data-filter="all">All</button>
+        <button class="cs-filter-btn" data-filter="p1">P1</button>
+        <button class="cs-filter-btn" data-filter="p2">P2</button>
+        <button class="cs-filter-btn" data-filter="p3">P3</button>
+        <button class="cs-filter-btn" data-filter="sketch">Sketch</button>
+        <button class="cs-filter-btn" data-filter="screenshot">Screenshot</button>
+        <button class="cs-filter-btn" data-filter="diagram">Diagram</button>
+        <button class="cs-filter-btn" data-filter="ai-generated">AI-Generated</button>
+      </div>
+
+      <div class="cs-archive-grid" id="archiveGrid">
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/hub2.png" alt="Web hub puzzle node screen">
+          </div>
+          <div class="cs-archive-caption"><strong>Hub — Puzzle Node</strong> — Click-choice puzzle interface with hints and fragment counter.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/network-error-poster.jpg" alt="Disguised network-error campus poster">
+          </div>
+          <div class="cs-archive-caption"><strong>Network-Error Poster</strong> — Disguised entry poster blending with real campus signage.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/hub-entry-poster.jpg" alt="Hub entry poster with QR code">
+          </div>
+          <div class="cs-archive-caption"><strong>Hub Entry Poster</strong> — QR scan poster that starts the experience.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/webgal1.png" alt="WebGAL visual novel branching choice">
+          </div>
+          <div class="cs-archive-caption"><strong>WebGAL — Branching Choice</strong> — Visual novel branching dialogue interface.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/webgal2.png" alt="WebGAL visual novel dialogue scene">
+          </div>
+          <div class="cs-archive-caption"><strong>WebGAL — Dialogue Scene</strong> — Visual novel dialogue and character interaction.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/ARI Helper.png" alt="Physical ARI helper model">
+          </div>
+          <div class="cs-archive-caption"><strong>ARI Helper Model</strong> — Physical model of the in-game guide bridging digital and physical worlds.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/physical-envelope-detail.jpeg" alt="Envelope detail showing handwritten clue">
+          </div>
+          <div class="cs-archive-caption"><strong>Envelope — Detail</strong> — Interior of the envelope with ARI's handwritten message.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/vr-mini-game-screenshot.png" alt="VR mini-game classroom escape">
+          </div>
+          <div class="cs-archive-caption"><strong>VR Classroom Escape — Overview</strong> — VR shortcut room set up by the Minotaur system.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/vr-mini-game-screenshot2.png" alt="VR mini-game puzzle interaction">
+          </div>
+          <div class="cs-archive-caption"><strong>VR Classroom Escape — Puzzle</strong> — Interactive puzzle inside the VR classroom.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/AR Overlay1.png" alt="AR overlay revealing hidden fragment">
+          </div>
+          <div class="cs-archive-caption"><strong>AR Overlay — Fragment Reveal</strong> — Camera AR revealing a hidden letter fragment on poster.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/AR Overlay2.png" alt="AR overlay marker detection">
+          </div>
+          <div class="cs-archive-caption"><strong>AR Overlay — Marker Detection</strong> — AR detecting the campus poster marker.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p3" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/Endgame Phase1.png" alt="Endgame exit code entry screen">
+          </div>
+          <div class="cs-archive-caption"><strong>Endgame — Exit Code Entry</strong> — Final password entry screen after collecting all fragments.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P3</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Mar 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="sketch">
+          <div class="cs-archive-thumb">
+            <img src="img/platform1_web_hub.jpg" alt="Initial concept sketch of the labyrinth hub layout">
+          </div>
+          <div class="cs-archive-caption"><strong>Hub Wireframe Sketch</strong> — Initial concept for the web hub layout and navigation flow.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Sketch</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/process-main-progress-webhub.jpg" alt="First working prototype of the puzzle hub">
+          </div>
+          <div class="cs-archive-caption"><strong>Hub Prototype v1</strong> — First working build with entry code and three puzzle nodes.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="ai-generated">
+          <div class="cs-archive-thumb">
+            <img src="img/process-ui-key-visual-elements.jpg" alt="AI-generated concept image of a corrupted campus hallway">
+          </div>
+          <div class="cs-archive-caption"><strong>AI Mood Board</strong> — ChatGPT-4o generated concept for the corrupted campus aesthetic. Used as reference, not final asset.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">AI-Generated</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="sketch">
+          <div class="cs-archive-thumb">
+            <img src="img/process-ui-color-palette.jpg" alt="Color palette exploration board">
+          </div>
+          <div class="cs-archive-caption"><strong>Color Palette Exploration</strong> — Institutional blue to glitch red gradient development.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Sketch</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/platform1_web_hub_map_nodes.jpg" alt="Node map diagram for Normal Mode">
+          </div>
+          <div class="cs-archive-caption"><strong>Normal Mode Node Map</strong> — String of Pearls routing with AR/VR as optional shortcuts.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/process-node-entry-visualization.jpg" alt="Node map diagram for Hard Mode">
+          </div>
+          <div class="cs-archive-caption"><strong>Hard Mode Node Map</strong> — Hub &amp; Spoke structure with all 6 mandatory fragments.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Mar 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/platforms_layout_main_flow.jpg" alt="Platform layout main flow diagram">
+          </div>
+          <div class="cs-archive-caption"><strong>Platform Layout — Main Flow</strong> — Full player journey from poster scan through all platforms to endgame.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/platforms_layout_endgame_exits.jpg" alt="Platform layout endgame exits diagram">
+          </div>
+          <div class="cs-archive-caption"><strong>Platform Layout — Endgame</strong> — Multi-choice puzzles, exit code entry, and three exit branches.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/narrative_structure_twist_deadends.jpg" alt="Paper prototype testing session">
+          </div>
+          <div class="cs-archive-caption"><strong>Paper Prototype Session</strong> — Testing node flow with physical cards before committing to code.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p3" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/user_testing_feedback.jpg" alt="User testing session on campus">
+          </div>
+          <div class="cs-archive-caption"><strong>User Testing Round 3</strong> — In-person observation on Trafalgar campus.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P3</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Mar 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p3" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/setting_updates.jpg" alt="Hub interface before and after user testing changes">
+          </div>
+          <div class="cs-archive-caption"><strong>Hub UI: Before vs. After</strong> — Comparison showing all testing-driven interface changes.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P3</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Mar 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p3" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/narrative_integration_platforms.jpg" alt="Final ending screen showing Thread Weaver ending">
+          </div>
+          <div class="cs-archive-caption"><strong>Thread Weaver Ending</strong> — Final ending screen with narrative closure and session recap.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P3</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Apr 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="ai-generated">
+          <div class="cs-archive-thumb">
+            <img src="img/ai_as_tool_update.jpg" alt="AI-generated ARI dialogue draft">
+          </div>
+          <div class="cs-archive-caption"><strong>AI Lore Draft</strong> — Claude-generated ARI dialogue lines. 7/10 kept, 3 rejected for wrong tone.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">AI-Generated</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p3" data-type="ai-generated">
+          <div class="cs-archive-thumb">
+            <img src="img/rabbit_holes_narrative_entry.jpg" alt="So-VITS-SVC voice training output waveform">
+          </div>
+          <div class="cs-archive-caption"><strong>ARI Voice Prototype (Killed)</strong> — So-VITS-SVC output that was too uncanny. Feature was cut.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P3</span><span class="cs-archive-tag">AI-Generated</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/overview-hero-and-campus-poster.jpg" alt="Overview hero section and campus poster">
+          </div>
+          <div class="cs-archive-caption"><strong>Hero &amp; Campus Poster</strong> — Overview of the experience entry point and disguised campus poster design.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/audience-primary-users.jpg" alt="Primary users and audience analysis">
+          </div>
+          <div class="cs-archive-caption"><strong>Primary Users &amp; Audience</strong> — Audience analysis: Sheridan students, phone-first, time-constrained.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/roles-team-members.jpg" alt="Team members and roles overview">
+          </div>
+          <div class="cs-archive-caption"><strong>Team Members &amp; Roles</strong> — Yiyang (Lead/Web Hub), Andrew (VR/Physical), Henry (AR/Lore).</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/project_management.jpg" alt="Project management tools and workflow">
+          </div>
+          <div class="cs-archive-caption"><strong>Project Management</strong> — Teams, WeChat, and in-person collaboration workflow.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/narrative_story_arc.jpg" alt="Story arc flow diagram">
+          </div>
+          <div class="cs-archive-caption"><strong>Story Arc Flow</strong> — Six-stage narrative arc from network compromise to player escape.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/process-character-system-map.jpg" alt="Character system map showing Theseus, Minotaur, and ARI">
+          </div>
+          <div class="cs-archive-caption"><strong>Character System Map</strong> — Player (Theseus), Minotaur System (Virus), ARI (Ariadne) relationship mapping.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="sketch">
+          <div class="cs-archive-thumb">
+            <img src="img/process-ui-typography-system.jpg" alt="Typography system showing ordered and chaotic type">
+          </div>
+          <div class="cs-archive-caption"><strong>Typography System</strong> — Ordered type (Inter/Roboto) vs. Chaotic type (Monospace/Distorted) for dual-voice design.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Sketch</span><span class="cs-archive-tag">Jan 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/themes_update.jpg" alt="Thematic framework grid">
+          </div>
+          <div class="cs-archive-caption"><strong>Thematic Framework</strong> — Navigation vs Freedom, Intellect over Brute Force, Surveillance vs Agency.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/platform1_web_hub_lore_archive.jpg" alt="Web hub lore archive interface">
+          </div>
+          <div class="cs-archive-caption"><strong>Web Hub — Lore Archive</strong> — The lore/story page within the web hub, accessible as an optional story node.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/platform2_digital_novel.jpg" alt="WebGAL digital novel interface">
+          </div>
+          <div class="cs-archive-caption"><strong>Digital Novel (WebGAL)</strong> — Visual novel layer for deeper lore and branching dialogue sequences.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/platform3_4_physical_ari_envelope.jpg" alt="Physical artifacts: ARI helper model and hidden envelope">
+          </div>
+          <div class="cs-archive-caption"><strong>Physical Artifacts</strong> — ARI helper model and hidden library envelope bridging digital and physical worlds.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/platform5_6_vr_ar.jpg" alt="VR escape room and AR poster overlay">
+          </div>
+          <div class="cs-archive-caption"><strong>VR &amp; AR Platforms</strong> — VR classroom escape (shortcut node) and AR poster fragment reveal.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p2" data-type="diagram">
+          <div class="cs-archive-thumb">
+            <img src="img/duration_gameplay_timeline.jpg" alt="Gameplay duration and timeline flow">
+          </div>
+          <div class="cs-archive-caption"><strong>Gameplay Timeline</strong> — ~15-minute session flow from entry to exit with platform transitions.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P2</span><span class="cs-archive-tag">Diagram</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p1" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/hub1.png" alt="Web hub main interface">
+          </div>
+          <div class="cs-archive-caption"><strong>Hub — Main Interface</strong> — Central hub showing entry code, navigation, and stage progression.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P1</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Feb 2026</span></div>
+        </div>
+
+        <div class="cs-archive-item" data-project="p3" data-type="screenshot">
+          <div class="cs-archive-thumb">
+            <img src="img/Endgame Phase2.png" alt="Endgame ending selection">
+          </div>
+          <div class="cs-archive-caption"><strong>Endgame — Ending Selection</strong> — Three exit routes leading to different narrative endings.</div>
+          <div class="cs-archive-tags"><span class="cs-archive-tag">P3</span><span class="cs-archive-tag">Screenshot</span><span class="cs-archive-tag">Mar 2026</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 9. SUPPORTING FILES ===================== -->
+  <section class="section" id="supporting">
+    <div class="container">
+      <h2 class="section__title" data-glitch="Supporting Files">Supporting Files &amp; Documentation</h2>
+      <p class="lead center">Project management artifacts, live deliverables, and supplementary references.</p>
+
+      <div class="cs-file-list">
+        <a href="https://zhyiyang.phoenix.sheridanc.on.ca/nightmare-hub/" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#127760;</span>
+          <div>
+            <div class="cs-file-name">Main Hub (Live)</div>
+            <div class="cs-file-desc">The live Trafalgar Labyrinth hub — the central nervous system of the experience.</div>
+          </div>
+        </a>
+        <a href="https://zhyiyang.phoenix.sheridanc.on.ca/game6/" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#128218;</span>
+          <div>
+            <div class="cs-file-name">Visual Novel (Live)</div>
+            <div class="cs-file-desc">WebGAL visual novel layer for deeper lore and branching dialogue sequences.</div>
+          </div>
+        </a>
+        <a href="https://zhyiyang.phoenix.sheridanc.on.ca/nightmare-hub/nmec.html" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#128196;</span>
+          <div>
+            <div class="cs-file-name">About the Visual Novel / NMEC</div>
+            <div class="cs-file-desc">Full narrative showcase page with lore, characters, route structure, and endings.</div>
+          </div>
+        </a>
+        <a href="https://zhyiyang.phoenix.sheridanc.on.ca/nightmare-hub-v4/hub.html" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#128268;</span>
+          <div>
+            <div class="cs-file-name">Earlier Hub v4 (Process Reference)</div>
+            <div class="cs-file-desc">Previous iteration of the hub — shows design evolution and decision history.</div>
+          </div>
+        </a>
+        <a href="https://zhyiyang.phoenix.sheridanc.on.ca/nightmare-hub-v5/hub.html" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#128268;</span>
+          <div>
+            <div class="cs-file-name">Earlier Hub v5 (Process Reference)</div>
+            <div class="cs-file-desc">Intermediate iteration bridging v4 to the final hub build.</div>
+          </div>
+        </a>
+        <a href="https://www.figma.com/board/8PTkuFNOTHyO26bgcCu9ND/nightmareEscape?node-id=0-1&amp;t=OLqM0JHBFWWNNrre-0" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#127912;</span>
+          <div>
+            <div class="cs-file-name">Figma Planning Board</div>
+            <div class="cs-file-desc">Full planning board with wireframes, flow diagrams, and design explorations.</div>
+          </div>
+        </a>
+        <a href="https://chuian.github.io/NE_VR_Fragment_Final/" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#127918;</span>
+          <div>
+            <div class="cs-file-name">VR Prototype with Location Hint</div>
+            <div class="cs-file-desc">VR fragment collection prototype — classroom escape set up by the Minotaur system.</div>
+          </div>
+        </a>
+        <a href="https://chuian.github.io/labyrinth-ar/" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#128247;</span>
+          <div>
+            <div class="cs-file-name">AR Prototype (Live)</div>
+            <div class="cs-file-desc">Scan the campus poster to reveal hidden letter fragments via AR overlay.</div>
+          </div>
+        </a>
+        <a href="https://www.figma.com/deck/Llsi0QVRmNPjAZUD3MYSVZ" class="cs-file-item" target="_blank" rel="noopener">
+          <span class="cs-file-icon">&#127916;</span>
+          <div>
+            <div class="cs-file-name">Presentation Deck</div>
+            <div class="cs-file-desc">Project presentation slides covering concept, platforms, and walkthrough.</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ===================== LIGHTBOX MODAL ===================== -->
+  <div class="cs-lightbox" id="csLightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+    <button class="cs-lightbox__close" aria-label="Close lightbox">&times;</button>
+    <div class="cs-lightbox__counter"></div>
+    <button class="cs-lightbox__nav cs-lightbox__nav--prev" aria-label="Previous image">&#8249;</button>
+    <img class="cs-lightbox__img" src="" alt="">
+    <button class="cs-lightbox__nav cs-lightbox__nav--next" aria-label="Next image">&#8250;</button>
+    <div class="cs-lightbox__caption"></div>
+    <div class="cs-lightbox__progress"></div>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <p class="footer__title" data-glitch="TRAFALGAR LABYRINTH">TRAFALGAR LABYRINTH</p>
+      <p class="footer__subtitle">Case Study &mdash; VDES 34444 &middot; Interactive Narrative &middot; Sheridan College &middot; Winter 2026</p>
+      <p class="footer__team">Yiyang &middot; Andrew &middot; Henry &middot; AI</p>
+      <p style="margin-top:1rem;">
+        <a href="https://zhyiyang.phoenix.sheridanc.on.ca/nightmare-hub/" target="_blank" rel="noopener" style="margin-right:1.5rem; font-size:.8rem;">Main Hub</a>
+        <a href="https://chuian.github.io/labyrinth-ar/" target="_blank" rel="noopener" style="margin-right:1.5rem; font-size:.8rem;">AR Poster</a>
+        <a href="https://chuian.github.io/NE_VR_Fragment_Final/" target="_blank" rel="noopener" style="margin-right:1.5rem; font-size:.8rem;">VR Prototype</a>
+        <a href="https://zhyiyang.phoenix.sheridanc.on.ca/game6/" target="_blank" rel="noopener" style="font-size:.8rem;">Visual Novel</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
